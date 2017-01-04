@@ -7,8 +7,8 @@
     <ProjectGuid>{85949A33-DE77-4D57-A5CF-7CF2D29B8A68}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OpenChargingCloudAPI</RootNamespace>
-    <AssemblyName>OpenChargingCloudAPI</AssemblyName>
+    <RootNamespace>cloud.charging.api</RootNamespace>
+    <AssemblyName>cloud.charging.api</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -21,6 +21,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\cloud.charging.api.XML</DocumentationFile>
+    <CodeAnalysisRuleSet>..\WWCP_Core\WWCP.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Hermod\libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,8 +47,135 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="OpenChargingCloudAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Aegir\Aegir\Aegir.csproj">
+      <Project>{4d8ffccd-738d-41aa-a527-8cfdfe0a681d}</Project>
+      <Name>Aegir</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BouncyCastle\crypto\crypto.csproj">
+      <Project>{38872a5f-e87e-4fad-b109-8eb7b2e6a4a0}</Project>
+      <Name>crypto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hermod\Hermod\Hermod.csproj">
+      <Project>{477efd16-3627-4473-957d-44ca9a9dfb79}</Project>
+      <Name>Hermod</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Illias\Illias\Illias.csproj">
+      <Project>{23d37453-2d4e-4bd8-b40f-3e731fee7712}</Project>
+      <Name>Illias</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Styx\Styx\Styx.csproj">
+      <Project>{af76ecc0-2ca5-4cff-9e1e-ff5478c4b6e4}</Project>
+      <Name>Styx</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UsersAPI\UsersAPI.csproj">
+      <Project>{4d5da5f5-0dce-4620-bce5-74a27e5cfc47}</Project>
+      <Name>UsersAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WWCP_Cloud\ChargingStation\WWCP_ChargingStation.csproj">
+      <Project>{b3dd2dc7-95c5-4ef0-ae79-1b16b94dd910}</Project>
+      <Name>WWCP_ChargingStation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WWCP_Cloud\WWCP_EMSP\WWCP_EMSP.csproj">
+      <Project>{04472321-70b5-44eb-8ddd-92c25a9c51f6}</Project>
+      <Name>WWCP_EMSP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WWCP_Cloud\WWCP_EMSP_HTTPAPI\WWCP_EMSP_HTTPAPI.csproj">
+      <Project>{8f35a863-e8c4-4d7d-a81c-f42573110672}</Project>
+      <Name>WWCP_EMSP_HTTPAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WWCP_Cloud\WWCP_Kraken\WWCP_Kraken.csproj">
+      <Project>{ae97ced1-8fe4-482c-9737-c986d5fb2b91}</Project>
+      <Name>WWCP_Kraken</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WWCP_Cloud\WWCP_SmartCity\WWCP_SmartCity.csproj">
+      <Project>{d5f2340c-7b3c-47c9-bafb-8bf15357633e}</Project>
+      <Name>WWCP_SmartCity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WWCP_Core\WWCP_Core\WWCP_Core.csproj">
+      <Project>{33836742-af1d-4aa4-963f-b0a8e60e6480}</Project>
+      <Name>WWCP_Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WWCP_Net\WWCP_CSV\WWCP_CSV.csproj">
+      <Project>{8300c7e7-922b-4e2d-a2bd-f3918854bcea}</Project>
+      <Name>WWCP_CSV</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WWCP_Net\WWCP_GeoJSON\WWCP_GeoJSON.csproj">
+      <Project>{5fecd89d-80c3-407a-9ccd-2b6180882f17}</Project>
+      <Name>WWCP_GeoJSON</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WWCP_Net\WWCP_JSON-LD\WWCP_JSON-LD.csproj">
+      <Project>{627a34b7-c33c-4a69-88fe-f125c629f712}</Project>
+      <Name>WWCP_JSON-LD</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WWCP_Net\WWCP_JSON\WWCP_JSON.csproj">
+      <Project>{19b4c454-a831-4e70-963a-0ed50db92f89}</Project>
+      <Name>WWCP_JSON</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WWCP_Net\WWCP_Net\WWCP_Net.csproj">
+      <Project>{f2114125-84c1-4984-8706-b2d003156495}</Project>
+      <Name>WWCP_Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WWCP_Net\WWCP_RDF\WWCP_RDF.csproj">
+      <Project>{0fbd2942-fe7a-4d7c-a57c-59172506e2e0}</Project>
+      <Name>WWCP_RDF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WWCP_Net\WWCP_Tracker\WWCP_Tracker.csproj">
+      <Project>{21b10d7b-ab71-4ca0-bdba-baaf17fac67d}</Project>
+      <Name>WWCP_Tracker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WWCP_Net\WWCP_XML\WWCP_XML.csproj">
+      <Project>{98e75e5f-03b6-4003-a6c1-cb94e3888010}</Project>
+      <Name>WWCP_XML</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WWCP_Warden\WWCP_Warden.csproj">
+      <Project>{88e78dad-65c5-48ef-a7c9-495e6af89b7e}</Project>
+      <Name>WWCP_Warden</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <None Include="LICENSE" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HTTPRoot\css\font-awesome.min.css" />
+    <EmbeddedResource Include="HTTPRoot\fonts\fontawesome-webfont.svg" />
+    <EmbeddedResource Include="HTTPRoot\images\CardiLink_Logo01.png" />
+    <EmbeddedResource Include="HTTPRoot\images\favicon.png" />
+    <EmbeddedResource Include="HTTPRoot\images\main-qimg-20b28856692abc1567a0ce7232287326-c.jpg" />
+    <EmbeddedResource Include="HTTPRoot\images\main-qimg-20b28856692abc1567a0ce7232287326-c2.jpg" />
+    <EmbeddedResource Include="HTTPRoot\index.html" />
+    <EmbeddedResource Include="HTTPRoot\js\SignInOut.js" />
+    <EmbeddedResource Include="HTTPRoot\login.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HTTPRoot\css\styles.scss" />
+    <EmbeddedResource Include="HTTPRoot\fonts\fontawesome-webfont.eot" />
+    <EmbeddedResource Include="HTTPRoot\fonts\fontawesome-webfont.ttf" />
+    <EmbeddedResource Include="HTTPRoot\fonts\fontawesome-webfont.woff" />
+    <EmbeddedResource Include="HTTPRoot\fonts\fontawesome-webfont.woff2" />
+    <EmbeddedResource Include="HTTPRoot\fonts\FontAwesome.otf" />
+    <EmbeddedResource Include="HTTPRoot\GPGKeys\achim%40graphdefined.com_pubring.gpg" />
+    <EmbeddedResource Include="HTTPRoot\GPGKeys\mail%40open.charging.cloud_pubring.gpg" />
+    <EmbeddedResource Include="HTTPRoot\GPGKeys\robot%40open.charging.cloud_pubring.gpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HTTPRoot\js\SignInOut.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="HTTPRoot\css\styles.css">
+      <DependentUpon>styles.scss</DependentUpon>
+    </Content>
+    <EmbeddedResource Include="HTTPRoot\css\styles.min.css">
+      <DependentUpon>styles.css</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
