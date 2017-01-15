@@ -84,6 +84,8 @@ namespace cloud.charging.API
         /// </summary>
         public const               String          LogfileName                         = "OpenChargingCloud.log";
 
+        public const               String          DefaultCookieName                   = "OpenChargingCloud";
+
         #endregion
 
         #region E-Mail delegates
@@ -286,6 +288,7 @@ namespace cloud.charging.API
                                     EMailAddressList                  APIAdminEMails                     = null,
                                     SMTPClient                        APISMTPClient                      = null,
 
+                                    String                            CookieName                         = DefaultCookieName,
                                     String                            LogfileName                        = DefaultLogfileName,
                                     Func<String, Stream>              RessourcesProvider                 = null,
 
@@ -315,6 +318,7 @@ namespace cloud.charging.API
                    APIAdminEMails,
                    APISMTPClient,
 
+                   CookieName.IsNotNullOrEmpty() ? CookieName : DefaultCookieName,
                    Languages.eng,
                    _LogoImage,
                    __NewUserSignUpEMailCreator         (APIEMailAddress, APIPassphrase),
@@ -366,6 +370,7 @@ namespace cloud.charging.API
                                      EMailAddressList                  APIAdminEMails                     = null,
                                      SMTPClient                        APISMTPClient                      = null,
 
+                                     String                            CookieName                         = DefaultCookieName,
                                      String                            LogfileName                        = DefaultLogfileName,
                                      Func<String, Stream>              RessourcesProvider                 = null,
 
@@ -393,6 +398,7 @@ namespace cloud.charging.API
                    APIAdminEMails,
                    APISMTPClient,
 
+                   CookieName.IsNotNullOrEmpty() ? CookieName : DefaultCookieName,
                    Languages.eng,
                    _LogoImage,
                    __NewUserSignUpEMailCreator         (APIEMailAddress, APIPassphrase),
@@ -459,6 +465,7 @@ namespace cloud.charging.API
                                                            EMailAddressList                  APIAdminEMails                     = null,
                                                            SMTPClient                        APISMTPClient                      = null,
 
+                                                           String                            CookieName                         = DefaultCookieName,
                                                            String                            LogfileName                        = DefaultLogfileName,
                                                            Func<String, Stream>              RessourcesProvider                 = null,
 
@@ -487,6 +494,7 @@ namespace cloud.charging.API
                                         APIAdminEMails,
                                         APISMTPClient,
 
+                                        CookieName.IsNotNullOrEmpty() ? CookieName : DefaultCookieName,
                                         LogfileName,
                                         RessourcesProvider,
 
