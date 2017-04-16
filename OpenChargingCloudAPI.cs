@@ -517,6 +517,13 @@ namespace cloud.charging.API
         private void RegisterURITemplates()
         {
 
+            #region /shared/OpenChargingCloudAPI
+
+            HTTPServer.RegisterResourcesFolder(HTTPHostname.Any, "/shared/OpenChargingCloudAPI", HTTPRoot.Substring(0, HTTPRoot.Length - 1));
+
+            #endregion
+
+
             //HTTPServer.RegisterResourcesFolder(HTTPHostname.Any,
             //                                   "/shared/OpenClouds",
             //                                   "com.GraphDefined.OpenClouds.HTTPRoot",
