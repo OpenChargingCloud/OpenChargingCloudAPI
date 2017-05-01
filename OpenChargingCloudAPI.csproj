@@ -75,26 +75,6 @@
       <Project>{4d5da5f5-0dce-4620-bce5-74a27e5cfc47}</Project>
       <Name>UsersAPI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WWCP_Cloud\ChargingStation\WWCP_ChargingStation.csproj">
-      <Project>{b3dd2dc7-95c5-4ef0-ae79-1b16b94dd910}</Project>
-      <Name>WWCP_ChargingStation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WWCP_Cloud\WWCP_EMSP\WWCP_EMSP.csproj">
-      <Project>{04472321-70b5-44eb-8ddd-92c25a9c51f6}</Project>
-      <Name>WWCP_EMSP</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WWCP_Cloud\WWCP_EMSP_HTTPAPI\WWCP_EMSP_HTTPAPI.csproj">
-      <Project>{8f35a863-e8c4-4d7d-a81c-f42573110672}</Project>
-      <Name>WWCP_EMSP_HTTPAPI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WWCP_Cloud\WWCP_Kraken\WWCP_Kraken.csproj">
-      <Project>{ae97ced1-8fe4-482c-9737-c986d5fb2b91}</Project>
-      <Name>WWCP_Kraken</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WWCP_Cloud\WWCP_SmartCity\WWCP_SmartCity.csproj">
-      <Project>{d5f2340c-7b3c-47c9-bafb-8bf15357633e}</Project>
-      <Name>WWCP_SmartCity</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WWCP_Core\WWCP_Core\WWCP_Core.csproj">
       <Project>{33836742-af1d-4aa4-963f-b0a8e60e6480}</Project>
       <Name>WWCP_Core</Name>
@@ -115,17 +95,9 @@
       <Project>{f2114125-84c1-4984-8706-b2d003156495}</Project>
       <Name>WWCP_Net</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WWCP_Net\WWCP_RDF\WWCP_RDF.csproj">
-      <Project>{0fbd2942-fe7a-4d7c-a57c-59172506e2e0}</Project>
-      <Name>WWCP_RDF</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WWCP_Net\WWCP_Tracker\WWCP_Tracker.csproj">
       <Project>{21b10d7b-ab71-4ca0-bdba-baaf17fac67d}</Project>
       <Name>WWCP_Tracker</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WWCP_Net\WWCP_XML\WWCP_XML.csproj">
-      <Project>{98e75e5f-03b6-4003-a6c1-cb94e3888010}</Project>
-      <Name>WWCP_XML</Name>
     </ProjectReference>
     <ProjectReference Include="..\WWCP_Warden\WWCP_Warden.csproj">
       <Project>{88e78dad-65c5-48ef-a7c9-495e6af89b7e}</Project>

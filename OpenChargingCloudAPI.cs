@@ -36,6 +36,7 @@ using org.GraphDefined.Vanaheimr.BouncyCastle;
 using System.Threading;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets.TCP;
+using org.GraphDefined.WWCP.Net;
 
 #endregion
 
@@ -63,7 +64,7 @@ namespace cloud.charging.API
         /// <summary>
         /// The HTTP root for embedded ressources.
         /// </summary>
-        public  new const           String          HTTPRoot                            = "com.GraphDefined.OpenChargingCloud.API.HTTPRoot.";
+        public  new const           String          HTTPRoot                            = "cloud.charging.api.HTTPRoot.";
 
         /// <summary>
         /// The default service name.
@@ -85,6 +86,12 @@ namespace cloud.charging.API
         public const               String          LogfileName                         = "OpenChargingCloud.log";
 
         public const               String          DefaultCookieName                   = "OpenChargingCloud";
+
+        #endregion
+
+        #region Properties
+
+        public WWCP_HTTPAPI WWCP { get; }
 
         #endregion
 
@@ -336,6 +343,8 @@ namespace cloud.charging.API
 
         {
 
+            this.WWCP  = WWCP_HTTPAPI.AttachToHTTPAPI(HTTPServer);
+
             RegisterURITemplates();
 
         }
@@ -427,6 +436,8 @@ namespace cloud.charging.API
                 URIPrefix = "/" + URIPrefix;
 
             #endregion
+
+            this.WWCP  = WWCP_HTTPAPI.AttachToHTTPAPI(HTTPServer);
 
             RegisterURITemplates();
 
