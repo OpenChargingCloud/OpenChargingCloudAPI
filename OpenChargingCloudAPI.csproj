@@ -87,10 +87,6 @@
       <Project>{5fecd89d-80c3-407a-9ccd-2b6180882f17}</Project>
       <Name>WWCP_GeoJSON</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WWCP_Net\WWCP_JSON\WWCP_JSON.csproj">
-      <Project>{19b4c454-a831-4e70-963a-0ed50db92f89}</Project>
-      <Name>WWCP_JSON</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WWCP_Net\WWCP_Net\WWCP_Net.csproj">
       <Project>{f2114125-84c1-4984-8706-b2d003156495}</Project>
       <Name>WWCP_Net</Name>
