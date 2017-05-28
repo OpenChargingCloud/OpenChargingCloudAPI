@@ -336,6 +336,7 @@ namespace cloud.charging.API
                    8,
                    TimeSpan.FromDays(30),
 
+                   false,
                    str => typeof(OpenChargingCloudAPI).Assembly.GetManifestResourceStream(HTTPRoot + str),
 
                    DNSClient:               DNSClient,
@@ -418,6 +419,7 @@ namespace cloud.charging.API
                    8,
                    TimeSpan.FromDays(30),
 
+                   false,
                    RessourcesProvider,
 
                    LogfileName)
