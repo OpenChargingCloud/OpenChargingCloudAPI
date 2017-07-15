@@ -112,7 +112,7 @@ namespace cloud.charging.API
                     => new HTMLEMailBuilder() {
 
                                        From           = APIEMailAddress,
-                                       To             = new EMailAddressList(EMailAddress),
+                                       To             = EMailAddress,
                                        Passphrase     = APIPassphrase,
                                        Subject        = "Your new account at 'Open Charging Cloud'...",
 
@@ -167,7 +167,7 @@ namespace cloud.charging.API
                     Language) => new HTMLEMailBuilder() {
 
                                               From           = APIEMailAddress,
-                                              To             = new EMailAddressList(EMailAddress),
+                                              To             = EMailAddress,
                                               Passphrase     = APIPassphrase,
                                               Subject        = "Welcome to the 'Open Charging Cloud'...",
 
@@ -220,7 +220,7 @@ namespace cloud.charging.API
                     Language) => new HTMLEMailBuilder() {
 
                                               From           = APIEMailAddress,
-                                              To             = new EMailAddressList(EMailAddress),
+                                              To             = EMailAddress,
                                               Passphrase     = APIPassphrase,
                                               Subject        = "Dein Passwort...",
 
