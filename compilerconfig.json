@@ -34,5 +34,9 @@
   {
     "outputFile": "HTTPRoot/admin/admin.css",
     "inputFile": "HTTPRoot/admin/admin.scss"
+  },
+  {
+    "outputFile": "HTTPRoot/lists/lists.css",
+    "inputFile": "HTTPRoot/lists/lists.scss"
   }
 ]

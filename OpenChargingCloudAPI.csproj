@@ -116,6 +116,11 @@
       <DependentUpon>profile.scss</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HTTPRoot\admin\admin.scss" />
+    <EmbeddedResource Include="HTTPRoot\lists\lists.scss" />
+    <EmbeddedResource Include="HTTPRoot\lists\lists.js.map">
+      <DependentUpon>lists.ts</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HTTPRoot\login\login.scss" />
     <None Include="LICENSE" />
     <None Include="README.md" />
   </ItemGroup>
@@ -174,6 +179,15 @@
     <Content Include="HTTPRoot\js\RX\rx.modern.min.js" />
     <Content Include="HTTPRoot\js\RX\rx.testing.min.js" />
     <Content Include="HTTPRoot\js\RX\rx.time.min.js" />
+    <EmbeddedResource Include="HTTPRoot\lists\lists.js">
+      <DependentUpon>lists.ts</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HTTPRoot\lists\lists.css">
+      <DependentUpon>lists.scss</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HTTPRoot\lists\lists.min.css">
+      <DependentUpon>lists.css</DependentUpon>
+    </EmbeddedResource>
     <Content Include="HTTPRoot\maps\leaflet2\images\command.png" />
     <Content Include="HTTPRoot\maps\leaflet2\images\layers-2x.png" />
     <Content Include="HTTPRoot\maps\leaflet2\images\layers.png" />
@@ -249,6 +263,15 @@
     <EmbeddedResource Include="HTTPRoot\css\styles.min.css">
       <DependentUpon>styles.css</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HTTPRoot\lists\lists.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HTTPRoot\defaults\defaults.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="HTTPRoot\compileAll.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
