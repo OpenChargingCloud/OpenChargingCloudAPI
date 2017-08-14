@@ -127,7 +127,6 @@
     <EmbeddedResource Include="HTTPRoot\images\main-qimg-20b28856692abc1567a0ce7232287326-c.jpg" />
     <EmbeddedResource Include="HTTPRoot\images\main-qimg-20b28856692abc1567a0ce7232287326-c2.jpg" />
     <EmbeddedResource Include="HTTPRoot\index.html" />
-    <EmbeddedResource Include="HTTPRoot\js\SignInOut.js" />
     <EmbeddedResource Include="HTTPRoot\login.html" />
   </ItemGroup>
   <ItemGroup>
@@ -140,9 +139,6 @@
     <EmbeddedResource Include="HTTPRoot\GPGKeys\achim%40graphdefined.com_pubring.gpg" />
     <EmbeddedResource Include="HTTPRoot\GPGKeys\mail%40open.charging.cloud_pubring.gpg" />
     <EmbeddedResource Include="HTTPRoot\GPGKeys\robot%40open.charging.cloud_pubring.gpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="HTTPRoot\js\SignInOut.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="HTTPRoot\adapters\adapters.css">
@@ -160,6 +156,47 @@
     <Content Include="HTTPRoot\events\events.css">
       <DependentUpon>events.scss</DependentUpon>
     </Content>
+    <EmbeddedResource Include="HTTPRoot\js\springyui.js" />
+    <EmbeddedResource Include="HTTPRoot\js\d3.v3.min.js" />
+    <EmbeddedResource Include="HTTPRoot\js\jquery.min.js" />
+    <EmbeddedResource Include="HTTPRoot\js\springy.js" />
+    <Content Include="HTTPRoot\js\EventSource\EventSource.js" />
+    <Content Include="HTTPRoot\js\EventSource\jquery.eventsource.js" />
+    <Content Include="HTTPRoot\js\IX\ix.min.js" />
+    <Content Include="HTTPRoot\js\IX\l2o.min.js" />
+    <Content Include="HTTPRoot\js\RX\rx.aggregates.min.js" />
+    <Content Include="HTTPRoot\js\RX\rx.binding.min.js" />
+    <Content Include="HTTPRoot\js\RX\rx.coincidence.min.js" />
+    <Content Include="HTTPRoot\js\RX\rx.dom.min.js" />
+    <Content Include="HTTPRoot\js\RX\rx.experimental.min.js" />
+    <Content Include="HTTPRoot\js\RX\rx.joinpatterns.min.js" />
+    <Content Include="HTTPRoot\js\RX\rx.min.js" />
+    <Content Include="HTTPRoot\js\RX\rx.modern.min.js" />
+    <Content Include="HTTPRoot\js\RX\rx.testing.min.js" />
+    <Content Include="HTTPRoot\js\RX\rx.time.min.js" />
+    <Content Include="HTTPRoot\maps\leaflet2\images\command.png" />
+    <Content Include="HTTPRoot\maps\leaflet2\images\layers-2x.png" />
+    <Content Include="HTTPRoot\maps\leaflet2\images\layers.png" />
+    <Content Include="HTTPRoot\maps\leaflet2\images\marker-icon%402x.png" />
+    <Content Include="HTTPRoot\maps\leaflet2\images\marker-icon-2x.png" />
+    <Content Include="HTTPRoot\maps\leaflet2\images\marker-icon.png" />
+    <Content Include="HTTPRoot\maps\leaflet2\images\marker-shadow.png" />
+    <Content Include="HTTPRoot\maps\leaflet2\leaflet-legend.css" />
+    <Content Include="HTTPRoot\maps\leaflet2\leaflet.css" />
+    <Content Include="HTTPRoot\maps\leaflet2\leaflet.functionaltilelayer.js" />
+    <Content Include="HTTPRoot\maps\leaflet2\leaflet.ie.css" />
+    <Content Include="HTTPRoot\maps\leaflet2\leaflet.js" />
+    <Content Include="HTTPRoot\maps\leaflet2\leaflet.markercluster-src.js" />
+    <Content Include="HTTPRoot\maps\leaflet2\locate\images\locate.png" />
+    <Content Include="HTTPRoot\maps\leaflet2\locate\images\locate.svg" />
+    <Content Include="HTTPRoot\maps\leaflet2\locate\images\locate_touch.png" />
+    <Content Include="HTTPRoot\maps\leaflet2\locate\images\spinner.gif" />
+    <Content Include="HTTPRoot\maps\leaflet2\locate\L.Control.Locate.0.5.css" />
+    <Content Include="HTTPRoot\maps\leaflet2\locate\L.Control.Locate.css" />
+    <Content Include="HTTPRoot\maps\leaflet2\locate\L.Control.Locate.ie.css" />
+    <Content Include="HTTPRoot\maps\leaflet2\locate\L.Control.Locate.js" />
+    <Content Include="HTTPRoot\maps\leaflet2\Semicircle.js" />
+    <Content Include="HTTPRoot\maps\leaflet2\TileLayer.GeoJSON.js" />
     <Content Include="HTTPRoot\maps\maps.css">
       <DependentUpon>maps.scss</DependentUpon>
     </Content>
