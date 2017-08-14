@@ -117,12 +117,13 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HTTPRoot\admin\admin.scss" />
     <EmbeddedResource Include="HTTPRoot\lists\lists.scss" />
-    <EmbeddedResource Include="HTTPRoot\lists\lists.js.map">
-      <DependentUpon>lists.ts</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="HTTPRoot\login\login.scss" />
+    <EmbeddedResource Include="HTTPRoot\defaults\defaults.js.map">
+      <DependentUpon>defaults.ts</DependentUpon>
+    </EmbeddedResource>
     <None Include="LICENSE" />
     <None Include="README.md" />
+    <None Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="HTTPRoot\css\font-awesome.min.css" />
@@ -158,6 +159,9 @@
     <Content Include="HTTPRoot\dashboard\dashboard.css">
       <DependentUpon>dashboard.scss</DependentUpon>
     </Content>
+    <EmbeddedResource Include="HTTPRoot\defaults\defaults.js">
+      <DependentUpon>defaults.ts</DependentUpon>
+    </EmbeddedResource>
     <Content Include="HTTPRoot\events\events.css">
       <DependentUpon>events.scss</DependentUpon>
     </Content>
@@ -179,9 +183,6 @@
     <Content Include="HTTPRoot\js\RX\rx.modern.min.js" />
     <Content Include="HTTPRoot\js\RX\rx.testing.min.js" />
     <Content Include="HTTPRoot\js\RX\rx.time.min.js" />
-    <EmbeddedResource Include="HTTPRoot\lists\lists.js">
-      <DependentUpon>lists.ts</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="HTTPRoot\lists\lists.css">
       <DependentUpon>lists.scss</DependentUpon>
     </EmbeddedResource>
@@ -265,15 +266,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="HTTPRoot\lists\lists.ts" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="HTTPRoot\defaults\defaults.ts" />
   </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="HTTPRoot\compileAll.ts" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>tsc</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
