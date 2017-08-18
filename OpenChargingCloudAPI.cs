@@ -64,7 +64,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// The HTTP root for embedded ressources.
         /// </summary>
-        public  new const           String          HTTPRoot                            = "cloud.charging.api.HTTPRoot.";
+        public  new const           String          HTTPRoot                            = "cloud.charging.open.api.HTTPRoot.";
 
         /// <summary>
         /// The default service name.
