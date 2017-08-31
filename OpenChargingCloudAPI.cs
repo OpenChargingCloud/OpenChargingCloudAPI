@@ -71,6 +71,10 @@ namespace cloud.charging.open.API
         /// </summary>
         public  new const           String          DefaultServiceName                  = "GraphDefined Open Charging Cloud API";
 
+        /// <summary>
+        /// The default language of the API.
+        /// </summary>
+        public  new const           Languages       DefaultLanguage                     = Languages.eng;
 
         /// <summary>
         /// The logo of the website.
@@ -83,9 +87,12 @@ namespace cloud.charging.open.API
         /// <summary>
         /// The name of the common log file.
         /// </summary>
-        public const               String          LogfileName                         = "OpenChargingCloud.log";
+        public new const            String          DefaultLogfileName                  = "OpenChargingCloud.log";
 
-        public const               String          DefaultCookieName                   = "OpenChargingCloud";
+        /// <summary>
+        /// The name of the default HTTP cookie.
+        /// </summary>
+        public new const            String          DefaultCookieName                   = "OpenChargingCloud";
 
         #endregion
 
@@ -282,6 +289,11 @@ namespace cloud.charging.open.API
         /// <param name="APIPassphrase">A GPG passphrase for this API.</param>
         /// <param name="APIAdminEMails">A list of admin e-mail addresses.</param>
         /// <param name="APISMTPClient">A SMTP client for sending e-mails.</param>
+        /// 
+        /// <param name="SkipURITemplates">Skip URI templates.</param>
+        /// <param name="LogfileName">The name of the logfile for this API.</param>
+        /// <param name="DNSClient">The DNS client of the API.</param>
+        /// <param name="Autostart">Whether to start the API automatically.</param>
         public OpenChargingCloudAPI(String                              HTTPServerName                     = DefaultHTTPServerName,
                                     IPPort                              HTTPServerPort                     = null,
                                     String                              HTTPHostname                       = null,
@@ -296,7 +308,27 @@ namespace cloud.charging.open.API
                                     SMTPClient                          APISMTPClient                      = null,
 
                                     String                              CookieName                         = DefaultCookieName,
+                                    Languages?                          Language                           = DefaultLanguage,
+                                    String                              LogoImage                          = null,
+                                    NewUserSignUpEMailCreatorDelegate   NewUserSignUpEMailCreator          = null,
+                                    NewUserWelcomeEMailCreatorDelegate  NewUserWelcomeEMailCreator         = null,
+                                    ResetPasswordEMailCreatorDelegate   ResetPasswordEMailCreator          = null,
+                                    Byte?                               MinUserNameLenght                  = DefaultMinUserNameLenght,
+                                    Byte?                               MinRealmLenght                     = DefaultMinRealmLenght,
+                                    Byte?                               MinPasswordLenght                  = DefaultMinPasswordLenght,
+                                    TimeSpan?                           SignInSessionLifetime              = null,
 
+                                    String                              ServerThreadName                   = null,
+                                    ThreadPriority                      ServerThreadPriority               = ThreadPriority.AboveNormal,
+                                    Boolean                             ServerThreadIsBackground           = true,
+                                    ConnectionIdBuilder                 ConnectionIdBuilder                = null,
+                                    ConnectionThreadsNameBuilder        ConnectionThreadsNameBuilder       = null,
+                                    ConnectionThreadsPriorityBuilder    ConnectionThreadsPriorityBuilder   = null,
+                                    Boolean                             ConnectionThreadsAreBackground     = true,
+                                    TimeSpan?                           ConnectionTimeout                  = null,
+                                    UInt32                              MaxClientConnections               = TCPServer.__DefaultMaxClientConnections,
+
+                                    Boolean                             SkipURITemplates                   = false,
                                     String                              LogfileName                        = DefaultLogfileName,
                                     DNSClient                           DNSClient                          = null)
 
@@ -314,21 +346,29 @@ namespace cloud.charging.open.API
                    APISMTPClient,
 
                    CookieName.IsNotNullOrEmpty() ? CookieName : DefaultCookieName,
-                   Languages.eng,
-                   _LogoImage,
-                   __NewUserSignUpEMailCreator         (APIEMailAddress, APIPassphrase),
-                   __NewUserWelcomeEMailCreatorDelegate(APIEMailAddress, APIPassphrase),
-                   __ResetPasswordEMailCreatorDelegate (APIEMailAddress, APIPassphrase),
-                   4,
-                   2,
-                   8,
-                   TimeSpan.FromDays(30),
+                   Language            ?? Languages.eng,
+                   LogoImage                  ?? _LogoImage,
+                   NewUserSignUpEMailCreator  ?? __NewUserSignUpEMailCreator         (APIEMailAddress, APIPassphrase),
+                   NewUserWelcomeEMailCreator ?? __NewUserWelcomeEMailCreatorDelegate(APIEMailAddress, APIPassphrase),
+                   ResetPasswordEMailCreator  ?? __ResetPasswordEMailCreatorDelegate (APIEMailAddress, APIPassphrase),
+                   MinUserNameLenght          ?? 4,
+                   MinRealmLenght             ?? 2,
+                   MinPasswordLenght          ?? 8,
+                   SignInSessionLifetime      ?? TimeSpan.FromDays(30),
 
-                   false,
-                   str => typeof(OpenChargingCloudAPI).Assembly.GetManifestResourceStream(HTTPRoot + str),
+                   ServerThreadName,
+                   ServerThreadPriority,
+                   ServerThreadIsBackground,
+                   ConnectionIdBuilder,
+                   ConnectionThreadsNameBuilder,
+                   ConnectionThreadsPriorityBuilder,
+                   ConnectionThreadsAreBackground,
+                   ConnectionTimeout,
+                   MaxClientConnections,
 
-                   DNSClient:               DNSClient,
-                   LogfileName:             LogfileName)
+                   SkipURITemplates,
+                   LogfileName ?? DefaultLogfileName,
+                   DNSClient)
 
         {
 
@@ -357,6 +397,22 @@ namespace cloud.charging.open.API
         /// <param name="APIPassphrase">A GPG passphrase for this API.</param>
         /// <param name="APIAdminEMails">A list of admin e-mail addresses.</param>
         /// <param name="APISMTPClient">A SMTP client for sending e-mails.</param>
+        /// 
+        /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
+        /// <param name="Language">The main language of the API.</param>
+        /// <param name="LogoImage">The logo of the website.</param>
+        /// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
+        /// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
+        /// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
+        /// <param name="MinUserNameLenght">The minimal user name length.</param>
+        /// <param name="MinRealmLenght">The minimal realm length.</param>
+        /// <param name="MinPasswordLenght">The minimal password length.</param>
+        /// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
+        /// 
+        /// <param name="SkipURITemplates">Skip URI templates.</param>
+        /// <param name="LogfileName">The name of the logfile for this API.</param>
+        /// <param name="DNSClient">The DNS client of the API.</param>
+        /// <param name="Autostart">Whether to start the API automatically.</param>
         public OpenChargingCloudAPI(String                              HTTPServerName                     = DefaultHTTPServerName,
                                     IPPort                              HTTPServerPort                     = null,
                                     String                              HTTPHostname                       = null,
@@ -371,7 +427,7 @@ namespace cloud.charging.open.API
                                     SMTPClient                          APISMTPClient                      = null,
 
                                     String                              CookieName                         = DefaultCookieName,
-                                    Languages                           DefaultLanguage                    = Languages.eng,
+                                    Languages?                          Language                           = DefaultLanguage,
                                     String                              LogoImage                          = null,
                                     NewUserSignUpEMailCreatorDelegate   NewUserSignUpEMailCreator          = null,
                                     NewUserWelcomeEMailCreatorDelegate  NewUserWelcomeEMailCreator         = null,
@@ -380,9 +436,6 @@ namespace cloud.charging.open.API
                                     Byte                                MinRealmLenght                     = DefaultMinRealmLenght,
                                     Byte                                MinPasswordLenght                  = DefaultMinPasswordLenght,
                                     TimeSpan?                           SignInSessionLifetime              = null,
-
-                                    Boolean                             SkipURITemplates                   = false,
-                                    Func<String, Stream>                RessourcesProvider                 = null,
 
                                     String                              ServerThreadName                   = null,
                                     ThreadPriority                      ServerThreadPriority               = ThreadPriority.AboveNormal,
@@ -394,6 +447,7 @@ namespace cloud.charging.open.API
                                     TimeSpan?                           ConnectionTimeout                  = null,
                                     UInt32                              MaxClientConnections               = TCPServer.__DefaultMaxClientConnections,
 
+                                    Boolean                             SkipURITemplates                   = false,
                                     String                              LogfileName                        = DefaultLogfileName,
                                     DNSClient                           DNSClient                          = null,
                                     Boolean                             Autostart                          = false)
@@ -405,14 +459,14 @@ namespace cloud.charging.open.API
 
                    ServiceName,
                    APIEMailAddress,
-                   APIPublicKeyRing != null ? APIPublicKeyRing : OpenPGP.ReadPublicKeyRing(typeof(OpenChargingCloudAPI).Assembly.GetManifestResourceStream(HTTPRoot + "GPGKeys.robot@open.charging.cloud_pubring.gpg")),
+                   APIPublicKeyRing ?? OpenPGP.ReadPublicKeyRing(typeof(OpenChargingCloudAPI).Assembly.GetManifestResourceStream(HTTPRoot + "GPGKeys.robot@open.charging.cloud_pubring.gpg")),
                    APISecretKeyRing,
                    APIPassphrase,
                    APIAdminEMails,
                    APISMTPClient,
 
                    CookieName.IsNotNullOrEmpty() ? CookieName : DefaultCookieName,
-                   DefaultLanguage,
+                   Language ?? DefaultLanguage,
                    LogoImage,
                    NewUserSignUpEMailCreator,
                    NewUserWelcomeEMailCreator,
@@ -421,9 +475,6 @@ namespace cloud.charging.open.API
                    MinRealmLenght,
                    MinPasswordLenght,
                    SignInSessionLifetime,
-
-                   SkipURITemplates,
-                   RessourcesProvider,
 
                    ServerThreadName,
                    ServerThreadPriority,
@@ -435,6 +486,7 @@ namespace cloud.charging.open.API
                    ConnectionTimeout,
                    MaxClientConnections,
 
+                   SkipURITemplates,
                    LogfileName,
                    DNSClient,
                    false)
@@ -443,7 +495,8 @@ namespace cloud.charging.open.API
 
             this.WWCP  = WWCP_HTTPAPI.AttachToHTTPAPI(HTTPServer);
 
-            RegisterURITemplates();
+            if (!SkipURITemplates)
+                RegisterURITemplates();
 
             if (Autostart)
                 Start();
@@ -468,33 +521,45 @@ namespace cloud.charging.open.API
         /// <param name="APIPassphrase">A GPG passphrase for this API.</param>
         /// <param name="APIAdminEMails">A list of admin e-mail addresses.</param>
         /// <param name="APISMTPClient">A SMTP client for sending e-mails.</param>
-        private OpenChargingCloudAPI(HTTPServer                        HTTPServer,
-                                     String                            HTTPHostname                       = null,
-                                     String                            URIPrefix                          = "/",
+        /// 
+        /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
+        /// <param name="Language">The main language of the API.</param>
+        /// <param name="LogoImage">The logo of the website.</param>
+        /// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
+        /// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
+        /// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
+        /// <param name="MinUserNameLenght">The minimal user name length.</param>
+        /// <param name="MinRealmLenght">The minimal realm length.</param>
+        /// <param name="MinPasswordLenght">The minimal password length.</param>
+        /// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
+        /// 
+        /// <param name="SkipURITemplates">Skip URI templates.</param>
+        /// <param name="LogfileName">The name of the logfile for this API.</param>
+        private OpenChargingCloudAPI(HTTPServer                          HTTPServer,
+                                     String                              HTTPHostname                 = null,
+                                     String                              URIPrefix                    = "/",
 
-                                     String                            ServiceName                        = DefaultServiceName,
-                                     EMailAddress                      APIEMailAddress                    = null,
-                                     PgpPublicKeyRing                  APIPublicKeyRing                   = null,
-                                     PgpSecretKeyRing                  APISecretKeyRing                   = null,
-                                     String                            APIPassphrase                      = null,
-                                     EMailAddressList                  APIAdminEMails                     = null,
-                                     SMTPClient                        APISMTPClient                      = null,
+                                     String                              ServiceName                  = DefaultServiceName,
+                                     EMailAddress                        APIEMailAddress              = null,
+                                     PgpPublicKeyRing                    APIPublicKeyRing             = null,
+                                     PgpSecretKeyRing                    APISecretKeyRing             = null,
+                                     String                              APIPassphrase                = null,
+                                     EMailAddressList                    APIAdminEMails               = null,
+                                     SMTPClient                          APISMTPClient                = null,
 
-                                     String                            CookieName                         = DefaultCookieName,
-                                     String                            LogfileName                        = DefaultLogfileName,
-                                     Func<String, Stream>              RessourcesProvider                 = null,
+                                     String                              CookieName                   = DefaultCookieName,
+                                     Languages                           Language                     = DefaultLanguage,
+                                     String                              LogoImage                    = null,
+                                     NewUserSignUpEMailCreatorDelegate   NewUserSignUpEMailCreator    = null,
+                                     NewUserWelcomeEMailCreatorDelegate  NewUserWelcomeEMailCreator   = null,
+                                     ResetPasswordEMailCreatorDelegate   ResetPasswordEMailCreator    = null,
+                                     Byte                                MinUserNameLenght            = DefaultMinUserNameLenght,
+                                     Byte                                MinRealmLenght               = DefaultMinRealmLenght,
+                                     Byte                                MinPasswordLenght            = DefaultMinPasswordLenght,
+                                     TimeSpan?                           SignInSessionLifetime        = null,
 
-                                     String                            ServerThreadName                   = null,
-                                     ThreadPriority                    ServerThreadPriority               = ThreadPriority.AboveNormal,
-                                     Boolean                           ServerThreadIsBackground           = true,
-                                     ConnectionIdBuilder               ConnectionIdBuilder                = null,
-                                     ConnectionThreadsNameBuilder      ConnectionThreadsNameBuilder       = null,
-                                     ConnectionThreadsPriorityBuilder  ConnectionThreadsPriorityBuilder   = null,
-                                     Boolean                           ConnectionThreadsAreBackground     = true,
-                                     TimeSpan?                         ConnectionTimeout                  = null,
-                                     UInt32                            MaxClientConnections               = TCPServer.__DefaultMaxClientConnections,
-
-                                     Boolean                           Autostart                          = false)
+                                     Boolean                             SkipURITemplates             = false,
+                                     String                              LogfileName                  = DefaultLogfileName)
 
             : base(HTTPServer,
                    HTTPHostname,
@@ -502,26 +567,24 @@ namespace cloud.charging.open.API
 
                    ServiceName,
                    APIEMailAddress,
-                   APIPublicKeyRing != null ? APIPublicKeyRing : OpenPGP.ReadPublicKeyRing(typeof(OpenChargingCloudAPI).Assembly.GetManifestResourceStream(HTTPRoot + "GPGKeys.robot@open.charging.cloud_pubring.gpg")),
+                   APIPublicKeyRing ?? OpenPGP.ReadPublicKeyRing(typeof(OpenChargingCloudAPI).Assembly.GetManifestResourceStream(HTTPRoot + "GPGKeys.robot@open.charging.cloud_pubring.gpg")),
                    APISecretKeyRing,
                    APIPassphrase,
                    APIAdminEMails,
                    APISMTPClient,
 
                    CookieName.IsNotNullOrEmpty() ? CookieName : DefaultCookieName,
-                   Languages.eng,
-                   _LogoImage,
-                   __NewUserSignUpEMailCreator         (APIEMailAddress, APIPassphrase),
-                   __NewUserWelcomeEMailCreatorDelegate(APIEMailAddress, APIPassphrase),
-                   __ResetPasswordEMailCreatorDelegate (APIEMailAddress, APIPassphrase),
-                   4,
-                   2,
-                   8,
-                   TimeSpan.FromDays(30),
+                   Language,
+                   LogoImage                  ?? _LogoImage,
+                   NewUserSignUpEMailCreator  ?? __NewUserSignUpEMailCreator         (APIEMailAddress, APIPassphrase),
+                   NewUserWelcomeEMailCreator ?? __NewUserWelcomeEMailCreatorDelegate(APIEMailAddress, APIPassphrase),
+                   ResetPasswordEMailCreator  ?? __ResetPasswordEMailCreatorDelegate (APIEMailAddress, APIPassphrase),
+                   MinUserNameLenght,
+                   MinRealmLenght,
+                   MinPasswordLenght,
+                   SignInSessionLifetime      ?? DefaultSignInSessionLifetime,
 
-                   false,
-                   RessourcesProvider,
-
+                   SkipURITemplates,
                    LogfileName)
 
         {
@@ -541,7 +604,8 @@ namespace cloud.charging.open.API
 
             this.WWCP  = WWCP_HTTPAPI.AttachToHTTPAPI(HTTPServer);
 
-            RegisterURITemplates();
+            if (!SkipURITemplates)
+                RegisterURITemplates();
 
         }
 
@@ -566,33 +630,45 @@ namespace cloud.charging.open.API
         /// <param name="APIPassphrase">A GPG passphrase for this API.</param>
         /// <param name="APIAdminEMails">A list of admin e-mail addresses.</param>
         /// <param name="APISMTPClient">A SMTP client for sending e-mails.</param>
-        public static OpenChargingCloudAPI AttachToHTTPAPI(HTTPServer                        HTTPServer,
-                                                           String                            HTTPHostname                       = null,
-                                                           String                            URIPrefix                          = "/",
+        /// 
+        /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
+        /// <param name="Language">The main language of the API.</param>
+        /// <param name="LogoImage">The logo of the website.</param>
+        /// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
+        /// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
+        /// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
+        /// <param name="MinUserNameLenght">The minimal user name length.</param>
+        /// <param name="MinRealmLenght">The minimal realm length.</param>
+        /// <param name="MinPasswordLenght">The minimal password length.</param>
+        /// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
+        /// 
+        /// <param name="SkipURITemplates">Skip URI templates.</param>
+        /// <param name="LogfileName">The name of the logfile for this API.</param>
+        public static OpenChargingCloudAPI AttachToHTTPAPI(HTTPServer                          HTTPServer,
+                                                           String                              HTTPHostname                 = null,
+                                                           String                              URIPrefix                    = "/",
 
-                                                           String                            ServiceName                        = DefaultServiceName,
-                                                           EMailAddress                      APIEMailAddress                    = null,
-                                                           PgpPublicKeyRing                  APIPublicKeyRing                   = null,
-                                                           PgpSecretKeyRing                  APISecretKeyRing                   = null,
-                                                           String                            APIPassphrase                      = null,
-                                                           EMailAddressList                  APIAdminEMails                     = null,
-                                                           SMTPClient                        APISMTPClient                      = null,
+                                                           String                              ServiceName                  = DefaultServiceName,
+                                                           EMailAddress                        APIEMailAddress              = null,
+                                                           PgpPublicKeyRing                    APIPublicKeyRing             = null,
+                                                           PgpSecretKeyRing                    APISecretKeyRing             = null,
+                                                           String                              APIPassphrase                = null,
+                                                           EMailAddressList                    APIAdminEMails               = null,
+                                                           SMTPClient                          APISMTPClient                = null,
 
-                                                           String                            CookieName                         = DefaultCookieName,
-                                                           String                            LogfileName                        = DefaultLogfileName,
-                                                           Func<String, Stream>              RessourcesProvider                 = null,
+                                                           String                              CookieName                   = DefaultCookieName,
+                                                           Languages                           Language                     = DefaultLanguage,
+                                                           String                              LogoImage                    = null,
+                                                           NewUserSignUpEMailCreatorDelegate   NewUserSignUpEMailCreator    = null,
+                                                           NewUserWelcomeEMailCreatorDelegate  NewUserWelcomeEMailCreator   = null,
+                                                           ResetPasswordEMailCreatorDelegate   ResetPasswordEMailCreator    = null,
+                                                           Byte                                MinUserNameLenght            = DefaultMinUserNameLenght,
+                                                           Byte                                MinRealmLenght               = DefaultMinRealmLenght,
+                                                           Byte                                MinPasswordLenght            = DefaultMinPasswordLenght,
+                                                           TimeSpan?                           SignInSessionLifetime        = null,
 
-                                                           String                            ServerThreadName                   = null,
-                                                           ThreadPriority                    ServerThreadPriority               = ThreadPriority.AboveNormal,
-                                                           Boolean                           ServerThreadIsBackground           = true,
-                                                           ConnectionIdBuilder               ConnectionIdBuilder                = null,
-                                                           ConnectionThreadsNameBuilder      ConnectionThreadsNameBuilder       = null,
-                                                           ConnectionThreadsPriorityBuilder  ConnectionThreadsPriorityBuilder   = null,
-                                                           Boolean                           ConnectionThreadsAreBackground     = true,
-                                                           TimeSpan?                         ConnectionTimeout                  = null,
-                                                           UInt32                            MaxClientConnections               = TCPServer.__DefaultMaxClientConnections,
-
-                                                           Boolean                           Autostart                          = false)
+                                                           Boolean                             SkipURITemplates             = false,
+                                                           String                              LogfileName                  = DefaultLogfileName)
 
 
             => new OpenChargingCloudAPI(HTTPServer,
@@ -608,20 +684,18 @@ namespace cloud.charging.open.API
                                         APISMTPClient,
 
                                         CookieName.IsNotNullOrEmpty() ? CookieName : DefaultCookieName,
-                                        LogfileName,
-                                        RessourcesProvider,
+                                        Language,
+                                        LogoImage,
+                                        NewUserSignUpEMailCreator,
+                                        NewUserWelcomeEMailCreator,
+                                        ResetPasswordEMailCreator,
+                                        MinUserNameLenght,
+                                        MinRealmLenght,
+                                        MinPasswordLenght,
+                                        SignInSessionLifetime,
 
-                                        ServerThreadName,
-                                        ServerThreadPriority,
-                                        ServerThreadIsBackground,
-                                        ConnectionIdBuilder,
-                                        ConnectionThreadsNameBuilder,
-                                        ConnectionThreadsPriorityBuilder,
-                                        ConnectionThreadsAreBackground,
-                                        ConnectionTimeout,
-                                        MaxClientConnections,
-
-                                        Autostart);
+                                        SkipURITemplates,
+                                        LogfileName);
 
         #endregion
 
@@ -753,6 +827,18 @@ namespace cloud.charging.open.API
             #endregion
 
         }
+
+        #endregion
+
+
+        #region (protected) GetOpenChargingCloudAPIRessource(Ressource)
+
+        /// <summary>
+        /// Get an embedded ressource of the Open Charging Cloud API.
+        /// </summary>
+        /// <param name="Ressource">The path and name of the ressource to load.</param>
+        protected Stream GetOpenChargingCloudAPIRessource(String Ressource)
+            => GetType().Assembly.GetManifestResourceStream(HTTPRoot + Ressource);
 
         #endregion
 
