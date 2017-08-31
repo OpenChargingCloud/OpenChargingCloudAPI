@@ -20,11 +20,10 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Org.BouncyCastle.Bcpg.OpenPgp;
-
-using org.GraphDefined.OpenData;
 
 using org.GraphDefined.Vanaheimr.Illias;
 using org.GraphDefined.Vanaheimr.Hermod;
@@ -33,10 +32,11 @@ using org.GraphDefined.Vanaheimr.Hermod.SMTP;
 using org.GraphDefined.Vanaheimr.Hermod.Mail;
 using org.GraphDefined.Vanaheimr.Hermod.DNS;
 using org.GraphDefined.Vanaheimr.BouncyCastle;
-using System.Threading;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets.TCP;
 using org.GraphDefined.WWCP.Net;
+using org.GraphDefined.OpenData;
+using org.GraphDefined.OpenData.Users;
 
 #endregion
 
@@ -437,13 +437,16 @@ namespace cloud.charging.open.API
 
                    LogfileName,
                    DNSClient,
-                   Autostart)
+                   false)
 
         {
 
             this.WWCP  = WWCP_HTTPAPI.AttachToHTTPAPI(HTTPServer);
 
             RegisterURITemplates();
+
+            if (Autostart)
+                Start();
 
         }
 
