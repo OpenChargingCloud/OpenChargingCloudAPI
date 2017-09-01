@@ -290,6 +290,17 @@ namespace cloud.charging.open.API
         /// <param name="APIAdminEMails">A list of admin e-mail addresses.</param>
         /// <param name="APISMTPClient">A SMTP client for sending e-mails.</param>
         /// 
+        /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
+        /// <param name="Language">The main language of the API.</param>
+        /// <param name="LogoImage">The logo of the website.</param>
+        /// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
+        /// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
+        /// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
+        /// <param name="MinUserNameLenght">The minimal user name length.</param>
+        /// <param name="MinRealmLenght">The minimal realm length.</param>
+        /// <param name="MinPasswordLenght">The minimal password length.</param>
+        /// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
+        /// 
         /// <param name="SkipURITemplates">Skip URI templates.</param>
         /// <param name="LogfileName">The name of the logfile for this API.</param>
         /// <param name="DNSClient">The DNS client of the API.</param>
@@ -330,7 +341,8 @@ namespace cloud.charging.open.API
 
                                     Boolean                             SkipURITemplates                   = false,
                                     String                              LogfileName                        = DefaultLogfileName,
-                                    DNSClient                           DNSClient                          = null)
+                                    DNSClient                           DNSClient                          = null,
+                                    Boolean                             Autostart                          = false)
 
             : base(HTTPServerName,
                    HTTPServerPort ?? DefaultHTTPServerPort,
@@ -339,14 +351,14 @@ namespace cloud.charging.open.API
 
                    ServiceName,
                    APIEMailAddress,
-                   APIPublicKeyRing != null ? APIPublicKeyRing : OpenPGP.ReadPublicKeyRing(typeof(OpenChargingCloudAPI).Assembly.GetManifestResourceStream(HTTPRoot + "GPGKeys.robot@open.charging.cloud_pubring.gpg")),
+                   APIPublicKeyRing ?? OpenPGP.ReadPublicKeyRing(typeof(OpenChargingCloudAPI).Assembly.GetManifestResourceStream(HTTPRoot + "GPGKeys.robot@open.charging.cloud_pubring.gpg")),
                    APISecretKeyRing,
                    APIPassphrase,
                    APIAdminEMails,
                    APISMTPClient,
 
                    CookieName.IsNotNullOrEmpty() ? CookieName : DefaultCookieName,
-                   Language            ?? Languages.eng,
+                   Language                   ?? Languages.eng,
                    LogoImage                  ?? _LogoImage,
                    NewUserSignUpEMailCreator  ?? __NewUserSignUpEMailCreator         (APIEMailAddress, APIPassphrase),
                    NewUserWelcomeEMailCreator ?? __NewUserWelcomeEMailCreatorDelegate(APIEMailAddress, APIPassphrase),
@@ -368,13 +380,17 @@ namespace cloud.charging.open.API
 
                    SkipURITemplates,
                    LogfileName ?? DefaultLogfileName,
-                   DNSClient)
+                   DNSClient,
+                   false)
 
         {
 
             this.WWCP  = WWCP_HTTPAPI.AttachToHTTPAPI(HTTPServer);
 
             RegisterURITemplates();
+
+            if (Autostart)
+                Start();
 
         }
 
