@@ -307,7 +307,7 @@ namespace cloud.charging.open.API
         /// <param name="Autostart">Whether to start the API automatically.</param>
         public OpenChargingCloudAPI(String                              HTTPServerName                     = DefaultHTTPServerName,
                                     IPPort                              HTTPServerPort                     = null,
-                                    String                              HTTPHostname                       = null,
+                                    HTTPHostname                        HTTPHostname                       = null,
                                     String                              URIPrefix                          = "/",
 
                                     String                              ServiceName                        = DefaultServiceName,
@@ -431,7 +431,7 @@ namespace cloud.charging.open.API
         /// <param name="Autostart">Whether to start the API automatically.</param>
         public OpenChargingCloudAPI(String                              HTTPServerName                     = DefaultHTTPServerName,
                                     IPPort                              HTTPServerPort                     = null,
-                                    String                              HTTPHostname                       = null,
+                                    HTTPHostname                        HTTPHostname                       = null,
                                     String                              URIPrefix                          = "/",
 
                                     String                              ServiceName                        = DefaultServiceName,
@@ -552,7 +552,7 @@ namespace cloud.charging.open.API
         /// <param name="SkipURITemplates">Skip URI templates.</param>
         /// <param name="LogfileName">The name of the logfile for this API.</param>
         private OpenChargingCloudAPI(HTTPServer                          HTTPServer,
-                                     String                              HTTPHostname                 = null,
+                                     HTTPHostname                        HTTPHostname                 = null,
                                      String                              URIPrefix                    = "/",
 
                                      String                              ServiceName                  = DefaultServiceName,
@@ -661,7 +661,7 @@ namespace cloud.charging.open.API
         /// <param name="SkipURITemplates">Skip URI templates.</param>
         /// <param name="LogfileName">The name of the logfile for this API.</param>
         public static OpenChargingCloudAPI AttachToHTTPAPI(HTTPServer                          HTTPServer,
-                                                           String                              HTTPHostname                 = null,
+                                                           HTTPHostname                        HTTPHostname                 = null,
                                                            String                              URIPrefix                    = "/",
 
                                                            String                              ServiceName                  = DefaultServiceName,
