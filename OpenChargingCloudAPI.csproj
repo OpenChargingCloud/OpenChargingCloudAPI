@@ -117,6 +117,8 @@
     <EmbeddedResource Include="HTTPRoot\defaults\defaults.js.map">
       <DependentUpon>defaults.ts</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HTTPRoot\libs\leaflet\leaflet-src.js.map" />
+    <EmbeddedResource Include="HTTPRoot\libs\leaflet\leaflet.js.map" />
     <None Include="LICENSE" />
     <None Include="README.md" />
     <None Include="tsconfig.json" />
@@ -185,6 +187,14 @@
     <EmbeddedResource Include="HTTPRoot\lists\lists.min.css">
       <DependentUpon>lists.css</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HTTPRoot\libs\leaflet\leaflet.js" />
+    <EmbeddedResource Include="HTTPRoot\libs\leaflet\images\layers-2x.png" />
+    <EmbeddedResource Include="HTTPRoot\libs\leaflet\images\layers.png" />
+    <EmbeddedResource Include="HTTPRoot\libs\leaflet\images\marker-icon-2x.png" />
+    <EmbeddedResource Include="HTTPRoot\libs\leaflet\images\marker-icon.png" />
+    <EmbeddedResource Include="HTTPRoot\libs\leaflet\images\marker-shadow.png" />
+    <EmbeddedResource Include="HTTPRoot\libs\leaflet\leaflet-src.js" />
+    <EmbeddedResource Include="HTTPRoot\libs\leaflet\leaflet.css" />
     <Content Include="HTTPRoot\maps\leaflet2\images\command.png" />
     <Content Include="HTTPRoot\maps\leaflet2\images\layers-2x.png" />
     <Content Include="HTTPRoot\maps\leaflet2\images\layers.png" />
