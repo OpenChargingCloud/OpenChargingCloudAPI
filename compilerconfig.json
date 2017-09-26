@@ -38,5 +38,9 @@
   {
     "outputFile": "HTTPRoot/lists/lists.css",
     "inputFile": "HTTPRoot/lists/lists.scss"
+  },
+  {
+    "outputFile": "HTTPRoot/tariffs/tariffs.css",
+    "inputFile": "HTTPRoot/tariffs/tariffs.scss"
   }
 ]
