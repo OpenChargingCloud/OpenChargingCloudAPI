@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GraphDefined GmbH")]
 [assembly: AssemblyProduct("Open Charging Cloud API")]
-[assembly: AssemblyCopyright("Copyright © 2015-2017 GraphDefined GmbH")]
+[assembly: AssemblyCopyright("Copyright © 2015-2018 GraphDefined GmbH")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
