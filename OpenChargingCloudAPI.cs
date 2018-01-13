@@ -79,10 +79,10 @@ namespace cloud.charging.open.API
         /// <summary>
         /// The logo of the website.
         /// </summary>
-        private const               String          _LogoImage                          = "images/OpenChargingCloud_Logo2.png";
+        public  new const           String          _LogoImage                          = "images/OpenChargingCloud_Logo2.png";
 
 
-        public new const            String          DataRouterURIPrefix                 = "/datarouter";
+        public     const            String          DataRouterURIPrefix                 = "/datarouter";
 
         /// <summary>
         /// The name of the common log file.
