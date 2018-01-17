@@ -765,7 +765,7 @@ namespace cloud.charging.open.API
 //                                                                                    Replace("<%= logoimage %>", String.Concat(@"<img src=""", LogoImage, @""" /> ")).
 //                                                                                    ToUTF8Bytes(),
 //                                                         Connection      = "close"
-//                                                     }.AsImmutable());
+//                                                     }.AsImmutable);
 
 //                                             }
 
@@ -785,7 +785,7 @@ namespace cloud.charging.open.API
 //                                                             Date            = DateTime.Now,
 //                                                             CacheControl    = "public, max-age=300",
 //                                                             Connection      = "close"
-//                                                         }.AsImmutable());
+//                                                         }.AsImmutable);
 
 //                                                 #endregion
 
@@ -832,7 +832,7 @@ namespace cloud.charging.open.API
 ////                                                         KeepAlive       = new KeepAliveType(TimeSpan.FromMinutes(5), 500),
 ////                                                         Connection      = "Keep-Alive",
 //                                                         Connection = "close"
-//                                                     }.AsImmutable());
+//                                                     }.AsImmutable);
 
 //                                                 #endregion
 
