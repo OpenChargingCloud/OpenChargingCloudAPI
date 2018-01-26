@@ -59,7 +59,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// The default HTTP server port.
         /// </summary>
-        public  new static readonly IPPort          DefaultHTTPServerPort               = new IPPort(5500);
+        public  new static readonly IPPort          DefaultHTTPServerPort               = IPPort.Parse(5500);
 
         /// <summary>
         /// The HTTP root for embedded ressources.
@@ -306,7 +306,7 @@ namespace cloud.charging.open.API
         /// <param name="DNSClient">The DNS client of the API.</param>
         /// <param name="Autostart">Whether to start the API automatically.</param>
         public OpenChargingCloudAPI(String                              HTTPServerName                     = DefaultHTTPServerName,
-                                    IPPort                              HTTPServerPort                     = null,
+                                    IPPort?                             HTTPServerPort                     = null,
                                     HTTPHostname                        HTTPHostname                       = null,
                                     String                              URIPrefix                          = "/",
 
@@ -430,7 +430,7 @@ namespace cloud.charging.open.API
         /// <param name="DNSClient">The DNS client of the API.</param>
         /// <param name="Autostart">Whether to start the API automatically.</param>
         public OpenChargingCloudAPI(String                              HTTPServerName                     = DefaultHTTPServerName,
-                                    IPPort                              HTTPServerPort                     = null,
+                                    IPPort?                             HTTPServerPort                     = null,
                                     HTTPHostname                        HTTPHostname                       = null,
                                     String                              URIPrefix                          = "/",
 
