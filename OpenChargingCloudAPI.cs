@@ -82,7 +82,7 @@ namespace cloud.charging.open.API
         public  new const           String          _LogoImage                          = "images/OpenChargingCloud_Logo2.png";
 
 
-        public     const            String          DataRouterURIPrefix                 = "/datarouter";
+        public      static readonly HTTPURI         DataRouterURIPrefix                 = HTTPURI.Parse("/datarouter");
 
         /// <summary>
         /// The name of the common log file.
@@ -93,6 +93,8 @@ namespace cloud.charging.open.API
         /// The name of the default HTTP cookie.
         /// </summary>
         public new const            String          DefaultCookieName                   = "OpenChargingCloud";
+
+        private static readonly HTTPURI DefaultURIPrefix = HTTPURI.Parse("/");
 
         #endregion
 
@@ -307,8 +309,8 @@ namespace cloud.charging.open.API
         /// <param name="Autostart">Whether to start the API automatically.</param>
         public OpenChargingCloudAPI(String                              HTTPServerName                     = DefaultHTTPServerName,
                                     IPPort?                             HTTPServerPort                     = null,
-                                    HTTPHostname                        HTTPHostname                       = null,
-                                    String                              URIPrefix                          = "/",
+                                    HTTPHostname?                       HTTPHostname                       = null,
+                                    HTTPURI?                            URIPrefix                          = null,
 
                                     String                              ServiceName                        = DefaultServiceName,
                                     EMailAddress                        APIEMailAddress                    = null,
@@ -347,7 +349,7 @@ namespace cloud.charging.open.API
             : base(HTTPServerName,
                    HTTPServerPort ?? DefaultHTTPServerPort,
                    HTTPHostname,
-                   URIPrefix,
+                   URIPrefix ?? DefaultURIPrefix,
 
                    ServiceName,
                    APIEMailAddress,
@@ -431,8 +433,8 @@ namespace cloud.charging.open.API
         /// <param name="Autostart">Whether to start the API automatically.</param>
         public OpenChargingCloudAPI(String                              HTTPServerName                     = DefaultHTTPServerName,
                                     IPPort?                             HTTPServerPort                     = null,
-                                    HTTPHostname                        HTTPHostname                       = null,
-                                    String                              URIPrefix                          = "/",
+                                    HTTPHostname?                       HTTPHostname                       = null,
+                                    HTTPURI?                            URIPrefix                          = null,
 
                                     String                              ServiceName                        = DefaultServiceName,
                                     EMailAddress                        APIEMailAddress                    = null,
@@ -471,7 +473,7 @@ namespace cloud.charging.open.API
             : base(HTTPServerName,
                    HTTPServerPort ?? DefaultHTTPServerPort,
                    HTTPHostname,
-                   URIPrefix,
+                   URIPrefix      ?? DefaultURIPrefix,
 
                    ServiceName,
                    APIEMailAddress,
@@ -552,8 +554,8 @@ namespace cloud.charging.open.API
         /// <param name="SkipURITemplates">Skip URI templates.</param>
         /// <param name="LogfileName">The name of the logfile for this API.</param>
         private OpenChargingCloudAPI(HTTPServer                          HTTPServer,
-                                     HTTPHostname                        HTTPHostname                 = null,
-                                     String                              URIPrefix                    = "/",
+                                     HTTPHostname?                       HTTPHostname                 = null,
+                                     HTTPURI?                            URIPrefix                    = null,
 
                                      String                              ServiceName                  = DefaultServiceName,
                                      EMailAddress                        APIEMailAddress              = null,
@@ -579,7 +581,7 @@ namespace cloud.charging.open.API
 
             : base(HTTPServer,
                    HTTPHostname,
-                   URIPrefix,
+                   URIPrefix ?? DefaultURIPrefix,
 
                    ServiceName,
                    APIEMailAddress,
@@ -609,12 +611,6 @@ namespace cloud.charging.open.API
 
             if (HTTPServer == null)
                 throw new ArgumentNullException(nameof(HTTPServer),  "The given HTTP server must not be null!");
-
-            if (URIPrefix == null)
-                URIPrefix = "/";
-
-            if (!URIPrefix.StartsWith("/", StringComparison.Ordinal))
-                URIPrefix = "/" + URIPrefix;
 
             #endregion
 
@@ -661,8 +657,8 @@ namespace cloud.charging.open.API
         /// <param name="SkipURITemplates">Skip URI templates.</param>
         /// <param name="LogfileName">The name of the logfile for this API.</param>
         public static OpenChargingCloudAPI AttachToHTTPAPI(HTTPServer                          HTTPServer,
-                                                           HTTPHostname                        HTTPHostname                 = null,
-                                                           String                              URIPrefix                    = "/",
+                                                           HTTPHostname?                       HTTPHostname                 = null,
+                                                           HTTPURI?                            URIPrefix                    = null,
 
                                                            String                              ServiceName                  = DefaultServiceName,
                                                            EMailAddress                        APIEMailAddress              = null,
@@ -689,7 +685,7 @@ namespace cloud.charging.open.API
 
             => new OpenChargingCloudAPI(HTTPServer,
                                         HTTPHostname,
-                                        URIPrefix,
+                                        URIPrefix ?? DefaultURIPrefix,
 
                                         ServiceName,
                                         APIEMailAddress,
@@ -722,7 +718,9 @@ namespace cloud.charging.open.API
 
             #region /shared/OpenChargingCloudAPI
 
-            HTTPServer.RegisterResourcesFolder(HTTPHostname.Any, "/shared/OpenChargingCloudAPI", HTTPRoot.Substring(0, HTTPRoot.Length - 1));
+            HTTPServer.RegisterResourcesFolder(HTTPHostname.Any,
+                                               HTTPURI.Parse("/shared/OpenChargingCloudAPI"),
+                                               HTTPRoot.Substring(0, HTTPRoot.Length - 1));
 
             #endregion
 
