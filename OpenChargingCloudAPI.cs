@@ -92,7 +92,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// The name of the default HTTP cookie.
         /// </summary>
-        public new const            String          DefaultCookieName                   = "OpenChargingCloud";
+        public new static readonly  HTTPCookieName  DefaultCookieName                   = HTTPCookieName.Parse("OpenChargingCloud");
 
         private static readonly HTTPURI DefaultURIPrefix = HTTPURI.Parse("/");
 
@@ -320,7 +320,7 @@ namespace cloud.charging.open.API
                                     EMailAddressList                    APIAdminEMails                     = null,
                                     SMTPClient                          APISMTPClient                      = null,
 
-                                    String                              CookieName                         = DefaultCookieName,
+                                    HTTPCookieName?                     CookieName                         = null,
                                     Languages?                          Language                           = DefaultLanguage,
                                     String                              LogoImage                          = null,
                                     NewUserSignUpEMailCreatorDelegate   NewUserSignUpEMailCreator          = null,
@@ -359,7 +359,7 @@ namespace cloud.charging.open.API
                    APIAdminEMails,
                    APISMTPClient,
 
-                   CookieName.IsNotNullOrEmpty() ? CookieName : DefaultCookieName,
+                   CookieName ?? DefaultCookieName,
                    Language                   ?? Languages.eng,
                    LogoImage                  ?? _LogoImage,
                    NewUserSignUpEMailCreator  ?? __NewUserSignUpEMailCreator         (APIEMailAddress, APIPassphrase),
@@ -444,7 +444,7 @@ namespace cloud.charging.open.API
                                     EMailAddressList                    APIAdminEMails                     = null,
                                     SMTPClient                          APISMTPClient                      = null,
 
-                                    String                              CookieName                         = DefaultCookieName,
+                                    HTTPCookieName?                     CookieName                         = null,
                                     Languages?                          Language                           = DefaultLanguage,
                                     String                              LogoImage                          = null,
                                     NewUserSignUpEMailCreatorDelegate   NewUserSignUpEMailCreator          = null,
@@ -483,8 +483,8 @@ namespace cloud.charging.open.API
                    APIAdminEMails,
                    APISMTPClient,
 
-                   CookieName.IsNotNullOrEmpty() ? CookieName : DefaultCookieName,
-                   Language ?? DefaultLanguage,
+                   CookieName ?? DefaultCookieName,
+                   Language   ?? DefaultLanguage,
                    LogoImage,
                    NewUserSignUpEMailCreator,
                    NewUserWelcomeEMailCreator,
@@ -565,7 +565,7 @@ namespace cloud.charging.open.API
                                      EMailAddressList                    APIAdminEMails               = null,
                                      SMTPClient                          APISMTPClient                = null,
 
-                                     String                              CookieName                   = DefaultCookieName,
+                                     HTTPCookieName?                     CookieName                   = null,
                                      Languages                           Language                     = DefaultLanguage,
                                      String                              LogoImage                    = null,
                                      NewUserSignUpEMailCreatorDelegate   NewUserSignUpEMailCreator    = null,
@@ -591,7 +591,7 @@ namespace cloud.charging.open.API
                    APIAdminEMails,
                    APISMTPClient,
 
-                   CookieName.IsNotNullOrEmpty() ? CookieName : DefaultCookieName,
+                   CookieName ?? DefaultCookieName,
                    Language,
                    LogoImage                  ?? _LogoImage,
                    NewUserSignUpEMailCreator  ?? __NewUserSignUpEMailCreator         (APIEMailAddress, APIPassphrase),
@@ -668,7 +668,7 @@ namespace cloud.charging.open.API
                                                            EMailAddressList                    APIAdminEMails               = null,
                                                            SMTPClient                          APISMTPClient                = null,
 
-                                                           String                              CookieName                   = DefaultCookieName,
+                                                           HTTPCookieName?                     CookieName                   = null,
                                                            Languages                           Language                     = DefaultLanguage,
                                                            String                              LogoImage                    = null,
                                                            NewUserSignUpEMailCreatorDelegate   NewUserSignUpEMailCreator    = null,
@@ -695,7 +695,7 @@ namespace cloud.charging.open.API
                                         APIAdminEMails,
                                         APISMTPClient,
 
-                                        CookieName.IsNotNullOrEmpty() ? CookieName : DefaultCookieName,
+                                        CookieName ?? DefaultCookieName,
                                         Language,
                                         LogoImage,
                                         NewUserSignUpEMailCreator,
