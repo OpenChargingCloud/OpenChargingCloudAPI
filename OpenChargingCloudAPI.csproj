@@ -108,6 +108,10 @@
     <EmbeddedResource Include="HTTPRoot\libs\leaflet\leaflet-src.js.map" />
     <EmbeddedResource Include="HTTPRoot\libs\leaflet\leaflet.js.map" />
     <EmbeddedResource Include="HTTPRoot\tariffs\tariffs.scss" />
+    <EmbeddedResource Include="HTTPRoot\profile\notifications.scss" />
+    <EmbeddedResource Include="HTTPRoot\profile\profile - Copy.js.map">
+      <DependentUpon>notifications.scss</DependentUpon>
+    </EmbeddedResource>
     <None Include="LICENSE" />
     <None Include="README.md" />
     <None Include="tsconfig.json" />
@@ -140,6 +144,12 @@
     <Content Include="HTTPRoot\admin\admin.css">
       <DependentUpon>admin.scss</DependentUpon>
     </Content>
+    <EmbeddedResource Include="HTTPRoot\profile\profile - Copy.css">
+      <DependentUpon>notifications.scss</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HTTPRoot\profile\profile - Copy.min.css">
+      <DependentUpon>profile - Copy.css</DependentUpon>
+    </EmbeddedResource>
     <Content Include="HTTPRoot\tariffs\tariffs.css">
       <DependentUpon>tariffs.scss</DependentUpon>
     </Content>
