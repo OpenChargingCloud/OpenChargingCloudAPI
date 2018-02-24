@@ -42,5 +42,9 @@
   {
     "outputFile": "HTTPRoot/tariffs/tariffs.css",
     "inputFile": "HTTPRoot/tariffs/tariffs.scss"
+  },
+  {
+    "outputFile": "HTTPRoot/profile/notifications.css",
+    "inputFile": "HTTPRoot/profile/notifications.scss"
   }
 ]
