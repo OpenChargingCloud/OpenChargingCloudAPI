@@ -96,9 +96,6 @@
     <EmbeddedResource Include="HTTPRoot\events\events.scss" />
     <EmbeddedResource Include="HTTPRoot\maps\maps.scss" />
     <EmbeddedResource Include="HTTPRoot\profile\profile.scss" />
-    <EmbeddedResource Include="HTTPRoot\profile\profile.js.map">
-      <DependentUpon>profile.scss</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="HTTPRoot\admin\admin.scss" />
     <EmbeddedResource Include="HTTPRoot\lists\lists.scss" />
     <EmbeddedResource Include="HTTPRoot\login\login.scss" />
@@ -109,9 +106,6 @@
     <EmbeddedResource Include="HTTPRoot\libs\leaflet\leaflet.js.map" />
     <EmbeddedResource Include="HTTPRoot\tariffs\tariffs.scss" />
     <EmbeddedResource Include="HTTPRoot\profile\notifications.scss" />
-    <EmbeddedResource Include="HTTPRoot\profile\profile - Copy.js.map">
-      <DependentUpon>notifications.scss</DependentUpon>
-    </EmbeddedResource>
     <None Include="LICENSE" />
     <None Include="README.md" />
     <None Include="tsconfig.json" />
@@ -144,11 +138,17 @@
     <Content Include="HTTPRoot\admin\admin.css">
       <DependentUpon>admin.scss</DependentUpon>
     </Content>
-    <EmbeddedResource Include="HTTPRoot\profile\profile - Copy.css">
+    <EmbeddedResource Include="HTTPRoot\profile\notifications.css">
       <DependentUpon>notifications.scss</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HTTPRoot\profile\profile - Copy.min.css">
-      <DependentUpon>profile - Copy.css</DependentUpon>
+    <EmbeddedResource Include="HTTPRoot\profile\notifications.min.css">
+      <DependentUpon>notifications.css</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HTTPRoot\profile\profile.css">
+      <DependentUpon>profile.scss</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HTTPRoot\profile\profile.min.css">
+      <DependentUpon>profile.css</DependentUpon>
     </EmbeddedResource>
     <Content Include="HTTPRoot\tariffs\tariffs.css">
       <DependentUpon>tariffs.scss</DependentUpon>
@@ -226,12 +226,6 @@
     <Content Include="HTTPRoot\maps\maps.css">
       <DependentUpon>maps.scss</DependentUpon>
     </Content>
-    <EmbeddedResource Include="HTTPRoot\profile\profile.min.css">
-      <DependentUpon>profile.css</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HTTPRoot\profile\profile.css">
-      <DependentUpon>profile.scss</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="HTTPRoot\maps\maps.min.css">
       <DependentUpon>maps.css</DependentUpon>
     </EmbeddedResource>
