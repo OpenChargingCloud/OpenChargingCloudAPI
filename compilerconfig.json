@@ -1,7 +1,7 @@
 ﻿[
   {
-    "outputFile": "HTTPRoot/css/styles.css",
-    "inputFile": "HTTPRoot/css/styles.scss"
+    "outputFile": "HTTPRoot/styles.css",
+    "inputFile": "HTTPRoot/styles.scss"
   },
   {
     "outputFile": "HTTPRoot/defaults/defaults.css",
