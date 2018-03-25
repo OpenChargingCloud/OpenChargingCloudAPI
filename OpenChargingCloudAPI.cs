@@ -309,6 +309,8 @@ namespace cloud.charging.open.API
         /// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
         /// 
         /// <param name="SkipURITemplates">Skip URI templates.</param>
+        /// <param name="DisableNotifications">Disable external notifications.</param>
+        /// <param name="DisableLogfile">Disable the log file.</param>
         /// <param name="LogfileName">The name of the logfile for this API.</param>
         /// <param name="DNSClient">The DNS client of the API.</param>
         /// <param name="Autostart">Whether to start the API automatically.</param>
@@ -352,6 +354,8 @@ namespace cloud.charging.open.API
                                     UInt32                               MaxClientConnections               = TCPServer.__DefaultMaxClientConnections,
 
                                     Boolean                              SkipURITemplates                   = false,
+                                    Boolean                              DisableNotifications               = false,
+                                    Boolean                              DisableLogfile                     = false,
                                     String                               LogfileName                        = DefaultLogfileName,
                                     DNSClient                            DNSClient                          = null,
                                     Boolean                              Autostart                          = false)
@@ -396,6 +400,8 @@ namespace cloud.charging.open.API
                    MaxClientConnections,
 
                    SkipURITemplates,
+                   DisableNotifications,
+                   DisableLogfile,
                    LogfileName ?? DefaultLogfileName,
                    DNSClient,
                    false)
@@ -448,6 +454,8 @@ namespace cloud.charging.open.API
         /// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
         /// 
         /// <param name="SkipURITemplates">Skip URI templates.</param>
+        /// <param name="DisableNotifications">Disable external notifications.</param>
+        /// <param name="DisableLogfile">Disable the log file.</param>
         /// <param name="LogfileName">The name of the logfile for this API.</param>
         /// <param name="DNSClient">The DNS client of the API.</param>
         /// <param name="Autostart">Whether to start the API automatically.</param>
@@ -491,6 +499,8 @@ namespace cloud.charging.open.API
                                     UInt32                               MaxClientConnections               = TCPServer.__DefaultMaxClientConnections,
 
                                     Boolean                              SkipURITemplates                   = false,
+                                    Boolean                              DisableNotifications               = false,
+                                    Boolean                              DisableLogfile                     = false,
                                     String                               LogfileName                        = DefaultLogfileName,
                                     DNSClient                            DNSClient                          = null,
                                     Boolean                              Autostart                          = false)
@@ -535,6 +545,8 @@ namespace cloud.charging.open.API
                    MaxClientConnections,
 
                    SkipURITemplates,
+                   DisableNotifications,
+                   DisableLogfile,
                    LogfileName,
                    DNSClient,
                    false)
@@ -582,6 +594,8 @@ namespace cloud.charging.open.API
         /// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
         /// 
         /// <param name="SkipURITemplates">Skip URI templates.</param>
+        /// <param name="DisableNotifications">Disable external notifications.</param>
+        /// <param name="DisableLogfile">Disable the log file.</param>
         /// <param name="LogfileName">The name of the logfile for this API.</param>
         public OpenChargingCloudAPI(HTTPServer                          HTTPServer,
                                     HTTPHostname?                       HTTPHostname                 = null,
@@ -607,6 +621,8 @@ namespace cloud.charging.open.API
                                     TimeSpan?                           SignInSessionLifetime        = null,
 
                                     Boolean                             SkipURITemplates             = false,
+                                    Boolean                             DisableNotifications         = false,
+                                    Boolean                             DisableLogfile               = false,
                                     String                              LogfileName                  = DefaultLogfileName)
 
             : base(HTTPServer,
@@ -633,6 +649,8 @@ namespace cloud.charging.open.API
                    SignInSessionLifetime      ?? DefaultSignInSessionLifetime,
 
                    SkipURITemplates,
+                   DisableNotifications,
+                   DisableLogfile,
                    LogfileName)
 
         {
@@ -678,6 +696,8 @@ namespace cloud.charging.open.API
         /// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
         /// 
         /// <param name="SkipURITemplates">Skip URI templates.</param>
+        /// <param name="DisableNotifications">Disable external notifications.</param>
+        /// <param name="DisableLogfile">Disable the log file.</param>
         /// <param name="LogfileName">The name of the logfile for this API.</param>
         public static OpenChargingCloudAPI AttachToHTTPAPI(HTTPServer                          HTTPServer,
                                                            HTTPHostname?                       HTTPHostname                 = null,
@@ -703,6 +723,8 @@ namespace cloud.charging.open.API
                                                            TimeSpan?                           SignInSessionLifetime        = null,
 
                                                            Boolean                             SkipURITemplates             = false,
+                                                           Boolean                             DisableNotifications         = false,
+                                                           Boolean                             DisableLogfile               = false,
                                                            String                              LogfileName                  = DefaultLogfileName)
 
 
@@ -730,6 +752,8 @@ namespace cloud.charging.open.API
                                         SignInSessionLifetime,
 
                                         SkipURITemplates,
+                                        DisableNotifications,
+                                        DisableLogfile,
                                         LogfileName);
 
         #endregion
