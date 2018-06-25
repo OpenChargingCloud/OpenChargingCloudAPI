@@ -326,8 +326,6 @@ namespace cloud.charging.open.API
 
                                     String                               ServiceName                        = DefaultServiceName,
                                     EMailAddress                         APIEMailAddress                    = null,
-                                    PgpPublicKeyRing                     APIPublicKeyRing                   = null,
-                                    PgpSecretKeyRing                     APISecretKeyRing                   = null,
                                     String                               APIPassphrase                      = null,
                                     EMailAddressList                     APIAdminEMails                     = null,
                                     SMTPClient                           APISMTPClient                      = null,
@@ -372,8 +370,6 @@ namespace cloud.charging.open.API
 
                    ServiceName,
                    APIEMailAddress,
-                   APIPublicKeyRing ?? OpenPGP.ReadPublicKeyRing(typeof(OpenChargingCloudAPI).Assembly.GetManifestResourceStream(HTTPRoot + "GPGKeys.robot@open.charging.cloud_pubring.gpg")),
-                   APISecretKeyRing,
                    APIPassphrase,
                    APIAdminEMails,
                    APISMTPClient,
@@ -471,8 +467,6 @@ namespace cloud.charging.open.API
 
                                     String                               ServiceName                        = DefaultServiceName,
                                     EMailAddress                         APIEMailAddress                    = null,
-                                    PgpPublicKeyRing                     APIPublicKeyRing                   = null,
-                                    PgpSecretKeyRing                     APISecretKeyRing                   = null,
                                     String                               APIPassphrase                      = null,
                                     EMailAddressList                     APIAdminEMails                     = null,
                                     SMTPClient                           APISMTPClient                      = null,
@@ -517,8 +511,6 @@ namespace cloud.charging.open.API
 
                    ServiceName,
                    APIEMailAddress,
-                   APIPublicKeyRing ?? OpenPGP.ReadPublicKeyRing(typeof(OpenChargingCloudAPI).Assembly.GetManifestResourceStream(HTTPRoot + "GPGKeys.robot@open.charging.cloud_pubring.gpg")),
-                   APISecretKeyRing,
                    APIPassphrase,
                    APIAdminEMails,
                    APISMTPClient,
@@ -576,8 +568,6 @@ namespace cloud.charging.open.API
         /// 
         /// <param name="ServiceName">The name of the service.</param>
         /// <param name="APIEMailAddress">An e-mail address for this API.</param>
-        /// <param name="APIPublicKeyRing">A GPG public key for this API.</param>
-        /// <param name="APISecretKeyRing">A GPG secret key for this API.</param>
         /// <param name="APIPassphrase">A GPG passphrase for this API.</param>
         /// <param name="APIAdminEMails">A list of admin e-mail addresses.</param>
         /// <param name="APISMTPClient">A SMTP client for sending e-mails.</param>
@@ -603,8 +593,6 @@ namespace cloud.charging.open.API
 
                                     String                              ServiceName                  = DefaultServiceName,
                                     EMailAddress                        APIEMailAddress              = null,
-                                    PgpPublicKeyRing                    APIPublicKeyRing             = null,
-                                    PgpSecretKeyRing                    APISecretKeyRing             = null,
                                     String                              APIPassphrase                = null,
                                     EMailAddressList                    APIAdminEMails               = null,
                                     SMTPClient                          APISMTPClient                = null,
@@ -631,8 +619,6 @@ namespace cloud.charging.open.API
 
                    ServiceName,
                    APIEMailAddress,
-                   APIPublicKeyRing ?? OpenPGP.ReadPublicKeyRing(typeof(OpenChargingCloudAPI).Assembly.GetManifestResourceStream(HTTPRoot + "GPGKeys.robot@open.charging.cloud_pubring.gpg")),
-                   APISecretKeyRing,
                    APIPassphrase,
                    APIAdminEMails,
                    APISMTPClient,
@@ -678,8 +664,6 @@ namespace cloud.charging.open.API
         /// 
         /// <param name="ServiceName">The name of the service.</param>
         /// <param name="APIEMailAddress">An e-mail address for this API.</param>
-        /// <param name="APIPublicKeyRing">A GPG public key for this API.</param>
-        /// <param name="APISecretKeyRing">A GPG secret key for this API.</param>
         /// <param name="APIPassphrase">A GPG passphrase for this API.</param>
         /// <param name="APIAdminEMails">A list of admin e-mail addresses.</param>
         /// <param name="APISMTPClient">A SMTP client for sending e-mails.</param>
@@ -705,8 +689,6 @@ namespace cloud.charging.open.API
 
                                                            String                              ServiceName                  = DefaultServiceName,
                                                            EMailAddress                        APIEMailAddress              = null,
-                                                           PgpPublicKeyRing                    APIPublicKeyRing             = null,
-                                                           PgpSecretKeyRing                    APISecretKeyRing             = null,
                                                            String                              APIPassphrase                = null,
                                                            EMailAddressList                    APIAdminEMails               = null,
                                                            SMTPClient                          APISMTPClient                = null,
@@ -734,8 +716,6 @@ namespace cloud.charging.open.API
 
                                         ServiceName,
                                         APIEMailAddress,
-                                        APIPublicKeyRing,
-                                        APISecretKeyRing,
                                         APIPassphrase,
                                         APIAdminEMails,
                                         APISMTPClient,
