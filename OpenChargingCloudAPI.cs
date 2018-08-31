@@ -396,6 +396,7 @@ namespace cloud.charging.open.API
                                     Boolean                              SkipURITemplates                   = false,
                                     Boolean                              DisableNotifications               = false,
                                     Boolean                              DisableLogfile                     = false,
+                                    String                               LoggingPath                        = null,
                                     String                               LogfileName                        = DefaultLogfileName,
                                     DNSClient                            DNSClient                          = null,
                                     Boolean                              Autostart                          = false)
@@ -444,6 +445,7 @@ namespace cloud.charging.open.API
                    SkipURITemplates,
                    DisableNotifications,
                    DisableLogfile,
+                   LoggingPath,
                    LogfileName ?? DefaultLogfileName,
                    DNSClient,
                    false)
@@ -545,6 +547,7 @@ namespace cloud.charging.open.API
                                     Boolean                              SkipURITemplates                   = false,
                                     Boolean                              DisableNotifications               = false,
                                     Boolean                              DisableLogfile                     = false,
+                                    String                               LoggingPath                        = null,
                                     String                               LogfileName                        = DefaultLogfileName,
                                     DNSClient                            DNSClient                          = null,
                                     Boolean                              Autostart                          = false)
@@ -593,6 +596,7 @@ namespace cloud.charging.open.API
                    SkipURITemplates,
                    DisableNotifications,
                    DisableLogfile,
+                   LoggingPath,
                    LogfileName,
                    DNSClient,
                    false)
