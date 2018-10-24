@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OpenChargingCloudEMPAPI.cs" />
+    <Compile Include="OpenChargingCloudCSOAPI.cs" />
     <Compile Include="OpenChargingCloudAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
