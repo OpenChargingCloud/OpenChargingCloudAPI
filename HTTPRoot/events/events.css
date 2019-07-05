@@ -178,6 +178,30 @@
 .Status_OutOfService:before {
   content: "Out-Of-Service"; }
 
+.Status_Offline {
+  display: inline-block;
+  background-image: linear-gradient(to bottom, #6d6d6d, #262626);
+  color: #d1d1d1;
+  font-size: 75%;
+  padding: 4px 6px;
+  border-radius: 4px;
+  text-align: center; }
+
+.Status_Offline:before {
+  content: "Offline"; }
+
+.Status_Unspecified {
+  display: inline-block;
+  background-image: linear-gradient(to bottom, #729fd8, #4174b3);
+  color: #134078;
+  font-size: 75%;
+  padding: 4px 6px;
+  border-radius: 4px;
+  text-align: center; }
+
+.Status_Unspecified:before {
+  content: "Unspecified"; }
+
 /* Event types */
 /*span.OnStarted {
     display:            inline-block;

@@ -160,47 +160,27 @@ namespace cloud.charging.open.API
                     DNSHostname,
                     Language) => new HTMLEMailBuilder() {
 
-                                       From           = APIEMailAddress,
-                                       To             = EMailAddress,
-                                       Passphrase     = APIPassphrase,
-                                       Subject        = "Your new account at 'Open Charging Cloud'...",
+                         From       = APIEMailAddress,
+                         To         = EMailAddress,
+                         Passphrase = APIPassphrase,
+                         Subject    = "Your CardiCloud account had been created",
 
-                                       HTMLText       = "<!DOCTYPE html><html>" + Environment.NewLine +
-                                                        "<head>" + Environment.NewLine +
-                                                            "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />" + Environment.NewLine +
-                                                        "</head>" + Environment.NewLine +
-                                                        "<body>" +
-                                                        "<div style=\"width: 600px\">" + Environment.NewLine +
-                                                            "<div style=\"border-bottom: 1px solid #AAAAAA; margin-bottom: 20px\">" +
-                                                                "<h1 style=\"font-size: 120%\">" +
-                                                                    "<img src=\"http://open.charging.cloud/images/OpenChargingCloud_Logo2.png\" style=\"padding-right: 10px\">" +
-                                                                    "Open Charging Cloud" +
-                                                                "</h1>" +
-                                                            "</div>" + Environment.NewLine +
-                                                            "<div style=\"border-bottom: 1px solid #AAAAAA; padding-left: 6px; padding-bottom: 40px; margin-bottom: 10px;\">" + Environment.NewLine +
-                                                                "Dear " + Username + " (" + UserId + "),<br /><br />" +
-                                                                "Wir freuen uns, Dich als neuen Mitstreitenden für <b>Offene Daten</b> in Jena begrüßen zu können! " +
-                                                                "Um Deinen neuen Account gleich freizuschalten, klicke bitte auf folgenden Link...<br />" + Environment.NewLine +
-                                                                "<a href=\"" + DNSHostname + "/setPassword?" + SecurityToken + (Use2FactorAuth ? "&2factor" : "") + "\" style=\"text-decoration: none; Color: #FFFFFF; Background-color: #348eda; Border: solid #348eda; border-width: 10px 20px; line-height: 2; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 4px; margin-top: 20px; font-size: 70%\">Account bestätigen</a>" + Environment.NewLine +
-                                                            "</div>" + Environment.NewLine +
-                                                            "<img src=\"http://graphdefined.con/images/logo.png\"     style=\"width: 100px; padding-left: 10px\" alt=\"[ GraphDefined GmbH ]\">" + Environment.NewLine +
-                                                        "</div></body></html>" + Environment.NewLine + Environment.NewLine,
+                         HTMLText   = HTMLEMailHeader +
+                                          "Dear " + Username + " (" + UserId + "),<br /><br />" + Environment.NewLine +
+                                          "your CardiCloud account has been created!<br /><br />" + Environment.NewLine +
+                                          "Please click the following link to set a new password for your account" + (Use2FactorAuth ? " and check your mobile phone for an additional security token" : "") + "...<br /><br />" + Environment.NewLine +
+                                          "<a href=\"" + DNSHostname + "/setPassword?" + SecurityToken + (Use2FactorAuth ? "&2factor" : "") + "\" style=\"text-decoration: none; color: #FFFFFF; background-color: #ff7300; Border: solid #ff7300; border-width: 10px 20px; line-height: 2; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 4px; margin-top: 20px; font-size: 70%\">Set a new password</a>" + Environment.NewLine +
+                                      HTMLEMailFooter,
 
-                                       PlainText      = "Open Charging Cloud" + Environment.NewLine +
-                                                        "===================" + Environment.NewLine + Environment.NewLine +
-                                                        "Dear " + Username + " (" + UserId + ")," + Environment.NewLine + Environment.NewLine +
-                                                        "Wir freuen uns, Dich als neuen Mitstreitenden für *Offene Daten* in Jena" + Environment.NewLine +
-                                                        "begrüßen zu können! Um Deinen neuen Account gleich freizuschalten, klicke" + Environment.NewLine +
-                                                        "bitte auf folgenden Link:" + Environment.NewLine +
-                                                        DNSHostname + "/setPassword?" + SecurityToken + (Use2FactorAuth ? "&2factor" : "") + Environment.NewLine + Environment.NewLine +
-                                                        "---------------------------------------------------------------" + Environment.NewLine +
-                                                        "Fingerprint: AE0D 5C5C 4EB5 C3F0 683E 2173 B1EA 6EEA A89A 2896" + Environment.NewLine +
-                                                        "[ GraphDefined GmbH ]" + Environment.NewLine + Environment.NewLine,
+                         PlainText  = TextEMailHeader +
+                                          "Dear " + Username + " (" + UserId + ")," + Environment.NewLine +
+                                          "your CardiCloud account has been created!" + Environment.NewLine + Environment.NewLine +
+                                          "Please click the following link to set a new password for your account" + (Use2FactorAuth ? " and check your mobile phone for an additional security token" : "") + "..." + Environment.NewLine + Environment.NewLine +
+                                          DNSHostname + "/setPassword?" + SecurityToken + (Use2FactorAuth ? "&2factor" : "") +
+                                      TextEMailFooter,
 
-                                       SecurityLevel  = EMailSecurity.auto
-
-                                   }.//AddAttachment("Hi there!".ToUTF8Bytes(), "welcome.txt", MailContentTypes.text_plain).
-                                     AsImmutable;
+                         SecurityLevel = EMailSecurity.sign
+                     }.AsImmutable;
 
         #endregion
 
@@ -211,49 +191,51 @@ namespace cloud.charging.open.API
             __NewUserWelcomeEMailCreatorDelegate = (APIEMailAddress,
                                                     APIPassphrase)
 
-                =>(Username,
-                    EMailAddress,
-                    Language) => new HTMLEMailBuilder() {
+                => (Username,
+                     EMailAddress,
+                     Language) => new HTMLEMailBuilder() {
 
-                                              From           = APIEMailAddress,
-                                              To             = EMailAddress,
-                                              Passphrase     = APIPassphrase,
-                                              Subject        = "Welcome to the 'Open Charging Cloud'...",
+                         From = APIEMailAddress,
+                         To = EMailAddress,
+                         Passphrase = APIPassphrase,
+                         Subject = "Welcome to the 'CardiCloud'...",
 
-                                              HTMLText       = "<!DOCTYPE html><html>" + Environment.NewLine +
-                                                               "<head>" + Environment.NewLine +
-                                                                   "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />" + Environment.NewLine +
-                                                               "</head>" + Environment.NewLine +
-                                                               "<body>" +
-                                                               "<div style=\"width: 600px\">" + Environment.NewLine +
-                                                                   "<div style=\"border-bottom: 1px solid #AAAAAA; margin-bottom: 20px\">" +
-                                                                       "<h1 style=\"font-size: 120%\">" +
-                                                                           "<img src=\"http://offenes-jena.de/images/JenaLogo0001s2.png\" style=\"padding-right: 10px\">" +
-                                                                           "Offenes Jena" +
-                                                                       "</h1>" +
-                                                                   "</div>" + Environment.NewLine +
-                                                                   "<div style=\"border-bottom: 1px solid #AAAAAA; padding-left: 6px; padding-bottom: 40px; margin-bottom: 10px;\">" + Environment.NewLine +
-                                                                       "Hallo " + Username + "!<br /><br />" +
-                                                                       "Wir freuen uns, Dich als neuen Mitstreitenden für <b>Offene Daten</b> in Jena begrüßen zu können! " +
-                                                                       "Dein Account ist nun freigeschaltet. Probier es am besten gleich mal aus!<br />" + Environment.NewLine +
-                                                                   "</div>" + Environment.NewLine +
-                                                                   "<img src=\"http://offenes-jena.de/local/images/OKFN/CFG_logo.png\" style=\"width: 100px; padding-left:  6px\" alt=\"[ Code for Germany ]\">" +
-                                                                   "<img src=\"http://offenes-jena.de/local/images/OKFN/OKFN.png\"     style=\"width: 100px; padding-left: 10px\" alt=\"[ Open Knowledge Foundation ]\">" + Environment.NewLine +
-                                                               "</div></body></html>" + Environment.NewLine + Environment.NewLine,
+                         HTMLText = "<!DOCTYPE html><html>" + Environment.NewLine +
+                                                                "<head>" + Environment.NewLine +
+                                                                    "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />" + Environment.NewLine +
+                                                                "</head>" + Environment.NewLine +
+                                                                "<body style=\"background-color: #ececec\">" +
+                                                                "<div style=\"width: 600px\">" + Environment.NewLine +
+                                                                    "<div style=\"border-bottom: 1px solid #AAAAAA; margin-bottom: 20px\">" +
+                                                                        "<img src=\"https://cardi-link.cloud/login/CardiLink_Logo01.png\" style=\"width: 250px; padding-right: 10px\" alt=\"CardiLink\">" +
+                                                                    "</div>" + Environment.NewLine +
+                                                                    "<div style=\"border-bottom: 1px solid #AAAAAA; padding-left: 6px; padding-bottom: 40px; margin-bottom: 10px;\">" + Environment.NewLine +
+                                                                        "Dear " + Username + ",<br /><br />" + Environment.NewLine +
+                                                                        "welcome to your new CardiCloud account!<br /><br />" + Environment.NewLine +
+                                                                        "<a href=\"https://api.cardi-link.cloud/login\" style=\"text-decoration: none; color: #FFFFFF; background-color: #ff7300; Border: solid #ff7300; border-width: 10px 20px; line-height: 2; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 4px; margin-top: 20px; font-size: 70%\">Login</a>" + Environment.NewLine +
+                                                                    "</div>" + Environment.NewLine +
+                                                                    "<div style=\"color: #AAAAAA; font-size: 70%\">" + Environment.NewLine +
+                                                                        "Fingerprint: CE12 96F1 74B3 75F8 0BE9&nbsp;&nbsp;0E54 289B 709A 9E53 A226<br />" + Environment.NewLine +
+                                                                        "CardiLink GmbH, Henkestr. 91, 91052 Erlangen, Germany<br />" + Environment.NewLine +
+                                                                        "Commercial Register Number: Amtsgericht Fürth HRB 15812<br />" + Environment.NewLine +
+                                                                        "Managing Director: Lars Wassermann<br />" + Environment.NewLine +
+                                                                    "</div>" + Environment.NewLine +
+                                                                "</div></body></html>" + Environment.NewLine + Environment.NewLine,
 
-                                              PlainText      = "Offenes Jena" + Environment.NewLine +
-                                                               "============" + Environment.NewLine + Environment.NewLine +
-                                                               "Hallo " + Username + "!" + Environment.NewLine + Environment.NewLine +
-                                                               "Wir freuen uns, Dich als neuen Mitstreitenden für *Offene Daten* in Jena" + Environment.NewLine +
-                                                               "begrüßen zu können! Um Deinen neuen Account gleich freizuschalten, klicke" + Environment.NewLine +
-                                                               "bitte auf folgenden Link:" + Environment.NewLine +
-                                                               "---------------------------------------------------------------" + Environment.NewLine +
-                                                               "Fingerprint: AE0D 5C5C 4EB5 C3F0 683E 2173 B1EA 6EEA A89A 2896" + Environment.NewLine +
-                                                               "[ Code for Germany ] [ Open Knowledge Foundation ]" + Environment.NewLine + Environment.NewLine,
+                         PlainText = "CardiLink" + Environment.NewLine +
+                                                                "---------" + Environment.NewLine + Environment.NewLine +
+                                                                "Dear " + Username + "," + Environment.NewLine +
+                                                                "welcome to your new CardiCloud account!" + Environment.NewLine + Environment.NewLine +
+                                                                "Please login via: https://api.cardi-link.cloud/login" + Environment.NewLine + Environment.NewLine +
+                                                                "---------------------------------------------------------------" + Environment.NewLine +
+                                                                "Fingerprint: CE12 96F1 74B3 75F8 0BE9  0E54 289B 709A 9E53 A226" + Environment.NewLine +
+                                                                "CardiLink GmbH, Henkestr. 91, 91052 Erlangen, Germany" + Environment.NewLine +
+                                                                "Commercial Register Number: Amtsgericht Fürth HRB 15812" + Environment.NewLine +
+                                                                "Managing Director: Lars Wassermann" + Environment.NewLine + Environment.NewLine,
 
-                                              SecurityLevel  = EMailSecurity.auto
-                                          }.//AddAttachment("Hi there!".ToUTF8Bytes(), "welcome.txt", MailContentTypes.text_plain).
-                                                                    AsImmutable;
+                         SecurityLevel = EMailSecurity.sign
+                     }.//AddAttachment("Hi there!".ToUTF8Bytes(), "welcome.txt", MailContentTypes.text_plain).
+                                                                     AsImmutable;
 
         #endregion
 
@@ -272,45 +254,27 @@ namespace cloud.charging.open.API
                     DNSHostname,
                     Language) => new HTMLEMailBuilder() {
 
-                                              From           = APIEMailAddress,
-                                              To             = EMailAddress,
-                                              Passphrase     = APIPassphrase,
-                                              Subject        = "Dein Passwort...",
+                         From       = APIEMailAddress,
+                         To         = EMailAddress,
+                         Passphrase = APIPassphrase,
+                         Subject    = "CardiCloud password reset...",
 
-                                              HTMLText       = "<!DOCTYPE html><html>" + Environment.NewLine +
-                                                               "<head>" + Environment.NewLine +
-                                                                   "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />" + Environment.NewLine +
-                                                               "</head>" + Environment.NewLine +
-                                                               "<body>" +
-                                                               "<div style=\"width: 600px\">" + Environment.NewLine +
-                                                                   "<div style=\"border-bottom: 1px solid #AAAAAA; margin-bottom: 20px\">" +
-                                                                       "<h1 style=\"font-size: 120%\">" +
-                                                                           "<img src=\"http://offenes-jena.de/images/JenaLogo0001s2.png\" style=\"padding-right: 10px\">" +
-                                                                           "Offenes Jena" +
-                                                                       "</h1>" +
-                                                                   "</div>" + Environment.NewLine +
-                                                                   "<div style=\"border-bottom: 1px solid #AAAAAA; padding-left: 6px; padding-bottom: 40px; margin-bottom: 10px;\">" + Environment.NewLine +
-                                                                       "Hallo " + Username + "!<br /><br />" +
-                                                                       "Wir freuen uns, Dich als neuen Mitstreitenden für <b>Offene Daten</b> in Jena begrüßen zu können! " +
-                                                                       "Dein Account ist nun freigeschaltet. Probier es am besten gleich mal aus!<br />" + Environment.NewLine +
-                                                                   "</div>" + Environment.NewLine +
-                                                                   "<img src=\"http://offenes-jena.de/local/images/OKFN/CFG_logo.png\" style=\"width: 100px; padding-left:  6px\" alt=\"[ Code for Germany ]\">" +
-                                                                   "<img src=\"http://offenes-jena.de/local/images/OKFN/OKFN.png\"     style=\"width: 100px; padding-left: 10px\" alt=\"[ Open Knowledge Foundation ]\">" + Environment.NewLine +
-                                                               "</div></body></html>" + Environment.NewLine + Environment.NewLine,
+                         HTMLText   = HTMLEMailHeader +
+                                          "Dear " + Username + " (" + UserId + "),<br /><br />" + Environment.NewLine +
+                                          "someone - hopefully you - requested us to change your password!<br />" + Environment.NewLine +
+                                          "If this request was your intention, please click the following link to set a new password...<br /><br />" + Environment.NewLine +
+                                          "<a href=\"" + DNSHostname + "/setPassword?" + SecurityToken + (Use2FactorAuth ? "&2factor" : "") + "\" style=\"text-decoration: none; color: #FFFFFF; background-color: #ff7300; Border: solid #ff7300; border-width: 10px 20px; line-height: 2; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 4px; margin-top: 20px; font-size: 70%\">Set a new password</a>" + Environment.NewLine +
+                                      HTMLEMailFooter,
 
-                                              PlainText      = "Offenes Jena" + Environment.NewLine +
-                                                               "============" + Environment.NewLine + Environment.NewLine +
-                                                               "Hallo " + Username + "!" + Environment.NewLine + Environment.NewLine +
-                                                               "Wir freuen uns, Dich als neuen Mitstreitenden für *Offene Daten* in Jena" + Environment.NewLine +
-                                                               "begrüßen zu können! Um Deinen neuen Account gleich freizuschalten, klicke" + Environment.NewLine +
-                                                               "bitte auf folgenden Link:" + Environment.NewLine +
-                                                               "---------------------------------------------------------------" + Environment.NewLine +
-                                                               "Fingerprint: AE0D 5C5C 4EB5 C3F0 683E 2173 B1EA 6EEA A89A 2896" + Environment.NewLine +
-                                                               "[ Code for Germany ] [ Open Knowledge Foundation ]" + Environment.NewLine + Environment.NewLine,
+                         PlainText  = TextEMailHeader +
+                                          "Dear " + Username + " (" + UserId + ")," + Environment.NewLine +
+                                          "someone - hopefully you - requested us to change your password!" + Environment.NewLine +
+                                          "If this request was your intention, please click the following link to set a new password..." + Environment.NewLine + Environment.NewLine +
+                                          DNSHostname + "/setPassword?" + SecurityToken + (Use2FactorAuth ? "&2factor" : "") +
+                                      TextEMailFooter,
 
-                                              SecurityLevel  = EMailSecurity.auto
-                                          }.//AddAttachment("Hi there!".ToUTF8Bytes(), "welcome.txt", MailContentTypes.text_plain).
-                                                                    AsImmutable;
+                         SecurityLevel = EMailSecurity.sign
+                     }.AsImmutable;
 
         #endregion
 
@@ -405,8 +369,6 @@ namespace cloud.charging.open.API
 
                                     String                               ServiceName                        = DefaultServiceName,
                                     EMailAddress                         APIEMailAddress                    = null,
-                                    PgpPublicKeyRing                     APIPublicKeyRing                   = null,
-                                    PgpSecretKeyRing                     APISecretKeyRing                   = null,
                                     String                               APIPassphrase                      = null,
                                     EMailAddressList                     APIAdminEMails                     = null,
                                     SMTPClient                           APISMTPClient                      = null,
@@ -420,9 +382,10 @@ namespace cloud.charging.open.API
                                     NewUserSignUpEMailCreatorDelegate    NewUserSignUpEMailCreator          = null,
                                     NewUserWelcomeEMailCreatorDelegate   NewUserWelcomeEMailCreator         = null,
                                     ResetPasswordEMailCreatorDelegate    ResetPasswordEMailCreator          = null,
-                                    Byte?                                MinUserNameLenght                  = DefaultMinUserNameLenght,
-                                    Byte?                                MinRealmLenght                     = DefaultMinRealmLenght,
-                                    Byte?                                MinPasswordLenght                  = DefaultMinPasswordLenght,
+                                    PasswordChangedEMailCreatorDelegate  PasswordChangedEMailCreator        = null,
+                                    Byte                                 MinUserNameLenght                  = DefaultMinUserNameLenght,
+                                    Byte                                 MinRealmLenght                     = DefaultMinRealmLenght,
+                                    Byte                                 MinPasswordLenght                  = DefaultMinPasswordLenght,
                                     TimeSpan?                            SignInSessionLifetime              = null,
 
                                     String                               ServerThreadName                   = null,
@@ -482,52 +445,6 @@ namespace cloud.charging.open.API
                    LogfileName:                  LogfileName,
                    Autostart:                    Autostart)
 
-            //: base(HTTPServerName,
-            //       HTTPServerPort ?? DefaultHTTPServerPort,
-            //       HTTPHostname,
-            //       URIPrefix ?? DefaultURIPrefix,
-
-            //       ServerCertificateSelector,
-            //       ClientCertificateValidator,
-            //       ClientCertificateSelector,
-            //       AllowedTLSProtocols,
-
-            //       ServiceName,
-            //       APIEMailAddress,
-            //       APIPublicKeyRing ?? OpenPGP.ReadPublicKeyRing(typeof(OpenChargingCloudAPI).Assembly.GetManifestResourceStream(HTTPRoot + "GPGKeys.robot@open.charging.cloud_pubring.gpg")),
-            //       APISecretKeyRing,
-            //       APIPassphrase,
-            //       APIAdminEMails,
-            //       APISMTPClient,
-
-            //       CookieName ?? DefaultCookieName,
-            //       Language                   ?? Languages.eng,
-            //       LogoImage                  ?? _LogoImage,
-            //       NewUserSignUpEMailCreator  ?? __NewUserSignUpEMailCreator         (APIEMailAddress, APIPassphrase),
-            //       NewUserWelcomeEMailCreator ?? __NewUserWelcomeEMailCreatorDelegate(APIEMailAddress, APIPassphrase),
-            //       ResetPasswordEMailCreator  ?? __ResetPasswordEMailCreatorDelegate (APIEMailAddress, APIPassphrase),
-            //       MinUserNameLenght          ?? 4,
-            //       MinRealmLenght             ?? 2,
-            //       MinPasswordLenght          ?? 8,
-            //       SignInSessionLifetime      ?? TimeSpan.FromDays(30),
-
-            //       ServerThreadName,
-            //       ServerThreadPriority,
-            //       ServerThreadIsBackground,
-            //       ConnectionIdBuilder,
-            //       ConnectionThreadsNameBuilder,
-            //       ConnectionThreadsPriorityBuilder,
-            //       ConnectionThreadsAreBackground,
-            //       ConnectionTimeout,
-            //       MaxClientConnections,
-
-            //       SkipURITemplates,
-            //       DisableNotifications,
-            //       DisableLogfile,
-            //       LogfileName ?? DefaultLogfileName,
-            //       DNSClient,
-            //       false)
-
         {
 
             this.WWCP = WWCP_HTTPAPI.AttachToHTTPAPI(HTTPServer);
@@ -541,7 +458,7 @@ namespace cloud.charging.open.API
 
         #endregion
 
-        #region OpenChargingCloudAPI(HTTPServerName = DefaultHTTPServerName, ...)
+        #region OpenChargingCloudAPI(HTTPServer, HTTPHostname = null, URIPrefix = null, ...)
 
         ///// <summary>
         ///// Create an instance of the Open Charging Cloud API.
