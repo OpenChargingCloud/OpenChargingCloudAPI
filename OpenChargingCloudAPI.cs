@@ -37,6 +37,8 @@ using org.GraphDefined.Vanaheimr.Hermod.Sockets.TCP;
 using org.GraphDefined.OpenData.Users;
 
 using org.GraphDefined.WWCP.Net;
+using SMSApi.Api;
+using System.Collections.Generic;
 
 #endregion
 
@@ -82,7 +84,7 @@ namespace cloud.charging.open.API
         public  new const           String          _LogoImage                          = "images/OpenChargingCloud_Logo2.png";
 
 
-        public      static readonly HTTPURI         DataRouterURIPrefix                 = HTTPURI.Parse("/datarouter");
+        public      static readonly HTTPPath         DataRouterURIPrefix                 = HTTPPath.Parse("/datarouter");
 
         /// <summary>
         /// The name of the common log file.
@@ -94,7 +96,7 @@ namespace cloud.charging.open.API
         /// </summary>
         public new static readonly  HTTPCookieName  DefaultCookieName                   = HTTPCookieName.Parse("OpenChargingCloud");
 
-        private static readonly HTTPURI DefaultURIPrefix = HTTPURI.Parse("/");
+        private static readonly HTTPPath DefaultURIPrefix = HTTPPath.Parse("/");
 
         #endregion
 
@@ -106,6 +108,43 @@ namespace cloud.charging.open.API
 
         #region E-Mail delegates
 
+        #region E-Mail headers / footers
+
+        const String HTMLEMailHeader = "<!DOCTYPE html>\r\n" +
+                                        "<html>\r\n" +
+                                          "<head>\r\n" +
+                                              "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\r\n" +
+                                          "</head>\r\n" +
+                                          "<body style=\"background-color: #ececec\">\r\n" +
+                                            "<div style=\"width: 600px\">\r\n" +
+                                              "<div style=\"border-bottom: 1px solid #AAAAAA; margin-bottom: 20px\">\r\n" +
+                                                  "<img src=\"https://cardi-link.cloud/login/CardiLink_Logo01.png\" style=\"width: 250px; padding-right: 10px\" alt=\"CardiLink\">\r\n" +
+                                              "</div>\r\n" +
+                                              "<div style=\"border-bottom: 1px solid #AAAAAA; padding-left: 6px; padding-bottom: 40px; margin-bottom: 10px;\">\r\n";
+
+        const String HTMLEMailFooter = "</div>\r\n" +
+                                              "<div style=\"color: #AAAAAA; font-size: 70%\">\r\n" +
+                                                  "Fingerprint: CE12 96F1 74B3 75F8 0BE9&nbsp;&nbsp;0E54 289B 709A 9E53 A226<br />\r\n" +
+                                                  "CardiLink GmbH, Henkestr. 91, 91052 Erlangen, Germany<br />\r\n" +
+                                                  "Commercial Register Number: Amtsgericht Fürth HRB 15812<br />\r\n" +
+                                                  "Managing Director: Lars Wassermann<br />\r\n" +
+                                              "</div>\r\n" +
+                                            "</div>\r\n" +
+                                          "</body>\r\n" +
+                                        "</html>\r\n\r\n";
+
+        const String TextEMailHeader = "CardiLink\r\n" +
+                                        "---------\r\n\r\n";
+
+        const String TextEMailFooter = "\r\n\r\n---------------------------------------------------------------\r\n" +
+                                        "Fingerprint: CE12 96F1 74B3 75F8 0BE9  0E54 289B 709A 9E53 A226\r\n" +
+                                        "CardiLink GmbH, Henkestr. 91, 91052 Erlangen, Germany\r\n" +
+                                        "Commercial Register Number: Amtsgericht Fürth HRB 15812\r\n" +
+                                        "Managing Director: Lars Wassermann\r\n\r\n";
+
+        #endregion
+
+
         #region NewUserSignUpEMailCreatorDelegate
 
         private static Func<EMailAddress, String, NewUserSignUpEMailCreatorDelegate>
@@ -113,12 +152,13 @@ namespace cloud.charging.open.API
             __NewUserSignUpEMailCreator = (APIEMailAddress,
                                            APIPassphrase)
 
-                => (Login,
+                => (UserId,
                     EMailAddress,
-                    Language,
-                    VerificationToken)
-
-                    => new HTMLEMailBuilder() {
+                    Username,
+                    SecurityToken,
+                    Use2FactorAuth,
+                    DNSHostname,
+                    Language) => new HTMLEMailBuilder() {
 
                                        From           = APIEMailAddress,
                                        To             = EMailAddress,
@@ -138,21 +178,21 @@ namespace cloud.charging.open.API
                                                                 "</h1>" +
                                                             "</div>" + Environment.NewLine +
                                                             "<div style=\"border-bottom: 1px solid #AAAAAA; padding-left: 6px; padding-bottom: 40px; margin-bottom: 10px;\">" + Environment.NewLine +
-                                                                "Hello " + Login + "!<br /><br />" +
+                                                                "Dear " + Username + " (" + UserId + "),<br /><br />" +
                                                                 "Wir freuen uns, Dich als neuen Mitstreitenden für <b>Offene Daten</b> in Jena begrüßen zu können! " +
                                                                 "Um Deinen neuen Account gleich freizuschalten, klicke bitte auf folgenden Link...<br />" + Environment.NewLine +
-                                                                "<a href=\"https://open.charging.cloud/verificationtokens/" + VerificationToken + "\" style=\"text-decoration: none; Color: #FFFFFF; Background-color: #348eda; Border: solid #348eda; border-width: 10px 20px; line-height: 2; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 4px; margin-top: 20px; font-size: 70%\">Account bestätigen</a>" + Environment.NewLine +
+                                                                "<a href=\"" + DNSHostname + "/setPassword?" + SecurityToken + (Use2FactorAuth ? "&2factor" : "") + "\" style=\"text-decoration: none; Color: #FFFFFF; Background-color: #348eda; Border: solid #348eda; border-width: 10px 20px; line-height: 2; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 4px; margin-top: 20px; font-size: 70%\">Account bestätigen</a>" + Environment.NewLine +
                                                             "</div>" + Environment.NewLine +
                                                             "<img src=\"http://graphdefined.con/images/logo.png\"     style=\"width: 100px; padding-left: 10px\" alt=\"[ GraphDefined GmbH ]\">" + Environment.NewLine +
                                                         "</div></body></html>" + Environment.NewLine + Environment.NewLine,
 
                                        PlainText      = "Open Charging Cloud" + Environment.NewLine +
                                                         "===================" + Environment.NewLine + Environment.NewLine +
-                                                        "Hallo " + Login + "!" + Environment.NewLine + Environment.NewLine +
+                                                        "Dear " + Username + " (" + UserId + ")," + Environment.NewLine + Environment.NewLine +
                                                         "Wir freuen uns, Dich als neuen Mitstreitenden für *Offene Daten* in Jena" + Environment.NewLine +
                                                         "begrüßen zu können! Um Deinen neuen Account gleich freizuschalten, klicke" + Environment.NewLine +
                                                         "bitte auf folgenden Link:" + Environment.NewLine +
-                                                        "https://open.charging.cloud/verificationtokens/" + VerificationToken + Environment.NewLine + Environment.NewLine +
+                                                        DNSHostname + "/setPassword?" + SecurityToken + (Use2FactorAuth ? "&2factor" : "") + Environment.NewLine + Environment.NewLine +
                                                         "---------------------------------------------------------------" + Environment.NewLine +
                                                         "Fingerprint: AE0D 5C5C 4EB5 C3F0 683E 2173 B1EA 6EEA A89A 2896" + Environment.NewLine +
                                                         "[ GraphDefined GmbH ]" + Environment.NewLine + Environment.NewLine,
@@ -224,8 +264,12 @@ namespace cloud.charging.open.API
             __ResetPasswordEMailCreatorDelegate = (APIEMailAddress,
                                                    APIPassphrase)
 
-                =>(Username,
+                => (UserId,
                     EMailAddress,
+                    Username,
+                    SecurityToken,
+                    Use2FactorAuth,
+                    DNSHostname,
                     Language) => new HTMLEMailBuilder() {
 
                                               From           = APIEMailAddress,
@@ -267,6 +311,41 @@ namespace cloud.charging.open.API
                                               SecurityLevel  = EMailSecurity.auto
                                           }.//AddAttachment("Hi there!".ToUTF8Bytes(), "welcome.txt", MailContentTypes.text_plain).
                                                                     AsImmutable;
+
+        #endregion
+
+        #region PasswordChangedEMailCreatorDelegate
+
+        private static Func<EMailAddress, String, PasswordChangedEMailCreatorDelegate>
+
+            __PasswordChangedEMailCreatorDelegate = (APIEMailAddress,
+                                                     APIPassphrase)
+
+                => (UserId,
+                    EMailAddress,
+                    Username,
+                    DNSHostname,
+                    Language) => new HTMLEMailBuilder() {
+
+                         From       = APIEMailAddress,
+                         To         = EMailAddress,
+                         Passphrase = APIPassphrase,
+                         Subject    = "CardiCloud password changed...",
+
+                         HTMLText   = HTMLEMailHeader +
+                                          "Dear " + Username + ",<br /><br />" + Environment.NewLine +
+                                          "your password has successfully been changed!<br />" + Environment.NewLine +
+                                          "<a href=\"" + DNSHostname + "/login?" + UserId + "\" style=\"text-decoration: none; color: #FFFFFF; background-color: #ff7300; Border: solid #ff7300; border-width: 10px 20px; line-height: 2; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 4px; margin-top: 20px; font-size: 70%\">Login</a>" + Environment.NewLine +
+                                      HTMLEMailFooter,
+
+                         PlainText  = TextEMailHeader +
+                                          "Dear " + Username + "," + Environment.NewLine +
+                                          "your password has successfully been changed!" + Environment.NewLine +
+                                          DNSHostname + "/login?" + UserId +
+                                      TextEMailFooter,
+
+                         SecurityLevel = EMailSecurity.sign
+                     }.AsImmutable;
 
         #endregion
 
@@ -317,7 +396,7 @@ namespace cloud.charging.open.API
         public OpenChargingCloudAPI(String                               HTTPServerName                     = DefaultHTTPServerName,
                                     IPPort?                              HTTPServerPort                     = null,
                                     HTTPHostname?                        HTTPHostname                       = null,
-                                    HTTPURI?                             URIPrefix                          = null,
+                                    HTTPPath?                             URIPrefix                          = null,
 
                                     ServerCertificateSelectorDelegate    ServerCertificateSelector          = null,
                                     RemoteCertificateValidationCallback  ClientCertificateValidator         = null,
@@ -331,6 +410,9 @@ namespace cloud.charging.open.API
                                     String                               APIPassphrase                      = null,
                                     EMailAddressList                     APIAdminEMails                     = null,
                                     SMTPClient                           APISMTPClient                      = null,
+
+                                    Credentials                          SMSAPICredentials                  = null,
+                                    IEnumerable<PhoneNumber>             APIAdminSMS                        = null,
 
                                     HTTPCookieName?                      CookieName                         = null,
                                     Languages?                           Language                           = DefaultLanguage,
@@ -355,56 +437,96 @@ namespace cloud.charging.open.API
 
                                     Boolean                              SkipURITemplates                   = false,
                                     Boolean                              DisableNotifications               = false,
+
                                     Boolean                              DisableLogfile                     = false,
+                                    String                               LoggingPath                        = null,
                                     String                               LogfileName                        = DefaultLogfileName,
                                     DNSClient                            DNSClient                          = null,
                                     Boolean                              Autostart                          = false)
 
-            : base(HTTPServerName,
-                   HTTPServerPort ?? DefaultHTTPServerPort,
-                   HTTPHostname,
-                   URIPrefix ?? DefaultURIPrefix,
+            : base(HTTPServerName:               HTTPServerName,
+                   HTTPServerPort:               HTTPServerPort ?? DefaultHTTPServerPort,
+                   HTTPHostname:                 HTTPHostname,
+                   URIPrefix:                    URIPrefix,
 
-                   ServerCertificateSelector,
-                   ClientCertificateValidator,
-                   ClientCertificateSelector,
-                   AllowedTLSProtocols,
+                   ServerCertificateSelector:    ServerCertificateSelector,
+                   ClientCertificateValidator:   ClientCertificateValidator,
+                   ClientCertificateSelector:    ClientCertificateSelector,
+                   AllowedTLSProtocols:          AllowedTLSProtocols,
 
-                   ServiceName,
-                   APIEMailAddress,
-                   APIPublicKeyRing ?? OpenPGP.ReadPublicKeyRing(typeof(OpenChargingCloudAPI).Assembly.GetManifestResourceStream(HTTPRoot + "GPGKeys.robot@open.charging.cloud_pubring.gpg")),
-                   APISecretKeyRing,
-                   APIPassphrase,
-                   APIAdminEMails,
-                   APISMTPClient,
+                   ServiceName:                  ServiceName,
+                   APIEMailAddress:              APIEMailAddress,
+                   APIPassphrase:                APIPassphrase,
+                   APIAdminEMails:               APIAdminEMails,
+                   APISMTPClient:                APISMTPClient,
 
-                   CookieName ?? DefaultCookieName,
-                   Language                   ?? Languages.eng,
-                   LogoImage                  ?? _LogoImage,
-                   NewUserSignUpEMailCreator  ?? __NewUserSignUpEMailCreator         (APIEMailAddress, APIPassphrase),
-                   NewUserWelcomeEMailCreator ?? __NewUserWelcomeEMailCreatorDelegate(APIEMailAddress, APIPassphrase),
-                   ResetPasswordEMailCreator  ?? __ResetPasswordEMailCreatorDelegate (APIEMailAddress, APIPassphrase),
-                   MinUserNameLenght          ?? 4,
-                   MinRealmLenght             ?? 2,
-                   MinPasswordLenght          ?? 8,
-                   SignInSessionLifetime      ?? TimeSpan.FromDays(30),
+                   SMSAPICredentials:            SMSAPICredentials,
+                   APIAdminSMS:                  APIAdminSMS,
 
-                   ServerThreadName,
-                   ServerThreadPriority,
-                   ServerThreadIsBackground,
-                   ConnectionIdBuilder,
-                   ConnectionThreadsNameBuilder,
-                   ConnectionThreadsPriorityBuilder,
-                   ConnectionThreadsAreBackground,
-                   ConnectionTimeout,
-                   MaxClientConnections,
+                   CookieName:                   CookieName,
+                   Language:                     Languages.eng,
+                   LogoImage:                    _LogoImage,
+                   NewUserSignUpEMailCreator:    __NewUserSignUpEMailCreator          (APIEMailAddress, APIPassphrase),
+                   NewUserWelcomeEMailCreator:   __NewUserWelcomeEMailCreatorDelegate (APIEMailAddress, APIPassphrase),
+                   ResetPasswordEMailCreator:    __ResetPasswordEMailCreatorDelegate  (APIEMailAddress, APIPassphrase),
+                   PasswordChangedEMailCreator:  __PasswordChangedEMailCreatorDelegate(APIEMailAddress, APIPassphrase),
+                   MinUserNameLenght:            4,
+                   MinRealmLenght:               2,
+                   MinPasswordLenght:            8,
+                   SignInSessionLifetime:        TimeSpan.FromDays(30),
 
-                   SkipURITemplates,
-                   DisableNotifications,
-                   DisableLogfile,
-                   LogfileName ?? DefaultLogfileName,
-                   DNSClient,
-                   false)
+                   SkipURITemplates:             false,
+                   DNSClient:                    DNSClient,
+                   DisableLogfile:               DisableLogfile,
+                   LoggingPath:                  LoggingPath,
+                   LogfileName:                  LogfileName,
+                   Autostart:                    Autostart)
+
+            //: base(HTTPServerName,
+            //       HTTPServerPort ?? DefaultHTTPServerPort,
+            //       HTTPHostname,
+            //       URIPrefix ?? DefaultURIPrefix,
+
+            //       ServerCertificateSelector,
+            //       ClientCertificateValidator,
+            //       ClientCertificateSelector,
+            //       AllowedTLSProtocols,
+
+            //       ServiceName,
+            //       APIEMailAddress,
+            //       APIPublicKeyRing ?? OpenPGP.ReadPublicKeyRing(typeof(OpenChargingCloudAPI).Assembly.GetManifestResourceStream(HTTPRoot + "GPGKeys.robot@open.charging.cloud_pubring.gpg")),
+            //       APISecretKeyRing,
+            //       APIPassphrase,
+            //       APIAdminEMails,
+            //       APISMTPClient,
+
+            //       CookieName ?? DefaultCookieName,
+            //       Language                   ?? Languages.eng,
+            //       LogoImage                  ?? _LogoImage,
+            //       NewUserSignUpEMailCreator  ?? __NewUserSignUpEMailCreator         (APIEMailAddress, APIPassphrase),
+            //       NewUserWelcomeEMailCreator ?? __NewUserWelcomeEMailCreatorDelegate(APIEMailAddress, APIPassphrase),
+            //       ResetPasswordEMailCreator  ?? __ResetPasswordEMailCreatorDelegate (APIEMailAddress, APIPassphrase),
+            //       MinUserNameLenght          ?? 4,
+            //       MinRealmLenght             ?? 2,
+            //       MinPasswordLenght          ?? 8,
+            //       SignInSessionLifetime      ?? TimeSpan.FromDays(30),
+
+            //       ServerThreadName,
+            //       ServerThreadPriority,
+            //       ServerThreadIsBackground,
+            //       ConnectionIdBuilder,
+            //       ConnectionThreadsNameBuilder,
+            //       ConnectionThreadsPriorityBuilder,
+            //       ConnectionThreadsAreBackground,
+            //       ConnectionTimeout,
+            //       MaxClientConnections,
+
+            //       SkipURITemplates,
+            //       DisableNotifications,
+            //       DisableLogfile,
+            //       LogfileName ?? DefaultLogfileName,
+            //       DNSClient,
+            //       false)
 
         {
 
@@ -421,246 +543,248 @@ namespace cloud.charging.open.API
 
         #region OpenChargingCloudAPI(HTTPServerName = DefaultHTTPServerName, ...)
 
-        /// <summary>
-        /// Create an instance of the Open Charging Cloud API.
-        /// </summary>
-        /// <param name="HTTPServerName">The default HTTP servername, used whenever no HTTP Host-header had been given.</param>
-        /// <param name="HTTPHostname">The HTTP hostname for all URIs within this API.</param>
-        /// <param name="HTTPServerPort">A TCP port to listen on.</param>
-        /// <param name="URIPrefix">A common prefix for all URIs.</param>
-        /// 
-        /// <param name="ServerCertificateSelector">An optional delegate to select a SSL/TLS server certificate.</param>
-        /// <param name="ClientCertificateValidator">An optional delegate to verify the SSL/TLS client certificate used for authentication.</param>
-        /// <param name="ClientCertificateSelector">An optional delegate to select the SSL/TLS client certificate used for authentication.</param>
-        /// <param name="AllowedTLSProtocols">The SSL/TLS protocol(s) allowed for this connection.</param>
-        /// 
-        /// <param name="ServiceName">The name of the service.</param>
-        /// <param name="APIEMailAddress">An e-mail address for this API.</param>
-        /// <param name="APIPublicKeyRing">A GPG public key for this API.</param>
-        /// <param name="APISecretKeyRing">A GPG secret key for this API.</param>
-        /// <param name="APIPassphrase">A GPG passphrase for this API.</param>
-        /// <param name="APIAdminEMails">A list of admin e-mail addresses.</param>
-        /// <param name="APISMTPClient">A SMTP client for sending e-mails.</param>
-        /// 
-        /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
-        /// <param name="Language">The main language of the API.</param>
-        /// <param name="LogoImage">The logo of the website.</param>
-        /// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
-        /// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
-        /// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
-        /// <param name="MinUserNameLenght">The minimal user name length.</param>
-        /// <param name="MinRealmLenght">The minimal realm length.</param>
-        /// <param name="MinPasswordLenght">The minimal password length.</param>
-        /// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
-        /// 
-        /// <param name="SkipURITemplates">Skip URI templates.</param>
-        /// <param name="DisableNotifications">Disable external notifications.</param>
-        /// <param name="DisableLogfile">Disable the log file.</param>
-        /// <param name="LogfileName">The name of the logfile for this API.</param>
-        /// <param name="DNSClient">The DNS client of the API.</param>
-        /// <param name="Autostart">Whether to start the API automatically.</param>
-        public OpenChargingCloudAPI(String                               HTTPServerName                     = DefaultHTTPServerName,
-                                    IPPort?                              HTTPServerPort                     = null,
-                                    HTTPHostname?                        HTTPHostname                       = null,
-                                    HTTPURI?                             URIPrefix                          = null,
+        ///// <summary>
+        ///// Create an instance of the Open Charging Cloud API.
+        ///// </summary>
+        ///// <param name="HTTPServerName">The default HTTP servername, used whenever no HTTP Host-header had been given.</param>
+        ///// <param name="HTTPHostname">The HTTP hostname for all URIs within this API.</param>
+        ///// <param name="HTTPServerPort">A TCP port to listen on.</param>
+        ///// <param name="URIPrefix">A common prefix for all URIs.</param>
+        ///// 
+        ///// <param name="ServerCertificateSelector">An optional delegate to select a SSL/TLS server certificate.</param>
+        ///// <param name="ClientCertificateValidator">An optional delegate to verify the SSL/TLS client certificate used for authentication.</param>
+        ///// <param name="ClientCertificateSelector">An optional delegate to select the SSL/TLS client certificate used for authentication.</param>
+        ///// <param name="AllowedTLSProtocols">The SSL/TLS protocol(s) allowed for this connection.</param>
+        ///// 
+        ///// <param name="ServiceName">The name of the service.</param>
+        ///// <param name="APIEMailAddress">An e-mail address for this API.</param>
+        ///// <param name="APIPublicKeyRing">A GPG public key for this API.</param>
+        ///// <param name="APISecretKeyRing">A GPG secret key for this API.</param>
+        ///// <param name="APIPassphrase">A GPG passphrase for this API.</param>
+        ///// <param name="APIAdminEMails">A list of admin e-mail addresses.</param>
+        ///// <param name="APISMTPClient">A SMTP client for sending e-mails.</param>
+        ///// 
+        ///// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
+        ///// <param name="Language">The main language of the API.</param>
+        ///// <param name="LogoImage">The logo of the website.</param>
+        ///// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
+        ///// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
+        ///// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
+        ///// <param name="MinUserNameLenght">The minimal user name length.</param>
+        ///// <param name="MinRealmLenght">The minimal realm length.</param>
+        ///// <param name="MinPasswordLenght">The minimal password length.</param>
+        ///// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
+        ///// 
+        ///// <param name="SkipURITemplates">Skip URI templates.</param>
+        ///// <param name="DisableNotifications">Disable external notifications.</param>
+        ///// <param name="DisableLogfile">Disable the log file.</param>
+        ///// <param name="LogfileName">The name of the logfile for this API.</param>
+        ///// <param name="DNSClient">The DNS client of the API.</param>
+        ///// <param name="Autostart">Whether to start the API automatically.</param>
+        //public OpenChargingCloudAPI(String                               HTTPServerName                     = DefaultHTTPServerName,
+        //                            IPPort?                              HTTPServerPort                     = null,
+        //                            HTTPHostname?                        HTTPHostname                       = null,
+        //                            HTTPPath?                             URIPrefix                          = null,
 
-                                    ServerCertificateSelectorDelegate    ServerCertificateSelector          = null,
-                                    RemoteCertificateValidationCallback  ClientCertificateValidator         = null,
-                                    LocalCertificateSelectionCallback    ClientCertificateSelector          = null,
-                                    SslProtocols                         AllowedTLSProtocols                = SslProtocols.Tls12,
+        //                            ServerCertificateSelectorDelegate    ServerCertificateSelector          = null,
+        //                            RemoteCertificateValidationCallback  ClientCertificateValidator         = null,
+        //                            LocalCertificateSelectionCallback    ClientCertificateSelector          = null,
+        //                            SslProtocols                         AllowedTLSProtocols                = SslProtocols.Tls12,
 
-                                    String                               ServiceName                        = DefaultServiceName,
-                                    EMailAddress                         APIEMailAddress                    = null,
-                                    PgpPublicKeyRing                     APIPublicKeyRing                   = null,
-                                    PgpSecretKeyRing                     APISecretKeyRing                   = null,
-                                    String                               APIPassphrase                      = null,
-                                    EMailAddressList                     APIAdminEMails                     = null,
-                                    SMTPClient                           APISMTPClient                      = null,
+        //                            String                               ServiceName                        = DefaultServiceName,
+        //                            EMailAddress                         APIEMailAddress                    = null,
+        //                            PgpPublicKeyRing                     APIPublicKeyRing                   = null,
+        //                            PgpSecretKeyRing                     APISecretKeyRing                   = null,
+        //                            String                               APIPassphrase                      = null,
+        //                            EMailAddressList                     APIAdminEMails                     = null,
+        //                            SMTPClient                           APISMTPClient                      = null,
 
-                                    HTTPCookieName?                      CookieName                         = null,
-                                    Languages?                           Language                           = DefaultLanguage,
-                                    String                               LogoImage                          = null,
-                                    NewUserSignUpEMailCreatorDelegate    NewUserSignUpEMailCreator          = null,
-                                    NewUserWelcomeEMailCreatorDelegate   NewUserWelcomeEMailCreator         = null,
-                                    ResetPasswordEMailCreatorDelegate    ResetPasswordEMailCreator          = null,
-                                    Byte                                 MinUserNameLenght                  = DefaultMinUserNameLenght,
-                                    Byte                                 MinRealmLenght                     = DefaultMinRealmLenght,
-                                    Byte                                 MinPasswordLenght                  = DefaultMinPasswordLenght,
-                                    TimeSpan?                            SignInSessionLifetime              = null,
+        //                            HTTPCookieName?                      CookieName                         = null,
+        //                            Languages?                           Language                           = DefaultLanguage,
+        //                            String                               LogoImage                          = null,
+        //                            NewUserSignUpEMailCreatorDelegate    NewUserSignUpEMailCreator          = null,
+        //                            NewUserWelcomeEMailCreatorDelegate   NewUserWelcomeEMailCreator         = null,
+        //                            ResetPasswordEMailCreatorDelegate    ResetPasswordEMailCreator          = null,
+        //                            Byte                                 MinUserNameLenght                  = DefaultMinUserNameLenght,
+        //                            Byte                                 MinRealmLenght                     = DefaultMinRealmLenght,
+        //                            Byte                                 MinPasswordLenght                  = DefaultMinPasswordLenght,
+        //                            TimeSpan?                            SignInSessionLifetime              = null,
 
-                                    String                               ServerThreadName                   = null,
-                                    ThreadPriority                       ServerThreadPriority               = ThreadPriority.AboveNormal,
-                                    Boolean                              ServerThreadIsBackground           = true,
-                                    ConnectionIdBuilder                  ConnectionIdBuilder                = null,
-                                    ConnectionThreadsNameBuilder         ConnectionThreadsNameBuilder       = null,
-                                    ConnectionThreadsPriorityBuilder     ConnectionThreadsPriorityBuilder   = null,
-                                    Boolean                              ConnectionThreadsAreBackground     = true,
-                                    TimeSpan?                            ConnectionTimeout                  = null,
-                                    UInt32                               MaxClientConnections               = TCPServer.__DefaultMaxClientConnections,
+        //                            String                               ServerThreadName                   = null,
+        //                            ThreadPriority                       ServerThreadPriority               = ThreadPriority.AboveNormal,
+        //                            Boolean                              ServerThreadIsBackground           = true,
+        //                            ConnectionIdBuilder                  ConnectionIdBuilder                = null,
+        //                            ConnectionThreadsNameBuilder         ConnectionThreadsNameBuilder       = null,
+        //                            ConnectionThreadsPriorityBuilder     ConnectionThreadsPriorityBuilder   = null,
+        //                            Boolean                              ConnectionThreadsAreBackground     = true,
+        //                            TimeSpan?                            ConnectionTimeout                  = null,
+        //                            UInt32                               MaxClientConnections               = TCPServer.__DefaultMaxClientConnections,
 
-                                    Boolean                              SkipURITemplates                   = false,
-                                    Boolean                              DisableNotifications               = false,
-                                    Boolean                              DisableLogfile                     = false,
-                                    String                               LogfileName                        = DefaultLogfileName,
-                                    DNSClient                            DNSClient                          = null,
-                                    Boolean                              Autostart                          = false)
+        //                            Boolean                              SkipURITemplates                   = false,
+        //                            Boolean                              DisableNotifications               = false,
+        //                            Boolean                              DisableLogfile                     = false,
+        //                            String                               LogfileName                        = DefaultLogfileName,
+        //                            DNSClient                            DNSClient                          = null,
+        //                            Boolean                              Autostart                          = false)
 
-            : base(HTTPServerName,
-                   HTTPServerPort ?? DefaultHTTPServerPort,
-                   HTTPHostname,
-                   URIPrefix      ?? DefaultURIPrefix,
+        //    : base(HTTPServerName,
+        //           HTTPServerPort ?? DefaultHTTPServerPort,
+        //           HTTPHostname,
+        //           URIPrefix      ?? DefaultURIPrefix,
 
-                   ServerCertificateSelector,
-                   ClientCertificateValidator,
-                   ClientCertificateSelector,
-                   AllowedTLSProtocols,
+        //           ServerCertificateSelector,
+        //           ClientCertificateValidator,
+        //           ClientCertificateSelector,
+        //           AllowedTLSProtocols,
 
-                   ServiceName,
-                   APIEMailAddress,
-                   APIPublicKeyRing ?? OpenPGP.ReadPublicKeyRing(typeof(OpenChargingCloudAPI).Assembly.GetManifestResourceStream(HTTPRoot + "GPGKeys.robot@open.charging.cloud_pubring.gpg")),
-                   APISecretKeyRing,
-                   APIPassphrase,
-                   APIAdminEMails,
-                   APISMTPClient,
+        //           ServiceName,
+        //           APIEMailAddress,
+        //           APIPublicKeyRing ?? OpenPGP.ReadPublicKeyRing(typeof(OpenChargingCloudAPI).Assembly.GetManifestResourceStream(HTTPRoot + "GPGKeys.robot@open.charging.cloud_pubring.gpg")),
+        //           APISecretKeyRing,
+        //           APIPassphrase,
+        //           APIAdminEMails,
+        //           APISMTPClient,
 
-                   CookieName ?? DefaultCookieName,
-                   Language   ?? DefaultLanguage,
-                   LogoImage,
-                   NewUserSignUpEMailCreator,
-                   NewUserWelcomeEMailCreator,
-                   ResetPasswordEMailCreator,
-                   MinUserNameLenght,
-                   MinRealmLenght,
-                   MinPasswordLenght,
-                   SignInSessionLifetime,
+        //           CookieName ?? DefaultCookieName,
+        //           Language   ?? DefaultLanguage,
+        //           LogoImage,
+        //           NewUserSignUpEMailCreator,
+        //           NewUserWelcomeEMailCreator,
+        //           ResetPasswordEMailCreator,
+        //           MinUserNameLenght,
+        //           MinRealmLenght,
+        //           MinPasswordLenght,
+        //           SignInSessionLifetime,
 
-                   ServerThreadName,
-                   ServerThreadPriority,
-                   ServerThreadIsBackground,
-                   ConnectionIdBuilder,
-                   ConnectionThreadsNameBuilder,
-                   ConnectionThreadsPriorityBuilder,
-                   ConnectionThreadsAreBackground,
-                   ConnectionTimeout,
-                   MaxClientConnections,
+        //           ServerThreadName,
+        //           ServerThreadPriority,
+        //           ServerThreadIsBackground,
+        //           ConnectionIdBuilder,
+        //           ConnectionThreadsNameBuilder,
+        //           ConnectionThreadsPriorityBuilder,
+        //           ConnectionThreadsAreBackground,
+        //           ConnectionTimeout,
+        //           MaxClientConnections,
 
-                   SkipURITemplates,
-                   DisableNotifications,
-                   DisableLogfile,
-                   LogfileName,
-                   DNSClient,
-                   false)
+        //           SkipURITemplates,
+        //           DisableNotifications,
+        //           DisableLogfile,
+        //           LogfileName,
+        //           DNSClient,
+        //           false)
 
-        {
+        //{
 
-            this.WWCP = WWCP_HTTPAPI.AttachToHTTPAPI(HTTPServer);
+        //    this.WWCP = WWCP_HTTPAPI.AttachToHTTPAPI(HTTPServer);
 
-            if (!SkipURITemplates)
-                RegisterURITemplates();
+        //    if (!SkipURITemplates)
+        //        RegisterURITemplates();
 
-            if (Autostart)
-                Start();
+        //    if (Autostart)
+        //        Start();
 
-        }
+        //}
 
         #endregion
 
         #region OpenChargingCloudAPI(HTTPServer, HTTPHostname = null, URIPrefix = null, ...)
 
-        /// <summary>
-        /// Attach this Open Charging Cloud API to the given HTTP server.
-        /// </summary>
-        /// <param name="HTTPServer">An existing HTTP server.</param>
-        /// <param name="HTTPHostname">The HTTP hostname for all URIs within this API.</param>
-        /// <param name="URIPrefix">A common prefix for all URIs.</param>
-        /// 
-        /// <param name="ServiceName">The name of the service.</param>
-        /// <param name="APIEMailAddress">An e-mail address for this API.</param>
-        /// <param name="APIPublicKeyRing">A GPG public key for this API.</param>
-        /// <param name="APISecretKeyRing">A GPG secret key for this API.</param>
-        /// <param name="APIPassphrase">A GPG passphrase for this API.</param>
-        /// <param name="APIAdminEMails">A list of admin e-mail addresses.</param>
-        /// <param name="APISMTPClient">A SMTP client for sending e-mails.</param>
-        /// 
-        /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
-        /// <param name="Language">The main language of the API.</param>
-        /// <param name="LogoImage">The logo of the website.</param>
-        /// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
-        /// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
-        /// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
-        /// <param name="MinUserNameLenght">The minimal user name length.</param>
-        /// <param name="MinRealmLenght">The minimal realm length.</param>
-        /// <param name="MinPasswordLenght">The minimal password length.</param>
-        /// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
-        /// 
-        /// <param name="SkipURITemplates">Skip URI templates.</param>
-        /// <param name="DisableNotifications">Disable external notifications.</param>
-        /// <param name="DisableLogfile">Disable the log file.</param>
-        /// <param name="LogfileName">The name of the logfile for this API.</param>
-        public OpenChargingCloudAPI(HTTPServer                          HTTPServer,
-                                    HTTPHostname?                       HTTPHostname                 = null,
-                                    HTTPURI?                            URIPrefix                    = null,
+        ///// <summary>
+        ///// Attach this Open Charging Cloud API to the given HTTP server.
+        ///// </summary>
+        ///// <param name="HTTPServer">An existing HTTP server.</param>
+        ///// <param name="HTTPHostname">The HTTP hostname for all URIs within this API.</param>
+        ///// <param name="URIPrefix">A common prefix for all URIs.</param>
+        ///// 
+        ///// <param name="ServiceName">The name of the service.</param>
+        ///// <param name="APIEMailAddress">An e-mail address for this API.</param>
+        ///// <param name="APIPublicKeyRing">A GPG public key for this API.</param>
+        ///// <param name="APISecretKeyRing">A GPG secret key for this API.</param>
+        ///// <param name="APIPassphrase">A GPG passphrase for this API.</param>
+        ///// <param name="APIAdminEMails">A list of admin e-mail addresses.</param>
+        ///// <param name="APISMTPClient">A SMTP client for sending e-mails.</param>
+        ///// 
+        ///// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
+        ///// <param name="Language">The main language of the API.</param>
+        ///// <param name="LogoImage">The logo of the website.</param>
+        ///// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
+        ///// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
+        ///// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
+        ///// <param name="MinUserNameLenght">The minimal user name length.</param>
+        ///// <param name="MinRealmLenght">The minimal realm length.</param>
+        ///// <param name="MinPasswordLenght">The minimal password length.</param>
+        ///// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
+        ///// 
+        ///// <param name="SkipURITemplates">Skip URI templates.</param>
+        ///// <param name="DisableNotifications">Disable external notifications.</param>
+        ///// <param name="DisableLogfile">Disable the log file.</param>
+        ///// <param name="LogfileName">The name of the logfile for this API.</param>
+        //public OpenChargingCloudAPI(HTTPServer                          HTTPServer,
+        //                            HTTPHostname?                       HTTPHostname                 = null,
+        //                            HTTPPath?                            URIPrefix                    = null,
 
-                                    String                              ServiceName                  = DefaultServiceName,
-                                    EMailAddress                        APIEMailAddress              = null,
-                                    PgpPublicKeyRing                    APIPublicKeyRing             = null,
-                                    PgpSecretKeyRing                    APISecretKeyRing             = null,
-                                    String                              APIPassphrase                = null,
-                                    EMailAddressList                    APIAdminEMails               = null,
-                                    SMTPClient                          APISMTPClient                = null,
+        //                            String                              ServiceName                  = DefaultServiceName,
+        //                            EMailAddress                        APIEMailAddress              = null,
+        //                            PgpPublicKeyRing                    APIPublicKeyRing             = null,
+        //                            PgpSecretKeyRing                    APISecretKeyRing             = null,
+        //                            String                              APIPassphrase                = null,
+        //                            EMailAddressList                    APIAdminEMails               = null,
+        //                            SMTPClient                          APISMTPClient                = null,
 
-                                    HTTPCookieName?                     CookieName                   = null,
-                                    Languages                           Language                     = DefaultLanguage,
-                                    String                              LogoImage                    = null,
-                                    NewUserSignUpEMailCreatorDelegate   NewUserSignUpEMailCreator    = null,
-                                    NewUserWelcomeEMailCreatorDelegate  NewUserWelcomeEMailCreator   = null,
-                                    ResetPasswordEMailCreatorDelegate   ResetPasswordEMailCreator    = null,
-                                    Byte                                MinUserNameLenght            = DefaultMinUserNameLenght,
-                                    Byte                                MinRealmLenght               = DefaultMinRealmLenght,
-                                    Byte                                MinPasswordLenght            = DefaultMinPasswordLenght,
-                                    TimeSpan?                           SignInSessionLifetime        = null,
+        //                            HTTPCookieName?                     CookieName                   = null,
+        //                            Languages                           Language                     = DefaultLanguage,
+        //                            String                              LogoImage                    = null,
+        //                            NewUserSignUpEMailCreatorDelegate   NewUserSignUpEMailCreator    = null,
+        //                            NewUserWelcomeEMailCreatorDelegate  NewUserWelcomeEMailCreator   = null,
+        //                            ResetPasswordEMailCreatorDelegate   ResetPasswordEMailCreator    = null,
+        //                            Byte                                MinUserNameLenght            = DefaultMinUserNameLenght,
+        //                            Byte                                MinRealmLenght               = DefaultMinRealmLenght,
+        //                            Byte                                MinPasswordLenght            = DefaultMinPasswordLenght,
+        //                            TimeSpan?                           SignInSessionLifetime        = null,
 
-                                    Boolean                             SkipURITemplates             = false,
-                                    Boolean                             DisableNotifications         = false,
-                                    Boolean                             DisableLogfile               = false,
-                                    String                              LogfileName                  = DefaultLogfileName)
+        //                            Boolean                             SkipURITemplates             = false,
+        //                            Boolean                             DisableNotifications         = false,
+        //                            Boolean                             DisableLogfile               = false,
+        //                            String                              LogfileName                  = DefaultLogfileName)
 
-            : base(HTTPServer,
-                   HTTPHostname,
-                   URIPrefix ?? DefaultURIPrefix,
 
-                   ServiceName,
-                   APIEMailAddress,
-                   APIPublicKeyRing ?? OpenPGP.ReadPublicKeyRing(typeof(OpenChargingCloudAPI).Assembly.GetManifestResourceStream(HTTPRoot + "GPGKeys.robot@open.charging.cloud_pubring.gpg")),
-                   APISecretKeyRing,
-                   APIPassphrase,
-                   APIAdminEMails,
-                   APISMTPClient,
 
-                   CookieName ?? DefaultCookieName,
-                   Language,
-                   LogoImage                  ?? _LogoImage,
-                   NewUserSignUpEMailCreator  ?? __NewUserSignUpEMailCreator         (APIEMailAddress, APIPassphrase),
-                   NewUserWelcomeEMailCreator ?? __NewUserWelcomeEMailCreatorDelegate(APIEMailAddress, APIPassphrase),
-                   ResetPasswordEMailCreator  ?? __ResetPasswordEMailCreatorDelegate (APIEMailAddress, APIPassphrase),
-                   MinUserNameLenght,
-                   MinRealmLenght,
-                   MinPasswordLenght,
-                   SignInSessionLifetime      ?? DefaultSignInSessionLifetime,
+        //    : base(HTTPServer,
+        //           HTTPHostname,
+        //           URIPrefix ?? DefaultURIPrefix,
 
-                   SkipURITemplates,
-                   DisableNotifications,
-                   DisableLogfile,
-                   LogfileName)
+        //           ServiceName,
+        //           APIEMailAddress,
+        //           APIPublicKeyRing ?? OpenPGP.ReadPublicKeyRing(typeof(OpenChargingCloudAPI).Assembly.GetManifestResourceStream(HTTPRoot + "GPGKeys.robot@open.charging.cloud_pubring.gpg")),
+        //           APISecretKeyRing,
+        //           APIPassphrase,
+        //           APIAdminEMails,
+        //           APISMTPClient,
 
-        {
+        //           CookieName ?? DefaultCookieName,
+        //           Language,
+        //           LogoImage                  ?? _LogoImage,
+        //           NewUserSignUpEMailCreator  ?? __NewUserSignUpEMailCreator         (APIEMailAddress, APIPassphrase),
+        //           NewUserWelcomeEMailCreator ?? __NewUserWelcomeEMailCreatorDelegate(APIEMailAddress, APIPassphrase),
+        //           ResetPasswordEMailCreator  ?? __ResetPasswordEMailCreatorDelegate (APIEMailAddress, APIPassphrase),
+        //           MinUserNameLenght,
+        //           MinRealmLenght,
+        //           MinPasswordLenght,
+        //           SignInSessionLifetime      ?? DefaultSignInSessionLifetime,
 
-            this.WWCP = WWCP_HTTPAPI.AttachToHTTPAPI(HTTPServer ?? throw new ArgumentNullException(nameof(HTTPServer), "The given HTTP server must not be null!"));
+        //           SkipURITemplates,
+        //           DisableNotifications,
+        //           DisableLogfile,
+        //           LogfileName)
 
-            if (!SkipURITemplates)
-                RegisterURITemplates();
+        //{
 
-        }
+        //    this.WWCP = WWCP_HTTPAPI.AttachToHTTPAPI(HTTPServer ?? throw new ArgumentNullException(nameof(HTTPServer), "The given HTTP server must not be null!"));
+
+        //    if (!SkipURITemplates)
+        //        RegisterURITemplates();
+
+        //}
 
         #endregion
 
@@ -669,92 +793,92 @@ namespace cloud.charging.open.API
 
         #region (static) AttachToHTTPAPI(HTTPServer, URIPrefix = "/", ...)
 
-        /// <summary>
-        /// Attach this HTTP API to the given HTTP server.
-        /// </summary>
-        /// <param name="HTTPServer">An existing HTTP server.</param>
-        /// <param name="HTTPHostname">The HTTP hostname for all URIs within this API.</param>
-        /// <param name="URIPrefix">A common prefix for all URIs.</param>
-        /// 
-        /// <param name="ServiceName">The name of the service.</param>
-        /// <param name="APIEMailAddress">An e-mail address for this API.</param>
-        /// <param name="APIPublicKeyRing">A GPG public key for this API.</param>
-        /// <param name="APISecretKeyRing">A GPG secret key for this API.</param>
-        /// <param name="APIPassphrase">A GPG passphrase for this API.</param>
-        /// <param name="APIAdminEMails">A list of admin e-mail addresses.</param>
-        /// <param name="APISMTPClient">A SMTP client for sending e-mails.</param>
-        /// 
-        /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
-        /// <param name="Language">The main language of the API.</param>
-        /// <param name="LogoImage">The logo of the website.</param>
-        /// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
-        /// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
-        /// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
-        /// <param name="MinUserNameLenght">The minimal user name length.</param>
-        /// <param name="MinRealmLenght">The minimal realm length.</param>
-        /// <param name="MinPasswordLenght">The minimal password length.</param>
-        /// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
-        /// 
-        /// <param name="SkipURITemplates">Skip URI templates.</param>
-        /// <param name="DisableNotifications">Disable external notifications.</param>
-        /// <param name="DisableLogfile">Disable the log file.</param>
-        /// <param name="LogfileName">The name of the logfile for this API.</param>
-        public static OpenChargingCloudAPI AttachToHTTPAPI(HTTPServer                          HTTPServer,
-                                                           HTTPHostname?                       HTTPHostname                 = null,
-                                                           HTTPURI?                            URIPrefix                    = null,
+        ///// <summary>
+        ///// Attach this HTTP API to the given HTTP server.
+        ///// </summary>
+        ///// <param name="HTTPServer">An existing HTTP server.</param>
+        ///// <param name="HTTPHostname">The HTTP hostname for all URIs within this API.</param>
+        ///// <param name="URIPrefix">A common prefix for all URIs.</param>
+        ///// 
+        ///// <param name="ServiceName">The name of the service.</param>
+        ///// <param name="APIEMailAddress">An e-mail address for this API.</param>
+        ///// <param name="APIPublicKeyRing">A GPG public key for this API.</param>
+        ///// <param name="APISecretKeyRing">A GPG secret key for this API.</param>
+        ///// <param name="APIPassphrase">A GPG passphrase for this API.</param>
+        ///// <param name="APIAdminEMails">A list of admin e-mail addresses.</param>
+        ///// <param name="APISMTPClient">A SMTP client for sending e-mails.</param>
+        ///// 
+        ///// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
+        ///// <param name="Language">The main language of the API.</param>
+        ///// <param name="LogoImage">The logo of the website.</param>
+        ///// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
+        ///// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
+        ///// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
+        ///// <param name="MinUserNameLenght">The minimal user name length.</param>
+        ///// <param name="MinRealmLenght">The minimal realm length.</param>
+        ///// <param name="MinPasswordLenght">The minimal password length.</param>
+        ///// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
+        ///// 
+        ///// <param name="SkipURITemplates">Skip URI templates.</param>
+        ///// <param name="DisableNotifications">Disable external notifications.</param>
+        ///// <param name="DisableLogfile">Disable the log file.</param>
+        ///// <param name="LogfileName">The name of the logfile for this API.</param>
+        //public static OpenChargingCloudAPI AttachToHTTPAPI(HTTPServer                          HTTPServer,
+        //                                                   HTTPHostname?                       HTTPHostname                 = null,
+        //                                                   HTTPPath?                            URIPrefix                    = null,
 
-                                                           String                              ServiceName                  = DefaultServiceName,
-                                                           EMailAddress                        APIEMailAddress              = null,
-                                                           PgpPublicKeyRing                    APIPublicKeyRing             = null,
-                                                           PgpSecretKeyRing                    APISecretKeyRing             = null,
-                                                           String                              APIPassphrase                = null,
-                                                           EMailAddressList                    APIAdminEMails               = null,
-                                                           SMTPClient                          APISMTPClient                = null,
+        //                                                   String                              ServiceName                  = DefaultServiceName,
+        //                                                   EMailAddress                        APIEMailAddress              = null,
+        //                                                   PgpPublicKeyRing                    APIPublicKeyRing             = null,
+        //                                                   PgpSecretKeyRing                    APISecretKeyRing             = null,
+        //                                                   String                              APIPassphrase                = null,
+        //                                                   EMailAddressList                    APIAdminEMails               = null,
+        //                                                   SMTPClient                          APISMTPClient                = null,
 
-                                                           HTTPCookieName?                     CookieName                   = null,
-                                                           Languages                           Language                     = DefaultLanguage,
-                                                           String                              LogoImage                    = null,
-                                                           NewUserSignUpEMailCreatorDelegate   NewUserSignUpEMailCreator    = null,
-                                                           NewUserWelcomeEMailCreatorDelegate  NewUserWelcomeEMailCreator   = null,
-                                                           ResetPasswordEMailCreatorDelegate   ResetPasswordEMailCreator    = null,
-                                                           Byte                                MinUserNameLenght            = DefaultMinUserNameLenght,
-                                                           Byte                                MinRealmLenght               = DefaultMinRealmLenght,
-                                                           Byte                                MinPasswordLenght            = DefaultMinPasswordLenght,
-                                                           TimeSpan?                           SignInSessionLifetime        = null,
+        //                                                   HTTPCookieName?                     CookieName                   = null,
+        //                                                   Languages                           Language                     = DefaultLanguage,
+        //                                                   String                              LogoImage                    = null,
+        //                                                   NewUserSignUpEMailCreatorDelegate   NewUserSignUpEMailCreator    = null,
+        //                                                   NewUserWelcomeEMailCreatorDelegate  NewUserWelcomeEMailCreator   = null,
+        //                                                   ResetPasswordEMailCreatorDelegate   ResetPasswordEMailCreator    = null,
+        //                                                   Byte                                MinUserNameLenght            = DefaultMinUserNameLenght,
+        //                                                   Byte                                MinRealmLenght               = DefaultMinRealmLenght,
+        //                                                   Byte                                MinPasswordLenght            = DefaultMinPasswordLenght,
+        //                                                   TimeSpan?                           SignInSessionLifetime        = null,
 
-                                                           Boolean                             SkipURITemplates             = false,
-                                                           Boolean                             DisableNotifications         = false,
-                                                           Boolean                             DisableLogfile               = false,
-                                                           String                              LogfileName                  = DefaultLogfileName)
+        //                                                   Boolean                             SkipURITemplates             = false,
+        //                                                   Boolean                             DisableNotifications         = false,
+        //                                                   Boolean                             DisableLogfile               = false,
+        //                                                   String                              LogfileName                  = DefaultLogfileName)
 
 
-            => new OpenChargingCloudAPI(HTTPServer,
-                                        HTTPHostname,
-                                        URIPrefix ?? DefaultURIPrefix,
+        //    => new OpenChargingCloudAPI(HTTPServer,
+        //                                HTTPHostname,
+        //                                URIPrefix ?? DefaultURIPrefix,
 
-                                        ServiceName,
-                                        APIEMailAddress,
-                                        APIPublicKeyRing,
-                                        APISecretKeyRing,
-                                        APIPassphrase,
-                                        APIAdminEMails,
-                                        APISMTPClient,
+        //                                ServiceName,
+        //                                APIEMailAddress,
+        //                                APIPublicKeyRing,
+        //                                APISecretKeyRing,
+        //                                APIPassphrase,
+        //                                APIAdminEMails,
+        //                                APISMTPClient,
 
-                                        CookieName ?? DefaultCookieName,
-                                        Language,
-                                        LogoImage,
-                                        NewUserSignUpEMailCreator,
-                                        NewUserWelcomeEMailCreator,
-                                        ResetPasswordEMailCreator,
-                                        MinUserNameLenght,
-                                        MinRealmLenght,
-                                        MinPasswordLenght,
-                                        SignInSessionLifetime,
+        //                                CookieName ?? DefaultCookieName,
+        //                                Language,
+        //                                LogoImage,
+        //                                NewUserSignUpEMailCreator,
+        //                                NewUserWelcomeEMailCreator,
+        //                                ResetPasswordEMailCreator,
+        //                                MinUserNameLenght,
+        //                                MinRealmLenght,
+        //                                MinPasswordLenght,
+        //                                SignInSessionLifetime,
 
-                                        SkipURITemplates,
-                                        DisableNotifications,
-                                        DisableLogfile,
-                                        LogfileName);
+        //                                SkipURITemplates,
+        //                                DisableNotifications,
+        //                                DisableLogfile,
+        //                                LogfileName);
 
         #endregion
 
@@ -766,7 +890,7 @@ namespace cloud.charging.open.API
             #region /shared/OpenChargingCloudAPI
 
             HTTPServer.RegisterResourcesFolder(HTTPHostname.Any,
-                                               HTTPURI.Parse("/shared/OpenChargingCloudAPI"),
+                                               HTTPPath.Parse("/shared/OpenChargingCloudAPI"),
                                                HTTPRoot.Substring(0, HTTPRoot.Length - 1));
 
             #endregion
