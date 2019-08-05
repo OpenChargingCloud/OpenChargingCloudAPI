@@ -86,10 +86,6 @@
       <Project>{f2114125-84c1-4984-8706-b2d003156495}</Project>
       <Name>WWCP_Net</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WWCP_Net\WWCP_Tracker\WWCP_Tracker.csproj">
-      <Project>{21b10d7b-ab71-4ca0-bdba-baaf17fac67d}</Project>
-      <Name>WWCP_Tracker</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="compilerconfig.json" />
