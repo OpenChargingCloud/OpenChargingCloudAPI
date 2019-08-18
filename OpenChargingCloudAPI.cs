@@ -325,7 +325,7 @@ namespace cloud.charging.open.API
         /// <param name="HTTPServerName">The default HTTP servername, used whenever no HTTP Host-header had been given.</param>
         /// <param name="HTTPHostname">The HTTP hostname for all URIs within this API.</param>
         /// <param name="HTTPServerPort">A TCP port to listen on.</param>
-        /// <param name="URIPrefix">A common prefix for all URIs.</param>
+        /// <param name="URLPathPrefix">A common prefix for all URLs.</param>
         /// 
         /// <param name="ServerCertificateSelector">An optional delegate to select a SSL/TLS server certificate.</param>
         /// <param name="ClientCertificateValidator">An optional delegate to verify the SSL/TLS client certificate used for authentication.</param>
@@ -348,7 +348,7 @@ namespace cloud.charging.open.API
         /// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
         /// <param name="MinUserNameLenght">The minimal user name length.</param>
         /// <param name="MinRealmLenght">The minimal realm length.</param>
-        /// <param name="MinPasswordLenght">The minimal password length.</param>
+        /// <param name="PasswordQualityCheck">A delegate to ensure a minimal password quality.</param>
         /// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
         /// 
         /// <param name="SkipURITemplates">Skip URI templates.</param>
@@ -360,7 +360,7 @@ namespace cloud.charging.open.API
         public OpenChargingCloudAPI(String                               HTTPServerName                     = DefaultHTTPServerName,
                                     IPPort?                              HTTPServerPort                     = null,
                                     HTTPHostname?                        HTTPHostname                       = null,
-                                    HTTPPath?                             URIPrefix                          = null,
+                                    HTTPPath?                            URLPathPrefix                      = null,
 
                                     ServerCertificateSelectorDelegate    ServerCertificateSelector          = null,
                                     RemoteCertificateValidationCallback  ClientCertificateValidator         = null,
@@ -385,7 +385,7 @@ namespace cloud.charging.open.API
                                     PasswordChangedEMailCreatorDelegate  PasswordChangedEMailCreator        = null,
                                     Byte                                 MinUserNameLenght                  = DefaultMinUserNameLenght,
                                     Byte                                 MinRealmLenght                     = DefaultMinRealmLenght,
-                                    Byte                                 MinPasswordLenght                  = DefaultMinPasswordLenght,
+                                    PasswordQualityCheckDelegate         PasswordQualityCheck               = null,
                                     TimeSpan?                            SignInSessionLifetime              = null,
 
                                     String                               ServerThreadName                   = null,
@@ -410,7 +410,7 @@ namespace cloud.charging.open.API
             : base(HTTPServerName:               HTTPServerName,
                    HTTPServerPort:               HTTPServerPort ?? DefaultHTTPServerPort,
                    HTTPHostname:                 HTTPHostname,
-                   URIPrefix:                    URIPrefix,
+                   URLPathPrefix:                URLPathPrefix,
 
                    ServerCertificateSelector:    ServerCertificateSelector,
                    ClientCertificateValidator:   ClientCertificateValidator,
@@ -435,7 +435,7 @@ namespace cloud.charging.open.API
                    PasswordChangedEMailCreator:  __PasswordChangedEMailCreatorDelegate(APIEMailAddress, APIPassphrase),
                    MinUserNameLenght:            4,
                    MinRealmLenght:               2,
-                   MinPasswordLenght:            8,
+                   PasswordQualityCheck:         PasswordQualityCheck,
                    SignInSessionLifetime:        TimeSpan.FromDays(30),
 
                    SkipURITemplates:             false,
