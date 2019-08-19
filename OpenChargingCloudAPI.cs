@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2014-2018, Achim 'ahzf' Friedland <achim@graphdefined.org>
+ * Copyright (c) 2014-2019, Achim 'ahzf' Friedland <achim@graphdefined.org>
  * This file is part of Open Charging Cloud API <http://www.github.com/OpenChargingCloud/OpenChargingCloudAPI>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -147,9 +147,10 @@ namespace cloud.charging.open.API
 
         #region NewUserSignUpEMailCreatorDelegate
 
-        private static Func<EMailAddress, String, NewUserSignUpEMailCreatorDelegate>
+        private static readonly Func<String, EMailAddress, String, NewUserSignUpEMailCreatorDelegate>
 
-            __NewUserSignUpEMailCreator = (APIEMailAddress,
+            __NewUserSignUpEMailCreator = (BaseURL,
+                                           APIEMailAddress,
                                            APIPassphrase)
 
                 => (UserId,
@@ -186,9 +187,10 @@ namespace cloud.charging.open.API
 
         #region NewUserWelcomeEMailCreatorDelegate
 
-        private static Func<EMailAddress, String, NewUserWelcomeEMailCreatorDelegate>
+        private static readonly Func<String, EMailAddress, String, NewUserWelcomeEMailCreatorDelegate>
 
-            __NewUserWelcomeEMailCreatorDelegate = (APIEMailAddress,
+            __NewUserWelcomeEMailCreatorDelegate = (BaseURL,
+                                                    APIEMailAddress,
                                                     APIPassphrase)
 
                 => (Username,
@@ -241,9 +243,10 @@ namespace cloud.charging.open.API
 
         #region ResetPasswordEMailCreatorDelegate
 
-        private static Func<EMailAddress, String, ResetPasswordEMailCreatorDelegate>
+        private static readonly Func<String, EMailAddress, String, ResetPasswordEMailCreatorDelegate>
 
-            __ResetPasswordEMailCreatorDelegate = (APIEMailAddress,
+            __ResetPasswordEMailCreatorDelegate = (BaseURL,
+                                                   APIEMailAddress,
                                                    APIPassphrase)
 
                 => (UserId,
@@ -280,9 +283,10 @@ namespace cloud.charging.open.API
 
         #region PasswordChangedEMailCreatorDelegate
 
-        private static Func<EMailAddress, String, PasswordChangedEMailCreatorDelegate>
+        private static readonly Func<String, EMailAddress, String, PasswordChangedEMailCreatorDelegate>
 
-            __PasswordChangedEMailCreatorDelegate = (APIEMailAddress,
+            __PasswordChangedEMailCreatorDelegate = (BaseURL,
+                                                     APIEMailAddress,
                                                      APIPassphrase)
 
                 => (UserId,
@@ -325,14 +329,15 @@ namespace cloud.charging.open.API
         /// <param name="HTTPServerName">The default HTTP servername, used whenever no HTTP Host-header had been given.</param>
         /// <param name="HTTPHostname">The HTTP hostname for all URIs within this API.</param>
         /// <param name="HTTPServerPort">A TCP port to listen on.</param>
-        /// <param name="URIPrefix">A common prefix for all URIs.</param>
+        /// <param name="ServiceName">The name of the service.</param>
+        /// <param name="BaseURL">The base url of the service.</param>
+        /// <param name="URLPathPrefix">A common prefix for all URIs.</param>
         /// 
         /// <param name="ServerCertificateSelector">An optional delegate to select a SSL/TLS server certificate.</param>
         /// <param name="ClientCertificateValidator">An optional delegate to verify the SSL/TLS client certificate used for authentication.</param>
         /// <param name="ClientCertificateSelector">An optional delegate to select the SSL/TLS client certificate used for authentication.</param>
         /// <param name="AllowedTLSProtocols">The SSL/TLS protocol(s) allowed for this connection.</param>
         /// 
-        /// <param name="ServiceName">The name of the service.</param>
         /// <param name="APIEMailAddress">An e-mail address for this API.</param>
         /// <param name="APIPublicKeyRing">A GPG public key for this API.</param>
         /// <param name="APISecretKeyRing">A GPG secret key for this API.</param>
@@ -360,14 +365,15 @@ namespace cloud.charging.open.API
         public OpenChargingCloudAPI(String                               HTTPServerName                     = DefaultHTTPServerName,
                                     IPPort?                              HTTPServerPort                     = null,
                                     HTTPHostname?                        HTTPHostname                       = null,
-                                    HTTPPath?                             URIPrefix                          = null,
+                                    String                               ServiceName                        = DefaultServiceName,
+                                    String                               BaseURL                            = "",
+                                    HTTPPath?                            URLPathPrefix                      = null,
 
                                     ServerCertificateSelectorDelegate    ServerCertificateSelector          = null,
                                     RemoteCertificateValidationCallback  ClientCertificateValidator         = null,
                                     LocalCertificateSelectionCallback    ClientCertificateSelector          = null,
                                     SslProtocols                         AllowedTLSProtocols                = SslProtocols.Tls12,
 
-                                    String                               ServiceName                        = DefaultServiceName,
                                     EMailAddress                         APIEMailAddress                    = null,
                                     String                               APIPassphrase                      = null,
                                     EMailAddressList                     APIAdminEMails                     = null,
@@ -385,7 +391,7 @@ namespace cloud.charging.open.API
                                     PasswordChangedEMailCreatorDelegate  PasswordChangedEMailCreator        = null,
                                     Byte                                 MinUserNameLenght                  = DefaultMinUserNameLenght,
                                     Byte                                 MinRealmLenght                     = DefaultMinRealmLenght,
-                                    Byte                                 MinPasswordLenght                  = DefaultMinPasswordLenght,
+                                    PasswordQualityCheckDelegate         PasswordQualityCheck               = null,
                                     TimeSpan?                            SignInSessionLifetime              = null,
 
                                     String                               ServerThreadName                   = null,
@@ -410,14 +416,15 @@ namespace cloud.charging.open.API
             : base(HTTPServerName:               HTTPServerName,
                    HTTPServerPort:               HTTPServerPort ?? DefaultHTTPServerPort,
                    HTTPHostname:                 HTTPHostname,
-                   URIPrefix:                    URIPrefix,
+                   ServiceName:                  ServiceName,
+                   BaseURL:                      BaseURL,
+                   URLPathPrefix:                URLPathPrefix,
 
                    ServerCertificateSelector:    ServerCertificateSelector,
                    ClientCertificateValidator:   ClientCertificateValidator,
                    ClientCertificateSelector:    ClientCertificateSelector,
                    AllowedTLSProtocols:          AllowedTLSProtocols,
 
-                   ServiceName:                  ServiceName,
                    APIEMailAddress:              APIEMailAddress,
                    APIPassphrase:                APIPassphrase,
                    APIAdminEMails:               APIAdminEMails,
@@ -429,13 +436,13 @@ namespace cloud.charging.open.API
                    CookieName:                   CookieName,
                    Language:                     Languages.eng,
                    LogoImage:                    _LogoImage,
-                   NewUserSignUpEMailCreator:    __NewUserSignUpEMailCreator          (APIEMailAddress, APIPassphrase),
-                   NewUserWelcomeEMailCreator:   __NewUserWelcomeEMailCreatorDelegate (APIEMailAddress, APIPassphrase),
-                   ResetPasswordEMailCreator:    __ResetPasswordEMailCreatorDelegate  (APIEMailAddress, APIPassphrase),
-                   PasswordChangedEMailCreator:  __PasswordChangedEMailCreatorDelegate(APIEMailAddress, APIPassphrase),
+                   NewUserSignUpEMailCreator:    __NewUserSignUpEMailCreator          (BaseURL, APIEMailAddress, APIPassphrase),
+                   NewUserWelcomeEMailCreator:   __NewUserWelcomeEMailCreatorDelegate (BaseURL, APIEMailAddress, APIPassphrase),
+                   ResetPasswordEMailCreator:    __ResetPasswordEMailCreatorDelegate  (BaseURL, APIEMailAddress, APIPassphrase),
+                   PasswordChangedEMailCreator:  __PasswordChangedEMailCreatorDelegate(BaseURL, APIEMailAddress, APIPassphrase),
                    MinUserNameLenght:            4,
                    MinRealmLenght:               2,
-                   MinPasswordLenght:            8,
+                   PasswordQualityCheck:         PasswordQualityCheck,
                    SignInSessionLifetime:        TimeSpan.FromDays(30),
 
                    SkipURITemplates:             false,

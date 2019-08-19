@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2014-2018, Achim 'ahzf' Friedland <achim@graphdefined.org>
+ * Copyright (c) 2014-2019, Achim 'ahzf' Friedland <achim@graphdefined.org>
  * This file is part of Open Charging Cloud API <http://www.github.com/OpenChargingCloud/OpenChargingCloudAPI>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -61,14 +61,15 @@ namespace cloud.charging.open.API
         /// <param name="HTTPServerName">The default HTTP servername, used whenever no HTTP Host-header had been given.</param>
         /// <param name="HTTPHostname">The HTTP hostname for all URIs within this API.</param>
         /// <param name="HTTPServerPort">A TCP port to listen on.</param>
-        /// <param name="URIPrefix">A common prefix for all URIs.</param>
+        /// <param name="ServiceName">The name of the service.</param>
+        /// <param name="BaseURL">The base url of the service.</param>
+        /// <param name="URLPathPrefix">A common prefix for all URIs.</param>
         /// 
         /// <param name="ServerCertificateSelector">An optional delegate to select a SSL/TLS server certificate.</param>
         /// <param name="ClientCertificateValidator">An optional delegate to verify the SSL/TLS client certificate used for authentication.</param>
         /// <param name="ClientCertificateSelector">An optional delegate to select the SSL/TLS client certificate used for authentication.</param>
         /// <param name="AllowedTLSProtocols">The SSL/TLS protocol(s) allowed for this connection.</param>
         /// 
-        /// <param name="ServiceName">The name of the service.</param>
         /// <param name="APIEMailAddress">An e-mail address for this API.</param>
         /// <param name="APIPublicKeyRing">A GPG public key for this API.</param>
         /// <param name="APISecretKeyRing">A GPG secret key for this API.</param>
@@ -96,14 +97,15 @@ namespace cloud.charging.open.API
         public OpenChargingCloudEMPAPI(String                               HTTPServerName                     = DefaultHTTPServerName,
                                        IPPort?                              HTTPServerPort                     = null,
                                        HTTPHostname?                        HTTPHostname                       = null,
-                                       HTTPPath?                             URIPrefix                          = null,
+                                       String                               ServiceName                        = DefaultServiceName,
+                                       String                               BaseURL                            = "",
+                                       HTTPPath?                            URLPathPrefix                      = null,
 
                                        ServerCertificateSelectorDelegate    ServerCertificateSelector          = null,
                                        RemoteCertificateValidationCallback  ClientCertificateValidator         = null,
                                        LocalCertificateSelectionCallback    ClientCertificateSelector          = null,
                                        SslProtocols                         AllowedTLSProtocols                = SslProtocols.Tls12,
 
-                                       String                               ServiceName                        = DefaultServiceName,
                                        EMailAddress                         APIEMailAddress                    = null,
                                        String                               APIPassphrase                      = null,
                                        EMailAddressList                     APIAdminEMails                     = null,
@@ -145,14 +147,15 @@ namespace cloud.charging.open.API
             : base(HTTPServerName,
                    HTTPServerPort,
                    HTTPHostname,
-                   URIPrefix,
+                   ServiceName,
+                   BaseURL,
+                   URLPathPrefix,
 
                    ServerCertificateSelector,
                    ClientCertificateValidator,
                    ClientCertificateSelector,
                    AllowedTLSProtocols,
 
-                   ServiceName,
                    APIEMailAddress,
                    APIPassphrase,
                    APIAdminEMails,
