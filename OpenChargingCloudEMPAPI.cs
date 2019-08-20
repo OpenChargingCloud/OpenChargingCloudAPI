@@ -71,11 +71,12 @@ namespace cloud.charging.open.API
         /// <param name="AllowedTLSProtocols">The SSL/TLS protocol(s) allowed for this connection.</param>
         /// 
         /// <param name="APIEMailAddress">An e-mail address for this API.</param>
-        /// <param name="APIPublicKeyRing">A GPG public key for this API.</param>
-        /// <param name="APISecretKeyRing">A GPG secret key for this API.</param>
         /// <param name="APIPassphrase">A GPG passphrase for this API.</param>
         /// <param name="APIAdminEMails">A list of admin e-mail addresses.</param>
         /// <param name="APISMTPClient">A SMTP client for sending e-mails.</param>
+        /// 
+        /// <param name="SMSAPICredentials">The credentials for the SMS API.</param>
+        /// <param name="APIAdminSMS">A list of admin SMS phonenumbers.</param>
         /// 
         /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
         /// <param name="Language">The main language of the API.</param>
@@ -88,9 +89,20 @@ namespace cloud.charging.open.API
         /// <param name="PasswordQualityCheck">A delegate to ensure a minimal password quality.</param>
         /// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
         /// 
-        /// <param name="SkipURITemplates">Skip URI templates.</param>
+        /// <param name="ServerThreadName">The optional name of the TCP server thread.</param>
+        /// <param name="ServerThreadPriority">The optional priority of the TCP server thread.</param>
+        /// <param name="ServerThreadIsBackground">Whether the TCP server thread is a background thread or not.</param>
+        /// <param name="ConnectionIdBuilder">An optional delegate to build a connection identification based on IP socket information.</param>
+        /// <param name="ConnectionThreadsNameBuilder">An optional delegate to set the name of the TCP connection threads.</param>
+        /// <param name="ConnectionThreadsPriorityBuilder">An optional delegate to set the priority of the TCP connection threads.</param>
+        /// <param name="ConnectionThreadsAreBackground">Whether the TCP connection threads are background threads or not (default: yes).</param>
+        /// <param name="ConnectionTimeout">The TCP client timeout for all incoming client connections in seconds (default: 30 sec).</param>
+        /// <param name="MaxClientConnections">The maximum number of concurrent TCP client connections (default: 4096).</param>
+        /// 
+        /// <param name="SkipURLTemplates">Skip URI templates.</param>
         /// <param name="DisableNotifications">Disable external notifications.</param>
         /// <param name="DisableLogfile">Disable the log file.</param>
+        /// <param name="LoggingPath">The path for all logfiles.</param>
         /// <param name="LogfileName">The name of the logfile for this API.</param>
         /// <param name="DNSClient">The DNS client of the API.</param>
         /// <param name="Autostart">Whether to start the API automatically.</param>
@@ -136,7 +148,7 @@ namespace cloud.charging.open.API
                                        TimeSpan?                            ConnectionTimeout                  = null,
                                        UInt32                               MaxClientConnections               = TCPServer.__DefaultMaxClientConnections,
 
-                                       Boolean                              SkipURITemplates                   = false,
+                                       Boolean                              SkipURLTemplates                   = false,
                                        Boolean                              DisableNotifications               = false,
                                        Boolean                              DisableLogfile                     = false,
                                        String                               LoggingPath                        = null,
@@ -144,55 +156,53 @@ namespace cloud.charging.open.API
                                        DNSClient                            DNSClient                          = null,
                                        Boolean                              Autostart                          = false)
 
-            : base(HTTPServerName,
-                   HTTPServerPort,
-                   HTTPHostname,
-                   ServiceName,
-                   BaseURL,
-                   URLPathPrefix,
+            : base(HTTPServerName:                    HTTPServerName,
+                   HTTPServerPort:                    HTTPServerPort,
+                   HTTPHostname:                      HTTPHostname,
+                   ServiceName:                       ServiceName,
+                   BaseURL:                           BaseURL,
+                   URLPathPrefix:                     URLPathPrefix,
 
-                   ServerCertificateSelector,
-                   ClientCertificateValidator,
-                   ClientCertificateSelector,
-                   AllowedTLSProtocols,
+                   ServerCertificateSelector:         ServerCertificateSelector,
+                   ClientCertificateValidator:        ClientCertificateValidator,
+                   ClientCertificateSelector:         ClientCertificateSelector,
+                   AllowedTLSProtocols:               AllowedTLSProtocols,
 
-                   APIEMailAddress,
-                   APIPassphrase,
-                   APIAdminEMails,
-                   APISMTPClient,
+                   APIEMailAddress:                   APIEMailAddress,
+                   APIPassphrase:                     APIPassphrase,
+                   APIAdminEMails:                    APIAdminEMails,
+                   APISMTPClient:                     APISMTPClient,
 
-                   SMSAPICredentials,
-                   APIAdminSMS,
+                   SMSAPICredentials:                 SMSAPICredentials,
+                   APIAdminSMS:                       APIAdminSMS,
 
-                   CookieName,
-                   Language,
-                   LogoImage,
-                   NewUserSignUpEMailCreator,
-                   NewUserWelcomeEMailCreator,
-                   ResetPasswordEMailCreator,
-                   PasswordChangedEMailCreator,
-                   MinUserNameLenght,
-                   MinRealmLenght,
-                   PasswordQualityCheck,
-                   SignInSessionLifetime,
+                   CookieName:                        CookieName,
+                   Language:                          Language,
+                   LogoImage:                         LogoImage,
+                   NewUserSignUpEMailCreator:         NewUserSignUpEMailCreator,
+                   NewUserWelcomeEMailCreator:        NewUserWelcomeEMailCreator,
+                   ResetPasswordEMailCreator:         ResetPasswordEMailCreator,
+                   PasswordChangedEMailCreator:       PasswordChangedEMailCreator,
+                   MinUserNameLenght:                 MinUserNameLenght,
+                   MinRealmLenght:                    MinRealmLenght,
+                   PasswordQualityCheck:              PasswordQualityCheck,
+                   SignInSessionLifetime:             SignInSessionLifetime,
 
-                   ServerThreadName,
-                   ServerThreadPriority,
-                   ServerThreadIsBackground,
-                   ConnectionIdBuilder,
-                   ConnectionThreadsNameBuilder,
-                   ConnectionThreadsPriorityBuilder,
-                   ConnectionThreadsAreBackground,
-                   ConnectionTimeout,
-                   MaxClientConnections,
+                   ServerThreadName:                  ServerThreadName,
+                   ServerThreadPriority:              ServerThreadPriority,
+                   ServerThreadIsBackground:          ServerThreadIsBackground,
+                   ConnectionIdBuilder:               ConnectionIdBuilder,
+                   ConnectionThreadsNameBuilder:      ConnectionThreadsNameBuilder,
+                   ConnectionThreadsPriorityBuilder:  ConnectionThreadsPriorityBuilder,
+                   ConnectionThreadsAreBackground:    ConnectionThreadsAreBackground,
 
-                   SkipURITemplates,
-                   DisableNotifications,
-                   DisableLogfile,
-                   LoggingPath,
-                   LogfileName,
-                   DNSClient,
-                   Autostart: false)
+                   SkipURLTemplates:                  SkipURLTemplates,
+                   DisableNotifications:              DisableNotifications,
+                   DisableLogfile:                    DisableLogfile,
+                   LoggingPath:                       LoggingPath,
+                   LogfileName:                       LogfileName,
+                   DNSClient:                         DNSClient,
+                   Autostart:                         false)
 
         {
 

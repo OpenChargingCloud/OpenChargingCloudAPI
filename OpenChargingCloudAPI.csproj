@@ -78,10 +78,6 @@
       <Project>{33836742-af1d-4aa4-963f-b0a8e60e6480}</Project>
       <Name>WWCP_Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WWCP_Net\WWCP_CSV\WWCP_CSV.csproj">
-      <Project>{8300c7e7-922b-4e2d-a2bd-f3918854bcea}</Project>
-      <Name>WWCP_CSV</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="compilerconfig.json" />
