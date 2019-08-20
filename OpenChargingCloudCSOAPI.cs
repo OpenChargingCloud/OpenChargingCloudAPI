@@ -18,12 +18,10 @@
 #region Usings
 
 using System;
-using System.IO;
 using System.Threading;
 using System.Net.Security;
+using System.Collections.Generic;
 using System.Security.Authentication;
-
-using Org.BouncyCastle.Bcpg.OpenPgp;
 
 using org.GraphDefined.Vanaheimr.Illias;
 using org.GraphDefined.Vanaheimr.Hermod;
@@ -31,14 +29,9 @@ using org.GraphDefined.Vanaheimr.Hermod.HTTP;
 using org.GraphDefined.Vanaheimr.Hermod.SMTP;
 using org.GraphDefined.Vanaheimr.Hermod.Mail;
 using org.GraphDefined.Vanaheimr.Hermod.DNS;
-using org.GraphDefined.Vanaheimr.BouncyCastle;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets.TCP;
 using org.GraphDefined.OpenData.Users;
-
-using org.GraphDefined.WWCP.Net;
-using SMSApi.Api;
-using System.Collections.Generic;
 
 #endregion
 
@@ -71,11 +64,12 @@ namespace cloud.charging.open.API
         /// <param name="AllowedTLSProtocols">The SSL/TLS protocol(s) allowed for this connection.</param>
         /// 
         /// <param name="APIEMailAddress">An e-mail address for this API.</param>
-        /// <param name="APIPublicKeyRing">A GPG public key for this API.</param>
-        /// <param name="APISecretKeyRing">A GPG secret key for this API.</param>
         /// <param name="APIPassphrase">A GPG passphrase for this API.</param>
         /// <param name="APIAdminEMails">A list of admin e-mail addresses.</param>
         /// <param name="APISMTPClient">A SMTP client for sending e-mails.</param>
+        /// 
+        /// <param name="SMSAPICredentials">The credentials for the SMS API.</param>
+        /// <param name="APIAdminSMS">A list of admin SMS phonenumbers.</param>
         /// 
         /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
         /// <param name="Language">The main language of the API.</param>
@@ -88,9 +82,20 @@ namespace cloud.charging.open.API
         /// <param name="PasswordQualityCheck">A delegate to ensure a minimal password quality.</param>
         /// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
         /// 
+        /// <param name="ServerThreadName">The optional name of the TCP server thread.</param>
+        /// <param name="ServerThreadPriority">The optional priority of the TCP server thread.</param>
+        /// <param name="ServerThreadIsBackground">Whether the TCP server thread is a background thread or not.</param>
+        /// <param name="ConnectionIdBuilder">An optional delegate to build a connection identification based on IP socket information.</param>
+        /// <param name="ConnectionThreadsNameBuilder">An optional delegate to set the name of the TCP connection threads.</param>
+        /// <param name="ConnectionThreadsPriorityBuilder">An optional delegate to set the priority of the TCP connection threads.</param>
+        /// <param name="ConnectionThreadsAreBackground">Whether the TCP connection threads are background threads or not (default: yes).</param>
+        /// <param name="ConnectionTimeout">The TCP client timeout for all incoming client connections in seconds (default: 30 sec).</param>
+        /// <param name="MaxClientConnections">The maximum number of concurrent TCP client connections (default: 4096).</param>
+        /// 
         /// <param name="SkipURITemplates">Skip URI templates.</param>
         /// <param name="DisableNotifications">Disable external notifications.</param>
         /// <param name="DisableLogfile">Disable the log file.</param>
+        /// <param name="LoggingPath">The path for all logfiles.</param>
         /// <param name="LogfileName">The name of the logfile for this API.</param>
         /// <param name="DNSClient">The DNS client of the API.</param>
         /// <param name="Autostart">Whether to start the API automatically.</param>
@@ -111,7 +116,7 @@ namespace cloud.charging.open.API
                                        EMailAddressList                     APIAdminEMails                     = null,
                                        SMTPClient                           APISMTPClient                      = null,
 
-                                       Credentials                          SMSAPICredentials                  = null,
+                                       SMSApi.Api.Credentials               SMSAPICredentials                  = null,
                                        IEnumerable<PhoneNumber>             APIAdminSMS                        = null,
 
                                        HTTPCookieName?                      CookieName                         = null,
