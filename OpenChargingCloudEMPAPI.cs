@@ -51,6 +51,10 @@ namespace cloud.charging.open.API
     public class OpenChargingCloudEMPAPI : OpenChargingCloudAPI
     {
 
+        #region Properties
+
+        #endregion
+
         #region Constructor(s)
 
         #region OpenChargingCloudEMPAPI(HTTPServerName = DefaultHTTPServerName, ...)
@@ -205,8 +209,6 @@ namespace cloud.charging.open.API
                    Autostart:                         false)
 
         {
-
-            //this.WWCP = WWCP_HTTPAPI.AttachToHTTPAPI(HTTPServer);
 
             //RegisterURITemplates();
 
