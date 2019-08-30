@@ -21,6 +21,7 @@ using System;
 using System.IO;
 using System.Threading;
 using System.Net.Security;
+using System.Collections.Generic;
 using System.Security.Authentication;
 
 using Org.BouncyCastle.Bcpg.OpenPgp;
@@ -37,8 +38,7 @@ using org.GraphDefined.Vanaheimr.Hermod.Sockets.TCP;
 using org.GraphDefined.OpenData.Users;
 
 using org.GraphDefined.WWCP.Net;
-using SMSApi.Api;
-using System.Collections.Generic;
+using com.GraphDefined.SMSApi.API;
 
 #endregion
 

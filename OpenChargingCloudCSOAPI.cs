@@ -32,6 +32,7 @@ using org.GraphDefined.Vanaheimr.Hermod.DNS;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets.TCP;
 using org.GraphDefined.OpenData.Users;
+using com.GraphDefined.SMSApi.API;
 
 #endregion
 
@@ -116,7 +117,7 @@ namespace cloud.charging.open.API
                                        EMailAddressList                     APIAdminEMails                     = null,
                                        SMTPClient                           APISMTPClient                      = null,
 
-                                       SMSApi.Api.Credentials               SMSAPICredentials                  = null,
+                                       Credentials                          SMSAPICredentials                  = null,
                                        IEnumerable<PhoneNumber>             APIAdminSMS                        = null,
 
                                        HTTPCookieName?                      CookieName                         = null,
