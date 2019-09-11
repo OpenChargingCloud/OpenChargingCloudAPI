@@ -466,6 +466,13 @@ namespace cloud.charging.open.API
 
         {
 
+            Directory.CreateDirectory("ChargingReservations");
+            Directory.CreateDirectory("ChargingSessions");
+            Directory.CreateDirectory("ChargeDetailRecords");
+
+            Directory.CreateDirectory("HTTPSSEs");
+            Directory.CreateDirectory("Metrics");
+
             this.WWCP = WWCP_HTTPAPI.AttachToHTTPAPI(HTTPServer);
 
             RegisterURITemplates();
