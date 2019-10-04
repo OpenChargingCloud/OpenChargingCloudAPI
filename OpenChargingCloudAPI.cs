@@ -101,7 +101,6 @@ namespace cloud.charging.open.API
         #endregion
 
         #region Properties
-
         public WWCP_HTTPAPI WWCP { get; }
 
         #endregion
