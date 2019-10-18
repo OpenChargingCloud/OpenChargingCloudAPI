@@ -93,7 +93,7 @@ namespace cloud.charging.open.API
         /// <param name="ConnectionTimeout">The TCP client timeout for all incoming client connections in seconds (default: 30 sec).</param>
         /// <param name="MaxClientConnections">The maximum number of concurrent TCP client connections (default: 4096).</param>
         /// 
-        /// <param name="SkipURITemplates">Skip URI templates.</param>
+        /// <param name="SkipURLTemplates">Skip URI templates.</param>
         /// <param name="DisableNotifications">Disable external notifications.</param>
         /// <param name="DisableLogfile">Disable the log file.</param>
         /// <param name="LoggingPath">The path for all logfiles.</param>
@@ -142,7 +142,7 @@ namespace cloud.charging.open.API
                                        TimeSpan?                            ConnectionTimeout                  = null,
                                        UInt32                               MaxClientConnections               = TCPServer.__DefaultMaxClientConnections,
 
-                                       Boolean                              SkipURITemplates                   = false,
+                                       Boolean                              SkipURLTemplates                   = false,
                                        Boolean                              DisableNotifications               = false,
                                        Boolean                              DisableLogfile                     = false,
                                        String                               LoggingPath                        = null,
@@ -192,7 +192,7 @@ namespace cloud.charging.open.API
                    ConnectionTimeout,
                    MaxClientConnections,
 
-                   SkipURITemplates,
+                   SkipURLTemplates,
                    DisableNotifications,
                    DisableLogfile,
                    LoggingPath,
