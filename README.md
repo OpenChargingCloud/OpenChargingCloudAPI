@@ -1,4 +1,4 @@
-Open Charging Cloud API
-=======================
+OpenChargingCloud API
+=====================
 
-The Open Charging CLoud API.
+The Open Charging Cloud API.
