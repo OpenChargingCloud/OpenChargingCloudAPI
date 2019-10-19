@@ -48,10 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HTTP_IO\CSV_IO_URITemplates.cs" />
+    <Compile Include="HTTP_IO\GeoJSON_IO.cs" />
+    <Compile Include="HTTP_IO\JSON_IO_GridOperators.cs" />
+    <Compile Include="HTTP_IO\JSON_IO_ParkingOperators.cs" />
+    <Compile Include="HTTP_IO\JSON_IO_SmartCities.cs" />
+    <Compile Include="HTTP_IO\RDF_Export.cs" />
+    <Compile Include="HTTP_IO\XML_Export.cs" />
     <Compile Include="OpenChargingCloudEMPAPI.cs" />
     <Compile Include="OpenChargingCloudCSOAPI.cs" />
     <Compile Include="OpenChargingCloudAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="OpenChargingCloudAPILogger.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BouncyCastle\crypto\crypto.csproj">

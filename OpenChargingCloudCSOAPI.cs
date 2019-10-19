@@ -33,6 +33,7 @@ using org.GraphDefined.Vanaheimr.Hermod.Sockets;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets.TCP;
 using org.GraphDefined.OpenData.Users;
 using com.GraphDefined.SMSApi.API;
+using org.GraphDefined.WWCP.Net.IO.JSON;
 
 #endregion
 
@@ -52,12 +53,12 @@ namespace cloud.charging.open.API
         /// <summary>
         /// Create an instance of the Open Charging Cloud API.
         /// </summary>
-        /// <param name="HTTPServerName">The default HTTP servername, used whenever no HTTP Host-header had been given.</param>
-        /// <param name="HTTPHostname">The HTTP hostname for all URIs within this API.</param>
-        /// <param name="HTTPServerPort">A TCP port to listen on.</param>
         /// <param name="ServiceName">The name of the service.</param>
+        /// <param name="HTTPServerName">The default HTTP servername, used whenever no HTTP Host-header had been given.</param>
+        /// <param name="LocalHostname">The HTTP hostname for all URIs within this API.</param>
+        /// <param name="LocalPort">A TCP port to listen on.</param>
         /// <param name="BaseURL">The base url of the service.</param>
-        /// <param name="URLPathPrefix">A common prefix for all URIs.</param>
+        /// <param name="URLPathPrefix">A common prefix for all URLs.</param>
         /// 
         /// <param name="ServerCertificateSelector">An optional delegate to select a SSL/TLS server certificate.</param>
         /// <param name="ClientCertificateValidator">An optional delegate to verify the SSL/TLS client certificate used for authentication.</param>
@@ -78,6 +79,7 @@ namespace cloud.charging.open.API
         /// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
         /// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
         /// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
+        /// <param name="PasswordChangedEMailCreator">A delegate for sending a password changed e-mail to a user.</param>
         /// <param name="MinUserNameLenght">The minimal user name length.</param>
         /// <param name="MinRealmLenght">The minimal realm length.</param>
         /// <param name="PasswordQualityCheck">A delegate to ensure a minimal password quality.</param>
@@ -100,10 +102,10 @@ namespace cloud.charging.open.API
         /// <param name="LogfileName">The name of the logfile for this API.</param>
         /// <param name="DNSClient">The DNS client of the API.</param>
         /// <param name="Autostart">Whether to start the API automatically.</param>
-        public OpenChargingCloudCSOAPI(String                               HTTPServerName                     = DefaultHTTPServerName,
-                                       IPPort?                              HTTPServerPort                     = null,
-                                       HTTPHostname?                        HTTPHostname                       = null,
-                                       String                               ServiceName                        = DefaultServiceName,
+        public OpenChargingCloudCSOAPI(String                               ServiceName                        = "GraphDefined Open Charging Cloud CSO API",
+                                       String                               HTTPServerName                     = "GraphDefined Open Charging Cloud CSO API",
+                                       HTTPHostname?                        LocalHostname                      = null,
+                                       IPPort?                              LocalPort                          = null,
                                        String                               BaseURL                            = "",
                                        HTTPPath?                            URLPathPrefix                      = null,
 
@@ -121,14 +123,14 @@ namespace cloud.charging.open.API
                                        IEnumerable<PhoneNumber>             APIAdminSMS                        = null,
 
                                        HTTPCookieName?                      CookieName                         = null,
-                                       Languages?                           Language                           = DefaultLanguage,
+                                       Languages?                           Language                           = null,
                                        String                               LogoImage                          = null,
                                        NewUserSignUpEMailCreatorDelegate    NewUserSignUpEMailCreator          = null,
                                        NewUserWelcomeEMailCreatorDelegate   NewUserWelcomeEMailCreator         = null,
                                        ResetPasswordEMailCreatorDelegate    ResetPasswordEMailCreator          = null,
                                        PasswordChangedEMailCreatorDelegate  PasswordChangedEMailCreator        = null,
-                                       Byte                                 MinUserNameLenght                  = DefaultMinUserNameLenght,
-                                       Byte                                 MinRealmLenght                     = DefaultMinRealmLenght,
+                                       Byte?                                MinUserNameLenght                  = null,
+                                       Byte?                                MinRealmLenght                     = null,
                                        PasswordQualityCheckDelegate         PasswordQualityCheck               = null,
                                        TimeSpan?                            SignInSessionLifetime              = null,
 
@@ -146,63 +148,61 @@ namespace cloud.charging.open.API
                                        Boolean                              DisableNotifications               = false,
                                        Boolean                              DisableLogfile                     = false,
                                        String                               LoggingPath                        = null,
-                                       String                               LogfileName                        = DefaultLogfileName,
+                                       String                               LogfileName                        = "OpenChargingCloudCSOAPI.log",
                                        DNSClient                            DNSClient                          = null,
                                        Boolean                              Autostart                          = false)
 
-            : base(HTTPServerName,
-                   HTTPServerPort,
-                   HTTPHostname,
-                   ServiceName,
-                   BaseURL,
-                   URLPathPrefix,
+            : base(ServiceName:                       ServiceName                 ?? "GraphDefined Open Charging Cloud CSO API",
+                   HTTPServerName:                    HTTPServerName              ?? "GraphDefined Open Charging Cloud CSO API",
+                   LocalHostname:                     LocalHostname,
+                   LocalPort:                         LocalPort,
+                   BaseURL:                           BaseURL,
+                   URLPathPrefix:                     URLPathPrefix,
 
-                   ServerCertificateSelector,
-                   ClientCertificateValidator,
-                   ClientCertificateSelector,
-                   AllowedTLSProtocols,
+                   ServerCertificateSelector:         ServerCertificateSelector,
+                   ClientCertificateValidator:        ClientCertificateValidator,
+                   ClientCertificateSelector:         ClientCertificateSelector,
+                   AllowedTLSProtocols:               AllowedTLSProtocols,
 
-                   APIEMailAddress,
-                   APIPassphrase,
-                   APIAdminEMails,
-                   APISMTPClient,
+                   APIEMailAddress:                   APIEMailAddress,
+                   APIPassphrase:                     APIPassphrase,
+                   APIAdminEMails:                    APIAdminEMails,
+                   APISMTPClient:                     APISMTPClient,
 
-                   SMSAPICredentials,
-                   APIAdminSMS,
+                   SMSAPICredentials:                 SMSAPICredentials,
+                   APIAdminSMS:                       APIAdminSMS,
 
-                   CookieName,
-                   Language,
-                   LogoImage,
-                   NewUserSignUpEMailCreator,
-                   NewUserWelcomeEMailCreator,
-                   ResetPasswordEMailCreator,
-                   PasswordChangedEMailCreator,
-                   MinUserNameLenght,
-                   MinRealmLenght,
-                   PasswordQualityCheck,
-                   SignInSessionLifetime,
+                   CookieName:                        CookieName                  ?? HTTPCookieName.Parse("OpenChargingCloudCSOAPI"),
+                   Language:                          Language,
+                   LogoImage:                         LogoImage,
+                   NewUserSignUpEMailCreator:         NewUserSignUpEMailCreator,
+                   NewUserWelcomeEMailCreator:        NewUserWelcomeEMailCreator,
+                   ResetPasswordEMailCreator:         ResetPasswordEMailCreator,
+                   PasswordChangedEMailCreator:       PasswordChangedEMailCreator,
+                   MinUserNameLenght:                 MinUserNameLenght,
+                   MinRealmLenght:                    MinRealmLenght,
+                   PasswordQualityCheck:              PasswordQualityCheck,
+                   SignInSessionLifetime:             SignInSessionLifetime,
 
-                   ServerThreadName,
-                   ServerThreadPriority,
-                   ServerThreadIsBackground,
-                   ConnectionIdBuilder,
-                   ConnectionThreadsNameBuilder,
-                   ConnectionThreadsPriorityBuilder,
-                   ConnectionThreadsAreBackground,
-                   ConnectionTimeout,
-                   MaxClientConnections,
+                   ServerThreadName:                  ServerThreadName,
+                   ServerThreadPriority:              ServerThreadPriority,
+                   ServerThreadIsBackground:          ServerThreadIsBackground,
+                   ConnectionIdBuilder:               ConnectionIdBuilder,
+                   ConnectionThreadsNameBuilder:      ConnectionThreadsNameBuilder,
+                   ConnectionThreadsPriorityBuilder:  ConnectionThreadsPriorityBuilder,
+                   ConnectionThreadsAreBackground:    ConnectionThreadsAreBackground,
+                   ConnectionTimeout:                 ConnectionTimeout,
+                   MaxClientConnections:              MaxClientConnections,
 
-                   SkipURLTemplates,
-                   DisableNotifications,
-                   DisableLogfile,
-                   LoggingPath,
-                   LogfileName,
-                   DNSClient,
-                   Autostart: false)
+                   SkipURLTemplates:                  SkipURLTemplates,
+                   DisableNotifications:              DisableNotifications,
+                   DisableLogfile:                    DisableLogfile,
+                   LoggingPath:                       LoggingPath,
+                   LogfileName:                       LogfileName,
+                   DNSClient:                         DNSClient,
+                   Autostart:                         false)
 
         {
-
-            //this.WWCP = WWCP_HTTPAPI.AttachToHTTPAPI(HTTPServer);
 
             //RegisterURITemplates();
 
@@ -221,7 +221,7 @@ namespace cloud.charging.open.API
         ///// <param name="HTTPServerName">The default HTTP servername, used whenever no HTTP Host-header had been given.</param>
         ///// <param name="HTTPHostname">The HTTP hostname for all URIs within this API.</param>
         ///// <param name="HTTPServerPort">A TCP port to listen on.</param>
-        ///// <param name="URIPrefix">A common prefix for all URIs.</param>
+        ///// <param name="URIPrefix">A common prefix for all URLs.</param>
         ///// 
         ///// <param name="ServerCertificateSelector">An optional delegate to select a SSL/TLS server certificate.</param>
         ///// <param name="ClientCertificateValidator">An optional delegate to verify the SSL/TLS client certificate used for authentication.</param>
@@ -371,7 +371,7 @@ namespace cloud.charging.open.API
         ///// </summary>
         ///// <param name="HTTPServer">An existing HTTP server.</param>
         ///// <param name="HTTPHostname">The HTTP hostname for all URIs within this API.</param>
-        ///// <param name="URIPrefix">A common prefix for all URIs.</param>
+        ///// <param name="URIPrefix">A common prefix for all URLs.</param>
         ///// 
         ///// <param name="ServiceName">The name of the service.</param>
         ///// <param name="APIEMailAddress">An e-mail address for this API.</param>
