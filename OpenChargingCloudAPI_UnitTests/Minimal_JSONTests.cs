@@ -49,7 +49,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
         #region Data
 
         private          HTTPServer<RoamingNetworks, RoamingNetwork>  HTTPAPI;
-        private          WWCP_HTTPAPI                                 WWCPAPI;
+        private          OpenChargingCloudAPI                                 WWCPAPI;
         private readonly TimeSpan                                     Timeout  = TimeSpan.FromSeconds(20);
 
         #endregion
@@ -297,7 +297,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             HTTPAPI.AttachTCPPort(IPPort.Parse(8001));
 
-            WWCPAPI = WWCP_HTTPAPI.AttachToHTTPAPI(HTTPAPI);
+            WWCPAPI = OpenChargingCloudAPI.AttachToHTTPAPI(HTTPAPI);
             WWCPAPI.Attach_JSON_IO();
 
             HTTPAPI.Start();

@@ -31,6 +31,7 @@ using org.GraphDefined.Vanaheimr.Hermod.HTTP;
 
 using org.GraphDefined.WWCP.Net.IO.JSON;
 using org.GraphDefined.WWCP.Net.IO.GeoJSON;
+using cloud.charging.open.API;
 
 #endregion
 
@@ -52,7 +53,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
         protected readonly IPPort                                       RemotePort    = IPPort.Parse(8001);
 
         protected          HTTPServer<RoamingNetworks, RoamingNetwork>  HTTPAPI;
-        protected          WWCP_HTTPAPI                                 WWCPAPI;
+        protected          OpenChargingCloudAPI                         OpenChargingCloudAPI;
         protected readonly TimeSpan                                     Timeout  = TimeSpan.FromSeconds(20);
 
         protected          DNSClient                                    _DNSClient;
@@ -78,8 +79,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
                 //HTTPAPI.AttachTCPPort(IPPort.Parse(8001));
 
-                WWCPAPI = WWCP_HTTPAPI.AttachToHTTPAPI(HTTPAPI);
-                WWCPAPI.Attach_JSON_IO();
+                OpenChargingCloudAPI = cloud.charging.open.API.OpenChargingCloudAPI.AttachToHTTPAPI(HTTPAPI);
                 //WWCPAPI.Attach_GeoJSON_IO();
 
                 HTTPAPI.Start();

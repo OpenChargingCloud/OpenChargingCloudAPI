@@ -140,9 +140,9 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
             if (RemoteAddress == IPv4Address.Localhost)
             {
 
-                Assert.IsTrue(WWCPAPI.RoamingNetworkExists(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN1")), "Roaming network 'TestRN1' was not found via .NET API!");
+                Assert.IsTrue(OpenChargingCloudAPI.RoamingNetworkExists(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN1")), "Roaming network 'TestRN1' was not found via .NET API!");
 
-                var _TestRN1 = WWCPAPI.GetRoamingNetwork(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN1"));
+                var _TestRN1 = OpenChargingCloudAPI.GetRoamingNetwork(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN1"));
                 Assert.IsNotNull(_TestRN1, "Roaming network 'TestRN1' was not returned via .NET API!");
                 Assert.IsFalse  (_TestRN1.Description.Any(), "The description of roaming network 'TestRN1' must be empty!");
 
@@ -259,9 +259,9 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
             if (RemoteAddress == IPv4Address.Localhost)
             {
 
-                Assert.IsTrue(WWCPAPI.RoamingNetworkExists(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN3")), "Roaming network 'TestRN3' was not found via .NET API!");
+                Assert.IsTrue(OpenChargingCloudAPI.RoamingNetworkExists(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN3")), "Roaming network 'TestRN3' was not found via .NET API!");
 
-                var _TestRN3 = WWCPAPI.GetRoamingNetwork(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN3"));
+                var _TestRN3 = OpenChargingCloudAPI.GetRoamingNetwork(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN3"));
                 Assert.IsNotNull(_TestRN3, "Roaming network 'TestRN3' was not returned via .NET API!");
                 Assert.IsTrue   (_TestRN3.Description.Any(), "The description of roaming network 'TestRN3' must not be empty!");
                 Assert.AreEqual (_TestRN3.Description.Count(), 1);
@@ -315,9 +315,9 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
             if (RemoteAddress == IPv4Address.Localhost)
             {
 
-                Assert.IsTrue(WWCPAPI.RoamingNetworkExists(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN2")), "Roaming network 'TestRN2' was not found via .NET API!");
+                Assert.IsTrue(OpenChargingCloudAPI.RoamingNetworkExists(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN2")), "Roaming network 'TestRN2' was not found via .NET API!");
 
-                var _TestRN2 = WWCPAPI.GetRoamingNetwork(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN2"));
+                var _TestRN2 = OpenChargingCloudAPI.GetRoamingNetwork(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN2"));
                 Assert.IsNotNull(_TestRN2, "Roaming network 'TestRN2' was not returned via .NET API!");
                 Assert.IsTrue   (_TestRN2.Description.Any(), "The description of roaming network 'TestRN2' must not be empty!");
                 Assert.AreEqual (_TestRN2.Description.Count(), 2);
@@ -515,7 +515,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
             if (RemoteAddress == IPv4Address.Localhost)
             {
 
-                Assert.IsFalse(WWCPAPI.RoamingNetworkExists(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN3")), "Roaming network 'TestRN3' should not exist via .NET API!");
+                Assert.IsFalse(OpenChargingCloudAPI.RoamingNetworkExists(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN3")), "Roaming network 'TestRN3' should not exist via .NET API!");
 
             }
 
@@ -688,9 +688,9 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
             if (RemoteAddress == IPv4Address.Localhost)
             {
 
-                Assert.IsTrue(WWCPAPI.RoamingNetworkExists(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN1")), "Roaming network 'TestRN1' was not found via .NET API!");
+                Assert.IsTrue(OpenChargingCloudAPI.RoamingNetworkExists(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN1")), "Roaming network 'TestRN1' was not found via .NET API!");
 
-                var _TestRN1 = WWCPAPI.GetRoamingNetwork(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN1"));
+                var _TestRN1 = OpenChargingCloudAPI.GetRoamingNetwork(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN1"));
                 Assert.IsNotNull(_TestRN1, "Roaming network 'TestRN1' was not returned via .NET API!");
                 Assert.IsFalse  (_TestRN1.Description.Any(), "The description of roaming network 'TestRN1' must be empty!");
 

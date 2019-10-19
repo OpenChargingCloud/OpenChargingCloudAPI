@@ -107,19 +107,19 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
             #endregion
 
 
-            var RN_1  = WWCPAPI.CreateNewRoamingNetwork(Id:  RoamingNetwork_Id.Parse("TEST_RN1"),
+            var RN_1  = OpenChargingCloudAPI.CreateNewRoamingNetwork(Id:  RoamingNetwork_Id.Parse("TEST_RN1"),
                                                         Name:              I18NString.Create(Languages.deu,  "Test Roaming Netz 1").
                                                                                          Add(Languages.eng,  "Test roaming network 1"));
 
-            var RN_2  = WWCPAPI.CreateNewRoamingNetwork(Id:  RoamingNetwork_Id.Parse("TEST_RN2"),
+            var RN_2  = OpenChargingCloudAPI.CreateNewRoamingNetwork(Id:  RoamingNetwork_Id.Parse("TEST_RN2"),
                                                         Name:              I18NString.Create(Languages.deu,  "Test Roaming Netz 2").
                                                                                          Add(Languages.eng,  "Test roaming network 2"));
 
-            var RN_3  = WWCPAPI.CreateNewRoamingNetwork(Id:  RoamingNetwork_Id.Parse("TEST_RN3"),
+            var RN_3  = OpenChargingCloudAPI.CreateNewRoamingNetwork(Id:  RoamingNetwork_Id.Parse("TEST_RN3"),
                                                         Name:              I18NString.Create(Languages.deu,  "Test Roaming Netz 3").
                                                                                          Add(Languages.eng,  "Test roaming network 3"));
 
-            var RN_4  = WWCPAPI.CreateNewRoamingNetwork(Id:  RoamingNetwork_Id.Parse("TEST_RN4"),
+            var RN_4  = OpenChargingCloudAPI.CreateNewRoamingNetwork(Id:  RoamingNetwork_Id.Parse("TEST_RN4"),
                                                         Name:              I18NString.Create(Languages.deu,  "Test Roaming Netz 4").
                                                                                          Add(Languages.eng,  "Test roaming network 4"));
 
