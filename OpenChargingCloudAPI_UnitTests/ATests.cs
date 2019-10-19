@@ -52,7 +52,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
         //protected readonly IPPort                                       RemotePort    = IPPort.Parse(8000);
         protected readonly IPPort                                       RemotePort    = IPPort.Parse(8001);
 
-        protected          HTTPServer<RoamingNetworks, RoamingNetwork>  HTTPAPI;
         protected          OpenChargingCloudAPI                         OpenChargingCloudAPI;
         protected readonly TimeSpan                                     Timeout  = TimeSpan.FromSeconds(20);
 
@@ -71,18 +70,16 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
             if (RemoteAddress == IPv4Address.Localhost)
             {
 
-                HTTPAPI = new HTTPServer<RoamingNetworks, RoamingNetwork>(
-                              TCPPort:            RemotePort,
-                              DefaultServerName:  "GraphDefined WWCP Unit Tests",
-                              DNSClient:          _DNSClient
-                          );
+                //HTTPAPI = new HTTPServer<RoamingNetworks, RoamingNetwork>(
+                //              TCPPort:            RemotePort,
+                //              DefaultServerName:  "GraphDefined WWCP Unit Tests",
+                //              DNSClient:          _DNSClient
+                //          );
 
-                //HTTPAPI.AttachTCPPort(IPPort.Parse(8001));
-
-                OpenChargingCloudAPI = cloud.charging.open.API.OpenChargingCloudAPI.AttachToHTTPAPI(HTTPAPI);
+                OpenChargingCloudAPI = new OpenChargingCloudAPI(LocalPort: IPPort.Parse(8001));
                 //WWCPAPI.Attach_GeoJSON_IO();
 
-                HTTPAPI.Start();
+                OpenChargingCloudAPI.Start();
 
             }
 
@@ -175,7 +172,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
 
             if (RemoteAddress == IPv4Address.Localhost)
-                HTTPAPI.Shutdown();
+                OpenChargingCloudAPI.Shutdown();
 
         }
 

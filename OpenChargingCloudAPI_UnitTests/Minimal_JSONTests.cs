@@ -33,6 +33,7 @@ using org.GraphDefined.Vanaheimr.Hermod.HTTP;
 
 using org.GraphDefined.WWCP.Net;
 using org.GraphDefined.WWCP.Net.IO.JSON;
+using cloud.charging.open.API;
 
 #endregion
 
@@ -49,7 +50,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
         #region Data
 
         private          HTTPServer<RoamingNetworks, RoamingNetwork>  HTTPAPI;
-        private          OpenChargingCloudAPI                                 WWCPAPI;
+        private          OpenChargingCloudAPI                         OpenChargingCloudAPI;
         private readonly TimeSpan                                     Timeout  = TimeSpan.FromSeconds(20);
 
         #endregion
@@ -66,8 +67,8 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                             DNSClient:  HTTPAPI.DNSClient);
 
 
-            var RN      = WWCPAPI.CreateNewRoamingNetwork(Id:  RoamingNetwork_Id.Parse("TEST_RN1"),
-                                                          Name:              I18NString.Create(Languages.deu,  "Test Roaming Netz 1").
+            var RN      = OpenChargingCloudAPI.CreateNewRoamingNetwork(Id:   RoamingNetwork_Id.Parse("TEST_RN1"),
+                                                                       Name: I18NString.Create(Languages.deu,  "Test Roaming Netz 1").
                                                                                            Add(Languages.eng,  "Test roaming network 1"));
 
             var CPO     = RN.CreateChargingStationOperator(ChargingStationOperatorId:  ChargingStationOperator_Id.Parse("DE*GEF"),
@@ -297,8 +298,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             HTTPAPI.AttachTCPPort(IPPort.Parse(8001));
 
-            WWCPAPI = OpenChargingCloudAPI.AttachToHTTPAPI(HTTPAPI);
-            WWCPAPI.Attach_JSON_IO();
+            //WWCPAPI = OpenChargingCloudAPI.AttachToHTTPAPI(HTTPAPI);
 
             HTTPAPI.Start();
 
