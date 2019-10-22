@@ -2680,7 +2680,10 @@ namespace cloud.charging.open.API
         /// <param name="APISMTPClient">A SMTP client for sending e-mails.</param>
         /// 
         /// <param name="SMSAPICredentials">The credentials for the SMS API.</param>
+        /// <param name="SMSSenderName">The (default) SMS sender name.</param>
         /// <param name="APIAdminSMS">A list of admin SMS phonenumbers.</param>
+        /// 
+        /// <param name="TelegramBotToken">The Telegram API access token of the bot.</param>
         /// 
         /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
         /// <param name="Language">The main language of the API.</param>
@@ -2729,7 +2732,10 @@ namespace cloud.charging.open.API
                                     SMTPClient                           APISMTPClient                      = null,
 
                                     Credentials                          SMSAPICredentials                  = null,
+                                    String                               SMSSenderName                      = null,
                                     IEnumerable<PhoneNumber>             APIAdminSMS                        = null,
+
+                                    String                               TelegramBotToken                   = null,
 
                                     HTTPCookieName?                      CookieName                         = null,
                                     Languages?                           Language                           = null,
@@ -2763,8 +2769,8 @@ namespace cloud.charging.open.API
 
             : base(ServiceName:                       ServiceName                 ?? "GraphDefined Open Charging Cloud API",
                    HTTPServerName:                    HTTPServerName              ?? "GraphDefined Open Charging Cloud API",
-                   LocalPort:                         LocalPort                   ?? IPPort.Parse(5500),
                    LocalHostname:                     LocalHostname,
+                   LocalPort:                         LocalPort                   ?? IPPort.Parse(5500),
                    BaseURL:                           BaseURL,
                    URLPathPrefix:                     URLPathPrefix,
 
@@ -2779,7 +2785,10 @@ namespace cloud.charging.open.API
                    APISMTPClient:                     APISMTPClient,
 
                    SMSAPICredentials:                 SMSAPICredentials,
+                   SMSSenderName:                     SMSSenderName               ?? "Open Charging Cloud",
                    APIAdminSMS:                       APIAdminSMS,
+
+                   TelegramBotToken:                  TelegramBotToken,
 
                    CookieName:                        CookieName                  ?? HTTPCookieName.Parse("OpenChargingCloudAPI"),
                    Language:                          Language                    ?? Languages.eng,
