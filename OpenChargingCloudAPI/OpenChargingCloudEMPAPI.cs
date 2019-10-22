@@ -56,7 +56,7 @@ namespace cloud.charging.open.API
         #region OpenChargingCloudEMPAPI(HTTPServerName = DefaultHTTPServerName, ...)
 
         /// <summary>
-        /// Create an instance of the Open Charging Cloud API.
+        /// Create an instance of the Open Charging Cloud EMP API.
         /// </summary>
         /// <param name="ServiceName">The name of the service.</param>
         /// <param name="HTTPServerName">The default HTTP servername, used whenever no HTTP Host-header had been given.</param>
