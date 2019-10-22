@@ -83,7 +83,7 @@
       <Project>{2fee90e4-7e55-49a6-8be9-5a434ffa5a00}</Project>
       <Name>TelegramBotAPI</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\UsersAPI\UsersAPI.csproj">
+    <ProjectReference Include="..\..\UsersAPI\UsersAPI\UsersAPI.csproj">
       <Project>{4d5da5f5-0dce-4620-bce5-74a27e5cfc47}</Project>
       <Name>UsersAPI</Name>
     </ProjectReference>

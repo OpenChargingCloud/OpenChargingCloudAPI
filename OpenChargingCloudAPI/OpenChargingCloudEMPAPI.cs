@@ -18,13 +18,14 @@
 #region Usings
 
 using System;
-using System.IO;
 using System.Threading;
 using System.Net.Security;
 using System.Collections.Generic;
 using System.Security.Authentication;
 
-using Org.BouncyCastle.Bcpg.OpenPgp;
+using com.GraphDefined.SMSApi.API;
+
+using social.OpenData.UsersAPI;
 
 using org.GraphDefined.Vanaheimr.Illias;
 using org.GraphDefined.Vanaheimr.Hermod;
@@ -32,14 +33,8 @@ using org.GraphDefined.Vanaheimr.Hermod.HTTP;
 using org.GraphDefined.Vanaheimr.Hermod.SMTP;
 using org.GraphDefined.Vanaheimr.Hermod.Mail;
 using org.GraphDefined.Vanaheimr.Hermod.DNS;
-using org.GraphDefined.Vanaheimr.BouncyCastle;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets.TCP;
-using org.GraphDefined.OpenData.Users;
-
-using org.GraphDefined.WWCP.Net;
-using com.GraphDefined.SMSApi.API;
-using org.GraphDefined.WWCP.Net.IO.JSON;
 
 #endregion
 

@@ -23,6 +23,10 @@ using System.Net.Security;
 using System.Collections.Generic;
 using System.Security.Authentication;
 
+using com.GraphDefined.SMSApi.API;
+
+using social.OpenData.UsersAPI;
+
 using org.GraphDefined.Vanaheimr.Illias;
 using org.GraphDefined.Vanaheimr.Hermod;
 using org.GraphDefined.Vanaheimr.Hermod.HTTP;
@@ -31,9 +35,6 @@ using org.GraphDefined.Vanaheimr.Hermod.Mail;
 using org.GraphDefined.Vanaheimr.Hermod.DNS;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets.TCP;
-using org.GraphDefined.OpenData.Users;
-using com.GraphDefined.SMSApi.API;
-using org.GraphDefined.WWCP.Net.IO.JSON;
 
 #endregion
 

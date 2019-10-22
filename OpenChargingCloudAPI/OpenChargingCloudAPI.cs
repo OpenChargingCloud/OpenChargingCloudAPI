@@ -19,12 +19,20 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Net.Security;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Security.Authentication;
 
-using Org.BouncyCastle.Bcpg.OpenPgp;
+using Newtonsoft.Json.Linq;
+
+using com.GraphDefined.SMSApi.API;
+
+using cloud.charging.open.API;
+using social.OpenData.UsersAPI;
+using social.OpenData.UsersAPI.Notifications;
 
 using org.GraphDefined.Vanaheimr.Illias;
 using org.GraphDefined.Vanaheimr.Hermod;
@@ -32,18 +40,11 @@ using org.GraphDefined.Vanaheimr.Hermod.HTTP;
 using org.GraphDefined.Vanaheimr.Hermod.SMTP;
 using org.GraphDefined.Vanaheimr.Hermod.Mail;
 using org.GraphDefined.Vanaheimr.Hermod.DNS;
-using org.GraphDefined.Vanaheimr.BouncyCastle;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets.TCP;
-using org.GraphDefined.OpenData.Users;
 
-using org.GraphDefined.WWCP.Net;
-using com.GraphDefined.SMSApi.API;
-using org.GraphDefined.WWCP.Net.IO.JSON;
-using Newtonsoft.Json.Linq;
 using org.GraphDefined.WWCP;
-using System.Linq;
-using System.Threading.Tasks;
+using org.GraphDefined.WWCP.Net.IO.JSON;
 
 #endregion
 
