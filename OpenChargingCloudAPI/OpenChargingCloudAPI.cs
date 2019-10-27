@@ -11154,17 +11154,17 @@ namespace cloud.charging.open.API
                                                              ChargeDetailRecord.ProviderIdStop.HasValue
                                                                  ? new JProperty("providerIdStop",             ChargeDetailRecord.ProviderIdStop.                          ToString())
                                                                  : null,
-                                                             ChargeDetailRecord.IdentificationStart.AuthToken != null
-                                                                 ? new JProperty("authTokenStart",             ChargeDetailRecord.IdentificationStart.AuthToken.           ToString())
+                                                             ChargeDetailRecord.AuthenticationStart.AuthToken != null
+                                                                 ? new JProperty("authTokenStart",             ChargeDetailRecord.AuthenticationStart.AuthToken.           ToString())
                                                                  : null,
-                                                             ChargeDetailRecord.IdentificationStop?.AuthToken != null
-                                                                 ? new JProperty("authTokenStop",              ChargeDetailRecord.IdentificationStop. AuthToken.           ToString())
+                                                             ChargeDetailRecord.AuthenticationStop?.AuthToken != null
+                                                                 ? new JProperty("authTokenStop",              ChargeDetailRecord.AuthenticationStop. AuthToken.           ToString())
                                                                  : null,
-                                                             ChargeDetailRecord.IdentificationStart.RemoteIdentification.HasValue
-                                                                 ? new JProperty("remoteIdentificationStart",  ChargeDetailRecord.IdentificationStart.RemoteIdentification.ToString())
+                                                             ChargeDetailRecord.AuthenticationStart.RemoteIdentification.HasValue
+                                                                 ? new JProperty("remoteIdentificationStart",  ChargeDetailRecord.AuthenticationStart.RemoteIdentification.ToString())
                                                                  : null,
-                                                             ChargeDetailRecord.IdentificationStop != null && ChargeDetailRecord.IdentificationStop.RemoteIdentification.HasValue
-                                                                 ? new JProperty("remoteIdentificationStop",   ChargeDetailRecord.IdentificationStop.RemoteIdentification. ToString())
+                                                             ChargeDetailRecord.AuthenticationStop != null && ChargeDetailRecord.AuthenticationStop.RemoteIdentification.HasValue
+                                                                 ? new JProperty("remoteIdentificationStop",   ChargeDetailRecord.AuthenticationStop.RemoteIdentification. ToString())
                                                                  : null,
 
                                                              ChargeDetailRecord.ReservationId.HasValue
