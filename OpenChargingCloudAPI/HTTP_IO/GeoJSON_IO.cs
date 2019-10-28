@@ -525,8 +525,8 @@ namespace org.GraphDefined.WWCP.Net.IO.GeoJSON
                                ? new JProperty("chargingModes",  new JArray(EVSE.ChargingModes.Value.ToText()))
                                : null,
 
-                           EVSE.CurrentTypes != CurrentTypes.Unspecified
-                               ? new JProperty("currentTypes",   new JArray(EVSE.CurrentTypes. Value.ToText()))
+                           EVSE.CurrentType != CurrentTypes.Unspecified
+                               ? new JProperty("currentTypes",   new JArray(EVSE.CurrentType. Value.ToText()))
                                : null,
 
                            EVSE.AverageVoltage.HasValue && EVSE.AverageVoltage > 0     ? new JProperty("averageVoltage",  String.Format("{0:0.00}", EVSE.AverageVoltage)) : null,
