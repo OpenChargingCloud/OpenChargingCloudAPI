@@ -180,6 +180,21 @@
     content:            "Out-Of-Service";
 }
 
+
+.Status_Faulted {
+    display:            inline-block;
+    background-image:   linear-gradient(to bottom, #cdcdcd, #b3b3b3);
+    color:              #777777;
+    font-size:          75%;
+    padding:            4px 6px;
+    border-radius:      4px;
+    text-align:         center;
+}
+
+.Status_Faulted:before {
+    content:            "Faulted";
+}
+
 .Status_Offline {
     display:            inline-block;
     background-image:   linear-gradient(to bottom, #6d6d6d, #262626);
