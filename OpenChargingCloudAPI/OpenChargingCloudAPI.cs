@@ -11181,10 +11181,10 @@ namespace cloud.charging.open.API
                                                                  ? new JProperty("authTokenStop",              ChargeDetailRecord.AuthenticationStop. AuthToken.           ToString())
                                                                  : null,
                                                              ChargeDetailRecord.AuthenticationStart.RemoteIdentification.HasValue
-                                                                 ? new JProperty("remoteIdentificationStart",  ChargeDetailRecord.AuthenticationStart.RemoteIdentification.ToString())
+                                                                 ? new JProperty("remoteAuthenticationStart",  ChargeDetailRecord.AuthenticationStart.RemoteIdentification.ToString())
                                                                  : null,
                                                              ChargeDetailRecord.AuthenticationStop != null && ChargeDetailRecord.AuthenticationStop.RemoteIdentification.HasValue
-                                                                 ? new JProperty("remoteIdentificationStop",   ChargeDetailRecord.AuthenticationStop.RemoteIdentification. ToString())
+                                                                 ? new JProperty("remoteAuthenticationStop",   ChargeDetailRecord.AuthenticationStop.RemoteIdentification. ToString())
                                                                  : null,
 
                                                              ChargeDetailRecord.ReservationId.HasValue
