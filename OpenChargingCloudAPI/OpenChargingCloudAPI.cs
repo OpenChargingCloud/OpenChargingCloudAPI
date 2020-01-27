@@ -7639,28 +7639,45 @@ namespace cloud.charging.open.API
 
             #region GET         ~/RNs/{RoamingNetworkId}/ChargingSessions
 
-            // ----------------------------------------------------------------------------
+            // ---------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingSessions
-            // ----------------------------------------------------------------------------
+            // ---------------------------------------------------------------------------------------
             HTTPServer.AddMethodCallback(Hostname,
                                                  HTTPMethod.GET,
                                                  URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingSessions",
                                                  HTTPContentType.JSON_UTF8,
                                                  HTTPDelegate: Request => {
 
-                                                     #region Check parameters
+                                                     #region Get HTTP user and its organizations
 
-                                                     if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork  RoamingNetwork,
-                                                                                      out HTTPResponse    _HTTPResponse))
+                                                     // Will return HTTP 401 Unauthorized, when the HTTP user is unknown!
+                                                     if (!TryGetHTTPUser(Request,
+                                                                         out User                   HTTPUser,
+                                                                         out HashSet<Organization>  HTTPOrganizations,
+                                                                         out HTTPResponse           Response,
+                                                                         Recursive:                 true))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(Response);
                                                      }
 
                                                      #endregion
 
+                                                     #region Get roaming network
+
+                                                     if (!Request.ParseRoamingNetwork(this,
+                                                                                      out RoamingNetwork  RoamingNetwork,
+                                                                                      out HTTPResponse    HTTPResponse))
+                                                     {
+                                                         return Task.FromResult(HTTPResponse);
+                                                     }
+
+                                                     #endregion
+
+                                                     //ToDo: Filter sessions by HTTPUser organization!
+
                                                      var skip                    = Request.QueryString.GetUInt64("skip");
                                                      var take                    = Request.QueryString.GetUInt64("take");
+
                                                      var expand                  = Request.QueryString.GetStrings("expand", true);
                                                      var expandRoamingNetworks   = expand.Contains("networks")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
                                                      var expandOperators         = expand.Contains("operators") ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
@@ -7675,20 +7692,20 @@ namespace cloud.charging.open.API
 
                                                      return Task.FromResult(
                                                          new HTTPResponse.Builder(Request) {
-                                                             HTTPStatusCode               = HTTPStatusCode.OK,
-                                                             Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
-                                                             AccessControlAllowOrigin     = "*",
-                                                             AccessControlAllowMethods    = "GET, COUNT, OPTIONS",
-                                                             AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
-                                                             ETag                         = "1",
-                                                             ContentType                  = HTTPContentType.JSON_UTF8,
-                                                             Content                      = RoamingNetwork.ChargingSessions.
-                                                                                                OrderBy(session => session.Id).
-                                                                                                ToJSON (skip,
-                                                                                                        take,
-                                                                                                        false).
-                                                                                                ToUTF8Bytes(),
+                                                             HTTPStatusCode                = HTTPStatusCode.OK,
+                                                             Server                        = HTTPServer.DefaultServerName,
+                                                             Date                          = DateTime.UtcNow,
+                                                             AccessControlAllowOrigin      = "*",
+                                                             AccessControlAllowMethods     = "GET, COUNT, OPTIONS",
+                                                             AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                             ETag                          = "1",
+                                                             ContentType                   = HTTPContentType.JSON_UTF8,
+                                                             Content                       = RoamingNetwork.ChargingSessions.
+                                                                                                 OrderBy(session => session.Id).
+                                                                                                 ToJSON (skip,
+                                                                                                         take,
+                                                                                                         false).
+                                                                                                 ToUTF8Bytes(),
                                                              X_ExpectedTotalNumberOfItems  = _ExpectedCount,
                                                              Connection                    = "close"
                                                          }.AsImmutable);
@@ -7708,16 +7725,31 @@ namespace cloud.charging.open.API
                                                  HTTPContentType.JSON_UTF8,
                                                  HTTPDelegate: Request => {
 
-                                                     #region Check parameters
+                                                     #region Get HTTP user and its organizations
 
-                                                     if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork  RoamingNetwork,
-                                                                                      out HTTPResponse    _HTTPResponse))
+                                                     // Will return HTTP 401 Unauthorized, when the HTTP user is unknown!
+                                                     if (!TryGetHTTPUser(Request,
+                                                                         out User                   HTTPUser,
+                                                                         out HashSet<Organization>  HTTPOrganizations,
+                                                                         out HTTPResponse           Response,
+                                                                         Recursive:                 true))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(Response);
                                                      }
 
                                                      #endregion
+
+                                                     #region Get roaming network
+
+                                                     if (!Request.ParseRoamingNetwork(this,
+                                                                                      out RoamingNetwork  RoamingNetwork,
+                                                                                      out HTTPResponse    HTTPResponse))
+                                                     {
+                                                         return Task.FromResult(HTTPResponse);
+                                                     }
+
+                                                     #endregion
+
 
                                                      return Task.FromResult(
                                                          new HTTPResponse.Builder(Request) {
@@ -7743,16 +7775,6 @@ namespace cloud.charging.open.API
             #endregion
 
             #endregion
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -8118,8 +8140,6 @@ namespace cloud.charging.open.API
             #endregion
 
             #endregion
-
-
 
 
 
@@ -11161,10 +11181,10 @@ namespace cloud.charging.open.API
                                                                  ? new JProperty("authTokenStop",              ChargeDetailRecord.AuthenticationStop. AuthToken.           ToString())
                                                                  : null,
                                                              ChargeDetailRecord.AuthenticationStart.RemoteIdentification.HasValue
-                                                                 ? new JProperty("remoteIdentificationStart",  ChargeDetailRecord.AuthenticationStart.RemoteIdentification.ToString())
+                                                                 ? new JProperty("remoteAuthenticationStart",  ChargeDetailRecord.AuthenticationStart.RemoteIdentification.ToString())
                                                                  : null,
                                                              ChargeDetailRecord.AuthenticationStop != null && ChargeDetailRecord.AuthenticationStop.RemoteIdentification.HasValue
-                                                                 ? new JProperty("remoteIdentificationStop",   ChargeDetailRecord.AuthenticationStop.RemoteIdentification. ToString())
+                                                                 ? new JProperty("remoteAuthenticationStop",   ChargeDetailRecord.AuthenticationStop.RemoteIdentification. ToString())
                                                                  : null,
 
                                                              ChargeDetailRecord.ReservationId.HasValue
