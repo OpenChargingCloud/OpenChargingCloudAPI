@@ -6815,7 +6815,7 @@ namespace cloud.charging.open.API
 
                                                      #region Success
 
-                                                     if (result.Result == RemoteStartResultType.Success)
+                                                     if (result.Result == RemoteStartResultTypes.Success)
                                                          return new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode             = HTTPStatusCode.Created,
                                                                  Server                     = HTTPServer.DefaultServerName,
@@ -6970,7 +6970,7 @@ namespace cloud.charging.open.API
 
                                                      #region Success
 
-                                                     if (result.Result == RemoteStopResultType.Success)
+                                                     if (result.Result == RemoteStopResultTypes.Success)
                                                      {
 
                                                          if (result.ReservationHandling.IsKeepAlive == false)
