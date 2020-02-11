@@ -11045,7 +11045,9 @@ namespace cloud.charging.open.API
                                                               ? new JProperty("description", Result.Description)
                                                               : null
 
-                                                      ))
+                                                      )),
+
+                                                      new JProperty("runtime", Math.Round(Runtime.TotalMilliseconds, 0))
 
                                               ));
 
