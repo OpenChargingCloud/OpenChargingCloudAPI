@@ -2840,7 +2840,7 @@ namespace cloud.charging.open.API
 
             DebugLog     = HTTPServer.AddJSONEventSource(EventIdentification:      DebugLogId,
                                                          URLTemplate:              this.URLPathPrefix + "/" + DebugLogId.ToString(),
-                                                         MaxNumberOfCachedEvents:  1000,
+                                                         MaxNumberOfCachedEvents:  20000,
                                                          RetryIntervall:           TimeSpan.FromSeconds(5),
                                                          EnableLogging:            true,
                                                          LogfilePrefix:            LogfilePrefix);
@@ -11047,7 +11047,9 @@ namespace cloud.charging.open.API
                                                               ? new JProperty("description", Result.Description)
                                                               : null
 
-                                                      ))
+                                                      )),
+
+                                                      new JProperty("runtime", Math.Round(Runtime.TotalMilliseconds, 0))
 
                                               ));
 
