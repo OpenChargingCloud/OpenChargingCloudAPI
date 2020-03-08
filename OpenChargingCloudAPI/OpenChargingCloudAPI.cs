@@ -7210,7 +7210,8 @@ namespace cloud.charging.open.API
                                                      #endregion
 
 
-                                                     var _ChargeDetailRecord = new ChargeDetailRecord(SessionId: SessionId,
+                                                     var _ChargeDetailRecord = new ChargeDetailRecord(Id:                    ChargeDetailRecord_Id.Parse(SessionId.ToString()),
+                                                                                                      SessionId:             SessionId,
                                                                                                       EVSEId:                EVSE.Id,
                                                                                                       EVSE:                  EVSE,
                                                                                                       ChargingProduct:       ChargingProductId.HasValue
@@ -10084,10 +10085,11 @@ namespace cloud.charging.open.API
                                                                     MaxStatusListSize,
                                                                     ChargingStationSignatureGenerator,
                                                                     ChargingPoolSignatureGenerator,
-                                                                    ChargingStationOperatorSignatureGenerator,
-                                                                    ReservationLogFileNameCreator,
-                                                                    SessionLogFileNameCreator,
-                                                                    ChargeDetailRecordLogFileNameCreator);
+                                                                    ChargingStationOperatorSignatureGenerator
+                                                                    //ReservationLogFileNameCreator,
+                                                                    //SessionLogFileNameCreator,
+                                                                    //ChargeDetailRecordLogFileNameCreator
+                                                                    );
 
 
                 #region Link log events to HTTP-SSE...
