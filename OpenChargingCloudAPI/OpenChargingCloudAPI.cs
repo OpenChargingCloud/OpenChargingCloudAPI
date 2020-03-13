@@ -10472,8 +10472,8 @@ namespace cloud.charging.open.API
                                                           ? new JProperty("remoteAuthentication", RemoteAuthentication.ToJSON())
                                                           : null,
                                                       new JProperty("Result",                    Result.Result.ToString()),
-                                                      Result.Message.IsNotNullOrEmpty()
-                                                          ? new JProperty("ErrorMessage",        Result.Message)
+                                                      Result.Description.IsNotNullOrEmpty()
+                                                          ? new JProperty("ErrorMessage",        Result.Description)
                                                           : null,
                                                       new JProperty("Runtime",                   Math.Round(Runtime.TotalMilliseconds, 0))
                                                   ));
