@@ -59,7 +59,7 @@ namespace cloud.charging.open.API
 
         // Used by multiple HTTP content types
 
-        #region ParseRoamingNetwork(this HTTPRequest, OpenChargingCloudAPI, out RoamingNetwork, out HTTPResponse)
+        #region ParseRoamingNetwork                          (this HTTPRequest, OpenChargingCloudAPI, out RoamingNetwork,                              out HTTPResponse)
 
         /// <summary>
         /// Parse the given HTTP request and return the roaming network
@@ -112,7 +112,7 @@ namespace cloud.charging.open.API
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = DateTime.UtcNow,
                     ContentType     = HTTPContentType.JSON_UTF8,
-                    Content         = @"{ ""description"": ""Invalid RoamingNetworkId!"" }".ToUTF8Bytes(),
+                    Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
 
@@ -131,7 +131,7 @@ namespace cloud.charging.open.API
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = DateTime.UtcNow,
                     ContentType     = HTTPContentType.JSON_UTF8,
-                    Content         = @"{ ""description"": ""Unknown RoamingNetworkId!"" }".ToUTF8Bytes(),
+                    Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
 
@@ -235,7 +235,7 @@ namespace cloud.charging.open.API
 
         #endregion
 
-        #region ParseRoamingNetworkAndChargingPool(this HTTPRequest, OpenChargingCloudAPI, out RoamingNetwork, out ChargingPool, out HTTPResponse)
+        #region ParseRoamingNetworkAndChargingPool           (this HTTPRequest, OpenChargingCloudAPI, out RoamingNetwork, out ChargingPool,            out HTTPResponse)
 
         /// <summary>
         /// Parse the given HTTP request and return the roaming network and charging pool
@@ -326,7 +326,7 @@ namespace cloud.charging.open.API
 
         #endregion
 
-        #region ParseRoamingNetworkAndChargingStation(this HTTPRequest, OpenChargingCloudAPI, out RoamingNetwork, out ChargingStation, out HTTPResponse)
+        #region ParseRoamingNetworkAndChargingStation        (this HTTPRequest, OpenChargingCloudAPI, out RoamingNetwork, out ChargingStation,         out HTTPResponse)
 
         /// <summary>
         /// Parse the given HTTP request and return the roaming network and charging station
@@ -381,7 +381,7 @@ namespace cloud.charging.open.API
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = DateTime.UtcNow,
                     ContentType     = HTTPContentType.JSON_UTF8,
-                    Content         = @"{ ""description"": ""Invalid RoamingNetworkId!"" }".ToUTF8Bytes(),
+                    Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
 
@@ -401,7 +401,7 @@ namespace cloud.charging.open.API
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = DateTime.UtcNow,
                     ContentType     = HTTPContentType.JSON_UTF8,
-                    Content         = @"{ ""description"": ""Unknown RoamingNetworkId!"" }".ToUTF8Bytes(),
+                    Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
 
@@ -448,7 +448,7 @@ namespace cloud.charging.open.API
 
         #endregion
 
-        #region ParseRoamingNetworkAndEVSE(this HTTPRequest, OpenChargingCloudAPI, out RoamingNetwork, out EVSE, out HTTPResponse)
+        #region ParseRoamingNetworkAndEVSE                   (this HTTPRequest, OpenChargingCloudAPI, out RoamingNetwork, out EVSE,                    out HTTPResponse)
 
         /// <summary>
         /// Parse the given HTTP request and return the roaming network and EVSE
@@ -504,7 +504,7 @@ namespace cloud.charging.open.API
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = DateTime.UtcNow,
                     ContentType     = HTTPContentType.JSON_UTF8,
-                    Content         = @"{ ""description"": ""Invalid RoamingNetworkId!"" }".ToUTF8Bytes(),
+                    Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
 
@@ -524,7 +524,7 @@ namespace cloud.charging.open.API
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = DateTime.UtcNow,
                     ContentType     = HTTPContentType.JSON_UTF8,
-                    Content         = @"{ ""description"": ""Unknown RoamingNetworkId!"" }".ToUTF8Bytes(),
+                    Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
 
@@ -571,7 +571,129 @@ namespace cloud.charging.open.API
 
         #endregion
 
-        #region ParseRoamingNetworkAndReservation(this HTTPRequest, OpenChargingCloudAPI, out RoamingNetwork, out EVSE, out HTTPResponse)
+        #region ParseRoamingNetworkAndChargingSession        (this HTTPRequest, OpenChargingCloudAPI, out RoamingNetwork, out ChargingSession,         out HTTPResponse)
+
+        /// <summary>
+        /// Parse the given HTTP request and return the roaming network and charging session
+        /// for the given HTTP hostname and HTTP query parameters
+        /// or an HTTP error response.
+        /// </summary>
+        /// <param name="HTTPRequest">A HTTP request.</param>
+        /// <param name="OpenChargingCloudAPI">The OpenChargingCloud API.</param>
+        /// <param name="RoamingNetwork">The roaming network.</param>
+        /// <param name="ChargingSession">The charging session.</param>
+        /// <param name="HTTPResponse">A HTTP error response.</param>
+        /// <returns>True, when roaming network was found; false else.</returns>
+        public static Boolean ParseRoamingNetworkAndChargingSession(this HTTPRequest      HTTPRequest,
+                                                                    OpenChargingCloudAPI  OpenChargingCloudAPI,
+                                                                    out RoamingNetwork    RoamingNetwork,
+                                                                    out ChargingSession   ChargingSession,
+                                                                    out HTTPResponse      HTTPResponse)
+        {
+
+            #region Initial checks
+
+            if (HTTPRequest == null)
+                throw new ArgumentNullException(nameof(HTTPRequest),           "The given HTTP request must not be null!");
+
+            if (OpenChargingCloudAPI == null)
+                throw new ArgumentNullException(nameof(OpenChargingCloudAPI),  "The given OpenChargingCloud API must not be null!");
+
+            #endregion
+
+            RoamingNetwork   = null;
+            ChargingSession  = null;
+            HTTPResponse     = null;
+
+            if (HTTPRequest.ParsedURIParameters.Length < 2) {
+
+                HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
+                    HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Date            = DateTime.UtcNow,
+                    Connection      = "close"
+                };
+
+                return false;
+
+            }
+
+            if (!RoamingNetwork_Id.TryParse(HTTPRequest.ParsedURIParameters[0], out RoamingNetwork_Id RoamingNetworkId))
+            {
+
+                HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
+                    HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Date            = DateTime.UtcNow,
+                    ContentType     = HTTPContentType.JSON_UTF8,
+                    Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
+                    Connection      = "close"
+                };
+
+                return false;
+
+            }
+
+            RoamingNetwork  = OpenChargingCloudAPI.
+                                  GetAllRoamingNetworks(HTTPRequest.Host).
+                                  FirstOrDefault(roamingnetwork => roamingnetwork.Id == RoamingNetworkId);
+
+            if (RoamingNetwork == null)
+            {
+
+                HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
+                    HTTPStatusCode  = HTTPStatusCode.NotFound,
+                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Date            = DateTime.UtcNow,
+                    ContentType     = HTTPContentType.JSON_UTF8,
+                    Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
+                    Connection      = "close"
+                };
+
+                return false;
+
+            }
+
+            if (!ChargingSession_Id.TryParse(HTTPRequest.ParsedURIParameters[1], out ChargingSession_Id ChargingSessionId))
+            {
+
+                HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
+                    HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Date            = DateTime.UtcNow,
+                    ContentType     = HTTPContentType.JSON_UTF8,
+                    Content         = @"{ ""description"": ""Invalid charging session identification!"" }".ToUTF8Bytes(),
+                    Connection      = "close"
+                };
+
+                return false;
+
+            }
+
+            //ToDo: May fail for empty sequences!
+            if (!RoamingNetwork.TryGetChargingSessionById(ChargingSessionId, out ChargingSession))
+            {
+
+                HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
+                    HTTPStatusCode  = HTTPStatusCode.NotFound,
+                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Date            = DateTime.UtcNow,
+                    ContentType     = HTTPContentType.JSON_UTF8,
+                    Content         = @"{ ""description"": ""Unknown charging session identification!"" }".ToUTF8Bytes(),
+                    Connection      = "close"
+                };
+
+                return false;
+
+            }
+
+            return true;
+
+        }
+
+        #endregion
+
+        #region ParseRoamingNetworkAndReservation            (this HTTPRequest, OpenChargingCloudAPI, out RoamingNetwork, out Reservation,             out HTTPResponse)
 
         /// <summary>
         /// Parse the given HTTP request and return the roaming network and charging reservation
@@ -626,7 +748,7 @@ namespace cloud.charging.open.API
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = DateTime.UtcNow,
                     ContentType     = HTTPContentType.JSON_UTF8,
-                    Content         = @"{ ""description"": ""Invalid RoamingNetworkId!"" }".ToUTF8Bytes(),
+                    Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
 
@@ -646,7 +768,7 @@ namespace cloud.charging.open.API
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = DateTime.UtcNow,
                     ContentType     = HTTPContentType.JSON_UTF8,
-                    Content         = @"{ ""description"": ""Unknown RoamingNetworkId!"" }".ToUTF8Bytes(),
+                    Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
 
@@ -661,7 +783,7 @@ namespace cloud.charging.open.API
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = DateTime.UtcNow,
                     ContentType     = HTTPContentType.JSON_UTF8,
-                    Content         = @"{ ""description"": ""Invalid ReservationId!"" }".ToUTF8Bytes(),
+                    Content         = @"{ ""description"": ""Invalid reservation identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
 
@@ -678,7 +800,7 @@ namespace cloud.charging.open.API
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = DateTime.UtcNow,
                     ContentType     = HTTPContentType.JSON_UTF8,
-                    Content         = @"{ ""description"": ""Unknown ReservationId!"" }".ToUTF8Bytes(),
+                    Content         = @"{ ""description"": ""Unknown reservation identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
 
@@ -691,6 +813,98 @@ namespace cloud.charging.open.API
         }
 
         #endregion
+
+        #region ParseRoamingNetworkAndEMobilityProvider      (this HTTPRequest, OpenChargingCloudAPI, out RoamingNetwork, out EMobilityProvider,       out HTTPResponse)
+
+        /// <summary>
+        /// Parse the given HTTP request and return the roaming network and e-mobility provider
+        /// for the given HTTP hostname and HTTP query parameters or an HTTP error response.
+        /// </summary>
+        /// <param name="HTTPRequest">A HTTP request.</param>
+        /// <param name="OpenChargingCloudAPI">The OpenChargingCloud API.</param>
+        /// <param name="RoamingNetwork">The roaming network.</param>
+        /// <param name="EMobilityProvider">The charging station operator.</param>
+        /// <param name="HTTPResponse">A HTTP error response.</param>
+        /// <returns>True, when roaming network was found; false else.</returns>
+        public static Boolean ParseRoamingNetworkAndEMobilityProvider(this HTTPRequest       HTTPRequest,
+                                                                      OpenChargingCloudAPI   OpenChargingCloudAPI,
+                                                                      out RoamingNetwork     RoamingNetwork,
+                                                                      out eMobilityProvider  EMobilityProvider,
+                                                                      out HTTPResponse       HTTPResponse)
+        {
+
+            #region Initial checks
+
+            if (HTTPRequest == null)
+                throw new ArgumentNullException(nameof(HTTPRequest),  "The given HTTP request must not be null!");
+
+            if (OpenChargingCloudAPI == null)
+                throw new ArgumentNullException(nameof(OpenChargingCloudAPI),      "The given OpenChargingCloud API must not be null!");
+
+            #endregion
+
+            RoamingNetwork     = null;
+            EMobilityProvider  = null;
+            HTTPResponse       = null;
+
+            if (HTTPRequest.ParsedURIParameters.Length < 2)
+            {
+
+                HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
+                    HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Date            = DateTime.UtcNow,
+                    Connection      = "close"
+                };
+
+                return false;
+
+            }
+
+
+            if (!HTTPRequest.ParseRoamingNetwork(OpenChargingCloudAPI, out RoamingNetwork, out HTTPResponse))
+                return false;
+
+
+            if (!eMobilityProvider_Id.TryParse(HTTPRequest.ParsedURIParameters[1], out eMobilityProvider_Id EMobilityProviderId))
+            {
+
+                HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
+                    HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Date            = DateTime.UtcNow,
+                    ContentType     = HTTPContentType.JSON_UTF8,
+                    Content         = @"{ ""description"": ""Invalid EMobilityProviderId!"" }".ToUTF8Bytes(),
+                    Connection      = "close"
+                };
+
+                return false;
+
+            }
+
+            //ToDo: May fail for empty sequences!
+            if (!RoamingNetwork.TryGetEMobilityProviderById(EMobilityProviderId, out EMobilityProvider))
+            {
+
+                HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
+                    HTTPStatusCode  = HTTPStatusCode.NotFound,
+                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Date            = DateTime.UtcNow,
+                    ContentType     = HTTPContentType.JSON_UTF8,
+                    Content         = @"{ ""description"": ""Unknown EMobilityProviderId!"" }".ToUTF8Bytes(),
+                    Connection      = "close"
+                };
+
+                return false;
+
+            }
+
+            return true;
+
+        }
+
+        #endregion
+
 
 
         #region ParseRoamingNetworkAndParkingOperator(this HTTPRequest, OpenChargingCloudAPI, out RoamingNetwork, out ParkingOperator, out HTTPResponse)
@@ -771,97 +985,6 @@ namespace cloud.charging.open.API
                     Date            = DateTime.UtcNow,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ParkingOperatorId!"" }".ToUTF8Bytes(),
-                    Connection      = "close"
-                };
-
-                return false;
-
-            }
-
-            return true;
-
-        }
-
-        #endregion
-
-        #region ParseRoamingNetworkAndEMobilityProvider(this HTTPRequest, OpenChargingCloudAPI, out RoamingNetwork, out EMobilityProvider, out HTTPResponse)
-
-        /// <summary>
-        /// Parse the given HTTP request and return the roaming network and e-mobility provider
-        /// for the given HTTP hostname and HTTP query parameters or an HTTP error response.
-        /// </summary>
-        /// <param name="HTTPRequest">A HTTP request.</param>
-        /// <param name="OpenChargingCloudAPI">The OpenChargingCloud API.</param>
-        /// <param name="RoamingNetwork">The roaming network.</param>
-        /// <param name="EMobilityProvider">The charging station operator.</param>
-        /// <param name="HTTPResponse">A HTTP error response.</param>
-        /// <returns>True, when roaming network was found; false else.</returns>
-        public static Boolean ParseRoamingNetworkAndEMobilityProvider(this HTTPRequest       HTTPRequest,
-                                                                      OpenChargingCloudAPI           OpenChargingCloudAPI,
-                                                                      out RoamingNetwork     RoamingNetwork,
-                                                                      out eMobilityProvider  EMobilityProvider,
-                                                                      out HTTPResponse       HTTPResponse)
-        {
-
-            #region Initial checks
-
-            if (HTTPRequest == null)
-                throw new ArgumentNullException(nameof(HTTPRequest),  "The given HTTP request must not be null!");
-
-            if (OpenChargingCloudAPI == null)
-                throw new ArgumentNullException(nameof(OpenChargingCloudAPI),      "The given OpenChargingCloud API must not be null!");
-
-            #endregion
-
-            RoamingNetwork     = null;
-            EMobilityProvider  = null;
-            HTTPResponse       = null;
-
-            if (HTTPRequest.ParsedURIParameters.Length < 2)
-            {
-
-                HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
-                    HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
-                    Connection      = "close"
-                };
-
-                return false;
-
-            }
-
-
-            if (!HTTPRequest.ParseRoamingNetwork(OpenChargingCloudAPI, out RoamingNetwork, out HTTPResponse))
-                return false;
-
-
-            if (!eMobilityProvider_Id.TryParse(HTTPRequest.ParsedURIParameters[1], out eMobilityProvider_Id EMobilityProviderId))
-            {
-
-                HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
-                    HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
-                    ContentType     = HTTPContentType.JSON_UTF8,
-                    Content         = @"{ ""description"": ""Invalid EMobilityProviderId!"" }".ToUTF8Bytes(),
-                    Connection      = "close"
-                };
-
-                return false;
-
-            }
-
-            //ToDo: May fail for empty sequences!
-            if (!RoamingNetwork.TryGetEMobilityProviderById(EMobilityProviderId, out EMobilityProvider))
-            {
-
-                HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
-                    HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
-                    ContentType     = HTTPContentType.JSON_UTF8,
-                    Content         = @"{ ""description"": ""Unknown EMobilityProviderId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
 
@@ -3531,7 +3654,7 @@ namespace cloud.charging.open.API
                                                                      Server          = HTTPServer.DefaultServerName,
                                                                      Date            = DateTime.UtcNow,
                                                                      ContentType     = HTTPContentType.JSON_UTF8,
-                                                                     Content         = HTTPExtentions.CreateError("Invalid RoamingNetworkId!")
+                                                                     Content         = HTTPExtentions.CreateError("Invalid roaming network identification!")
                                                                  }.AsImmutable);
 
 
@@ -7636,16 +7759,16 @@ namespace cloud.charging.open.API
             #endregion
 
 
-            #region ~/RNs/{RoamingNetworkId}/ChargingSessions
+            #region ~/RNs/{RoamingNetworkId}/chargingSessions
 
-            #region GET         ~/RNs/{RoamingNetworkId}/ChargingSessions
+            #region GET         ~/RNs/{RoamingNetworkId}/chargingSessions
 
             // ---------------------------------------------------------------------------------------
-            // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingSessions
+            // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/chargingSessions
             // ---------------------------------------------------------------------------------------
             HTTPServer.AddMethodCallback(Hostname,
                                                  HTTPMethod.GET,
-                                                 URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingSessions",
+                                                 URLPathPrefix + "RNs/{RoamingNetworkId}/chargingSessions",
                                                  HTTPContentType.JSON_UTF8,
                                                  HTTPDelegate: Request => {
 
@@ -7715,14 +7838,14 @@ namespace cloud.charging.open.API
 
             #endregion
 
-            #region GET         ~/RNs/{RoamingNetworkId}/ChargingSessions->Id
+            #region GET         ~/RNs/{RoamingNetworkId}/chargingSessions->Id
 
             // -------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Prod/ChargingSessions->Id
             // -------------------------------------------------------------------------------------------
             HTTPServer.AddMethodCallback(Hostname,
                                                  HTTPMethod.GET,
-                                                 URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingSessions->Id",
+                                                 URLPathPrefix + "RNs/{RoamingNetworkId}/chargingSessions->Id",
                                                  HTTPContentType.JSON_UTF8,
                                                  HTTPDelegate: Request => {
 
@@ -7775,76 +7898,77 @@ namespace cloud.charging.open.API
 
             #endregion
 
-            #endregion
 
+            #region GET         ~/RNs/{RoamingNetworkId}/chargingSessions/{ChargingSession_Id}
 
-
-            #region ~/RNs/{RoamingNetworkId}/ChargingSessions
-
+            // -----------------------------------------------------------------------------------------------------------
+            // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/chargingSessions/{ChargingSession_Id}
+            // -----------------------------------------------------------------------------------------------------------
             HTTPServer.AddMethodCallback(Hostname,
-                                         HTTPMethod.GET,
-                                         URLPathPrefix + "ChargingSessions",
-                                         HTTPContentType.JSON_UTF8,
-                                         HTTPDelegate: async HTTPRequest => {
+                                                 HTTPMethod.GET,
+                                                 URLPathPrefix + "RNs/{RoamingNetworkId}/chargingSessions/{ChargingSession_Id}",
+                                                 HTTPContentType.JSON_UTF8,
+                                                 HTTPDelegate: Request => {
 
-                                             #region Check HTTP Basic Authentication
+                                                     #region Get HTTP user and its organizations
 
-                                             //if (HTTPRequest.Authorization          == null        ||
-                                             //    HTTPRequest.Authorization.Username != HTTPLogin   ||
-                                             //    HTTPRequest.Authorization.Password != HTTPPassword)
-                                             //    return new HTTPResponse.Builder() {
-                                             //        HTTPStatusCode   = HTTPStatusCode.Unauthorized,
-                                             //        WWWAuthenticate  = @"Basic realm=""Bosch E-Bike""",
-                                             //        Server           = _HTTPServer.DefaultServerName,
-                                             //        Date             = DateTime.UtcNow,
-                                             //        Connection       = "close"
-                                             //    };
+                                                     // Will return HTTP 401 Unauthorized, when the HTTP user is unknown!
+                                                     if (!TryGetHTTPUser(Request,
+                                                                         out User                   HTTPUser,
+                                                                         out HashSet<Organization>  HTTPOrganizations,
+                                                                         out HTTPResponse           Response,
+                                                                         Recursive:                 true))
+                                                     {
+                                                         return Task.FromResult(Response);
+                                                     }
 
-                                             #endregion
+                                                     #endregion
 
-                                             #region Check parameters
+                                                     #region Get roaming network and charging session
 
-                                             if (!HTTPRequest.ParseRoamingNetwork(this, out RoamingNetwork roamingNetwork, out HTTPResponse httpResponse))
-                                                 return httpResponse;
+                                                     if (!Request.ParseRoamingNetworkAndChargingSession(this,
+                                                                                                        out RoamingNetwork   RoamingNetwork,
+                                                                                                        out ChargingSession  ChargingSession,
+                                                                                                        out HTTPResponse     HTTPResponse))
+                                                     {
+                                                         return Task.FromResult(HTTPResponse);
+                                                     }
 
-                                             #endregion
+                                                     #endregion
 
-                                             var skip              = HTTPRequest.QueryString.GetUInt32("skip");
-                                             var take              = HTTPRequest.QueryString.GetUInt32("take");
+                                                     //ToDo: Filter sessions by HTTPUser organization!
 
-                                             var chargingSessions  = roamingNetwork.
-                                                                         ChargingSessions.
-                                                                         OrderBy(session => session.Id.ToString()).
-                                                                         Skip   (skip).
-                                                                         Take   (take).
-                                                                         ToArray();
-
-                                             //ToDo: Getting the expected total count might be very expensive!
-                                             var _ExpectedCount     = roamingNetwork.ChargingSessions.LongCount();
+                                                     var expand                  = Request.QueryString.GetStrings("expand", true);
+                                                     var expandRoamingNetworks   = expand.Contains("networks")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
+                                                     var expandOperators         = expand.Contains("operators") ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
+                                                     var expandChargingPools     = expand.Contains("pools")     ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
+                                                     var expandChargingStations  = expand.Contains("stations")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
+                                                     var expandBrands            = expand.Contains("brands")    ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
+                                                     var expandDataLicenses      = expand.Contains("licenses")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
 
 
-                                             return new HTTPResponse.Builder(HTTPRequest) {
-                                                 HTTPStatusCode             = chargingSessions.Any()
-                                                                                  ? HTTPStatusCode.OK
-                                                                                  : HTTPStatusCode.NoContent,
-                                                 Server                     = HTTPServer.DefaultServerName,
-                                                 Date                       = DateTime.UtcNow,
-                                                 AccessControlAllowOrigin   = "*",
-                                                 AccessControlAllowMethods  = "GET",
-                                                 AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
-                                                 ETag                       = "1",
-                                                 ContentType                = HTTPContentType.JSON_UTF8,
-                                                 Content                    = (chargingSessions.Any()
-                                                                                  ? chargingSessions.ToJSON()
-                                                                                  : new JArray()
-                                                                              ).ToUTF8Bytes()
+                                                     return Task.FromResult(
+                                                         new HTTPResponse.Builder(Request) {
+                                                             HTTPStatusCode                = HTTPStatusCode.OK,
+                                                             Server                        = HTTPServer.DefaultServerName,
+                                                             Date                          = DateTime.UtcNow,
+                                                             AccessControlAllowOrigin      = "*",
+                                                             AccessControlAllowMethods     = "GET, COUNT, OPTIONS",
+                                                             AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                             ETag                          = "1",
+                                                             ContentType                   = HTTPContentType.JSON_UTF8,
+                                                             Content                       = ChargingSession.
+                                                                                                 ToJSON(false).
+                                                                                                 ToUTF8Bytes(),
+                                                             Connection                    = "close"
+                                                         }.AsImmutable);
 
-                                             }.Set(new HTTPHeaderField("X-ExpectedTotalNumberOfItems", typeof(UInt64), HeaderFieldType.Response, RequestPathSemantic.EndToEnd),
-                                                                       _ExpectedCount);
-
-                                         }, AllowReplacement: URIReplacement.Allow);
+                                                 });
 
             #endregion
+
+            #endregion
+
 
             #region ~/RNs/{RoamingNetworkId}/ChargeDetailRecords
 
