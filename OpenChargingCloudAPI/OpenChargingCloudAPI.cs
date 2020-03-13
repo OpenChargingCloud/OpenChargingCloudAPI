@@ -580,15 +580,19 @@ namespace cloud.charging.open.API
         /// </summary>
         /// <param name="HTTPRequest">A HTTP request.</param>
         /// <param name="OpenChargingCloudAPI">The OpenChargingCloud API.</param>
+        /// <param name="RoamingNetworkId">The roaming network identification.</param>
         /// <param name="RoamingNetwork">The roaming network.</param>
+        /// <param name="ChargingSessionId">The charging session identification.</param>
         /// <param name="ChargingSession">The charging session.</param>
         /// <param name="HTTPResponse">A HTTP error response.</param>
         /// <returns>True, when roaming network was found; false else.</returns>
-        public static Boolean ParseRoamingNetworkAndChargingSession(this HTTPRequest      HTTPRequest,
-                                                                    OpenChargingCloudAPI  OpenChargingCloudAPI,
-                                                                    out RoamingNetwork    RoamingNetwork,
-                                                                    out ChargingSession   ChargingSession,
-                                                                    out HTTPResponse      HTTPResponse)
+        public static Boolean ParseRoamingNetworkAndChargingSession(this HTTPRequest         HTTPRequest,
+                                                                    OpenChargingCloudAPI     OpenChargingCloudAPI,
+                                                                    out RoamingNetwork_Id?   RoamingNetworkId,
+                                                                    out RoamingNetwork       RoamingNetwork,
+                                                                    out ChargingSession_Id?  ChargingSessionId,
+                                                                    out ChargingSession      ChargingSession,
+                                                                    out HTTPResponse         HTTPResponse)
         {
 
             #region Initial checks
@@ -601,9 +605,11 @@ namespace cloud.charging.open.API
 
             #endregion
 
-            RoamingNetwork   = null;
-            ChargingSession  = null;
-            HTTPResponse     = null;
+            RoamingNetworkId   = null;
+            RoamingNetwork     = null;
+            ChargingSessionId  = null;
+            ChargingSession    = null;
+            HTTPResponse       = null;
 
             if (HTTPRequest.ParsedURIParameters.Length < 2) {
 
@@ -618,7 +624,9 @@ namespace cloud.charging.open.API
 
             }
 
-            if (!RoamingNetwork_Id.TryParse(HTTPRequest.ParsedURIParameters[0], out RoamingNetwork_Id RoamingNetworkId))
+            RoamingNetworkId = RoamingNetwork_Id.TryParse(HTTPRequest.ParsedURIParameters[0]);
+
+            if (!RoamingNetworkId.HasValue)
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -634,9 +642,7 @@ namespace cloud.charging.open.API
 
             }
 
-            RoamingNetwork  = OpenChargingCloudAPI.
-                                  GetAllRoamingNetworks(HTTPRequest.Host).
-                                  FirstOrDefault(roamingnetwork => roamingnetwork.Id == RoamingNetworkId);
+            RoamingNetwork  = OpenChargingCloudAPI.GetRoamingNetwork(HTTPRequest.Host, RoamingNetworkId.Value);
 
             if (RoamingNetwork == null)
             {
@@ -654,7 +660,9 @@ namespace cloud.charging.open.API
 
             }
 
-            if (!ChargingSession_Id.TryParse(HTTPRequest.ParsedURIParameters[1], out ChargingSession_Id ChargingSessionId))
+            ChargingSessionId = ChargingSession_Id.TryParse(HTTPRequest.ParsedURIParameters[1]);
+
+            if (!ChargingSessionId.HasValue)
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -671,7 +679,7 @@ namespace cloud.charging.open.API
             }
 
             //ToDo: May fail for empty sequences!
-            if (!RoamingNetwork.TryGetChargingSessionById(ChargingSessionId, out ChargingSession))
+            if (!RoamingNetwork.TryGetChargingSessionById(ChargingSessionId.Value, out ChargingSession))
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -7927,9 +7935,11 @@ namespace cloud.charging.open.API
                                                      #region Get roaming network and charging session
 
                                                      if (!Request.ParseRoamingNetworkAndChargingSession(this,
-                                                                                                        out RoamingNetwork   RoamingNetwork,
-                                                                                                        out ChargingSession  ChargingSession,
-                                                                                                        out HTTPResponse     HTTPResponse))
+                                                                                                        out RoamingNetwork_Id?   RoamingNetworkId,
+                                                                                                        out RoamingNetwork       RoamingNetwork,
+                                                                                                        out ChargingSession_Id?  ChargingSessionId,
+                                                                                                        out ChargingSession      ChargingSession,
+                                                                                                        out HTTPResponse         HTTPResponse))
                                                      {
                                                          return Task.FromResult(HTTPResponse);
                                                      }
