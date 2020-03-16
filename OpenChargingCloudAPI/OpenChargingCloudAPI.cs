@@ -6552,7 +6552,7 @@ namespace cloud.charging.open.API
 
                                                      var AuthStartResult = await RoamingNetwork.
                                                                                      AuthorizeStart(LocalAuthentication.FromAuthToken(AuthToken),
-                                                                                                    EVSE.Id,
+                                                                                                    ChargingLocation.FromEVSEId(EVSE.Id),
                                                                                                     ChargingProductId.HasValue
                                                                                                         ? new ChargingProduct(ChargingProductId.Value)
                                                                                                         : null,
@@ -6566,7 +6566,7 @@ namespace cloud.charging.open.API
 
                                                      #region Authorized
 
-                                                     if (AuthStartResult.Result == AuthStartEVSEResultType.Authorized)
+                                                     if (AuthStartResult.Result == AuthStartResultType.Authorized)
 
                                                          return 
                                                              new HTTPResponse.Builder(Request) {
@@ -6591,7 +6591,7 @@ namespace cloud.charging.open.API
 
                                                      #region NotAuthorized
 
-                                                     else if (AuthStartResult.Result == AuthStartEVSEResultType.Error)
+                                                     else if (AuthStartResult.Result == AuthStartResultType.Error)
 
                                                          return 
                                                              new HTTPResponse.Builder(Request) {
@@ -6721,7 +6721,7 @@ namespace cloud.charging.open.API
                                                      var AuthStopResult = await RoamingNetwork.
                                                                                     AuthorizeStop(SessionId,
                                                                                                   LocalAuthentication.FromAuthToken(AuthToken),
-                                                                                                  EVSE.Id,
+                                                                                                  ChargingLocation.FromEVSEId(EVSE.Id),
                                                                                                   OperatorId,
 
                                                                                                   Request.Timestamp,
@@ -6731,7 +6731,7 @@ namespace cloud.charging.open.API
 
                                                      #region Authorized
 
-                                                     if (AuthStopResult.Result == AuthStopEVSEResultType.Authorized)
+                                                     if (AuthStopResult.Result == AuthStopResultType.Authorized)
 
                                                          return 
                                                              new HTTPResponse.Builder(Request) {
@@ -6754,7 +6754,7 @@ namespace cloud.charging.open.API
 
                                                      #region NotAuthorized
 
-                                                     else if (AuthStopResult.Result == AuthStopEVSEResultType.NotAuthorized)
+                                                     else if (AuthStopResult.Result == AuthStopResultType.NotAuthorized)
 
                                                          return 
                                                              new HTTPResponse.Builder(Request) {
@@ -10440,14 +10440,14 @@ namespace cloud.charging.open.API
                 #endregion
 
 
-                #region OnRemoteEVSEStartRequest/-Response
+                #region OnRemoteStartRequest/-Response
 
                 NewRoamingNetwork.OnRemoteStartRequest += async (LogTimestamp,
                                                                  Timestamp,
                                                                  Sender,
                                                                  EventTrackingId,
                                                                  RoamingNetworkId,
-                                                                 Location,
+                                                                 ChargingLocation,
                                                                  ChargingProduct,
                                                                  ReservationId,
                                                                  SessionId,
@@ -10463,8 +10463,10 @@ namespace cloud.charging.open.API
                                                       EventTrackingId != null
                                                           ? new JProperty("eventTrackingId",       EventTrackingId.     ToString())
                                                           : null,
-                                                      new JProperty("roamingNetwork",              RoamingNetworkId.    ToString()),
-                                                      new JProperty("location",                    Location.            ToJSON()),
+                                                      new JProperty("roamingNetworkId",            RoamingNetworkId.    ToString()),
+                                                      ChargingLocation.IsDefined()
+                                                          ? new JProperty("chargingLocation",      ChargingLocation.    ToJSON())
+                                                          : null,
                                                       ChargingProduct != null
                                                           ? new JProperty("chargingProduct",       ChargingProduct.     ToJSON())
                                                           : null,
@@ -10493,7 +10495,7 @@ namespace cloud.charging.open.API
                                                                   Sender,
                                                                   EventTrackingId,
                                                                   RoamingNetworkId,
-                                                                  EVSEId,
+                                                                  ChargingLocation,
                                                                   ChargingProduct,
                                                                   ReservationId,
                                                                   SessionId,
@@ -10508,27 +10510,26 @@ namespace cloud.charging.open.API
                     => await DebugLog.SubmitEvent("OnRemoteStartResponse",
                                                   JSONObject.Create(
                                                       new JProperty("timestamp",                   Timestamp.           ToIso8601()),
-                                                      EventTrackingId != null
+                                                      EventTrackingId      != null
                                                           ? new JProperty("eventTrackingId",       EventTrackingId.     ToString())
                                                           : null,
-                                                      new JProperty("roamingNetwork",              RoamingNetworkId.    ToString()),
-                                                      
-                                                      EVSEId != null
-                                                          ? new JProperty("EVSEId",                EVSEId.              ToString())
+                                                      new JProperty("roamingNetworkId",            RoamingNetworkId.    ToString()),
+                                                      ChargingLocation.IsDefined()
+                                                          ? new JProperty("chargingLocation",      ChargingLocation.    ToJSON())
                                                           : null,
-                                                      ChargingProduct != null
+                                                      ChargingProduct      != null
                                                           ? new JProperty("chargingProduct",       ChargingProduct.     ToJSON())
                                                           : null,
-                                                      ReservationId != null
+                                                      ReservationId        != null
                                                           ? new JProperty("reservationId",         ReservationId.       ToString())
                                                           : null,
-                                                      SessionId != null
+                                                      SessionId            != null
                                                           ? new JProperty("sessionId",             SessionId.           ToString())
                                                           : null,
                                                       CSORoamingProviderId.HasValue
                                                           ? new JProperty("CSORoamingProviderId",  CSORoamingProviderId.ToString())
                                                           : null,
-                                                      ProviderId != null
+                                                      ProviderId           != null
                                                           ? new JProperty("providerId",            ProviderId.          ToString())
                                                           : null,
                                                       RemoteAuthentication != null
@@ -10539,7 +10540,7 @@ namespace cloud.charging.open.API
                                                           : null,
                                                       new JProperty("result",                      Result.Result.ToString()),
                                                       new JProperty("runtime",                     Math.Round(Runtime.TotalMilliseconds, 0)),
-                                                      Result.Message != null
+                                                      Result.Message       != null
                                                           ? new JProperty("errorMessage",          Result.Message)
                                                           : null
                                                   ));
@@ -10607,7 +10608,7 @@ namespace cloud.charging.open.API
                                                       EventTrackingId != null
                                                           ? new JProperty("eventTrackingId",       EventTrackingId.     ToString())
                                                           : null,
-                                                      new JProperty("roamingNetwork",              RoamingNetworkId.    ToString()),
+                                                      new JProperty("roamingNetworkId",              RoamingNetworkId.    ToString()),
                                                       new JProperty("sessionId",                   SessionId.           ToString()),
                                                       ReservationHandling.HasValue
                                                           ? new JProperty("reservationHandling",   ReservationHandling. ToString())
@@ -10634,7 +10635,7 @@ namespace cloud.charging.open.API
                 #endregion
 
 
-                #region OnAuthorizeStart/-Started
+                #region OnAuthorizeStartRequest/-Response
 
                 NewRoamingNetwork.OnAuthorizeStartRequest += async (LogTimestamp,
                                                                     RequestTimestamp,
@@ -10646,116 +10647,17 @@ namespace cloud.charging.open.API
                                                                     CSORoamingProviderId,
                                                                     OperatorId,
                                                                     LocalAuthentication,
+                                                                    ChargingLocation,
                                                                     ChargingProduct,
                                                                     SessionId,
+                                                                    ISendAuthorizeStartStop,
                                                                     RequestTimeout)
-
-                    => await DebugLog.SubmitEvent("AUTHSTARTRequest",
-                                                  JSONObject.Create(
-                                                      new JProperty("timestamp",                RequestTimestamp.   ToIso8601()),
-                                                      new JProperty("eventTrackingId",          EventTrackingId.    ToString()),
-                                                      new JProperty("roamingNetwork",           RoamingNetworkId.   ToString()),
-                                                      OperatorId      != null
-                                                          ? new JProperty("operatorId",         OperatorId.         ToString())
-                                                          : null,
-                                                      new JProperty("localAuthentication",      LocalAuthentication.ToJSON()),
-                                                      ChargingProduct != null
-                                                          ? new JProperty("chargingProduct",    ChargingProduct.    ToJSON())
-                                                          : null,
-                                                      SessionId       != null
-                                                          ? new JProperty("sessionId",          SessionId.          ToString())
-                                                          : null,
-                                                      RequestTimeout.HasValue
-                                                          ? new JProperty("requestTimeout",     Math.Round(RequestTimeout.Value.TotalSeconds, 0))
-                                                          : null
-                                                  ));
-
-
-                NewRoamingNetwork.OnAuthorizeStartResponse += async (LogTimestamp,
-                                                                     RequestTimestamp,
-                                                                     Sender,
-                                                                     SenderId,
-                                                                     EventTrackingId,
-                                                                     RoamingNetworkId2,
-                                                                     EMPRoamingProviderId,
-                                                                     CSORoamingProviderId,
-                                                                     OperatorId,
-                                                                     LocalAuthentication,
-                                                                     ChargingProduct,
-                                                                     SessionId,
-                                                                     RequestTimeout,
-                                                                     Result,
-                                                                     Runtime)
-
-                    => await DebugLog.SubmitEvent("AUTHSTARTResponse",
-                                                  JSONObject.Create(
-                                                      new JProperty("timestamp",                   RequestTimestamp.     ToIso8601()),
-                                                      new JProperty("eventTrackingId",             EventTrackingId.      ToString()),
-                                                      new JProperty("roamingNetwork",              RoamingNetworkId2.    ToString()),
-                                                      EMPRoamingProviderId.HasValue
-                                                          ? new JProperty("EMPRoamingProviderId",  EMPRoamingProviderId. ToString())
-                                                          : null,
-                                                      OperatorId.       HasValue
-                                                          ? new JProperty("operatorId",            OperatorId.           ToString())
-                                                          : null,
-                                                      new JProperty("localAuthentication",         LocalAuthentication.  ToJSON()),
-
-                                                      ChargingProduct != null
-                                                          ? new JProperty("chargingProduct",       ChargingProduct.      ToJSON())
-                                                          : null,
-                                                      SessionId       != null
-                                                          ? new JProperty("sessionId",             SessionId.            ToString())
-                                                          : null,
-                                                      RequestTimeout.HasValue
-                                                          ? new JProperty("requestTimeout",        Math.Round(RequestTimeout.Value.TotalSeconds, 0))
-                                                          : null,
-
-                                                      new JProperty("result", JSONObject.Create(
-
-                                                          new JProperty("result",                  Result.Result.        ToString()),
-
-                                                          Result.SessionId.HasValue
-                                                              ? new JProperty("sessionId",         Result.SessionId.     ToString())
-                                                              : null,
-                                                          Result.ProviderId.HasValue
-                                                              ? new JProperty("providerId",        Result.ProviderId.    ToString())
-                                                              : null,
-                                                          new JProperty("authorizatorId",          Result.AuthorizatorId.ToString()),
-                                                          Result.Description.IsNotNullOrEmpty()
-                                                              ? new JProperty("description",       Result.Description)
-                                                              : null
-
-                                                      )),
-
-                                                      new JProperty("runtime",  Math.Round(Runtime.TotalMilliseconds, 0))
-
-                                                  ));
-
-                #endregion
-
-                #region OnAuthorizeEVSEStartRequest/-Response
-
-                NewRoamingNetwork.OnAuthorizeEVSEStartRequest += async (LogTimestamp,
-                                                                        RequestTimestamp,
-                                                                        Sender,
-                                                                        SenderId,
-                                                                        EventTrackingId,
-                                                                        RoamingNetworkId,
-                                                                        EMPRoamingProviderId,
-                                                                        CSORoamingProviderId,
-                                                                        OperatorId,
-                                                                        LocalAuthentication,
-                                                                        EVSEId,
-                                                                        ChargingProduct,
-                                                                        SessionId,
-                                                                        ISendAuthorizeStartStop,
-                                                                        RequestTimeout)
 
                     => await DebugLog.SubmitEvent("AUTHSTARTRequest",
                                                   JSONObject.Create(
                                                       new JProperty("timestamp",                   RequestTimestamp.    ToIso8601()),
                                                       new JProperty("eventTrackingId",             EventTrackingId.     ToString()),
-                                                      new JProperty("roamingNetwork",              RoamingNetworkId.    ToString()),
+                                                      new JProperty("roamingNetworkId",              RoamingNetworkId.    ToString()),
                                                       EMPRoamingProviderId.HasValue
                                                           ? new JProperty("EMPRoamingProviderId",  EMPRoamingProviderId.ToString())
                                                           : null,
@@ -10765,7 +10667,9 @@ namespace cloud.charging.open.API
                                                       LocalAuthentication != null
                                                           ? new JProperty("localAuthentication",   LocalAuthentication. ToJSON())
                                                           : null,
-                                                      new JProperty("EVSEId",                      EVSEId.              ToString()),
+                                                      ChargingLocation.IsDefined()
+                                                          ? new JProperty("chargingLocation",      ChargingLocation.    ToJSON())
+                                                          : null,
                                                       ChargingProduct != null
                                                           ? new JProperty("chargingProduct",       ChargingProduct.     ToJSON())
                                                           : null,
@@ -10778,29 +10682,29 @@ namespace cloud.charging.open.API
                                                ));
 
 
-                NewRoamingNetwork.OnAuthorizeEVSEStartResponse += async (LogTimestamp,
-                                                                         RequestTimestamp,
-                                                                         Sender,
-                                                                         SenderId,
-                                                                         EventTrackingId,
-                                                                         RoamingNetworkId2,
-                                                                         EMPRoamingProviderId,
-                                                                         CSORoamingProviderId,
-                                                                         OperatorId,
-                                                                         LocalAuthentication,
-                                                                         EVSEId,
-                                                                         ChargingProduct,
-                                                                         SessionId,
-                                                                         ISendAuthorizeStartStop,
-                                                                         RequestTimeout,
-                                                                         Result,
-                                                                         Runtime)
+                NewRoamingNetwork.OnAuthorizeStartResponse += async (LogTimestamp,
+                                                                     RequestTimestamp,
+                                                                     Sender,
+                                                                     SenderId,
+                                                                     EventTrackingId,
+                                                                     RoamingNetworkId2,
+                                                                     EMPRoamingProviderId,
+                                                                     CSORoamingProviderId,
+                                                                     OperatorId,
+                                                                     LocalAuthentication,
+                                                                     ChargingLocation,
+                                                                     ChargingProduct,
+                                                                     SessionId,
+                                                                     ISendAuthorizeStartStop,
+                                                                     RequestTimeout,
+                                                                     Result,
+                                                                     Runtime)
 
                     => await DebugLog.SubmitEvent("AUTHSTARTResponse",
                                                   JSONObject.Create(
                                                       new JProperty("timestamp",                   RequestTimestamp.     ToIso8601()),
                                                       new JProperty("eventTrackingId",             EventTrackingId.      ToString()),
-                                                      new JProperty("roamingNetwork",              RoamingNetworkId2.    ToString()),
+                                                      new JProperty("roamingNetworkId",            RoamingNetworkId2.    ToString()),
                                                       EMPRoamingProviderId.HasValue
                                                           ? new JProperty("EMPRoamingProviderId",  EMPRoamingProviderId. ToString())
                                                           : null,
@@ -10808,7 +10712,9 @@ namespace cloud.charging.open.API
                                                           ? new JProperty("operatorId",            OperatorId.           ToString())
                                                           : null,
                                                       new JProperty("localAuthentication",         LocalAuthentication.  ToJSON()),
-                                                      new JProperty("EVSEId",                      EVSEId.               ToString()),
+                                                      ChargingLocation.IsDefined()
+                                                          ? new JProperty("chargingLocation",      ChargingLocation.     ToJSON())
+                                                          : null,
                                                       ChargingProduct != null
                                                           ? new JProperty("chargingProduct",       ChargingProduct.      ToJSON())
                                                           : null,
@@ -10842,113 +10748,7 @@ namespace cloud.charging.open.API
 
                 #endregion
 
-                #region OnAuthorizeChargingStationStart/-Started
-
-                NewRoamingNetwork.OnAuthorizeChargingStationStartRequest += async (LogTimestamp,
-                                                                                   RequestTimestamp,
-                                                                                   Sender,
-                                                                                   SenderId,
-                                                                                   EventTrackingId,
-                                                                                   RoamingNetworkId2,
-                                                                                   EMPRoamingProviderId,
-                                                                                   CSORoamingProviderId,
-                                                                                   OperatorId,
-                                                                                   LocalAuthentication,
-                                                                                   ChargingStationId,
-                                                                                   ChargingProduct,
-                                                                                   SessionId,
-                                                                                   RequestTimeout)
-
-                    => await DebugLog.SubmitEvent("AUTHSTARTRequest",
-                                                  JSONObject.Create(
-                                                      new JProperty("timestamp",                   RequestTimestamp.    ToIso8601()),
-                                                      new JProperty("eventTrackingId",             EventTrackingId.     ToString()),
-                                                      new JProperty("roamingNetwork",              RoamingNetworkId2.   ToString()),
-                                                      EMPRoamingProviderId.HasValue
-                                                          ? new JProperty("EMPRoamingProviderId",  EMPRoamingProviderId.ToString())
-                                                          : null,
-                                                      OperatorId.HasValue
-                                                          ? new JProperty("operatorId",            OperatorId.          ToString())
-                                                          : null,
-                                                      new JProperty("localAuthentication",         LocalAuthentication. ToString()),
-                                                      new JProperty("chargingStationId",           ChargingStationId.   ToString()),
-                                                      ChargingProduct != null
-                                                          ? new JProperty("chargingProduct",       ChargingProduct.     ToJSON())
-                                                          : null,
-                                                      SessionId.     HasValue
-                                                          ? new JProperty("sessionId",             SessionId.           ToString())
-                                                          : null,
-                                                      RequestTimeout.HasValue
-                                                          ? new JProperty("requestTimeout",        Math.Round(RequestTimeout.Value.TotalSeconds, 0))
-                                                          : null
-                                                  ));
-
-
-                NewRoamingNetwork.OnAuthorizeChargingStationStartResponse += async (LogTimestamp,
-                                                                                    RequestTimestamp,
-                                                                                    Sender,
-                                                                                    SenderId,
-                                                                                    EventTrackingId,
-                                                                                    RoamingNetworkId2,
-                                                                                    EMPRoamingProviderId,
-                                                                                    CSORoamingProviderId,
-                                                                                    OperatorId,
-                                                                                    LocalAuthentication,
-                                                                                    ChargingStationId,
-                                                                                    ChargingProduct,
-                                                                                    SessionId,
-                                                                                    RequestTimeout,
-                                                                                    Result,
-                                                                                    Runtime)
-
-                    => await DebugLog.SubmitEvent("AUTHSTARTResponse",
-                                                  JSONObject.Create(
-                                                      new JProperty("timestamp",                   RequestTimestamp.     ToIso8601()),
-                                                      new JProperty("eventTrackingId",             EventTrackingId.      ToString()),
-                                                      new JProperty("roamingNetwork",              RoamingNetworkId2.    ToString()),
-                                                      EMPRoamingProviderId.HasValue
-                                                          ? new JProperty("EMPRoamingProviderId",  EMPRoamingProviderId. ToString())
-                                                          : null,
-                                                      OperatorId.HasValue
-                                                          ? new JProperty("operatorId",            OperatorId.           ToString())
-                                                          : null,
-                                                      new JProperty("authToken",                   LocalAuthentication.  ToString()),
-                                                      new JProperty("chargingStationId",           ChargingStationId.    ToString()),
-                                                      ChargingProduct != null
-                                                          ? new JProperty("chargingProduct",       ChargingProduct.      ToJSON())
-                                                          : null,
-                                                      SessionId.HasValue
-                                                          ? new JProperty("sessionId",             SessionId.            ToString())
-                                                          : null,
-                                                      RequestTimeout.HasValue
-                                                          ? new JProperty("requestTimeout",        Math.Round(RequestTimeout.Value.TotalSeconds, 0))
-                                                          : null,
-
-                                                      new JProperty("result", JSONObject.Create(
-
-                                                          new JProperty("result",                  Result.Result.        ToString()),
-
-                                                          Result.SessionId.HasValue
-                                                              ? new JProperty("sessionId",         Result.SessionId.     ToString())
-                                                              : null,
-                                                          Result.ProviderId.HasValue
-                                                              ? new JProperty("providerId",        Result.ProviderId.    ToString())
-                                                              : null,
-                                                          new JProperty("authorizatorId",          Result.AuthorizatorId.ToString()),
-                                                          Result.Description.IsNotNullOrEmpty()
-                                                              ? new JProperty("description",       Result.Description)
-                                                              : null
-
-                                                      )),
-
-                                                      new JProperty("runtime",                     Math.Round(Runtime.TotalMilliseconds, 0))
-
-                                                  ));
-
-                #endregion
-
-
-                #region OnAuthorizeStop/-Stopped
+                #region OnAuthorizeStopRequest/-Response
 
                 NewRoamingNetwork.OnAuthorizeStopRequest += async (LogTimestamp,
                                                                    RequestTimestamp,
@@ -10959,25 +10759,29 @@ namespace cloud.charging.open.API
                                                                    EMPRoamingProviderId,
                                                                    CSORoamingProviderId,
                                                                    OperatorId,
+                                                                   ChargingLocation,
                                                                    SessionId,
                                                                    LocalAuthentication,
                                                                    RequestTimeout)
 
                     => await DebugLog.SubmitEvent("AUTHSTOPRequest",
                                                   JSONObject.Create(
-                                                      new JProperty("timestamp",                   RequestTimestamp.    ToIso8601()),
-                                                      new JProperty("eventTrackingId",             EventTrackingId.     ToString()),
-                                                      new JProperty("roamingNetwork",              RoamingNetworkId2.   ToString()),
+                                                      new JProperty("timestamp",               RequestTimestamp.        ToIso8601()),
+                                                      new JProperty("eventTrackingId",         EventTrackingId.         ToString()),
+                                                      new JProperty("roamingNetworkId",        RoamingNetworkId2.       ToString()),
                                                       EMPRoamingProviderId.HasValue
                                                           ? new JProperty("EMPRoamingProviderId",  EMPRoamingProviderId.ToString())
                                                           : null,
                                                       OperatorId != null
-                                                          ? new JProperty("operatorId",            OperatorId.          ToString())
+                                                          ? new JProperty("operatorId",        OperatorId.              ToString())
                                                           : null,
-                                                      new JProperty("localAuthentication",         LocalAuthentication. ToString()),
-                                                      new JProperty("sessionId",                   SessionId.           ToString()),
+                                                      ChargingLocation.IsDefined()
+                                                          ? new JProperty("chargingLocation",  ChargingLocation.        ToJSON())
+                                                          : null,
+                                                      new JProperty("sessionId",               SessionId.               ToString()),
+                                                      new JProperty("localAuthentication",     LocalAuthentication.     ToString()),
                                                       RequestTimeout.HasValue
-                                                          ? new JProperty("requestTimeout",        Math.Round(RequestTimeout.Value.TotalSeconds, 0))
+                                                          ? new JProperty("requestTimeout",    Math.Round(RequestTimeout.Value.TotalSeconds, 0))
                                                           : null
                                                   ));
 
@@ -10990,115 +10794,27 @@ namespace cloud.charging.open.API
                                                                     EMPRoamingProviderId,
                                                                     CSORoamingProviderId,
                                                                     OperatorId,
+                                                                    ChargingLocation,
                                                                     SessionId,
                                                                     AuthToken,
                                                                     RequestTimeout,
                                                                     Result,
                                                                     Runtime)
 
-                => await DebugLog.SubmitEvent("AUTHSTOPResponse",
-                                              JSONObject.Create(
-                                                  new JProperty("timestamp",                       RequestTimestamp.     ToIso8601()),
-                                                  new JProperty("eventTrackingId",                 EventTrackingId.      ToString()),
-                                                  new JProperty("roamingNetwork",                  RoamingNetworkId2.    ToString()),
-                                                  EMPRoamingProviderId.HasValue
-                                                          ? new JProperty("EMPRoamingProviderId",  EMPRoamingProviderId. ToString())
-                                                          : null,
-                                                  OperatorId.HasValue
-                                                      ? new JProperty("operatorId",                OperatorId.           ToString())
-                                                      : null,
-                                                  SessionId.HasValue
-                                                          ? new JProperty("sessionId",             SessionId.            ToString())
-                                                          : null,
-                                                      new JProperty("authToken",                   AuthToken.            ToString()),
-                                                      RequestTimeout.HasValue
-                                                          ? new JProperty("requestTimeout",        Math.Round(RequestTimeout.Value.TotalSeconds, 0))
-                                                          : null,
-
-                                                  new JProperty("result", JSONObject.Create(
-
-                                                      Result.SessionId.HasValue
-                                                          ? new JProperty("sessionId",             Result.SessionId.     ToString())
-                                                          : null,
-                                                      Result.ProviderId.HasValue
-                                                          ? new JProperty("providerId",            Result.ProviderId.    ToString())
-                                                          : null,
-                                                      new JProperty("authorizatorId",              Result.AuthorizatorId.ToString()),
-                                                      Result.Description.IsNotNullOrEmpty()
-                                                          ? new JProperty("description",           Result.Description)
-                                                          : null
-
-                                                  )),
-
-                                                  new JProperty("runtime",                         Math.Round(Runtime.TotalMilliseconds, 0))
-
-                                              ));
-
-                #endregion
-
-                #region OnAuthorizeEVSEStop/-Stopped
-
-                NewRoamingNetwork.OnAuthorizeEVSEStopRequest += async (LogTimestamp,
-                                                                       RequestTimestamp,
-                                                                       Sender,
-                                                                       SenderId,
-                                                                       EventTrackingId,
-                                                                       RoamingNetworkId2,
-                                                                       EMPRoamingProviderId,
-                                                                       CSORoamingProviderId,
-                                                                       OperatorId,
-                                                                       EVSEId,
-                                                                       SessionId,
-                                                                       LocalAuthentication,
-                                                                       RequestTimeout)
-
-                    => await DebugLog.SubmitEvent("AUTHSTOPRequest",
-                                                  JSONObject.Create(
-                                                      new JProperty("timestamp",             RequestTimestamp.          ToIso8601()),
-                                                      new JProperty("eventTrackingId",       EventTrackingId.           ToString()),
-                                                      new JProperty("roamingNetwork",        RoamingNetworkId2.         ToString()),
-                                                      EMPRoamingProviderId.HasValue
-                                                          ? new JProperty("EMPRoamingProviderId",  EMPRoamingProviderId.ToString())
-                                                          : null,
-                                                      OperatorId != null
-                                                          ? new JProperty("operatorId",      OperatorId.                ToString())
-                                                          : null,
-                                                      new JProperty("EVSEId",                EVSEId.                    ToString()),
-                                                      new JProperty("sessionId",             SessionId.                 ToString()),
-                                                      new JProperty("localAuthentication",   LocalAuthentication.       ToString()),
-                                                      RequestTimeout.HasValue
-                                                          ? new JProperty("requestTimeout",  Math.Round(RequestTimeout.Value.TotalSeconds, 0))
-                                                          : null
-                                                  ));
-
-                NewRoamingNetwork.OnAuthorizeEVSEStopResponse += async (LogTimestamp,
-                                                                        RequestTimestamp,
-                                                                        Sender,
-                                                                        SenderId,
-                                                                        EventTrackingId,
-                                                                        RoamingNetworkId2,
-                                                                        EMPRoamingProviderId,
-                                                                        CSORoamingProviderId,
-                                                                        OperatorId,
-                                                                        EVSEId,
-                                                                        SessionId,
-                                                                        AuthToken,
-                                                                        RequestTimeout,
-                                                                        Result,
-                                                                        Runtime)
-
                     => await DebugLog.SubmitEvent("AUTHSTOPResponse",
                                                   JSONObject.Create(
                                                       new JProperty("timestamp",                   RequestTimestamp.     ToIso8601()),
                                                       new JProperty("eventTrackingId",             EventTrackingId.      ToString()),
-                                                      new JProperty("roamingNetwork",              RoamingNetworkId2.    ToString()),
+                                                      new JProperty("roamingNetworkId",            RoamingNetworkId2.    ToString()),
                                                       EMPRoamingProviderId.HasValue
                                                           ? new JProperty("EMPRoamingProviderId",  EMPRoamingProviderId. ToString())
                                                           : null,
                                                       OperatorId.HasValue
                                                           ? new JProperty("operatorId",            OperatorId.           ToString())
                                                           : null,
-                                                      new JProperty("EVSEId",                      EVSEId.               ToString()),
+                                                      ChargingLocation.IsDefined()
+                                                          ? new JProperty("chargingLocation",      ChargingLocation.     ToJSON())
+                                                          : null,
                                                       SessionId.HasValue
                                                           ? new JProperty("sessionId",             SessionId.            ToString())
                                                           : null,
@@ -11127,100 +10843,6 @@ namespace cloud.charging.open.API
                                                       new JProperty("runtime",                     Math.Round(Runtime.TotalMilliseconds, 0))
 
                                               ));
-
-                #endregion
-
-                #region OnAuthorizeChargingStationStop/-Stopped
-
-                NewRoamingNetwork.OnAuthorizeChargingStationStopRequest += async (LogTimestamp,
-                                                                                  RequestTimestamp,
-                                                                                  Sender,
-                                                                                  SenderId,
-                                                                                  EventTrackingId,
-                                                                                  RoamingNetworkId2,
-                                                                                  EMPRoamingProviderId,
-                                                                                  CSORoamingProviderId,
-                                                                                  OperatorId,
-                                                                                  ChargingStationId,
-                                                                                  SessionId,
-                                                                                  LocalAuthentication,
-                                                                                  RequestTimeout)
-
-                    => await DebugLog.SubmitEvent("AUTHSTOPRequest",
-                                                  JSONObject.Create(
-                                                      new JProperty("timestamp",                   RequestTimestamp.    ToIso8601()),
-                                                      new JProperty("eventTrackingId",             EventTrackingId.     ToString()),
-                                                      new JProperty("roamingNetwork",              RoamingNetworkId2.   ToString()),
-                                                      EMPRoamingProviderId.HasValue
-                                                          ? new JProperty("EMPRoamingProviderId",  EMPRoamingProviderId. ToString())
-                                                          : null,
-                                                      OperatorId.HasValue
-                                                          ? new JProperty("operatorId",            OperatorId.          ToString())
-                                                          : null,
-                                                      new JProperty("chargingStationId",           ChargingStationId.   ToString()),
-                                                      new JProperty("sessionId",                   SessionId.           ToString()),
-                                                      new JProperty("localAuthentication",         LocalAuthentication. ToJSON())
-                                                  ));
-
-                NewRoamingNetwork.OnAuthorizeChargingStationStopResponse += async (LogTimestamp,
-                                                                                   RequestTimestamp,
-                                                                                   Sender,
-                                                                                   SenderId,
-                                                                                   EventTrackingId,
-                                                                                   RoamingNetworkId2,
-                                                                                   EMPRoamingProviderId,
-                                                                                   CSORoamingProviderId,
-                                                                                   OperatorId,
-                                                                                   ChargingStationId,
-                                                                                   SessionId,
-                                                                                   LocalAuthentication,
-                                                                                   RequestTimeout,
-                                                                                   Result,
-                                                                                   Runtime)
-
-                    => await DebugLog.SubmitEvent("AUTHSTOPResponse",
-                                                  JSONObject.Create(
-                                                      new JProperty("timestamp",                   RequestTimestamp.     ToIso8601()),
-                                                      new JProperty("eventTrackingId",             EventTrackingId.      ToString()),
-                                                      new JProperty("roamingNetwork",              RoamingNetworkId2.    ToString()),
-                                                      EMPRoamingProviderId.HasValue
-                                                          ? new JProperty("EMPRoamingProviderId",  EMPRoamingProviderId. ToString())
-                                                          : null,
-                                                      OperatorId.HasValue
-                                                          ? new JProperty("operatorId",            OperatorId.           ToString())
-                                                          : null,
-                                                      new JProperty("chargingStationId",           ChargingStationId.    ToString()),
-                                                      SessionId.HasValue
-                                                          ? new JProperty("sessionId",             SessionId.            ToString())
-                                                          : null,
-                                                      new JProperty("localAuthentication",         LocalAuthentication.  ToJSON()),
-                                                      RequestTimeout.HasValue
-                                                          ? new JProperty("requestTimeout",        Math.Round(RequestTimeout.Value.TotalSeconds, 0))
-                                                          : null,
-
-                                                      new JProperty("result", JSONObject.Create(
-
-                                                          new JProperty("result",                  Result.Result.        ToString()),
-
-                                                          Result.SessionId.HasValue
-                                                              ? new JProperty("sessionId",         Result.SessionId.     ToString())
-                                                              : null,
-                                                          EMPRoamingProviderId.HasValue
-                                                              ? new JProperty("EMPRoamingProviderId",  EMPRoamingProviderId. ToString())
-                                                              : null,
-                                                          Result.ProviderId.HasValue
-                                                              ? new JProperty("providerId",        Result.ProviderId.    ToString())
-                                                              : null,
-                                                          new JProperty("authorizatorId",          Result.AuthorizatorId.ToString()),
-                                                          Result.Description.IsNotNullOrEmpty()
-                                                              ? new JProperty("description",       Result.Description)
-                                                              : null
-
-                                                      )),
-
-                                                      new JProperty("runtime",                     Math.Round(Runtime.TotalMilliseconds, 0))
-
-                                                  ));
 
                 #endregion
 
@@ -11242,7 +10864,7 @@ namespace cloud.charging.open.API
                                                   JSONObject.Create(
                                                       new JProperty("timestamp",                RequestTimestamp.  ToIso8601()),
                                                       new JProperty("eventTrackingId",          EventTrackingId.   ToString()),
-                                                      new JProperty("roamingNetwork",           RoamingNetworkId2. ToString()),
+                                                      new JProperty("roamingNetworkId",         RoamingNetworkId2. ToString()),
                                                       //new JProperty("LogTimestamp",                     LogTimestamp.                                          ToIso8601()),
                                                       //new JProperty("RequestTimestamp",                 RequestTimestamp.                                      ToIso8601()),
 
@@ -11351,13 +10973,13 @@ namespace cloud.charging.open.API
 
                     => await DebugLog.SubmitEvent("OnEVSEDataChanged",
                                                   JSONObject.Create(
-                                                      new JProperty("Timestamp",       Timestamp.ToIso8601()),
-                                                      new JProperty("EventTrackingId", EventTrackingId.ToString()),
-                                                      new JProperty("RoamingNetwork",  NewRoamingNetwork.Id.ToString()),
-                                                      new JProperty("EVSEId",          EVSE.Id.ToString()),
-                                                      new JProperty("PropertyName",    PropertyName),
-                                                      new JProperty("OldValue",        OldValue?.ToString()),
-                                                      new JProperty("NewValue",        NewValue?.ToString())
+                                                      new JProperty("timestamp",        Timestamp.           ToIso8601()),
+                                                      new JProperty("eventTrackingId",  EventTrackingId.     ToString()),
+                                                      new JProperty("roamingNetworkId",   NewRoamingNetwork.Id.ToString()),
+                                                      new JProperty("EVSEId",           EVSE.Id.             ToString()),
+                                                      new JProperty("propertyName",     PropertyName),
+                                                      new JProperty("oldValue",         OldValue?.           ToString()),
+                                                      new JProperty("newValue",         NewValue?.           ToString())
                                                   ));
 
 
@@ -11370,12 +10992,12 @@ namespace cloud.charging.open.API
 
                     => await DebugLog.SubmitEvent("OnEVSEStatusChanged",
                                                   JSONObject.Create(
-                                                      new JProperty("Timestamp",        Timestamp.ToIso8601()),
-                                                      new JProperty("EventTrackingId",  EventTrackingId.ToString()),
-                                                      new JProperty("RoamingNetwork",   NewRoamingNetwork.Id.ToString()),
-                                                      new JProperty("EVSEId",           EVSE.Id.ToString()),
-                                                      new JProperty("OldStatus",        OldStatus.Value.ToString()),
-                                                      new JProperty("NewStatus",        NewStatus.Value.ToString())
+                                                      new JProperty("timestamp",        Timestamp.           ToIso8601()),
+                                                      new JProperty("eventTrackingId",  EventTrackingId.     ToString()),
+                                                      new JProperty("roamingNetworkId",   NewRoamingNetwork.Id.ToString()),
+                                                      new JProperty("EVSEId",           EVSE.Id.             ToString()),
+                                                      new JProperty("oldStatus",        OldStatus.Value.     ToString()),
+                                                      new JProperty("newStatus",        NewStatus.Value.     ToString())
                                                   ));
 
 
@@ -11388,12 +11010,12 @@ namespace cloud.charging.open.API
 
                     => await DebugLog.SubmitEvent("OnEVSEAdminStatusChanged",
                                                   JSONObject.Create(
-                                                      new JProperty("Timestamp",        Timestamp.ToIso8601()),
-                                                      new JProperty("EventTrackingId",  EventTrackingId.ToString()),
-                                                      new JProperty("RoamingNetwork",   NewRoamingNetwork.Id.ToString()),
-                                                      new JProperty("EVSEId",           EVSE.Id.ToString()),
-                                                      new JProperty("OldStatus",        OldStatus.Value.ToString()),
-                                                      new JProperty("NewStatus",        NewStatus.Value.ToString())
+                                                      new JProperty("timestamp",        Timestamp.           ToIso8601()),
+                                                      new JProperty("eventTrackingId",  EventTrackingId.     ToString()),
+                                                      new JProperty("roamingNetworkId",   NewRoamingNetwork.Id.ToString()),
+                                                      new JProperty("EVSEId",           EVSE.Id.             ToString()),
+                                                      new JProperty("oldStatus",        OldStatus.Value.     ToString()),
+                                                      new JProperty("newStatus",        NewStatus.Value.     ToString())
                                                   ));
 
                 #endregion
