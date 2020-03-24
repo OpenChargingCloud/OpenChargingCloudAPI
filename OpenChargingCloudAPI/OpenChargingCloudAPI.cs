@@ -45,6 +45,7 @@ using org.GraphDefined.Vanaheimr.Hermod.Sockets.TCP;
 
 using org.GraphDefined.WWCP;
 using org.GraphDefined.WWCP.Net.IO.JSON;
+using org.GraphDefined.WWCP.Networking;
 
 #endregion
 
@@ -10122,12 +10123,13 @@ namespace cloud.charging.open.API
                                                       RoamingNetworkStatusTypes                 Status                                      = RoamingNetworkStatusTypes.Available,
                                                       UInt16                                    MaxAdminStatusListSize                      = RoamingNetwork.DefaultMaxAdminStatusListSize,
                                                       UInt16                                    MaxStatusListSize                           = RoamingNetwork.DefaultMaxStatusListSize,
+
                                                       ChargingStationSignatureDelegate          ChargingStationSignatureGenerator           = null,
                                                       ChargingPoolSignatureDelegate             ChargingPoolSignatureGenerator              = null,
                                                       ChargingStationOperatorSignatureDelegate  ChargingStationOperatorSignatureGenerator   = null,
-                                                      Func<RoamingNetwork_Id, String>           ReservationLogFileNameCreator               = null,
-                                                      Func<RoamingNetwork_Id, String>           SessionLogFileNameCreator                   = null,
-                                                      Func<RoamingNetwork_Id, String>           ChargeDetailRecordLogFileNameCreator        = null)
+
+                                                      IEnumerable<RoamingNetworkInfo>           RoamingNetworkInfos                         = null,
+                                                      Boolean                                   DisableNetworkSync                          = false)
 
 
             => CreateNewRoamingNetwork(HTTPHostname.Any,
@@ -10139,12 +10141,13 @@ namespace cloud.charging.open.API
                                        Status,
                                        MaxAdminStatusListSize,
                                        MaxStatusListSize,
+
                                        ChargingStationSignatureGenerator,
                                        ChargingPoolSignatureGenerator,
                                        ChargingStationOperatorSignatureGenerator,
-                                       ReservationLogFileNameCreator,
-                                       SessionLogFileNameCreator,
-                                       ChargeDetailRecordLogFileNameCreator);
+
+                                       RoamingNetworkInfos,
+                                       DisableNetworkSync);
 
         #endregion
 
@@ -10175,12 +10178,13 @@ namespace cloud.charging.open.API
                                                       RoamingNetworkStatusTypes                 Status                                      = RoamingNetworkStatusTypes.Available,
                                                       UInt16                                    MaxAdminStatusListSize                      = RoamingNetwork.DefaultMaxAdminStatusListSize,
                                                       UInt16                                    MaxStatusListSize                           = RoamingNetwork.DefaultMaxStatusListSize,
+
                                                       ChargingStationSignatureDelegate          ChargingStationSignatureGenerator           = null,
                                                       ChargingPoolSignatureDelegate             ChargingPoolSignatureGenerator              = null,
                                                       ChargingStationOperatorSignatureDelegate  ChargingStationOperatorSignatureGenerator   = null,
-                                                      Func<RoamingNetwork_Id, String>           ReservationLogFileNameCreator               = null,
-                                                      Func<RoamingNetwork_Id, String>           SessionLogFileNameCreator                   = null,
-                                                      Func<RoamingNetwork_Id, String>           ChargeDetailRecordLogFileNameCreator        = null)
+
+                                                      IEnumerable<RoamingNetworkInfo>           RoamingNetworkInfos                         = null,
+                                                      Boolean                                   DisableNetworkSync                          = false)
 
         {
 
@@ -10217,14 +10221,13 @@ namespace cloud.charging.open.API
                                                                     Status,
                                                                     MaxAdminStatusListSize,
                                                                     MaxStatusListSize,
+
                                                                     ChargingStationSignatureGenerator,
                                                                     ChargingPoolSignatureGenerator,
-                                                                    ChargingStationOperatorSignatureGenerator
-                                                                    //ReservationLogFileNameCreator,
-                                                                    //SessionLogFileNameCreator,
-                                                                    //ChargeDetailRecordLogFileNameCreator
-                                                                    );
+                                                                    ChargingStationOperatorSignatureGenerator,
 
+                                                                    RoamingNetworkInfos,
+                                                                    DisableNetworkSync);
 
                 #region Link log events to HTTP-SSE...
 
