@@ -10858,7 +10858,6 @@ namespace cloud.charging.open.API
                                                               SenderId,
                                                               EventTrackingId,
                                                               RoamingNetworkId2,
-                                                              DroppedChargeDetailRecords,
                                                               ChargeDetailRecords,
                                                               RequestTimeout)
 
