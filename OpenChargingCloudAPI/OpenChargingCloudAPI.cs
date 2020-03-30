@@ -2972,7 +2972,7 @@ namespace cloud.charging.open.API
 
             DebugLog     = HTTPServer.AddJSONEventSource(EventIdentification:      DebugLogId,
                                                          URLTemplate:              this.URLPathPrefix + "/" + DebugLogId.ToString(),
-                                                         MaxNumberOfCachedEvents:  20000,
+                                                         MaxNumberOfCachedEvents:  10000,
                                                          RetryIntervall:           TimeSpan.FromSeconds(5),
                                                          EnableLogging:            true,
                                                          LogfilePrefix:            LogfilePrefix);
@@ -6980,8 +6980,8 @@ namespace cloud.charging.open.API
                                                                                                       ? new JProperty("SessionId",  result.Session.Id.ToString())
                                                                                                       : null,
                                                                                                   new JProperty("Result",       result.Result.ToString()),
-                                                                                                  result.Message != null
-                                                                                                      ? new JProperty("Description",  result.Message)
+                                                                                                  result.Description != null
+                                                                                                      ? new JProperty("Description",  result.Description)
                                                                                                       : null
                                                                                               ).ToUTF8Bytes()
                                                              };
@@ -10541,11 +10541,8 @@ namespace cloud.charging.open.API
                                                       RequestTimeout.HasValue
                                                           ? new JProperty("requestTimeout",        Math.Round(RequestTimeout.Value.TotalSeconds, 0))
                                                           : null,
-                                                      new JProperty("result",                      Result.Result.ToString()),
-                                                      new JProperty("runtime",                     Math.Round(Runtime.TotalMilliseconds, 0)),
-                                                      Result.Message       != null
-                                                          ? new JProperty("errorMessage",          Result.Message)
-                                                          : null
+                                                      new JProperty("result",                      Result.              ToJSON()),
+                                                      new JProperty("runtime",                     Math.Round(Runtime.TotalMilliseconds, 0))
                                                   ));
 
                 #endregion
@@ -10628,10 +10625,7 @@ namespace cloud.charging.open.API
                                                       RequestTimeout.HasValue
                                                           ? new JProperty("requestTimeout",        Math.Round(RequestTimeout.Value.TotalSeconds, 0))
                                                           : null,
-                                                      new JProperty("result",                      Result.Result.       ToString()),
-                                                      Result.Description.IsNotNullOrEmpty()
-                                                          ? new JProperty("errorMessage",          Result.Description)
-                                                          : null,
+                                                      new JProperty("result",                      Result.              ToJSON()),
                                                       new JProperty("runtime",                     Math.Round(Runtime.TotalMilliseconds, 0))
                                                   ));
 
@@ -10728,23 +10722,7 @@ namespace cloud.charging.open.API
                                                           ? new JProperty("requestTimeout",        Math.Round(RequestTimeout.Value.TotalSeconds, 0))
                                                           : null,
 
-                                                      new JProperty("result", JSONObject.Create(
-
-                                                          new JProperty("result",                  Result.Result.        ToString()),
-
-                                                          Result.SessionId.HasValue
-                                                              ? new JProperty("sessionId",         Result.SessionId.     ToString())
-                                                              : null,
-                                                          Result.ProviderId.HasValue
-                                                              ? new JProperty("providerId",        Result.ProviderId.    ToString())
-                                                              : null,
-                                                          new JProperty("authorizatorId",          Result.AuthorizatorId.ToString()),
-                                                          Result.Description.IsNotNullOrEmpty()
-                                                              ? new JProperty("description",       Result.Description)
-                                                              : null
-
-                                                      )),
-
+                                                      new JProperty("result",                      Result.               ToString()),
                                                       new JProperty("runtime",                     Math.Round(Runtime.TotalMilliseconds, 0))
 
                                                   ));
@@ -10806,6 +10784,7 @@ namespace cloud.charging.open.API
 
                     => await DebugLog.SubmitEvent("AUTHSTOPResponse",
                                                   JSONObject.Create(
+
                                                       new JProperty("timestamp",                   RequestTimestamp.     ToIso8601()),
                                                       new JProperty("eventTrackingId",             EventTrackingId.      ToString()),
                                                       new JProperty("roamingNetworkId",            RoamingNetworkId2.    ToString()),
@@ -10826,23 +10805,7 @@ namespace cloud.charging.open.API
                                                           ? new JProperty("requestTimeout",        Math.Round(RequestTimeout.Value.TotalSeconds, 0))
                                                           : null,
 
-                                                      new JProperty("result", JSONObject.Create(
-
-                                                          new JProperty("result",                  Result.Result.        ToString()),
-
-                                                          Result.SessionId.HasValue
-                                                              ? new JProperty("sessionId",         Result.SessionId.     ToString())
-                                                              : null,
-                                                          Result.ProviderId.HasValue
-                                                              ? new JProperty("providerId",        Result.ProviderId.    ToString())
-                                                              : null,
-                                                          new JProperty("authorizatorId",          Result.AuthorizatorId.ToString()),
-                                                          Result.Description.IsNotNullOrEmpty()
-                                                              ? new JProperty("description",       Result.Description)
-                                                              : null
-
-                                                      )),
-
+                                                      new JProperty("result",                      Result.               ToJSON()),
                                                       new JProperty("runtime",                     Math.Round(Runtime.TotalMilliseconds, 0))
 
                                               ));
@@ -10873,7 +10836,9 @@ namespace cloud.charging.open.API
                                                       new JProperty("chargeDetailRecords",              new JArray(
                                                           ChargeDetailRecords.Select(ChargeDetailRecord => JSONObject.Create(
 
-                                                             new JProperty("sessionId",                        ChargeDetailRecord.SessionId.ToString()),
+                                                             new JProperty("@id",                              ChargeDetailRecord.Id.                                      ToString()),
+
+                                                             new JProperty("sessionId",                        ChargeDetailRecord.SessionId.                               ToString()),
 
                                                              ChargeDetailRecord.SessionTime != null
                                                                  ? new JProperty("sessionStart",               ChargeDetailRecord.SessionTime.StartTime.                   ToIso8601())
@@ -10882,23 +10847,17 @@ namespace cloud.charging.open.API
                                                                  ? new JProperty("sessionStop",                ChargeDetailRecord.SessionTime.EndTime.Value.               ToIso8601())
                                                                  : null,
 
+                                                             ChargeDetailRecord.AuthenticationStart != null
+                                                                 ? new JProperty("authenticationStart",        ChargeDetailRecord.AuthenticationStart.                     ToJSON())
+                                                                 : null,
+                                                             ChargeDetailRecord.AuthenticationStop  != null
+                                                                 ? new JProperty("authenticationStop",         ChargeDetailRecord.AuthenticationStop.                      ToJSON())
+                                                                 : null,
                                                              ChargeDetailRecord.ProviderIdStart.HasValue
                                                                  ? new JProperty("providerIdStart",            ChargeDetailRecord.ProviderIdStart.                         ToString())
                                                                  : null,
                                                              ChargeDetailRecord.ProviderIdStop.HasValue
                                                                  ? new JProperty("providerIdStop",             ChargeDetailRecord.ProviderIdStop.                          ToString())
-                                                                 : null,
-                                                             ChargeDetailRecord.AuthenticationStart.AuthToken != null
-                                                                 ? new JProperty("authTokenStart",             ChargeDetailRecord.AuthenticationStart.AuthToken.           ToString())
-                                                                 : null,
-                                                             ChargeDetailRecord.AuthenticationStop?.AuthToken != null
-                                                                 ? new JProperty("authTokenStop",              ChargeDetailRecord.AuthenticationStop. AuthToken.           ToString())
-                                                                 : null,
-                                                             ChargeDetailRecord.AuthenticationStart.RemoteIdentification.HasValue
-                                                                 ? new JProperty("remoteAuthenticationStart",  ChargeDetailRecord.AuthenticationStart.RemoteIdentification.ToString())
-                                                                 : null,
-                                                             ChargeDetailRecord.AuthenticationStop != null && ChargeDetailRecord.AuthenticationStop.RemoteIdentification.HasValue
-                                                                 ? new JProperty("remoteAuthenticationStop",   ChargeDetailRecord.AuthenticationStop.RemoteIdentification. ToString())
                                                                  : null,
 
                                                              ChargeDetailRecord.ReservationId.HasValue

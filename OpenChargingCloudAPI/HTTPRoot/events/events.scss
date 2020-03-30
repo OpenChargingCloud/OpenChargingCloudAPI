@@ -69,7 +69,7 @@
     }
 
     .eventTrackingId {
-        display:                     table-cell;
+        display:                     none;
         vertical-align:              top;
         font-size:                   80%;
         padding:                     4px 6px;
@@ -100,14 +100,21 @@
             padding:            1px 3px;
         }
 
-        .location {
+        .providerId {
             border:             1px solid rgba(0, 120, 0, 0.4);
             display:            inline-block;
             border-radius:      3px;
             padding:            1px 3px;
         }
 
-        .providerId {
+        .CSORoamingProviderId {
+            border:             1px solid rgba(0, 120, 0, 0.4);
+            display:            inline-block;
+            border-radius:      3px;
+            padding:            1px 3px;
+        }
+
+        .EMPRoamingProviderId {
             border:             1px solid rgba(0, 120, 0, 0.4);
             display:            inline-block;
             border-radius:      3px;
@@ -121,7 +128,33 @@
             padding:            1px 3px;
         }
 
+        .location {
+            border:             1px solid rgba(0, 120, 0, 0.4);
+            display:            inline-block;
+            border-radius:      3px;
+            padding:            1px 3px;
+        }
 
+        .duration {
+            border:             1px solid rgba(0, 120, 0, 0.4);
+            display:            inline-block;
+            border-radius:      3px;
+            padding:            1px 3px;
+        }
+
+        .consumedEnergy {
+            border:             1px solid rgba(0, 120, 0, 0.4);
+            display:            inline-block;
+            border-radius:      3px;
+            padding:            1px 3px;
+        }
+
+        .reservationHandling {
+            border:             1px solid rgba(0, 120, 0, 0.4);
+            display:            inline-block;
+            border-radius:      3px;
+            padding:            1px 3px;
+        }
 
 
 

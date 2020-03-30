@@ -91,7 +91,7 @@
     padding: 4px 6px;
     white-space: nowrap; }
   .logLine .eventTrackingId {
-    display: table-cell;
+    display: none;
     vertical-align: top;
     font-size: 80%;
     padding: 4px 6px;
@@ -114,17 +114,42 @@
       display: inline-block;
       border-radius: 3px;
       padding: 1px 3px; }
-    .logLine .message .location {
-      border: 1px solid rgba(0, 120, 0, 0.4);
-      display: inline-block;
-      border-radius: 3px;
-      padding: 1px 3px; }
     .logLine .message .providerId {
       border: 1px solid rgba(0, 120, 0, 0.4);
       display: inline-block;
       border-radius: 3px;
       padding: 1px 3px; }
+    .logLine .message .CSORoamingProviderId {
+      border: 1px solid rgba(0, 120, 0, 0.4);
+      display: inline-block;
+      border-radius: 3px;
+      padding: 1px 3px; }
+    .logLine .message .EMPRoamingProviderId {
+      border: 1px solid rgba(0, 120, 0, 0.4);
+      display: inline-block;
+      border-radius: 3px;
+      padding: 1px 3px; }
     .logLine .message .authorizatorId {
+      border: 1px solid rgba(0, 120, 0, 0.4);
+      display: inline-block;
+      border-radius: 3px;
+      padding: 1px 3px; }
+    .logLine .message .location {
+      border: 1px solid rgba(0, 120, 0, 0.4);
+      display: inline-block;
+      border-radius: 3px;
+      padding: 1px 3px; }
+    .logLine .message .duration {
+      border: 1px solid rgba(0, 120, 0, 0.4);
+      display: inline-block;
+      border-radius: 3px;
+      padding: 1px 3px; }
+    .logLine .message .consumedEnergy {
+      border: 1px solid rgba(0, 120, 0, 0.4);
+      display: inline-block;
+      border-radius: 3px;
+      padding: 1px 3px; }
+    .logLine .message .reservationHandling {
       border: 1px solid rgba(0, 120, 0, 0.4);
       display: inline-block;
       border-radius: 3px;
