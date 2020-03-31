@@ -10327,7 +10327,7 @@ namespace cloud.charging.open.API
                                                           ? new JProperty("requestTimeout",        Math.Round(RequestTimeout.Value.TotalSeconds, 0))
                                                           : null,
 
-                                                      new JProperty("result",                      Result.              ToString()),
+                                                      new JProperty("result",                      Result.              ToJSON()),
                                                       new JProperty("runtime",                     Math.Round(Runtime.TotalMilliseconds, 0))
 
                                                   ));
