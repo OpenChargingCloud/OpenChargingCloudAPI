@@ -2627,6 +2627,7 @@ namespace cloud.charging.open.API
                     Username,
                     SecurityToken,
                     Use2FactorAuth,
+                    ServiceName,
                     DNSHostname,
                     Language) => new HTMLEMailBuilder() {
 
@@ -2663,8 +2664,10 @@ namespace cloud.charging.open.API
                                                     APIPassphrase)
 
                 => (Username,
-                     EMailAddress,
-                     Language) => new HTMLEMailBuilder() {
+                    EMailAddress,
+                    Language,
+                    ServiceName,
+                    Languages) => new HTMLEMailBuilder() {
 
                          From = APIEMailAddress,
                          To = EMailAddress,
@@ -2723,6 +2726,7 @@ namespace cloud.charging.open.API
                     Username,
                     SecurityToken,
                     Use2FactorAuth,
+                    ServiceName,
                     DNSHostname,
                     Language) => new HTMLEMailBuilder() {
 
@@ -2761,6 +2765,7 @@ namespace cloud.charging.open.API
                 => (UserId,
                     EMailAddress,
                     Username,
+                    ServiceName,
                     DNSHostname,
                     Language) => new HTMLEMailBuilder() {
 
