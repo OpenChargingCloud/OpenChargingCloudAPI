@@ -6539,12 +6539,12 @@ namespace cloud.charging.open.API
                                                      #region Parse ChargingProductId  [optional]
 
                                                      if (!JSON.ParseOptionalStruct2("ChargingProductId",
-                                                                                   "Charging product identification",
-                                                                                   HTTPServer.DefaultServerName,
-                                                                                   ChargingProduct_Id.TryParse,
-                                                                                   out ChargingProduct_Id? ChargingProductId,
-                                                                                   Request,
-                                                                                   out _HTTPResponse))
+                                                                                    "Charging product identification",
+                                                                                    HTTPServer.DefaultServerName,
+                                                                                    ChargingProduct_Id.TryParse,
+                                                                                    out ChargingProduct_Id? ChargingProductId,
+                                                                                    Request,
+                                                                                    out _HTTPResponse))
                                                      {
 
                                                          return _HTTPResponse;
@@ -6556,87 +6556,65 @@ namespace cloud.charging.open.API
                                                      #endregion
 
 
-                                                     var AuthStartResult = await RoamingNetwork.
-                                                                                     AuthorizeStart(LocalAuthentication.FromAuthToken(AuthToken),
-                                                                                                    ChargingLocation.FromEVSEId(EVSE.Id),
-                                                                                                    ChargingProductId.HasValue
-                                                                                                        ? new ChargingProduct(ChargingProductId.Value)
-                                                                                                        : null,
-                                                                                                    SessionId,
-                                                                                                    OperatorId,
+                                                     var result = await RoamingNetwork.
+                                                                            AuthorizeStart(LocalAuthentication.FromAuthToken(AuthToken),
+                                                                                           ChargingLocation.FromEVSEId(EVSE.Id),
+                                                                                           ChargingProductId.HasValue
+                                                                                               ? new ChargingProduct(ChargingProductId.Value)
+                                                                                               : null,
+                                                                                           SessionId,
+                                                                                           OperatorId,
 
-                                                                                                    Request.Timestamp,
-                                                                                                    Request.CancellationToken,
-                                                                                                    Request.EventTrackingId);
+                                                                                           Request.Timestamp,
+                                                                                           Request.CancellationToken,
+                                                                                           Request.EventTrackingId);
 
 
                                                      #region Authorized
 
-                                                     if (AuthStartResult.Result == AuthStartResultType.Authorized)
-
-                                                         return 
-                                                             new HTTPResponse.Builder(Request) {
-                                                                 HTTPStatusCode             = HTTPStatusCode.OK,
-                                                                 Server                     = HTTPServer.DefaultServerName,
-                                                                 Date                       = DateTime.UtcNow,
-                                                                 AccessControlAllowOrigin   = "*",
-                                                                 AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
-                                                                 AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
-                                                                 ContentType                = HTTPContentType.JSON_UTF8,
-                                                                 Content                    = JSONObject.Create(
-                                                                                                  new JProperty("SessionId",         AuthStartResult.SessionId.     ToString()),
-                                                                                                  new JProperty("ProviderId",        AuthStartResult.ProviderId.    ToString()),
-                                                                                                  new JProperty("AuthorizatorId",    AuthStartResult.AuthorizatorId.ToString()),
-                                                                                                  new JProperty("Description",       "Authorized")
-                                                                                              ).ToString().
-                                                                                                Replace(Environment.NewLine, "").
-                                                                                                ToUTF8Bytes()
-                                                             };
+                                                     if (result.Result == AuthStartResultTypes.Authorized)
+                                                         return new HTTPResponse.Builder(Request) {
+                                                                    HTTPStatusCode             = HTTPStatusCode.OK,
+                                                                    Server                     = HTTPServer.DefaultServerName,
+                                                                    Date                       = DateTime.UtcNow,
+                                                                    AccessControlAllowOrigin   = "*",
+                                                                    AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
+                                                                    AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                                    ContentType                = HTTPContentType.JSON_UTF8,
+                                                                    Content                    = result.ToJSON().ToUTF8Bytes()
+                                                                };
 
                                                      #endregion
 
                                                      #region NotAuthorized
 
-                                                     else if (AuthStartResult.Result == AuthStartResultType.Error)
-
-                                                         return 
-                                                             new HTTPResponse.Builder(Request) {
-                                                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                                                 Server                     = HTTPServer.DefaultServerName,
-                                                                 Date                       = DateTime.UtcNow,
-                                                                 AccessControlAllowOrigin   = "*",
-                                                                 AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
-                                                                 AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
-                                                                 ContentType                = HTTPContentType.JSON_UTF8,
-                                                                 Content                    = JSONObject.Create(
-                                                                                                  new JProperty("AuthorizatorId",    AuthStartResult.AuthorizatorId.ToString()),
-                                                                                                  new JProperty("Description",       AuthStartResult.Description)
-                                                                                              ).ToString().
-                                                                                                Replace(Environment.NewLine, "").
-                                                                                                ToUTF8Bytes()
-                                                             };
+                                                     else if (result.Result == AuthStartResultTypes.Error)
+                                                         return new HTTPResponse.Builder(Request) {
+                                                                    HTTPStatusCode             = HTTPStatusCode.Unauthorized,
+                                                                    Server                     = HTTPServer.DefaultServerName,
+                                                                    Date                       = DateTime.UtcNow,
+                                                                    AccessControlAllowOrigin   = "*",
+                                                                    AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
+                                                                    AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                                    ContentType                = HTTPContentType.JSON_UTF8,
+                                                                    Content                    = result.ToJSON().ToUTF8Bytes()
+                                                                };
 
                                                      #endregion
 
                                                      #region Forbidden
 
                                                      else
-                                                         return 
-                                                             new HTTPResponse.Builder(Request) {
-                                                                 HTTPStatusCode             = HTTPStatusCode.Forbidden, //ToDo: Is this smart?
-                                                                 Server                     = HTTPServer.DefaultServerName,
-                                                                 Date                       = DateTime.UtcNow,
-                                                                 AccessControlAllowOrigin   = "*",
-                                                                 AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
-                                                                 AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
-                                                                 ContentType                = HTTPContentType.JSON_UTF8,
-                                                                 Content                    = JSONObject.Create(
-                                                                                                  new JProperty("AuthorizatorId",    AuthStartResult.AuthorizatorId.ToString()),
-                                                                                                  new JProperty("Description",       AuthStartResult.Description)
-                                                                                              ).ToString().
-                                                                                                Replace(Environment.NewLine, "").
-                                                                                                ToUTF8Bytes()
-                                                             };
+                                                         return new HTTPResponse.Builder(Request) {
+                                                                    HTTPStatusCode             = HTTPStatusCode.Forbidden, //ToDo: Is this smart?
+                                                                    Server                     = HTTPServer.DefaultServerName,
+                                                                    Date                       = DateTime.UtcNow,
+                                                                    AccessControlAllowOrigin   = "*",
+                                                                    AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
+                                                                    AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                                    ContentType                = HTTPContentType.JSON_UTF8,
+                                                                    Content                    = result.ToJSON().ToUTF8Bytes()
+                                                                };
 
                                                      #endregion
 
@@ -6724,79 +6702,61 @@ namespace cloud.charging.open.API
                                                      #endregion
 
 
-                                                     var AuthStopResult = await RoamingNetwork.
-                                                                                    AuthorizeStop(SessionId,
-                                                                                                  LocalAuthentication.FromAuthToken(AuthToken),
-                                                                                                  ChargingLocation.FromEVSEId(EVSE.Id),
-                                                                                                  OperatorId,
+                                                     var result = await RoamingNetwork.
+                                                                            AuthorizeStop(SessionId,
+                                                                                          LocalAuthentication.FromAuthToken(AuthToken),
+                                                                                          ChargingLocation.FromEVSEId(EVSE.Id),
+                                                                                          OperatorId,
 
-                                                                                                  Request.Timestamp,
-                                                                                                  Request.CancellationToken,
-                                                                                                  Request.EventTrackingId);
+                                                                                          Request.Timestamp,
+                                                                                          Request.CancellationToken,
+                                                                                          Request.EventTrackingId);
 
 
                                                      #region Authorized
 
-                                                     if (AuthStopResult.Result == AuthStopResultType.Authorized)
-
-                                                         return 
-                                                             new HTTPResponse.Builder(Request) {
-                                                                 HTTPStatusCode  = HTTPStatusCode.OK,
-                                                                 Server                     = HTTPServer.DefaultServerName,
-                                                                 Date                       = DateTime.UtcNow,
-                                                                 AccessControlAllowOrigin   = "*",
-                                                                 AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
-                                                                 AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
-                                                                 ContentType     = HTTPContentType.JSON_UTF8,
-                                                                 Content         = JSONObject.Create(
-                                                                                       new JProperty("ProviderId",        AuthStopResult.ProviderId.ToString()),
-                                                                                       new JProperty("AuthorizatorId",    AuthStopResult.AuthorizatorId.ToString()),
-                                                                                       new JProperty("Description",       "Authorized")
-                                                                                   ).ToString().
-                                                                                     ToUTF8Bytes()
-                                                             };
+                                                     if (result.Result == AuthStopResultTypes.Authorized)
+                                                         return new HTTPResponse.Builder(Request) {
+                                                                    HTTPStatusCode  = HTTPStatusCode.OK,
+                                                                    Server                     = HTTPServer.DefaultServerName,
+                                                                    Date                       = DateTime.UtcNow,
+                                                                    AccessControlAllowOrigin   = "*",
+                                                                    AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
+                                                                    AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                                    ContentType                = HTTPContentType.JSON_UTF8,
+                                                                    Content                    = result.ToJSON().ToUTF8Bytes()
+                                                                };
 
                                                      #endregion
 
                                                      #region NotAuthorized
 
-                                                     else if (AuthStopResult.Result == AuthStopResultType.NotAuthorized)
-
-                                                         return 
-                                                             new HTTPResponse.Builder(Request) {
-                                                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                                                 Server                     = HTTPServer.DefaultServerName,
-                                                                 Date                       = DateTime.UtcNow,
-                                                                 AccessControlAllowOrigin   = "*",
-                                                                 AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
-                                                                 AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
-                                                                 ContentType                = HTTPContentType.JSON_UTF8,
-                                                                 Content                    = JSONObject.Create(
-                                                                                                  new JProperty("AuthorizatorId",    AuthStopResult.AuthorizatorId.ToString()),
-                                                                                                  new JProperty("Description",       AuthStopResult.Description)
-                                                                                              ).ToString().
-                                                                                                ToUTF8Bytes()
-                                                             };
+                                                     else if (result.Result == AuthStopResultTypes.NotAuthorized)
+                                                         return new HTTPResponse.Builder(Request) {
+                                                                    HTTPStatusCode             = HTTPStatusCode.Unauthorized,
+                                                                    Server                     = HTTPServer.DefaultServerName,
+                                                                    Date                       = DateTime.UtcNow,
+                                                                    AccessControlAllowOrigin   = "*",
+                                                                    AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
+                                                                    AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                                    ContentType                = HTTPContentType.JSON_UTF8,
+                                                                    Content                    = result.ToJSON().ToUTF8Bytes()
+                                                                };
 
                                                      #endregion
 
                                                      #region Forbidden
 
-                                                     return 
-                                                         new HTTPResponse.Builder(Request) {
-                                                             HTTPStatusCode             = HTTPStatusCode.Forbidden, //ToDo: Is this smart?
-                                                             Server                     = HTTPServer.DefaultServerName,
-                                                             Date                       = DateTime.UtcNow,
-                                                             AccessControlAllowOrigin   = "*",
-                                                             AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
-                                                             AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
-                                                             ContentType                = HTTPContentType.JSON_UTF8,
-                                                             Content                    = JSONObject.Create(
-                                                                                              new JProperty("AuthorizatorId",    AuthStopResult.AuthorizatorId.ToString()),
-                                                                                              new JProperty("Description",       AuthStopResult.Description)
-                                                                                          ).ToString().
-                                                                                            ToUTF8Bytes()
-                                                         };
+                                                     return new HTTPResponse.Builder(Request) {
+                                                                HTTPStatusCode             = HTTPStatusCode.Forbidden, //ToDo: Is this smart?
+                                                                Server                     = HTTPServer.DefaultServerName,
+                                                                Date                       = DateTime.UtcNow,
+                                                                AccessControlAllowOrigin   = "*",
+                                                                AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
+                                                                AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                                ContentType                = HTTPContentType.JSON_UTF8,
+                                                                Content                    = result.ToJSON().ToUTF8Bytes()
+                                                            };
 
                                                      #endregion
 
