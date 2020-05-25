@@ -5635,8 +5635,10 @@ namespace cloud.charging.open.API
 
                                                      var skip           = Request.QueryString.GetUInt64("skip");
                                                      var take           = Request.QueryString.GetUInt64("take");
-                                                     var sinceFilter    = Request.QueryString.CreateDateTimeFilter<EVSEAdminStatus>("since", (status, timestamp) => status.Status.Timestamp >= timestamp);
-                                                     var matchFilter    = Request.QueryString.CreateStringFilter  <EVSEAdminStatus>("match", (status, pattern)   => status.Id.ToString().Contains(pattern));
+                                                     var historySize    = Request.QueryString.GetUInt64                     ("historySize",  1);
+                                                     var afterFilter    = Request.QueryString.CreateDateTimeFilter<DateTime>("after",       (timestamp, pattern) => timestamp >= pattern);
+                                                     var beforeFilter   = Request.QueryString.CreateDateTimeFilter<DateTime>("before",      (timestamp, pattern) => timestamp <= pattern);
+                                                     var matchFilter    = Request.QueryString.CreateStringFilter  <EVSE_Id> ("match",       (evseId,    pattern) => evseId.ToString().Contains(pattern));
 
                                                      //ToDo: Getting the expected total count might be very expensive!
                                                      var ExpectedCount  = RoamingNetwork.EVSEAdminStatus().ULongCount();
@@ -5651,11 +5653,12 @@ namespace cloud.charging.open.API
                                                              AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
                                                              ETag                           = "1",
                                                              ContentType                    = HTTPContentType.JSON_UTF8,
-                                                             Content                        = RoamingNetwork.EVSEAdminStatus().
-                                                                                                  Where (matchFilter).
-                                                                                                  Where (sinceFilter).
-                                                                                                  ToJSON(skip, take).
-                                                                                                  ToUTF8Bytes(),
+                                                             Content                        = RoamingNetwork.EVSEAdminStatusSchedule(IncludeEVSEs:    evse      => matchFilter(evse.Id),
+                                                                                                                                     TimestampFilter: timestamp => beforeFilter(timestamp) &&
+                                                                                                                                                                   afterFilter (timestamp),
+                                                                                                                                     HistorySize:     historySize).
+                                                                                                             ToJSON(skip, take).
+                                                                                                             ToUTF8Bytes(),
                                                              X_ExpectedTotalNumberOfItems   = ExpectedCount,
                                                              Connection                     = "close"
                                                          }.AsImmutable);
@@ -5737,10 +5740,12 @@ namespace cloud.charging.open.API
 
                                                      #endregion
 
-                                                     var skip           = Request.QueryString.GetUInt64              ("skip");
-                                                     var take           = Request.QueryString.GetUInt64              ("take");
-                                                     var sinceFilter    = Request.QueryString.CreateDateTimeFilter<EVSEStatus>("since", (status, timestamp) => status.Status.Timestamp >= timestamp);
-                                                     var matchFilter    = Request.QueryString.CreateStringFilter  <EVSEStatus>("match", (status, pattern)   => status.Id.ToString().Contains(pattern));
+                                                     var skip           = Request.QueryString.GetUInt64                     ("skip");
+                                                     var take           = Request.QueryString.GetUInt64                     ("take");
+                                                     var historySize    = Request.QueryString.GetUInt64                     ("historySize",  1);
+                                                     var afterFilter    = Request.QueryString.CreateDateTimeFilter<DateTime>("after",       (timestamp, pattern) => timestamp >= pattern);
+                                                     var beforeFilter   = Request.QueryString.CreateDateTimeFilter<DateTime>("before",      (timestamp, pattern) => timestamp <= pattern);
+                                                     var matchFilter    = Request.QueryString.CreateStringFilter  <EVSE_Id> ("match",       (evseId,    pattern) => evseId.ToString().Contains(pattern));
 
                                                      //ToDo: Getting the expected total count might be very expensive!
                                                      var ExpectedCount  = RoamingNetwork.EVSEStatus().ULongCount();
@@ -5755,11 +5760,12 @@ namespace cloud.charging.open.API
                                                              AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
                                                              ETag                           = "1",
                                                              ContentType                    = HTTPContentType.JSON_UTF8,
-                                                             Content                        = RoamingNetwork.EVSEStatus().
-                                                                                                  Where (matchFilter).
-                                                                                                  Where (sinceFilter).
-                                                                                                  ToJSON(skip, take).
-                                                                                                  ToUTF8Bytes(),
+                                                             Content                        = RoamingNetwork.EVSEStatusSchedule(IncludeEVSEs:    evse      => matchFilter(evse.Id),
+                                                                                                                                TimestampFilter: timestamp => beforeFilter(timestamp) &&
+                                                                                                                                                              afterFilter (timestamp),
+                                                                                                                                HistorySize:     historySize).
+                                                                                                             ToJSON(skip, take).
+                                                                                                             ToUTF8Bytes(),
                                                              X_ExpectedTotalNumberOfItems   = ExpectedCount,
                                                              Connection                     = "close"
                                                          }.AsImmutable);
