@@ -151,6 +151,25 @@ namespace cloud.charging.open.API
 
             this.OpenChargingCloudAPI = OpenChargingCloudAPI;
 
+            #region EVSEs
+
+            RegisterEvent2("GetEVSEsStatusRequest",
+                           handler => OpenChargingCloudAPI.OnGetEVSEsStatusRequest += handler,
+                           handler => OpenChargingCloudAPI.OnGetEVSEsStatusRequest -= handler,
+                           "EVSEStatus", "EVSE", "Status", "Request",  "All").
+                RegisterDefaultConsoleLogTarget(this).
+                RegisterDefaultDiscLogTarget(this);
+
+            RegisterEvent2("GetEVSEsStatusResponse",
+                           handler => OpenChargingCloudAPI.OnGetEVSEsStatusResponse += handler,
+                           handler => OpenChargingCloudAPI.OnGetEVSEsStatusResponse -= handler,
+                           "EVSEStatus", "EVSE", "Status", "Response", "All").
+                RegisterDefaultConsoleLogTarget(this).
+                RegisterDefaultDiscLogTarget(this);
+
+            #endregion
+
+
             #region Register auth start/stop log events
 
             RegisterEvent2("AuthEVSEStart",

@@ -2068,6 +2068,7 @@ namespace cloud.charging.open.API
         #endregion
 
 
+
         #region (protected internal) CreateChargingPoolRequest (Request)
 
         /// <summary>
@@ -2166,6 +2167,7 @@ namespace cloud.charging.open.API
                                                   Response);
 
         #endregion
+
 
 
         #region (protected internal) CreateChargingStationRequest (Request)
@@ -2267,6 +2269,56 @@ namespace cloud.charging.open.API
 
         #endregion
 
+
+
+        #region (protected internal) SendGetEVSEsStatusRequest (Request)
+
+        /// <summary>
+        /// An event sent whenever a EVSEs->Status request was received.
+        /// </summary>
+        public HTTPRequestLogEvent OnGetEVSEsStatusRequest = new HTTPRequestLogEvent();
+
+        /// <summary>
+        /// An event sent whenever a EVSEs->Status request was received.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the request.</param>
+        /// <param name="API">The HTTP API.</param>
+        /// <param name="Request">A HTTP request.</param>
+        protected internal Task SendGetEVSEsStatusRequest(DateTime     Timestamp,
+                                                          HTTPAPI      API,
+                                                          HTTPRequest  Request)
+
+            => OnGetEVSEsStatusRequest?.WhenAll(Timestamp,
+                                                API ?? this,
+                                                Request);
+
+        #endregion
+
+        #region (protected internal) SendGetEVSEsStatusResponse(Response)
+
+        /// <summary>
+        /// An event sent whenever a EVSEs->Status response was sent.
+        /// </summary>
+        public HTTPResponseLogEvent OnGetEVSEsStatusResponse = new HTTPResponseLogEvent();
+
+        /// <summary>
+        /// An event sent whenever a EVSEs->Status response was sent.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the request.</param>
+        /// <param name="API">The HTTP API.</param>
+        /// <param name="Request">A HTTP request.</param>
+        /// <param name="Response">A HTTP response.</param>
+        protected internal Task SendGetEVSEsStatusResponse(DateTime      Timestamp,
+                                                           HTTPAPI       API,
+                                                           HTTPRequest   Request,
+                                                           HTTPResponse  Response)
+
+            => OnGetEVSEsStatusResponse?.WhenAll(Timestamp,
+                                                 API ?? this,
+                                                 Request,
+                                                 Response);
+
+        #endregion
 
 
 
@@ -5725,52 +5777,55 @@ namespace cloud.charging.open.API
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/EVSEs->Status
             // -----------------------------------------------------------------------------------------------
             HTTPServer.AddMethodCallback(Hostname,
-                                                 HTTPMethod.GET,
-                                                 URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs->Status",
-                                                 HTTPContentType.JSON_UTF8,
-                                                 HTTPDelegate: Request => {
+                                         HTTPMethod.GET,
+                                         URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs->Status",
+                                         HTTPContentType.JSON_UTF8,
+                                         HTTPRequestLogger:  SendGetEVSEsStatusRequest,
+                                         HTTPResponseLogger: SendGetEVSEsStatusResponse,
+                                         HTTPDelegate:       Request => {
 
-                                                     #region Check parameters
+                                             #region Check parameters
 
-                                                     if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork RoamingNetwork,
-                                                                                      out HTTPResponse   _HTTPResponse))
+                                             if (!Request.ParseRoamingNetwork(this,
+                                                                              out RoamingNetwork RoamingNetwork,
+                                                                              out HTTPResponse   _HTTPResponse))
+                                             {
+                                                 return Task.FromResult(_HTTPResponse);
+                                             }
 
-                                                         return Task.FromResult(_HTTPResponse);
+                                             #endregion
 
-                                                     #endregion
+                                             var skip          = Request.QueryString.GetUInt64                     ("skip");
+                                             var take          = Request.QueryString.GetUInt64                     ("take");
+                                             var historySize   = Request.QueryString.GetUInt64                     ("historySize",  1);
+                                             var afterFilter   = Request.QueryString.CreateDateTimeFilter<DateTime>("after",       (timestamp, pattern) => timestamp >= pattern);
+                                             var beforeFilter  = Request.QueryString.CreateDateTimeFilter<DateTime>("before",      (timestamp, pattern) => timestamp <= pattern);
+                                             var matchFilter   = Request.QueryString.CreateStringFilter  <EVSE_Id> ("match",       (evseId,    pattern) => evseId.ToString().Contains(pattern));
 
-                                                     var skip           = Request.QueryString.GetUInt64                     ("skip");
-                                                     var take           = Request.QueryString.GetUInt64                     ("take");
-                                                     var historySize    = Request.QueryString.GetUInt64                     ("historySize",  1);
-                                                     var afterFilter    = Request.QueryString.CreateDateTimeFilter<DateTime>("after",       (timestamp, pattern) => timestamp >= pattern);
-                                                     var beforeFilter   = Request.QueryString.CreateDateTimeFilter<DateTime>("before",      (timestamp, pattern) => timestamp <= pattern);
-                                                     var matchFilter    = Request.QueryString.CreateStringFilter  <EVSE_Id> ("match",       (evseId,    pattern) => evseId.ToString().Contains(pattern));
+                                             //ToDo: Getting the expected total count might be very expensive!
+                                             var ExpectedCount  = RoamingNetwork.EVSEStatus().ULongCount();
 
-                                                     //ToDo: Getting the expected total count might be very expensive!
-                                                     var ExpectedCount  = RoamingNetwork.EVSEStatus().ULongCount();
+                                             return Task.FromResult(
+                                                 new HTTPResponse.Builder(Request) {
+                                                     HTTPStatusCode                 = HTTPStatusCode.OK,
+                                                     Server                         = HTTPServer.DefaultServerName,
+                                                     Date                           = DateTime.UtcNow,
+                                                     AccessControlAllowOrigin       = "*",
+                                                     AccessControlAllowMethods      = "GET",
+                                                     AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
+                                                     ETag                           = "1",
+                                                     ContentType                    = HTTPContentType.JSON_UTF8,
+                                                     Content                        = RoamingNetwork.EVSEStatusSchedule(IncludeEVSEs:    evse      => matchFilter (evse.Id),
+                                                                                                                        TimestampFilter: timestamp => beforeFilter(timestamp) &&
+                                                                                                                                                      afterFilter (timestamp),
+                                                                                                                        HistorySize:     historySize).
+                                                                                                     ToJSON(skip, take).
+                                                                                                     ToUTF8Bytes(),
+                                                     X_ExpectedTotalNumberOfItems   = ExpectedCount,
+                                                     Connection                     = "close"
+                                                 }.AsImmutable);
 
-                                                     return Task.FromResult(
-                                                         new HTTPResponse.Builder(Request) {
-                                                             HTTPStatusCode                 = HTTPStatusCode.OK,
-                                                             Server                         = HTTPServer.DefaultServerName,
-                                                             Date                           = DateTime.UtcNow,
-                                                             AccessControlAllowOrigin       = "*",
-                                                             AccessControlAllowMethods      = "GET",
-                                                             AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
-                                                             ETag                           = "1",
-                                                             ContentType                    = HTTPContentType.JSON_UTF8,
-                                                             Content                        = RoamingNetwork.EVSEStatusSchedule(IncludeEVSEs:    evse      => matchFilter(evse.Id),
-                                                                                                                                TimestampFilter: timestamp => beforeFilter(timestamp) &&
-                                                                                                                                                              afterFilter (timestamp),
-                                                                                                                                HistorySize:     historySize).
-                                                                                                             ToJSON(skip, take).
-                                                                                                             ToUTF8Bytes(),
-                                                             X_ExpectedTotalNumberOfItems   = ExpectedCount,
-                                                             Connection                     = "close"
-                                                         }.AsImmutable);
-
-                                                 });
+                                              });
 
             #endregion
 
@@ -7460,8 +7515,9 @@ namespace cloud.charging.open.API
                                                                                              out RoamingNetwork  RoamingNetwork,
                                                                                              out EVSE            EVSE,
                                                                                              out HTTPResponse    _HTTPResponse))
-
+                                                     {
                                                          return _HTTPResponse;
+                                                     }
 
                                                      #endregion
 
@@ -7961,7 +8017,7 @@ namespace cloud.charging.open.API
 
             #endregion
 
-            #region ~/RNs/{RoamingNetworkId}/ChargeDetailRecords/{ChargingSession_Id}
+            #region ~/RNs/{RoamingNetworkId}/ChargeDetailRecords/{ChargeDetailRecordId}
 
             #endregion
 
