@@ -7586,12 +7586,12 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------
             // curl -v -X SET -H "Content-Type: application/json" \
             //                -H "Accept:       application/json" \
-            //      -d "{ \"CurrentStatus\":  \"OutOfService\" }" \
+            //      -d "{ \"currentStatus\":  \"OutOfService\" }" \
             //      http://127.0.0.1:5500/RNs/TEST/EVSEs/DE*GEF*EVSE*ALPHA*ONE*1/Status
             // -----------------------------------------------------------------------
             // curl -v -X SET -H "Content-Type: application/json" \
             //                -H "Accept:       application/json" \
-            //      -d "{ \"StatusList\":  { \
+            //      -d "{ \"statusList\":  { \
             //              \"2014-10-13T22:14:01.862Z\": \"OutOfService\", \
             //              \"2014-10-13T21:32:15.386Z\": \"Charging\"  \
             //          }" \
@@ -7599,140 +7599,145 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------
             // curl -v -X SET -H "Content-Type: application/json" \
             //                -H "Accept:       application/json" \
-            //      -d "{ \"CurrentStatus\":  \"Charging\" }"     \
+            //      -d "{ \"currentStatus\":  \"Charging\" }"     \
             //      http://127.0.0.1:3004/RNs/Prod/EVSEs/DE*BDO*EVSE*CI*TESTS*A*1/Status
             HTTPServer.AddMethodCallback(Hostname,
-                                                 HTTPMethod.SET,
-                                                 URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}/Status",
-                                                 HTTPContentType.JSON_UTF8,
-                                                 HTTPDelegate: async Request => {
+                                         HTTPMethod.SET,
+                                         URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}/Status",
+                                         HTTPContentType.JSON_UTF8,
+                                         HTTPDelegate: async Request => {
 
-                                                     #region Check RoamingNetworkId and EVSEId URI parameters
+                                             #region Check RoamingNetworkId and EVSEId URI parameters
 
-                                                     if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork  RoamingNetwork,
-                                                                                             out EVSE            EVSE,
-                                                                                             out HTTPResponse    _HTTPResponse))
-                                                     {
-                                                         return _HTTPResponse;
-                                                     }
+                                             if (!Request.ParseRoamingNetworkAndEVSE(this,
+                                                                                     out RoamingNetwork  RoamingNetwork,
+                                                                                     out EVSE            EVSE,
+                                                                                     out HTTPResponse    _HTTPResponse))
+                                             {
+                                                 return _HTTPResponse;
+                                             }
 
-                                                     #endregion
+                                             #endregion
 
-                                                     #region Parse JSON
+                                             #region Parse JSON
 
-                                                     if (!Request.TryParseJObjectRequestBody(out JObject JSON, out _HTTPResponse))
-                                                         return _HTTPResponse;
+                                             if (!Request.TryParseJObjectRequestBody(out JObject JSON, out _HTTPResponse))
+                                                 return _HTTPResponse;
 
-                                                     #region Parse CurrentStatus  [optional]
+                                             #region Parse Current status  [optional]
 
-                                                     if (JSON.ParseOptional("CurrentStatus",
-                                                                            "EVSE status",
-                                                                            HTTPServer.DefaultServerName,
-                                                                            out EVSEStatusTypes? CurrentStatus,
-                                                                            Request,
-                                                                            out _HTTPResponse))
-                                                     {
+                                             if (JSON.ParseOptional("currentStatus",
+                                                                    "EVSE status",
+                                                                    HTTPServer.DefaultServerName,
+                                                                    out EVSEStatusTypes? CurrentStatus,
+                                                                    Request,
+                                                                    out _HTTPResponse))
+                                             {
 
-                                                         if (_HTTPResponse != null)
-                                                            return _HTTPResponse;
+                                                 if (_HTTPResponse != null)
+                                                     return _HTTPResponse;
 
-                                                     }
+                                             }
 
-                                                     #endregion
+                                             #endregion
 
-                                                     #region Parse StatusList     [optional]
+                                             #region Parse Status list     [optional]
 
-                                                     Timestamped<EVSEStatusTypes>[] StatusList = null;
+                                             Timestamped<EVSEStatusTypes>[] StatusList = null;
 
-                                                     if (JSON.ParseOptional("StatusList",
-                                                                            "status list",
-                                                                            HTTPServer.DefaultServerName,
-                                                                            out JObject JSONStatusList,
-                                                                            Request,
-                                                                            out _HTTPResponse))
-                                                     {
+                                             if (JSON.ParseOptional("statusList",
+                                                                    "status list",
+                                                                    HTTPServer.DefaultServerName,
+                                                                    out JObject JSONStatusList,
+                                                                    Request,
+                                                                    out _HTTPResponse))
+                                             {
 
-                                                         if (_HTTPResponse != null)
-                                                             return _HTTPResponse;
+                                                 if (_HTTPResponse != null)
+                                                     return _HTTPResponse;
 
-                                                         if (JSONStatusList != null)
-                                                         {
+                                                 if (JSONStatusList != null)
+                                                 {
 
-                                                             try
-                                                             {
-
-                                                                 StatusList = JSONStatusList.
-                                                                                  Values<JProperty>().
-                                                                                  Select(jproperty => new Timestamped<EVSEStatusTypes>(
-                                                                                                          DateTime.Parse(jproperty.Name),
-                                                                                                          (EVSEStatusTypes) Enum.Parse(typeof(EVSEStatusTypes), jproperty.Value.ToString())
-                                                                                                      )).
-                                                                                  OrderBy(status   => status.Timestamp).
-                                                                                  ToArray();
-
-                                                             }
-                                                             catch (Exception)
-                                                             {
-                                                                 // Will send the below BadRequest HTTP reply...
-                                                             }
-
-                                                         }
-
-                                                         if (JSONStatusList == null || StatusList == null || !StatusList.Any())
-                                                             return new HTTPResponse.Builder(Request) {
-                                                                 HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                                 Server          = HTTPServer.DefaultServerName,
-                                                                 Date            = DateTime.UtcNow,
-                                                                 ContentType     = HTTPContentType.JSON_UTF8,
-                                                                 Content         = new JObject(
-                                                                                       new JProperty("description", "Invalid status list!")
-                                                                                   ).ToUTF8Bytes()
-                                                             };
-
-                                                     }
-
-                                                     #endregion
-
-                                                     #region Fail, if both CurrentStatus and StatusList are missing...
-
-                                                     if (CurrentStatus == EVSEStatusTypes.Unspecified &&
-                                                         StatusList    == null)
+                                                     try
                                                      {
 
-                                                         return new HTTPResponse.Builder(Request) {
-                                                             HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                             Server          = HTTPServer.DefaultServerName,
-                                                             Date            = DateTime.UtcNow,
-                                                             ContentType     = HTTPContentType.JSON_UTF8,
-                                                             Content         = new JObject(
-                                                                                   new JProperty("description", "Either a 'CurrentStatus' or a 'StatusList' must be send!")
-                                                                               ).ToUTF8Bytes()
-                                                         };
+                                                         StatusList = JSONStatusList.
+                                                                          Values<JProperty>().
+                                                                          Select(jproperty => new Timestamped<EVSEStatusTypes>(
+                                                                                                  DateTime.Parse(jproperty.Name),
+                                                                                                  (EVSEStatusTypes) Enum.Parse(typeof(EVSEStatusTypes), jproperty.Value.ToString())
+                                                                                              )).
+                                                                          OrderBy(status   => status.Timestamp).
+                                                                          ToArray();
 
                                                      }
+                                                     catch (Exception)
+                                                     {
+                                                         // Will send the below BadRequest HTTP reply...
+                                                     }
 
-                                                     #endregion
+                                                 }
 
-                                                     #endregion
-
-
-                                                     if (StatusList == null)
-                                                         StatusList = new Timestamped<EVSEStatusTypes>[] {
-                                                                          new Timestamped<EVSEStatusTypes>(Request.Timestamp, CurrentStatus.Value)
-                                                                      };
-
-                                                     RoamingNetwork.SetEVSEStatus(EVSE.Id, StatusList);
-
-
+                                                 if (JSONStatusList == null || StatusList == null || !StatusList.Any())
                                                      return new HTTPResponse.Builder(Request) {
-                                                         HTTPStatusCode  = HTTPStatusCode.OK,
+                                                         HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                          Server          = HTTPServer.DefaultServerName,
                                                          Date            = DateTime.UtcNow,
-                                                         Connection      = "close"
+                                                         ContentType     = HTTPContentType.JSON_UTF8,
+                                                         Content         = new JObject(
+                                                                             new JProperty("description", "Invalid status list!")
+                                                                         ).ToUTF8Bytes()
                                                      };
 
-                                                 });
+                                             }
+
+                                             #endregion
+
+                                             #region Fail, if both CurrentStatus and StatusList are missing...
+
+                                             if (!CurrentStatus.HasValue && StatusList == null)
+                                             {
+
+                                                 return new HTTPResponse.Builder(Request) {
+                                                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                                                     Server          = HTTPServer.DefaultServerName,
+                                                     Date            = DateTime.UtcNow,
+                                                     ContentType     = HTTPContentType.JSON_UTF8,
+                                                     Content         = new JObject(
+                                                                         new JProperty("description", "Either a 'currentStatus' or a 'statusList' must be send!")
+                                                                     ).ToUTF8Bytes()
+                                                 };
+
+                                             }
+
+                                             #endregion
+
+                                             #endregion
+
+
+                                             if (StatusList == null)
+                                             {
+                                                 if (RoamingNetwork.TryGetEVSEById(EVSE.Id, out EVSE evse))
+                                                 {
+                                                     evse.Status = new Timestamped<EVSEStatusTypes>(Request.Timestamp,
+                                                                                                    CurrentStatus.Value);
+                                                 }
+                                             }
+
+                                             else
+                                                 RoamingNetwork.SetEVSEStatus(EVSE.Id,
+                                                                              StatusList);
+
+
+                                             return new HTTPResponse.Builder(Request) {
+                                                 HTTPStatusCode  = HTTPStatusCode.OK,
+                                                 Server          = HTTPServer.DefaultServerName,
+                                                 Date            = DateTime.UtcNow,
+                                                 Connection      = "close"
+                                             };
+
+                                         });
 
             #endregion
 
