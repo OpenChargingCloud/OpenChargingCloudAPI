@@ -3017,6 +3017,7 @@ namespace cloud.charging.open.API
             Directory.CreateDirectory("Metrics");
             Directory.CreateDirectory("CI-Tests");
 
+            Directory.CreateDirectory("OpenChargingCloudAPI");
             Directory.CreateDirectory("ChargingReservations");
             Directory.CreateDirectory("ChargingSessions");
             Directory.CreateDirectory("ChargeDetailRecords");
