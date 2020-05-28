@@ -5826,7 +5826,7 @@ namespace cloud.charging.open.API
                                                      Connection                     = "close"
                                                  }.AsImmutable);
 
-                                              });
+                                              }, AllowReplacement: URIReplacement.Allow);
 
             #endregion
 
