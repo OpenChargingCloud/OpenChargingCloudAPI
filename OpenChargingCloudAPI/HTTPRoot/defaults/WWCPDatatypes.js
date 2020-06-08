@@ -49,17 +49,17 @@ var WWCP;
         }
         Object.defineProperty(I18NString.prototype, "de", {
             get: function () { return this._de; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(I18NString.prototype, "en", {
             get: function () { return this._en; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(I18NString.prototype, "fr", {
             get: function () { return this._fr; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         return I18NString;
@@ -81,12 +81,12 @@ var WWCP;
         }
         Object.defineProperty(GeoCoordinate.prototype, "lat", {
             get: function () { return this._lat; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(GeoCoordinate.prototype, "lng", {
             get: function () { return this._lng; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         GeoCoordinate.Parse = function (JSON) {

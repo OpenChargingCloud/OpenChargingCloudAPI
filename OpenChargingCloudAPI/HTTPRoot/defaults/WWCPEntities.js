@@ -59,27 +59,27 @@ var WWCP;
         }
         Object.defineProperty(ChargingPool.prototype, "ChargingPoolId", {
             get: function () { return this._ChargingPoolId; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(ChargingPool.prototype, "Name", {
             get: function () { return this._Name; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(ChargingPool.prototype, "Description", {
             get: function () { return this._Description; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(ChargingPool.prototype, "GeoLocation", {
             get: function () { return this._GeoLocation; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(ChargingPool.prototype, "ChargingStations", {
             get: function () { return this._ChargingStations; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         return ChargingPool;
@@ -99,22 +99,22 @@ var WWCP;
         }
         Object.defineProperty(ChargingStation.prototype, "ChargingStationId", {
             get: function () { return this._ChargingStationId; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(ChargingStation.prototype, "Name", {
             get: function () { return this._Name; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(ChargingStation.prototype, "Description", {
             get: function () { return this._Description; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(ChargingStation.prototype, "EVSEs", {
             get: function () { return this._EVSEs; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         return ChargingStation;
@@ -131,22 +131,22 @@ var WWCP;
         }
         Object.defineProperty(EVSE.prototype, "EVSEId", {
             get: function () { return this._EVSEId; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(EVSE.prototype, "Description", {
             get: function () { return this._Description; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(EVSE.prototype, "MaxPower", {
             get: function () { return this._MaxPower; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(EVSE.prototype, "SocketOutlets", {
             get: function () { return this._SocketOutlets; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         return EVSE;
@@ -184,12 +184,12 @@ var WWCP;
         }
         Object.defineProperty(SocketOutlet.prototype, "Plug", {
             get: function () { return this._Plug; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(SocketOutlet.prototype, "PlugImage", {
             get: function () { return this._PlugImage; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         return SocketOutlet;
@@ -202,12 +202,12 @@ var WWCP;
         }
         Object.defineProperty(EVSEStatusRecord.prototype, "EVSEId", {
             get: function () { return this._EVSEId; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(EVSEStatusRecord.prototype, "EVSEStatus", {
             get: function () { return this._EVSEStatus; },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         EVSEStatusRecord.Parse = function (EVSEId, JSON) {
