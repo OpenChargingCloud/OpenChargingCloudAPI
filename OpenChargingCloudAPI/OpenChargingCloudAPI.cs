@@ -4030,27 +4030,29 @@ namespace cloud.charging.open.API
 
                                                          #region Parse oldValue    [mandatory]
 
-                                                         if (!JSON.ParseMandatory("oldValue",
-                                                                                  "old value of the property",
-                                                                                  HTTPServer.DefaultServerName,
-                                                                                  out OldValue,
-                                                                                  Request,
-                                                                                  out HTTPResponse))
-
+                                                         if (!JSON.ParseMandatoryText("oldValue",
+                                                                                      "old value of the property",
+                                                                                      HTTPServer.DefaultServerName,
+                                                                                      out OldValue,
+                                                                                      Request,
+                                                                                      out HTTPResponse))
+                                                         {
                                                              return Task.FromResult(HTTPResponse);
+                                                         }
 
                                                          #endregion
 
                                                          #region Parse newValue    [mandatory]
 
-                                                         if (!JSON.ParseMandatory("newValue",
-                                                                                  "new value of the property",
-                                                                                  HTTPServer.DefaultServerName,
-                                                                                  out NewValue,
-                                                                                  Request,
-                                                                                  out HTTPResponse))
-
+                                                         if (!JSON.ParseMandatoryText("newValue",
+                                                                                      "new value of the property",
+                                                                                      HTTPServer.DefaultServerName,
+                                                                                      out NewValue,
+                                                                                      Request,
+                                                                                      out HTTPResponse))
+                                                         {
                                                              return Task.FromResult(HTTPResponse);
+                                                         }
 
                                                          #endregion
 
