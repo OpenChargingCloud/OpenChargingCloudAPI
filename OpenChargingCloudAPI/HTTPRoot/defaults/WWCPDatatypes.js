@@ -22,7 +22,7 @@ if (typeof (Number.prototype.toRad) === "undefined") {
 var WWCP;
 (function (WWCP) {
     //#region Enums
-    var SocketTypes;
+    let SocketTypes;
     (function (SocketTypes) {
         SocketTypes[SocketTypes["unknown"] = 0] = "unknown";
         SocketTypes[SocketTypes["TypeFSchuko"] = 1] = "TypeFSchuko";
@@ -30,7 +30,7 @@ var WWCP;
         SocketTypes[SocketTypes["CHAdeMO"] = 3] = "CHAdeMO";
         SocketTypes[SocketTypes["CCSCombo2Plug_CableAttached"] = 4] = "CCSCombo2Plug_CableAttached";
     })(SocketTypes = WWCP.SocketTypes || (WWCP.SocketTypes = {}));
-    var EVSEStatusTypes;
+    let EVSEStatusTypes;
     (function (EVSEStatusTypes) {
         EVSEStatusTypes[EVSEStatusTypes["unknown"] = 0] = "unknown";
         EVSEStatusTypes[EVSEStatusTypes["available"] = 1] = "available";
@@ -39,79 +39,57 @@ var WWCP;
     })(EVSEStatusTypes = WWCP.EVSEStatusTypes || (WWCP.EVSEStatusTypes = {}));
     //#endregion
     //#region General data types...
-    var I18NString = /** @class */ (function () {
-        function I18NString(JSON) {
+    class I18NString {
+        constructor(JSON) {
             if (JSON !== undefined) {
                 this._de = JSON.hasOwnProperty("de") ? JSON.de : "";
                 this._en = JSON.hasOwnProperty("en") ? JSON.en : "";
                 this._fr = JSON.hasOwnProperty("fr") ? JSON.fr : "";
             }
         }
-        Object.defineProperty(I18NString.prototype, "de", {
-            get: function () { return this._de; },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(I18NString.prototype, "en", {
-            get: function () { return this._en; },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(I18NString.prototype, "fr", {
-            get: function () { return this._fr; },
-            enumerable: false,
-            configurable: true
-        });
-        return I18NString;
-    }());
+        get de() { return this._de; }
+        get en() { return this._en; }
+        get fr() { return this._fr; }
+    }
     WWCP.I18NString = I18NString;
     /**
     * A geo coordinate
     * @class WWCP.GeoCoordinate
     */
-    var GeoCoordinate = /** @class */ (function () {
+    class GeoCoordinate {
         /**
         * Create a new geo coordinate.
         * @param {number} Latitude A geo latitude.
         * @param {number} Longitude A geo longitude.
         */
-        function GeoCoordinate(Latitude, Longitude) {
+        constructor(Latitude, Longitude) {
             this._lat = Latitude;
             this._lng = Longitude;
         }
-        Object.defineProperty(GeoCoordinate.prototype, "lat", {
-            get: function () { return this._lat; },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(GeoCoordinate.prototype, "lng", {
-            get: function () { return this._lng; },
-            enumerable: false,
-            configurable: true
-        });
-        GeoCoordinate.Parse = function (JSON) {
+        get lat() { return this._lat; }
+        get lng() { return this._lng; }
+        static Parse(JSON) {
             if (JSON !== undefined) {
                 return new GeoCoordinate(JSON.hasOwnProperty("lat") ? JSON.lat : 0, JSON.hasOwnProperty("lng") ? JSON.lng : 0);
             }
-        };
+        }
         /**
         * Returns the distance to the given geo coordinate in km.
         * @param  {GeoCoordinate} Target A geo coordinate.
         * @param  {number} Decimals Number of decimals of the result.
         * @returns {number} the distance to the given geo coordinate in km.
         */
-        GeoCoordinate.prototype.DistanceTo = function (Target, Decimals) {
+        DistanceTo(Target, Decimals) {
             Decimals = Decimals || 8;
-            var earthRadius = 6371; // km
-            var dLat = (Target.lat - this._lat).toRad();
-            var dLon = (Target.lng - this._lng).toRad();
-            var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(this._lat.toRad()) * Math.cos(Target.lat.toRad());
-            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-            var d = earthRadius * c;
+            const earthRadius = 6371; // km
+            const dLat = (Target.lat - this._lat).toRad();
+            const dLon = (Target.lng - this._lng).toRad();
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(this._lat.toRad()) * Math.cos(Target.lat.toRad());
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            const d = earthRadius * c;
             return Math.round(d * Math.pow(10, Decimals)) / Math.pow(10, Decimals);
-        };
-        return GeoCoordinate;
-    }());
+        }
+    }
     WWCP.GeoCoordinate = GeoCoordinate;
     //#endregion
 })(WWCP || (WWCP = {}));

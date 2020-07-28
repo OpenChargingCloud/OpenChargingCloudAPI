@@ -32,129 +32,62 @@ var WWCP;
  * limitations under the License.
  */
 (function (WWCP) {
-    var RoamingNetwork = /** @class */ (function () {
-        function RoamingNetwork() {
-        }
-        return RoamingNetwork;
-    }());
+    class RoamingNetwork {
+    }
     WWCP.RoamingNetwork = RoamingNetwork;
-    var EVSEOperator = /** @class */ (function () {
-        function EVSEOperator() {
-        }
-        return EVSEOperator;
-    }());
+    class EVSEOperator {
+    }
     WWCP.EVSEOperator = EVSEOperator;
-    var ChargingPool = /** @class */ (function () {
-        function ChargingPool(JSON) {
+    class ChargingPool {
+        constructor(JSON) {
             if (JSON !== undefined) {
                 this._ChargingPoolId = JSON.hasOwnProperty("ChargingPoolId") ? JSON.ChargingPoolId : null;
                 this._Name = JSON.hasOwnProperty("Name") ? new WWCP.I18NString(JSON.Name) : null;
                 this._Description = JSON.hasOwnProperty("Description") ? new WWCP.I18NString(JSON.Description) : null;
                 this._GeoLocation = JSON.hasOwnProperty("GeoLocation") ? WWCP.GeoCoordinate.Parse(JSON.GeoLocation) : null;
                 this._ChargingStations = (JSON.hasOwnProperty("ChargingStations") &&
-                    JSON.ChargingStations instanceof Array) ? JSON.ChargingStations.map(function (station, index, array) {
-                    return new ChargingStation(station);
-                }) : null;
+                    JSON.ChargingStations instanceof Array) ? JSON.ChargingStations.map((station, index, array) => new ChargingStation(station)) : null;
             }
         }
-        Object.defineProperty(ChargingPool.prototype, "ChargingPoolId", {
-            get: function () { return this._ChargingPoolId; },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(ChargingPool.prototype, "Name", {
-            get: function () { return this._Name; },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(ChargingPool.prototype, "Description", {
-            get: function () { return this._Description; },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(ChargingPool.prototype, "GeoLocation", {
-            get: function () { return this._GeoLocation; },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(ChargingPool.prototype, "ChargingStations", {
-            get: function () { return this._ChargingStations; },
-            enumerable: false,
-            configurable: true
-        });
-        return ChargingPool;
-    }());
+        get ChargingPoolId() { return this._ChargingPoolId; }
+        get Name() { return this._Name; }
+        get Description() { return this._Description; }
+        get GeoLocation() { return this._GeoLocation; }
+        get ChargingStations() { return this._ChargingStations; }
+    }
     WWCP.ChargingPool = ChargingPool;
-    var ChargingStation = /** @class */ (function () {
-        function ChargingStation(JSON) {
+    class ChargingStation {
+        constructor(JSON) {
             if (JSON !== undefined) {
                 this._ChargingStationId = JSON.hasOwnProperty("ChargingStationId") ? JSON.ChargingStationId : null;
                 this._Name = JSON.hasOwnProperty("Name") ? new WWCP.I18NString(JSON.Name) : null;
                 this._Description = JSON.hasOwnProperty("Description") ? new WWCP.I18NString(JSON.Description) : null;
                 this._EVSEs = (JSON.hasOwnProperty("EVSEs") &&
-                    JSON.EVSEs instanceof Array) ? JSON.EVSEs.map(function (evse, index, array) {
-                    return new EVSE(evse);
-                }) : null;
+                    JSON.EVSEs instanceof Array) ? JSON.EVSEs.map((evse, index, array) => new EVSE(evse)) : null;
             }
         }
-        Object.defineProperty(ChargingStation.prototype, "ChargingStationId", {
-            get: function () { return this._ChargingStationId; },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(ChargingStation.prototype, "Name", {
-            get: function () { return this._Name; },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(ChargingStation.prototype, "Description", {
-            get: function () { return this._Description; },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(ChargingStation.prototype, "EVSEs", {
-            get: function () { return this._EVSEs; },
-            enumerable: false,
-            configurable: true
-        });
-        return ChargingStation;
-    }());
+        get ChargingStationId() { return this._ChargingStationId; }
+        get Name() { return this._Name; }
+        get Description() { return this._Description; }
+        get EVSEs() { return this._EVSEs; }
+    }
     WWCP.ChargingStation = ChargingStation;
-    var EVSE = /** @class */ (function () {
-        function EVSE(JSON) {
+    class EVSE {
+        constructor(JSON) {
             this._EVSEId = JSON.EVSEId;
             this._Description = new WWCP.I18NString(JSON.Description);
             this._MaxPower = JSON.MaxPower;
-            this._SocketOutlets = JSON.SocketOutlets.map(function (socketOutlet, index, array) {
-                return new SocketOutlet(socketOutlet);
-            });
+            this._SocketOutlets = JSON.SocketOutlets.map((socketOutlet, index, array) => new SocketOutlet(socketOutlet));
         }
-        Object.defineProperty(EVSE.prototype, "EVSEId", {
-            get: function () { return this._EVSEId; },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(EVSE.prototype, "Description", {
-            get: function () { return this._Description; },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(EVSE.prototype, "MaxPower", {
-            get: function () { return this._MaxPower; },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(EVSE.prototype, "SocketOutlets", {
-            get: function () { return this._SocketOutlets; },
-            enumerable: false,
-            configurable: true
-        });
-        return EVSE;
-    }());
+        get EVSEId() { return this._EVSEId; }
+        get Description() { return this._Description; }
+        get MaxPower() { return this._MaxPower; }
+        get SocketOutlets() { return this._SocketOutlets; }
+    }
     WWCP.EVSE = EVSE;
-    var SocketOutlet = /** @class */ (function () {
-        function SocketOutlet(JSON) {
-            var prefix = "images/Ladestecker/";
+    class SocketOutlet {
+        constructor(JSON) {
+            const prefix = "images/Ladestecker/";
             switch (JSON.Plug) {
                 case "TypeFSchuko":
                     this._Plug = WWCP.SocketTypes.TypeFSchuko;
@@ -182,35 +115,18 @@ var WWCP;
                     break;
             }
         }
-        Object.defineProperty(SocketOutlet.prototype, "Plug", {
-            get: function () { return this._Plug; },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(SocketOutlet.prototype, "PlugImage", {
-            get: function () { return this._PlugImage; },
-            enumerable: false,
-            configurable: true
-        });
-        return SocketOutlet;
-    }());
+        get Plug() { return this._Plug; }
+        get PlugImage() { return this._PlugImage; }
+    }
     WWCP.SocketOutlet = SocketOutlet;
-    var EVSEStatusRecord = /** @class */ (function () {
-        function EVSEStatusRecord(EVSEId, EVSEStatus) {
+    class EVSEStatusRecord {
+        constructor(EVSEId, EVSEStatus) {
             this._EVSEId = EVSEId;
             this._EVSEStatus = EVSEStatus;
         }
-        Object.defineProperty(EVSEStatusRecord.prototype, "EVSEId", {
-            get: function () { return this._EVSEId; },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(EVSEStatusRecord.prototype, "EVSEStatus", {
-            get: function () { return this._EVSEStatus; },
-            enumerable: false,
-            configurable: true
-        });
-        EVSEStatusRecord.Parse = function (EVSEId, JSON) {
+        get EVSEId() { return this._EVSEId; }
+        get EVSEStatus() { return this._EVSEStatus; }
+        static Parse(EVSEId, JSON) {
             var status;
             for (var timestamp in JSON) {
                 status = JSON[timestamp];
@@ -219,9 +135,8 @@ var WWCP;
             if (JSON !== undefined) {
                 return new EVSEStatusRecord(EVSEId, status);
             }
-        };
-        return EVSEStatusRecord;
-    }());
+        }
+    }
     WWCP.EVSEStatusRecord = EVSEStatusRecord;
 })(WWCP || (WWCP = {}));
 //# sourceMappingURL=WWCPEntities.js.map
