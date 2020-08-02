@@ -113,6 +113,7 @@ namespace cloud.charging.open.API
                                        IPPort?                              LocalPort                          = null,
                                        String                               BaseURL                            = "",
                                        HTTPPath?                            URLPathPrefix                      = null,
+                                       Boolean                              UseSecureCookies                   = true,
 
                                        ServerCertificateSelectorDelegate    ServerCertificateSelector          = null,
                                        RemoteCertificateValidationCallback  ClientCertificateValidator         = null,
@@ -163,6 +164,7 @@ namespace cloud.charging.open.API
                    LocalPort:                         LocalPort,
                    BaseURL:                           BaseURL,
                    URLPathPrefix:                     URLPathPrefix,
+                   UseSecureCookies:                  UseSecureCookies,
 
                    ServerCertificateSelector:         ServerCertificateSelector,
                    ClientCertificateValidator:        ClientCertificateValidator,
