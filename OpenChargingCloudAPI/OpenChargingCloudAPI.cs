@@ -4139,12 +4139,12 @@ namespace cloud.charging.open.API
 
                                                      var skip                    = Request.QueryString.GetUInt64("skip");
                                                      var take                    = Request.QueryString.GetUInt64("take");
-                                                     var expand                  = Request.QueryString.GetStrings("expand", true);
-                                                     var expandRoamingNetworks   = expand.Contains("networks")          ? InfoStatus.Expand     : InfoStatus.ShowIdOnly;
-                                                     var expandOperators         = expand.Contains("operators")         ? InfoStatus.Expand     : InfoStatus.ShowIdOnly;
-                                                     var expandChargingStations  = expand.Contains("-chargingstations") ? InfoStatus.ShowIdOnly : InfoStatus.Expand;
-                                                     var expandBrands            = expand.Contains("brands")            ? InfoStatus.Expand     : InfoStatus.ShowIdOnly;
-                                                     var expandDataLicenses      = expand.Contains("licenses")          ? InfoStatus.Expand     : InfoStatus.ShowIdOnly;
+                                                     var expand                  = Request.QueryString.GetStrings("expand");
+                                                     var expandRoamingNetworks   = expand.ContainsIgnoreCase("networks")          ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
+                                                     var expandOperators         = expand.ContainsIgnoreCase("operators")         ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
+                                                     var expandChargingStations  = expand.ContainsIgnoreCase("-chargingstations") ? InfoStatus.ShowIdOnly : InfoStatus.Expanded;
+                                                     var expandBrands            = expand.ContainsIgnoreCase("brands")            ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
+                                                     var expandDataLicenses      = expand.ContainsIgnoreCase("licenses")          ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
 
                                                      //ToDo: Getting the expected total count might be very expensive!
                                                      var ExpectedCount           = RoamingNetwork.ChargingPools.ULongCount();
@@ -4508,12 +4508,12 @@ namespace cloud.charging.open.API
 
                                                      var skip                    = Request.QueryString.GetUInt64("skip");
                                                      var take                    = Request.QueryString.GetUInt64("take");
-                                                     var expand                  = Request.QueryString.GetStrings("expand", true);
-                                                     var expandRoamingNetworks   = expand.Contains("networks")      ? InfoStatus.Expand     : InfoStatus.ShowIdOnly;
-                                                     var expandOperators         = expand.Contains("operators")     ? InfoStatus.Expand     : InfoStatus.ShowIdOnly;
-                                                     var expandChargingPools     = expand.Contains("chargingpools") ? InfoStatus.Expand     : InfoStatus.ShowIdOnly;
-                                                     var expandEVSEs             = expand.Contains("-evses")        ? InfoStatus.ShowIdOnly : InfoStatus.Expand;
-                                                     var expandBrands            = expand.Contains("brands")        ? InfoStatus.Expand     : InfoStatus.ShowIdOnly;
+                                                     var expand                  = Request.QueryString.GetStrings("expand");
+                                                     var expandRoamingNetworks   = expand.ContainsIgnoreCase("networks")      ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
+                                                     var expandOperators         = expand.ContainsIgnoreCase("operators")     ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
+                                                     var expandChargingPools     = expand.ContainsIgnoreCase("chargingpools") ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
+                                                     var expandEVSEs             = expand.ContainsIgnoreCase("-evses")        ? InfoStatus.ShowIdOnly : InfoStatus.Expanded;
+                                                     var expandBrands            = expand.ContainsIgnoreCase("brands")        ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
 
                                                      //ToDo: Getting the expected total count might be very expensive!
                                                      var _ExpectedCount   = _ChargingPool.ChargingStations.ULongCount();
@@ -4677,10 +4677,10 @@ namespace cloud.charging.open.API
 
                                                      var skip                   = Request.QueryString.GetUInt64("skip");
                                                      var take                   = Request.QueryString.GetUInt64("take");
-                                                     var expand                 = Request.QueryString.GetStrings("expand", true);
-                                                     var expandRoamingNetworks  = expand.Contains("networks")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandOperators        = expand.Contains("operators") ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandBrands           = expand.Contains("brands")    ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
+                                                     var expand                 = Request.QueryString.GetStrings("expand");
+                                                     var expandRoamingNetworks  = expand.ContainsIgnoreCase("networks")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandOperators        = expand.ContainsIgnoreCase("operators") ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandBrands           = expand.ContainsIgnoreCase("brands")    ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
 
                                                      //ToDo: Getting the expected total count might be very expensive!
                                                      var _ExpectedCount   = _ChargingStation.EVSEs.ULongCount();
@@ -4786,12 +4786,12 @@ namespace cloud.charging.open.API
 
                                                      var skip                    = Request.QueryString.GetUInt64("skip");
                                                      var take                    = Request.QueryString.GetUInt64("take");
-                                                     var expand                  = Request.QueryString.GetStrings("expand", true);
-                                                     var expandRoamingNetworks   = expand.Contains("networks")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandOperators         = expand.Contains("operators") ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandChargingPools     = expand.Contains("pools")     ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandChargingStations  = expand.Contains("stations")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandBrands            = expand.Contains("brands")    ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
+                                                     var expand                  = Request.QueryString.GetStrings("expand");
+                                                     var expandRoamingNetworks   = expand.ContainsIgnoreCase("networks")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandOperators         = expand.ContainsIgnoreCase("operators") ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandChargingPools     = expand.ContainsIgnoreCase("pools")     ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandChargingStations  = expand.ContainsIgnoreCase("stations")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandBrands            = expand.ContainsIgnoreCase("brands")    ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
 
                                                      //ToDo: Getting the expected total count might be very expensive!
                                                      var _ExpectedCount   = _ChargingPool.EVSEs.ULongCount();
@@ -4954,13 +4954,13 @@ namespace cloud.charging.open.API
 
                                                      var skip                   = Request.QueryString.GetUInt64("skip");
                                                      var take                   = Request.QueryString.GetUInt64("take");
-                                                     var expand                 = Request.QueryString.GetStrings("expand", true);
-                                                     var expandRoamingNetworks  = expand.Contains("networks")      ? InfoStatus.Expand     : InfoStatus.ShowIdOnly;
-                                                     var expandOperators        = expand.Contains("operators")     ? InfoStatus.Expand     : InfoStatus.ShowIdOnly;
-                                                     var expandChargingPools    = expand.Contains("chargingpools") ? InfoStatus.Expand     : InfoStatus.ShowIdOnly;
-                                                     var expandEVSEs            = expand.Contains("-evses")        ? InfoStatus.ShowIdOnly : InfoStatus.Expand;
-                                                     var expandBrands           = expand.Contains("brands")        ? InfoStatus.Expand     : InfoStatus.ShowIdOnly;
-                                                     var expandDataLicenses     = expand.Contains("licenses")      ? InfoStatus.Expand     : InfoStatus.ShowIdOnly;
+                                                     var expand                 = Request.QueryString.GetStrings("expand");
+                                                     var expandRoamingNetworks  = expand.ContainsIgnoreCase("networks")      ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
+                                                     var expandOperators        = expand.ContainsIgnoreCase("operators")     ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
+                                                     var expandChargingPools    = expand.ContainsIgnoreCase("chargingpools") ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
+                                                     var expandEVSEs            = expand.ContainsIgnoreCase("-evses")        ? InfoStatus.ShowIdOnly : InfoStatus.Expanded;
+                                                     var expandBrands           = expand.ContainsIgnoreCase("brands")        ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
+                                                     var expandDataLicenses     = expand.ContainsIgnoreCase("licenses")      ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
 
                                                      //ToDo: Getting the expected total count might be very expensive!
                                                      var _ExpectedCount   = RoamingNetwork.ChargingStations.ULongCount();
@@ -5334,12 +5334,12 @@ namespace cloud.charging.open.API
 
                                                      var skip                    = Request.QueryString.GetUInt64("skip");
                                                      var take                    = Request.QueryString.GetUInt64("take");
-                                                     var expand                  = Request.QueryString.GetStrings("expand", true);
-                                                     var expandRoamingNetworks   = expand.Contains("networks")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandOperators         = expand.Contains("operators") ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandChargingPools     = expand.Contains("pools")     ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandChargingStations  = expand.Contains("stations")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandBrands            = expand.Contains("brands")    ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
+                                                     var expand                  = Request.QueryString.GetStrings("expand");
+                                                     var expandRoamingNetworks   = expand.ContainsIgnoreCase("networks")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandOperators         = expand.ContainsIgnoreCase("operators") ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandChargingPools     = expand.ContainsIgnoreCase("pools")     ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandChargingStations  = expand.ContainsIgnoreCase("stations")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandBrands            = expand.ContainsIgnoreCase("brands")    ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
 
 
                                                      //ToDo: Getting the expected total count might be very expensive!
@@ -5504,13 +5504,13 @@ namespace cloud.charging.open.API
 
                                                      var skip                    = Request.QueryString.GetUInt64("skip");
                                                      var take                    = Request.QueryString.GetUInt64("take");
-                                                     var expand                  = Request.QueryString.GetStrings("expand", true);
-                                                     var expandRoamingNetworks   = expand.Contains("networks")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandOperators         = expand.Contains("operators") ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandChargingPools     = expand.Contains("pools")     ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandChargingStations  = expand.Contains("stations")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandBrands            = expand.Contains("brands")    ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandDataLicenses      = expand.Contains("licenses")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
+                                                     var expand                  = Request.QueryString.GetStrings("expand");
+                                                     var expandRoamingNetworks   = expand.ContainsIgnoreCase("networks")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandOperators         = expand.ContainsIgnoreCase("operators") ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandChargingPools     = expand.ContainsIgnoreCase("pools")     ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandChargingStations  = expand.ContainsIgnoreCase("stations")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandBrands            = expand.ContainsIgnoreCase("brands")    ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandDataLicenses      = expand.ContainsIgnoreCase("licenses")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
 
 
                                                      //ToDo: Getting the expected total count might be very expensive!
@@ -7848,13 +7848,13 @@ namespace cloud.charging.open.API
                                                      var skip                    = Request.QueryString.GetUInt64("skip");
                                                      var take                    = Request.QueryString.GetUInt64("take");
 
-                                                     var expand                  = Request.QueryString.GetStrings("expand", true);
-                                                     var expandRoamingNetworks   = expand.Contains("networks")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandOperators         = expand.Contains("operators") ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandChargingPools     = expand.Contains("pools")     ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandChargingStations  = expand.Contains("stations")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandBrands            = expand.Contains("brands")    ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandDataLicenses      = expand.Contains("licenses")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
+                                                     var expand                  = Request.QueryString.GetStrings("expand");
+                                                     var expandRoamingNetworks   = expand.ContainsIgnoreCase("networks")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandOperators         = expand.ContainsIgnoreCase("operators") ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandChargingPools     = expand.ContainsIgnoreCase("pools")     ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandChargingStations  = expand.ContainsIgnoreCase("stations")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandBrands            = expand.ContainsIgnoreCase("brands")    ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandDataLicenses      = expand.ContainsIgnoreCase("licenses")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
 
 
                                                      //ToDo: Getting the expected total count might be very expensive!
@@ -7986,13 +7986,13 @@ namespace cloud.charging.open.API
 
                                                      //ToDo: Filter sessions by HTTPUser organization!
 
-                                                     var expand                  = Request.QueryString.GetStrings("expand", true);
-                                                     var expandRoamingNetworks   = expand.Contains("networks")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandOperators         = expand.Contains("operators") ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandChargingPools     = expand.Contains("pools")     ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandChargingStations  = expand.Contains("stations")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandBrands            = expand.Contains("brands")    ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandDataLicenses      = expand.Contains("licenses")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
+                                                     var expand                  = Request.QueryString.GetStrings("expand");
+                                                     var expandRoamingNetworks   = expand.ContainsIgnoreCase("networks")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandOperators         = expand.ContainsIgnoreCase("operators") ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandChargingPools     = expand.ContainsIgnoreCase("pools")     ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandChargingStations  = expand.ContainsIgnoreCase("stations")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandBrands            = expand.ContainsIgnoreCase("brands")    ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandDataLicenses      = expand.ContainsIgnoreCase("licenses")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
 
 
                                                      return Task.FromResult(
@@ -8342,13 +8342,13 @@ namespace cloud.charging.open.API
 
                                                      var skip                      = Request.QueryString.GetUInt64("skip");
                                                      var take                      = Request.QueryString.GetUInt64("take");
-                                                     var expand                    = Request.QueryString.GetStrings("expand", true);
-                                                     var expandRoamingNetworkId    = expand.Contains("network")           ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandChargingPoolIds     = expand.Contains("chargingpools")     ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandChargingStationIds  = expand.Contains("chargingstations")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandEVSEIds             = expand.Contains("EVSEs")             ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandBrandIds            = expand.Contains("brands")            ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandDataLicenses        = expand.Contains("licenses")          ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
+                                                     var expand                    = Request.QueryString.GetStrings("expand");
+                                                     var expandRoamingNetworkId    = expand.ContainsIgnoreCase("network")           ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandChargingPoolIds     = expand.ContainsIgnoreCase("chargingpools")     ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandChargingStationIds  = expand.ContainsIgnoreCase("chargingstations")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandEVSEIds             = expand.ContainsIgnoreCase("EVSEs")             ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandBrandIds            = expand.ContainsIgnoreCase("brands")            ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandDataLicenses        = expand.ContainsIgnoreCase("licenses")          ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
 
                                                      //ToDo: Getting the expected total count might be very expensive!
                                                      var _ExpectedCount = _RoamingNetwork.ChargingStationOperators.ULongCount();
@@ -8601,11 +8601,11 @@ namespace cloud.charging.open.API
 
                                                      var skip                    = Request.QueryString.GetUInt64("skip");
                                                      var take                    = Request.QueryString.GetUInt64("take");
-                                                     var expand                  = Request.QueryString.GetStrings("expand", true);
-                                                     var expandChargingStations  = !expand.Contains("-chargingstations") ? InfoStatus.ShowIdOnly : InfoStatus.Expand;
-                                                     var expandRoamingNetworks   =  expand.Contains("networks")          ? InfoStatus.Expand     : InfoStatus.ShowIdOnly;
-                                                     var expandOperators         =  expand.Contains("operators")         ? InfoStatus.Expand     : InfoStatus.ShowIdOnly;
-                                                     var expandBrands            =  expand.Contains("brands")            ? InfoStatus.Expand     : InfoStatus.ShowIdOnly;
+                                                     var expand                  = Request.QueryString.GetStrings("expand");
+                                                     var expandChargingStations  = !expand.ContainsIgnoreCase("-chargingstations") ? InfoStatus.ShowIdOnly : InfoStatus.Expanded;
+                                                     var expandRoamingNetworks   =  expand.ContainsIgnoreCase("networks")          ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
+                                                     var expandOperators         =  expand.ContainsIgnoreCase("operators")         ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
+                                                     var expandBrands            =  expand.ContainsIgnoreCase("brands")            ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
 
                                                      //ToDo: Getting the expected total count might be very expensive!
                                                      var _ExpectedCount = RoamingNetwork.ChargingPools.ULongCount();
@@ -9075,11 +9075,11 @@ namespace cloud.charging.open.API
 
                                                      var skip                      = Request.QueryString.GetUInt64("skip");
                                                      var take                      = Request.QueryString.GetUInt64("take");
-                                                     var expand                    = Request.QueryString.GetStrings("expand", true);
-                                                     var expandChargingPoolIds     = expand.Contains("pools")     ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandChargingStationIds  = expand.Contains("stations")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandEVSEIds             = expand.Contains("evses")     ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandDataLicenseIds      = expand.Contains("operators") ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
+                                                     var expand                    = Request.QueryString.GetStrings("expand");
+                                                     var expandChargingPoolIds     = expand.ContainsIgnoreCase("pools")     ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandChargingStationIds  = expand.ContainsIgnoreCase("stations")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandEVSEIds             = expand.ContainsIgnoreCase("evses")     ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandDataLicenseIds      = expand.ContainsIgnoreCase("operators") ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
 
                                                      //ToDo: Getting the expected total count might be very expensive!
                                                      var _ExpectedCount            = ChargingStationOperator.ChargingStationGroups.ULongCount();
@@ -9141,12 +9141,12 @@ namespace cloud.charging.open.API
 
                                                      var skip                       = Request.QueryString.GetUInt64("skip");
                                                      var take                       = Request.QueryString.GetUInt64("take");
-                                                     var include                    = Request.QueryString.GetStrings("include", true);
-                                                     var expand                     = Request.QueryString.GetStrings("expand",  true);
-                                                     var expandChargingPoolIds      = expand. Contains("pools")     ? InfoStatus.Expand : include.Contains("pools")     ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
-                                                     var expandChargingStationIds   = expand. Contains("stations")  ? InfoStatus.Expand : include.Contains("stations")  ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
-                                                     var expandEVSEIds              = expand. Contains("evses")     ? InfoStatus.Expand : include.Contains("evses")     ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
-                                                     var expandDataLicenseIds       = expand. Contains("operators") ? InfoStatus.Expand : include.Contains("operators") ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
+                                                     var include                    = Request.QueryString.GetStrings("include");
+                                                     var expand                     = Request.QueryString.GetStrings("expand");
+                                                     var expandChargingPoolIds      = expand. ContainsIgnoreCase("pools")     ? InfoStatus.Expanded : include.Contains("pools")     ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
+                                                     var expandChargingStationIds   = expand. ContainsIgnoreCase("stations")  ? InfoStatus.Expanded : include.Contains("stations")  ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
+                                                     var expandEVSEIds              = expand. ContainsIgnoreCase("evses")     ? InfoStatus.Expanded : include.Contains("evses")     ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
+                                                     var expandDataLicenseIds       = expand. ContainsIgnoreCase("operators") ? InfoStatus.Expanded : include.Contains("operators") ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
 
                                                      var ChargingStationGroupJSON   = ChargingStationGroup.ToJSON(false,
                                                                                                                   expandChargingPoolIds,
@@ -9169,7 +9169,7 @@ namespace cloud.charging.open.API
 
                                                      //}
 
-                                                     //else if (expandChargingPoolIds == InfoStatus.Expand) {
+                                                     //else if (expandChargingPoolIds == InfoStatus.Expanded) {
 
                                                      //    var pools  = ChargingStationOperator.
                                                      //                     ChargingPools.
@@ -9202,7 +9202,7 @@ namespace cloud.charging.open.API
 
                                                      //}
 
-                                                     //else if (expandChargingStationIds == InfoStatus.Expand) {
+                                                     //else if (expandChargingStationIds == InfoStatus.Expanded) {
 
                                                      //    var stations  = ChargingStationOperator.
                                                      //                        ChargingStations.
@@ -9237,7 +9237,7 @@ namespace cloud.charging.open.API
 
                                                      //}
 
-                                                     //else if (expandEVSEIds == InfoStatus.Expand) {
+                                                     //else if (expandEVSEIds == InfoStatus.Expanded) {
 
                                                      //    var evses  = ChargingStationOperator.
                                                      //                     EVSEs.
@@ -9308,11 +9308,11 @@ namespace cloud.charging.open.API
 
                                                      var skip                      = Request.QueryString.GetUInt64("skip");
                                                      var take                      = Request.QueryString.GetUInt64("take");
-                                                     var expand                    = Request.QueryString.GetStrings("expand", true);
-                                                     var expandChargingPoolIds     = expand.Contains("pools")     ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandChargingStationIds  = expand.Contains("stations")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandEVSEIds             = expand.Contains("evses")     ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandDataLicenseIds      = expand.Contains("operators") ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
+                                                     var expand                    = Request.QueryString.GetStrings("expand");
+                                                     var expandChargingPoolIds     = expand.ContainsIgnoreCase("pools")     ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandChargingStationIds  = expand.ContainsIgnoreCase("stations")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandEVSEIds             = expand.ContainsIgnoreCase("evses")     ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandDataLicenseIds      = expand.ContainsIgnoreCase("operators") ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
 
                                                      //ToDo: Getting the expected total count might be very expensive!
                                                      var _ExpectedCount            = ChargingStationOperator.EVSEGroups.ULongCount();
@@ -9374,12 +9374,12 @@ namespace cloud.charging.open.API
 
                                                      var skip                      = Request.QueryString.GetUInt64("skip");
                                                      var take                      = Request.QueryString.GetUInt64("take");
-                                                     var include                   = Request.QueryString.GetStrings("include", true);
-                                                     var expand                    = Request.QueryString.GetStrings("expand",  true);
-                                                     var expandChargingPoolIds     = expand. Contains("pools")     ? InfoStatus.Expand : include.Contains("pools")     ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
-                                                     var expandChargingStationIds  = expand. Contains("stations")  ? InfoStatus.Expand : include.Contains("stations")  ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
-                                                     var expandEVSEIds             = expand. Contains("evses")     ? InfoStatus.Expand : include.Contains("evses")     ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
-                                                     var expandDataLicenseIds      = expand. Contains("operators") ? InfoStatus.Expand : include.Contains("operators") ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
+                                                     var include                   = Request.QueryString.GetStrings("include");
+                                                     var expand                    = Request.QueryString.GetStrings("expand");
+                                                     var expandChargingPoolIds     = expand. ContainsIgnoreCase("pools")     ? InfoStatus.Expanded : include.Contains("pools")     ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
+                                                     var expandChargingStationIds  = expand. ContainsIgnoreCase("stations")  ? InfoStatus.Expanded : include.Contains("stations")  ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
+                                                     var expandEVSEIds             = expand. ContainsIgnoreCase("evses")     ? InfoStatus.Expanded : include.Contains("evses")     ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
+                                                     var expandDataLicenseIds      = expand. ContainsIgnoreCase("operators") ? InfoStatus.Expanded : include.Contains("operators") ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
 
                                                      var EVSEGroupJSON             = EVSEGroup.ToJSON(false,
                                                                                                       expandChargingPoolIds,
@@ -9402,7 +9402,7 @@ namespace cloud.charging.open.API
 
                                                      //}
 
-                                                     //else if (expandChargingPoolIds == InfoStatus.Expand) {
+                                                     //else if (expandChargingPoolIds == InfoStatus.Expanded) {
 
                                                      //    var pools  = EVSEOperator.
                                                      //                     ChargingPools.
@@ -9435,7 +9435,7 @@ namespace cloud.charging.open.API
 
                                                      //}
 
-                                                     //else if (expandEVSEIds == InfoStatus.Expand) {
+                                                     //else if (expandEVSEIds == InfoStatus.Expanded) {
 
                                                      //    var stations  = EVSEOperator.
                                                      //                        EVSEs.
@@ -9470,7 +9470,7 @@ namespace cloud.charging.open.API
 
                                                      //}
 
-                                                     //else if (expandEVSEIds == InfoStatus.Expand) {
+                                                     //else if (expandEVSEIds == InfoStatus.Expanded) {
 
                                                      //    var evses  = EVSEOperator.
                                                      //                     EVSEs.
@@ -9541,11 +9541,11 @@ namespace cloud.charging.open.API
 
                                                      var skip                      = Request.QueryString.GetUInt64("skip");
                                                      var take                      = Request.QueryString.GetUInt64("take");
-                                                     var expand                    = Request.QueryString.GetStrings("expand", true);
-                                                     var expandChargingPoolIds     = expand.Contains("pools")     ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandChargingStationIds  = expand.Contains("stations")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandEVSEIds             = expand.Contains("evses")     ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandDataLicenseIds      = expand.Contains("operators") ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
+                                                     var expand                    = Request.QueryString.GetStrings("expand");
+                                                     var expandChargingPoolIds     = expand.ContainsIgnoreCase("pools")     ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandChargingStationIds  = expand.ContainsIgnoreCase("stations")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandEVSEIds             = expand.ContainsIgnoreCase("evses")     ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandDataLicenseIds      = expand.ContainsIgnoreCase("operators") ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
 
                                                      //ToDo: Getting the expected total count might be very expensive!
                                                      var _ExpectedCount            = ChargingStationOperator.Brands.ULongCount();
@@ -9607,12 +9607,12 @@ namespace cloud.charging.open.API
 
                                                      var skip                       = Request.QueryString.GetUInt64("skip");
                                                      var take                       = Request.QueryString.GetUInt64("take");
-                                                     var include                    = Request.QueryString.GetStrings("include", true);
-                                                     var expand                     = Request.QueryString.GetStrings("expand",  true);
-                                                     var expandChargingPoolIds      = expand. Contains("pools")     ? InfoStatus.Expand : include.Contains("pools")     ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
-                                                     var expandChargingStationIds   = expand. Contains("stations")  ? InfoStatus.Expand : include.Contains("stations")  ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
-                                                     var expandEVSEIds              = expand. Contains("evses")     ? InfoStatus.Expand : include.Contains("evses")     ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
-                                                     var expandDataLicenseIds       = expand. Contains("operators") ? InfoStatus.Expand : include.Contains("operators") ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
+                                                     var include                    = Request.QueryString.GetStrings("include");
+                                                     var expand                     = Request.QueryString.GetStrings("expand");
+                                                     var expandChargingPoolIds      = expand. ContainsIgnoreCase("pools")     ? InfoStatus.Expanded : include.Contains("pools")     ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
+                                                     var expandChargingStationIds   = expand. ContainsIgnoreCase("stations")  ? InfoStatus.Expanded : include.Contains("stations")  ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
+                                                     var expandEVSEIds              = expand. ContainsIgnoreCase("evses")     ? InfoStatus.Expanded : include.Contains("evses")     ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
+                                                     var expandDataLicenseIds       = expand. ContainsIgnoreCase("operators") ? InfoStatus.Expanded : include.Contains("operators") ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
 
                                                      var BrandJSON                  = Brand.ToJSON(false,
                                                                                                    expandChargingPoolIds,
@@ -9635,7 +9635,7 @@ namespace cloud.charging.open.API
 
                                                      }
 
-                                                     else if (expandChargingPoolIds == InfoStatus.Expand) {
+                                                     else if (expandChargingPoolIds == InfoStatus.Expanded) {
 
                                                          var pools  = ChargingStationOperator.
                                                                           ChargingPools.
@@ -9669,7 +9669,7 @@ namespace cloud.charging.open.API
 
                                                      }
 
-                                                     else if (expandChargingStationIds == InfoStatus.Expand) {
+                                                     else if (expandChargingStationIds == InfoStatus.Expanded) {
 
                                                          var stations  = ChargingStationOperator.
                                                                              ChargingStations.
@@ -9706,7 +9706,7 @@ namespace cloud.charging.open.API
 
                                                      }
 
-                                                     else if (expandEVSEIds == InfoStatus.Expand) {
+                                                     else if (expandEVSEIds == InfoStatus.Expanded) {
 
                                                          var evses  = ChargingStationOperator.
                                                                           EVSEs.
@@ -9778,11 +9778,11 @@ namespace cloud.charging.open.API
 
                                                      var skip                      = Request.QueryString.GetUInt64("skip");
                                                      var take                      = Request.QueryString.GetUInt64("take");
-                                                     var expand                    = Request.QueryString.GetStrings("expand", true);
-                                                     var expandChargingPoolIds     = expand.Contains("pools")     ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandChargingStationIds  = expand.Contains("stations")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandEVSEIds             = expand.Contains("evses")     ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandDataLicenseIds      = expand.Contains("operators") ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
+                                                     var expand                    = Request.QueryString.GetStrings("expand");
+                                                     var expandChargingPoolIds     = expand.ContainsIgnoreCase("pools")     ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandChargingStationIds  = expand.ContainsIgnoreCase("stations")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandEVSEIds             = expand.ContainsIgnoreCase("evses")     ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandDataLicenseIds      = expand.ContainsIgnoreCase("operators") ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
 
                                                      //ToDo: Getting the expected total count might be very expensive!
                                                      var _ExpectedCount            = ChargingStationOperator.ChargingTariffs.ULongCount();
@@ -9839,11 +9839,11 @@ namespace cloud.charging.open.API
 
                                                      var skip                      = Request.QueryString.GetUInt64("skip");
                                                      var take                      = Request.QueryString.GetUInt64("take");
-                                                     var expand                    = Request.QueryString.GetStrings("expand", true);
-                                                     var expandChargingPoolIds     = expand.Contains("pools")     ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandChargingStationIds  = expand.Contains("stations")  ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandEVSEIds             = expand.Contains("evses")     ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
-                                                     var expandDataLicenseIds      = expand.Contains("operators") ? InfoStatus.Expand : InfoStatus.ShowIdOnly;
+                                                     var expand                    = Request.QueryString.GetStrings("expand");
+                                                     var expandChargingPoolIds     = expand.ContainsIgnoreCase("pools")     ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandChargingStationIds  = expand.ContainsIgnoreCase("stations")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandEVSEIds             = expand.ContainsIgnoreCase("evses")     ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                                                     var expandDataLicenseIds      = expand.ContainsIgnoreCase("operators") ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
 
                                                      //ToDo: Getting the expected total count might be very expensive!
                                                      var _ExpectedCount            = ChargingStationOperator.ChargingTariffs.ULongCount();
@@ -9906,10 +9906,10 @@ namespace cloud.charging.open.API
 
                                                      var skip                    = Request.QueryString.GetUInt64("skip");
                                                      var take                    = Request.QueryString.GetUInt64("take");
-                                                     var expand                  = Request.QueryString.GetStrings("expand", true);
-                                                     //var expandChargingPools     = !expand.Contains("-chargingpools");
-                                                     //var expandChargingStations  = !expand.Contains("-chargingstations");
-                                                     //var expandBrands            = expand.Contains("brands");
+                                                     var expand                  = Request.QueryString.GetStrings("expand");
+                                                     //var expandChargingPools     = !expand.ContainsIgnoreCase("-chargingpools");
+                                                     //var expandChargingStations  = !expand.ContainsIgnoreCase("-chargingstations");
+                                                     //var expandBrands            = expand.ContainsIgnoreCase("brands");
 
                                                      //ToDo: Getting the expected total count might be very expensive!
                                                      var _ExpectedCount = _RoamingNetwork.eMobilityProviders.ULongCount();

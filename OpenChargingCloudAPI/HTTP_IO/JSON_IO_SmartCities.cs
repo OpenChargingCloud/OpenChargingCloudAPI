@@ -79,7 +79,7 @@ namespace org.GraphDefined.WWCP.Net.IO.JSON
 
                                                      var skip                    = Request.QueryString.GetUInt64("skip");
                                                      var take                    = Request.QueryString.GetUInt64("take");
-                                                     var expand                  = Request.QueryString.GetStrings("expand", true);
+                                                     var expand                  = Request.QueryString.GetStrings("expand");
                                                      //var expandChargingPools     = !expand.Contains("-chargingpools");
                                                      //var expandChargingStations  = !expand.Contains("-chargingstations");
                                                      //var expandBrands            = expand.Contains("brands");
