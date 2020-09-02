@@ -1930,11 +1930,14 @@ namespace cloud.charging.open.API
         /// <summary>
         /// The HTTP root for embedded ressources.
         /// </summary>
-        public new const String HTTPRoot = "cloud.charging.open.api.HTTPRoot.";
+        public new const       String              HTTPRoot                                  = "cloud.charging.open.api.HTTPRoot.";
 
-        public static readonly HTTPEventSource_Id DebugLogId         = HTTPEventSource_Id.Parse("DebugLog");
-        public static readonly HTTPEventSource_Id ImporterLogId      = HTTPEventSource_Id.Parse("ImporterLog");
-        public static readonly HTTPEventSource_Id ForwardingInfosId  = HTTPEventSource_Id.Parse("ForwardingInfos");
+        public  const          String              DefaultOpenChargingCloudAPIDatabaseFile   = "OpenChargingCloudAPI.db";
+        public  const          String              DefaultOpenChargingCloudAPILogFile        = "OpenChargingCloudAPI.log";
+
+        public static readonly HTTPEventSource_Id  DebugLogId                                = HTTPEventSource_Id.Parse("DebugLog");
+        public static readonly HTTPEventSource_Id  ImporterLogId                             = HTTPEventSource_Id.Parse("ImporterLog");
+        public static readonly HTTPEventSource_Id  ForwardingInfosId                         = HTTPEventSource_Id.Parse("ForwardingInfos");
 
         #endregion
 
@@ -2876,6 +2879,7 @@ namespace cloud.charging.open.API
         /// <param name="TelegramBotToken">The Telegram API access token of the bot.</param>
         /// 
         /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
+        /// <param name="UseSecureCookies">Force the web browser to send cookies only via HTTPS.</param>
         /// <param name="Language">The main language of the API.</param>
         /// <param name="LogoImage">The logo of the website.</param>
         /// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
@@ -2910,7 +2914,6 @@ namespace cloud.charging.open.API
                                     IPPort?                              LocalPort                          = null,
                                     String                               BaseURL                            = "",
                                     HTTPPath?                            URLPathPrefix                      = null,
-                                    Boolean                              UseSecureCookies                   = true,
 
                                     ServerCertificateSelectorDelegate    ServerCertificateSelector          = null,
                                     RemoteCertificateValidationCallback  ClientCertificateValidator         = null,
@@ -2929,6 +2932,7 @@ namespace cloud.charging.open.API
                                     String                               TelegramBotToken                   = null,
 
                                     HTTPCookieName?                      CookieName                         = null,
+                                    Boolean                              UseSecureCookies                   = true,
                                     Languages?                           Language                           = null,
                                     String                               LogoImage                          = null,
                                     NewUserSignUpEMailCreatorDelegate    NewUserSignUpEMailCreator          = null,
@@ -2953,8 +2957,9 @@ namespace cloud.charging.open.API
                                     Boolean                              SkipURLTemplates                   = false,
                                     Boolean                              DisableNotifications               = false,
                                     Boolean                              DisableLogfile                     = false,
+                                    String                               DatabaseFile                       = DefaultOpenChargingCloudAPIDatabaseFile,
                                     String                               LoggingPath                        = null,
-                                    String                               LogfileName                        = "OpenChargingCloudAPI.log",
+                                    String                               LogfileName                        = DefaultOpenChargingCloudAPILogFile,
                                     DNSClient                            DNSClient                          = null,
                                     Boolean                              Autostart                          = false)
 
@@ -2964,7 +2969,6 @@ namespace cloud.charging.open.API
                    LocalPort:                         LocalPort                   ?? IPPort.Parse(5500),
                    BaseURL:                           BaseURL,
                    URLPathPrefix:                     URLPathPrefix,
-                   UseSecureCookies:                  UseSecureCookies,
 
                    ServerCertificateSelector:         ServerCertificateSelector,
                    ClientCertificateValidator:        ClientCertificateValidator,
@@ -2983,6 +2987,7 @@ namespace cloud.charging.open.API
                    TelegramBotToken:                  TelegramBotToken,
 
                    CookieName:                        CookieName                  ?? HTTPCookieName.Parse("OpenChargingCloudAPI"),
+                   UseSecureCookies:                  UseSecureCookies,
                    Language:                          Language                    ?? Languages.eng,
                    LogoImage:                         LogoImage                   ?? "images/OpenChargingCloud_Logo2.png",
                    NewUserSignUpEMailCreator:         NewUserSignUpEMailCreator   ?? __NewUserSignUpEMailCreator          (BaseURL, APIEMailAddress, APIPassphrase),
@@ -3007,8 +3012,9 @@ namespace cloud.charging.open.API
                    SkipURLTemplates:                  SkipURLTemplates,
                    DisableNotifications:              DisableNotifications,
                    DisableLogfile:                    DisableLogfile,
-                   LoggingPath:                       LoggingPath,
-                   LogfileName:                       LogfileName,
+                   DatabaseFile:                      DatabaseFile                ?? DefaultOpenChargingCloudAPIDatabaseFile,
+                   LoggingPath:                       LoggingPath                 ?? "default",
+                   LogfileName:                       LogfileName                 ?? DefaultOpenChargingCloudAPILogFile,
                    DNSClient:                         DNSClient,
                    Autostart:                         Autostart)
 
@@ -3045,7 +3051,7 @@ namespace cloud.charging.open.API
                                                          LogfilePrefix:            LogfilePrefix);
 
 
-            RegisterURITemplates();
+            RegisterURLTemplates();
 
             if (Autostart)
                 Start();
@@ -3191,7 +3197,7 @@ namespace cloud.charging.open.API
         //    this.WWCP = OpenChargingCloudAPI.AttachToHTTPAPI(HTTPServer);
 
         //    if (!SkipURITemplates)
-        //        RegisterURITemplates();
+        //        RegisterURLTemplates();
 
         //    if (Autostart)
         //        Start();
@@ -3295,7 +3301,7 @@ namespace cloud.charging.open.API
         //    this.WWCP = OpenChargingCloudAPI.AttachToHTTPAPI(HTTPServer ?? throw new ArgumentNullException(nameof(HTTPServer), "The given HTTP server must not be null!"));
 
         //    if (!SkipURITemplates)
-        //        RegisterURITemplates();
+        //        RegisterURLTemplates();
 
         //}
 
@@ -3395,9 +3401,9 @@ namespace cloud.charging.open.API
 
         #endregion
 
-        #region (private) RegisterURITemplates()
+        #region (private) RegisterURLTemplates()
 
-        private void RegisterURITemplates()
+        private void RegisterURLTemplates()
         {
 
             #region /shared/OpenChargingCloudAPI

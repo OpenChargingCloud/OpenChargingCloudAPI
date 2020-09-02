@@ -47,6 +47,13 @@ namespace cloud.charging.open.API
     public class OpenChargingCloudEMPAPI : OpenChargingCloudAPI
     {
 
+        #region Data
+
+        public const String  DefaultOpenChargingCloudEMPAPIDatabaseFile   = "OpenChargingCloudEMPAPI.db";
+        public const String  DefaultOpenChargingCloudEMPAPILogFile        = "OpenChargingCloudEMPAPI.log";
+
+        #endregion
+
         #region Properties
 
         #endregion
@@ -79,6 +86,7 @@ namespace cloud.charging.open.API
         /// <param name="APIAdminSMS">A list of admin SMS phonenumbers.</param>
         /// 
         /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
+        /// <param name="UseSecureCookies">Force the web browser to send cookies only via HTTPS.</param>
         /// <param name="Language">The main language of the API.</param>
         /// <param name="LogoImage">The logo of the website.</param>
         /// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
@@ -113,7 +121,6 @@ namespace cloud.charging.open.API
                                        IPPort?                              LocalPort                          = null,
                                        String                               BaseURL                            = "",
                                        HTTPPath?                            URLPathPrefix                      = null,
-                                       Boolean                              UseSecureCookies                   = true,
 
                                        ServerCertificateSelectorDelegate    ServerCertificateSelector          = null,
                                        RemoteCertificateValidationCallback  ClientCertificateValidator         = null,
@@ -129,6 +136,7 @@ namespace cloud.charging.open.API
                                        IEnumerable<PhoneNumber>             APIAdminSMS                        = null,
 
                                        HTTPCookieName?                      CookieName                         = null,
+                                       Boolean                              UseSecureCookies                   = true,
                                        Languages?                           Language                           = null,
                                        String                               LogoImage                          = null,
                                        NewUserSignUpEMailCreatorDelegate    NewUserSignUpEMailCreator          = null,
@@ -153,8 +161,9 @@ namespace cloud.charging.open.API
                                        Boolean                              SkipURLTemplates                   = false,
                                        Boolean                              DisableNotifications               = false,
                                        Boolean                              DisableLogfile                     = false,
+                                       String                               DatabaseFile                       = DefaultOpenChargingCloudEMPAPIDatabaseFile,
                                        String                               LoggingPath                        = null,
-                                       String                               LogfileName                        = "OpenChargingCloudCSOAPI.log",
+                                       String                               LogfileName                        = DefaultOpenChargingCloudEMPAPILogFile,
                                        DNSClient                            DNSClient                          = null,
                                        Boolean                              Autostart                          = false)
 
@@ -204,14 +213,15 @@ namespace cloud.charging.open.API
                    SkipURLTemplates:                  SkipURLTemplates,
                    DisableNotifications:              DisableNotifications,
                    DisableLogfile:                    DisableLogfile,
-                   LoggingPath:                       LoggingPath,
-                   LogfileName:                       LogfileName,
+                   DatabaseFile:                      DatabaseFile                ?? DefaultOpenChargingCloudEMPAPIDatabaseFile,
+                   LoggingPath:                       LoggingPath                 ?? "default",
+                   LogfileName:                       LogfileName                 ?? DefaultOpenChargingCloudEMPAPILogFile,
                    DNSClient:                         DNSClient,
                    Autostart:                         false)
 
         {
 
-            //RegisterURITemplates();
+            //RegisterURLTemplates();
 
             if (Autostart)
                 Start();
@@ -362,7 +372,7 @@ namespace cloud.charging.open.API
 
         //    //this.WWCP = WWCP_HTTPAPI.AttachToHTTPAPI(HTTPServer);
 
-        //    //RegisterURITemplates();
+        //    //RegisterURLTemplates();
 
         //    if (Autostart)
         //        Start();
@@ -466,7 +476,7 @@ namespace cloud.charging.open.API
         //    //this.WWCP = WWCP_HTTPAPI.AttachToHTTPAPI(HTTPServer ?? throw new ArgumentNullException(nameof(HTTPServer), "The given HTTP server must not be null!"));
 
         //    //if (!SkipURITemplates)
-        //    //    RegisterURITemplates();
+        //    //    RegisterURLTemplates();
 
         //}
 

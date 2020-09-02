@@ -521,8 +521,8 @@ namespace org.GraphDefined.WWCP.Net.IO.GeoJSON
                            EVSE.ChargingStation.Address.            ToJSON("address"),
                            EVSE.ChargingStation.AuthenticationModes.ToJSON("authenticationModes"),
 
-                           EVSE.ChargingModes != ChargingModes.Unspecified
-                               ? new JProperty("chargingModes",  new JArray(EVSE.ChargingModes.Value.ToText()))
+                           EVSE.ChargingModes.Any()
+                               ? new JProperty("chargingModes",  new JArray(EVSE.ChargingModes.Select(mode => mode.ToText())))
                                : null,
 
                            EVSE.CurrentType != CurrentTypes.Unspecified

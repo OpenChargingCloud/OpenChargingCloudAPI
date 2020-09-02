@@ -216,7 +216,7 @@ namespace cloud.charging.open.API
 
         {
 
-            //RegisterURITemplates();
+            //RegisterURLTemplates();
 
             if (Autostart)
                 Start();
@@ -367,7 +367,7 @@ namespace cloud.charging.open.API
 
         //    //this.WWCP = WWCP_HTTPAPI.AttachToHTTPAPI(HTTPServer);
 
-        //    //RegisterURITemplates();
+        //    //RegisterURLTemplates();
 
         //    if (Autostart)
         //        Start();
@@ -471,7 +471,7 @@ namespace cloud.charging.open.API
         //    //this.WWCP = WWCP_HTTPAPI.AttachToHTTPAPI(HTTPServer ?? throw new ArgumentNullException(nameof(HTTPServer), "The given HTTP server must not be null!"));
 
         //    //if (!SkipURITemplates)
-        //    //    RegisterURITemplates();
+        //    //    RegisterURLTemplates();
 
         //}
 
