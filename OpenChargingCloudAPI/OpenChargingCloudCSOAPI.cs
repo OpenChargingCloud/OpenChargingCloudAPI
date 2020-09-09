@@ -47,6 +47,13 @@ namespace cloud.charging.open.API
     public class OpenChargingCloudCSOAPI : OpenChargingCloudAPI
     {
 
+        #region Data
+
+        public const String  DefaultOpenChargingCloudCSOAPIDatabaseFile   = "OpenChargingCloudCSOAPI.db";
+        public const String  DefaultOpenChargingCloudCSOAPILogFile        = "OpenChargingCloudCSOAPI.log";
+
+        #endregion
+
         #region Constructor(s)
 
         #region OpenChargingCloudCSOAPI(HTTPServerName = DefaultHTTPServerName, ...)
@@ -78,6 +85,7 @@ namespace cloud.charging.open.API
         /// <param name="TelegramBotToken">The Telegram API access token of the bot.</param>
         /// 
         /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
+        /// <param name="UseSecureCookies">Force the web browser to send cookies only via HTTPS.</param>
         /// <param name="Language">The main language of the API.</param>
         /// <param name="LogoImage">The logo of the website.</param>
         /// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
@@ -112,7 +120,6 @@ namespace cloud.charging.open.API
                                        IPPort?                              LocalPort                          = null,
                                        String                               BaseURL                            = "",
                                        HTTPPath?                            URLPathPrefix                      = null,
-                                       Boolean                              UseSecureCookies                   = true,
 
                                        ServerCertificateSelectorDelegate    ServerCertificateSelector          = null,
                                        RemoteCertificateValidationCallback  ClientCertificateValidator         = null,
@@ -131,6 +138,7 @@ namespace cloud.charging.open.API
                                        String                               TelegramBotToken                   = null,
 
                                        HTTPCookieName?                      CookieName                         = null,
+                                       Boolean                              UseSecureCookies                   = true,
                                        Languages?                           Language                           = null,
                                        String                               LogoImage                          = null,
                                        NewUserSignUpEMailCreatorDelegate    NewUserSignUpEMailCreator          = null,
@@ -155,8 +163,9 @@ namespace cloud.charging.open.API
                                        Boolean                              SkipURLTemplates                   = false,
                                        Boolean                              DisableNotifications               = false,
                                        Boolean                              DisableLogfile                     = false,
+                                       String                               DatabaseFile                       = DefaultOpenChargingCloudAPIDatabaseFile,
                                        String                               LoggingPath                        = null,
-                                       String                               LogfileName                        = "OpenChargingCloudCSOAPI.log",
+                                       String                               LogfileName                        = DefaultOpenChargingCloudAPILogFile,
                                        DNSClient                            DNSClient                          = null,
                                        Boolean                              Autostart                          = false)
 
@@ -166,7 +175,6 @@ namespace cloud.charging.open.API
                    LocalPort:                         LocalPort,
                    BaseURL:                           BaseURL,
                    URLPathPrefix:                     URLPathPrefix,
-                   UseSecureCookies:                  UseSecureCookies,
 
                    ServerCertificateSelector:         ServerCertificateSelector,
                    ClientCertificateValidator:        ClientCertificateValidator,
@@ -185,6 +193,7 @@ namespace cloud.charging.open.API
                    TelegramBotToken:                  TelegramBotToken,
 
                    CookieName:                        CookieName                  ?? HTTPCookieName.Parse("OpenChargingCloudCSOAPI"),
+                   UseSecureCookies:                  UseSecureCookies,
                    Language:                          Language,
                    LogoImage:                         LogoImage,
                    NewUserSignUpEMailCreator:         NewUserSignUpEMailCreator,
@@ -209,8 +218,9 @@ namespace cloud.charging.open.API
                    SkipURLTemplates:                  SkipURLTemplates,
                    DisableNotifications:              DisableNotifications,
                    DisableLogfile:                    DisableLogfile,
-                   LoggingPath:                       LoggingPath,
-                   LogfileName:                       LogfileName,
+                   DatabaseFile:                      DatabaseFile ?? DefaultOpenChargingCloudCSOAPIDatabaseFile,
+                   LoggingPath:                       LoggingPath  ?? "default",
+                   LogfileName:                       LogfileName  ?? DefaultOpenChargingCloudCSOAPILogFile,
                    DNSClient:                         DNSClient,
                    Autostart:                         false)
 

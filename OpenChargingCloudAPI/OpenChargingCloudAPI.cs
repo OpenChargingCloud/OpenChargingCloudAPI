@@ -2958,7 +2958,7 @@ namespace cloud.charging.open.API
                                     Boolean                              DisableNotifications               = false,
                                     Boolean                              DisableLogfile                     = false,
                                     String                               DatabaseFile                       = DefaultOpenChargingCloudAPIDatabaseFile,
-                                    String                               LoggingPath                        = null,
+                                    String                               LoggingPath                        = "default",
                                     String                               LogfileName                        = DefaultOpenChargingCloudAPILogFile,
                                     DNSClient                            DNSClient                          = null,
                                     Boolean                              Autostart                          = false)
