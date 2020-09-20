@@ -2850,7 +2850,7 @@ namespace cloud.charging.open.API
 
         #region Constructor(s)
 
-        #region OpenChargingCloudAPI(HTTPServerName = DefaultHTTPServerName, ...)
+        #region OpenChargingCloudAPI(HTTPServer, HTTPHostname = null, URIPrefix = null, ...)
 
         /// <summary>
         /// Create an instance of the Open Charging Cloud API.
@@ -2886,8 +2886,8 @@ namespace cloud.charging.open.API
         /// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
         /// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
         /// <param name="PasswordChangedEMailCreator">A delegate for sending a password changed e-mail to a user.</param>
-        /// <param name="MinUserNameLenght">The minimal user name length.</param>
-        /// <param name="MinRealmLenght">The minimal realm length.</param>
+        /// <param name="MinUserNameLength">The minimal user name length.</param>
+        /// <param name="MinRealmLength">The minimal realm length.</param>
         /// <param name="PasswordQualityCheck">A delegate to ensure a minimal password quality.</param>
         /// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
         /// 
@@ -2914,6 +2914,8 @@ namespace cloud.charging.open.API
                                     IPPort?                              LocalPort                          = null,
                                     String                               BaseURL                            = "",
                                     HTTPPath?                            URLPathPrefix                      = null,
+                                    String                               HTMLTemplate                       = null,
+                                    JObject                              APIVersionHashes                   = null,
 
                                     ServerCertificateSelectorDelegate    ServerCertificateSelector          = null,
                                     RemoteCertificateValidationCallback  ClientCertificateValidator         = null,
@@ -2939,8 +2941,9 @@ namespace cloud.charging.open.API
                                     NewUserWelcomeEMailCreatorDelegate   NewUserWelcomeEMailCreator         = null,
                                     ResetPasswordEMailCreatorDelegate    ResetPasswordEMailCreator          = null,
                                     PasswordChangedEMailCreatorDelegate  PasswordChangedEMailCreator        = null,
-                                    Byte?                                MinUserNameLenght                  = null,
-                                    Byte?                                MinRealmLenght                     = null,
+                                    Byte?                                MinLoginLength                     = null,
+                                    Byte?                                MinRealmLength                     = null,
+                                    Byte?                                MinUserNameLength                  = null,
                                     PasswordQualityCheckDelegate         PasswordQualityCheck               = null,
                                     TimeSpan?                            SignInSessionLifetime              = null,
 
@@ -2954,6 +2957,9 @@ namespace cloud.charging.open.API
                                     TimeSpan?                            ConnectionTimeout                  = null,
                                     UInt32                               MaxClientConnections               = TCPServer.__DefaultMaxClientConnections,
 
+                                    TimeSpan?                            MaintenanceEvery                   = null,
+                                    Boolean                              DisableMaintenanceTasks            = false,
+
                                     Boolean                              SkipURLTemplates                   = false,
                                     Boolean                              DisableNotifications               = false,
                                     Boolean                              DisableLogfile                     = false,
@@ -2963,60 +2969,67 @@ namespace cloud.charging.open.API
                                     DNSClient                            DNSClient                          = null,
                                     Boolean                              Autostart                          = false)
 
-            : base(ServiceName:                       ServiceName                 ?? "GraphDefined Open Charging Cloud API",
-                   HTTPServerName:                    HTTPServerName              ?? "GraphDefined Open Charging Cloud API",
-                   LocalHostname:                     LocalHostname,
-                   LocalPort:                         LocalPort                   ?? IPPort.Parse(5500),
-                   BaseURL:                           BaseURL,
-                   URLPathPrefix:                     URLPathPrefix,
+            : base(ServiceName                 ?? "GraphDefined Open Charging Cloud API",
+                   HTTPServerName              ?? "GraphDefined Open Charging Cloud API",
+                   LocalHostname,
+                   LocalPort                   ?? IPPort.Parse(5500),
+                   BaseURL,
+                   URLPathPrefix,
 
-                   ServerCertificateSelector:         ServerCertificateSelector,
-                   ClientCertificateValidator:        ClientCertificateValidator,
-                   ClientCertificateSelector:         ClientCertificateSelector,
-                   AllowedTLSProtocols:               AllowedTLSProtocols,
+                   HTMLTemplate,
+                   APIVersionHashes,
 
-                   APIEMailAddress:                   APIEMailAddress,
-                   APIPassphrase:                     APIPassphrase,
-                   APIAdminEMails:                    APIAdminEMails,
-                   APISMTPClient:                     APISMTPClient,
+                   ServerCertificateSelector,
+                   ClientCertificateValidator,
+                   ClientCertificateSelector,
+                   AllowedTLSProtocols,
 
-                   SMSAPICredentials:                 SMSAPICredentials,
-                   SMSSenderName:                     SMSSenderName               ?? "Open Charging Cloud",
-                   APIAdminSMS:                       APIAdminSMS,
+                   APIEMailAddress,
+                   APIPassphrase,
+                   APIAdminEMails,
+                   APISMTPClient,
 
-                   TelegramBotToken:                  TelegramBotToken,
+                   SMSAPICredentials,
+                   SMSSenderName               ?? "Open Charging Cloud",
+                   APIAdminSMS,
 
-                   CookieName:                        CookieName                  ?? HTTPCookieName.Parse("OpenChargingCloudAPI"),
-                   UseSecureCookies:                  UseSecureCookies,
-                   Language:                          Language                    ?? Languages.eng,
-                   LogoImage:                         LogoImage                   ?? "images/OpenChargingCloud_Logo2.png",
-                   NewUserSignUpEMailCreator:         NewUserSignUpEMailCreator   ?? __NewUserSignUpEMailCreator          (BaseURL, APIEMailAddress, APIPassphrase),
-                   NewUserWelcomeEMailCreator:        NewUserWelcomeEMailCreator  ?? __NewUserWelcomeEMailCreatorDelegate (BaseURL, APIEMailAddress, APIPassphrase),
-                   ResetPasswordEMailCreator:         ResetPasswordEMailCreator   ?? __ResetPasswordEMailCreatorDelegate  (BaseURL, APIEMailAddress, APIPassphrase),
-                   PasswordChangedEMailCreator:       PasswordChangedEMailCreator ?? __PasswordChangedEMailCreatorDelegate(BaseURL, APIEMailAddress, APIPassphrase),
-                   MinUserNameLenght:                 MinUserNameLenght,
-                   MinRealmLenght:                    MinRealmLenght,
-                   PasswordQualityCheck:              PasswordQualityCheck,
-                   SignInSessionLifetime:             SignInSessionLifetime       ?? TimeSpan.FromDays(30),
+                   TelegramBotToken,
 
-                   ServerThreadName:                  ServerThreadName,
-                   ServerThreadPriority:              ServerThreadPriority,
-                   ServerThreadIsBackground:          ServerThreadIsBackground,
-                   ConnectionIdBuilder:               ConnectionIdBuilder,
-                   ConnectionThreadsNameBuilder:      ConnectionThreadsNameBuilder,
-                   ConnectionThreadsPriorityBuilder:  ConnectionThreadsPriorityBuilder,
-                   ConnectionThreadsAreBackground:    ConnectionThreadsAreBackground,
-                   ConnectionTimeout:                 ConnectionTimeout,
-                   MaxClientConnections:              MaxClientConnections,
+                   CookieName                  ?? HTTPCookieName.Parse("OpenChargingCloudAPI"),
+                   UseSecureCookies,
+                   Language                    ?? Languages.eng,
+                   LogoImage                   ?? "images/OpenChargingCloud_Logo2.png",
+                   NewUserSignUpEMailCreator   ?? __NewUserSignUpEMailCreator          (BaseURL, APIEMailAddress, APIPassphrase),
+                   NewUserWelcomeEMailCreator  ?? __NewUserWelcomeEMailCreatorDelegate (BaseURL, APIEMailAddress, APIPassphrase),
+                   ResetPasswordEMailCreator   ?? __ResetPasswordEMailCreatorDelegate  (BaseURL, APIEMailAddress, APIPassphrase),
+                   PasswordChangedEMailCreator ?? __PasswordChangedEMailCreatorDelegate(BaseURL, APIEMailAddress, APIPassphrase),
+                   MinLoginLength,
+                   MinRealmLength,
+                   MinUserNameLength,
+                   PasswordQualityCheck,
+                   SignInSessionLifetime       ?? TimeSpan.FromDays(30),
 
-                   SkipURLTemplates:                  SkipURLTemplates,
-                   DisableNotifications:              DisableNotifications,
-                   DisableLogfile:                    DisableLogfile,
-                   DatabaseFile:                      DatabaseFile                ?? DefaultOpenChargingCloudAPIDatabaseFile,
-                   LoggingPath:                       LoggingPath                 ?? "default",
-                   LogfileName:                       LogfileName                 ?? DefaultOpenChargingCloudAPILogFile,
-                   DNSClient:                         DNSClient,
-                   Autostart:                         Autostart)
+                   ServerThreadName,
+                   ServerThreadPriority,
+                   ServerThreadIsBackground,
+                   ConnectionIdBuilder,
+                   ConnectionThreadsNameBuilder,
+                   ConnectionThreadsPriorityBuilder,
+                   ConnectionThreadsAreBackground,
+                   ConnectionTimeout,
+                   MaxClientConnections,
+
+                   MaintenanceEvery,
+                   DisableMaintenanceTasks,
+
+                   SkipURLTemplates,
+                   DisableNotifications,
+                   DisableLogfile,
+                   DatabaseFile                ?? DefaultOpenChargingCloudAPIDatabaseFile,
+                   LoggingPath                 ?? "default",
+                   LogfileName                 ?? DefaultOpenChargingCloudAPILogFile,
+                   DNSClient,
+                   Autostart)
 
         {
 
@@ -3089,9 +3102,9 @@ namespace cloud.charging.open.API
         ///// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
         ///// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
         ///// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
-        ///// <param name="MinUserNameLenght">The minimal user name length.</param>
-        ///// <param name="MinRealmLenght">The minimal realm length.</param>
-        ///// <param name="MinPasswordLenght">The minimal password length.</param>
+        ///// <param name="MinUserNameLength">The minimal user name length.</param>
+        ///// <param name="MinRealmLength">The minimal realm length.</param>
+        ///// <param name="MinPasswordLength">The minimal password length.</param>
         ///// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
         ///// 
         ///// <param name="SkipURITemplates">Skip URI templates.</param>
@@ -3124,9 +3137,9 @@ namespace cloud.charging.open.API
         //                            NewUserSignUpEMailCreatorDelegate    NewUserSignUpEMailCreator          = null,
         //                            NewUserWelcomeEMailCreatorDelegate   NewUserWelcomeEMailCreator         = null,
         //                            ResetPasswordEMailCreatorDelegate    ResetPasswordEMailCreator          = null,
-        //                            Byte                                 MinUserNameLenght                  = DefaultMinUserNameLenght,
-        //                            Byte                                 MinRealmLenght                     = DefaultMinRealmLenght,
-        //                            Byte                                 MinPasswordLenght                  = DefaultMinPasswordLenght,
+        //                            Byte                                 MinUserNameLength                  = DefaultMinUserNameLength,
+        //                            Byte                                 MinRealmLength                     = DefaultMinRealmLength,
+        //                            Byte                                 MinPasswordLength                  = DefaultMinPasswordLength,
         //                            TimeSpan?                            SignInSessionLifetime              = null,
 
         //                            String                               ServerThreadName                   = null,
@@ -3170,9 +3183,9 @@ namespace cloud.charging.open.API
         //           NewUserSignUpEMailCreator,
         //           NewUserWelcomeEMailCreator,
         //           ResetPasswordEMailCreator,
-        //           MinUserNameLenght,
-        //           MinRealmLenght,
-        //           MinPasswordLenght,
+        //           MinUserNameLength,
+        //           MinRealmLength,
+        //           MinPasswordLength,
         //           SignInSessionLifetime,
 
         //           ServerThreadName,
@@ -3229,9 +3242,9 @@ namespace cloud.charging.open.API
         ///// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
         ///// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
         ///// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
-        ///// <param name="MinUserNameLenght">The minimal user name length.</param>
-        ///// <param name="MinRealmLenght">The minimal realm length.</param>
-        ///// <param name="MinPasswordLenght">The minimal password length.</param>
+        ///// <param name="MinUserNameLength">The minimal user name length.</param>
+        ///// <param name="MinRealmLength">The minimal realm length.</param>
+        ///// <param name="MinPasswordLength">The minimal password length.</param>
         ///// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
         ///// 
         ///// <param name="SkipURITemplates">Skip URI templates.</param>
@@ -3256,9 +3269,9 @@ namespace cloud.charging.open.API
         //                            NewUserSignUpEMailCreatorDelegate   NewUserSignUpEMailCreator    = null,
         //                            NewUserWelcomeEMailCreatorDelegate  NewUserWelcomeEMailCreator   = null,
         //                            ResetPasswordEMailCreatorDelegate   ResetPasswordEMailCreator    = null,
-        //                            Byte                                MinUserNameLenght            = DefaultMinUserNameLenght,
-        //                            Byte                                MinRealmLenght               = DefaultMinRealmLenght,
-        //                            Byte                                MinPasswordLenght            = DefaultMinPasswordLenght,
+        //                            Byte                                MinUserNameLength            = DefaultMinUserNameLength,
+        //                            Byte                                MinRealmLength               = DefaultMinRealmLength,
+        //                            Byte                                MinPasswordLength            = DefaultMinPasswordLength,
         //                            TimeSpan?                           SignInSessionLifetime        = null,
 
         //                            Boolean                             SkipURITemplates             = false,
@@ -3286,9 +3299,9 @@ namespace cloud.charging.open.API
         //           NewUserSignUpEMailCreator  ?? __NewUserSignUpEMailCreator         (APIEMailAddress, APIPassphrase),
         //           NewUserWelcomeEMailCreator ?? __NewUserWelcomeEMailCreatorDelegate(APIEMailAddress, APIPassphrase),
         //           ResetPasswordEMailCreator  ?? __ResetPasswordEMailCreatorDelegate (APIEMailAddress, APIPassphrase),
-        //           MinUserNameLenght,
-        //           MinRealmLenght,
-        //           MinPasswordLenght,
+        //           MinUserNameLength,
+        //           MinRealmLength,
+        //           MinPasswordLength,
         //           SignInSessionLifetime      ?? DefaultSignInSessionLifetime,
 
         //           SkipURITemplates,
@@ -3333,9 +3346,9 @@ namespace cloud.charging.open.API
         ///// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
         ///// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
         ///// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
-        ///// <param name="MinUserNameLenght">The minimal user name length.</param>
-        ///// <param name="MinRealmLenght">The minimal realm length.</param>
-        ///// <param name="MinPasswordLenght">The minimal password length.</param>
+        ///// <param name="MinUserNameLength">The minimal user name length.</param>
+        ///// <param name="MinRealmLength">The minimal realm length.</param>
+        ///// <param name="MinPasswordLength">The minimal password length.</param>
         ///// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
         ///// 
         ///// <param name="SkipURITemplates">Skip URI templates.</param>
@@ -3360,9 +3373,9 @@ namespace cloud.charging.open.API
         //                                                   NewUserSignUpEMailCreatorDelegate   NewUserSignUpEMailCreator    = null,
         //                                                   NewUserWelcomeEMailCreatorDelegate  NewUserWelcomeEMailCreator   = null,
         //                                                   ResetPasswordEMailCreatorDelegate   ResetPasswordEMailCreator    = null,
-        //                                                   Byte                                MinUserNameLenght            = DefaultMinUserNameLenght,
-        //                                                   Byte                                MinRealmLenght               = DefaultMinRealmLenght,
-        //                                                   Byte                                MinPasswordLenght            = DefaultMinPasswordLenght,
+        //                                                   Byte                                MinUserNameLength            = DefaultMinUserNameLength,
+        //                                                   Byte                                MinRealmLength               = DefaultMinRealmLength,
+        //                                                   Byte                                MinPasswordLength            = DefaultMinPasswordLength,
         //                                                   TimeSpan?                           SignInSessionLifetime        = null,
 
         //                                                   Boolean                             SkipURITemplates             = false,
@@ -3389,9 +3402,9 @@ namespace cloud.charging.open.API
         //                                NewUserSignUpEMailCreator,
         //                                NewUserWelcomeEMailCreator,
         //                                ResetPasswordEMailCreator,
-        //                                MinUserNameLenght,
-        //                                MinRealmLenght,
-        //                                MinPasswordLenght,
+        //                                MinUserNameLength,
+        //                                MinRealmLength,
+        //                                MinPasswordLength,
         //                                SignInSessionLifetime,
 
         //                                SkipURITemplates,

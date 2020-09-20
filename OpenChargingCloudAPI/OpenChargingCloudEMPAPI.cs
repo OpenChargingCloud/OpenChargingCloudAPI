@@ -93,8 +93,8 @@ namespace cloud.charging.open.API
         /// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
         /// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
         /// <param name="PasswordChangedEMailCreator">A delegate for sending a password changed e-mail to a user.</param>
-        /// <param name="MinUserNameLenght">The minimal user name length.</param>
-        /// <param name="MinRealmLenght">The minimal realm length.</param>
+        /// <param name="MinUserNameLength">The minimal user name length.</param>
+        /// <param name="MinRealmLength">The minimal realm length.</param>
         /// <param name="PasswordQualityCheck">A delegate to ensure a minimal password quality.</param>
         /// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
         /// 
@@ -143,8 +143,8 @@ namespace cloud.charging.open.API
                                        NewUserWelcomeEMailCreatorDelegate   NewUserWelcomeEMailCreator         = null,
                                        ResetPasswordEMailCreatorDelegate    ResetPasswordEMailCreator          = null,
                                        PasswordChangedEMailCreatorDelegate  PasswordChangedEMailCreator        = null,
-                                       Byte?                                MinUserNameLenght                  = null,
-                                       Byte?                                MinRealmLenght                     = null,
+                                       Byte?                                MinUserNameLength                  = null,
+                                       Byte?                                MinRealmLength                     = null,
                                        PasswordQualityCheckDelegate         PasswordQualityCheck               = null,
                                        TimeSpan?                            SignInSessionLifetime              = null,
 
@@ -195,8 +195,8 @@ namespace cloud.charging.open.API
                    NewUserWelcomeEMailCreator:        NewUserWelcomeEMailCreator,
                    ResetPasswordEMailCreator:         ResetPasswordEMailCreator,
                    PasswordChangedEMailCreator:       PasswordChangedEMailCreator,
-                   MinUserNameLenght:                 MinUserNameLenght,
-                   MinRealmLenght:                    MinRealmLenght,
+                   MinUserNameLength:                 MinUserNameLength,
+                   MinRealmLength:                    MinRealmLength,
                    PasswordQualityCheck:              PasswordQualityCheck,
                    SignInSessionLifetime:             SignInSessionLifetime,
 
@@ -259,9 +259,9 @@ namespace cloud.charging.open.API
         ///// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
         ///// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
         ///// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
-        ///// <param name="MinUserNameLenght">The minimal user name length.</param>
-        ///// <param name="MinRealmLenght">The minimal realm length.</param>
-        ///// <param name="MinPasswordLenght">The minimal password length.</param>
+        ///// <param name="MinUserNameLength">The minimal user name length.</param>
+        ///// <param name="MinRealmLength">The minimal realm length.</param>
+        ///// <param name="MinPasswordLength">The minimal password length.</param>
         ///// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
         ///// 
         ///// <param name="SkipURITemplates">Skip URI templates.</param>
@@ -296,9 +296,9 @@ namespace cloud.charging.open.API
         //                               NewUserWelcomeEMailCreatorDelegate   NewUserWelcomeEMailCreator         = null,
         //                               ResetPasswordEMailCreatorDelegate    ResetPasswordEMailCreator          = null,
         //                               PasswordChangedEMailCreatorDelegate  PasswordChangedEMailCreator        = null,
-        //                               Byte                                 MinUserNameLenght                  = DefaultMinUserNameLenght,
-        //                               Byte                                 MinRealmLenght                     = DefaultMinRealmLenght,
-        //                               Byte                                 MinPasswordLenght                  = DefaultMinPasswordLenght,
+        //                               Byte                                 MinUserNameLength                  = DefaultMinUserNameLength,
+        //                               Byte                                 MinRealmLength                     = DefaultMinRealmLength,
+        //                               Byte                                 MinPasswordLength                  = DefaultMinPasswordLength,
         //                               TimeSpan?                            SignInSessionLifetime              = null,
 
         //                               String                               ServerThreadName                   = null,
@@ -345,9 +345,9 @@ namespace cloud.charging.open.API
         //           NewUserWelcomeEMailCreator,
         //           ResetPasswordEMailCreator,
         //           PasswordChangedEMailCreator,
-        //           MinUserNameLenght,
-        //           MinRealmLenght,
-        //           MinPasswordLenght,
+        //           MinUserNameLength,
+        //           MinRealmLength,
+        //           MinPasswordLength,
         //           SignInSessionLifetime,
 
         //           ServerThreadName,
@@ -402,9 +402,9 @@ namespace cloud.charging.open.API
         ///// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
         ///// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
         ///// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
-        ///// <param name="MinUserNameLenght">The minimal user name length.</param>
-        ///// <param name="MinRealmLenght">The minimal realm length.</param>
-        ///// <param name="MinPasswordLenght">The minimal password length.</param>
+        ///// <param name="MinUserNameLength">The minimal user name length.</param>
+        ///// <param name="MinRealmLength">The minimal realm length.</param>
+        ///// <param name="MinPasswordLength">The minimal password length.</param>
         ///// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
         ///// 
         ///// <param name="SkipURITemplates">Skip URI templates.</param>
@@ -431,9 +431,9 @@ namespace cloud.charging.open.API
         //                               NewUserWelcomeEMailCreatorDelegate   NewUserWelcomeEMailCreator    = null,
         //                               ResetPasswordEMailCreatorDelegate    ResetPasswordEMailCreator     = null,
         //                               PasswordChangedEMailCreatorDelegate  PasswordChangedEMailCreator   = null,
-        //                               Byte                                 MinUserNameLenght             = DefaultMinUserNameLenght,
-        //                               Byte                                 MinRealmLenght                = DefaultMinRealmLenght,
-        //                               Byte                                 MinPasswordLenght             = DefaultMinPasswordLenght,
+        //                               Byte                                 MinUserNameLength             = DefaultMinUserNameLength,
+        //                               Byte                                 MinRealmLength                = DefaultMinRealmLength,
+        //                               Byte                                 MinPasswordLength             = DefaultMinPasswordLength,
         //                               TimeSpan?                            SignInSessionLifetime         = null,
 
         //                               Boolean                              SkipURITemplates              = false,
@@ -461,9 +461,9 @@ namespace cloud.charging.open.API
         //           NewUserWelcomeEMailCreator,
         //           ResetPasswordEMailCreator,
         //           PasswordChangedEMailCreator,
-        //           MinUserNameLenght,
-        //           MinRealmLenght,
-        //           MinPasswordLenght,
+        //           MinUserNameLength,
+        //           MinRealmLength,
+        //           MinPasswordLength,
         //           SignInSessionLifetime,
 
         //           SkipURITemplates,
