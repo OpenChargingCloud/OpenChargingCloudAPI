@@ -69,7 +69,7 @@ namespace cloud.charging.open.API
         /// <param name="HTTPServerName">The default HTTP servername, used whenever no HTTP Host-header had been given.</param>
         /// <param name="LocalHostname">The HTTP hostname for all URIs within this API.</param>
         /// <param name="LocalPort">A TCP port to listen on.</param>
-        /// <param name="BaseURL">The base url of the service.</param>
+        /// <param name="ExternalDNSName">The offical URL/DNS name of this service, e.g. for sending e-mails.</param>
         /// <param name="URLPathPrefix">A common prefix for all URLs.</param>
         /// 
         /// <param name="ServerCertificateSelector">An optional delegate to select a SSL/TLS server certificate.</param>
@@ -118,7 +118,7 @@ namespace cloud.charging.open.API
                                        String                               HTTPServerName                     = "GraphDefined Open Charging Cloud EMP API",
                                        HTTPHostname?                        LocalHostname                      = null,
                                        IPPort?                              LocalPort                          = null,
-                                       String                               BaseURL                            = "",
+                                       String                               ExternalDNSName                    = null,
                                        HTTPPath?                            URLPathPrefix                      = null,
 
                                        ServerCertificateSelectorDelegate    ServerCertificateSelector          = null,
@@ -169,7 +169,7 @@ namespace cloud.charging.open.API
                    HTTPServerName:                    HTTPServerName              ?? "GraphDefined Open Charging Cloud EMP API",
                    LocalHostname:                     LocalHostname,
                    LocalPort:                         LocalPort,
-                   BaseURL:                           BaseURL,
+                   ExternalDNSName:                           ExternalDNSName,
                    URLPathPrefix:                     URLPathPrefix,
                    UseSecureCookies:                  UseSecureCookies,
 

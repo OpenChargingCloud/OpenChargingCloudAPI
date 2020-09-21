@@ -2866,7 +2866,7 @@ namespace cloud.charging.open.API
         /// <param name="HTTPServerName">The default HTTP servername, used whenever no HTTP Host-header had been given.</param>
         /// <param name="LocalHostname">The HTTP hostname for all URIs within this API.</param>
         /// <param name="LocalPort">A TCP port to listen on.</param>
-        /// <param name="BaseURL">The base url of the service.</param>
+        /// <param name="ExternalDNSName">The offical URL/DNS name of this service, e.g. for sending e-mails.</param>
         /// <param name="URLPathPrefix">A common prefix for all URLs.</param>
         /// 
         /// <param name="ServerCertificateSelector">An optional delegate to select a SSL/TLS server certificate.</param>
@@ -2888,7 +2888,6 @@ namespace cloud.charging.open.API
         /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
         /// <param name="UseSecureCookies">Force the web browser to send cookies only via HTTPS.</param>
         /// <param name="Language">The main language of the API.</param>
-        /// <param name="LogoImage">The logo of the website.</param>
         /// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
         /// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
         /// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
@@ -2919,7 +2918,7 @@ namespace cloud.charging.open.API
                                     String                               HTTPServerName                     = "GraphDefined Open Charging Cloud API",
                                     HTTPHostname?                        LocalHostname                      = null,
                                     IPPort?                              LocalPort                          = null,
-                                    String                               BaseURL                            = "",
+                                    String                               ExternalDNSName                    = null,
                                     HTTPPath?                            URLPathPrefix                      = null,
                                     String                               HTMLTemplate                       = null,
                                     JObject                              APIVersionHashes                   = null,
@@ -2979,7 +2978,7 @@ namespace cloud.charging.open.API
                    HTTPServerName              ?? "GraphDefined Open Charging Cloud API",
                    LocalHostname,
                    LocalPort                   ?? IPPort.Parse(5500),
-                   BaseURL,
+                   ExternalDNSName,
                    URLPathPrefix,
 
                    HTMLTemplate,
@@ -3004,10 +3003,10 @@ namespace cloud.charging.open.API
                    CookieName                  ?? HTTPCookieName.Parse("OpenChargingCloudAPI"),
                    UseSecureCookies,
                    Language                    ?? Languages.eng,
-                   NewUserSignUpEMailCreator   ?? __NewUserSignUpEMailCreator          (BaseURL, APIEMailAddress, APIPassphrase),
-                   NewUserWelcomeEMailCreator  ?? __NewUserWelcomeEMailCreatorDelegate (BaseURL, APIEMailAddress, APIPassphrase),
-                   ResetPasswordEMailCreator   ?? __ResetPasswordEMailCreatorDelegate  (BaseURL, APIEMailAddress, APIPassphrase),
-                   PasswordChangedEMailCreator ?? __PasswordChangedEMailCreatorDelegate(BaseURL, APIEMailAddress, APIPassphrase),
+                   NewUserSignUpEMailCreator   ?? __NewUserSignUpEMailCreator          (ExternalDNSName, APIEMailAddress, APIPassphrase),
+                   NewUserWelcomeEMailCreator  ?? __NewUserWelcomeEMailCreatorDelegate (ExternalDNSName, APIEMailAddress, APIPassphrase),
+                   ResetPasswordEMailCreator   ?? __ResetPasswordEMailCreatorDelegate  (ExternalDNSName, APIEMailAddress, APIPassphrase),
+                   PasswordChangedEMailCreator ?? __PasswordChangedEMailCreatorDelegate(ExternalDNSName, APIEMailAddress, APIPassphrase),
                    MinLoginLength,
                    MinRealmLength,
                    MinUserNameLength,
