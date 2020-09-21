@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WWCP Networking Unit Tests")]
-[assembly: AssemblyDescription("WWCP Networking Library Unit Tests.")]
+[assembly: AssemblyTitle("Open Charging Cloud Tests")]
+[assembly: AssemblyDescription("Open Charging Cloud Unit Tests")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GraphDefined GmbH")]
-[assembly: AssemblyProduct("WWCP Networking Unit Tests")]
+[assembly: AssemblyProduct("Open Charging Cloud Unit Tests")]
 [assembly: AssemblyCopyright("Copyright © 2014-2020 GraphDefined GmbH")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

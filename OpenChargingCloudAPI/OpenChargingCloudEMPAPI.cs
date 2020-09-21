@@ -88,7 +88,6 @@ namespace cloud.charging.open.API
         /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
         /// <param name="UseSecureCookies">Force the web browser to send cookies only via HTTPS.</param>
         /// <param name="Language">The main language of the API.</param>
-        /// <param name="LogoImage">The logo of the website.</param>
         /// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
         /// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
         /// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
@@ -138,7 +137,6 @@ namespace cloud.charging.open.API
                                        HTTPCookieName?                      CookieName                         = null,
                                        Boolean                              UseSecureCookies                   = true,
                                        Languages?                           Language                           = null,
-                                       String                               LogoImage                          = null,
                                        NewUserSignUpEMailCreatorDelegate    NewUserSignUpEMailCreator          = null,
                                        NewUserWelcomeEMailCreatorDelegate   NewUserWelcomeEMailCreator         = null,
                                        ResetPasswordEMailCreatorDelegate    ResetPasswordEMailCreator          = null,
@@ -190,7 +188,6 @@ namespace cloud.charging.open.API
 
                    CookieName:                        CookieName                  ?? HTTPCookieName.Parse("OpenChargingCloudEMPAPI"),
                    Language:                          Language,
-                   LogoImage:                         LogoImage,
                    NewUserSignUpEMailCreator:         NewUserSignUpEMailCreator,
                    NewUserWelcomeEMailCreator:        NewUserWelcomeEMailCreator,
                    ResetPasswordEMailCreator:         ResetPasswordEMailCreator,

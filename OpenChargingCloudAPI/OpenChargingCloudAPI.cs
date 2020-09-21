@@ -1955,17 +1955,24 @@ namespace cloud.charging.open.API
 
         #region Properties
 
-        public HTTPServer<RoamingNetworks, RoamingNetwork>  WWCPHTTPServer    { get; }
+        public String                                       OpenChargingCloudAPIPath    { get; }
+
+        public String                                       ChargingReservationsPath    { get; }
+        public String                                       ChargingSessionsPath        { get; }
+        public String                                       ChargeDetailRecordsPath     { get; }
+
+
+        public HTTPServer<RoamingNetworks, RoamingNetwork>  WWCPHTTPServer              { get; }
 
         /// <summary>
         /// Send debug information via HTTP Server Sent Events.
         /// </summary>
-        public HTTPEventSource<JObject>                     DebugLog          { get; }
+        public HTTPEventSource<JObject>                     DebugLog                    { get; }
 
         /// <summary>
         /// Send importer information via HTTP Server Sent Events.
         /// </summary>
-        public HTTPEventSource<JObject>                     ImporterLog       { get; }
+        public HTTPEventSource<JObject>                     ImporterLog                 { get; }
 
         #endregion
 
@@ -2936,7 +2943,6 @@ namespace cloud.charging.open.API
                                     HTTPCookieName?                      CookieName                         = null,
                                     Boolean                              UseSecureCookies                   = true,
                                     Languages?                           Language                           = null,
-                                    String                               LogoImage                          = null,
                                     NewUserSignUpEMailCreatorDelegate    NewUserSignUpEMailCreator          = null,
                                     NewUserWelcomeEMailCreatorDelegate   NewUserWelcomeEMailCreator         = null,
                                     ResetPasswordEMailCreatorDelegate    ResetPasswordEMailCreator          = null,
@@ -2998,7 +3004,6 @@ namespace cloud.charging.open.API
                    CookieName                  ?? HTTPCookieName.Parse("OpenChargingCloudAPI"),
                    UseSecureCookies,
                    Language                    ?? Languages.eng,
-                   LogoImage                   ?? "images/OpenChargingCloud_Logo2.png",
                    NewUserSignUpEMailCreator   ?? __NewUserSignUpEMailCreator          (BaseURL, APIEMailAddress, APIPassphrase),
                    NewUserWelcomeEMailCreator  ?? __NewUserWelcomeEMailCreatorDelegate (BaseURL, APIEMailAddress, APIPassphrase),
                    ResetPasswordEMailCreator   ?? __ResetPasswordEMailCreatorDelegate  (BaseURL, APIEMailAddress, APIPassphrase),
@@ -3025,43 +3030,41 @@ namespace cloud.charging.open.API
                    SkipURLTemplates,
                    DisableNotifications,
                    DisableLogfile,
-                   DatabaseFile                ?? DefaultOpenChargingCloudAPIDatabaseFile,
                    LoggingPath                 ?? "default",
+                   DatabaseFile                ?? DefaultOpenChargingCloudAPIDatabaseFile,
                    LogfileName                 ?? DefaultOpenChargingCloudAPILogFile,
                    DNSClient,
-                   Autostart)
+                   false)
 
         {
 
-            Directory.CreateDirectory("WWCP");
-            Directory.CreateDirectory("HTTPSSEs");
-            Directory.CreateDirectory("Metrics");
-            Directory.CreateDirectory("CI-Tests");
+            this.OpenChargingCloudAPIPath  = this.LoggingPath              + "OpenChargingCloudAPI" + Path.DirectorySeparatorChar;
+            this.ChargingReservationsPath  = this.OpenChargingCloudAPIPath + "ChargingReservations" + Path.DirectorySeparatorChar;
+            this.ChargingSessionsPath      = this.OpenChargingCloudAPIPath + "ChargingSessions"     + Path.DirectorySeparatorChar;
+            this.ChargeDetailRecordsPath   = this.OpenChargingCloudAPIPath + "ChargeDetailRecords"  + Path.DirectorySeparatorChar;
 
-            Directory.CreateDirectory("OpenChargingCloudAPI");
-            Directory.CreateDirectory("ChargingReservations");
-            Directory.CreateDirectory("ChargingSessions");
-            Directory.CreateDirectory("ChargeDetailRecords");
+            Directory.CreateDirectory(OpenChargingCloudAPIPath);
+            Directory.CreateDirectory(ChargingReservationsPath);
+            Directory.CreateDirectory(ChargingSessionsPath);
+            Directory.CreateDirectory(ChargeDetailRecordsPath);
 
             //WWCP = OpenChargingCloudAPI.AttachToHTTPAPI(HTTPServer);
 
             this.WWCPHTTPServer = new HTTPServer<RoamingNetworks, RoamingNetwork>(HTTPServer);
-
-            var LogfilePrefix = "HTTPSSEs" + Path.DirectorySeparatorChar;
 
             DebugLog     = HTTPServer.AddJSONEventSource(EventIdentification:      DebugLogId,
                                                          URLTemplate:              this.URLPathPrefix + "/" + DebugLogId.ToString(),
                                                          MaxNumberOfCachedEvents:  10000,
                                                          RetryIntervall:           TimeSpan.FromSeconds(5),
                                                          EnableLogging:            true,
-                                                         LogfilePrefix:            LogfilePrefix);
+                                                         LogfilePrefix:            this.HTTPSSEsPath);
 
             ImporterLog  = HTTPServer.AddJSONEventSource(EventIdentification:      ImporterLogId,
                                                          URLTemplate:              this.URLPathPrefix + "/" + ImporterLogId.ToString(),
                                                          MaxNumberOfCachedEvents:  1000,
                                                          RetryIntervall:           TimeSpan.FromSeconds(5),
                                                          EnableLogging:            true,
-                                                         LogfilePrefix:            LogfilePrefix);
+                                                         LogfilePrefix:            this.HTTPSSEsPath);
 
 
             RegisterURLTemplates();
