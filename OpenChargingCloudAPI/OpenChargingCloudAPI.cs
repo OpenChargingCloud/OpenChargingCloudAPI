@@ -91,7 +91,7 @@ namespace cloud.charging.open.API
             RoamingNetwork  = null;
             HTTPResponse    = null;
 
-            if (HTTPRequest.ParsedURIParameters.Length < 1)
+            if (HTTPRequest.ParsedURLParameters.Length < 1)
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -105,7 +105,7 @@ namespace cloud.charging.open.API
 
             }
 
-            if (!RoamingNetwork_Id.TryParse(HTTPRequest.ParsedURIParameters[0], out RoamingNetwork_Id RoamingNetworkId))
+            if (!RoamingNetwork_Id.TryParse(HTTPRequest.ParsedURLParameters[0], out RoamingNetwork_Id RoamingNetworkId))
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -179,7 +179,7 @@ namespace cloud.charging.open.API
             ChargingStationOperator  = null;
             HTTPResponse             = null;
 
-            if (HTTPRequest.ParsedURIParameters.Length < 2) {
+            if (HTTPRequest.ParsedURLParameters.Length < 2) {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
@@ -197,7 +197,7 @@ namespace cloud.charging.open.API
                 return false;
 
 
-            if (!ChargingStationOperator_Id.TryParse(HTTPRequest.ParsedURIParameters[1], out ChargingStationOperator_Id ChargingStationOperatorId))
+            if (!ChargingStationOperator_Id.TryParse(HTTPRequest.ParsedURLParameters[1], out ChargingStationOperator_Id ChargingStationOperatorId))
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -270,7 +270,7 @@ namespace cloud.charging.open.API
             ChargingPool    = null;
             HTTPResponse    = null;
 
-            if (HTTPRequest.ParsedURIParameters.Length < 2) {
+            if (HTTPRequest.ParsedURLParameters.Length < 2) {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
@@ -288,7 +288,7 @@ namespace cloud.charging.open.API
                 return false;
 
 
-            if (!ChargingPool_Id.TryParse(HTTPRequest.ParsedURIParameters[1], out ChargingPool_Id ChargingPoolId))
+            if (!ChargingPool_Id.TryParse(HTTPRequest.ParsedURLParameters[1], out ChargingPool_Id ChargingPoolId))
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -361,7 +361,7 @@ namespace cloud.charging.open.API
             ChargingStation  = null;
             HTTPResponse     = null;
 
-            if (HTTPRequest.ParsedURIParameters.Length < 2) {
+            if (HTTPRequest.ParsedURLParameters.Length < 2) {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
@@ -374,7 +374,7 @@ namespace cloud.charging.open.API
 
             }
 
-            if (!RoamingNetwork_Id.TryParse(HTTPRequest.ParsedURIParameters[0], out RoamingNetwork_Id RoamingNetworkId))
+            if (!RoamingNetwork_Id.TryParse(HTTPRequest.ParsedURLParameters[0], out RoamingNetwork_Id RoamingNetworkId))
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -410,7 +410,7 @@ namespace cloud.charging.open.API
 
             }
 
-            if (!ChargingStation_Id.TryParse(HTTPRequest.ParsedURIParameters[1], out ChargingStation_Id ChargingStationId))
+            if (!ChargingStation_Id.TryParse(HTTPRequest.ParsedURLParameters[1], out ChargingStation_Id ChargingStationId))
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -483,7 +483,7 @@ namespace cloud.charging.open.API
             EVSE            = null;
             HTTPResponse    = null;
 
-            if (HTTPRequest.ParsedURIParameters.Length < 2)
+            if (HTTPRequest.ParsedURLParameters.Length < 2)
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -497,7 +497,7 @@ namespace cloud.charging.open.API
 
             }
 
-            if (!RoamingNetwork_Id.TryParse(HTTPRequest.ParsedURIParameters[0], out RoamingNetwork_Id RoamingNetworkId))
+            if (!RoamingNetwork_Id.TryParse(HTTPRequest.ParsedURLParameters[0], out RoamingNetwork_Id RoamingNetworkId))
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -533,7 +533,7 @@ namespace cloud.charging.open.API
 
             }
 
-            if (!EVSE_Id.TryParse(HTTPRequest.ParsedURIParameters[1], out EVSE_Id EVSEId))
+            if (!EVSE_Id.TryParse(HTTPRequest.ParsedURLParameters[1], out EVSE_Id EVSEId))
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -612,7 +612,7 @@ namespace cloud.charging.open.API
             ChargingSession    = null;
             HTTPResponse       = null;
 
-            if (HTTPRequest.ParsedURIParameters.Length < 2) {
+            if (HTTPRequest.ParsedURLParameters.Length < 2) {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
@@ -625,7 +625,7 @@ namespace cloud.charging.open.API
 
             }
 
-            RoamingNetworkId = RoamingNetwork_Id.TryParse(HTTPRequest.ParsedURIParameters[0]);
+            RoamingNetworkId = RoamingNetwork_Id.TryParse(HTTPRequest.ParsedURLParameters[0]);
 
             if (!RoamingNetworkId.HasValue)
             {
@@ -661,7 +661,7 @@ namespace cloud.charging.open.API
 
             }
 
-            ChargingSessionId = ChargingSession_Id.TryParse(HTTPRequest.ParsedURIParameters[1]);
+            ChargingSessionId = ChargingSession_Id.TryParse(HTTPRequest.ParsedURLParameters[1]);
 
             if (!ChargingSessionId.HasValue)
             {
@@ -736,7 +736,7 @@ namespace cloud.charging.open.API
             Reservation     = null;
             HTTPResponse    = null;
 
-            if (HTTPRequest.ParsedURIParameters.Length < 2)
+            if (HTTPRequest.ParsedURLParameters.Length < 2)
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -749,7 +749,7 @@ namespace cloud.charging.open.API
 
             }
 
-            if (!RoamingNetwork_Id.TryParse(HTTPRequest.ParsedURIParameters[0], out RoamingNetwork_Id RoamingNetworkId))
+            if (!RoamingNetwork_Id.TryParse(HTTPRequest.ParsedURLParameters[0], out RoamingNetwork_Id RoamingNetworkId))
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -785,7 +785,7 @@ namespace cloud.charging.open.API
 
             }
 
-            if (!ChargingReservation_Id.TryParse(HTTPRequest.ParsedURIParameters[1], out ChargingReservation_Id ReservationId)) {
+            if (!ChargingReservation_Id.TryParse(HTTPRequest.ParsedURLParameters[1], out ChargingReservation_Id ReservationId)) {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
@@ -856,7 +856,7 @@ namespace cloud.charging.open.API
             EMobilityProvider  = null;
             HTTPResponse       = null;
 
-            if (HTTPRequest.ParsedURIParameters.Length < 2)
+            if (HTTPRequest.ParsedURLParameters.Length < 2)
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -875,7 +875,7 @@ namespace cloud.charging.open.API
                 return false;
 
 
-            if (!eMobilityProvider_Id.TryParse(HTTPRequest.ParsedURIParameters[1], out eMobilityProvider_Id EMobilityProviderId))
+            if (!eMobilityProvider_Id.TryParse(HTTPRequest.ParsedURLParameters[1], out eMobilityProvider_Id EMobilityProviderId))
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -949,7 +949,7 @@ namespace cloud.charging.open.API
             ParkingOperator  = null;
             HTTPResponse     = null;
 
-            if (HTTPRequest.ParsedURIParameters.Length < 2)
+            if (HTTPRequest.ParsedURLParameters.Length < 2)
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -968,7 +968,7 @@ namespace cloud.charging.open.API
                 return false;
 
 
-            if (!ParkingOperator_Id.TryParse(HTTPRequest.ParsedURIParameters[1], out ParkingOperator_Id ParkingOperatorId))
+            if (!ParkingOperator_Id.TryParse(HTTPRequest.ParsedURLParameters[1], out ParkingOperator_Id ParkingOperatorId))
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -1040,7 +1040,7 @@ namespace cloud.charging.open.API
             SmartCity       = null;
             HTTPResponse    = null;
 
-            if (HTTPRequest.ParsedURIParameters.Length < 2)
+            if (HTTPRequest.ParsedURLParameters.Length < 2)
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -1059,7 +1059,7 @@ namespace cloud.charging.open.API
                 return false;
 
 
-            if (!SmartCity_Id.TryParse(HTTPRequest.ParsedURIParameters[1], out SmartCity_Id SmartCityId))
+            if (!SmartCity_Id.TryParse(HTTPRequest.ParsedURLParameters[1], out SmartCity_Id SmartCityId))
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -1131,7 +1131,7 @@ namespace cloud.charging.open.API
             GridOperator    = null;
             HTTPResponse    = null;
 
-            if (HTTPRequest.ParsedURIParameters.Length < 2)
+            if (HTTPRequest.ParsedURLParameters.Length < 2)
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -1149,7 +1149,7 @@ namespace cloud.charging.open.API
                 return false;
 
 
-            if (!GridOperator_Id.TryParse(HTTPRequest.ParsedURIParameters[1], out GridOperator_Id GridOperatorId))
+            if (!GridOperator_Id.TryParse(HTTPRequest.ParsedURLParameters[1], out GridOperator_Id GridOperatorId))
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -1226,7 +1226,7 @@ namespace cloud.charging.open.API
             ChargingStation  = null;
             HTTPResponse     = null;
 
-            if (HTTPRequest.ParsedURIParameters.Length < 3)
+            if (HTTPRequest.ParsedURLParameters.Length < 3)
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -1245,7 +1245,7 @@ namespace cloud.charging.open.API
 
             #region Get charging pool...
 
-            if (!ChargingPool_Id.TryParse(HTTPRequest.ParsedURIParameters[1], out ChargingPool_Id ChargingPoolId))
+            if (!ChargingPool_Id.TryParse(HTTPRequest.ParsedURLParameters[1], out ChargingPool_Id ChargingPoolId))
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -1282,7 +1282,7 @@ namespace cloud.charging.open.API
 
             #region Get charging station...
 
-            if (!ChargingStation_Id.TryParse(HTTPRequest.ParsedURIParameters[2], out ChargingStation_Id ChargingStationId))
+            if (!ChargingStation_Id.TryParse(HTTPRequest.ParsedURLParameters[2], out ChargingStation_Id ChargingStationId))
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -1362,7 +1362,7 @@ namespace cloud.charging.open.API
             EVSE             = null;
             HTTPResponse     = null;
 
-            if (HTTPRequest.ParsedURIParameters.Length < 4)
+            if (HTTPRequest.ParsedURLParameters.Length < 4)
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -1381,7 +1381,7 @@ namespace cloud.charging.open.API
 
             #region Get charging pool...
 
-            if (!ChargingPool_Id.TryParse(HTTPRequest.ParsedURIParameters[1], out ChargingPool_Id ChargingPoolId))
+            if (!ChargingPool_Id.TryParse(HTTPRequest.ParsedURLParameters[1], out ChargingPool_Id ChargingPoolId))
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -1418,7 +1418,7 @@ namespace cloud.charging.open.API
 
             #region Get charging station...
 
-            if (!ChargingStation_Id.TryParse(HTTPRequest.ParsedURIParameters[2], out ChargingStation_Id ChargingStationId))
+            if (!ChargingStation_Id.TryParse(HTTPRequest.ParsedURLParameters[2], out ChargingStation_Id ChargingStationId))
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -1455,7 +1455,7 @@ namespace cloud.charging.open.API
 
             #region Get EVSE
 
-            if (!EVSE_Id.TryParse(HTTPRequest.ParsedURIParameters[3], out EVSE_Id EVSEId))
+            if (!EVSE_Id.TryParse(HTTPRequest.ParsedURLParameters[3], out EVSE_Id EVSEId))
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -1532,7 +1532,7 @@ namespace cloud.charging.open.API
             Brand                    = null;
             HTTPResponse             = null;
 
-            if (HTTPRequest.ParsedURIParameters.Length < 3)
+            if (HTTPRequest.ParsedURLParameters.Length < 3)
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -1550,7 +1550,7 @@ namespace cloud.charging.open.API
                 return false;
 
 
-            if (!ChargingStationOperator_Id.TryParse(HTTPRequest.ParsedURIParameters[1], out ChargingStationOperator_Id ChargingStationOperatorId)) {
+            if (!ChargingStationOperator_Id.TryParse(HTTPRequest.ParsedURLParameters[1], out ChargingStationOperator_Id ChargingStationOperatorId)) {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
@@ -1583,7 +1583,7 @@ namespace cloud.charging.open.API
 
 
 
-            if (!Brand_Id.TryParse(HTTPRequest.ParsedURIParameters[2], out Brand_Id BrandId)) {
+            if (!Brand_Id.TryParse(HTTPRequest.ParsedURLParameters[2], out Brand_Id BrandId)) {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
@@ -1655,7 +1655,7 @@ namespace cloud.charging.open.API
             ChargingStationGroup     = null;
             HTTPResponse             = null;
 
-            if (HTTPRequest.ParsedURIParameters.Length < 3)
+            if (HTTPRequest.ParsedURLParameters.Length < 3)
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -1673,7 +1673,7 @@ namespace cloud.charging.open.API
                 return false;
 
 
-            if (!ChargingStationOperator_Id.TryParse(HTTPRequest.ParsedURIParameters[1], out ChargingStationOperator_Id ChargingStationOperatorId)) {
+            if (!ChargingStationOperator_Id.TryParse(HTTPRequest.ParsedURLParameters[1], out ChargingStationOperator_Id ChargingStationOperatorId)) {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
@@ -1706,7 +1706,7 @@ namespace cloud.charging.open.API
 
 
 
-            if (!ChargingStationGroup_Id.TryParse(HTTPRequest.ParsedURIParameters[2], out ChargingStationGroup_Id ChargingStationGroupId)) {
+            if (!ChargingStationGroup_Id.TryParse(HTTPRequest.ParsedURLParameters[2], out ChargingStationGroup_Id ChargingStationGroupId)) {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
@@ -1778,7 +1778,7 @@ namespace cloud.charging.open.API
             EVSEGroup                = null;
             HTTPResponse             = null;
 
-            if (HTTPRequest.ParsedURIParameters.Length < 3)
+            if (HTTPRequest.ParsedURLParameters.Length < 3)
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -1796,7 +1796,7 @@ namespace cloud.charging.open.API
                 return false;
 
 
-            if (!ChargingStationOperator_Id.TryParse(HTTPRequest.ParsedURIParameters[1], out ChargingStationOperator_Id ChargingStationOperatorId)) {
+            if (!ChargingStationOperator_Id.TryParse(HTTPRequest.ParsedURLParameters[1], out ChargingStationOperator_Id ChargingStationOperatorId)) {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
@@ -1829,7 +1829,7 @@ namespace cloud.charging.open.API
 
 
 
-            if (!EVSEGroup_Id.TryParse(HTTPRequest.ParsedURIParameters[2], out EVSEGroup_Id EVSEGroupId)) {
+            if (!EVSEGroup_Id.TryParse(HTTPRequest.ParsedURLParameters[2], out EVSEGroup_Id EVSEGroupId)) {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
@@ -3729,7 +3729,7 @@ namespace cloud.charging.open.API
 
                                                      #region Check HTTP parameters
 
-                                                     if (Request.ParsedURIParameters.Length < 1)
+                                                     if (Request.ParsedURLParameters.Length < 1)
                                                          return Task.FromResult(new HTTPResponse.Builder(Request) {
                                                                      HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                                      Server          = HTTPServer.DefaultServerName,
@@ -3737,7 +3737,7 @@ namespace cloud.charging.open.API
                                                                  }.AsImmutable);
 
 
-                                                     if (!RoamingNetwork_Id.TryParse(Request.ParsedURIParameters[0],
+                                                     if (!RoamingNetwork_Id.TryParse(Request.ParsedURLParameters[0],
                                                                                      out RoamingNetwork_Id _RoamingNetworkId))
                                                          return Task.FromResult(new HTTPResponse.Builder(Request) {
                                                                      HTTPStatusCode  = HTTPStatusCode.BadRequest,
@@ -3939,7 +3939,7 @@ namespace cloud.charging.open.API
 
                                                      #endregion
 
-                                                     if (Request.ParsedURIParameters.Length < 2)
+                                                     if (Request.ParsedURLParameters.Length < 2)
                                                          return Task.FromResult(
                                                              new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode  = HTTPStatusCode.BadRequest,
@@ -3947,7 +3947,7 @@ namespace cloud.charging.open.API
                                                                  Date            = DateTime.UtcNow,
                                                              }.AsImmutable);
 
-                                                     var PropertyKey = Request.ParsedURIParameters[1];
+                                                     var PropertyKey = Request.ParsedURLParameters[1];
 
                                                      if (PropertyKey.IsNullOrEmpty())
                                                          return Task.FromResult(
@@ -4016,7 +4016,7 @@ namespace cloud.charging.open.API
 
                                                      #endregion
 
-                                                     if (Request.ParsedURIParameters.Length < 2)
+                                                     if (Request.ParsedURLParameters.Length < 2)
                                                          return Task.FromResult(
                                                              new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode  = HTTPStatusCode.BadRequest,
@@ -4025,7 +4025,7 @@ namespace cloud.charging.open.API
                                                                  Connection      = "close"
                                                              }.AsImmutable);
 
-                                                     var PropertyKey = Request.ParsedURIParameters[1];
+                                                     var PropertyKey = Request.ParsedURLParameters[1];
 
                                                      if (PropertyKey.IsNullOrEmpty())
                                                          return Task.FromResult(
@@ -5851,7 +5851,7 @@ namespace cloud.charging.open.API
                                                      Connection                     = "close"
                                                  }.AsImmutable);
 
-                                              }, AllowReplacement: URIReplacement.Allow);
+                                              }, AllowReplacement: URLReplacement.Allow);
 
             #endregion
 
@@ -6542,7 +6542,7 @@ namespace cloud.charging.open.API
 
                                                      #endregion
 
-                                                 }, AllowReplacement: URIReplacement.Allow);
+                                                 }, AllowReplacement: URLReplacement.Allow);
 
             #endregion
 
@@ -6705,7 +6705,7 @@ namespace cloud.charging.open.API
 
                                                      #endregion
 
-                                                 }, AllowReplacement: URIReplacement.Allow);
+                                                 }, AllowReplacement: URLReplacement.Allow);
 
             #endregion
 
@@ -6847,7 +6847,7 @@ namespace cloud.charging.open.API
 
                                                      #endregion
 
-                                         }, AllowReplacement: URIReplacement.Allow);
+                                         }, AllowReplacement: URLReplacement.Allow);
 
             #endregion
 
@@ -7040,7 +7040,7 @@ namespace cloud.charging.open.API
 
                                                      #endregion
 
-                                                 }, AllowReplacement: URIReplacement.Allow);
+                                                 }, AllowReplacement: URLReplacement.Allow);
 
             #endregion
 
@@ -7205,7 +7205,7 @@ namespace cloud.charging.open.API
 
                                                      #endregion
 
-                                                 }, AllowReplacement: URIReplacement.Allow);
+                                                 }, AllowReplacement: URLReplacement.Allow);
 
             #endregion
 
@@ -7477,7 +7477,7 @@ namespace cloud.charging.open.API
 
                                                      #endregion
 
-                                                 }, AllowReplacement: URIReplacement.Allow);
+                                                 }, AllowReplacement: URLReplacement.Allow);
 
             #endregion
 
@@ -7512,7 +7512,7 @@ namespace cloud.charging.open.API
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
                                                          }.AsImmutable);
 
-                                                 }, AllowReplacement: URIReplacement.Allow);
+                                                 }, AllowReplacement: URLReplacement.Allow);
 
             #endregion
 
@@ -8773,7 +8773,7 @@ namespace cloud.charging.open.API
 
                                                      #region Parse ChargingPoolId
 
-                                                     if (!ChargingPool_Id.TryParse(Request.ParsedURIParameters[1],
+                                                     if (!ChargingPool_Id.TryParse(Request.ParsedURLParameters[1],
                                                                                    out ChargingPool_Id ChargingPoolId))
                                                      {
 
@@ -8947,7 +8947,7 @@ namespace cloud.charging.open.API
 
                                                          #region Parse ChargingStationId
 
-                                                         if (!ChargingStation_Id.TryParse(HTTPRequest.ParsedURIParameters[1], out ChargingStationId))
+                                                         if (!ChargingStation_Id.TryParse(HTTPRequest.ParsedURLParameters[1], out ChargingStationId))
                                                              return new HTTPResponse.Builder(HTTPRequest) {
                                                                  HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                                  ContentType     = HTTPContentType.JSON_UTF8,
