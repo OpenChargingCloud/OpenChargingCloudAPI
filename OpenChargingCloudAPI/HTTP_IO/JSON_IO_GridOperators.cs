@@ -69,11 +69,8 @@ namespace org.GraphDefined.WWCP.Net.IO.JSON
 
                                                      #region Check parameters
 
-                                                     HTTPResponse    _HTTPResponse;
-                                                     RoamingNetwork  _RoamingNetwork;
-
-                                                     if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI, out _RoamingNetwork, out _HTTPResponse))
-                                                         return Task.FromResult(_HTTPResponse);
+                                                     if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI, out RoamingNetwork _RoamingNetwork, out HTTPResponse.Builder _HTTPResponse))
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -125,11 +122,11 @@ namespace org.GraphDefined.WWCP.Net.IO.JSON
 
                                                      #region Check parameters
 
-                                                     HTTPResponse    _HTTPResponse;
+                                                     HTTPResponse.Builder _HTTPResponse;
                                                      RoamingNetwork  _RoamingNetwork;
 
                                                      if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI, out _RoamingNetwork, out _HTTPResponse))
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -165,11 +162,11 @@ namespace org.GraphDefined.WWCP.Net.IO.JSON
 
                                                      #region Check parameters
 
-                                                     HTTPResponse    _HTTPResponse;
+                                                     HTTPResponse.Builder _HTTPResponse;
                                                      RoamingNetwork  _RoamingNetwork;
 
                                                      if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI, out _RoamingNetwork, out _HTTPResponse))
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -216,11 +213,11 @@ namespace org.GraphDefined.WWCP.Net.IO.JSON
 
                                                      #region Check parameters
 
-                                                     HTTPResponse    _HTTPResponse;
+                                                     HTTPResponse.Builder _HTTPResponse;
                                                      RoamingNetwork  _RoamingNetwork;
 
                                                      if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI, out _RoamingNetwork, out _HTTPResponse))
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -268,7 +265,7 @@ namespace org.GraphDefined.WWCP.Net.IO.JSON
 
                                                      #region Check HTTP parameters
 
-                                                     HTTPResponse    _HTTPResponse;
+                                                     HTTPResponse.Builder _HTTPResponse;
                                                      RoamingNetwork  _RoamingNetwork;
                                                      GridOperator    _GridOperator;
 
@@ -277,7 +274,7 @@ namespace org.GraphDefined.WWCP.Net.IO.JSON
                                                                                                      out _GridOperator,
                                                                                                      out _HTTPResponse))
 
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 

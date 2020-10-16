@@ -72,10 +72,10 @@ namespace cloud.charging.open.API
         /// <param name="RoamingNetwork">The roaming network.</param>
         /// <param name="HTTPResponse">A HTTP error response.</param>
         /// <returns>True, when roaming network was found; false else.</returns>
-        public static Boolean ParseRoamingNetwork(this HTTPRequest      HTTPRequest,
-                                                  OpenChargingCloudAPI  OpenChargingCloudAPI,
-                                                  out RoamingNetwork    RoamingNetwork,
-                                                  out HTTPResponse      HTTPResponse)
+        public static Boolean ParseRoamingNetwork(this HTTPRequest          HTTPRequest,
+                                                  OpenChargingCloudAPI      OpenChargingCloudAPI,
+                                                  out RoamingNetwork        RoamingNetwork,
+                                                  out HTTPResponse.Builder  HTTPResponse)
         {
 
             #region Initial checks
@@ -125,7 +125,8 @@ namespace cloud.charging.open.API
                                   GetAllRoamingNetworks(HTTPRequest.Host).
                                   FirstOrDefault(roamingnetwork => roamingnetwork.Id == RoamingNetworkId);
 
-            if (RoamingNetwork == null) {
+            if (RoamingNetwork == null)
+            {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
@@ -162,7 +163,7 @@ namespace cloud.charging.open.API
                                                                             OpenChargingCloudAPI         OpenChargingCloudAPI,
                                                                             out RoamingNetwork           RoamingNetwork,
                                                                             out ChargingStationOperator  ChargingStationOperator,
-                                                                            out HTTPResponse             HTTPResponse)
+                                                                            out HTTPResponse.Builder     HTTPResponse)
         {
 
             #region Initial checks
@@ -179,7 +180,8 @@ namespace cloud.charging.open.API
             ChargingStationOperator  = null;
             HTTPResponse             = null;
 
-            if (HTTPRequest.ParsedURLParameters.Length < 2) {
+            if (HTTPRequest.ParsedURLParameters.Length < 2)
+            {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
@@ -249,11 +251,11 @@ namespace cloud.charging.open.API
         /// <param name="ChargingPool">The charging pool.</param>
         /// <param name="HTTPResponse">A HTTP error response.</param>
         /// <returns>True, when roaming network was found; false else.</returns>
-        public static Boolean ParseRoamingNetworkAndChargingPool(this HTTPRequest      HTTPRequest,
-                                                                 OpenChargingCloudAPI  OpenChargingCloudAPI,
-                                                                 out RoamingNetwork    RoamingNetwork,
-                                                                 out ChargingPool      ChargingPool,
-                                                                 out HTTPResponse      HTTPResponse)
+        public static Boolean ParseRoamingNetworkAndChargingPool(this HTTPRequest          HTTPRequest,
+                                                                 OpenChargingCloudAPI      OpenChargingCloudAPI,
+                                                                 out RoamingNetwork        RoamingNetwork,
+                                                                 out ChargingPool          ChargingPool,
+                                                                 out HTTPResponse.Builder  HTTPResponse)
         {
 
             #region Initial checks
@@ -340,11 +342,11 @@ namespace cloud.charging.open.API
         /// <param name="ChargingStation">The charging station.</param>
         /// <param name="HTTPResponse">A HTTP error response.</param>
         /// <returns>True, when roaming network was found; false else.</returns>
-        public static Boolean ParseRoamingNetworkAndChargingStation(this HTTPRequest      HTTPRequest,
-                                                                    OpenChargingCloudAPI  OpenChargingCloudAPI,
-                                                                    out RoamingNetwork    RoamingNetwork,
-                                                                    out ChargingStation   ChargingStation,
-                                                                    out HTTPResponse      HTTPResponse)
+        public static Boolean ParseRoamingNetworkAndChargingStation(this HTTPRequest          HTTPRequest,
+                                                                    OpenChargingCloudAPI      OpenChargingCloudAPI,
+                                                                    out RoamingNetwork        RoamingNetwork,
+                                                                    out ChargingStation       ChargingStation,
+                                                                    out HTTPResponse.Builder  HTTPResponse)
         {
 
             #region Initial checks
@@ -361,7 +363,8 @@ namespace cloud.charging.open.API
             ChargingStation  = null;
             HTTPResponse     = null;
 
-            if (HTTPRequest.ParsedURLParameters.Length < 2) {
+            if (HTTPRequest.ParsedURLParameters.Length < 2)
+            {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
@@ -462,11 +465,11 @@ namespace cloud.charging.open.API
         /// <param name="EVSE">The EVSE.</param>
         /// <param name="HTTPResponse">A HTTP error response.</param>
         /// <returns>True, when roaming network was found; false else.</returns>
-        public static Boolean ParseRoamingNetworkAndEVSE(this HTTPRequest      HTTPRequest,
-                                                         OpenChargingCloudAPI  OpenChargingCloudAPI,
-                                                         out RoamingNetwork    RoamingNetwork,
-                                                         out EVSE              EVSE,
-                                                         out HTTPResponse      HTTPResponse)
+        public static Boolean ParseRoamingNetworkAndEVSE(this HTTPRequest          HTTPRequest,
+                                                         OpenChargingCloudAPI      OpenChargingCloudAPI,
+                                                         out RoamingNetwork        RoamingNetwork,
+                                                         out EVSE                  EVSE,
+                                                         out HTTPResponse.Builder  HTTPResponse)
         {
 
             #region Initial checks
@@ -587,13 +590,13 @@ namespace cloud.charging.open.API
         /// <param name="ChargingSession">The charging session.</param>
         /// <param name="HTTPResponse">A HTTP error response.</param>
         /// <returns>True, when roaming network was found; false else.</returns>
-        public static Boolean ParseRoamingNetworkAndChargingSession(this HTTPRequest         HTTPRequest,
-                                                                    OpenChargingCloudAPI     OpenChargingCloudAPI,
-                                                                    out RoamingNetwork_Id?   RoamingNetworkId,
-                                                                    out RoamingNetwork       RoamingNetwork,
-                                                                    out ChargingSession_Id?  ChargingSessionId,
-                                                                    out ChargingSession      ChargingSession,
-                                                                    out HTTPResponse         HTTPResponse)
+        public static Boolean ParseRoamingNetworkAndChargingSession(this HTTPRequest          HTTPRequest,
+                                                                    OpenChargingCloudAPI      OpenChargingCloudAPI,
+                                                                    out RoamingNetwork_Id?    RoamingNetworkId,
+                                                                    out RoamingNetwork        RoamingNetwork,
+                                                                    out ChargingSession_Id?   ChargingSessionId,
+                                                                    out ChargingSession       ChargingSession,
+                                                                    out HTTPResponse.Builder  HTTPResponse)
         {
 
             #region Initial checks
@@ -715,11 +718,11 @@ namespace cloud.charging.open.API
         /// <param name="Reservation">The charging reservation.</param>
         /// <param name="HTTPResponse">A HTTP error response.</param>
         /// <returns>True, when roaming network was found; false else.</returns>
-        public static Boolean ParseRoamingNetworkAndReservation(this HTTPRequest         HTTPRequest,
-                                                                OpenChargingCloudAPI     OpenChargingCloudAPI,
-                                                                out RoamingNetwork       RoamingNetwork,
-                                                                out ChargingReservation  Reservation,
-                                                                out HTTPResponse         HTTPResponse)
+        public static Boolean ParseRoamingNetworkAndReservation(this HTTPRequest          HTTPRequest,
+                                                                OpenChargingCloudAPI      OpenChargingCloudAPI,
+                                                                out RoamingNetwork        RoamingNetwork,
+                                                                out ChargingReservation   Reservation,
+                                                                out HTTPResponse.Builder  HTTPResponse)
         {
 
             #region Initial checks
@@ -835,11 +838,11 @@ namespace cloud.charging.open.API
         /// <param name="EMobilityProvider">The charging station operator.</param>
         /// <param name="HTTPResponse">A HTTP error response.</param>
         /// <returns>True, when roaming network was found; false else.</returns>
-        public static Boolean ParseRoamingNetworkAndEMobilityProvider(this HTTPRequest       HTTPRequest,
-                                                                      OpenChargingCloudAPI   OpenChargingCloudAPI,
-                                                                      out RoamingNetwork     RoamingNetwork,
-                                                                      out eMobilityProvider  EMobilityProvider,
-                                                                      out HTTPResponse       HTTPResponse)
+        public static Boolean ParseRoamingNetworkAndEMobilityProvider(this HTTPRequest          HTTPRequest,
+                                                                      OpenChargingCloudAPI      OpenChargingCloudAPI,
+                                                                      out RoamingNetwork        RoamingNetwork,
+                                                                      out eMobilityProvider     EMobilityProvider,
+                                                                      out HTTPResponse.Builder  HTTPResponse)
         {
 
             #region Initial checks
@@ -928,11 +931,11 @@ namespace cloud.charging.open.API
         /// <param name="ParkingOperator">The charging station operator.</param>
         /// <param name="HTTPResponse">A HTTP error response.</param>
         /// <returns>True, when roaming network was found; false else.</returns>
-        public static Boolean ParseRoamingNetworkAndParkingOperator(this HTTPRequest     HTTPRequest,
-                                                                    OpenChargingCloudAPI  OpenChargingCloudAPI,
-                                                                    out RoamingNetwork   RoamingNetwork,
-                                                                    out ParkingOperator  ParkingOperator,
-                                                                    out HTTPResponse     HTTPResponse)
+        public static Boolean ParseRoamingNetworkAndParkingOperator(this HTTPRequest          HTTPRequest,
+                                                                    OpenChargingCloudAPI      OpenChargingCloudAPI,
+                                                                    out RoamingNetwork        RoamingNetwork,
+                                                                    out ParkingOperator       ParkingOperator,
+                                                                    out HTTPResponse.Builder  HTTPResponse)
         {
 
             #region Initial checks
@@ -1019,11 +1022,11 @@ namespace cloud.charging.open.API
         /// <param name="SmartCity">The charging station operator.</param>
         /// <param name="HTTPResponse">A HTTP error response.</param>
         /// <returns>True, when roaming network was found; false else.</returns>
-        public static Boolean ParseRoamingNetworkAndSmartCity(this HTTPRequest    HTTPRequest,
-                                                              OpenChargingCloudAPI  OpenChargingCloudAPI,
-                                                              out RoamingNetwork  RoamingNetwork,
-                                                              out SmartCityProxy  SmartCity,
-                                                              out HTTPResponse    HTTPResponse)
+        public static Boolean ParseRoamingNetworkAndSmartCity(this HTTPRequest          HTTPRequest,
+                                                              OpenChargingCloudAPI      OpenChargingCloudAPI,
+                                                              out RoamingNetwork        RoamingNetwork,
+                                                              out SmartCityProxy        SmartCity,
+                                                              out HTTPResponse.Builder  HTTPResponse)
         {
 
             #region Initial checks
@@ -1110,11 +1113,11 @@ namespace cloud.charging.open.API
         /// <param name="GridOperator">The charging station operator.</param>
         /// <param name="HTTPResponse">A HTTP error response.</param>
         /// <returns>True, when roaming network was found; false else.</returns>
-        public static Boolean ParseRoamingNetworkAndGridOperator(this HTTPRequest    HTTPRequest,
-                                                                 OpenChargingCloudAPI  OpenChargingCloudAPI,
-                                                                 out RoamingNetwork  RoamingNetwork,
-                                                                 out GridOperator    GridOperator,
-                                                                 out HTTPResponse    HTTPResponse)
+        public static Boolean ParseRoamingNetworkAndGridOperator(this HTTPRequest          HTTPRequest,
+                                                                 OpenChargingCloudAPI      OpenChargingCloudAPI,
+                                                                 out RoamingNetwork        RoamingNetwork,
+                                                                 out GridOperator          GridOperator,
+                                                                 out HTTPResponse.Builder  HTTPResponse)
         {
 
             #region Initial checks
@@ -1203,12 +1206,12 @@ namespace cloud.charging.open.API
         /// <param name="ChargingPool">The charging pool.</param>
         /// <param name="ChargingStation">The charging station.</param>
         /// <param name="HTTPResponse">A HTTP error response.</param>
-        public static Boolean ParseRoamingNetworkAndChargingPoolAndChargingStation(this HTTPRequest     HTTPRequest,
-                                                                                   OpenChargingCloudAPI  OpenChargingCloudAPI,
-                                                                                   out RoamingNetwork   RoamingNetwork,
-                                                                                   out ChargingPool     ChargingPool,
-                                                                                   out ChargingStation  ChargingStation,
-                                                                                   out HTTPResponse     HTTPResponse)
+        public static Boolean ParseRoamingNetworkAndChargingPoolAndChargingStation(this HTTPRequest          HTTPRequest,
+                                                                                   OpenChargingCloudAPI      OpenChargingCloudAPI,
+                                                                                   out RoamingNetwork        RoamingNetwork,
+                                                                                   out ChargingPool          ChargingPool,
+                                                                                   out ChargingStation       ChargingStation,
+                                                                                   out HTTPResponse.Builder  HTTPResponse)
         {
 
             #region Initial checks
@@ -1337,13 +1340,13 @@ namespace cloud.charging.open.API
         /// <param name="ChargingStation">The charging station.</param>
         /// <param name="EVSE">The EVSE.</param>
         /// <param name="HTTPResponse">A HTTP error response.</param>
-        public static Boolean ParseRoamingNetworkAndChargingPoolAndChargingStationAndEVSE(this HTTPRequest     HTTPRequest,
-                                                                                          OpenChargingCloudAPI  OpenChargingCloudAPI,
-                                                                                          out RoamingNetwork   RoamingNetwork,
-                                                                                          out ChargingPool     ChargingPool,
-                                                                                          out ChargingStation  ChargingStation,
-                                                                                          out EVSE             EVSE,
-                                                                                          out HTTPResponse     HTTPResponse)
+        public static Boolean ParseRoamingNetworkAndChargingPoolAndChargingStationAndEVSE(this HTTPRequest          HTTPRequest,
+                                                                                          OpenChargingCloudAPI      OpenChargingCloudAPI,
+                                                                                          out RoamingNetwork        RoamingNetwork,
+                                                                                          out ChargingPool          ChargingPool,
+                                                                                          out ChargingStation       ChargingStation,
+                                                                                          out EVSE                  EVSE,
+                                                                                          out HTTPResponse.Builder  HTTPResponse)
         {
 
             #region Initial checks
@@ -1510,11 +1513,11 @@ namespace cloud.charging.open.API
         /// <param name="HTTPResponse">A HTTP error response.</param>
         /// <returns>True, when roaming network was found; false else.</returns>
         public static Boolean ParseRoamingNetworkAndChargingStationOperatorAndBrand(this HTTPRequest             HTTPRequest,
-                                                                                    OpenChargingCloudAPI                 OpenChargingCloudAPI,
+                                                                                    OpenChargingCloudAPI         OpenChargingCloudAPI,
                                                                                     out RoamingNetwork           RoamingNetwork,
                                                                                     out ChargingStationOperator  ChargingStationOperator,
                                                                                     out Brand                    Brand,
-                                                                                    out HTTPResponse             HTTPResponse)
+                                                                                    out HTTPResponse.Builder     HTTPResponse)
         {
 
             #region Initial checks
@@ -1633,11 +1636,11 @@ namespace cloud.charging.open.API
         /// <param name="HTTPResponse">A HTTP error response.</param>
         /// <returns>True, when roaming network was found; false else.</returns>
         public static Boolean ParseRoamingNetworkAndChargingStationOperatorAndChargingStationGroup(this HTTPRequest             HTTPRequest,
-                                                                                                   OpenChargingCloudAPI                 OpenChargingCloudAPI,
+                                                                                                   OpenChargingCloudAPI         OpenChargingCloudAPI,
                                                                                                    out RoamingNetwork           RoamingNetwork,
                                                                                                    out ChargingStationOperator  ChargingStationOperator,
                                                                                                    out ChargingStationGroup     ChargingStationGroup,
-                                                                                                   out HTTPResponse             HTTPResponse)
+                                                                                                   out HTTPResponse.Builder     HTTPResponse)
         {
 
             #region Initial checks
@@ -1756,11 +1759,11 @@ namespace cloud.charging.open.API
         /// <param name="HTTPResponse">A HTTP error response.</param>
         /// <returns>True, when roaming network was found; false else.</returns>
         public static Boolean ParseRoamingNetworkAndChargingStationOperatorAndEVSEGroup(this HTTPRequest             HTTPRequest,
-                                                                                        OpenChargingCloudAPI                 OpenChargingCloudAPI,
+                                                                                        OpenChargingCloudAPI         OpenChargingCloudAPI,
                                                                                         out RoamingNetwork           RoamingNetwork,
                                                                                         out ChargingStationOperator  ChargingStationOperator,
                                                                                         out EVSEGroup                EVSEGroup,
-                                                                                        out HTTPResponse             HTTPResponse)
+                                                                                        out HTTPResponse.Builder     HTTPResponse)
         {
 
             #region Initial checks
@@ -1869,10 +1872,10 @@ namespace cloud.charging.open.API
 
         // Additional HTTP methods for HTTP clients
 
-        #region REMOTESTART(this HTTPClient, URI, BuilderAction = null)
+        #region REMOTESTART(this HTTPClient, URL, BuilderAction = null)
 
         public static HTTPRequest.Builder REMOTESTART(this HTTPClient              HTTPClient,
-                                                      HTTPPath                      URI,
+                                                      HTTPPath                     URL,
                                                       Action<HTTPRequest.Builder>  BuilderAction  = null)
         {
 
@@ -1881,21 +1884,21 @@ namespace cloud.charging.open.API
             if (HTTPClient == null)
                 throw new ArgumentNullException(nameof(HTTPClient),  "The given HTTP client must not be null!");
 
-            if (URI.IsNullOrEmpty())
-                throw new ArgumentNullException(nameof(URI),         "The given URI must not be null!");
+            if (URL.IsNullOrEmpty())
+                throw new ArgumentNullException(nameof(URL),         "The given URI must not be null!");
 
             #endregion
 
-            return HTTPClient.CreateRequest(OpenChargingCloudAPI.REMOTESTART, URI, BuilderAction);
+            return HTTPClient.CreateRequest(OpenChargingCloudAPI.REMOTESTART, URL, BuilderAction);
 
         }
 
         #endregion
 
-        #region REMOTESTOP (this HTTPClient, URI, BuilderAction = null)
+        #region REMOTESTOP (this HTTPClient, URL, BuilderAction = null)
 
         public static HTTPRequest.Builder REMOTESTOP(this HTTPClient              HTTPClient,
-                                                     HTTPPath                      URI,
+                                                     HTTPPath                     URL,
                                                      Action<HTTPRequest.Builder>  BuilderAction  = null)
         {
 
@@ -1904,12 +1907,12 @@ namespace cloud.charging.open.API
             if (HTTPClient == null)
                 throw new ArgumentNullException(nameof(HTTPClient),  "The given HTTP client must not be null!");
 
-            if (URI.IsNullOrEmpty())
-                throw new ArgumentNullException(nameof(URI),         "The given URI must not be null!");
+            if (URL.IsNullOrEmpty())
+                throw new ArgumentNullException(nameof(URL),         "The given URI must not be null!");
 
             #endregion
 
-            return HTTPClient.CreateRequest(OpenChargingCloudAPI.REMOTESTOP, URI, BuilderAction);
+            return HTTPClient.CreateRequest(OpenChargingCloudAPI.REMOTESTOP, URL, BuilderAction);
 
         }
 
@@ -3676,8 +3679,8 @@ namespace cloud.charging.open.API
 
                                                      #region Check HTTP parameters
 
-                                                     if (!Request.ParseRoamingNetwork(this, out RoamingNetwork _RoamingNetwork, out HTTPResponse _HTTPResponse))
-                                                         return Task.FromResult(_HTTPResponse);
+                                                     if (!Request.ParseRoamingNetwork(this, out RoamingNetwork _RoamingNetwork, out HTTPResponse.Builder _HTTPResponse))
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -3766,8 +3769,8 @@ namespace cloud.charging.open.API
                                                      I18NString RoamingNetworkName         = I18NString.Empty;
                                                      I18NString RoamingNetworkDescription  = I18NString.Empty;
 
-                                                     if (Request.TryParseJObjectRequestBody(out JObject       JSON,
-                                                                                            out HTTPResponse  _HTTPResponse,
+                                                     if (Request.TryParseJObjectRequestBody(out JObject               JSON,
+                                                                                            out HTTPResponse.Builder  _HTTPResponse,
                                                                                             AllowEmptyHTTPBody: true))
                                                      {
 
@@ -3778,7 +3781,7 @@ namespace cloud.charging.open.API
                                                                                   Request,
                                                                                   out _HTTPResponse))
                                                          {
-                                                             return Task.FromResult(_HTTPResponse);
+                                                             return Task.FromResult(_HTTPResponse.AsImmutable);
                                                          }
 
                                                          if (!JSON.ParseOptional("description",
@@ -3788,7 +3791,7 @@ namespace cloud.charging.open.API
                                                                                  Request,
                                                                                  out _HTTPResponse))
                                                          {
-                                                             return Task.FromResult(_HTTPResponse);
+                                                             return Task.FromResult(_HTTPResponse.AsImmutable);
                                                          }
 
                                                      }
@@ -3851,10 +3854,10 @@ namespace cloud.charging.open.API
                                                      #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork _RoamingNetwork,
-                                                                                      out HTTPResponse   _HTTPResponse))
+                                                                                      out RoamingNetwork        _RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -3893,10 +3896,10 @@ namespace cloud.charging.open.API
                                                      #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork _RoamingNetwork,
-                                                                                      out HTTPResponse   _HTTPResponse))
+                                                                                      out RoamingNetwork        _RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -3931,10 +3934,10 @@ namespace cloud.charging.open.API
                                                      #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork _RoamingNetwork,
-                                                                                      out HTTPResponse   _HTTPResponse))
+                                                                                      out RoamingNetwork        _RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -4008,10 +4011,10 @@ namespace cloud.charging.open.API
                                                      #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork _RoamingNetwork,
-                                                                                      out HTTPResponse   _HTTPResponse))
+                                                                                      out RoamingNetwork        _RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -4046,8 +4049,8 @@ namespace cloud.charging.open.API
 
                                                      var DescriptionI18N = I18NString.Empty;
 
-                                                     if (Request.TryParseJObjectRequestBody(out JObject      JSON,
-                                                                                            out HTTPResponse HTTPResponse,
+                                                     if (Request.TryParseJObjectRequestBody(out JObject              JSON,
+                                                                                            out HTTPResponse.Builder HTTPResponse,
                                                                                             AllowEmptyHTTPBody: false))
                                                      {
 
@@ -4060,7 +4063,7 @@ namespace cloud.charging.open.API
                                                                                       Request,
                                                                                       out HTTPResponse))
                                                          {
-                                                             return Task.FromResult(HTTPResponse);
+                                                             return Task.FromResult(HTTPResponse.AsImmutable);
                                                          }
 
                                                          #endregion
@@ -4074,7 +4077,7 @@ namespace cloud.charging.open.API
                                                                                       Request,
                                                                                       out HTTPResponse))
                                                          {
-                                                             return Task.FromResult(HTTPResponse);
+                                                             return Task.FromResult(HTTPResponse.AsImmutable);
                                                          }
 
                                                          #endregion
@@ -4151,10 +4154,10 @@ namespace cloud.charging.open.API
                                                      #region Check parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork RoamingNetwork,
-                                                                                      out HTTPResponse   _HTTPResponse))
+                                                                                      out RoamingNetwork         RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
 
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -4210,11 +4213,11 @@ namespace cloud.charging.open.API
 
                                                      #region Check parameters
 
-                                                     HTTPResponse    _HTTPResponse;
-                                                     RoamingNetwork  RoamingNetwork;
+                                                     HTTPResponse.Builder  _HTTPResponse;
+                                                     RoamingNetwork        RoamingNetwork;
 
                                                      if (!Request.ParseRoamingNetwork(this, out RoamingNetwork, out _HTTPResponse))
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -4276,10 +4279,10 @@ namespace cloud.charging.open.API
                                                      #region Check parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork RoamingNetwork,
-                                                                                      out HTTPResponse   _HTTPResponse))
+                                                                                      out RoamingNetwork        RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
 
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -4319,10 +4322,10 @@ namespace cloud.charging.open.API
                                                      #region Check parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork RoamingNetwork,
-                                                                                      out HTTPResponse   _HTTPResponse))
+                                                                                      out RoamingNetwork        RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
 
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -4370,10 +4373,10 @@ namespace cloud.charging.open.API
                                                      #region Check parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork RoamingNetwork,
-                                                                                      out HTTPResponse   _HTTPResponse))
+                                                                                      out RoamingNetwork        RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
 
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -4421,11 +4424,11 @@ namespace cloud.charging.open.API
 
                                                      #region Check parameters
 
-                                                     HTTPResponse    _HTTPResponse;
-                                                     RoamingNetwork  RoamingNetwork;
+                                                     HTTPResponse.Builder  _HTTPResponse;
+                                                     RoamingNetwork        RoamingNetwork;
 
                                                      if (!Request.ParseRoamingNetwork(this, out RoamingNetwork, out _HTTPResponse))
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -4474,11 +4477,11 @@ namespace cloud.charging.open.API
                                                      #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetworkAndChargingPool(this,
-                                                                                                     out RoamingNetwork  _RoamingNetwork,
-                                                                                                     out ChargingPool    _ChargingPool,
-                                                                                                     out HTTPResponse    _HTTPResponse))
+                                                                                                     out RoamingNetwork        _RoamingNetwork,
+                                                                                                     out ChargingPool          _ChargingPool,
+                                                                                                     out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -4518,11 +4521,11 @@ namespace cloud.charging.open.API
                                                      #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetworkAndChargingPool(this,
-                                                                                                     out RoamingNetwork  _RoamingNetwork,
-                                                                                                     out ChargingPool    _ChargingPool,
-                                                                                                     out HTTPResponse    _HTTPResponse))
+                                                                                                     out RoamingNetwork        _RoamingNetwork,
+                                                                                                     out ChargingPool          _ChargingPool,
+                                                                                                     out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -4580,11 +4583,11 @@ namespace cloud.charging.open.API
                                                      #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetworkAndChargingPool(this,
-                                                                                                     out RoamingNetwork  _RoamingNetwork,
-                                                                                                     out ChargingPool    _ChargingPool,
-                                                                                                     out HTTPResponse    _HTTPResponse))
+                                                                                                     out RoamingNetwork        _RoamingNetwork,
+                                                                                                     out ChargingPool          _ChargingPool,
+                                                                                                     out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -4631,11 +4634,11 @@ namespace cloud.charging.open.API
                                                      #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetworkAndChargingPool(this,
-                                                                                                     out RoamingNetwork  _RoamingNetwork,
-                                                                                                     out ChargingPool    _ChargingPool,
-                                                                                                     out HTTPResponse    _HTTPResponse))
+                                                                                                     out RoamingNetwork        _RoamingNetwork,
+                                                                                                     out ChargingPool          _ChargingPool,
+                                                                                                     out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -4686,12 +4689,12 @@ namespace cloud.charging.open.API
                                                      #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetworkAndChargingPoolAndChargingStation(this,
-                                                                                                                       out RoamingNetwork   _RoamingNetwork,
-                                                                                                                       out ChargingPool     _ChargingPool,
-                                                                                                                       out ChargingStation  _ChargingStation,
-                                                                                                                       out HTTPResponse     _HTTPResponse))
+                                                                                                                       out RoamingNetwork        _RoamingNetwork,
+                                                                                                                       out ChargingPool          _ChargingPool,
+                                                                                                                       out ChargingStation       _ChargingStation,
+                                                                                                                       out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -4750,13 +4753,13 @@ namespace cloud.charging.open.API
                                                      #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetworkAndChargingPoolAndChargingStationAndEVSE(this,
-                                                                                                                              out RoamingNetwork   _RoamingNetwork,
-                                                                                                                              out ChargingPool     _ChargingPool,
-                                                                                                                              out ChargingStation  _ChargingStation,
-                                                                                                                              out EVSE             _EVSE,
-                                                                                                                              out HTTPResponse     _HTTPResponse))
+                                                                                                                              out RoamingNetwork        _RoamingNetwork,
+                                                                                                                              out ChargingPool          _ChargingPool,
+                                                                                                                              out ChargingStation       _ChargingStation,
+                                                                                                                              out EVSE                  _EVSE,
+                                                                                                                              out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -4796,11 +4799,11 @@ namespace cloud.charging.open.API
                                                      #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetworkAndChargingPool(this,
-                                                                                                     out RoamingNetwork  _RoamingNetwork,
-                                                                                                     out ChargingPool    _ChargingPool,
-                                                                                                     out HTTPResponse    _HTTPResponse))
+                                                                                                     out RoamingNetwork        _RoamingNetwork,
+                                                                                                     out ChargingPool          _ChargingPool,
+                                                                                                     out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -4859,11 +4862,11 @@ namespace cloud.charging.open.API
                                                      #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetworkAndChargingPool(this,
-                                                                                                     out RoamingNetwork  _RoamingNetwork,
-                                                                                                     out ChargingPool    _ChargingPool,
-                                                                                                     out HTTPResponse    _HTTPResponse))
+                                                                                                     out RoamingNetwork        _RoamingNetwork,
+                                                                                                     out ChargingPool          _ChargingPool,
+                                                                                                     out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -4902,48 +4905,48 @@ namespace cloud.charging.open.API
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingPools/{ChargingPoolId}/EVSEs->Status
             // -------------------------------------------------------------------------------------------------------------------
             HTTPServer.AddMethodCallback(Hostname,
-                                                 HTTPMethod.GET,
-                                                 URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/EVSEs->Status",
-                                                 HTTPContentType.JSON_UTF8,
-                                                 HTTPDelegate: Request => {
+                                         HTTPMethod.GET,
+                                         URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/EVSEs->Status",
+                                         HTTPContentType.JSON_UTF8,
+                                         HTTPDelegate: Request => {
 
-                                                     #region Check HTTP parameters
+                                             #region Check HTTP parameters
 
-                                                     if (!Request.ParseRoamingNetworkAndChargingPool(this,
-                                                                                                     out RoamingNetwork  _RoamingNetwork,
-                                                                                                     out ChargingPool    _ChargingPool,
-                                                                                                     out HTTPResponse    _HTTPResponse))
-                                                     {
-                                                         return Task.FromResult(_HTTPResponse);
-                                                     }
+                                             if (!Request.ParseRoamingNetworkAndChargingPool(this,
+                                                                                             out RoamingNetwork        _RoamingNetwork,
+                                                                                             out ChargingPool          _ChargingPool,
+                                                                                             out HTTPResponse.Builder  _HTTPResponse))
+                                             {
+                                                 return Task.FromResult(_HTTPResponse.AsImmutable);
+                                             }
 
-                                                     #endregion
+                                             #endregion
 
-                                                     var skip            = Request.QueryString.GetUInt64("skip");
-                                                     var take            = Request.QueryString.GetUInt64("take");
-                                                     var historysize     = Request.QueryString.GetUInt64("historysize", 1);
+                                             var skip            = Request.QueryString.GetUInt64("skip");
+                                             var take            = Request.QueryString.GetUInt64("take");
+                                             var historysize     = Request.QueryString.GetUInt64("historysize", 1);
 
-                                                     //ToDo: Getting the expected total count might be very expensive!
-                                                     var _ExpectedCount  = _ChargingPool.EVSEStatus().ULongCount();
+                                             //ToDo: Getting the expected total count might be very expensive!
+                                             var _ExpectedCount  = _ChargingPool.EVSEStatus().ULongCount();
 
-                                                     return Task.FromResult(
-                                                         new HTTPResponse.Builder(Request) {
-                                                             HTTPStatusCode                = HTTPStatusCode.OK,
-                                                             Server                        = HTTPServer.DefaultServerName,
-                                                             Date                          = DateTime.UtcNow,
-                                                             AccessControlAllowOrigin      = "*",
-                                                             AccessControlAllowMethods     = "GET",
-                                                             AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
-                                                             ETag                          = "1",
-                                                             ContentType                   = HTTPContentType.JSON_UTF8,
-                                                             Content                       = _ChargingPool.EVSEStatus().
-                                                                                                 ToJSON(skip,
-                                                                                                        take).
-                                                                                                 ToUTF8Bytes(),
-                                                             X_ExpectedTotalNumberOfItems  = _ExpectedCount
-                                                         }.AsImmutable);
+                                             return Task.FromResult(
+                                                 new HTTPResponse.Builder(Request) {
+                                                     HTTPStatusCode                = HTTPStatusCode.OK,
+                                                     Server                        = HTTPServer.DefaultServerName,
+                                                     Date                          = DateTime.UtcNow,
+                                                     AccessControlAllowOrigin      = "*",
+                                                     AccessControlAllowMethods     = "GET",
+                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     ETag                          = "1",
+                                                     ContentType                   = HTTPContentType.JSON_UTF8,
+                                                     Content                       = _ChargingPool.EVSEStatus().
+                                                                                         ToJSON(skip,
+                                                                                                take).
+                                                                                         ToUTF8Bytes(),
+                                                     X_ExpectedTotalNumberOfItems  = _ExpectedCount
+                                                 }.AsImmutable);
 
-                                                 });
+                                         });
 
             #endregion
 
@@ -4965,11 +4968,11 @@ namespace cloud.charging.open.API
 
                                                      #region Check parameters
 
-                                                     HTTPResponse    _HTTPResponse;
-                                                     RoamingNetwork  RoamingNetwork;
+                                                     HTTPResponse.Builder  _HTTPResponse;
+                                                     RoamingNetwork        RoamingNetwork;
 
                                                      if (!Request.ParseRoamingNetwork(this, out RoamingNetwork, out _HTTPResponse))
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -5028,11 +5031,11 @@ namespace cloud.charging.open.API
 
                                                      #region Check parameters
 
-                                                     HTTPResponse    _HTTPResponse;
-                                                     RoamingNetwork  RoamingNetwork;
+                                                     HTTPResponse.Builder  _HTTPResponse;
+                                                     RoamingNetwork        RoamingNetwork;
 
                                                      if (!Request.ParseRoamingNetwork(this, out RoamingNetwork, out _HTTPResponse))
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -5067,11 +5070,11 @@ namespace cloud.charging.open.API
 
                                                      #region Check parameters
 
-                                                     HTTPResponse    _HTTPResponse;
-                                                     RoamingNetwork  RoamingNetwork;
+                                                     HTTPResponse.Builder _HTTPResponse;
+                                                     RoamingNetwork       RoamingNetwork;
 
                                                      if (!Request.ParseRoamingNetwork(this, out RoamingNetwork, out _HTTPResponse))
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -5103,11 +5106,11 @@ namespace cloud.charging.open.API
 
                                                      #region Check parameters
 
-                                                     HTTPResponse    _HTTPResponse;
-                                                     RoamingNetwork  RoamingNetwork;
+                                                     HTTPResponse.Builder  _HTTPResponse;
+                                                     RoamingNetwork        RoamingNetwork;
 
                                                      if (!Request.ParseRoamingNetwork(this, out RoamingNetwork, out _HTTPResponse))
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -5147,10 +5150,10 @@ namespace cloud.charging.open.API
                                                      #region Check parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork RoamingNetwork,
-                                                                                      out HTTPResponse   _HTTPResponse))
+                                                                                      out RoamingNetwork        RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
 
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -5198,10 +5201,10 @@ namespace cloud.charging.open.API
                                                      #region Check parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork RoamingNetwork,
-                                                                                      out HTTPResponse   _HTTPResponse))
+                                                                                      out RoamingNetwork        RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
 
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -5249,11 +5252,11 @@ namespace cloud.charging.open.API
 
                                                      #region Check parameters
 
-                                                     HTTPResponse    _HTTPResponse;
-                                                     RoamingNetwork  RoamingNetwork;
+                                                     HTTPResponse.Builder _HTTPResponse;
+                                                     RoamingNetwork       RoamingNetwork;
 
                                                      if (!Request.ParseRoamingNetwork(this, out RoamingNetwork, out _HTTPResponse))
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -5302,10 +5305,10 @@ namespace cloud.charging.open.API
                                                      #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetworkAndChargingStation(this,
-                                                                                                        out RoamingNetwork   _RoamingNetwork,
-                                                                                                        out ChargingStation  _ChargingStation,
-                                                                                                        out HTTPResponse     _HTTPResponse))
-                                                         return Task.FromResult(_HTTPResponse);
+                                                                                                        out RoamingNetwork        _RoamingNetwork,
+                                                                                                        out ChargingStation       _ChargingStation,
+                                                                                                        out HTTPResponse.Builder  _HTTPResponse))
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -5344,11 +5347,11 @@ namespace cloud.charging.open.API
                                                      #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetworkAndChargingStation(this,
-                                                                                                        out RoamingNetwork   _RoamingNetwork,
-                                                                                                        out ChargingStation  _ChargingStation,
-                                                                                                        out HTTPResponse     _HTTPResponse))
+                                                                                                        out RoamingNetwork        _RoamingNetwork,
+                                                                                                        out ChargingStation       _ChargingStation,
+                                                                                                        out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -5408,11 +5411,11 @@ namespace cloud.charging.open.API
                                                      #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetworkAndChargingStation(this,
-                                                                                                        out RoamingNetwork   _RoamingNetwork,
-                                                                                                        out ChargingStation  _ChargingStation,
-                                                                                                        out HTTPResponse     _HTTPResponse))
+                                                                                                        out RoamingNetwork        _RoamingNetwork,
+                                                                                                        out ChargingStation       _ChargingStation,
+                                                                                                        out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -5459,11 +5462,11 @@ namespace cloud.charging.open.API
                                                      #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetworkAndChargingStation(this,
-                                                                                                        out RoamingNetwork   _RoamingNetwork,
-                                                                                                        out ChargingStation  _ChargingStation,
-                                                                                                        out HTTPResponse     _HTTPResponse))
+                                                                                                        out RoamingNetwork        _RoamingNetwork,
+                                                                                                        out ChargingStation       _ChargingStation,
+                                                                                                        out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -5515,10 +5518,10 @@ namespace cloud.charging.open.API
                                                      #region Check parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork  RoamingNetwork,
-                                                                                      out HTTPResponse    _HTTPResponse))
+                                                                                      out RoamingNetwork        RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -5581,10 +5584,10 @@ namespace cloud.charging.open.API
                                                      #region Check parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork RoamingNetwork,
-                                                                                      out HTTPResponse   _HTTPResponse))
+                                                                                      out RoamingNetwork        RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -5622,10 +5625,10 @@ namespace cloud.charging.open.API
                                                      #region Check parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork RoamingNetwork,
-                                                                                      out HTTPResponse   _HTTPResponse))
+                                                                                      out RoamingNetwork        RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -5659,10 +5662,10 @@ namespace cloud.charging.open.API
                                                      #region Check parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork  RoamingNetwork,
-                                                                                      out HTTPResponse    _HTTPResponse))
+                                                                                      out RoamingNetwork        RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -5704,10 +5707,10 @@ namespace cloud.charging.open.API
                                                      #region Check parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork RoamingNetwork,
-                                                                                      out HTTPResponse   _HTTPResponse))
+                                                                                      out RoamingNetwork        RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
 
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -5759,10 +5762,10 @@ namespace cloud.charging.open.API
                                                      #region Check parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork  RoamingNetwork,
-                                                                                      out HTTPResponse    _HTTPResponse))
+                                                                                      out RoamingNetwork        RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -5813,10 +5816,10 @@ namespace cloud.charging.open.API
                                              #region Check parameters
 
                                              if (!Request.ParseRoamingNetwork(this,
-                                                                              out RoamingNetwork RoamingNetwork,
-                                                                              out HTTPResponse   _HTTPResponse))
+                                                                              out RoamingNetwork        RoamingNetwork,
+                                                                              out HTTPResponse.Builder  _HTTPResponse))
                                              {
-                                                 return Task.FromResult(_HTTPResponse);
+                                                 return Task.FromResult(_HTTPResponse.AsImmutable);
                                              }
 
                                              #endregion
@@ -5870,10 +5873,10 @@ namespace cloud.charging.open.API
                                                      #region Check parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork RoamingNetwork,
-                                                                                      out HTTPResponse   _HTTPResponse))
+                                                                                      out RoamingNetwork        RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -5924,11 +5927,11 @@ namespace cloud.charging.open.API
                                                      #region Check RoamingNetworkId and EVSEId URI parameters
 
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork _RoamingNetwork,
-                                                                                             out EVSE           _EVSE,
-                                                                                             out HTTPResponse   _HTTPResponse))
+                                                                                             out RoamingNetwork        _RoamingNetwork,
+                                                                                             out EVSE                  _EVSE,
+                                                                                             out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -5965,9 +5968,9 @@ namespace cloud.charging.open.API
                                                      #region Parse RoamingNetworkId and EVSEId parameters
 
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork RoamingNetwork,
-                                                                                             out EVSE           EVSE,
-                                                                                             out HTTPResponse   _HTTPResponse))
+                                                                                             out RoamingNetwork        RoamingNetwork,
+                                                                                             out EVSE                  EVSE,
+                                                                                             out HTTPResponse.Builder  _HTTPResponse))
 
                                                          return _HTTPResponse;
 
@@ -6006,9 +6009,9 @@ namespace cloud.charging.open.API
                                                      #region Parse RoamingNetworkId and EVSEId parameters
 
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork  RoamingNetwork,
-                                                                                             out EVSE            EVSE,
-                                                                                             out HTTPResponse    _HTTPResponse))
+                                                                                             out RoamingNetwork        RoamingNetwork,
+                                                                                             out EVSE                  EVSE,
+                                                                                             out HTTPResponse.Builder  _HTTPResponse))
 
                                                          return _HTTPResponse;
 
@@ -6090,9 +6093,9 @@ namespace cloud.charging.open.API
 
                                                      #region Check RoamingNetworkId and EVSEId URI parameters
 
-                                                     HTTPResponse    _HTTPResponse;
-                                                     RoamingNetwork  RoamingNetwork;
-                                                     EVSE            EVSE;
+                                                     HTTPResponse.Builder  _HTTPResponse;
+                                                     RoamingNetwork        RoamingNetwork;
+                                                     EVSE                  EVSE;
 
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
                                                                                              out RoamingNetwork,
@@ -6564,9 +6567,9 @@ namespace cloud.charging.open.API
                                                      #region Parse RoamingNetworkId and EVSEId URI parameters
 
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork  RoamingNetwork,
-                                                                                             out EVSE            EVSE,
-                                                                                             out HTTPResponse    _HTTPResponse))
+                                                                                             out RoamingNetwork        RoamingNetwork,
+                                                                                             out EVSE                  EVSE,
+                                                                                             out HTTPResponse.Builder  _HTTPResponse))
                                                          return _HTTPResponse;
 
                                                      #endregion
@@ -6728,9 +6731,9 @@ namespace cloud.charging.open.API
                                                      #region Parse RoamingNetworkId and EVSEId URI parameters
 
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork  RoamingNetwork,
-                                                                                             out EVSE            EVSE,
-                                                                                             out HTTPResponse    _HTTPResponse))
+                                                                                             out RoamingNetwork        RoamingNetwork,
+                                                                                             out EVSE                  EVSE,
+                                                                                             out HTTPResponse.Builder  _HTTPResponse))
                                                          return _HTTPResponse;
 
                                                      #endregion
@@ -6870,9 +6873,9 @@ namespace cloud.charging.open.API
                                                      #region Get RoamingNetwork and EVSE URI parameters
 
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork RoamingNetwork,
-                                                                                             out EVSE           EVSE,
-                                                                                             out HTTPResponse   _HTTPResponse))
+                                                                                             out RoamingNetwork        RoamingNetwork,
+                                                                                             out EVSE                  EVSE,
+                                                                                             out HTTPResponse.Builder  _HTTPResponse))
                                                          return _HTTPResponse;
 
                                                      #endregion
@@ -7064,16 +7067,16 @@ namespace cloud.charging.open.API
                                                      #region Get RoamingNetwork and EVSE URI parameters
 
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork RoamingNetwork,
-                                                                                             out EVSE           EVSE,
-                                                                                             out HTTPResponse   _HTTPResponse))
+                                                                                             out RoamingNetwork        RoamingNetwork,
+                                                                                             out EVSE                  EVSE,
+                                                                                             out HTTPResponse.Builder  _HTTPResponse))
                                                          return _HTTPResponse;
 
                                                      #endregion
 
                                                      #region Parse JSON
 
-                                                     ChargingSession_Id     SessionId   = default(ChargingSession_Id);
+                                                     ChargingSession_Id     SessionId   = default;
                                                      eMobilityProvider_Id?  ProviderId  = null;
                                                      eMobilityAccount_Id?   eMAId       = null;
 
@@ -7235,9 +7238,9 @@ namespace cloud.charging.open.API
                                                      #region Check RoamingNetworkId and EVSEId URI parameters
 
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork  RoamingNetwork,
-                                                                                             out EVSE            EVSE,
-                                                                                             out HTTPResponse    _HTTPResponse))
+                                                                                             out RoamingNetwork        RoamingNetwork,
+                                                                                             out EVSE                  EVSE,
+                                                                                             out HTTPResponse.Builder  _HTTPResponse))
                                                      {
                                                          return _HTTPResponse;
                                                      }
@@ -7494,11 +7497,11 @@ namespace cloud.charging.open.API
                                                      #region Check RoamingNetworkId and EVSEId URI parameters
 
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork  _RoamingNetwork,
-                                                                                             out EVSE            _EVSE,
-                                                                                             out HTTPResponse    _HTTPResponse))
+                                                                                             out RoamingNetwork        _RoamingNetwork,
+                                                                                             out EVSE                  _EVSE,
+                                                                                             out HTTPResponse.Builder  _HTTPResponse))
 
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -7538,9 +7541,9 @@ namespace cloud.charging.open.API
                                                      #region Parse RoamingNetworkId and EVSEId parameters
 
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork  RoamingNetwork,
-                                                                                             out EVSE            EVSE,
-                                                                                             out HTTPResponse    _HTTPResponse))
+                                                                                             out RoamingNetwork        RoamingNetwork,
+                                                                                             out EVSE                  EVSE,
+                                                                                             out HTTPResponse.Builder  _HTTPResponse))
                                                      {
                                                          return _HTTPResponse;
                                                      }
@@ -7692,9 +7695,9 @@ namespace cloud.charging.open.API
                                              #region Check RoamingNetworkId and EVSEId URI parameters
 
                                              if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                     out RoamingNetwork  RoamingNetwork,
-                                                                                     out EVSE            EVSE,
-                                                                                     out HTTPResponse    _HTTPResponse))
+                                                                                     out RoamingNetwork        RoamingNetwork,
+                                                                                     out EVSE                  EVSE,
+                                                                                     out HTTPResponse.Builder  _HTTPResponse))
                                              {
                                                  return _HTTPResponse;
                                              }
@@ -7845,10 +7848,10 @@ namespace cloud.charging.open.API
                                                      if (!TryGetHTTPUser(Request,
                                                                          out User                   HTTPUser,
                                                                          out HashSet<Organization>  HTTPOrganizations,
-                                                                         out HTTPResponse           Response,
+                                                                         out HTTPResponse.Builder   Response,
                                                                          Recursive:                 true))
                                                      {
-                                                         return Task.FromResult(Response);
+                                                         return Task.FromResult(Response.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -7856,10 +7859,10 @@ namespace cloud.charging.open.API
                                                      #region Get roaming network
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork  RoamingNetwork,
-                                                                                      out HTTPResponse    HTTPResponse))
+                                                                                      out RoamingNetwork        RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  HTTPResponse))
                                                      {
-                                                         return Task.FromResult(HTTPResponse);
+                                                         return Task.FromResult(HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -7922,10 +7925,10 @@ namespace cloud.charging.open.API
                                                      if (!TryGetHTTPUser(Request,
                                                                          out User                   HTTPUser,
                                                                          out HashSet<Organization>  HTTPOrganizations,
-                                                                         out HTTPResponse           Response,
+                                                                         out HTTPResponse.Builder   Response,
                                                                          Recursive:                 true))
                                                      {
-                                                         return Task.FromResult(Response);
+                                                         return Task.FromResult(Response.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -7933,10 +7936,10 @@ namespace cloud.charging.open.API
                                                      #region Get roaming network
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork  RoamingNetwork,
-                                                                                      out HTTPResponse    HTTPResponse))
+                                                                                      out RoamingNetwork        RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  HTTPResponse))
                                                      {
-                                                         return Task.FromResult(HTTPResponse);
+                                                         return Task.FromResult(HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -7983,10 +7986,10 @@ namespace cloud.charging.open.API
                                                      if (!TryGetHTTPUser(Request,
                                                                          out User                   HTTPUser,
                                                                          out HashSet<Organization>  HTTPOrganizations,
-                                                                         out HTTPResponse           Response,
+                                                                         out HTTPResponse.Builder   Response,
                                                                          Recursive:                 true))
                                                      {
-                                                         return Task.FromResult(Response);
+                                                         return Task.FromResult(Response.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -7994,13 +7997,13 @@ namespace cloud.charging.open.API
                                                      #region Get roaming network and charging session
 
                                                      if (!Request.ParseRoamingNetworkAndChargingSession(this,
-                                                                                                        out RoamingNetwork_Id?   RoamingNetworkId,
-                                                                                                        out RoamingNetwork       RoamingNetwork,
-                                                                                                        out ChargingSession_Id?  ChargingSessionId,
-                                                                                                        out ChargingSession      ChargingSession,
-                                                                                                        out HTTPResponse         HTTPResponse))
+                                                                                                        out RoamingNetwork_Id?    RoamingNetworkId,
+                                                                                                        out RoamingNetwork        RoamingNetwork,
+                                                                                                        out ChargingSession_Id?   ChargingSessionId,
+                                                                                                        out ChargingSession       ChargingSession,
+                                                                                                        out HTTPResponse.Builder  HTTPResponse))
                                                      {
-                                                         return Task.FromResult(HTTPResponse);
+                                                         return Task.FromResult(HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -8077,7 +8080,7 @@ namespace cloud.charging.open.API
 
                                                      #region Check parameters
 
-                                                     if (!HTTPRequest.ParseRoamingNetwork(this, out RoamingNetwork RoamingNetwork, out HTTPResponse _HTTPResponse))
+                                                     if (!HTTPRequest.ParseRoamingNetwork(this, out RoamingNetwork RoamingNetwork, out HTTPResponse.Builder _HTTPResponse))
                                                          return _HTTPResponse;
 
                                                      #endregion
@@ -8150,9 +8153,9 @@ namespace cloud.charging.open.API
                                                      #region Check ChargingReservationId parameter
 
                                                      if (!HTTPRequest.ParseRoamingNetworkAndReservation(this,
-                                                                                                        out RoamingNetwork       RoamingNetwork,
-                                                                                                        out ChargingReservation  Reservation,
-                                                                                                        out HTTPResponse         _HTTPResponse))
+                                                                                                        out RoamingNetwork        RoamingNetwork,
+                                                                                                        out ChargingReservation   Reservation,
+                                                                                                        out HTTPResponse.Builder  _HTTPResponse))
                                                          return _HTTPResponse;
 
                                                      #endregion
@@ -8202,9 +8205,9 @@ namespace cloud.charging.open.API
                                                      #region Check ChargingReservationId parameter
 
                                                      if (!Request.ParseRoamingNetworkAndReservation(this,
-                                                                                                    out RoamingNetwork       RoamingNetwork,
-                                                                                                    out ChargingReservation  Reservation,
-                                                                                                    out HTTPResponse         _HTTPResponse))
+                                                                                                    out RoamingNetwork        RoamingNetwork,
+                                                                                                    out ChargingReservation   Reservation,
+                                                                                                    out HTTPResponse.Builder  _HTTPResponse))
                                                          return _HTTPResponse;
 
                                                      #endregion
@@ -8282,9 +8285,9 @@ namespace cloud.charging.open.API
                                                      #region Check ChargingReservationId parameter
 
                                                      if (!Request.ParseRoamingNetworkAndReservation(this,
-                                                                                                        out RoamingNetwork       RoamingNetwork,
-                                                                                                        out ChargingReservation  Reservation,
-                                                                                                        out HTTPResponse         _HTTPResponse))
+                                                                                                        out RoamingNetwork        RoamingNetwork,
+                                                                                                        out ChargingReservation   Reservation,
+                                                                                                        out HTTPResponse.Builder  _HTTPResponse))
                                                          return _HTTPResponse;
 
                                                      #endregion
@@ -8353,10 +8356,10 @@ namespace cloud.charging.open.API
                                                      #region Check parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork _RoamingNetwork,
-                                                                                      out HTTPResponse   _HTTPResponse))
+                                                                                      out RoamingNetwork        _RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -8418,10 +8421,10 @@ namespace cloud.charging.open.API
                                                      #region Check parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork _RoamingNetwork,
-                                                                                      out HTTPResponse   _HTTPResponse))
+                                                                                      out RoamingNetwork        _RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -8460,10 +8463,10 @@ namespace cloud.charging.open.API
                                                      #region Check parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork _RoamingNetwork,
-                                                                                      out HTTPResponse   _HTTPResponse))
+                                                                                      out RoamingNetwork        _RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -8513,10 +8516,10 @@ namespace cloud.charging.open.API
                                                      #region Check parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork _RoamingNetwork,
-                                                                                      out HTTPResponse   _HTTPResponse))
+                                                                                      out RoamingNetwork        _RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -8567,11 +8570,11 @@ namespace cloud.charging.open.API
                                                      #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetworkAndChargingStationOperator(this,
-                                                                                                                out RoamingNetwork          _RoamingNetwork,
-                                                                                                                out ChargingStationOperator _ChargingStationOperator,
-                                                                                                                out HTTPResponse            _HTTPResponse))
+                                                                                                                out RoamingNetwork           _RoamingNetwork,
+                                                                                                                out ChargingStationOperator  _ChargingStationOperator,
+                                                                                                                out HTTPResponse.Builder     _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -8612,10 +8615,10 @@ namespace cloud.charging.open.API
                                                      #region Check parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork RoamingNetwork,
-                                                                                      out HTTPResponse   _HTTPResponse))
+                                                                                      out RoamingNetwork        RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -8690,11 +8693,11 @@ namespace cloud.charging.open.API
                                                      #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetworkAndChargingPool(this,
-                                                                                                     out RoamingNetwork _RoamingNetwork,
-                                                                                                     out ChargingPool   _ChargingPool,
-                                                                                                     out HTTPResponse   _HTTPResponse))
+                                                                                                     out RoamingNetwork        _RoamingNetwork,
+                                                                                                     out ChargingPool          _ChargingPool,
+                                                                                                     out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -8715,7 +8718,7 @@ namespace cloud.charging.open.API
                                                                                  Request,
                                                                                  out _HTTPResponse))
                                                          {
-                                                             return Task.FromResult(_HTTPResponse);
+                                                             return Task.FromResult(_HTTPResponse.AsImmutable);
                                                          }
 
                                                      }
@@ -8763,10 +8766,10 @@ namespace cloud.charging.open.API
                                                      #region Check RoamingNetworkId and EVSEId URI parameters
 
                                                      if (!Request.ParseRoamingNetwork(this,
-                                                                                      out RoamingNetwork _RoamingNetwork,
-                                                                                      out HTTPResponse   _HTTPResponse))
+                                                                                      out RoamingNetwork        _RoamingNetwork,
+                                                                                      out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -8809,7 +8812,7 @@ namespace cloud.charging.open.API
                                                      #region Parse JSON and new charging pool admin status
 
                                                      if (!Request.TryParseJObjectRequestBody(out JObject JSON, out _HTTPResponse))
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      if (!JSON.ParseMandatoryEnum("newstatus",
                                                                                   "charging pool admin status",
@@ -8818,7 +8821,7 @@ namespace cloud.charging.open.API
                                                                                   Request,
                                                                                   out _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -8868,11 +8871,11 @@ namespace cloud.charging.open.API
                                                      #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetworkAndChargingStation(this,
-                                                                                                        out RoamingNetwork   _RoamingNetwork,
-                                                                                                        out ChargingStation  _ChargingStation,
-                                                                                                        out HTTPResponse     _HTTPResponse))
+                                                                                                        out RoamingNetwork        _RoamingNetwork,
+                                                                                                        out ChargingStation       _ChargingStation,
+                                                                                                        out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -8931,8 +8934,8 @@ namespace cloud.charging.open.API
                                                      #region Parse Query/Request Parameters
 
                                                      if (!HTTPRequest.ParseRoamingNetwork(this,
-                                                                                          out RoamingNetwork  RoamingNetwork,
-                                                                                          out HTTPResponse    _HTTPResponse))
+                                                                                          out RoamingNetwork        RoamingNetwork,
+                                                                                          out HTTPResponse.Builder  _HTTPResponse))
                                                      {
                                                          return _HTTPResponse;
                                                      }
@@ -9087,9 +9090,9 @@ namespace cloud.charging.open.API
                                                      if (!Request.ParseRoamingNetworkAndChargingStationOperator(this,
                                                                                                                 out RoamingNetwork           RoamingNetwork,
                                                                                                                 out ChargingStationOperator  ChargingStationOperator,
-                                                                                                                out HTTPResponse             _HTTPResponse))
+                                                                                                                out HTTPResponse.Builder     _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -9153,9 +9156,9 @@ namespace cloud.charging.open.API
                                                                                                                                        out RoamingNetwork           RoamingNetwork,
                                                                                                                                        out ChargingStationOperator  ChargingStationOperator,
                                                                                                                                        out ChargingStationGroup     ChargingStationGroup,
-                                                                                                                                       out HTTPResponse             _HTTPResponse))
+                                                                                                                                       out HTTPResponse.Builder     _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -9320,9 +9323,9 @@ namespace cloud.charging.open.API
                                                      if (!Request.ParseRoamingNetworkAndChargingStationOperator(this,
                                                                                                                 out RoamingNetwork           RoamingNetwork,
                                                                                                                 out ChargingStationOperator  ChargingStationOperator,
-                                                                                                                out HTTPResponse             _HTTPResponse))
+                                                                                                                out HTTPResponse.Builder     _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -9386,9 +9389,9 @@ namespace cloud.charging.open.API
                                                                                                                             out RoamingNetwork           RoamingNetwork,
                                                                                                                             out ChargingStationOperator  ChargingStationOperator,
                                                                                                                             out EVSEGroup                EVSEGroup,
-                                                                                                                            out HTTPResponse             _HTTPResponse))
+                                                                                                                            out HTTPResponse.Builder     _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -9553,9 +9556,9 @@ namespace cloud.charging.open.API
                                                      if (!Request.ParseRoamingNetworkAndChargingStationOperator(this,
                                                                                                                 out RoamingNetwork           RoamingNetwork,
                                                                                                                 out ChargingStationOperator  ChargingStationOperator,
-                                                                                                                out HTTPResponse             _HTTPResponse))
+                                                                                                                out HTTPResponse.Builder     _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -9619,9 +9622,9 @@ namespace cloud.charging.open.API
                                                                                                                         out RoamingNetwork           RoamingNetwork,
                                                                                                                         out ChargingStationOperator  ChargingStationOperator,
                                                                                                                         out Brand                    Brand,
-                                                                                                                        out HTTPResponse             _HTTPResponse))
+                                                                                                                        out HTTPResponse.Builder     _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -9790,9 +9793,9 @@ namespace cloud.charging.open.API
                                                      if (!Request.ParseRoamingNetworkAndChargingStationOperator(this,
                                                                                                                 out RoamingNetwork           RoamingNetwork,
                                                                                                                 out ChargingStationOperator  ChargingStationOperator,
-                                                                                                                out HTTPResponse             _HTTPResponse))
+                                                                                                                out HTTPResponse.Builder     _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -9851,9 +9854,9 @@ namespace cloud.charging.open.API
                                                      if (!Request.ParseRoamingNetworkAndChargingStationOperator(this,
                                                                                                                 out RoamingNetwork           RoamingNetwork,
                                                                                                                 out ChargingStationOperator  ChargingStationOperator,
-                                                                                                                out HTTPResponse             _HTTPResponse))
+                                                                                                                out HTTPResponse.Builder     _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -9920,8 +9923,8 @@ namespace cloud.charging.open.API
 
                                                      #region Check parameters
 
-                                                     if (!Request.ParseRoamingNetwork(this, out RoamingNetwork _RoamingNetwork, out HTTPResponse _HTTPResponse))
-                                                         return Task.FromResult(_HTTPResponse);
+                                                     if (!Request.ParseRoamingNetwork(this, out RoamingNetwork _RoamingNetwork, out HTTPResponse.Builder _HTTPResponse))
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -9973,8 +9976,8 @@ namespace cloud.charging.open.API
 
                                                      #region Check parameters
 
-                                                     if (!Request.ParseRoamingNetwork(this, out RoamingNetwork _RoamingNetwork, out HTTPResponse _HTTPResponse))
-                                                         return Task.FromResult(_HTTPResponse);
+                                                     if (!Request.ParseRoamingNetwork(this, out RoamingNetwork _RoamingNetwork, out HTTPResponse.Builder _HTTPResponse))
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -10010,8 +10013,8 @@ namespace cloud.charging.open.API
 
                                                      #region Check parameters
 
-                                                     if (!Request.ParseRoamingNetwork(this, out RoamingNetwork _RoamingNetwork, out HTTPResponse _HTTPResponse))
-                                                         return Task.FromResult(_HTTPResponse);
+                                                     if (!Request.ParseRoamingNetwork(this, out RoamingNetwork _RoamingNetwork, out HTTPResponse.Builder _HTTPResponse))
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -10058,8 +10061,8 @@ namespace cloud.charging.open.API
 
                                                      #region Check parameters
 
-                                                     if (!Request.ParseRoamingNetwork(this, out RoamingNetwork _RoamingNetwork, out HTTPResponse _HTTPResponse))
-                                                         return Task.FromResult(_HTTPResponse);
+                                                     if (!Request.ParseRoamingNetwork(this, out RoamingNetwork _RoamingNetwork, out HTTPResponse.Builder _HTTPResponse))
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      #endregion
 
@@ -10108,11 +10111,11 @@ namespace cloud.charging.open.API
                                                      #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetworkAndEMobilityProvider(this,
-                                                                                                          out RoamingNetwork     _RoamingNetwork,
-                                                                                                          out eMobilityProvider  _eMobilityProvider,
-                                                                                                          out HTTPResponse       _HTTPResponse))
+                                                                                                          out RoamingNetwork        _RoamingNetwork,
+                                                                                                          out eMobilityProvider     _eMobilityProvider,
+                                                                                                          out HTTPResponse.Builder  _HTTPResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse);
+                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
 
                                                      #endregion
