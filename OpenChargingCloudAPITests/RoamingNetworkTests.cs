@@ -265,7 +265,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                 Assert.IsNotNull(_TestRN3, "Roaming network 'TestRN3' was not returned via .NET API!");
                 Assert.IsTrue   (_TestRN3.Description.Any(), "The description of roaming network 'TestRN3' must not be empty!");
                 Assert.AreEqual (_TestRN3.Description.Count(), 1);
-                Assert.AreEqual (_TestRN3.Description[Languages.eng], "This is a roaming network!");
+                Assert.AreEqual (_TestRN3.Description[Languages.en], "This is a roaming network!");
 
             }
 
@@ -321,8 +321,8 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                 Assert.IsNotNull(_TestRN2, "Roaming network 'TestRN2' was not returned via .NET API!");
                 Assert.IsTrue   (_TestRN2.Description.Any(), "The description of roaming network 'TestRN2' must not be empty!");
                 Assert.AreEqual (_TestRN2.Description.Count(), 2);
-                Assert.AreEqual (_TestRN2.Description[Languages.deu], "Auch ein schönes Roaming Netzwerk!");
-                Assert.AreEqual (_TestRN2.Description[Languages.eng], "This is another roaming network!");
+                Assert.AreEqual (_TestRN2.Description[Languages.de], "Auch ein schönes Roaming Netzwerk!");
+                Assert.AreEqual (_TestRN2.Description[Languages.en], "This is another roaming network!");
 
             }
 

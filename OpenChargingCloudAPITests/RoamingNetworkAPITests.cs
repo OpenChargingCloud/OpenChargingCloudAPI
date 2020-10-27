@@ -108,20 +108,20 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
 
             var RN_1  = OpenChargingCloudAPI.CreateNewRoamingNetwork(Id:  RoamingNetwork_Id.Parse("TEST_RN1"),
-                                                        Name:              I18NString.Create(Languages.deu,  "Test Roaming Netz 1").
-                                                                                         Add(Languages.eng,  "Test roaming network 1"));
+                                                        Name:              I18NString.Create(Languages.de,  "Test Roaming Netz 1").
+                                                                                         Add(Languages.en,  "Test roaming network 1"));
 
             var RN_2  = OpenChargingCloudAPI.CreateNewRoamingNetwork(Id:  RoamingNetwork_Id.Parse("TEST_RN2"),
-                                                        Name:              I18NString.Create(Languages.deu,  "Test Roaming Netz 2").
-                                                                                         Add(Languages.eng,  "Test roaming network 2"));
+                                                        Name:              I18NString.Create(Languages.de,  "Test Roaming Netz 2").
+                                                                                         Add(Languages.en,  "Test roaming network 2"));
 
             var RN_3  = OpenChargingCloudAPI.CreateNewRoamingNetwork(Id:  RoamingNetwork_Id.Parse("TEST_RN3"),
-                                                        Name:              I18NString.Create(Languages.deu,  "Test Roaming Netz 3").
-                                                                                         Add(Languages.eng,  "Test roaming network 3"));
+                                                        Name:              I18NString.Create(Languages.de,  "Test Roaming Netz 3").
+                                                                                         Add(Languages.en,  "Test roaming network 3"));
 
             var RN_4  = OpenChargingCloudAPI.CreateNewRoamingNetwork(Id:  RoamingNetwork_Id.Parse("TEST_RN4"),
-                                                        Name:              I18NString.Create(Languages.deu,  "Test Roaming Netz 4").
-                                                                                         Add(Languages.eng,  "Test roaming network 4"));
+                                                        Name:              I18NString.Create(Languages.de,  "Test Roaming Netz 4").
+                                                                                         Add(Languages.en,  "Test roaming network 4"));
 
 
             #region Verify GET   /RNs

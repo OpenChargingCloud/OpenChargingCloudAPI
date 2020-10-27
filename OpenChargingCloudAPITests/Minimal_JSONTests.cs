@@ -68,12 +68,12 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
 
             var RN      = OpenChargingCloudAPI.CreateNewRoamingNetwork(Id:   RoamingNetwork_Id.Parse("TEST_RN1"),
-                                                                       Name: I18NString.Create(Languages.deu,  "Test Roaming Netz 1").
-                                                                                           Add(Languages.eng,  "Test roaming network 1"));
+                                                                       Name: I18NString.Create(Languages.de,  "Test Roaming Netz 1").
+                                                                                           Add(Languages.en,  "Test roaming network 1"));
 
             var CPO     = RN.CreateChargingStationOperator(ChargingStationOperatorId:  ChargingStationOperator_Id.Parse("DE*GEF"),
-                                                   Name:            I18NString.Create(Languages.deu, "GraphDefined"),
-                                                   Description:     I18NString.Create(Languages.deu, "GraphDefined EVSE Operator"),
+                                                   Name:            I18NString.Create(Languages.de, "GraphDefined"),
+                                                   Description:     I18NString.Create(Languages.de, "GraphDefined EVSE Operator"),
                                                    Configurator:    evseoperator => {
                                                                         evseoperator.AddDataLicense(DataLicense.OpenDatabaseLicense);
                                                                     });
@@ -143,7 +143,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                  pool => {
                                                      pool.Address = Address.Create(Country.Austria,
                                                                                    "07741",
-                                                                                   I18NString.Create(Languages.deu, "Wien"),
+                                                                                   I18NString.Create(Languages.de, "Wien"),
                                                                                    "Hofplatz", "17");
                                                  });
 
@@ -151,7 +151,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                  pool => {
                                                      pool.Address = Address.Create(Country.Germany,
                                                                                    "07749",
-                                                                                   I18NString.Create(Languages.deu, "Jena"),
+                                                                                   I18NString.Create(Languages.de, "Jena"),
                                                                                    "Biberweg", "18");
                                                  });
 
@@ -159,7 +159,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                  pool => {
                                                      pool.Address = Address.Create(Country.Belgium,
                                                                                    "07758",
-                                                                                   I18NString.Create(Languages.bgn, "Brussels"),
+                                                                                   I18NString.Create(Languages.bg, "Brussels"),
                                                                                    "Avenue", "19");
                                                  });
 
