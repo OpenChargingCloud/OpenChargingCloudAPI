@@ -296,7 +296,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                           DNSClient:          new DNSClient(SearchForIPv6DNSServers: false)
                       );
 
-            HTTPAPI.AttachTCPPort(IPPort.Parse(8001));
+            HTTPAPI.AttachTCPPorts(IPPort.Parse(8001));
 
             //WWCPAPI = OpenChargingCloudAPI.AttachToHTTPAPI(HTTPAPI);
 
