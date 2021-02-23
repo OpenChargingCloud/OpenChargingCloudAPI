@@ -50,7 +50,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             var URI = HTTPPath.Parse("/RNs");
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.GET(URI,
+            using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
                                                                             requestbuilder => {
                                                                                 requestbuilder.Host         = HTTPHostname.Localhost;
                                                                                 requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
@@ -79,14 +79,14 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             #region Verify COUNT /RNs
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.COUNT(URI,
-                                                                              requestbuilder => {
-                                                                                  requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                  requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                  requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
-                                                                              }),
-                                                                               RequestTimeout: Timeout,
-                                                                               CancellationToken: new CancellationTokenSource().Token))
+            using (var HTTPTask  = _HTTPClient.Execute(client => client.COUNTRequest(URI,
+                                                                                     requestbuilder => {
+                                                                                         requestbuilder.Host         = HTTPHostname.Localhost;
+                                                                                         requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
+                                                                                         requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                     }),
+                                                                                      RequestTimeout: Timeout,
+                                                                                      CancellationToken: new CancellationTokenSource().Token))
 
             {
 
@@ -128,14 +128,14 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             URI = HTTPPath.Parse("/RNs");
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.GET(URI,
-                                                                            requestbuilder => {
-                                                                                requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
-                                                                            }),
-                                                                             RequestTimeout: Timeout,
-                                                                             CancellationToken: new CancellationTokenSource().Token))
+            using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
+                                                                                   requestbuilder => {
+                                                                                       requestbuilder.Host         = HTTPHostname.Localhost;
+                                                                                       requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
+                                                                                       requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                   }),
+                                                                                    RequestTimeout: Timeout,
+                                                                                    CancellationToken: new CancellationTokenSource().Token))
 
             {
 
@@ -170,14 +170,14 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             #region Verify COUNT /RNs
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.COUNT(URI,
-                                                                              requestbuilder => {
-                                                                                  requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                  requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                  requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
-                                                                              }),
-                                                                               RequestTimeout: Timeout,
-                                                                               CancellationToken: new CancellationTokenSource().Token))
+            using (var HTTPTask  = _HTTPClient.Execute(client => client.COUNTRequest(URI,
+                                                                                     requestbuilder => {
+                                                                                         requestbuilder.Host         = HTTPHostname.Localhost;
+                                                                                         requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
+                                                                                         requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                     }),
+                                                                                      RequestTimeout: Timeout,
+                                                                                      CancellationToken: new CancellationTokenSource().Token))
 
             {
 
@@ -201,7 +201,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             URI = HTTPPath.Parse("/RNs?skip=2");
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.GET(URI,
+            using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
                                                                             requestbuilder => {
                                                                                 requestbuilder.Host         = HTTPHostname.Localhost;
                                                                                 requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
@@ -239,7 +239,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             URI = HTTPPath.Parse("/RNs?take=2");
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.GET(URI,
+            using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
                                                                             requestbuilder => {
                                                                                 requestbuilder.Host         = HTTPHostname.Localhost;
                                                                                 requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
@@ -277,7 +277,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             URI = HTTPPath.Parse("/RNs?skip=1&take=2");
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.GET(URI,
+            using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
                                                                             requestbuilder => {
                                                                                 requestbuilder.Host         = HTTPHostname.Localhost;
                                                                                 requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
@@ -315,7 +315,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             URI = HTTPPath.Parse("/RNs?skip=8");
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.GET(URI,
+            using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
                                                                             requestbuilder => {
                                                                                 requestbuilder.Host         = HTTPHostname.Localhost;
                                                                                 requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
@@ -347,7 +347,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             URI = HTTPPath.Parse("/RNs/TEST_RN1");
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.GET(URI,
+            using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
                                                                             requestbuilder => {
                                                                                 requestbuilder.Host         = HTTPHostname.Localhost;
                                                                                 requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
@@ -390,7 +390,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             #region Verify GET /RNs on localhost
 
-            var task0001  = _HTTPClient.Execute(client => client.GET(HTTPPath.Parse("/RNs"),
+            var task0001  = _HTTPClient.Execute(client => client.GETRequest(HTTPPath.Parse("/RNs"),
                                                                     requestbuilder => {
                                                                         requestbuilder.Host         = HTTPHostname.Localhost;
                                                                         requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
@@ -412,7 +412,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             #region Verify GET /RNs on virtualhost
 
-            var task0002  = _HTTPClient.Execute(client => client.GET(HTTPPath.Parse("/RNs"),
+            var task0002  = _HTTPClient.Execute(client => client.GETRequest(HTTPPath.Parse("/RNs"),
                                                                     requestbuilder => {
                                                                         requestbuilder.Host         = HTTPHostname.Localhost;
                                                                         requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
@@ -437,7 +437,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             #region Verify GET /RNs/TEST_RN1 on localhost
 
-            var task0003  = _HTTPClient.Execute(client => client.GET(HTTPPath.Parse("/RNs/TEST_RN1"),
+            var task0003  = _HTTPClient.Execute(client => client.GETRequest(HTTPPath.Parse("/RNs/TEST_RN1"),
                                                                     requestbuilder => {
                                                                         requestbuilder.Host         = HTTPHostname.Localhost;
                                                                         requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
@@ -459,7 +459,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             #region Verify GET /RNs/TEST_RN1 on virtualhost
 
-            var task0004  = _HTTPClient.Execute(client => client.GET(HTTPPath.Parse("/RNs/TEST_RN1"),
+            var task0004  = _HTTPClient.Execute(client => client.GETRequest(HTTPPath.Parse("/RNs/TEST_RN1"),
                                                                     requestbuilder => {
                                                                         requestbuilder.Host         = HTTPHostname.Localhost;
                                                                         requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
@@ -481,7 +481,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             #region Verify GET /RNs/TEST_RN2 on virtualhost
 
-            var task0005  = _HTTPClient.Execute(client => client.GET(HTTPPath.Parse("/RNs/TEST_RN2"),
+            var task0005  = _HTTPClient.Execute(client => client.GETRequest(HTTPPath.Parse("/RNs/TEST_RN2"),
                                                                     requestbuilder => {
                                                                         requestbuilder.Host         = HTTPHostname.Localhost;
                                                                         requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;

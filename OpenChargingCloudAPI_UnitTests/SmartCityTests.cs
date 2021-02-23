@@ -50,14 +50,14 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             var URI = HTTPPath.Parse("/RNs/TestRN1");
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.CREATE(URI,
-                                                                               requestbuilder => {
-                                                                                   requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                   requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                   requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
-                                                                               }),
-                                                                                RequestTimeout: Timeout,
-                                                                                CancellationToken: new CancellationTokenSource().Token))
+            using (var HTTPTask  = _HTTPClient.Execute(client => client.CREATERequest(URI,
+                                                                                      requestbuilder => {
+                                                                                          requestbuilder.Host         = HTTPHostname.Localhost;
+                                                                                          requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
+                                                                                          requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                      }),
+                                                                                       RequestTimeout: Timeout,
+                                                                                       CancellationToken: new CancellationTokenSource().Token))
             {
 
                 HTTPTask.Wait(Timeout);
@@ -93,14 +93,14 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             var URI = HTTPPath.Parse("/RNs/TestRN1/SmartCities");
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.GET(URI,
-                                                                            requestbuilder => {
-                                                                                requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
-                                                                            }),
-                                                                             RequestTimeout: Timeout,
-                                                                             CancellationToken: new CancellationTokenSource().Token))
+            using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
+                                                                                   requestbuilder => {
+                                                                                       requestbuilder.Host         = HTTPHostname.Localhost;
+                                                                                       requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
+                                                                                       requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                   }),
+                                                                                    RequestTimeout: Timeout,
+                                                                                    CancellationToken: new CancellationTokenSource().Token))
             {
 
                 HTTPTask.Wait(Timeout);
@@ -121,14 +121,14 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             #region Verify COUNT /RNs/TestRN1/SmartCities
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.COUNT(URI,
-                                                                              requestbuilder => {
-                                                                                  requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                  requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                  requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
-                                                                              }),
-                                                                               RequestTimeout: Timeout,
-                                                                               CancellationToken: new CancellationTokenSource().Token))
+            using (var HTTPTask  = _HTTPClient.Execute(client => client.COUNTRequest(URI,
+                                                                                     requestbuilder => {
+                                                                                         requestbuilder.Host         = HTTPHostname.Localhost;
+                                                                                         requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
+                                                                                         requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                     }),
+                                                                                      RequestTimeout: Timeout,
+                                                                                      CancellationToken: new CancellationTokenSource().Token))
             {
 
                 HTTPTask.Wait(Timeout);
@@ -198,7 +198,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             //URI = "/RNs";
 
-            //using (var HTTPTask  = _HTTPClient.Execute(client => client.GET(URI,
+            //using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
             //                                                               requestbuilder => {
             //                                                                   requestbuilder.Host         = "localhost";
             //                                                                   requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
@@ -376,7 +376,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             //URI = "/RNs";
 
-            //using (var HTTPTask  = _HTTPClient.Execute(client => client.GET(URI,
+            //using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
             //                                                               requestbuilder => {
             //                                                                   requestbuilder.Host         = "localhost";
             //                                                                   requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
