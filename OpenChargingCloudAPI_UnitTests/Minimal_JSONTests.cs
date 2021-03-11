@@ -82,14 +82,14 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             var URI = HTTPPath.Parse("/RNs/TEST_RN1/ChargingPools");
 
-            using (var HTTPTask  = HTTPClient.Execute(client => client.GET(URI,
-                                                                           requestbuilder => {
-                                                                               requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                               requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                               requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
-                                                                           }),
-                                                                            RequestTimeout: Timeout,
-                                                                            CancellationToken: new CancellationTokenSource().Token))
+            using (var HTTPTask  = HTTPClient.Execute(client => client.GETRequest(URI,
+                                                                                  requestbuilder => {
+                                                                                      requestbuilder.Host         = HTTPHostname.Localhost;
+                                                                                      requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
+                                                                                      requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                  }),
+                                                                                   RequestTimeout: Timeout,
+                                                                                   CancellationToken: new CancellationTokenSource().Token))
 
             {
 
@@ -111,14 +111,14 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             #region Verify COUNT /RNs/TEST_RN1/ChargingPools
 
-            using (var HTTPTask  = HTTPClient.Execute(client => client.COUNT(URI,
-                                                                             requestbuilder => {
-                                                                                 requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                 requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                 requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
-                                                                             }),
-                                                                              RequestTimeout: Timeout,
-                                                                              CancellationToken: new CancellationTokenSource().Token))
+            using (var HTTPTask  = HTTPClient.Execute(client => client.COUNTRequest(URI,
+                                                                                    requestbuilder => {
+                                                                                        requestbuilder.Host         = HTTPHostname.Localhost;
+                                                                                        requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
+                                                                                        requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                    }),
+                                                                                     RequestTimeout: Timeout,
+                                                                                     CancellationToken: new CancellationTokenSource().Token))
 
             {
 
@@ -168,14 +168,14 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             URI = HTTPPath.Parse("/RNs/TEST_RN1/ChargingPools");
 
-            using (var HTTPTask  = HTTPClient.Execute(client => client.GET(URI,
-                                                                           requestbuilder => {
-                                                                               requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                               requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                               requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
-                                                                           }),
-                                                                            RequestTimeout: Timeout,
-                                                                            CancellationToken: new CancellationTokenSource().Token))
+            using (var HTTPTask  = HTTPClient.Execute(client => client.GETRequest(URI,
+                                                                                  requestbuilder => {
+                                                                                      requestbuilder.Host         = HTTPHostname.Localhost;
+                                                                                      requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
+                                                                                      requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                  }),
+                                                                                   RequestTimeout: Timeout,
+                                                                                   CancellationToken: new CancellationTokenSource().Token))
 
             {
 
@@ -251,14 +251,14 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             #region Verify COUNT /RNs/TEST_RN1/ChargingPools
 
-            using (var HTTPTask = HTTPClient.Execute(client => client.COUNT(URI,
-                                                                            requestbuilder => {
-                                                                                requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
-                                                                            }),
-                                                                              RequestTimeout: Timeout,
-                                                                              CancellationToken: new CancellationTokenSource().Token))
+            using (var HTTPTask = HTTPClient.Execute(client => client.COUNTRequest(URI,
+                                                                                   requestbuilder => {
+                                                                                       requestbuilder.Host         = HTTPHostname.Localhost;
+                                                                                       requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
+                                                                                       requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                   }),
+                                                                                     RequestTimeout: Timeout,
+                                                                                     CancellationToken: new CancellationTokenSource().Token))
 
             {
 
