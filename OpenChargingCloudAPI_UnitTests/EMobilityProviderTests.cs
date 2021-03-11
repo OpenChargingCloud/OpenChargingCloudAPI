@@ -198,7 +198,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             //URI = "/RNs";
 
-            //using (var HTTPTask  = _HTTPClient.Execute(client => client.GET(URI,
+            //using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
             //                                                               requestbuilder => {
             //                                                                   requestbuilder.Host         = "localhost";
             //                                                                   requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
@@ -376,7 +376,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             //URI = "/RNs";
 
-            //using (var HTTPTask  = _HTTPClient.Execute(client => client.GET(URI,
+            //using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
             //                                                               requestbuilder => {
             //                                                                   requestbuilder.Host         = "localhost";
             //                                                                   requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;

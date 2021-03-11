@@ -2967,6 +2967,8 @@ namespace cloud.charging.open.API
 
                                     TimeSpan?                            MaintenanceEvery                   = null,
                                     Boolean                              DisableMaintenanceTasks            = false,
+                                    TimeSpan?                            WardenInitialDelay                 = null,
+                                    TimeSpan?                            WardenCheckEvery                   = null,
 
                                     Boolean                              SkipURLTemplates                   = false,
                                     Boolean                              DisableNotifications               = false,
@@ -3028,6 +3030,8 @@ namespace cloud.charging.open.API
 
                    MaintenanceEvery,
                    DisableMaintenanceTasks,
+                   WardenInitialDelay,
+                   WardenCheckEvery,
 
                    SkipURLTemplates,
                    DisableNotifications,

@@ -58,6 +58,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
+
             {
 
                 HTTPTask.Wait(Timeout);
@@ -117,7 +118,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                       }),
                                                                                        RequestTimeout: Timeout,
                                                                                        CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
@@ -388,7 +388,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                      }),
                                                                                       RequestTimeout: Timeout,
                                                                                       CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
@@ -429,7 +428,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
@@ -458,7 +456,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                      }),
                                                                                       RequestTimeout: Timeout,
                                                                                       CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
@@ -493,7 +490,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                       }),
                                                                                        RequestTimeout: Timeout,
                                                                                        CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
@@ -534,7 +530,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
@@ -563,7 +558,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                      }),
                                                                                       RequestTimeout: Timeout,
                                                                                       CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
@@ -604,7 +598,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
@@ -633,7 +626,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                      }),
                                                                                       RequestTimeout: Timeout,
                                                                                       CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
@@ -665,7 +657,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                       }),
                                                                                        RequestTimeout: Timeout,
                                                                                        CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
@@ -710,7 +701,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                       }),
                                                                                        RequestTimeout: Timeout,
                                                                                        CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
@@ -753,7 +743,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
@@ -856,7 +845,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
@@ -885,7 +873,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                      }),
                                                                                       RequestTimeout: Timeout,
                                                                                       CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
@@ -916,7 +903,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                       }),
                                                                                        RequestTimeout: Timeout,
                                                                                        CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
@@ -951,7 +937,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
@@ -979,7 +964,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
@@ -1013,7 +997,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
@@ -1042,7 +1025,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
@@ -1075,7 +1057,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
@@ -1146,7 +1127,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
@@ -1182,7 +1162,6 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
-
             {
 
                 HTTPTask.Wait(Timeout);
