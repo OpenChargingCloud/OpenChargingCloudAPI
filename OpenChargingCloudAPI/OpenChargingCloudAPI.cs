@@ -6583,7 +6583,7 @@ namespace cloud.charging.open.API
                                                      if (!Request.TryParseJObjectRequestBody(out JObject JSON, out _HTTPResponse))
                                                          return _HTTPResponse;
 
-                                                     #region Parse OperatorId         [optional]
+                                                     #region Parse OperatorId             [optional]
 
                                                      ChargingStationOperator_Id OperatorId;
 
@@ -6599,7 +6599,7 @@ namespace cloud.charging.open.API
 
                                                      #endregion
 
-                                                     #region Parse AuthToken          [mandatory]
+                                                     #region Parse AuthToken              [mandatory]
 
                                                      if (!JSON.ParseMandatory("AuthToken",
                                                                               "authentication token",
@@ -6613,7 +6613,7 @@ namespace cloud.charging.open.API
 
                                                      #endregion
 
-                                                     #region Parse SessionId          [optional]
+                                                     #region Parse SessionId              [optional]
 
                                                      if (!JSON.ParseOptionalStruct2("SessionId",
                                                                                    "Charging session identification",
@@ -6630,7 +6630,24 @@ namespace cloud.charging.open.API
 
                                                      #endregion
 
-                                                     #region Parse ChargingProductId  [optional]
+                                                     #region Parse CPOPartnerSessionId    [optional]
+
+                                                     if (!JSON.ParseOptionalStruct2("CPOPartnerSessionId",
+                                                                                    "CPO partner charging session identification",
+                                                                                    HTTPServer.DefaultServerName,
+                                                                                    ChargingSession_Id.TryParse,
+                                                                                    out ChargingSession_Id? CPOPartnerSessionId,
+                                                                                    Request,
+                                                                                    out _HTTPResponse))
+                                                     {
+
+                                                         return _HTTPResponse;
+
+                                                     }
+
+                                                     #endregion
+
+                                                     #region Parse ChargingProductId      [optional]
 
                                                      if (!JSON.ParseOptionalStruct2("ChargingProductId",
                                                                                     "Charging product identification",
@@ -6657,6 +6674,7 @@ namespace cloud.charging.open.API
                                                                                                ? new ChargingProduct(ChargingProductId.Value)
                                                                                                : null,
                                                                                            SessionId,
+                                                                                           CPOPartnerSessionId,
                                                                                            OperatorId,
 
                                                                                            Request.Timestamp,
@@ -6777,6 +6795,23 @@ namespace cloud.charging.open.API
 
                                                      #endregion
 
+                                                     #region Parse CPOPartnerSessionId    [optional]
+
+                                                     if (!JSON.ParseOptionalStruct2("CPOPartnerSessionId",
+                                                                                    "CPO partner charging session identification",
+                                                                                    HTTPServer.DefaultServerName,
+                                                                                    ChargingSession_Id.TryParse,
+                                                                                    out ChargingSession_Id? CPOPartnerSessionId,
+                                                                                    Request,
+                                                                                    out _HTTPResponse))
+                                                     {
+
+                                                         return _HTTPResponse;
+
+                                                     }
+
+                                                     #endregion
+
                                                      #region Parse OperatorId   [optional]
 
                                                      ChargingStationOperator_Id OperatorId;
@@ -6800,6 +6835,7 @@ namespace cloud.charging.open.API
                                                                             AuthorizeStop(SessionId,
                                                                                           LocalAuthentication.FromAuthToken(AuthToken),
                                                                                           ChargingLocation.FromEVSEId(EVSE.Id),
+                                                                                          CPOPartnerSessionId,
                                                                                           OperatorId,
 
                                                                                           Request.Timestamp,
@@ -10311,6 +10347,7 @@ namespace cloud.charging.open.API
                                                                     ChargingLocation,
                                                                     ChargingProduct,
                                                                     SessionId,
+                                                                    CPOPartnerSessionId,
                                                                     ISendAuthorizeStartStop,
                                                                     RequestTimeout)
 
@@ -10340,6 +10377,9 @@ namespace cloud.charging.open.API
                                                       SessionId.     HasValue
                                                           ? new JProperty("sessionId",             SessionId.           ToString())
                                                           : null,
+                                                      CPOPartnerSessionId.HasValue
+                                                          ? new JProperty("CPOPartnerSessionId",   CPOPartnerSessionId. ToString())
+                                                          : null,
                                                       RequestTimeout.HasValue
                                                           ? new JProperty("requestTimeout",        Math.Round(RequestTimeout.Value.TotalSeconds, 0))
                                                           : null
@@ -10359,6 +10399,7 @@ namespace cloud.charging.open.API
                                                                      ChargingLocation,
                                                                      ChargingProduct,
                                                                      SessionId,
+                                                                     CPOPartnerSessionId,
                                                                      ISendAuthorizeStartStop,
                                                                      RequestTimeout,
                                                                      Result,
@@ -10388,6 +10429,9 @@ namespace cloud.charging.open.API
                                                       SessionId.HasValue
                                                           ? new JProperty("sessionId",             SessionId.           ToString())
                                                           : null,
+                                                      CPOPartnerSessionId.HasValue
+                                                          ? new JProperty("CPOPartnerSessionId",   CPOPartnerSessionId. ToString())
+                                                          : null,
                                                       RequestTimeout.HasValue
                                                           ? new JProperty("requestTimeout",        Math.Round(RequestTimeout.Value.TotalSeconds, 0))
                                                           : null,
@@ -10412,6 +10456,7 @@ namespace cloud.charging.open.API
                                                                    OperatorId,
                                                                    ChargingLocation,
                                                                    SessionId,
+                                                                   CPOPartnerSessionId,
                                                                    Authentication,
                                                                    RequestTimeout)
 
@@ -10433,6 +10478,9 @@ namespace cloud.charging.open.API
                                                           ? new JProperty("chargingLocation",      ChargingLocation.    ToJSON())
                                                           : null,
                                                       new JProperty("sessionId",                   SessionId.           ToString()),
+                                                      CPOPartnerSessionId.HasValue
+                                                          ? new JProperty("CPOPartnerSessionId",   CPOPartnerSessionId. ToString())
+                                                          : null,
                                                       new JProperty("authentication",              Authentication.      ToString()),
                                                       RequestTimeout.HasValue
                                                           ? new JProperty("requestTimeout",        Math.Round(RequestTimeout.Value.TotalSeconds, 0))
@@ -10450,6 +10498,7 @@ namespace cloud.charging.open.API
                                                                     OperatorId,
                                                                     ChargingLocation,
                                                                     SessionId,
+                                                                    CPOPartnerSessionId,
                                                                     Authentication,
                                                                     RequestTimeout,
                                                                     Result,
@@ -10475,6 +10524,9 @@ namespace cloud.charging.open.API
                                                           : null,
                                                       SessionId.HasValue
                                                           ? new JProperty("sessionId",             SessionId.           ToString())
+                                                          : null,
+                                                      CPOPartnerSessionId.HasValue
+                                                          ? new JProperty("CPOPartnerSessionId",   CPOPartnerSessionId. ToString())
                                                           : null,
                                                       new JProperty("authentication",              Authentication.      ToString()),
                                                       RequestTimeout.HasValue
