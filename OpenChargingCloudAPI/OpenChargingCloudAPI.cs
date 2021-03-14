@@ -1874,7 +1874,7 @@ namespace cloud.charging.open.API
 
         #region REMOTESTART(this HTTPClient, URL, BuilderAction = null)
 
-        public static HTTPRequest.Builder REMOTESTART(this HTTPClient              HTTPClient,
+        public static HTTPRequest.Builder REMOTESTART(this AHTTPClient             HTTPClient,
                                                       HTTPPath                     URL,
                                                       Action<HTTPRequest.Builder>  BuilderAction  = null)
         {
@@ -1897,7 +1897,7 @@ namespace cloud.charging.open.API
 
         #region REMOTESTOP (this HTTPClient, URL, BuilderAction = null)
 
-        public static HTTPRequest.Builder REMOTESTOP(this HTTPClient              HTTPClient,
+        public static HTTPRequest.Builder REMOTESTOP(this AHTTPClient             HTTPClient,
                                                      HTTPPath                     URL,
                                                      Action<HTTPRequest.Builder>  BuilderAction  = null)
         {
