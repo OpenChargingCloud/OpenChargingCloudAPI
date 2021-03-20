@@ -2923,6 +2923,7 @@ namespace cloud.charging.open.API
                                     IPPort?                              LocalPort                          = null,
                                     String                               ExternalDNSName                    = null,
                                     HTTPPath?                            URLPathPrefix                      = null,
+                                    HTTPPath?                            BasePath                           = null,
                                     String                               HTMLTemplate                       = null,
                                     JObject                              APIVersionHashes                   = null,
 
@@ -2985,7 +2986,7 @@ namespace cloud.charging.open.API
                    LocalPort                   ?? IPPort.Parse(5500),
                    ExternalDNSName,
                    URLPathPrefix,
-
+                   BasePath,
                    HTMLTemplate,
                    APIVersionHashes,
 
