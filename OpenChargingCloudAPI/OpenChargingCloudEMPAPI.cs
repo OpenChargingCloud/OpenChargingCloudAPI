@@ -35,6 +35,7 @@ using org.GraphDefined.Vanaheimr.Hermod.Mail;
 using org.GraphDefined.Vanaheimr.Hermod.DNS;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets.TCP;
+using Newtonsoft.Json.Linq;
 
 #endregion
 
@@ -120,6 +121,9 @@ namespace cloud.charging.open.API
                                        IPPort?                              LocalPort                          = null,
                                        String                               ExternalDNSName                    = null,
                                        HTTPPath?                            URLPathPrefix                      = null,
+                                       HTTPPath?                            BasePath                           = null,
+                                       String                               HTMLTemplate                       = null,
+                                       JObject                              APIVersionHashes                   = null,
 
                                        ServerCertificateSelectorDelegate    ServerCertificateSelector          = null,
                                        RemoteCertificateValidationCallback  ClientCertificateValidator         = null,
@@ -132,19 +136,14 @@ namespace cloud.charging.open.API
                                        SMTPClient                           APISMTPClient                      = null,
 
                                        Credentials                          SMSAPICredentials                  = null,
+                                       String                               SMSSenderName                      = null,
                                        IEnumerable<PhoneNumber>             APIAdminSMS                        = null,
+
+                                       String                               TelegramBotToken                   = null,
 
                                        HTTPCookieName?                      CookieName                         = null,
                                        Boolean                              UseSecureCookies                   = true,
                                        Languages?                           Language                           = null,
-                                       NewUserSignUpEMailCreatorDelegate    NewUserSignUpEMailCreator          = null,
-                                       NewUserWelcomeEMailCreatorDelegate   NewUserWelcomeEMailCreator         = null,
-                                       ResetPasswordEMailCreatorDelegate    ResetPasswordEMailCreator          = null,
-                                       PasswordChangedEMailCreatorDelegate  PasswordChangedEMailCreator        = null,
-                                       Byte?                                MinUserNameLength                  = null,
-                                       Byte?                                MinRealmLength                     = null,
-                                       PasswordQualityCheckDelegate         PasswordQualityCheck               = null,
-                                       TimeSpan?                            SignInSessionLifetime              = null,
 
                                        String                               ServerThreadName                   = null,
                                        ThreadPriority                       ServerThreadPriority               = ThreadPriority.AboveNormal,
@@ -156,6 +155,11 @@ namespace cloud.charging.open.API
                                        TimeSpan?                            ConnectionTimeout                  = null,
                                        UInt32                               MaxClientConnections               = TCPServer.__DefaultMaxClientConnections,
 
+                                       TimeSpan?                            MaintenanceEvery                   = null,
+                                       Boolean                              DisableMaintenanceTasks            = false,
+                                       TimeSpan?                            WardenInitialDelay                 = null,
+                                       TimeSpan?                            WardenCheckEvery                   = null,
+
                                        Boolean                              SkipURLTemplates                   = false,
                                        Boolean                              DisableNotifications               = false,
                                        Boolean                              DisableLogfile                     = false,
@@ -165,56 +169,59 @@ namespace cloud.charging.open.API
                                        DNSClient                            DNSClient                          = null,
                                        Boolean                              Autostart                          = false)
 
-            : base(ServiceName:                       ServiceName                 ?? "GraphDefined Open Charging Cloud EMP API",
-                   HTTPServerName:                    HTTPServerName              ?? "GraphDefined Open Charging Cloud EMP API",
-                   LocalHostname:                     LocalHostname,
-                   LocalPort:                         LocalPort,
-                   ExternalDNSName:                           ExternalDNSName,
-                   URLPathPrefix:                     URLPathPrefix,
-                   UseSecureCookies:                  UseSecureCookies,
+            : base(ServiceName                 ?? "GraphDefined Open Charging Cloud EMP API",
+                   HTTPServerName              ?? "GraphDefined Open Charging Cloud EMP API",
+                   LocalHostname,
+                   LocalPort,
+                   ExternalDNSName,
+                   URLPathPrefix,
+                   BasePath,
+                   HTMLTemplate,
+                   APIVersionHashes,
 
-                   ServerCertificateSelector:         ServerCertificateSelector,
-                   ClientCertificateValidator:        ClientCertificateValidator,
-                   ClientCertificateSelector:         ClientCertificateSelector,
-                   AllowedTLSProtocols:               AllowedTLSProtocols,
+                   ServerCertificateSelector,
+                   ClientCertificateValidator,
+                   ClientCertificateSelector,
+                   AllowedTLSProtocols,
 
-                   APIEMailAddress:                   APIEMailAddress,
-                   APIPassphrase:                     APIPassphrase,
-                   APIAdminEMails:                    APIAdminEMails,
-                   APISMTPClient:                     APISMTPClient,
+                   APIEMailAddress,
+                   APIPassphrase,
+                   APIAdminEMails,
+                   APISMTPClient,
 
-                   SMSAPICredentials:                 SMSAPICredentials,
-                   APIAdminSMS:                       APIAdminSMS,
+                   SMSAPICredentials,
+                   SMSSenderName               ?? "Open Charging Cloud",
+                   APIAdminSMS,
 
-                   CookieName:                        CookieName                  ?? HTTPCookieName.Parse("OpenChargingCloudEMPAPI"),
-                   Language:                          Language,
-                   NewUserSignUpEMailCreator:         NewUserSignUpEMailCreator,
-                   NewUserWelcomeEMailCreator:        NewUserWelcomeEMailCreator,
-                   ResetPasswordEMailCreator:         ResetPasswordEMailCreator,
-                   PasswordChangedEMailCreator:       PasswordChangedEMailCreator,
-                   MinUserNameLength:                 MinUserNameLength,
-                   MinRealmLength:                    MinRealmLength,
-                   PasswordQualityCheck:              PasswordQualityCheck,
-                   SignInSessionLifetime:             SignInSessionLifetime,
+                   TelegramBotToken,
 
-                   ServerThreadName:                  ServerThreadName,
-                   ServerThreadPriority:              ServerThreadPriority,
-                   ServerThreadIsBackground:          ServerThreadIsBackground,
-                   ConnectionIdBuilder:               ConnectionIdBuilder,
-                   ConnectionThreadsNameBuilder:      ConnectionThreadsNameBuilder,
-                   ConnectionThreadsPriorityBuilder:  ConnectionThreadsPriorityBuilder,
-                   ConnectionThreadsAreBackground:    ConnectionThreadsAreBackground,
-                   ConnectionTimeout:                 ConnectionTimeout,
-                   MaxClientConnections:              MaxClientConnections,
+                   CookieName                  ?? HTTPCookieName.Parse("OpenChargingCloudEMPAPI"),
+                   UseSecureCookies,
+                   Language,
 
-                   SkipURLTemplates:                  SkipURLTemplates,
-                   DisableNotifications:              DisableNotifications,
-                   DisableLogfile:                    DisableLogfile,
-                   DatabaseFile:                      DatabaseFile                ?? DefaultOpenChargingCloudEMPAPIDatabaseFile,
-                   LoggingPath:                       LoggingPath                 ?? "default",
-                   LogfileName:                       LogfileName                 ?? DefaultOpenChargingCloudEMPAPILogFile,
-                   DNSClient:                         DNSClient,
-                   Autostart:                         false)
+                   ServerThreadName,
+                   ServerThreadPriority,
+                   ServerThreadIsBackground,
+                   ConnectionIdBuilder,
+                   ConnectionThreadsNameBuilder,
+                   ConnectionThreadsPriorityBuilder,
+                   ConnectionThreadsAreBackground,
+                   ConnectionTimeout,
+                   MaxClientConnections,
+
+                   MaintenanceEvery,
+                   DisableMaintenanceTasks,
+                   WardenInitialDelay,
+                   WardenCheckEvery,
+
+                   SkipURLTemplates,
+                   DisableNotifications,
+                   DisableLogfile,
+                   DatabaseFile ?? DefaultOpenChargingCloudEMPAPIDatabaseFile,
+                   LoggingPath  ?? "default",
+                   LogfileName  ?? DefaultOpenChargingCloudEMPAPILogFile,
+                   DNSClient,
+                   false)
 
         {
 

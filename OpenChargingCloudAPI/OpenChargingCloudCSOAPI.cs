@@ -88,14 +88,6 @@ namespace cloud.charging.open.API
         /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
         /// <param name="UseSecureCookies">Force the web browser to send cookies only via HTTPS.</param>
         /// <param name="Language">The main language of the API.</param>
-        /// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
-        /// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
-        /// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
-        /// <param name="PasswordChangedEMailCreator">A delegate for sending a password changed e-mail to a user.</param>
-        /// <param name="MinUserNameLength">The minimal user name length.</param>
-        /// <param name="MinRealmLength">The minimal realm length.</param>
-        /// <param name="PasswordQualityCheck">A delegate to ensure a minimal password quality.</param>
-        /// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
         /// 
         /// <param name="ServerThreadName">The optional name of the TCP server thread.</param>
         /// <param name="ServerThreadPriority">The optional priority of the TCP server thread.</param>
@@ -143,15 +135,6 @@ namespace cloud.charging.open.API
                                        HTTPCookieName?                      CookieName                         = null,
                                        Boolean                              UseSecureCookies                   = true,
                                        Languages?                           Language                           = null,
-                                       NewUserSignUpEMailCreatorDelegate    NewUserSignUpEMailCreator          = null,
-                                       NewUserWelcomeEMailCreatorDelegate   NewUserWelcomeEMailCreator         = null,
-                                       ResetPasswordEMailCreatorDelegate    ResetPasswordEMailCreator          = null,
-                                       PasswordChangedEMailCreatorDelegate  PasswordChangedEMailCreator        = null,
-                                       Byte?                                MinLoginLength                     = null,
-                                       Byte?                                MinRealmLength                     = null,
-                                       Byte?                                MinUserNameLength                  = null,
-                                       PasswordQualityCheckDelegate         PasswordQualityCheck               = null,
-                                       TimeSpan?                            SignInSessionLifetime              = null,
 
                                        String                               ServerThreadName                   = null,
                                        ThreadPriority                       ServerThreadPriority               = ThreadPriority.AboveNormal,
@@ -206,15 +189,6 @@ namespace cloud.charging.open.API
                    CookieName                  ?? HTTPCookieName.Parse("OpenChargingCloudCSOAPI"),
                    UseSecureCookies,
                    Language,
-                   NewUserSignUpEMailCreator,
-                   NewUserWelcomeEMailCreator,
-                   ResetPasswordEMailCreator,
-                   PasswordChangedEMailCreator,
-                   MinLoginLength,
-                   MinRealmLength,
-                   MinUserNameLength,
-                   PasswordQualityCheck,
-                   SignInSessionLifetime,
 
                    ServerThreadName,
                    ServerThreadPriority,

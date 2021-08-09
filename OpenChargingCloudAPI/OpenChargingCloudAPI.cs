@@ -2644,215 +2644,215 @@ namespace cloud.charging.open.API
 
         #region E-Mail headers / footers
 
-        const String HTMLEMailHeader = "<!DOCTYPE html>\r\n" +
-                                        "<html>\r\n" +
-                                          "<head>\r\n" +
-                                              "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\r\n" +
-                                          "</head>\r\n" +
-                                          "<body style=\"background-color: #ececec\">\r\n" +
-                                            "<div style=\"width: 600px\">\r\n" +
-                                              "<div style=\"border-bottom: 1px solid #AAAAAA; margin-bottom: 20px\">\r\n" +
-                                                  "<img src=\"https://cardi-link.cloud/login/CardiLink_Logo01.png\" style=\"width: 250px; padding-right: 10px\" alt=\"CardiLink\">\r\n" +
-                                              "</div>\r\n" +
-                                              "<div style=\"border-bottom: 1px solid #AAAAAA; padding-left: 6px; padding-bottom: 40px; margin-bottom: 10px;\">\r\n";
+        //const String HTMLEMailHeader = "<!DOCTYPE html>\r\n" +
+        //                                "<html>\r\n" +
+        //                                  "<head>\r\n" +
+        //                                      "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\r\n" +
+        //                                  "</head>\r\n" +
+        //                                  "<body style=\"background-color: #ececec\">\r\n" +
+        //                                    "<div style=\"width: 600px\">\r\n" +
+        //                                      "<div style=\"border-bottom: 1px solid #AAAAAA; margin-bottom: 20px\">\r\n" +
+        //                                          "<img src=\"https://cardi-link.cloud/login/CardiLink_Logo01.png\" style=\"width: 250px; padding-right: 10px\" alt=\"CardiLink\">\r\n" +
+        //                                      "</div>\r\n" +
+        //                                      "<div style=\"border-bottom: 1px solid #AAAAAA; padding-left: 6px; padding-bottom: 40px; margin-bottom: 10px;\">\r\n";
 
-        const String HTMLEMailFooter = "</div>\r\n" +
-                                              "<div style=\"color: #AAAAAA; font-size: 70%\">\r\n" +
-                                                  "Fingerprint: CE12 96F1 74B3 75F8 0BE9&nbsp;&nbsp;0E54 289B 709A 9E53 A226<br />\r\n" +
-                                                  "CardiLink GmbH, Henkestr. 91, 91052 Erlangen, Germany<br />\r\n" +
-                                                  "Commercial Register Number: Amtsgericht Fürth HRB 15812<br />\r\n" +
-                                                  "Managing Director: Lars Wassermann<br />\r\n" +
-                                              "</div>\r\n" +
-                                            "</div>\r\n" +
-                                          "</body>\r\n" +
-                                        "</html>\r\n\r\n";
+        //const String HTMLEMailFooter = "</div>\r\n" +
+        //                                      "<div style=\"color: #AAAAAA; font-size: 70%\">\r\n" +
+        //                                          "Fingerprint: CE12 96F1 74B3 75F8 0BE9&nbsp;&nbsp;0E54 289B 709A 9E53 A226<br />\r\n" +
+        //                                          "CardiLink GmbH, Henkestr. 91, 91052 Erlangen, Germany<br />\r\n" +
+        //                                          "Commercial Register Number: Amtsgericht Fürth HRB 15812<br />\r\n" +
+        //                                          "Managing Director: Lars Wassermann<br />\r\n" +
+        //                                      "</div>\r\n" +
+        //                                    "</div>\r\n" +
+        //                                  "</body>\r\n" +
+        //                                "</html>\r\n\r\n";
 
-        const String TextEMailHeader = "CardiLink\r\n" +
-                                        "---------\r\n\r\n";
+        //const String TextEMailHeader = "CardiLink\r\n" +
+        //                                "---------\r\n\r\n";
 
-        const String TextEMailFooter = "\r\n\r\n---------------------------------------------------------------\r\n" +
-                                        "Fingerprint: CE12 96F1 74B3 75F8 0BE9  0E54 289B 709A 9E53 A226\r\n" +
-                                        "CardiLink GmbH, Henkestr. 91, 91052 Erlangen, Germany\r\n" +
-                                        "Commercial Register Number: Amtsgericht Fürth HRB 15812\r\n" +
-                                        "Managing Director: Lars Wassermann\r\n\r\n";
+        //const String TextEMailFooter = "\r\n\r\n---------------------------------------------------------------\r\n" +
+        //                                "Fingerprint: CE12 96F1 74B3 75F8 0BE9  0E54 289B 709A 9E53 A226\r\n" +
+        //                                "CardiLink GmbH, Henkestr. 91, 91052 Erlangen, Germany\r\n" +
+        //                                "Commercial Register Number: Amtsgericht Fürth HRB 15812\r\n" +
+        //                                "Managing Director: Lars Wassermann\r\n\r\n";
 
         #endregion
 
 
         #region NewUserSignUpEMailCreatorDelegate
 
-        private static readonly Func<String, EMailAddress, String, NewUserSignUpEMailCreatorDelegate>
+        //private static readonly Func<String, EMailAddress, String, NewUserSignUpEMailCreatorDelegate>
 
-            __NewUserSignUpEMailCreator = (BaseURL,
-                                           APIEMailAddress,
-                                           APIPassphrase)
+        //    __NewUserSignUpEMailCreator = (BaseURL,
+        //                                   APIEMailAddress,
+        //                                   APIPassphrase)
 
-                => (UserId,
-                    EMailAddress,
-                    Username,
-                    SecurityToken,
-                    Use2FactorAuth,
-                    ServiceName,
-                    DNSHostname,
-                    Language) => new HTMLEMailBuilder() {
+        //        => (UserId,
+        //            EMailAddress,
+        //            Username,
+        //            SecurityToken,
+        //            Use2FactorAuth,
+        //            ServiceName,
+        //            DNSHostname,
+        //            Language) => new HTMLEMailBuilder() {
 
-                         From       = APIEMailAddress,
-                         To         = EMailAddress,
-                         Passphrase = APIPassphrase,
-                         Subject    = "Your CardiCloud account had been created",
+        //                 From       = APIEMailAddress,
+        //                 To         = EMailAddress,
+        //                 Passphrase = APIPassphrase,
+        //                 Subject    = "Your CardiCloud account had been created",
 
-                         HTMLText   = HTMLEMailHeader +
-                                          "Dear " + Username + " (" + UserId + "),<br /><br />" + Environment.NewLine +
-                                          "your CardiCloud account has been created!<br /><br />" + Environment.NewLine +
-                                          "Please click the following link to set a new password for your account" + (Use2FactorAuth ? " and check your mobile phone for an additional security token" : "") + "...<br /><br />" + Environment.NewLine +
-                                          "<a href=\"" + DNSHostname + "/setPassword?" + SecurityToken + (Use2FactorAuth ? "&2factor" : "") + "\" style=\"text-decoration: none; color: #FFFFFF; background-color: #ff7300; Border: solid #ff7300; border-width: 10px 20px; line-height: 2; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 4px; margin-top: 20px; font-size: 70%\">Set a new password</a>" + Environment.NewLine +
-                                      HTMLEMailFooter,
+        //                 HTMLText   = HTMLEMailHeader +
+        //                                  "Dear " + Username + " (" + UserId + "),<br /><br />" + Environment.NewLine +
+        //                                  "your CardiCloud account has been created!<br /><br />" + Environment.NewLine +
+        //                                  "Please click the following link to set a new password for your account" + (Use2FactorAuth ? " and check your mobile phone for an additional security token" : "") + "...<br /><br />" + Environment.NewLine +
+        //                                  "<a href=\"" + DNSHostname + "/setPassword?" + SecurityToken + (Use2FactorAuth ? "&2factor" : "") + "\" style=\"text-decoration: none; color: #FFFFFF; background-color: #ff7300; Border: solid #ff7300; border-width: 10px 20px; line-height: 2; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 4px; margin-top: 20px; font-size: 70%\">Set a new password</a>" + Environment.NewLine +
+        //                              HTMLEMailFooter,
 
-                         PlainText  = TextEMailHeader +
-                                          "Dear " + Username + " (" + UserId + ")," + Environment.NewLine +
-                                          "your CardiCloud account has been created!" + Environment.NewLine + Environment.NewLine +
-                                          "Please click the following link to set a new password for your account" + (Use2FactorAuth ? " and check your mobile phone for an additional security token" : "") + "..." + Environment.NewLine + Environment.NewLine +
-                                          DNSHostname + "/setPassword?" + SecurityToken + (Use2FactorAuth ? "&2factor" : "") +
-                                      TextEMailFooter,
+        //                 PlainText  = TextEMailHeader +
+        //                                  "Dear " + Username + " (" + UserId + ")," + Environment.NewLine +
+        //                                  "your CardiCloud account has been created!" + Environment.NewLine + Environment.NewLine +
+        //                                  "Please click the following link to set a new password for your account" + (Use2FactorAuth ? " and check your mobile phone for an additional security token" : "") + "..." + Environment.NewLine + Environment.NewLine +
+        //                                  DNSHostname + "/setPassword?" + SecurityToken + (Use2FactorAuth ? "&2factor" : "") +
+        //                              TextEMailFooter,
 
-                         SecurityLevel = EMailSecurity.sign
-                     }.AsImmutable;
+        //                 SecurityLevel = EMailSecurity.sign
+        //             }.AsImmutable;
 
         #endregion
 
         #region NewUserWelcomeEMailCreatorDelegate
 
-        private static readonly Func<String, EMailAddress, String, NewUserWelcomeEMailCreatorDelegate>
+        //private static readonly Func<String, EMailAddress, String, NewUserWelcomeEMailCreatorDelegate>
 
-            __NewUserWelcomeEMailCreatorDelegate = (BaseURL,
-                                                    APIEMailAddress,
-                                                    APIPassphrase)
+        //    __NewUserWelcomeEMailCreatorDelegate = (BaseURL,
+        //                                            APIEMailAddress,
+        //                                            APIPassphrase)
 
-                => (Username,
-                    EMailAddress,
-                    Language,
-                    ServiceName,
-                    Languages) => new HTMLEMailBuilder() {
+        //        => (Username,
+        //            EMailAddress,
+        //            Language,
+        //            ServiceName,
+        //            Languages) => new HTMLEMailBuilder() {
 
-                         From = APIEMailAddress,
-                         To = EMailAddress,
-                         Passphrase = APIPassphrase,
-                         Subject = "Welcome to the 'CardiCloud'...",
+        //                 From = APIEMailAddress,
+        //                 To = EMailAddress,
+        //                 Passphrase = APIPassphrase,
+        //                 Subject = "Welcome to the 'CardiCloud'...",
 
-                         HTMLText = "<!DOCTYPE html><html>" + Environment.NewLine +
-                                                                "<head>" + Environment.NewLine +
-                                                                    "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />" + Environment.NewLine +
-                                                                "</head>" + Environment.NewLine +
-                                                                "<body style=\"background-color: #ececec\">" +
-                                                                "<div style=\"width: 600px\">" + Environment.NewLine +
-                                                                    "<div style=\"border-bottom: 1px solid #AAAAAA; margin-bottom: 20px\">" +
-                                                                        "<img src=\"https://cardi-link.cloud/login/CardiLink_Logo01.png\" style=\"width: 250px; padding-right: 10px\" alt=\"CardiLink\">" +
-                                                                    "</div>" + Environment.NewLine +
-                                                                    "<div style=\"border-bottom: 1px solid #AAAAAA; padding-left: 6px; padding-bottom: 40px; margin-bottom: 10px;\">" + Environment.NewLine +
-                                                                        "Dear " + Username + ",<br /><br />" + Environment.NewLine +
-                                                                        "welcome to your new CardiCloud account!<br /><br />" + Environment.NewLine +
-                                                                        "<a href=\"https://api.cardi-link.cloud/login\" style=\"text-decoration: none; color: #FFFFFF; background-color: #ff7300; Border: solid #ff7300; border-width: 10px 20px; line-height: 2; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 4px; margin-top: 20px; font-size: 70%\">Login</a>" + Environment.NewLine +
-                                                                    "</div>" + Environment.NewLine +
-                                                                    "<div style=\"color: #AAAAAA; font-size: 70%\">" + Environment.NewLine +
-                                                                        "Fingerprint: CE12 96F1 74B3 75F8 0BE9&nbsp;&nbsp;0E54 289B 709A 9E53 A226<br />" + Environment.NewLine +
-                                                                        "CardiLink GmbH, Henkestr. 91, 91052 Erlangen, Germany<br />" + Environment.NewLine +
-                                                                        "Commercial Register Number: Amtsgericht Fürth HRB 15812<br />" + Environment.NewLine +
-                                                                        "Managing Director: Lars Wassermann<br />" + Environment.NewLine +
-                                                                    "</div>" + Environment.NewLine +
-                                                                "</div></body></html>" + Environment.NewLine + Environment.NewLine,
+        //                 HTMLText = "<!DOCTYPE html><html>" + Environment.NewLine +
+        //                                                        "<head>" + Environment.NewLine +
+        //                                                            "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />" + Environment.NewLine +
+        //                                                        "</head>" + Environment.NewLine +
+        //                                                        "<body style=\"background-color: #ececec\">" +
+        //                                                        "<div style=\"width: 600px\">" + Environment.NewLine +
+        //                                                            "<div style=\"border-bottom: 1px solid #AAAAAA; margin-bottom: 20px\">" +
+        //                                                                "<img src=\"https://cardi-link.cloud/login/CardiLink_Logo01.png\" style=\"width: 250px; padding-right: 10px\" alt=\"CardiLink\">" +
+        //                                                            "</div>" + Environment.NewLine +
+        //                                                            "<div style=\"border-bottom: 1px solid #AAAAAA; padding-left: 6px; padding-bottom: 40px; margin-bottom: 10px;\">" + Environment.NewLine +
+        //                                                                "Dear " + Username + ",<br /><br />" + Environment.NewLine +
+        //                                                                "welcome to your new CardiCloud account!<br /><br />" + Environment.NewLine +
+        //                                                                "<a href=\"https://api.cardi-link.cloud/login\" style=\"text-decoration: none; color: #FFFFFF; background-color: #ff7300; Border: solid #ff7300; border-width: 10px 20px; line-height: 2; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 4px; margin-top: 20px; font-size: 70%\">Login</a>" + Environment.NewLine +
+        //                                                            "</div>" + Environment.NewLine +
+        //                                                            "<div style=\"color: #AAAAAA; font-size: 70%\">" + Environment.NewLine +
+        //                                                                "Fingerprint: CE12 96F1 74B3 75F8 0BE9&nbsp;&nbsp;0E54 289B 709A 9E53 A226<br />" + Environment.NewLine +
+        //                                                                "CardiLink GmbH, Henkestr. 91, 91052 Erlangen, Germany<br />" + Environment.NewLine +
+        //                                                                "Commercial Register Number: Amtsgericht Fürth HRB 15812<br />" + Environment.NewLine +
+        //                                                                "Managing Director: Lars Wassermann<br />" + Environment.NewLine +
+        //                                                            "</div>" + Environment.NewLine +
+        //                                                        "</div></body></html>" + Environment.NewLine + Environment.NewLine,
 
-                         PlainText = "CardiLink" + Environment.NewLine +
-                                                                "---------" + Environment.NewLine + Environment.NewLine +
-                                                                "Dear " + Username + "," + Environment.NewLine +
-                                                                "welcome to your new CardiCloud account!" + Environment.NewLine + Environment.NewLine +
-                                                                "Please login via: https://api.cardi-link.cloud/login" + Environment.NewLine + Environment.NewLine +
-                                                                "---------------------------------------------------------------" + Environment.NewLine +
-                                                                "Fingerprint: CE12 96F1 74B3 75F8 0BE9  0E54 289B 709A 9E53 A226" + Environment.NewLine +
-                                                                "CardiLink GmbH, Henkestr. 91, 91052 Erlangen, Germany" + Environment.NewLine +
-                                                                "Commercial Register Number: Amtsgericht Fürth HRB 15812" + Environment.NewLine +
-                                                                "Managing Director: Lars Wassermann" + Environment.NewLine + Environment.NewLine,
+        //                 PlainText = "CardiLink" + Environment.NewLine +
+        //                                                        "---------" + Environment.NewLine + Environment.NewLine +
+        //                                                        "Dear " + Username + "," + Environment.NewLine +
+        //                                                        "welcome to your new CardiCloud account!" + Environment.NewLine + Environment.NewLine +
+        //                                                        "Please login via: https://api.cardi-link.cloud/login" + Environment.NewLine + Environment.NewLine +
+        //                                                        "---------------------------------------------------------------" + Environment.NewLine +
+        //                                                        "Fingerprint: CE12 96F1 74B3 75F8 0BE9  0E54 289B 709A 9E53 A226" + Environment.NewLine +
+        //                                                        "CardiLink GmbH, Henkestr. 91, 91052 Erlangen, Germany" + Environment.NewLine +
+        //                                                        "Commercial Register Number: Amtsgericht Fürth HRB 15812" + Environment.NewLine +
+        //                                                        "Managing Director: Lars Wassermann" + Environment.NewLine + Environment.NewLine,
 
-                         SecurityLevel = EMailSecurity.sign
-                     }.//AddAttachment("Hi there!".ToUTF8Bytes(), "welcome.txt", MailContentTypes.text_plain).
-                                                                     AsImmutable;
+        //                 SecurityLevel = EMailSecurity.sign
+        //             }.//AddAttachment("Hi there!".ToUTF8Bytes(), "welcome.txt", MailContentTypes.text_plain).
+        //                                                             AsImmutable;
 
         #endregion
 
         #region ResetPasswordEMailCreatorDelegate
 
-        private static readonly Func<String, EMailAddress, String, ResetPasswordEMailCreatorDelegate>
+        //private static readonly Func<String, EMailAddress, String, ResetPasswordEMailCreatorDelegate>
 
-            __ResetPasswordEMailCreatorDelegate = (BaseURL,
-                                                   APIEMailAddress,
-                                                   APIPassphrase)
+        //    __ResetPasswordEMailCreatorDelegate = (BaseURL,
+        //                                           APIEMailAddress,
+        //                                           APIPassphrase)
 
-                => (UserId,
-                    EMailAddress,
-                    Username,
-                    SecurityToken,
-                    Use2FactorAuth,
-                    ServiceName,
-                    DNSHostname,
-                    Language) => new HTMLEMailBuilder() {
+        //        => (UserId,
+        //            EMailAddress,
+        //            Username,
+        //            SecurityToken,
+        //            Use2FactorAuth,
+        //            ServiceName,
+        //            DNSHostname,
+        //            Language) => new HTMLEMailBuilder() {
 
-                         From       = APIEMailAddress,
-                         To         = EMailAddress,
-                         Passphrase = APIPassphrase,
-                         Subject    = "CardiCloud password reset...",
+        //                 From       = APIEMailAddress,
+        //                 To         = EMailAddress,
+        //                 Passphrase = APIPassphrase,
+        //                 Subject    = "CardiCloud password reset...",
 
-                         HTMLText   = HTMLEMailHeader +
-                                          "Dear " + Username + " (" + UserId + "),<br /><br />" + Environment.NewLine +
-                                          "someone - hopefully you - requested us to change your password!<br />" + Environment.NewLine +
-                                          "If this request was your intention, please click the following link to set a new password...<br /><br />" + Environment.NewLine +
-                                          "<a href=\"" + DNSHostname + "/setPassword?" + SecurityToken + (Use2FactorAuth ? "&2factor" : "") + "\" style=\"text-decoration: none; color: #FFFFFF; background-color: #ff7300; Border: solid #ff7300; border-width: 10px 20px; line-height: 2; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 4px; margin-top: 20px; font-size: 70%\">Set a new password</a>" + Environment.NewLine +
-                                      HTMLEMailFooter,
+        //                 HTMLText   = HTMLEMailHeader +
+        //                                  "Dear " + Username + " (" + UserId + "),<br /><br />" + Environment.NewLine +
+        //                                  "someone - hopefully you - requested us to change your password!<br />" + Environment.NewLine +
+        //                                  "If this request was your intention, please click the following link to set a new password...<br /><br />" + Environment.NewLine +
+        //                                  "<a href=\"" + DNSHostname + "/setPassword?" + SecurityToken + (Use2FactorAuth ? "&2factor" : "") + "\" style=\"text-decoration: none; color: #FFFFFF; background-color: #ff7300; Border: solid #ff7300; border-width: 10px 20px; line-height: 2; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 4px; margin-top: 20px; font-size: 70%\">Set a new password</a>" + Environment.NewLine +
+        //                              HTMLEMailFooter,
 
-                         PlainText  = TextEMailHeader +
-                                          "Dear " + Username + " (" + UserId + ")," + Environment.NewLine +
-                                          "someone - hopefully you - requested us to change your password!" + Environment.NewLine +
-                                          "If this request was your intention, please click the following link to set a new password..." + Environment.NewLine + Environment.NewLine +
-                                          DNSHostname + "/setPassword?" + SecurityToken + (Use2FactorAuth ? "&2factor" : "") +
-                                      TextEMailFooter,
+        //                 PlainText  = TextEMailHeader +
+        //                                  "Dear " + Username + " (" + UserId + ")," + Environment.NewLine +
+        //                                  "someone - hopefully you - requested us to change your password!" + Environment.NewLine +
+        //                                  "If this request was your intention, please click the following link to set a new password..." + Environment.NewLine + Environment.NewLine +
+        //                                  DNSHostname + "/setPassword?" + SecurityToken + (Use2FactorAuth ? "&2factor" : "") +
+        //                              TextEMailFooter,
 
-                         SecurityLevel = EMailSecurity.sign
-                     }.AsImmutable;
+        //                 SecurityLevel = EMailSecurity.sign
+        //             }.AsImmutable;
 
         #endregion
 
         #region PasswordChangedEMailCreatorDelegate
 
-        private static readonly Func<String, EMailAddress, String, PasswordChangedEMailCreatorDelegate>
+        //private static readonly Func<String, EMailAddress, String, PasswordChangedEMailCreatorDelegate>
 
-            __PasswordChangedEMailCreatorDelegate = (BaseURL,
-                                                     APIEMailAddress,
-                                                     APIPassphrase)
+        //    __PasswordChangedEMailCreatorDelegate = (BaseURL,
+        //                                             APIEMailAddress,
+        //                                             APIPassphrase)
 
-                => (UserId,
-                    EMailAddress,
-                    Username,
-                    ServiceName,
-                    DNSHostname,
-                    Language) => new HTMLEMailBuilder() {
+        //        => (UserId,
+        //            EMailAddress,
+        //            Username,
+        //            ServiceName,
+        //            DNSHostname,
+        //            Language) => new HTMLEMailBuilder() {
 
-                         From       = APIEMailAddress,
-                         To         = EMailAddress,
-                         Passphrase = APIPassphrase,
-                         Subject    = "CardiCloud password changed...",
+        //                 From       = APIEMailAddress,
+        //                 To         = EMailAddress,
+        //                 Passphrase = APIPassphrase,
+        //                 Subject    = "CardiCloud password changed...",
 
-                         HTMLText   = HTMLEMailHeader +
-                                          "Dear " + Username + ",<br /><br />" + Environment.NewLine +
-                                          "your password has successfully been changed!<br />" + Environment.NewLine +
-                                          "<a href=\"" + DNSHostname + "/login?" + UserId + "\" style=\"text-decoration: none; color: #FFFFFF; background-color: #ff7300; Border: solid #ff7300; border-width: 10px 20px; line-height: 2; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 4px; margin-top: 20px; font-size: 70%\">Login</a>" + Environment.NewLine +
-                                      HTMLEMailFooter,
+        //                 HTMLText   = HTMLEMailHeader +
+        //                                  "Dear " + Username + ",<br /><br />" + Environment.NewLine +
+        //                                  "your password has successfully been changed!<br />" + Environment.NewLine +
+        //                                  "<a href=\"" + DNSHostname + "/login?" + UserId + "\" style=\"text-decoration: none; color: #FFFFFF; background-color: #ff7300; Border: solid #ff7300; border-width: 10px 20px; line-height: 2; font-weight: bold; text-align: center; cursor: pointer; display: inline-block; border-radius: 4px; margin-top: 20px; font-size: 70%\">Login</a>" + Environment.NewLine +
+        //                              HTMLEMailFooter,
 
-                         PlainText  = TextEMailHeader +
-                                          "Dear " + Username + "," + Environment.NewLine +
-                                          "your password has successfully been changed!" + Environment.NewLine +
-                                          DNSHostname + "/login?" + UserId +
-                                      TextEMailFooter,
+        //                 PlainText  = TextEMailHeader +
+        //                                  "Dear " + Username + "," + Environment.NewLine +
+        //                                  "your password has successfully been changed!" + Environment.NewLine +
+        //                                  DNSHostname + "/login?" + UserId +
+        //                              TextEMailFooter,
 
-                         SecurityLevel = EMailSecurity.sign
-                     }.AsImmutable;
+        //                 SecurityLevel = EMailSecurity.sign
+        //             }.AsImmutable;
 
         #endregion
 
@@ -2891,10 +2891,6 @@ namespace cloud.charging.open.API
         /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
         /// <param name="UseSecureCookies">Force the web browser to send cookies only via HTTPS.</param>
         /// <param name="Language">The main language of the API.</param>
-        /// <param name="NewUserSignUpEMailCreator">A delegate for sending a sign-up e-mail to a new user.</param>
-        /// <param name="NewUserWelcomeEMailCreator">A delegate for sending a welcome e-mail to a new user.</param>
-        /// <param name="ResetPasswordEMailCreator">A delegate for sending a reset password e-mail to a user.</param>
-        /// <param name="PasswordChangedEMailCreator">A delegate for sending a password changed e-mail to a user.</param>
         /// <param name="MinUserNameLength">The minimal user name length.</param>
         /// <param name="MinRealmLength">The minimal realm length.</param>
         /// <param name="PasswordQualityCheck">A delegate to ensure a minimal password quality.</param>
@@ -2946,15 +2942,6 @@ namespace cloud.charging.open.API
                                     HTTPCookieName?                      CookieName                         = null,
                                     Boolean                              UseSecureCookies                   = true,
                                     Languages?                           Language                           = null,
-                                    NewUserSignUpEMailCreatorDelegate    NewUserSignUpEMailCreator          = null,
-                                    NewUserWelcomeEMailCreatorDelegate   NewUserWelcomeEMailCreator         = null,
-                                    ResetPasswordEMailCreatorDelegate    ResetPasswordEMailCreator          = null,
-                                    PasswordChangedEMailCreatorDelegate  PasswordChangedEMailCreator        = null,
-                                    Byte?                                MinLoginLength                     = null,
-                                    Byte?                                MinRealmLength                     = null,
-                                    Byte?                                MinUserNameLength                  = null,
-                                    PasswordQualityCheckDelegate         PasswordQualityCheck               = null,
-                                    TimeSpan?                            SignInSessionLifetime              = null,
 
                                     String                               ServerThreadName                   = null,
                                     ThreadPriority                       ServerThreadPriority               = ThreadPriority.AboveNormal,
@@ -3009,15 +2996,20 @@ namespace cloud.charging.open.API
                    CookieName                  ?? HTTPCookieName.Parse("OpenChargingCloudAPI"),
                    UseSecureCookies,
                    Language                    ?? Languages.en,
-                   NewUserSignUpEMailCreator   ?? __NewUserSignUpEMailCreator          (ExternalDNSName, APIEMailAddress, APIPassphrase),
-                   NewUserWelcomeEMailCreator  ?? __NewUserWelcomeEMailCreatorDelegate (ExternalDNSName, APIEMailAddress, APIPassphrase),
-                   ResetPasswordEMailCreator   ?? __ResetPasswordEMailCreatorDelegate  (ExternalDNSName, APIEMailAddress, APIPassphrase),
-                   PasswordChangedEMailCreator ?? __PasswordChangedEMailCreatorDelegate(ExternalDNSName, APIEMailAddress, APIPassphrase),
-                   MinLoginLength,
-                   MinRealmLength,
-                   MinUserNameLength,
-                   PasswordQualityCheck,
-                   SignInSessionLifetime       ?? TimeSpan.FromDays(30),
+                   4,                      // MinUserIdLength
+                   4,                      // MinRealmLength
+                   4,                      // MinUserNameLength
+                   4,                      // MinUserGroupIdLength
+                   20,                     // MinAPIKeyLength
+                   12,                     // MinMessageIdLength
+                   4,                      // MinOrganizationIdLength
+                   4,                      // MinOrganizationGroupIdLength
+                   12,                     // MinNotificationMessageIdLength
+                   8,                      // MinNewsPostingIdLength
+                   8,                      // MinNewsBannerIdLength
+                   8,                      // MinFAQIdLength
+                   null,                   // PasswordQualityCheck
+                   TimeSpan.FromDays(30),  // SignInSessionLifetime
 
                    ServerThreadName,
                    ServerThreadPriority,
