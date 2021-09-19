@@ -3060,17 +3060,17 @@ namespace cloud.charging.open.API
                 else
                 {
 
-                    if (!request.Path.StartsWith(URLPathPrefix + "/daily") &&
-                        !request.Path.StartsWith(URLPathPrefix + "/messages") &&
-                        !request.Path.StartsWith(URLPathPrefix + "/defaults") &&
+                    if (!request.Path.StartsWith(URLPathPrefix + "/messages")                 &&
+                        !request.Path.StartsWith(URLPathPrefix + "/defaults")                 &&
                         !request.Path.StartsWith(URLPathPrefix + "/shared/UsersAPI/defaults") &&
                         !request.Path.StartsWith(URLPathPrefix + "/shared/UsersAPI/webfonts") &&
-                        !request.Path.StartsWith(URLPathPrefix + "/shared/UsersAPI/login") &&
-                        !request.Path.StartsWith(URLPathPrefix + "/login") &&
-                        !request.Path.StartsWith(URLPathPrefix + "/lostPassword") &&
-                        !request.Path.StartsWith(URLPathPrefix + "/resetPassword") &&
-                        !request.Path.StartsWith(URLPathPrefix + "/setPassword") &&
-                        !request.Path.StartsWith(URLPathPrefix + "/activation") &&
+                        !request.Path.StartsWith(URLPathPrefix + "/shared/UsersAPI/login")    &&
+                        !request.Path.StartsWith(URLPathPrefix + "/login")                    &&
+                        !request.Path.StartsWith(URLPathPrefix + "/lostPassword")             &&
+                        !request.Path.StartsWith(URLPathPrefix + "/resetPassword")            &&
+                        !request.Path.StartsWith(URLPathPrefix + "/setPassword")              &&
+                        !request.Path.StartsWith(URLPathPrefix + "/restart")                  &&
+                        !request.Path.StartsWith(URLPathPrefix + "/stop")                     &&
                        !(request.Path.StartsWith(URLPathPrefix + "/users/") && request.HTTPMethod.ToString() == "AUTH") &&
                         !request.Path.StartsWith(URLPathPrefix + "/libs/leaflet"))
                     {
