@@ -97,7 +97,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     Connection      = "close"
                 };
 
@@ -111,7 +111,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -131,7 +131,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -186,7 +186,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     Connection      = "close"
                 };
 
@@ -205,7 +205,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -222,7 +222,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -277,7 +277,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     Connection      = "close"
                 };
 
@@ -296,7 +296,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingPoolId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -313,7 +313,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingPoolId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -369,7 +369,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     Connection      = "close"
                 };
 
@@ -383,7 +383,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -403,7 +403,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -419,7 +419,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -436,7 +436,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -492,7 +492,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     Connection      = "close"
                 };
 
@@ -506,7 +506,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -526,7 +526,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -542,7 +542,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid EVSEId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -559,7 +559,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown EVSEId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -620,7 +620,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     Connection      = "close"
                 };
 
@@ -636,7 +636,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -654,7 +654,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -672,7 +672,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid charging session identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -689,7 +689,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown charging session identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -745,7 +745,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                 };
 
                 return false;
@@ -758,7 +758,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -778,7 +778,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -793,7 +793,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid reservation identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -810,7 +810,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown reservation identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -865,7 +865,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     Connection      = "close"
                 };
 
@@ -884,7 +884,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid EMobilityProviderId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -901,7 +901,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown EMobilityProviderId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -958,7 +958,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     Connection      = "close"
                 };
 
@@ -977,7 +977,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ParkingOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -994,7 +994,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ParkingOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1049,7 +1049,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     Connection      = "close"
                 };
 
@@ -1068,7 +1068,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid SmartCityId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1085,7 +1085,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown SmartCityId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1140,7 +1140,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                 };
 
                 return false;
@@ -1158,7 +1158,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid GridOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1175,7 +1175,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown GridOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1235,7 +1235,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     Connection      = "close"
                 };
 
@@ -1254,7 +1254,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingPoolId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1271,7 +1271,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingPoolId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1291,7 +1291,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1308,7 +1308,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1371,7 +1371,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     Connection      = "close"
                 };
 
@@ -1390,7 +1390,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingPoolId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1407,7 +1407,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingPoolId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1427,7 +1427,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1444,7 +1444,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1464,7 +1464,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid EVSEId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1481,7 +1481,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown EVSEId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1541,7 +1541,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                 };
 
                 return false;
@@ -1558,7 +1558,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1574,7 +1574,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1591,7 +1591,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid BrandId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1607,7 +1607,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown BrandId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1664,7 +1664,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                 };
 
                 return false;
@@ -1681,7 +1681,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1697,7 +1697,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1714,7 +1714,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationGroupId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1730,7 +1730,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationGroupId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1787,7 +1787,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                 };
 
                 return false;
@@ -1804,7 +1804,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1820,7 +1820,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1837,7 +1837,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid EVSEGroupId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -1853,7 +1853,7 @@ namespace cloud.charging.open.API
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                    Date            = DateTime.UtcNow,
+                    Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown EVSEGroupId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
@@ -2923,7 +2923,7 @@ namespace cloud.charging.open.API
 
                 #region Got a cookie... verify it and protect /admin!
 
-                if (TryGetSecurityTokenFromCookie(request, out SecurityToken_Id SecurityToken)       &&
+                if (TryGetSecurityTokenFromCookie(request,  out SecurityToken_Id SecurityToken)       &&
                     _HTTPCookies.TryGetValue(SecurityToken, out SecurityToken    SecurityInformation) &&
                     Timestamp.Now < SecurityInformation.Expires)
                 {
@@ -3086,13 +3086,16 @@ namespace cloud.charging.open.API
                         return new HTTPResponse.Builder(request) {
                             HTTPStatusCode  = HTTPStatusCode.TemporaryRedirect,
                             Location        = URLPathPrefix + "/login/login.html",
-                            Date            = DateTime.UtcNow,
+                            Date            = Timestamp.Now,
                             Server          = HTTPServer.DefaultServerName,
-                            SetCookie       = String.Concat(CookieName, "=; Expires=", DateTime.UtcNow.ToRfc1123(),
-                                                            HTTPCookieDomain.IsNotNullOrEmpty()
-                                                                ? "; Domain=" + HTTPCookieDomain
-                                                                : "",
-                                                            "; Path=", URLPathPrefix),
+
+                            // Do not delete the cookie! Otherwise users can not login multiple times, e.g. when clicking on links in e-mails.
+                            //SetCookie       = String.Concat(CookieName, "=; Expires=", Timestamp.Now.ToRfc1123(),
+                            //                                HTTPCookieDomain.IsNotNullOrEmpty()
+                            //                                    ? "; Domain=" + HTTPCookieDomain
+                            //                                    : "",
+                            //                                "; Path=", URLPathPrefix),
+
                             CacheControl    = "private, max-age=0, no-cache",
                             Connection      = "close"
                         };
@@ -3235,7 +3238,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                = HTTPStatusCode.OK,
                                                              Server                        = HTTPServer.DefaultServerName,
-                                                             Date                          = DateTime.UtcNow,
+                                                             Date                          = Timestamp.Now,
                                                              AccessControlAllowOrigin      = "*",
                                                              AccessControlAllowMethods     = "GET, COUNT, OPTIONS",
                                                              AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
@@ -3269,7 +3272,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, OPTIONS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -3299,7 +3302,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode             = HTTPStatusCode.NoContent,
                                                              Server                     = HTTPServer.DefaultServerName,
-                                                             Date                       = DateTime.UtcNow,
+                                                             Date                       = Timestamp.Now,
                                                              AccessControlAllowOrigin   = "*",
                                                              AccessControlAllowMethods  = "GET, COUNT, OPTIONS",
                                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -3333,7 +3336,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                 = HTTPStatusCode.OK,
                                                              Server                         = HTTPServer.DefaultServerName,
-                                                             Date                           = DateTime.UtcNow,
+                                                             Date                           = Timestamp.Now,
                                                              AccessControlAllowOrigin       = "*",
                                                              AccessControlAllowMethods      = "GET",
                                                              AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
@@ -3376,7 +3379,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                 = HTTPStatusCode.OK,
                                                              Server                         = HTTPServer.DefaultServerName,
-                                                             Date                           = DateTime.UtcNow,
+                                                             Date                           = Timestamp.Now,
                                                              AccessControlAllowOrigin       = "*",
                                                              AccessControlAllowMethods      = "GET",
                                                              AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
@@ -3420,7 +3423,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                 = HTTPStatusCode.OK,
                                                              Server                         = HTTPServer.DefaultServerName,
-                                                             Date                           = DateTime.UtcNow,
+                                                             Date                           = Timestamp.Now,
                                                              AccessControlAllowOrigin       = "*",
                                                              AccessControlAllowMethods      = "GET",
                                                              AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
@@ -3466,7 +3469,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode             = HTTPStatusCode.OK,
                                                              Server                     = HTTPServer.DefaultServerName,
-                                                             Date                       = DateTime.UtcNow,
+                                                             Date                       = Timestamp.Now,
                                                              AccessControlAllowOrigin   = "*",
                                                              AccessControlAllowMethods  = "GET, CREATE, DELETE",
                                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -3502,7 +3505,7 @@ namespace cloud.charging.open.API
                                                      //            HTTPStatusCode   = HTTPStatusCode.Unauthorized,
                                                      //            WWWAuthenticate  = @"Basic realm=""WWCP""",
                                                      //            Server           = HTTPServer.DefaultServerName,
-                                                     //            Date             = DateTime.UtcNow,
+                                                     //            Date             = Timestamp.Now,
                                                      //            Connection       = "close"
                                                      //        });
 
@@ -3514,7 +3517,7 @@ namespace cloud.charging.open.API
                                                          return Task.FromResult(new HTTPResponse.Builder(Request) {
                                                                      HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                                      Server          = HTTPServer.DefaultServerName,
-                                                                     Date            = DateTime.UtcNow,
+                                                                     Date            = Timestamp.Now,
                                                                  }.AsImmutable);
 
 
@@ -3523,7 +3526,7 @@ namespace cloud.charging.open.API
                                                          return Task.FromResult(new HTTPResponse.Builder(Request) {
                                                                      HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                                      Server          = HTTPServer.DefaultServerName,
-                                                                     Date            = DateTime.UtcNow,
+                                                                     Date            = Timestamp.Now,
                                                                      ContentType     = HTTPContentType.JSON_UTF8,
                                                                      Content         = HTTPExtentions.CreateError("Invalid roaming network identification!")
                                                                  }.AsImmutable);
@@ -3535,7 +3538,7 @@ namespace cloud.charging.open.API
                                                         return Task.FromResult(new HTTPResponse.Builder(Request) {
                                                                     HTTPStatusCode  = HTTPStatusCode.Conflict,
                                                                     Server          = HTTPServer.DefaultServerName,
-                                                                    Date            = DateTime.UtcNow,
+                                                                    Date            = Timestamp.Now,
                                                                     ContentType     = HTTPContentType.JSON_UTF8,
                                                                     Content         = HTTPExtentions.CreateError("RoamingNetworkId already exists!")
                                                                 }.AsImmutable);
@@ -3586,7 +3589,7 @@ namespace cloud.charging.open.API
                                                      return Task.FromResult(new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode             = HTTPStatusCode.Created,
                                                                  Server                     = HTTPServer.DefaultServerName,
-                                                                 Date                       = DateTime.UtcNow,
+                                                                 Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = "GET, CREATE, DELETE",
                                                                  AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -3623,7 +3626,7 @@ namespace cloud.charging.open.API
                                                      //            HTTPStatusCode   = HTTPStatusCode.Unauthorized,
                                                      //            WWWAuthenticate  = @"Basic realm=""WWCP""",
                                                      //            Server           = HTTPServer.DefaultServerName,
-                                                     //            Date             = DateTime.UtcNow,
+                                                     //            Date             = Timestamp.Now,
                                                      //            Connection       = "close"
                                                      //        });
 
@@ -3648,7 +3651,7 @@ namespace cloud.charging.open.API
                                                              new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode             = HTTPStatusCode.OK,
                                                                  Server                     = HTTPServer.DefaultServerName,
-                                                                 Date                       = DateTime.UtcNow,
+                                                                 Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = "GET, CREATE, DELETE",
                                                                  AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -3686,7 +3689,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode             = HTTPStatusCode.NoContent,
                                                              Server                     = HTTPServer.DefaultServerName,
-                                                             Date                       = DateTime.UtcNow,
+                                                             Date                       = Timestamp.Now,
                                                              AccessControlAllowOrigin   = "*",
                                                              AccessControlAllowMethods  = "GET, COUNT, OPTIONS",
                                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -3725,7 +3728,7 @@ namespace cloud.charging.open.API
                                                              new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                                  Server          = HTTPServer.DefaultServerName,
-                                                                 Date            = DateTime.UtcNow,
+                                                                 Date            = Timestamp.Now,
                                                              }.AsImmutable);
 
                                                      var PropertyKey = Request.ParsedURLParameters[1];
@@ -3735,7 +3738,7 @@ namespace cloud.charging.open.API
                                                              new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                                  Server          = HTTPServer.DefaultServerName,
-                                                                 Date            = DateTime.UtcNow,
+                                                                 Date            = Timestamp.Now,
                                                                  ContentType     = HTTPContentType.JSON_UTF8,
                                                                  Content         = @"{ ""description"": ""Invalid property key!"" }".ToUTF8Bytes()
                                                              }.AsImmutable);
@@ -3746,7 +3749,7 @@ namespace cloud.charging.open.API
                                                              new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode             = HTTPStatusCode.NotFound,
                                                                  Server                     = HTTPServer.DefaultServerName,
-                                                                 Date                       = DateTime.UtcNow,
+                                                                 Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = "GET, SET",
                                                                  AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -3759,7 +3762,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode             = HTTPStatusCode.OK,
                                                              Server                     = HTTPServer.DefaultServerName,
-                                                             Date                       = DateTime.UtcNow,
+                                                             Date                       = Timestamp.Now,
                                                              AccessControlAllowOrigin   = "*",
                                                              AccessControlAllowMethods  = "GET, SET",
                                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -3802,7 +3805,7 @@ namespace cloud.charging.open.API
                                                              new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                                  Server          = HTTPServer.DefaultServerName,
-                                                                 Date            = DateTime.UtcNow,
+                                                                 Date            = Timestamp.Now,
                                                                  Connection      = "close"
                                                              }.AsImmutable);
 
@@ -3813,7 +3816,7 @@ namespace cloud.charging.open.API
                                                              new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                                  Server          = HTTPServer.DefaultServerName,
-                                                                 Date            = DateTime.UtcNow,
+                                                                 Date            = Timestamp.Now,
                                                                  ContentType     = HTTPContentType.JSON_UTF8,
                                                                  Content         = @"{ ""description"": ""Invalid property key!"" }".ToUTF8Bytes(),
                                                                  Connection      = "close"
@@ -3896,7 +3899,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode             = _HTTPStatusCode,
                                                              Server                     = HTTPServer.DefaultServerName,
-                                                             Date                       = DateTime.UtcNow,
+                                                             Date                       = Timestamp.Now,
                                                              AccessControlAllowOrigin   = "*",
                                                              AccessControlAllowMethods  = "GET, SET",
                                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -3955,7 +3958,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, OPTIONS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -4003,7 +4006,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, OPTIONS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -4032,7 +4035,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.NoContent,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, OPTIONS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -4068,7 +4071,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                = HTTPStatusCode.OK,
                                                              Server                        = HTTPServer.DefaultServerName,
-                                                             Date                          = DateTime.UtcNow,
+                                                             Date                          = Timestamp.Now,
                                                              AccessControlAllowOrigin      = "*",
                                                              AccessControlAllowMethods     = "GET",
                                                              AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
@@ -4119,7 +4122,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                 = HTTPStatusCode.OK,
                                                              Server                         = HTTPServer.DefaultServerName,
-                                                             Date                           = DateTime.UtcNow,
+                                                             Date                           = Timestamp.Now,
                                                              AccessControlAllowOrigin       = "*",
                                                              AccessControlAllowMethods      = "GET",
                                                              AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
@@ -4170,7 +4173,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                 = HTTPStatusCode.OK,
                                                              Server                         = HTTPServer.DefaultServerName,
-                                                             Date                           = DateTime.UtcNow,
+                                                             Date                           = Timestamp.Now,
                                                              AccessControlAllowOrigin       = "*",
                                                              AccessControlAllowMethods      = "GET",
                                                              AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
@@ -4214,7 +4217,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, OPTIONS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -4268,7 +4271,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode             = HTTPStatusCode.OK,
                                                              Server                     = HTTPServer.DefaultServerName,
-                                                             Date                       = DateTime.UtcNow,
+                                                             Date                       = Timestamp.Now,
                                                              AccessControlAllowOrigin   = "*",
                                                              AccessControlAllowMethods  = "GET, SET",
                                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -4324,7 +4327,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, OPTIONS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -4381,7 +4384,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                = HTTPStatusCode.OK,
                                                              Server                        = HTTPServer.DefaultServerName,
-                                                             Date                          = DateTime.UtcNow,
+                                                             Date                          = Timestamp.Now,
                                                              AccessControlAllowOrigin      = "*",
                                                              AccessControlAllowMethods     = "GET",
                                                              AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
@@ -4432,7 +4435,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                = HTTPStatusCode.OK,
                                                              Server                        = HTTPServer.DefaultServerName,
-                                                             Date                          = DateTime.UtcNow,
+                                                             Date                          = Timestamp.Now,
                                                              AccessControlAllowOrigin      = "*",
                                                              AccessControlAllowMethods     = "GET",
                                                              AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
@@ -4491,7 +4494,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, OPTIONS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -4546,7 +4549,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode             = HTTPStatusCode.OK,
                                                              Server                     = HTTPServer.DefaultServerName,
-                                                             Date                       = DateTime.UtcNow,
+                                                             Date                       = Timestamp.Now,
                                                              AccessControlAllowOrigin   = "*",
                                                              AccessControlAllowMethods  = "GET",
                                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -4602,7 +4605,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, OPTIONS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -4660,7 +4663,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                = HTTPStatusCode.OK,
                                                              Server                        = HTTPServer.DefaultServerName,
-                                                             Date                          = DateTime.UtcNow,
+                                                             Date                          = Timestamp.Now,
                                                              AccessControlAllowOrigin      = "*",
                                                              AccessControlAllowMethods     = "GET",
                                                              AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
@@ -4711,7 +4714,7 @@ namespace cloud.charging.open.API
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                = HTTPStatusCode.OK,
                                                      Server                        = HTTPServer.DefaultServerName,
-                                                     Date                          = DateTime.UtcNow,
+                                                     Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = "GET",
                                                      AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
@@ -4771,7 +4774,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, OPTIONS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -4821,7 +4824,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, OPTIONS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -4860,7 +4863,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.NoContent,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, OPTIONS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -4896,7 +4899,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                = HTTPStatusCode.OK,
                                                              Server                        = HTTPServer.DefaultServerName,
-                                                             Date                          = DateTime.UtcNow,
+                                                             Date                          = Timestamp.Now,
                                                              AccessControlAllowOrigin      = "*",
                                                              AccessControlAllowMethods     = "GET",
                                                              AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
@@ -4947,7 +4950,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                 = HTTPStatusCode.OK,
                                                              Server                         = HTTPServer.DefaultServerName,
-                                                             Date                           = DateTime.UtcNow,
+                                                             Date                           = Timestamp.Now,
                                                              AccessControlAllowOrigin       = "*",
                                                              AccessControlAllowMethods      = "GET",
                                                              AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
@@ -4998,7 +5001,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                 = HTTPStatusCode.OK,
                                                              Server                         = HTTPServer.DefaultServerName,
-                                                             Date                           = DateTime.UtcNow,
+                                                             Date                           = Timestamp.Now,
                                                              AccessControlAllowOrigin       = "*",
                                                              AccessControlAllowMethods      = "GET",
                                                              AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
@@ -5042,7 +5045,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, OPTIONS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -5094,7 +5097,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode             = HTTPStatusCode.OK,
                                                              Server                     = HTTPServer.DefaultServerName,
-                                                             Date                       = DateTime.UtcNow,
+                                                             Date                       = Timestamp.Now,
                                                              AccessControlAllowOrigin   = "*",
                                                              AccessControlAllowMethods  = "GET, SET",
                                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -5151,7 +5154,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, OPTIONS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -5209,7 +5212,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                = HTTPStatusCode.OK,
                                                              Server                        = HTTPServer.DefaultServerName,
-                                                             Date                          = DateTime.UtcNow,
+                                                             Date                          = Timestamp.Now,
                                                              AccessControlAllowOrigin      = "*",
                                                              AccessControlAllowMethods     = "GET",
                                                              AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
@@ -5260,7 +5263,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                = HTTPStatusCode.OK,
                                                              Server                        = HTTPServer.DefaultServerName,
-                                                             Date                          = DateTime.UtcNow,
+                                                             Date                          = Timestamp.Now,
                                                              AccessControlAllowOrigin      = "*",
                                                              AccessControlAllowMethods     = "GET",
                                                              AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
@@ -5322,7 +5325,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, OPTIONS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -5374,7 +5377,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, OPTIONS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -5415,7 +5418,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.NoContent,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, OPTIONS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -5452,7 +5455,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                = HTTPStatusCode.OK,
                                                              Server                        = HTTPServer.DefaultServerName,
-                                                             Date                          = DateTime.UtcNow,
+                                                             Date                          = Timestamp.Now,
                                                              AccessControlAllowOrigin      = "*",
                                                              AccessControlAllowMethods     = "GET",
                                                              AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
@@ -5506,7 +5509,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                 = HTTPStatusCode.OK,
                                                              Server                         = HTTPServer.DefaultServerName,
-                                                             Date                           = DateTime.UtcNow,
+                                                             Date                           = Timestamp.Now,
                                                              AccessControlAllowOrigin       = "*",
                                                              AccessControlAllowMethods      = "GET",
                                                              AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
@@ -5560,7 +5563,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                 = HTTPStatusCode.OK,
                                                              Server                         = HTTPServer.DefaultServerName,
-                                                             Date                           = DateTime.UtcNow,
+                                                             Date                           = Timestamp.Now,
                                                              AccessControlAllowOrigin       = "*",
                                                              AccessControlAllowMethods      = "GET",
                                                              AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
@@ -5616,7 +5619,7 @@ namespace cloud.charging.open.API
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                 = HTTPStatusCode.OK,
                                                      Server                         = HTTPServer.DefaultServerName,
-                                                     Date                           = DateTime.UtcNow,
+                                                     Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = "GET",
                                                      AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
@@ -5663,7 +5666,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, OPTIONS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -5718,7 +5721,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode             = HTTPStatusCode.OK,
                                                              Server                     = HTTPServer.DefaultServerName,
-                                                             Date                       = DateTime.UtcNow,
+                                                             Date                       = Timestamp.Now,
                                                              AccessControlAllowOrigin   = "*",
                                                              AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
                                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -5757,7 +5760,7 @@ namespace cloud.charging.open.API
                                                      return new HTTPResponse.Builder(Request) {
                                                          HTTPStatusCode              = HTTPStatusCode.OK,
                                                          Server                      = HTTPServer.DefaultServerName,
-                                                         Date                        = DateTime.UtcNow,
+                                                         Date                        = Timestamp.Now,
                                                          AccessControlAllowOrigin    = "*",
                                                          AccessControlAllowMethods   = "GET",
                                                          AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
@@ -5798,7 +5801,7 @@ namespace cloud.charging.open.API
                                                      return new HTTPResponse.Builder(Request) {
                                                          HTTPStatusCode              = HTTPStatusCode.OK,
                                                          Server                      = HTTPServer.DefaultServerName,
-                                                         Date                        = DateTime.UtcNow,
+                                                         Date                        = Timestamp.Now,
                                                          AccessControlAllowOrigin    = "*",
                                                          AccessControlAllowMethods   = "GET",
                                                          AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
@@ -5976,7 +5979,7 @@ namespace cloud.charging.open.API
                                                              if (_HTTPResponse != null)
                                                                  return _HTTPResponse;
 
-                                                             if (StartTime <= DateTime.Now)
+                                                             if (StartTime <= Timestamp.Now)
                                                                  return new HTTPResponse.Builder(Request) {
                                                                             HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                                             ContentType     = HTTPContentType.JSON_UTF8,
@@ -6140,7 +6143,7 @@ namespace cloud.charging.open.API
                                                                          return new HTTPResponse.Builder(Request) {
                                                                                     HTTPStatusCode             = HTTPStatusCode.BadRequest,
                                                                                     Server                     = HTTPServer.DefaultServerName,
-                                                                                    Date                       = DateTime.UtcNow,
+                                                                                    Date                       = Timestamp.Now,
                                                                                     AccessControlAllowOrigin   = "*",
                                                                                     AccessControlAllowMethods  = "RESERVE, REMOTESTART, REMOTESTOP, SENDCDR",
                                                                                     AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -6179,7 +6182,7 @@ namespace cloud.charging.open.API
                                                                          return new HTTPResponse.Builder(Request) {
                                                                                     HTTPStatusCode             = HTTPStatusCode.BadRequest,
                                                                                     Server                     = HTTPServer.DefaultServerName,
-                                                                                    Date                       = DateTime.UtcNow,
+                                                                                    Date                       = Timestamp.Now,
                                                                                     AccessControlAllowOrigin   = "*",
                                                                                     AccessControlAllowMethods  = "RESERVE, REMOTESTART, REMOTESTOP, SENDCDR",
                                                                                     AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -6218,7 +6221,7 @@ namespace cloud.charging.open.API
                                                                          return new HTTPResponse.Builder(Request) {
                                                                                     HTTPStatusCode             = HTTPStatusCode.BadRequest,
                                                                                     Server                     = HTTPServer.DefaultServerName,
-                                                                                    Date                       = DateTime.UtcNow,
+                                                                                    Date                       = Timestamp.Now,
                                                                                     AccessControlAllowOrigin   = "*",
                                                                                     AccessControlAllowMethods  = "RESERVE, REMOTESTART, REMOTESTOP, SENDCDR",
                                                                                     AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -6269,7 +6272,7 @@ namespace cloud.charging.open.API
                                                                                     Request.EventTrackingId);
 
 
-                                                     var Now = DateTime.UtcNow;
+                                                     var Now = Timestamp.Now;
 
                                                      #region Success
 
@@ -6297,7 +6300,7 @@ namespace cloud.charging.open.API
                                                      //    return new HTTPResponse.Builder(HTTPRequest) {
                                                      //        HTTPStatusCode             = HTTPStatusCode.Conflict,
                                                      //        Server                     = API.HTTPServer.DefaultServerName,
-                                                     //        Date                       = DateTime.UtcNow,
+                                                     //        Date                       = Timestamp.Now,
                                                      //        AccessControlAllowOrigin   = "*",
                                                      //        AccessControlAllowMethods  = "RESERVE, REMOTESTART, REMOTESTOP, SENDCDR",
                                                      //        AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -6462,7 +6465,7 @@ namespace cloud.charging.open.API
                                                          return new HTTPResponse.Builder(Request) {
                                                                     HTTPStatusCode             = HTTPStatusCode.OK,
                                                                     Server                     = HTTPServer.DefaultServerName,
-                                                                    Date                       = DateTime.UtcNow,
+                                                                    Date                       = Timestamp.Now,
                                                                     AccessControlAllowOrigin   = "*",
                                                                     AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
                                                                     AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -6478,7 +6481,7 @@ namespace cloud.charging.open.API
                                                          return new HTTPResponse.Builder(Request) {
                                                                     HTTPStatusCode             = HTTPStatusCode.Unauthorized,
                                                                     Server                     = HTTPServer.DefaultServerName,
-                                                                    Date                       = DateTime.UtcNow,
+                                                                    Date                       = Timestamp.Now,
                                                                     AccessControlAllowOrigin   = "*",
                                                                     AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
                                                                     AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -6494,7 +6497,7 @@ namespace cloud.charging.open.API
                                                          return new HTTPResponse.Builder(Request) {
                                                                     HTTPStatusCode             = HTTPStatusCode.Forbidden, //ToDo: Is this smart?
                                                                     Server                     = HTTPServer.DefaultServerName,
-                                                                    Date                       = DateTime.UtcNow,
+                                                                    Date                       = Timestamp.Now,
                                                                     AccessControlAllowOrigin   = "*",
                                                                     AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
                                                                     AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -6623,7 +6626,7 @@ namespace cloud.charging.open.API
                                                          return new HTTPResponse.Builder(Request) {
                                                                     HTTPStatusCode  = HTTPStatusCode.OK,
                                                                     Server                     = HTTPServer.DefaultServerName,
-                                                                    Date                       = DateTime.UtcNow,
+                                                                    Date                       = Timestamp.Now,
                                                                     AccessControlAllowOrigin   = "*",
                                                                     AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
                                                                     AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -6639,7 +6642,7 @@ namespace cloud.charging.open.API
                                                          return new HTTPResponse.Builder(Request) {
                                                                     HTTPStatusCode             = HTTPStatusCode.Unauthorized,
                                                                     Server                     = HTTPServer.DefaultServerName,
-                                                                    Date                       = DateTime.UtcNow,
+                                                                    Date                       = Timestamp.Now,
                                                                     AccessControlAllowOrigin   = "*",
                                                                     AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
                                                                     AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -6654,7 +6657,7 @@ namespace cloud.charging.open.API
                                                      return new HTTPResponse.Builder(Request) {
                                                                 HTTPStatusCode             = HTTPStatusCode.Forbidden, //ToDo: Is this smart?
                                                                 Server                     = HTTPServer.DefaultServerName,
-                                                                Date                       = DateTime.UtcNow,
+                                                                Date                       = Timestamp.Now,
                                                                 AccessControlAllowOrigin   = "*",
                                                                 AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
                                                                 AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -6820,7 +6823,7 @@ namespace cloud.charging.open.API
                                                          return new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode             = HTTPStatusCode.Created,
                                                                  Server                     = HTTPServer.DefaultServerName,
-                                                                 Date                       = DateTime.UtcNow,
+                                                                 Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
                                                                  AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -6839,7 +6842,7 @@ namespace cloud.charging.open.API
                                                              new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode             = HTTPStatusCode.BadRequest,
                                                                  Server                     = HTTPServer.DefaultServerName,
-                                                                 Date                       = DateTime.UtcNow,
+                                                                 Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
                                                                  AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -6978,7 +6981,7 @@ namespace cloud.charging.open.API
                                                              return new HTTPResponse.Builder(Request) {
                                                                         HTTPStatusCode             = HTTPStatusCode.NoContent,
                                                                         Server                     = HTTPServer.DefaultServerName,
-                                                                        Date                       = DateTime.UtcNow,
+                                                                        Date                       = Timestamp.Now,
                                                                         AccessControlAllowOrigin   = "*",
                                                                         AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
                                                                         AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -6989,7 +6992,7 @@ namespace cloud.charging.open.API
                                                                  new HTTPResponse.Builder(Request) {
                                                                      HTTPStatusCode             = HTTPStatusCode.OK,
                                                                      Server                     = HTTPServer.DefaultServerName,
-                                                                     Date                       = DateTime.UtcNow,
+                                                                     Date                       = Timestamp.Now,
                                                                      AccessControlAllowOrigin   = "*",
                                                                      AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
                                                                      AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -7010,7 +7013,7 @@ namespace cloud.charging.open.API
                                                              new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode             = HTTPStatusCode.BadRequest,
                                                                  Server                     = HTTPServer.DefaultServerName,
-                                                                 Date                       = DateTime.UtcNow,
+                                                                 Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
                                                                  AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -7134,7 +7137,7 @@ namespace cloud.charging.open.API
                                                          return new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                              Server          = HTTPServer.DefaultServerName,
-                                                             Date            = DateTime.UtcNow,
+                                                             Date            = Timestamp.Now,
                                                              ContentType     = HTTPContentType.JSON_UTF8,
                                                              Content         = new JObject(new JProperty("description", "Missing authentication token or eMAId!")).ToUTF8Bytes()
                                                          };
@@ -7243,7 +7246,7 @@ namespace cloud.charging.open.API
                                                          return new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode             = HTTPStatusCode.OK,
                                                                  Server                     = HTTPServer.DefaultServerName,
-                                                                 Date                       = DateTime.UtcNow,
+                                                                 Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
                                                                  AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -7262,7 +7265,7 @@ namespace cloud.charging.open.API
                                                          return new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode             = HTTPStatusCode.OK,
                                                                  Server                     = HTTPServer.DefaultServerName,
-                                                                 Date                       = DateTime.UtcNow,
+                                                                 Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
                                                                  AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -7280,7 +7283,7 @@ namespace cloud.charging.open.API
                                                          return new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode             = HTTPStatusCode.NotFound,
                                                                  Server                     = HTTPServer.DefaultServerName,
-                                                                 Date                       = DateTime.UtcNow,
+                                                                 Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
                                                                  AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -7323,7 +7326,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.NoContent,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR, OPTIONS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -7428,7 +7431,7 @@ namespace cloud.charging.open.API
                                                              return new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                                  Server          = HTTPServer.DefaultServerName,
-                                                                 Date            = DateTime.UtcNow,
+                                                                 Date            = Timestamp.Now,
                                                                  ContentType     = HTTPContentType.JSON_UTF8,
                                                                  Content         = new JObject(
                                                                                        new JProperty("description", "Invalid status list!")
@@ -7447,7 +7450,7 @@ namespace cloud.charging.open.API
                                                          return new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                              Server          = HTTPServer.DefaultServerName,
-                                                             Date            = DateTime.UtcNow,
+                                                             Date            = Timestamp.Now,
                                                              ContentType     = HTTPContentType.JSON_UTF8,
                                                              Content         = new JObject(
                                                                                    new JProperty("description", "Either a 'CurrentStatus' or a 'StatusList' must be send!")
@@ -7472,7 +7475,7 @@ namespace cloud.charging.open.API
                                                      return new HTTPResponse.Builder(Request) {
                                                          HTTPStatusCode  = HTTPStatusCode.OK,
                                                          Server          = HTTPServer.DefaultServerName,
-                                                         Date            = DateTime.UtcNow,
+                                                         Date            = Timestamp.Now,
                                                          Connection      = "close"
                                                      };
 
@@ -7582,7 +7585,7 @@ namespace cloud.charging.open.API
                                                      return new HTTPResponse.Builder(Request) {
                                                          HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                          Server          = HTTPServer.DefaultServerName,
-                                                         Date            = DateTime.UtcNow,
+                                                         Date            = Timestamp.Now,
                                                          ContentType     = HTTPContentType.JSON_UTF8,
                                                          Content         = new JObject(
                                                                              new JProperty("description", "Invalid status list!")
@@ -7601,7 +7604,7 @@ namespace cloud.charging.open.API
                                                  return new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                      Server          = HTTPServer.DefaultServerName,
-                                                     Date            = DateTime.UtcNow,
+                                                     Date            = Timestamp.Now,
                                                      ContentType     = HTTPContentType.JSON_UTF8,
                                                      Content         = new JObject(
                                                                          new JProperty("description", "Either a 'currentStatus' or a 'statusList' must be send!")
@@ -7632,7 +7635,7 @@ namespace cloud.charging.open.API
                                              return new HTTPResponse.Builder(Request) {
                                                  HTTPStatusCode  = HTTPStatusCode.OK,
                                                  Server          = HTTPServer.DefaultServerName,
-                                                 Date            = DateTime.UtcNow,
+                                                 Date            = Timestamp.Now,
                                                  Connection      = "close"
                                              };
 
@@ -7702,7 +7705,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                = HTTPStatusCode.OK,
                                                              Server                        = HTTPServer.DefaultServerName,
-                                                             Date                          = DateTime.UtcNow,
+                                                             Date                          = Timestamp.Now,
                                                              AccessControlAllowOrigin      = "*",
                                                              AccessControlAllowMethods     = "GET, COUNT, OPTIONS",
                                                              AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
@@ -7763,7 +7766,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                = HTTPStatusCode.OK,
                                                              Server                        = HTTPServer.DefaultServerName,
-                                                             Date                          = DateTime.UtcNow,
+                                                             Date                          = Timestamp.Now,
                                                              AccessControlAllowOrigin      = "*",
                                                              AccessControlAllowMethods     = "GET",
                                                              AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
@@ -7837,7 +7840,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                = HTTPStatusCode.OK,
                                                              Server                        = HTTPServer.DefaultServerName,
-                                                             Date                          = DateTime.UtcNow,
+                                                             Date                          = Timestamp.Now,
                                                              AccessControlAllowOrigin      = "*",
                                                              AccessControlAllowMethods     = "GET, COUNT, OPTIONS",
                                                              AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
@@ -7886,7 +7889,7 @@ namespace cloud.charging.open.API
                                                      //        HTTPStatusCode   = HTTPStatusCode.Unauthorized,
                                                      //        WWWAuthenticate  = @"Basic realm=""WWCP EV Charging""",
                                                      //        Server           = _API.HTTPServer.DefaultServerName,
-                                                     //        Date             = DateTime.UtcNow,
+                                                     //        Date             = Timestamp.Now,
                                                      //        Connection       = "close"
                                                      //    };
 
@@ -7917,7 +7920,7 @@ namespace cloud.charging.open.API
                                                                                           ? HTTPStatusCode.OK
                                                                                           : HTTPStatusCode.NoContent,
                                                          Server                     = HTTPServer.DefaultServerName,
-                                                         Date                       = DateTime.UtcNow,
+                                                         Date                       = Timestamp.Now,
                                                          AccessControlAllowOrigin   = "*",
                                                          AccessControlAllowMethods  = "GET",
                                                          AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -7958,7 +7961,7 @@ namespace cloud.charging.open.API
                                                      //        HTTPStatusCode   = HTTPStatusCode.Unauthorized,
                                                      //        WWWAuthenticate  = @"Basic realm=""WWCP EV Charging""",
                                                      //        Server           = _API.HTTPServer.DefaultServerName,
-                                                     //        Date             = DateTime.UtcNow,
+                                                     //        Date             = Timestamp.Now,
                                                      //        Connection       = "close"
                                                      //    };
 
@@ -7977,7 +7980,7 @@ namespace cloud.charging.open.API
                                                      return new HTTPResponse.Builder(HTTPRequest) {
                                                          HTTPStatusCode             = HTTPStatusCode.OK,
                                                          Server                     = HTTPServer.DefaultServerName,
-                                                         Date                       = DateTime.UtcNow,
+                                                         Date                       = Timestamp.Now,
                                                          AccessControlAllowOrigin   = "*",
                                                          AccessControlAllowMethods  = "GET, SETEXPIRED, DELETE",
                                                          AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -8010,7 +8013,7 @@ namespace cloud.charging.open.API
                                                      //        HTTPStatusCode   = HTTPStatusCode.Unauthorized,
                                                      //        WWWAuthenticate  = @"Basic realm=""WWCP EV Charging""",
                                                      //        Server           = _API.HTTPServer.DefaultServerName,
-                                                     //        Date             = DateTime.UtcNow,
+                                                     //        Date             = Timestamp.Now,
                                                      //        Connection       = "close"
                                                      //    };
 
@@ -8044,7 +8047,7 @@ namespace cloud.charging.open.API
                                                              return new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode             = HTTPStatusCode.OK,
                                                                  Server                     = HTTPServer.DefaultServerName,
-                                                                 Date                       = DateTime.UtcNow,
+                                                                 Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = "GET, SETEXPIRED, DELETE",
                                                                  AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -8056,7 +8059,7 @@ namespace cloud.charging.open.API
                                                              return new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode             = HTTPStatusCode.InternalServerError,
                                                                  Server                     = HTTPServer.DefaultServerName,
-                                                                 Date                       = DateTime.UtcNow,
+                                                                 Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = "GET, DELETE",
                                                                  AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -8090,7 +8093,7 @@ namespace cloud.charging.open.API
                                                      //        HTTPStatusCode   = HTTPStatusCode.Unauthorized,
                                                      //        WWWAuthenticate  = @"Basic realm=""WWCP EV Charging""",
                                                      //        Server           = _API.HTTPServer.DefaultServerName,
-                                                     //        Date             = DateTime.UtcNow,
+                                                     //        Date             = Timestamp.Now,
                                                      //        Connection       = "close"
                                                      //    };
 
@@ -8124,7 +8127,7 @@ namespace cloud.charging.open.API
                                                              return new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode             = HTTPStatusCode.OK,
                                                                  Server                     = HTTPServer.DefaultServerName,
-                                                                 Date                       = DateTime.UtcNow,
+                                                                 Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = "GET, SETEXPIRED, DELETE",
                                                                  AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -8136,7 +8139,7 @@ namespace cloud.charging.open.API
                                                              return new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode             = HTTPStatusCode.InternalServerError,
                                                                  Server                     = HTTPServer.DefaultServerName,
-                                                                 Date                       = DateTime.UtcNow,
+                                                                 Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = "GET, DELETE",
                                                                  AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
@@ -8195,7 +8198,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, STATUS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -8247,7 +8250,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, STATUS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -8296,7 +8299,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                = HTTPStatusCode.OK,
                                                              Server                        = HTTPServer.DefaultServerName,
-                                                             Date                          = DateTime.UtcNow,
+                                                             Date                          = Timestamp.Now,
                                                              AccessControlAllowOrigin      = "*",
                                                              AccessControlAllowMethods     = "GET",
                                                              AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
@@ -8349,7 +8352,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                = HTTPStatusCode.OK,
                                                              Server                        = HTTPServer.DefaultServerName,
-                                                             Date                          = DateTime.UtcNow,
+                                                             Date                          = Timestamp.Now,
                                                              AccessControlAllowOrigin      = "*",
                                                              AccessControlAllowMethods     = "GET",
                                                              AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
@@ -8397,7 +8400,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode              = HTTPStatusCode.OK,
                                                              Server                      = HTTPServer.DefaultServerName,
-                                                             Date                        = DateTime.UtcNow,
+                                                             Date                        = Timestamp.Now,
                                                              AccessControlAllowOrigin    = "*",
                                                              AccessControlAllowMethods   = "GET, CREATE, DELETE",
                                                              AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
@@ -8452,7 +8455,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                 = HTTPStatusCode.OK,
                                                              Server                         = HTTPServer.DefaultServerName,
-                                                             Date                           = DateTime.UtcNow,
+                                                             Date                           = Timestamp.Now,
                                                              AccessControlAllowOrigin       = "*",
                                                              AccessControlAllowMethods      = "GET, COUNT, STATUS",
                                                              AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
@@ -8498,7 +8501,7 @@ namespace cloud.charging.open.API
                                                      //            HTTPStatusCode   = HTTPStatusCode.Unauthorized,
                                                      //            WWWAuthenticate  = @"Basic realm=""WWCP""",
                                                      //            Server           = HTTPServer.DefaultServerName,
-                                                     //            Date             = DateTime.UtcNow,
+                                                     //            Date             = Timestamp.Now,
                                                      //            Connection       = "close"
                                                      //        });
 
@@ -8550,7 +8553,7 @@ namespace cloud.charging.open.API
                                                              new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode              = HTTPStatusCode.Created,
                                                                  Server                      = HTTPServer.DefaultServerName,
-                                                                 Date                        = DateTime.UtcNow,
+                                                                 Date                        = Timestamp.Now,
                                                                  AccessControlAllowOrigin    = "*",
                                                                  AccessControlAllowMethods   = "GET, CREATE, DELETE",
                                                                  AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
@@ -8645,7 +8648,7 @@ namespace cloud.charging.open.API
                                                      HTTPServer.Get<JObject>(DebugLogId).
                                                          SubmitEvent("SetChargingPoolAdminStatusRequest",
                                                                      new JObject(
-                                                                         new JProperty("Timestamp",       DateTime.UtcNow.ToIso8601()),
+                                                                         new JProperty("Timestamp",       Timestamp.Now.ToIso8601()),
                                                                          new JProperty("RoamingNetwork",  _RoamingNetwork.ToString()),
                                                                          new JProperty("ChargingPoolId",  ChargingPoolId.ToString()),
                                                                          new JProperty("NewStatus",       NewChargingPoolAdminStatus.ToString())
@@ -8662,7 +8665,7 @@ namespace cloud.charging.open.API
                                                      return Task.FromResult(
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode  = HTTPStatusCode.OK,
-                                                             Date            = DateTime.UtcNow,
+                                                             Date            = Timestamp.Now,
                                                              Connection      = "close"
                                                          }.AsImmutable);
 
@@ -8698,7 +8701,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode              = HTTPStatusCode.OK,
                                                              Server                      = HTTPServer.DefaultServerName,
-                                                             Date                        = DateTime.UtcNow,
+                                                             Date                        = Timestamp.Now,
                                                              AccessControlAllowOrigin    = "*",
                                                              AccessControlAllowMethods   = "GET, SET",
                                                              AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
@@ -8817,7 +8820,7 @@ namespace cloud.charging.open.API
                                                          HTTPServer.Get<JObject>(DebugLogId).
                                                              SubmitEvent("SetChargingStationAdminStatusRequest",
                                                                          new JObject(
-                                                                             new JProperty("Timestamp",          DateTime.UtcNow.ToIso8601()),
+                                                                             new JProperty("Timestamp",          Timestamp.Now.ToIso8601()),
                                                                              new JProperty("RoamingNetwork",     RoamingNetwork.ToString()),
                                                                              new JProperty("ChargingStationId",  ChargingStationId.ToString()),
                                                                              new JProperty("NewStatus",          NewChargingStationAdminStatus.ToString())
@@ -8832,7 +8835,7 @@ namespace cloud.charging.open.API
                                                          //GetEventSource(Semantics.DebugLog).
                                                          //        SubmitSubEvent("AUTHSTARTResponse",
                                                          //                       new JObject(
-                                                         //                           new JProperty("Timestamp",         DateTime.UtcNow.ToIso8601()),
+                                                         //                           new JProperty("Timestamp",         Timestamp.Now.ToIso8601()),
                                                          //                           new JProperty("RoamingNetwork",    RoamingNetwork.ToString()),
                                                          //                           new JProperty("SessionId",         AuthStartResult.SessionId.ToString()),
                                                          //                           new JProperty("PartnerSessionId",  PartnerSessionId.ToString()),
@@ -8845,7 +8848,7 @@ namespace cloud.charging.open.API
 
                                                          return new HTTPResponse.Builder(HTTPRequest) {
                                                              HTTPStatusCode  = HTTPStatusCode.OK,
-                                                             Date            = DateTime.UtcNow,
+                                                             Date            = Timestamp.Now,
                                                              ContentType     = HTTPContentType.JSON_UTF8,
                                                              Content         = new JObject(
                                                                                    new JProperty("Description",  "Ok")
@@ -8926,7 +8929,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                 = HTTPStatusCode.OK,
                                                              Server                         = HTTPServer.DefaultServerName,
-                                                             Date                           = DateTime.UtcNow,
+                                                             Date                           = Timestamp.Now,
                                                              AccessControlAllowOrigin       = "*",
                                                              AccessControlAllowMethods      = "GET, COUNT, STATUS",
                                                              AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
@@ -9102,7 +9105,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode              = HTTPStatusCode.OK,
                                                              Server                      = HTTPServer.DefaultServerName,
-                                                             Date                        = DateTime.UtcNow,
+                                                             Date                        = Timestamp.Now,
                                                              AccessControlAllowOrigin    = "*",
                                                              AccessControlAllowMethods   = "GET, COUNT, STATUS",
                                                              AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
@@ -9159,7 +9162,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                 = HTTPStatusCode.OK,
                                                              Server                         = HTTPServer.DefaultServerName,
-                                                             Date                           = DateTime.UtcNow,
+                                                             Date                           = Timestamp.Now,
                                                              AccessControlAllowOrigin       = "*",
                                                              AccessControlAllowMethods      = "GET, COUNT, STATUS",
                                                              AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
@@ -9335,7 +9338,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode              = HTTPStatusCode.OK,
                                                              Server                      = HTTPServer.DefaultServerName,
-                                                             Date                        = DateTime.UtcNow,
+                                                             Date                        = Timestamp.Now,
                                                              AccessControlAllowOrigin    = "*",
                                                              AccessControlAllowMethods   = "GET, COUNT, STATUS",
                                                              AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
@@ -9392,7 +9395,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                 = HTTPStatusCode.OK,
                                                              Server                         = HTTPServer.DefaultServerName,
-                                                             Date                           = DateTime.UtcNow,
+                                                             Date                           = Timestamp.Now,
                                                              AccessControlAllowOrigin       = "*",
                                                              AccessControlAllowMethods      = "GET, COUNT, STATUS",
                                                              AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
@@ -9571,7 +9574,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode              = HTTPStatusCode.OK,
                                                              Server                      = HTTPServer.DefaultServerName,
-                                                             Date                        = DateTime.UtcNow,
+                                                             Date                        = Timestamp.Now,
                                                              AccessControlAllowOrigin    = "*",
                                                              AccessControlAllowMethods   = "GET, COUNT, STATUS",
                                                              AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
@@ -9629,7 +9632,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                 = HTTPStatusCode.OK,
                                                              Server                         = HTTPServer.DefaultServerName,
-                                                             Date                           = DateTime.UtcNow,
+                                                             Date                           = Timestamp.Now,
                                                              AccessControlAllowOrigin       = "*",
                                                              AccessControlAllowMethods      = "GET, COUNT, STATUS",
                                                              AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
@@ -9690,7 +9693,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode                 = HTTPStatusCode.OK,
                                                              Server                         = HTTPServer.DefaultServerName,
-                                                             Date                           = DateTime.UtcNow,
+                                                             Date                           = Timestamp.Now,
                                                              AccessControlAllowOrigin       = "*",
                                                              AccessControlAllowMethods      = "GET, COUNT, STATUS",
                                                              AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
@@ -9756,7 +9759,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, STATUS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -9799,7 +9802,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, STATUS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -9843,7 +9846,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -9891,7 +9894,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -9938,7 +9941,7 @@ namespace cloud.charging.open.API
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode             = HTTPStatusCode.OK,
                                                              Server                     = HTTPServer.DefaultServerName,
-                                                             Date                       = DateTime.UtcNow,
+                                                             Date                       = Timestamp.Now,
                                                              AccessControlAllowOrigin   = "*",
                                                              AccessControlAllowMethods  = "GET, CREATE, DELETE",
                                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
