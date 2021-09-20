@@ -2898,6 +2898,65 @@ namespace cloud.charging.open.API
         #endregion
 
 
+        #region Manage HTTP Resources
+
+        #region (protected override) GetResourceStream      (ResourceName)
+
+        protected override Stream GetResourceStream(String ResourceName)
+
+            => GetResourceStream(ResourceName,
+                                 new Tuple<String, System.Reflection.Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
+                                 new Tuple<String, System.Reflection.Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
+                                 new Tuple<String, System.Reflection.Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly));
+
+        #endregion
+
+        #region (protected override) GetResourceMemoryStream(ResourceName)
+
+        protected override MemoryStream GetResourceMemoryStream(String ResourceName)
+
+            => GetResourceMemoryStream(ResourceName,
+                                       new Tuple<String, System.Reflection.Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
+                                       new Tuple<String, System.Reflection.Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
+                                       new Tuple<String, System.Reflection.Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly));
+
+        #endregion
+
+        #region (protected override) GetResourceString      (ResourceName)
+
+        protected override String GetResourceString(String ResourceName)
+
+            => GetResourceString(ResourceName,
+                                 new Tuple<String, System.Reflection.Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
+                                 new Tuple<String, System.Reflection.Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
+                                 new Tuple<String, System.Reflection.Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly));
+
+        #endregion
+
+        #region (protected override) GetResourceBytes       (ResourceName)
+
+        protected override Byte[] GetResourceBytes(String ResourceName)
+
+            => GetResourceBytes(ResourceName,
+                                new Tuple<String, System.Reflection.Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
+                                new Tuple<String, System.Reflection.Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
+                                new Tuple<String, System.Reflection.Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly));
+
+        #endregion
+
+        #region (protected override) MixWithHTMLTemplate    (ResourceName)
+
+        protected override String MixWithHTMLTemplate(String ResourceName)
+
+            => MixWithHTMLTemplate(ResourceName,
+                                   new Tuple<String, System.Reflection.Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
+                                   new Tuple<String, System.Reflection.Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
+                                   new Tuple<String, System.Reflection.Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly));
+
+        #endregion
+
+        #endregion
+
         #region (private) RegisterURLTemplates()
 
         private void RegisterURLTemplates()
@@ -2937,7 +2996,7 @@ namespace cloud.charging.open.API
 
                         return new HTTPResponse.Builder(request) {
                             HTTPStatusCode  = HTTPStatusCode.TemporaryRedirect,
-                            Location        = URLPathPrefix + "/login/login.html",
+                            Location        = URLPathPrefix + "/login",
                             Date            = Timestamp.Now,
                             Server          = HTTPServer.DefaultServerName,
                             CacheControl    = "private, max-age=0, no-cache",
@@ -3085,7 +3144,7 @@ namespace cloud.charging.open.API
 
                         return new HTTPResponse.Builder(request) {
                             HTTPStatusCode  = HTTPStatusCode.TemporaryRedirect,
-                            Location        = URLPathPrefix + "/login/login.html",
+                            Location        = URLPathPrefix + "/login",
                             Date            = Timestamp.Now,
                             Server          = HTTPServer.DefaultServerName,
 
@@ -3130,44 +3189,44 @@ namespace cloud.charging.open.API
 
                 #region /login          => /login/login.html
 
-                if ((request.Path == URLPathPrefix + "/login" ||
-                     request.Path == URLPathPrefix + "/login/") &&
-                     request.HTTPMethod == HTTPMethod.GET)
-                {
+                //if ((request.Path == URLPathPrefix + "/login" ||
+                //     request.Path == URLPathPrefix + "/login/") &&
+                //     request.HTTPMethod == HTTPMethod.GET)
+                //{
 
-                    return new HTTPRequest.Builder(request) {
-                        Path = URLPathPrefix + HTTPPath.Parse("/login/login.html")
-                    };
+                //    return new HTTPRequest.Builder(request) {
+                //        Path = URLPathPrefix + HTTPPath.Parse("/login")
+                //    };
 
-                }
+                //}
 
                 #endregion
 
                 #region /lostPassword   => /login/lostPassword.html
 
-                if (request.Path == URLPathPrefix + "/lostPassword" &&
-                    request.HTTPMethod == HTTPMethod.GET)
-                {
+                //if (request.Path == URLPathPrefix + "/lostPassword" &&
+                //    request.HTTPMethod == HTTPMethod.GET)
+                //{
 
-                    return new HTTPRequest.Builder(request) {
-                        Path = URLPathPrefix + HTTPPath.Parse("/login/lostPassword.html")
-                    };
+                //    return new HTTPRequest.Builder(request) {
+                //        Path = URLPathPrefix + HTTPPath.Parse("/login/lostPassword.html")
+                //    };
 
-                }
+                //}
 
                 #endregion
 
                 #region /setPassword    => /login/setPassword.html
 
-                if (request.Path == URLPathPrefix + "/setPassword" &&
-                    request.HTTPMethod == HTTPMethod.GET)
-                {
+                //if (request.Path == URLPathPrefix + "/setPassword" &&
+                //    request.HTTPMethod == HTTPMethod.GET)
+                //{
 
-                    return new HTTPRequest.Builder(request) {
-                        Path = URLPathPrefix + HTTPPath.Parse("/login/setPassword.html")
-                    };
+                //    return new HTTPRequest.Builder(request) {
+                //        Path = URLPathPrefix + HTTPPath.Parse("/login/setPassword.html")
+                //    };
 
-                }
+                //}
 
                 #endregion
 

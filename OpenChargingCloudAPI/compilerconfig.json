@@ -1,7 +1,7 @@
 ﻿[
   {
-    "outputFile": "HTTPRoot/styles.css",
-    "inputFile": "HTTPRoot/styles.scss"
+    "outputFile": "HTTPRoot/template.css",
+    "inputFile": "HTTPRoot/template.scss"
   },
   {
     "outputFile": "HTTPRoot/defaults/defaults.css",
@@ -32,10 +32,6 @@
     "inputFile": "HTTPRoot/maps/maps.scss"
   },
   {
-    "outputFile": "HTTPRoot/admin/admin.css",
-    "inputFile": "HTTPRoot/admin/admin.scss"
-  },
-  {
     "outputFile": "HTTPRoot/lists/lists.css",
     "inputFile": "HTTPRoot/lists/lists.scss"
   },
@@ -44,7 +40,7 @@
     "inputFile": "HTTPRoot/tariffs/tariffs.scss"
   },
   {
-    "outputFile": "HTTPRoot/profile/notifications.css",
-    "inputFile": "HTTPRoot/profile/notifications.scss"
+    "outputFile": "HTTPRoot/admin/admin.css",
+    "inputFile": "HTTPRoot/admin/admin.scss"
   }
 ]
