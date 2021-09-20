@@ -2703,12 +2703,14 @@ namespace cloud.charging.open.API
         /// <param name="WardenInitialDelay">The initial delay of the warden tasks.</param>
         /// <param name="WardenCheckEvery">The warden intervall.</param>
         /// 
+        /// <param name="IsDevelopment">This HTTP API runs in development mode.</param>
+        /// <param name="DevelopmentServers">An enumeration of server names which will imply to run this service in development mode.</param>
         /// <param name="SkipURLTemplates">Skip URL templates.</param>
         /// <param name="DisableNotifications">Disable external notifications.</param>
         /// <param name="DisableLogfile">Disable the log file.</param>
         /// <param name="LoggingPath">The path for all logfiles.</param>
         /// <param name="DatabaseFileName">The name of the database file for this API.</param>
-        /// <param name="LogfileName">The name of the logfile for this API.</param>
+        /// <param name="LogfileCreator">A delegate for creating the name of the logfile for this API.</param>
         /// <param name="DNSClient">The DNS client of the API.</param>
         /// <param name="Autostart">Whether to start the API automatically.</param>
         public OpenChargingCloudAPI(HTTPHostname?                        HTTPHostname                       = null,
@@ -2771,12 +2773,15 @@ namespace cloud.charging.open.API
                                     TimeSpan?                            WardenInitialDelay                 = null,
                                     TimeSpan?                            WardenCheckEvery                   = null,
 
+                                    Boolean?                             IsDevelopment                      = null,
+                                    IEnumerable<String>                  DevelopmentServers                 = null,
                                     Boolean                              SkipURLTemplates                   = false,
+                                    String                               DatabaseFileName                   = DefaultOpenChargingCloudAPI_DatabaseFileName,
                                     Boolean                              DisableNotifications               = false,
                                     Boolean                              DisableLogfile                     = false,
                                     String                               LoggingPath                        = DefaultOpenChargingCloudAPI_LoggingPath,
-                                    String                               DatabaseFileName                   = DefaultOpenChargingCloudAPI_DatabaseFileName,
-                                    String                               LogfileName                        = DefaultOpenChargingCloudAPI_LogFile,
+                                    String                               LogfileName                        = DefaultHTTPAPI_LogfileName,
+                                    LogfileCreatorDelegate               LogfileCreator                     = null,
                                     DNSClient                            DNSClient                          = null,
                                     Boolean                              Autostart                          = false)
 
@@ -2840,12 +2845,15 @@ namespace cloud.charging.open.API
                    WardenInitialDelay,
                    WardenCheckEvery,
 
+                   IsDevelopment,
+                   DevelopmentServers,
                    SkipURLTemplates,
+                   DatabaseFileName ?? DefaultOpenChargingCloudAPI_DatabaseFileName,
                    DisableNotifications,
                    DisableLogfile,
                    LoggingPath      ?? DefaultOpenChargingCloudAPI_LoggingPath,
-                   DatabaseFileName ?? DefaultOpenChargingCloudAPI_DatabaseFileName,
-                   LogfileName      ?? DefaultOpenChargingCloudAPI_LogFile,
+                   LogfileName,
+                   LogfileCreator,// ?? DefaultOpenChargingCloudAPI_LogFile,
                    DNSClient,
                    false) //Autostart)
 
