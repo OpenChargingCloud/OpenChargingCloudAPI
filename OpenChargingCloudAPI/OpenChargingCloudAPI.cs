@@ -3111,15 +3111,14 @@ namespace cloud.charging.open.API
 
                 #region /               => /dashboard/index.shtml
 
-                if (request.Path == "/" &&
+                if (request.Path == URLPathPrefix &&
                     request.HTTPMethod == HTTPMethod.GET &&
                     TryGetSecurityTokenFromCookie(request, out SecurityToken_Id SecurityToken) &&
                     _HTTPCookies.ContainsKey(SecurityToken))
                 {
 
-                    return new HTTPRequest.Builder(request)
-                    {
-                        Path = HTTPPath.Parse("/dashboard/index.shtml")
+                    return new HTTPRequest.Builder(request) {
+                        Path = URLPathPrefix + HTTPPath.Parse("/dashboard/index.shtml")
                     };
 
                 }
@@ -3128,14 +3127,13 @@ namespace cloud.charging.open.API
 
                 #region /login          => /login/login.html
 
-                if ((request.Path == "/login" ||
-                     request.Path == "/login/") &&
+                if ((request.Path == URLPathPrefix + "/login" ||
+                     request.Path == URLPathPrefix + "/login/") &&
                      request.HTTPMethod == HTTPMethod.GET)
                 {
 
-                    return new HTTPRequest.Builder(request)
-                    {
-                        Path = HTTPPath.Parse("/login/login.html")
+                    return new HTTPRequest.Builder(request) {
+                        Path = URLPathPrefix + HTTPPath.Parse("/login/login.html")
                     };
 
                 }
@@ -3144,13 +3142,12 @@ namespace cloud.charging.open.API
 
                 #region /lostPassword   => /login/lostPassword.html
 
-                if (request.Path == "/lostPassword" &&
+                if (request.Path == URLPathPrefix + "/lostPassword" &&
                     request.HTTPMethod == HTTPMethod.GET)
                 {
 
-                    return new HTTPRequest.Builder(request)
-                    {
-                        Path = HTTPPath.Parse("/login/lostPassword.html")
+                    return new HTTPRequest.Builder(request) {
+                        Path = URLPathPrefix + HTTPPath.Parse("/login/lostPassword.html")
                     };
 
                 }
@@ -3159,13 +3156,12 @@ namespace cloud.charging.open.API
 
                 #region /setPassword    => /login/setPassword.html
 
-                if (request.Path == "/setPassword" &&
+                if (request.Path == URLPathPrefix + "/setPassword" &&
                     request.HTTPMethod == HTTPMethod.GET)
                 {
 
-                    return new HTTPRequest.Builder(request)
-                    {
-                        Path = HTTPPath.Parse("/login/setPassword.html")
+                    return new HTTPRequest.Builder(request) {
+                        Path = URLPathPrefix + HTTPPath.Parse("/login/setPassword.html")
                     };
 
                 }
@@ -3174,14 +3170,13 @@ namespace cloud.charging.open.API
 
                 #region /profile        => /profile/profile.shtml
 
-                if ((request.Path == "/profile" ||
-                     request.Path == "/profile/") &&
+                if ((request.Path == URLPathPrefix + "/profile" ||
+                     request.Path == URLPathPrefix + "/profile/") &&
                      request.HTTPMethod == HTTPMethod.GET)
                 {
 
-                    return new HTTPRequest.Builder(request)
-                    {
-                        Path = HTTPPath.Parse("/profile/profile.shtml")
+                    return new HTTPRequest.Builder(request) {
+                        Path = URLPathPrefix + HTTPPath.Parse("/profile/profile.shtml")
                     };
 
                 }
@@ -3190,13 +3185,12 @@ namespace cloud.charging.open.API
 
                 #region /admin          => /admin/index.shtml
 
-                if (request.Path == "/admin" &&
+                if (request.Path == URLPathPrefix + "/admin" &&
                     request.HTTPMethod == HTTPMethod.GET)
                 {
 
-                    return new HTTPRequest.Builder(request)
-                    {
-                        Path = HTTPPath.Parse("/admin/index.shtml")
+                    return new HTTPRequest.Builder(request) {
+                        Path = URLPathPrefix + HTTPPath.Parse("/admin/index.shtml")
                     };
 
                 }
