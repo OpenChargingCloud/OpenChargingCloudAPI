@@ -3173,7 +3173,7 @@ namespace cloud.charging.open.API
 
                 #region /               => /dashboard/index.shtml
 
-                if (request.Path == URLPathPrefix &&
+                if ((request.Path == URLPathPrefix || request.Path == (URLPathPrefix + "/")) &&
                     request.HTTPMethod == HTTPMethod.GET &&
                     TryGetSecurityTokenFromCookie(request, out SecurityToken_Id SecurityToken) &&
                     _HTTPCookies.ContainsKey(SecurityToken))
