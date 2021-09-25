@@ -1931,13 +1931,23 @@ namespace cloud.charging.open.API
         #region Data
 
         /// <summary>
+        /// The default HTTP server name.
+        /// </summary>
+        public new const       String              DefaultHTTPServerName                          = "Open Charging Cloud API";
+
+        /// <summary>
+        /// The default HTTP service name.
+        /// </summary>
+        public new const       String              DefaultHTTPServiceName                         = "Open Charging Cloud API";
+
+        /// <summary>
         /// The HTTP root for embedded ressources.
         /// </summary>
         public new const       String              HTTPRoot                                       = "cloud.charging.open.api.HTTPRoot.";
 
-        public  const          String              DefaultOpenChargingCloudAPI_LoggingPath        = "default";
-        public  const          String              DefaultOpenChargingCloudAPI_DatabaseFileName   = "OpenChargingCloudAPI.db";
-        public  const          String              DefaultOpenChargingCloudAPI_LogFile            = "OpenChargingCloudAPI.log";
+        public     const       String              DefaultOpenChargingCloudAPI_LoggingPath        = "default";
+        public     const       String              DefaultOpenChargingCloudAPI_DatabaseFileName   = "OpenChargingCloudAPI.db";
+        public     const       String              DefaultOpenChargingCloudAPI_LogFile            = "OpenChargingCloudAPI.log";
 
         public static readonly HTTPEventSource_Id  DebugLogId                                     = HTTPEventSource_Id.Parse("DebugLog");
         public static readonly HTTPEventSource_Id  ImporterLogId                                  = HTTPEventSource_Id.Parse("ImporterLog");
@@ -2789,10 +2799,10 @@ namespace cloud.charging.open.API
                    ExternalDNSName,
                    HTTPServerPort  ?? IPPort.Parse(5500),
                    BasePath,
-                   HTTPServerName  ?? "GraphDefined Open Charging Cloud API",
+                   HTTPServerName  ?? DefaultHTTPServerName,
 
                    URLPathPrefix,
-                   HTTPServiceName ?? "GraphDefined Open Charging Cloud API",
+                   HTTPServiceName ?? DefaultHTTPServiceName,
                    HTMLTemplate,
                    APIVersionHashes,
 
@@ -3184,49 +3194,6 @@ namespace cloud.charging.open.API
                     };
 
                 }
-
-                #endregion
-
-                #region /login          => /login/login.html
-
-                //if ((request.Path == URLPathPrefix + "/login" ||
-                //     request.Path == URLPathPrefix + "/login/") &&
-                //     request.HTTPMethod == HTTPMethod.GET)
-                //{
-
-                //    return new HTTPRequest.Builder(request) {
-                //        Path = URLPathPrefix + HTTPPath.Parse("/login")
-                //    };
-
-                //}
-
-                #endregion
-
-                #region /lostPassword   => /login/lostPassword.html
-
-                //if (request.Path == URLPathPrefix + "/lostPassword" &&
-                //    request.HTTPMethod == HTTPMethod.GET)
-                //{
-
-                //    return new HTTPRequest.Builder(request) {
-                //        Path = URLPathPrefix + HTTPPath.Parse("/login/lostPassword.html")
-                //    };
-
-                //}
-
-                #endregion
-
-                #region /setPassword    => /login/setPassword.html
-
-                //if (request.Path == URLPathPrefix + "/setPassword" &&
-                //    request.HTTPMethod == HTTPMethod.GET)
-                //{
-
-                //    return new HTTPRequest.Builder(request) {
-                //        Path = URLPathPrefix + HTTPPath.Parse("/login/setPassword.html")
-                //    };
-
-                //}
 
                 #endregion
 
