@@ -154,9 +154,9 @@ namespace cloud.charging.open.API
                                        Boolean                              SkipURLTemplates                   = false,
                                        Boolean                              DisableNotifications               = false,
                                        Boolean                              DisableLogfile                     = false,
-                                       String                               DatabaseFile                       = DefaultOpenChargingCloudAPIDatabaseFile,
+                                       String                               DatabaseFile                       = DefaultOpenChargingCloudAPI_DatabaseFileName,
                                        String                               LoggingPath                        = null,
-                                       String                               LogfileName                        = DefaultOpenChargingCloudAPILogFile,
+                                       String                               LogfileName                        = DefaultOpenChargingCloudAPI_LogfileName,
                                        DNSClient                            DNSClient                          = null,
                                        Boolean                              Autostart                          = false)
 

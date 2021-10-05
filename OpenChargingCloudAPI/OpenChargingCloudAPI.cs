@@ -1933,14 +1933,15 @@ namespace cloud.charging.open.API
         /// <summary>
         /// The HTTP root for embedded ressources.
         /// </summary>
-        public new const       String              HTTPRoot                                  = "cloud.charging.open.api.HTTPRoot.";
+        public new const       String              HTTPRoot                                       = "cloud.charging.open.api.HTTPRoot.";
 
-        public  const          String              DefaultOpenChargingCloudAPIDatabaseFile   = "OpenChargingCloudAPI.db";
-        public  const          String              DefaultOpenChargingCloudAPILogFile        = "OpenChargingCloudAPI.log";
+        public const           String              DefaultOpenChargingCloudAPI_DatabaseFileName   = "OpenChargingCloudAPI.db";
+        public const           String              DefaultOpenChargingCloudAPI_LoggingPath        = "default";
+        public const           String              DefaultOpenChargingCloudAPI_LogfileName        = "OpenChargingCloudAPI.log";
 
-        public static readonly HTTPEventSource_Id  DebugLogId                                = HTTPEventSource_Id.Parse("DebugLog");
-        public static readonly HTTPEventSource_Id  ImporterLogId                             = HTTPEventSource_Id.Parse("ImporterLog");
-        public static readonly HTTPEventSource_Id  ForwardingInfosId                         = HTTPEventSource_Id.Parse("ForwardingInfos");
+        public static readonly HTTPEventSource_Id  DebugLogId                                     = HTTPEventSource_Id.Parse("DebugLog");
+        public static readonly HTTPEventSource_Id  ImporterLogId                                  = HTTPEventSource_Id.Parse("ImporterLog");
+        public static readonly HTTPEventSource_Id  ForwardingInfosId                              = HTTPEventSource_Id.Parse("ForwardingInfos");
 
         #endregion
 
@@ -2865,36 +2866,42 @@ namespace cloud.charging.open.API
         /// <summary>
         /// Create an instance of the Open Charging Cloud API.
         /// </summary>
-        /// <param name="ServiceName">The name of the service.</param>
-        /// <param name="HTTPServerName">The default HTTP servername, used whenever no HTTP Host-header had been given.</param>
-        /// <param name="LocalHostname">The HTTP hostname for all URIs within this API.</param>
-        /// <param name="LocalPort">A TCP port to listen on.</param>
+        /// <param name="HTTPHostname">The HTTP hostname for all URLs within this API.</param>
         /// <param name="ExternalDNSName">The offical URL/DNS name of this service, e.g. for sending e-mails.</param>
+        /// <param name="HTTPPort">A TCP port to listen on.</param>
+        /// <param name="BasePath">When the API is served from an optional subdirectory path.</param>
+        /// <param name="HTTPServerName">The default HTTP servername, used whenever no HTTP Host-header has been given.</param>
+        /// 
         /// <param name="URLPathPrefix">A common prefix for all URLs.</param>
+        /// <param name="ServiceName">The name of the service.</param>
+        /// <param name="APIVersionHashes">The API version hashes (git commit hash values).</param>
         /// 
         /// <param name="ServerCertificateSelector">An optional delegate to select a SSL/TLS server certificate.</param>
         /// <param name="ClientCertificateValidator">An optional delegate to verify the SSL/TLS client certificate used for authentication.</param>
         /// <param name="ClientCertificateSelector">An optional delegate to select the SSL/TLS client certificate used for authentication.</param>
         /// <param name="AllowedTLSProtocols">The SSL/TLS protocol(s) allowed for this connection.</param>
         /// 
-        /// <param name="APIEMailAddress">An e-mail address for this API.</param>
-        /// <param name="APIPassphrase">A GPG passphrase for this API.</param>
-        /// <param name="APIAdminEMails">A list of admin e-mail addresses.</param>
-        /// <param name="APISMTPClient">A SMTP client for sending e-mails.</param>
+        /// <param name="TCPPort"></param>
+        /// <param name="UDPPort"></param>
         /// 
-        /// <param name="SMSAPICredentials">The credentials for the SMS API.</param>
+        /// <param name="APIRobotEMailAddress">An e-mail address for this API.</param>
+        /// <param name="APIRobotGPGPassphrase">A GPG passphrase for this API.</param>
+        /// <param name="SMTPClient">A SMTP client for sending e-mails.</param>
+        /// <param name="SMSClient">A SMS client for sending SMS.</param>
         /// <param name="SMSSenderName">The (default) SMS sender name.</param>
-        /// <param name="APIAdminSMS">A list of admin SMS phonenumbers.</param>
+        /// <param name="TelegramClient">A Telegram client for sendind and receiving Telegrams.</param>
         /// 
-        /// <param name="TelegramBotToken">The Telegram API access token of the bot.</param>
+        /// <param name="OwnerIdOfUnknownDevices">The unique owner identification of defibrillators or communicators which are created automagically, e.g. on incoming communicator messages.</param>
+        /// <param name="AutoCreateCommunicators">Automagically create new communicators when incoming communicator messages have unknown communicator identificators.</param>
+        /// <param name="AutoCreateDefibrillators">Automagically create new defibrillators when incoming communicator messages have unknown defibrillator identificators.</param>
+        /// <param name="AutoCreatePairings">Automagically create new pairings when incoming communicator messages have unknown combinations of communicator and defibrillator identificators.</param>
+        /// <param name="AutoCreateCommunicatorsOnReload">Automagically create new communicators when reloaded communicator/defibrillator messages have unknown communicator identificators.</param>
+        /// <param name="AutoCreateDefibrillatorsOnReload">Automagically create new defibrillators when reloaded communicator/defibrillator messages have unknown defibrillator identificators.</param>
+        /// <param name="AutoCreatePairingsOnReload">Automagically create new pairings when reloaded communicator/defibrillator messages have unknown combinations of communicator and defibrillator identificators.</param>
         /// 
+        /// <param name="PasswordQualityCheck">A delegate to ensure a minimal password quality.</param>
         /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
         /// <param name="UseSecureCookies">Force the web browser to send cookies only via HTTPS.</param>
-        /// <param name="Language">The main language of the API.</param>
-        /// <param name="MinUserNameLength">The minimal user name length.</param>
-        /// <param name="MinRealmLength">The minimal realm length.</param>
-        /// <param name="PasswordQualityCheck">A delegate to ensure a minimal password quality.</param>
-        /// <param name="SignInSessionLifetime">The sign-in session lifetime.</param>
         /// 
         /// <param name="ServerThreadName">The optional name of the TCP server thread.</param>
         /// <param name="ServerThreadPriority">The optional priority of the TCP server thread.</param>
@@ -2906,42 +2913,61 @@ namespace cloud.charging.open.API
         /// <param name="ConnectionTimeout">The TCP client timeout for all incoming client connections in seconds (default: 30 sec).</param>
         /// <param name="MaxClientConnections">The maximum number of concurrent TCP client connections (default: 4096).</param>
         /// 
-        /// <param name="SkipURLTemplates">Skip URI templates.</param>
+        /// <param name="DisableMaintenanceTasks">Disable all maintenance tasks.</param>
+        /// <param name="MaintenanceInitialDelay">The initial delay of the maintenance tasks.</param>
+        /// <param name="MaintenanceEvery">The maintenance intervall.</param>
+        /// 
+        /// <param name="DisableWardenTasks">Disable all warden tasks.</param>
+        /// <param name="WardenInitialDelay">The initial delay of the warden tasks.</param>
+        /// <param name="WardenCheckEvery">The warden intervall.</param>
+        /// 
+        /// <param name="IsDevelopment">This HTTP API runs in development mode.</param>
+        /// <param name="DevelopmentServers">An enumeration of server names which will imply to run this service in development mode.</param>
+        /// <param name="SkipURLTemplates">Skip URL templates.</param>
+        /// <param name="DatabaseFileName">The name of the database file for this API.</param>
         /// <param name="DisableNotifications">Disable external notifications.</param>
-        /// <param name="DisableLogfile">Disable the log file.</param>
+        /// <param name="DisableLogging">Disable the log file.</param>
         /// <param name="LoggingPath">The path for all logfiles.</param>
-        /// <param name="LogfileName">The name of the logfile for this API.</param>
+        /// <param name="LogfileName">The name of the logfile.</param>
+        /// <param name="LogfileCreator">A delegate for creating the name of the logfile for this API.</param>
         /// <param name="DNSClient">The DNS client of the API.</param>
-        /// <param name="Autostart">Whether to start the API automatically.</param>
-        public OpenChargingCloudAPI(String                               ServiceName                        = "GraphDefined Open Charging Cloud API",
-                                    String                               HTTPServerName                     = "GraphDefined Open Charging Cloud API",
-                                    HTTPHostname?                        LocalHostname                      = null,
-                                    IPPort?                              LocalPort                          = null,
+        public OpenChargingCloudAPI(HTTPHostname?                        HTTPHostname                       = null,
                                     String                               ExternalDNSName                    = null,
-                                    HTTPPath?                            URLPathPrefix                      = null,
+                                    IPPort?                              HTTPPort                           = null,
                                     HTTPPath?                            BasePath                           = null,
-                                    String                               HTMLTemplate                       = null,
+                                    String                               HTTPServerName                     = "GraphDefined Open Charging Cloud API",
+
+                                    HTTPPath?                            URLPathPrefix                      = null,
+                                    String                               ServiceName                        = "GraphDefined Open Charging Cloud API",
                                     JObject                              APIVersionHashes                   = null,
 
                                     ServerCertificateSelectorDelegate    ServerCertificateSelector          = null,
                                     RemoteCertificateValidationCallback  ClientCertificateValidator         = null,
                                     LocalCertificateSelectionCallback    ClientCertificateSelector          = null,
-                                    SslProtocols                         AllowedTLSProtocols                = SslProtocols.Tls12,
+                                    SslProtocols?                        AllowedTLSProtocols                = null,
 
-                                    EMailAddress                         APIEMailAddress                    = null,
-                                    String                               APIPassphrase                      = null,
-                                    EMailAddressList                     APIAdminEMails                     = null,
-                                    SMTPClient                           APISMTPClient                      = null,
+                                    IPPort?                              TCPPort                            = null,
+                                    IPPort?                              UDPPort                            = null,
 
-                                    Credentials                          SMSAPICredentials                  = null,
+                                    EMailAddress                         APIRobotEMailAddress               = null,
+                                    String                               APIRobotGPGPassphrase              = null,
+                                    ISMTPClient                          SMTPClient                         = null,
+                                    ISMSClient                           SMSClient                          = null,
                                     String                               SMSSenderName                      = null,
-                                    IEnumerable<PhoneNumber>             APIAdminSMS                        = null,
+                                    ITelegramStore                       TelegramClient                     = null,
 
-                                    String                               TelegramBotToken                   = null,
-
+                                    PasswordQualityCheckDelegate         PasswordQualityCheck               = null,
                                     HTTPCookieName?                      CookieName                         = null,
                                     Boolean                              UseSecureCookies                   = true,
-                                    Languages?                           Language                           = null,
+                                    Languages?                           DefaultLanguage                    = null,
+
+                                    Organization_Id?                     OwnerIdOfUnknownDevices            = null,
+                                    Boolean                              AutoCreateDefibrillators           = false,
+                                    Boolean                              AutoCreateCommunicators            = false,
+                                    Boolean                              AutoCreatePairings                 = false,
+                                    Boolean                              AutoCreateDefibrillatorsOnReload   = false,
+                                    Boolean                              AutoCreateCommunicatorsOnReload    = false,
+                                    Boolean                              AutoCreatePairingsOnReload         = false,
 
                                     String                               ServerThreadName                   = null,
                                     ThreadPriority                       ServerThreadPriority               = ThreadPriority.AboveNormal,
@@ -2953,63 +2979,103 @@ namespace cloud.charging.open.API
                                     TimeSpan?                            ConnectionTimeout                  = null,
                                     UInt32                               MaxClientConnections               = TCPServer.__DefaultMaxClientConnections,
 
-                                    TimeSpan?                            MaintenanceEvery                   = null,
                                     Boolean                              DisableMaintenanceTasks            = false,
+                                    TimeSpan?                            MaintenanceInitialDelay            = null,
+                                    TimeSpan?                            MaintenanceEvery                   = null,
+                                    Boolean                              DisableWardenTasks                 = false,
                                     TimeSpan?                            WardenInitialDelay                 = null,
                                     TimeSpan?                            WardenCheckEvery                   = null,
 
+                                    Boolean?                             IsDevelopment                      = null,
+                                    IEnumerable<String>                  DevelopmentServers                 = null,
                                     Boolean                              SkipURLTemplates                   = false,
+                                    String                               DatabaseFileName                   = DefaultOpenChargingCloudAPI_DatabaseFileName,
                                     Boolean                              DisableNotifications               = false,
-                                    Boolean                              DisableLogfile                     = false,
-                                    String                               DatabaseFile                       = DefaultOpenChargingCloudAPIDatabaseFile,
-                                    String                               LoggingPath                        = "default",
-                                    String                               LogfileName                        = DefaultOpenChargingCloudAPILogFile,
-                                    DNSClient                            DNSClient                          = null,
-                                    Boolean                              Autostart                          = false)
+                                    Boolean                              DisableLogging                     = false,
+                                    String                               LoggingPath                        = DefaultOpenChargingCloudAPI_LoggingPath,
+                                    String                               LogfileName                        = DefaultOpenChargingCloudAPI_LogfileName,
+                                    LogfileCreatorDelegate               LogfileCreator                     = null,
+                                    DNSClient                            DNSClient                          = null)
 
-            : base(ServiceName                 ?? "GraphDefined Open Charging Cloud API",
-                   HTTPServerName              ?? "GraphDefined Open Charging Cloud API",
-                   LocalHostname,
-                   LocalPort                   ?? IPPort.Parse(5500),
+                                    //String                               ServiceName                        = "GraphDefined Open Charging Cloud API",
+                                    //String                               HTTPServerName                     = "GraphDefined Open Charging Cloud API",
+                                    //HTTPHostname?                        LocalHostname                      = null,
+                                    //IPPort?                              LocalPort                          = null,
+                                    //String                               ExternalDNSName                    = null,
+                                    //HTTPPath?                            URLPathPrefix                      = null,
+                                    //HTTPPath?                            BasePath                           = null,
+                                    //String                               HTMLTemplate                       = null,
+                                    //JObject                              APIVersionHashes                   = null,
+
+                                    //ServerCertificateSelectorDelegate    ServerCertificateSelector          = null,
+                                    //RemoteCertificateValidationCallback  ClientCertificateValidator         = null,
+                                    //LocalCertificateSelectionCallback    ClientCertificateSelector          = null,
+                                    //SslProtocols                         AllowedTLSProtocols                = SslProtocols.Tls12,
+
+                                    //EMailAddress                         APIEMailAddress                    = null,
+                                    //String                               APIPassphrase                      = null,
+                                    //EMailAddressList                     APIAdminEMails                     = null,
+                                    //SMTPClient                           APISMTPClient                      = null,
+
+                                    //Credentials                          SMSAPICredentials                  = null,
+                                    //String                               SMSSenderName                      = null,
+                                    //IEnumerable<PhoneNumber>             APIAdminSMS                        = null,
+
+                                    //String                               TelegramBotToken                   = null,
+
+                                    //HTTPCookieName?                      CookieName                         = null,
+                                    //Boolean                              UseSecureCookies                   = true,
+                                    //Languages?                           Language                           = null,
+
+                                    //String                               ServerThreadName                   = null,
+                                    //ThreadPriority                       ServerThreadPriority               = ThreadPriority.AboveNormal,
+                                    //Boolean                              ServerThreadIsBackground           = true,
+                                    //ConnectionIdBuilder                  ConnectionIdBuilder                = null,
+                                    //ConnectionThreadsNameBuilder         ConnectionThreadsNameBuilder       = null,
+                                    //ConnectionThreadsPriorityBuilder     ConnectionThreadsPriorityBuilder   = null,
+                                    //Boolean                              ConnectionThreadsAreBackground     = true,
+                                    //TimeSpan?                            ConnectionTimeout                  = null,
+                                    //UInt32                               MaxClientConnections               = TCPServer.__DefaultMaxClientConnections,
+
+                                    //TimeSpan?                            MaintenanceEvery                   = null,
+                                    //Boolean                              DisableMaintenanceTasks            = false,
+                                    //TimeSpan?                            WardenInitialDelay                 = null,
+                                    //TimeSpan?                            WardenCheckEvery                   = null,
+
+                                    //Boolean                              SkipURLTemplates                   = false,
+                                    //Boolean                              DisableNotifications               = false,
+                                    //Boolean                              DisableLogfile                     = false,
+                                    //String                               DatabaseFile                       = DefaultOpenChargingCloudAPI_DatabaseFileName,
+                                    //String                               LoggingPath                        = "default",
+                                    //String                               LogfileName                        = DefaultOpenChargingCloudAPILogFile,
+                                    //DNSClient                            DNSClient                          = null,
+                                    //Boolean                              Autostart                          = false)
+
+            : base(HTTPHostname,
                    ExternalDNSName,
-                   URLPathPrefix,
+                   HTTPPort,
                    BasePath,
-                   HTMLTemplate,
+                   HTTPServerName,
+
+                   URLPathPrefix,
+                   ServiceName,
+                   null,
                    APIVersionHashes,
+
+                   //ServiceName                 ?? "GraphDefined Open Charging Cloud API",
+                   //HTTPServerName              ?? "GraphDefined Open Charging Cloud API",
+                   //LocalHostname,
+                   //LocalPort                   ?? IPPort.Parse(5500),
+                   //ExternalDNSName,
+                   //URLPathPrefix,
+                   //BasePath,
+                   //HTMLTemplate,
+                   //APIVersionHashes,
 
                    ServerCertificateSelector,
                    ClientCertificateValidator,
                    ClientCertificateSelector,
                    AllowedTLSProtocols,
-
-                   APIEMailAddress,
-                   APIPassphrase,
-                   APIAdminEMails,
-                   APISMTPClient,
-
-                   SMSAPICredentials,
-                   SMSSenderName               ?? "Open Charging Cloud",
-                   APIAdminSMS,
-
-                   TelegramBotToken,
-
-                   CookieName                  ?? HTTPCookieName.Parse("OpenChargingCloudAPI"),
-                   UseSecureCookies,
-                   Language                    ?? Languages.en,
-                   4,                      // MinUserIdLength
-                   4,                      // MinRealmLength
-                   4,                      // MinUserNameLength
-                   4,                      // MinUserGroupIdLength
-                   20,                     // MinAPIKeyLength
-                   12,                     // MinMessageIdLength
-                   4,                      // MinOrganizationIdLength
-                   4,                      // MinOrganizationGroupIdLength
-                   12,                     // MinNotificationMessageIdLength
-                   8,                      // MinNewsPostingIdLength
-                   8,                      // MinNewsBannerIdLength
-                   8,                      // MinFAQIdLength
-                   null,                   // PasswordQualityCheck
-                   TimeSpan.FromDays(30),  // SignInSessionLifetime
 
                    ServerThreadName,
                    ServerThreadPriority,
@@ -3021,19 +3087,50 @@ namespace cloud.charging.open.API
                    ConnectionTimeout,
                    MaxClientConnections,
 
-                   MaintenanceEvery,
+                   Organization_Id.Parse("OpenChargingCloud"),
+                   APIRobotEMailAddress,
+                   APIRobotGPGPassphrase,
+                   SMTPClient,
+                   SMSClient,
+                   SMSSenderName ?? "OCCloud",
+                   TelegramClient,
+
+                   PasswordQualityCheck,
+                   CookieName           ?? HTTPCookieName.Parse(nameof(OpenChargingCloudAPI)),
+                   UseSecureCookies,
+                   TimeSpan.FromDays(30),
+                   DefaultLanguage      ?? Languages.en,
+                   4,
+                   4,
+                   4,
+                   5,
+                   20,
+                   8,
+                   4,
+                   4,
+                   8,
+                   8,
+                   8,
+                   8,
+
                    DisableMaintenanceTasks,
+                   MaintenanceInitialDelay,
+                   MaintenanceEvery,
+                   DisableWardenTasks,
                    WardenInitialDelay,
                    WardenCheckEvery,
 
+                   IsDevelopment,
+                   DevelopmentServers,
                    SkipURLTemplates,
+                   DatabaseFileName     ?? DefaultOpenChargingCloudAPI_DatabaseFileName,
                    DisableNotifications,
-                   DisableLogfile,
-                   LoggingPath                 ?? "default",
-                   DatabaseFile                ?? DefaultOpenChargingCloudAPIDatabaseFile,
-                   LogfileName                 ?? DefaultOpenChargingCloudAPILogFile,
+                   DisableLogging,
+                   LoggingPath          ?? DefaultOpenChargingCloudAPI_LoggingPath,
+                   LogfileName          ?? DefaultOpenChargingCloudAPI_LogfileName,
+                   LogfileCreator,
                    DNSClient,
-                   false)
+                   false) // Autostart
 
         {
 
@@ -3068,8 +3165,8 @@ namespace cloud.charging.open.API
 
             RegisterURLTemplates();
 
-            if (Autostart)
-                Start();
+            //if (Autostart)
+            //    Start();
 
         }
 
