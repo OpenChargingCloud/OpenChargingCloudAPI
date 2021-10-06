@@ -91,7 +91,7 @@ namespace org.GraphDefined.WWCP.Net.IO.JSON
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, STATUS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -137,7 +137,7 @@ namespace org.GraphDefined.WWCP.Net.IO.JSON
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET, COUNT, STATUS",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -184,7 +184,7 @@ namespace org.GraphDefined.WWCP.Net.IO.JSON
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -235,7 +235,7 @@ namespace org.GraphDefined.WWCP.Net.IO.JSON
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode               = HTTPStatusCode.OK,
                                                              Server                       = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                                                             Date                         = DateTime.UtcNow,
+                                                             Date                         = Timestamp.Now,
                                                              AccessControlAllowOrigin     = "*",
                                                              AccessControlAllowMethods    = "GET",
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
@@ -285,7 +285,7 @@ namespace org.GraphDefined.WWCP.Net.IO.JSON
                                                          new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode             = HTTPStatusCode.OK,
                                                              Server                     = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                                                             Date                       = DateTime.UtcNow,
+                                                             Date                       = Timestamp.Now,
                                                              AccessControlAllowOrigin   = "*",
                                                              AccessControlAllowMethods  = "GET, CREATE, DELETE",
                                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
