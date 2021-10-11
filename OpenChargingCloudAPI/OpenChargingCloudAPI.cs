@@ -2893,6 +2893,8 @@ namespace cloud.charging.open.API
         #endregion
 
 
+        #region (private) RegisterURLTemplates()
+
         #region Manage HTTP Resources
 
         #region (protected override) GetResourceStream      (ResourceName)
@@ -2951,8 +2953,6 @@ namespace cloud.charging.open.API
         #endregion
 
         #endregion
-
-        #region (private) RegisterURLTemplates()
 
         private void RegisterURLTemplates()
         {
