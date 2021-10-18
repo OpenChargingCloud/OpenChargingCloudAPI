@@ -3122,6 +3122,8 @@ namespace cloud.charging.open.API
                 else
                 {
 
+                    return null;
+
                     if (!request.Path.StartsWith(URLPathPrefix + "/messages")                 &&
                         !request.Path.StartsWith(URLPathPrefix + "/defaults")                 &&
                         !request.Path.StartsWith(URLPathPrefix + "/shared/UsersAPI/defaults") &&
