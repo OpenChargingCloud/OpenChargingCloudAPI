@@ -76,7 +76,7 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
                 //              DNSClient:          _DNSClient
                 //          );
 
-                OpenChargingCloudAPI = new OpenChargingCloudAPI(HTTPPort: IPPort.Parse(8001));
+                OpenChargingCloudAPI = new OpenChargingCloudAPI(HTTPServerPort: IPPort.Parse(8001));
                 //WWCPAPI.Attach_GeoJSON_IO();
 
                 OpenChargingCloudAPI.Start();

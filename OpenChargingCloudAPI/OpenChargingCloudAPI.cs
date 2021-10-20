@@ -2662,12 +2662,12 @@ namespace cloud.charging.open.API
         /// </summary>
         /// <param name="HTTPHostname">The HTTP hostname for all URLs within this API.</param>
         /// <param name="ExternalDNSName">The offical URL/DNS name of this service, e.g. for sending e-mails.</param>
-        /// <param name="HTTPPort">A TCP port to listen on.</param>
+        /// <param name="HTTPServerPort">A TCP port to listen on.</param>
         /// <param name="BasePath">When the API is served from an optional subdirectory path.</param>
         /// <param name="HTTPServerName">The default HTTP servername, used whenever no HTTP Host-header has been given.</param>
         /// 
         /// <param name="URLPathPrefix">A common prefix for all URLs.</param>
-        /// <param name="ServiceName">The name of the service.</param>
+        /// <param name="HTTPServiceName">The name of the HTTP service.</param>
         /// <param name="APIVersionHashes">The API version hashes (git commit hash values).</param>
         /// 
         /// <param name="ServerCertificateSelector">An optional delegate to select a SSL/TLS server certificate.</param>
@@ -2721,12 +2721,12 @@ namespace cloud.charging.open.API
         /// <param name="DNSClient">The DNS client of the API.</param>
         public OpenChargingCloudAPI(HTTPHostname?                        HTTPHostname                       = null,
                                     String                               ExternalDNSName                    = null,
-                                    IPPort?                              HTTPPort                           = null,
+                                    IPPort?                              HTTPServerPort                     = null,
                                     HTTPPath?                            BasePath                           = null,
                                     String                               HTTPServerName                     = DefaultHTTPServerName,
 
                                     HTTPPath?                            URLPathPrefix                      = null,
-                                    String                               ServiceName                        = DefaultHTTPServiceName,
+                                    String                               HTTPServiceName                    = DefaultHTTPServiceName,
                                     JObject                              APIVersionHashes                   = null,
 
                                     ServerCertificateSelectorDelegate    ServerCertificateSelector          = null,
@@ -2782,12 +2782,12 @@ namespace cloud.charging.open.API
 
             : base(HTTPHostname,
                    ExternalDNSName,
-                   HTTPPort,
+                   HTTPServerPort,
                    BasePath,
                    HTTPServerName,
 
                    URLPathPrefix,
-                   ServiceName,
+                   HTTPServiceName,
                    null,
                    APIVersionHashes,
 
@@ -3121,6 +3121,8 @@ namespace cloud.charging.open.API
 
                 else
                 {
+
+                    return null;
 
                     if (!request.Path.StartsWith(URLPathPrefix + "/messages")                 &&
                         !request.Path.StartsWith(URLPathPrefix + "/defaults")                 &&
