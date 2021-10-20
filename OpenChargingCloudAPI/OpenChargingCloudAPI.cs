@@ -2893,6 +2893,8 @@ namespace cloud.charging.open.API
         #endregion
 
 
+        #region (private) RegisterURLTemplates()
+
         #region Manage HTTP Resources
 
         #region (protected override) GetResourceStream      (ResourceName)
@@ -2951,8 +2953,6 @@ namespace cloud.charging.open.API
         #endregion
 
         #endregion
-
-        #region (private) RegisterURLTemplates()
 
         private void RegisterURLTemplates()
         {
@@ -3133,6 +3133,7 @@ namespace cloud.charging.open.API
                         !request.Path.StartsWith(URLPathPrefix + "/setPassword")              &&
                         !request.Path.StartsWith(URLPathPrefix + "/restart")                  &&
                         !request.Path.StartsWith(URLPathPrefix + "/stop")                     &&
+                        !request.Path.StartsWith(URLPathPrefix + "/RNs/")                     &&
                        !(request.Path.StartsWith(URLPathPrefix + "/users/") && request.HTTPMethod.ToString() == "AUTH") &&
                         !request.Path.StartsWith(URLPathPrefix + "/libs/leaflet"))
                     {
