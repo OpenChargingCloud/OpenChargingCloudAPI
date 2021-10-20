@@ -58,13 +58,16 @@ namespace cloud.charging.open.API
         /// Create a new WWCP HTTP API logger using the default logging delegates.
         /// </summary>
         /// <param name="OpenChargingCloudAPI">A WWCP API.</param>
+        /// <param name="LoggingPath">The logging path.</param>
         /// <param name="Context">A context of this API.</param>
         /// <param name="LogfileCreator">A delegate to create a log file from the given context and log file name.</param>
         public OpenChargingCloudAPILogger(OpenChargingCloudAPI    OpenChargingCloudAPI,
+                                          String                  LoggingPath,
                                           String                  Context         = DefaultContext,
                                           LogfileCreatorDelegate  LogfileCreator  = null)
 
             : this(OpenChargingCloudAPI,
+                   LoggingPath,
                    Context,
                    null,
                    null,
@@ -82,6 +85,7 @@ namespace cloud.charging.open.API
         /// Create a new WWCP HTTP API logger using the given logging delegates.
         /// </summary>
         /// <param name="OpenChargingCloudAPI">A WWCP API.</param>
+        /// <param name="LoggingPath">The logging path.</param>
         /// <param name="Context">A context of this API.</param>
         /// 
         /// <param name="LogHTTPRequest_toConsole">A delegate to log incoming HTTP requests to console.</param>
@@ -101,6 +105,7 @@ namespace cloud.charging.open.API
         /// 
         /// <param name="LogfileCreator">A delegate to create a log file from the given context and log file name.</param>
         public OpenChargingCloudAPILogger(OpenChargingCloudAPI        OpenChargingCloudAPI,
+                                          String                      LoggingPath,
                                           String                      Context,
 
                                           HTTPRequestLoggerDelegate   LogHTTPRequest_toConsole,
@@ -121,6 +126,7 @@ namespace cloud.charging.open.API
                                           LogfileCreatorDelegate      LogfileCreator              = null)
 
             : base(OpenChargingCloudAPI.HTTPServer,//.InternalHTTPServer,
+                   LoggingPath,
                    Context,
 
                    LogHTTPRequest_toConsole,
