@@ -55,7 +55,7 @@ namespace cloud.charging.open.API
     /// <summary>
     /// WWCP HTTP API extention methods.
     /// </summary>
-    public static class ExtentionMethods
+    public static class ExtensionMethods
     {
 
         // Used by multiple HTTP content types
