@@ -3542,7 +3542,7 @@ namespace cloud.charging.open.API
                                                                      Server          = HTTPServer.DefaultServerName,
                                                                      Date            = Timestamp.Now,
                                                                      ContentType     = HTTPContentType.JSON_UTF8,
-                                                                     Content         = HTTPExtentions.CreateError("Invalid roaming network identification!")
+                                                                     Content         = HTTPExtensions.CreateError("Invalid roaming network identification!")
                                                                  }.AsImmutable);
 
 
@@ -3554,7 +3554,7 @@ namespace cloud.charging.open.API
                                                                     Server          = HTTPServer.DefaultServerName,
                                                                     Date            = Timestamp.Now,
                                                                     ContentType     = HTTPContentType.JSON_UTF8,
-                                                                    Content         = HTTPExtentions.CreateError("RoamingNetworkId already exists!")
+                                                                    Content         = HTTPExtensions.CreateError("RoamingNetworkId already exists!")
                                                                 }.AsImmutable);
 
                                                      #endregion
