@@ -1,0 +1,54 @@
+﻿/*background: lighten($bg-color, 10%);*/
+/*$CITMBlue:                  rgba( 86, 132, 204,   1);*/
+/*$CITMGray:                  rgba(143, 145, 149,   1);*/
+.fa, .far, .fas {
+  font-style: normal; }
+
+#StreamFilterDiv {
+  padding: 5px 0px 6px 0px;
+  text-align: right;
+  font-size: 9pt; }
+
+#StreamFilter {
+  border-radius: 6px;
+  margin-left: 6px; }
+
+#EventsDiv {
+  font-size: 14px;
+  padding-top: 5px;
+  display: table;
+  border-spacing: 0px 1px; }
+
+.LogLine {
+  display: table-row;
+  width: 100%;
+  padding: 6px 4px;
+  margin: 1px 0px;
+  border-radius: 4px; }
+  .LogLine .Timestamp {
+    display: table-cell;
+    vertical-align: top;
+    font-size: 80%;
+    padding: 4px 6px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    white-space: nowrap; }
+  .LogLine .RoamingNetwork {
+    display: table-cell;
+    vertical-align: top;
+    font-size: 80%;
+    padding: 4px 6px;
+    white-space: nowrap; }
+  .LogLine .Command {
+    display: table-cell;
+    vertical-align: top;
+    font-size: 80%;
+    padding: 4px 6px;
+    white-space: nowrap; }
+  .LogLine .Message {
+    display: table-cell;
+    vertical-align: top;
+    padding: 4px 15px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    width: inherit; }

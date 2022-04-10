@@ -1,0 +1,79 @@
+﻿@import "../defaults/defaults.scss";
+
+#profileinfos {
+
+    padding:                30px 30px 20px 25px;
+    font-size:              140%;
+
+    .headline {
+        font-size:          180%;
+        padding-bottom:     15px;
+        color:              #999;
+    }
+
+    #profile {
+
+        display:                table;
+        width:                  calc(100% - 10px);
+        padding-left:           10px;
+
+        .row {
+
+            display:                table-row;
+            width:                  100%;
+
+            .key {
+
+                display:                table-cell;
+                padding:                8px 42px 8px 0px;
+                white-space:            nowrap;
+                color:                  #666;
+                vertical-align:         top;
+
+            }
+
+            .value {
+
+                display:                table-cell;
+                width:                  inherit;
+
+                input {
+
+                    background-color:   rgba(255, 255, 255, 0.7);
+                    padding:            6px 8px;
+                    border:             0px;
+                    width:              calc(100% - 16px);
+                    border-radius:      4px;
+                    color:              #777;
+                    font-size:          100%;
+
+                }
+
+                input:focus {
+
+                    outline-color:      $NavigationBackground;
+                    border-color:       $NavigationBackground;
+                    box-shadow:         0 0 6px $NavigationBackground;
+                    background:         rgb(245, 238, 227);
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+#avatar {
+
+    .key {
+        padding-top: 20px !important;
+    }
+
+    .value {
+        padding-bottom: 10px !important;
+    }
+
+}

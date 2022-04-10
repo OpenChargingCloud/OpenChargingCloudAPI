@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <title>Cardi-Link Cloud</title>
+
+    <link rel="stylesheet" href="/css/styles.min.css"       type="text/css"  />
+    <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css"  />
+    <link rel="icon"       href="/images/favicon.png"       type="image/png" />
+
+    <script type="text/javascript" src="/js/SignInOut.js"></script>
+
+</head>
+
+<body>
+
+    <div id="loginframe">
+
+        <div id="login">
+
+            <form id="loginform" action="/login" method="post" accept-charset="UTF-8"><!-- action="javascript:SignIn()">-->
+
+                <div id="headline"  class="frame">Login to continue</div>
+                <div id="errors"    class="frame"></div>
+                <div id="username"  class="frame input"><input type="text"     id="_username" name="username" placeholder="Your user name" /><i class="fa fa-user        fa-2x"></i><div style="clear: both;"></div></div>
+                <div id="password"  class="frame input"><input type="password" id="_password" name="password" placeholder="Your password"  autocomplete="on" /><i class="fa fa-lock        fa-2x"></i><div style="clear: both;"></div></div>
+                <!--<div id="realm"     class="frame input"><input type="text"     id="_realm"    name="realm"    placeholder="Your realm"     /><i class="fa fa-building-o  fa-2x"></i><div style="clear: both;"></div></div>-->
+                <div id="checks"    class="frame"><div id="RememberMe"><input type="checkbox" id="_rememberme" /><p>Remember me</p></div><a href="">Forgot your password?</a><div style="clear: both;"></div></div>
+                <!--<button type="button" onclick="javascript:SignIn()">Login</button></div>-->
+                <div id="button" class="frame"><input type="submit" value="Login" /></div>
+                <div id="copyright" class="frame">&copy; 2017 - CardiLink</div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

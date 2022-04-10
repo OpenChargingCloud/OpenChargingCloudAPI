@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Hermod\NET6\HermodTests\HermodTests.csproj" />
+    <ProjectReference Include="..\..\..\Hermod\NET6\Hermod\Hermod.csproj" />
+    <ProjectReference Include="..\..\..\SMSAPI\NET6\SMSAPI\SMSAPI.csproj" />
+    <ProjectReference Include="..\..\..\Styx\NET6\StyxTests\StyxTests.csproj" />
+    <ProjectReference Include="..\..\..\Styx\NET6\Styx\Styx.csproj" />
+    <ProjectReference Include="..\..\..\TelegramBotAPI\NET6\TelegramBotAPI\TelegramBotAPI.csproj" />
+    <ProjectReference Include="..\..\..\UsersAPI\NET6\UsersAPITests\UsersAPITests.csproj" />
+    <ProjectReference Include="..\..\..\UsersAPI\NET6\UsersAPI\UsersAPI.csproj" />
+    <ProjectReference Include="..\OpenChargingCloudAPI\OpenChargingCloudAPI.csproj" />
+  </ItemGroup>
+
+</Project>

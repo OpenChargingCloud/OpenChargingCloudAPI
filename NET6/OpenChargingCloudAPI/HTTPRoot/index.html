@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <title>Cardi-Link Cloud</title>
+
+    <link rel="stylesheet" href="/css/styles.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css" />
+    <link rel="icon" href="/images/favicon.png" type="image/png" />
+
+    <script type="text/javascript" src="/js/SignInOut.js"></script>
+
+</head>
+
+<body onload="javascript:checkSignedIn()">
+
+    <div id="navigation">
+
+        <span class="menu">Main Menu</span>
+
+        <ul>
+            <li><a href="/dashboard"    ><i class="fa fa-bar-chart     fa-2x menuicons"></i>Dashboard</a></li>
+            <li><a href="/maintenance"  ><i class="fa fa-bell          fa-2x menuicons"></i>Maintenance<div id="mt">19</div></a></li>
+            <li><a href="/database"     ><i class="fa fa-heartbeat     fa-2x menuicons"></i>AED's Database</a></li>
+        </ul>
+
+        <span class="menu">Settings</span>
+
+        <ul>
+            <li><a href="/profile"      ><i class="fa fa-user          fa-2x menuicons"></i>Profile</a></li>
+            <li><a href="/notifications"><i class="fa fa-comment       fa-2x menuicons"></i>Notifications</a></li>
+            <li><a href="/settings"     ><i class="fa fa-gears         fa-2x menuicons"></i>Settings</a></li>
+            <li><a href="/theme"        ><i class="fa fa-object-group  fa-2x menuicons"></i>Theme</a></li>
+        </ul>
+
+        <span class="menu">Support</span>
+
+        <ul>
+            <li><a href="/faq"          ><i class="fa fa-comments-o    fa-2x menuicons"></i>FAQs</a></li>
+            <li><a href="/tutorials"    ><i class="fa fa-university    fa-2x menuicons"></i>Tutorials</a></li>
+            <li><a href="/documentation"><i class="fa fa-book          fa-2x menuicons"></i>Documentation</a></li>
+        </ul>
+
+        <span class="menu">CARDILINK</span>
+
+        <ul>
+            <li><a href="/about.html"   ><i class="fa fa-question-circle  fa-2x menuicons"></i>About us</a></li>
+            <li><a href="/terms.html"   ><i class="fa fa-file-text-o      fa-2x menuicons"></i>Terms of Use</a></li>
+        </ul>
+
+    </div>
+
+    <div id="top">
+        <div id="username"></div>
+        <a href="/profile"             id="profile"     title="Your profile"><i class="fa fa-user     fa-2x topicons"></i></a>
+        <a href="/maintenance"         id="maintenance" title="maintenance" ><i class="fa fa-bell     fa-2x topicons"></i><div id="mt">19</div></a>
+        <a href="/login.html"          id="signin"      title="sign in"     ><i class="fa fa-sign-in  fa-2x topicons"></i></a>
+        <a href="javascript:SignOut()" id="signout"     title="sign out"    ><i class="fa fa-sign-out fa-2x topicons"></i></a>
+    </div>
+
+    <div id="logodiv">
+        <img src="/images/CardiLink_Logo01.png" id="logopic" />
+    </div>
+
+    <div id="text">
+        <h1>
+            Welcome to Cardi-Link!
+        </h1>
+    </div>
+
+</body>
+
+</html>
