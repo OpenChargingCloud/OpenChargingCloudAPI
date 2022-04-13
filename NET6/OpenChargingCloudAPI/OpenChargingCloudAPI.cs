@@ -1946,7 +1946,6 @@ namespace cloud.charging.open.API
         public new const       String              HTTPRoot                                       = "cloud.charging.open.api.HTTPRoot.";
 
         public const           String              DefaultOpenChargingCloudAPI_DatabaseFileName   = "OpenChargingCloudAPI.db";
-        public const           String              DefaultOpenChargingCloudAPI_LoggingPath        = "default";
         public const           String              DefaultOpenChargingCloudAPI_LogfileName        = "OpenChargingCloudAPI.log";
 
         public static readonly HTTPEventSource_Id  DebugLogId                                     = HTTPEventSource_Id.Parse("DebugLog");
@@ -1971,9 +1970,9 @@ namespace cloud.charging.open.API
 
         public String                                       OpenChargingCloudAPIPath    { get; }
 
-        public String                                       ChargingReservationsPath    { get; }
-        public String                                       ChargingSessionsPath        { get; }
-        public String                                       ChargeDetailRecordsPath     { get; }
+        //public String                                       ChargingReservationsPath    { get; }
+        //public String                                       ChargingSessionsPath        { get; }
+        //public String                                       ChargeDetailRecordsPath     { get; }
 
 
         public HTTPServer<RoamingNetworks, RoamingNetwork>  WWCPHTTPServer              { get; }
@@ -2775,7 +2774,7 @@ namespace cloud.charging.open.API
                                     String                               DatabaseFileName                   = DefaultOpenChargingCloudAPI_DatabaseFileName,
                                     Boolean                              DisableNotifications               = false,
                                     Boolean                              DisableLogging                     = false,
-                                    String                               LoggingPath                        = DefaultOpenChargingCloudAPI_LoggingPath,
+                                    String                               LoggingPath                        = null,
                                     String                               LogfileName                        = DefaultOpenChargingCloudAPI_LogfileName,
                                     LogfileCreatorDelegate               LogfileCreator                     = null,
                                     DNSClient                            DNSClient                          = null)
@@ -2846,7 +2845,7 @@ namespace cloud.charging.open.API
                    DatabaseFileName     ?? DefaultOpenChargingCloudAPI_DatabaseFileName,
                    DisableNotifications,
                    DisableLogging,
-                   LoggingPath          ?? DefaultOpenChargingCloudAPI_LoggingPath,
+                   LoggingPath,
                    LogfileName          ?? DefaultOpenChargingCloudAPI_LogfileName,
                    LogfileCreator,
                    DNSClient,
@@ -2854,33 +2853,33 @@ namespace cloud.charging.open.API
 
         {
 
-            this.OpenChargingCloudAPIPath  = this.LoggingPath              + "OpenChargingCloudAPI" + Path.DirectorySeparatorChar;
-            this.ChargingReservationsPath  = this.OpenChargingCloudAPIPath + "ChargingReservations" + Path.DirectorySeparatorChar;
-            this.ChargingSessionsPath      = this.OpenChargingCloudAPIPath + "ChargingSessions"     + Path.DirectorySeparatorChar;
-            this.ChargeDetailRecordsPath   = this.OpenChargingCloudAPIPath + "ChargeDetailRecords"  + Path.DirectorySeparatorChar;
+            this.OpenChargingCloudAPIPath  = Path.Combine(this.LoggingPath, "OpenChargingCloudAPI");
+            //this.ChargingReservationsPath  = Path.Combine(OpenChargingCloudAPIPath, "ChargingReservations");
+            //this.ChargingSessionsPath      = Path.Combine(OpenChargingCloudAPIPath, "ChargingSessions");
+            //this.ChargeDetailRecordsPath   = Path.Combine(OpenChargingCloudAPIPath, "ChargeDetailRecords");
 
             Directory.CreateDirectory(OpenChargingCloudAPIPath);
-            Directory.CreateDirectory(ChargingReservationsPath);
-            Directory.CreateDirectory(ChargingSessionsPath);
-            Directory.CreateDirectory(ChargeDetailRecordsPath);
+            //Directory.CreateDirectory(ChargingReservationsPath);
+            //Directory.CreateDirectory(ChargingSessionsPath);
+            //Directory.CreateDirectory(ChargeDetailRecordsPath);
 
             //WWCP = OpenChargingCloudAPI.AttachToHTTPAPI(HTTPServer);
 
             this.WWCPHTTPServer = new HTTPServer<RoamingNetworks, RoamingNetwork>(HTTPServer);
 
-            DebugLog     = HTTPServer.AddJSONEventSource(EventIdentification:      DebugLogId,
-                                                         URLTemplate:              this.URLPathPrefix + "/" + DebugLogId.ToString(),
-                                                         MaxNumberOfCachedEvents:  10000,
-                                                         RetryIntervall:           TimeSpan.FromSeconds(5),
-                                                         EnableLogging:            true,
-                                                         LogfilePrefix:            this.HTTPSSEsPath);
+            DebugLog     = HTTPServer.AddJSONEventSource(EventIdentification:          DebugLogId,
+                                                         URLTemplate:                  this.URLPathPrefix + "/" + DebugLogId.ToString(),
+                                                         MaxNumberOfCachedEvents:      10000,
+                                                         RetryIntervall:               TimeSpan.FromSeconds(5),
+                                                         EnableLogging:                true,
+                                                         LogfilePath:                  this.HTTPSSEsPath);
 
-            ImporterLog  = HTTPServer.AddJSONEventSource(EventIdentification:      ImporterLogId,
-                                                         URLTemplate:              this.URLPathPrefix + "/" + ImporterLogId.ToString(),
-                                                         MaxNumberOfCachedEvents:  1000,
-                                                         RetryIntervall:           TimeSpan.FromSeconds(5),
-                                                         EnableLogging:            true,
-                                                         LogfilePrefix:            this.HTTPSSEsPath);
+            ImporterLog  = HTTPServer.AddJSONEventSource(EventIdentification:          ImporterLogId,
+                                                         URLTemplate:                  this.URLPathPrefix + "/" + ImporterLogId.ToString(),
+                                                         MaxNumberOfCachedEvents:      1000,
+                                                         RetryIntervall:               TimeSpan.FromSeconds(5),
+                                                         EnableLogging:                true,
+                                                         LogfilePath:                  this.HTTPSSEsPath);
 
 
             RegisterURLTemplates();
@@ -10080,7 +10079,7 @@ namespace cloud.charging.open.API
 
             #region Initial checks
 
-            if (Hostname == null)
+            if (Hostname.IsNullOrEmpty)
                 throw new ArgumentNullException(nameof(Hostname), "The given HTTP hostname must not be null!");
 
             #endregion
@@ -10089,7 +10088,7 @@ namespace cloud.charging.open.API
                                              GetAllTenants(Hostname).
                                              FirstOrDefault(roamingnetwork => roamingnetwork.Id == Id);
 
-            if (ExistingRoamingNetwork == null)
+            if (ExistingRoamingNetwork is null)
             {
 
                 if (!WWCPHTTPServer.TryGetTenants(Hostname, out RoamingNetworks _RoamingNetworks))
@@ -10117,7 +10116,8 @@ namespace cloud.charging.open.API
                                                                     ChargingStationOperatorSignatureGenerator,
 
                                                                     RoamingNetworkInfos,
-                                                                    DisableNetworkSync);
+                                                                    DisableNetworkSync,
+                                                                    OpenChargingCloudAPIPath);
 
                 #region Link log events to HTTP-SSE...
 
