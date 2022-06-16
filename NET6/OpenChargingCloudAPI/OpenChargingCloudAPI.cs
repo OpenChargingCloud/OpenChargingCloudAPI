@@ -1968,6 +1968,11 @@ namespace cloud.charging.open.API
 
         #region Properties
 
+        /// <summary>
+        /// The API version hash (git commit hash value).
+        /// </summary>
+        public new String                                   APIVersionHash              { get; }
+
         public String                                       OpenChargingCloudAPIPath    { get; }
 
         //public String                                       ChargingReservationsPath    { get; }
@@ -2724,6 +2729,7 @@ namespace cloud.charging.open.API
 
                                     HTTPPath?                            URLPathPrefix                      = null,
                                     String                               HTTPServiceName                    = DefaultHTTPServiceName,
+                                    String                               HTMLTemplate                       = null,
                                     JObject                              APIVersionHashes                   = null,
 
                                     ServerCertificateSelectorDelegate    ServerCertificateSelector          = null,
@@ -2784,7 +2790,7 @@ namespace cloud.charging.open.API
 
                    URLPathPrefix,
                    HTTPServiceName,
-                   null,
+                   HTMLTemplate,
                    APIVersionHashes,
 
                    ServerCertificateSelector,
@@ -2850,15 +2856,20 @@ namespace cloud.charging.open.API
 
         {
 
+            this.APIVersionHash            = APIVersionHashes?[nameof(OpenChargingCloudAPI)]?.Value<String>()?.Trim() ?? "";
+
             this.OpenChargingCloudAPIPath  = Path.Combine(this.LoggingPath, "OpenChargingCloudAPI");
             //this.ChargingReservationsPath  = Path.Combine(OpenChargingCloudAPIPath, "ChargingReservations");
             //this.ChargingSessionsPath      = Path.Combine(OpenChargingCloudAPIPath, "ChargingSessions");
             //this.ChargeDetailRecordsPath   = Path.Combine(OpenChargingCloudAPIPath, "ChargeDetailRecords");
 
-            Directory.CreateDirectory(OpenChargingCloudAPIPath);
-            //Directory.CreateDirectory(ChargingReservationsPath);
-            //Directory.CreateDirectory(ChargingSessionsPath);
-            //Directory.CreateDirectory(ChargeDetailRecordsPath);
+            if (!DisableLogging)
+            {
+                Directory.CreateDirectory(OpenChargingCloudAPIPath);
+                //Directory.CreateDirectory(ChargingReservationsPath);
+                //Directory.CreateDirectory(ChargingSessionsPath);
+                //Directory.CreateDirectory(ChargeDetailRecordsPath);
+            }
 
             //WWCP = OpenChargingCloudAPI.AttachToHTTPAPI(HTTPServer);
 
@@ -2869,20 +2880,21 @@ namespace cloud.charging.open.API
                                                          MaxNumberOfCachedEvents:      10000,
                                                          RetryIntervall:               TimeSpan.FromSeconds(5),
                                                          EnableLogging:                true,
-                                                         LogfilePath:                  this.HTTPSSEsPath);
+                                                         LogfilePath:                  this.OpenChargingCloudAPIPath);
 
             ImporterLog  = HTTPServer.AddJSONEventSource(EventIdentification:          ImporterLogId,
                                                          URLTemplate:                  this.URLPathPrefix + "/" + ImporterLogId.ToString(),
                                                          MaxNumberOfCachedEvents:      1000,
                                                          RetryIntervall:               TimeSpan.FromSeconds(5),
                                                          EnableLogging:                true,
-                                                         LogfilePath:                  this.HTTPSSEsPath);
+                                                         LogfilePath:                  this.OpenChargingCloudAPIPath);
 
-
+            //RegisterNotifications().Wait();
             RegisterURLTemplates();
 
-            //if (Autostart)
-            //    Start();
+            this.HTMLTemplate = HTMLTemplate ?? GetResourceString("template.html");
+
+            DebugX.Log(nameof(OpenChargingCloudAPI) + " version '" + APIVersionHash + "' initialized...");
 
         }
 
