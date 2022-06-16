@@ -2688,8 +2688,6 @@ namespace cloud.charging.open.API
         /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
         /// <param name="UseSecureCookies">Force the web browser to send cookies only via HTTPS.</param>
         /// 
-        /// <param name="OwnerIdOfUnknownDevices">The unique owner identification of devices which are created automagically, e.g. on incoming devices messages.</param>
-        /// 
         /// <param name="ServerThreadName">The optional name of the TCP server thread.</param>
         /// <param name="ServerThreadPriority">The optional priority of the TCP server thread.</param>
         /// <param name="ServerThreadIsBackground">Whether the TCP server thread is a background thread or not.</param>
@@ -2736,6 +2734,7 @@ namespace cloud.charging.open.API
                                     IPPort?                              TCPPort                            = null,
                                     IPPort?                              UDPPort                            = null,
 
+                                    Organization_Id?                     AdminOrganizationId                = null,
                                     EMailAddress                         APIRobotEMailAddress               = null,
                                     String                               APIRobotGPGPassphrase              = null,
                                     ISMTPClient                          SMTPClient                         = null,
@@ -2747,8 +2746,6 @@ namespace cloud.charging.open.API
                                     HTTPCookieName?                      CookieName                         = null,
                                     Boolean                              UseSecureCookies                   = true,
                                     Languages?                           DefaultLanguage                    = null,
-
-                                    Organization_Id?                     OwnerIdOfUnknownDevices            = null,
 
                                     String                               ServerThreadName                   = null,
                                     ThreadPriority?                      ServerThreadPriority               = null,
@@ -2805,7 +2802,7 @@ namespace cloud.charging.open.API
                    ConnectionTimeout,
                    MaxClientConnections,
 
-                   Organization_Id.Parse("OpenChargingCloud"),
+                   AdminOrganizationId,
                    APIRobotEMailAddress,
                    APIRobotGPGPassphrase,
                    SMTPClient,
