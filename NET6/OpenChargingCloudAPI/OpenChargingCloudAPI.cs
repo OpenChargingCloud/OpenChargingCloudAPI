@@ -2929,7 +2929,7 @@ namespace cloud.charging.open.API
 
         #region (protected override) GetResourceString      (ResourceName)
 
-        protected override String GetResourceString(String ResourceName)
+        protected override String? GetResourceString(String ResourceName)
 
             => GetResourceString(ResourceName,
                                  new Tuple<String, System.Reflection.Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
@@ -2951,7 +2951,7 @@ namespace cloud.charging.open.API
 
         #region (protected override) MixWithHTMLTemplate    (ResourceName)
 
-        protected override String MixWithHTMLTemplate(String ResourceName)
+        protected override String? MixWithHTMLTemplate(String ResourceName)
 
             => MixWithHTMLTemplate(ResourceName,
                                    new Tuple<String, System.Reflection.Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
@@ -3234,6 +3234,57 @@ namespace cloud.charging.open.API
                                                HTTPRoot.Substring(0, HTTPRoot.Length - 1));
 
             #endregion
+
+
+
+            #region ~/dashboard
+
+            #region GET         ~/dashboard
+
+            // ----------------------------------------------------------------
+            // curl -v -H "Accept: text/html" http://127.0.0.1:3001/dashboard
+            // ----------------------------------------------------------------
+            HTTPServer.AddMethodCallback(Hostname,
+                                         HTTPMethod.GET,
+                                         URLPathPrefix + "dashboard",
+                                         HTTPContentType.HTML_UTF8,
+                                         HTTPDelegate: Request => {
+
+                                             #region Get HTTP user and its organizations
+
+                                             // Will return HTTP 401 Unauthorized, when the HTTP user is unknown!
+                                             if (!TryGetHTTPUser(Request,
+                                                                 out User                   HTTPUser,
+                                                                 out HashSet<Organization>  HTTPOrganizations,
+                                                                 out HTTPResponse.Builder   Response,
+                                                                 Recursive:                 true))
+                                             {
+                                                 return Task.FromResult(Response.AsImmutable);
+                                             }
+
+                                             #endregion
+
+
+                                             return Task.FromResult(
+                                                 new HTTPResponse.Builder(Request) {
+                                                     HTTPStatusCode              = HTTPStatusCode.OK,
+                                                     Server                      = HTTPServer.DefaultServerName,
+                                                     Date                        = Timestamp.Now,
+                                                     AccessControlAllowOrigin    = "*",
+                                                     AccessControlAllowMethods   = "GET",
+                                                     AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
+                                                     ContentType                 = HTTPContentType.HTML_UTF8,
+                                                     Content                     = MixWithHTMLTemplate("dashboard.dashboard2.shtml").ToUTF8Bytes(),
+                                                     Connection                  = "close",
+                                                     Vary                        = "Accept"
+                                                 }.AsImmutable);
+
+                                         }, AllowReplacement: URLReplacement.Allow);
+
+            #endregion
+
+            #endregion
+
 
 
             #region ~/RNs
