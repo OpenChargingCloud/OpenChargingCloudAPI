@@ -2965,208 +2965,14 @@ namespace cloud.charging.open.API
         private void RegisterURLTemplates()
         {
 
-            HTTPServer.AddFilter(request => {
+            HTTPServer.AddAuth(request => {
 
-                //if ((Environment.MachineName == "QUADQUANTOR" || Environment.MachineName == "ZBOOK" ) &&
-                //    request.RemoteSocket.IPAddress.IsIPv4 &&
-                //    request.RemoteSocket.IPAddress.IsLocalhost)
-                //{
-                //    return null;
-                //}
+                #region Allow some URLs for anonymous access...
 
-                #region Allow OPTIONS requests / call pre-flight requests in Cross-origin resource sharing (CORS).
-
-                if (request.HTTPMethod == HTTPMethod.OPTIONS)
+                if (request.Path.StartsWith(URLPathPrefix + "/shared/OpenChargingCloudAPI/libs/leaflet") ||
+                    request.Path.StartsWith(URLPathPrefix + "/RNs"))
                 {
-                    return null;
-                }
-
-                #endregion
-
-                #region Got a cookie... verify it and protect /admin!
-
-                if (TryGetSecurityTokenFromCookie(request,  out SecurityToken_Id SecurityToken)       &&
-                    _HTTPCookies.TryGetValue(SecurityToken, out SecurityToken    SecurityInformation) &&
-                    Timestamp.Now < SecurityInformation.Expires)
-                {
-
-                    var isAdmin = IsAdmin(SecurityInformation.UserId);
-
-                    if ((request.Path == URLPathPrefix + "/admin") &&
-                         (!(isAdmin == Access_Levels.ReadOnly ||
-                            isAdmin == Access_Levels.ReadWrite)))
-                    {
-
-                        return new HTTPResponse.Builder(request) {
-                            HTTPStatusCode  = HTTPStatusCode.TemporaryRedirect,
-                            Location        = URLPathPrefix + "/login",
-                            Date            = Timestamp.Now,
-                            Server          = HTTPServer.DefaultServerName,
-                            CacheControl    = "private, max-age=0, no-cache",
-                            Connection      = "close"
-                        };
-
-                    }
-
-                    if ((request.Path.StartsWith(URLPathPrefix + "/admin") ||
-                         request.Path.StartsWith(URLPathPrefix + "/shared/UsersAPI/admin")) &&
-                         (!(isAdmin == Access_Levels.ReadOnly ||
-                            isAdmin == Access_Levels.ReadWrite)))
-                    {
-
-                        return new HTTPResponse.Builder(request) {
-                            HTTPStatusCode            = HTTPStatusCode.Unauthorized,
-                            Date                      = Timestamp.Now,
-                            Server                    = HTTPServer.DefaultServerName,
-                            AccessControlAllowOrigin  = "*",
-                            AccessControlMaxAge       = 3600,
-                            CacheControl              = "private, max-age=0, no-cache",
-                            Connection                = "close"
-                        };
-
-                    }
-
-                }
-
-                #endregion
-
-                #region Got HTTP Basic Authentication...
-
-                else if (request.Authorization is HTTPBasicAuthentication basicAuthentication)
-                {
-
-                    #region Find username or e-mail addresses...
-
-                    var possibleUsers = new HashSet<User>();
-                    var validUsers    = new HashSet<User>();
-
-                    if (User_Id.TryParse   (basicAuthentication.Username, out User_Id _UserId) &&
-                        _Users. TryGetValue(_UserId,                      out User    _User))
-                    {
-                        possibleUsers.Add(_User);
-                    }
-
-                    if (possibleUsers.Count == 0)
-                    {
-                        foreach (var user in _Users.Values)
-                        {
-                            if (String.Equals(basicAuthentication.Username,
-                                              user.EMail.Address.ToString(),
-                                              StringComparison.OrdinalIgnoreCase))
-                            {
-                                possibleUsers.Add(user);
-                            }
-                        }
-                    }
-
-                    if (possibleUsers.Count > 0)
-                    {
-                        foreach (var possibleUser in possibleUsers)
-                        {
-                            if (_LoginPasswords.TryGetValue(possibleUser.Id, out LoginPassword loginPassword) &&
-                                loginPassword.VerifyPassword(basicAuthentication.Password))
-                            {
-                                validUsers.Add(possibleUser);
-                            }
-                        }
-                    }
-
-                    #endregion
-
-                    #region HTTP Basic Auth is ok!
-
-                    if (validUsers.Count == 1 &&
-                        validUsers.First().AcceptedEULA.HasValue &&
-                        validUsers.First().AcceptedEULA.Value < Timestamp.Now)
-                    {
-                        return null;
-                    }
-
-                    #endregion
-
-                    //ToDo: Add some logging!
-                    //DebugX.LogT("Invalid HTTP Basic Auth: " + request.Authorization.Username);
-
-                    return new HTTPResponse.Builder(request) {
-                        HTTPStatusCode            = HTTPStatusCode.Unauthorized,
-                        Date                      = Timestamp.Now,
-                        Server                    = HTTPServer.DefaultServerName,
-                        AccessControlAllowOrigin  = "*",
-                        AccessControlMaxAge       = 3600,
-                        CacheControl              = "private, max-age=0, no-cache",
-                        Connection                = "close"
-                    };
-
-                }
-
-                #endregion
-
-                #region Got API Key...
-
-                else if (request.API_Key.HasValue)
-                {
-
-                    if (APIKeyIsValid(request.API_Key.Value))
-                        return null;
-
-                    DebugX.LogT("Invalid HTTP API Key: " + request.API_Key);
-
-                    return new HTTPResponse.Builder(request) {
-                        HTTPStatusCode            = HTTPStatusCode.Unauthorized,
-                        Date                      = Timestamp.Now,
-                        Server                    = HTTPServer.DefaultServerName,
-                        AccessControlAllowOrigin  = "*",
-                        AccessControlMaxAge       = 3600,
-                        CacheControl              = "private, max-age=0, no-cache",
-                        Connection                = "close"
-                    };
-
-                }
-
-                #endregion
-
-                #region Unknown cookie... delete it and redirect to /login/login.html, except for /login and special resources!
-
-                else
-                {
-
-                    return null;
-
-                    if (!request.Path.StartsWith(URLPathPrefix + "/messages")                 &&
-                        !request.Path.StartsWith(URLPathPrefix + "/defaults")                 &&
-                        !request.Path.StartsWith(URLPathPrefix + "/shared/UsersAPI/defaults") &&
-                        !request.Path.StartsWith(URLPathPrefix + "/shared/UsersAPI/webfonts") &&
-                        !request.Path.StartsWith(URLPathPrefix + "/shared/UsersAPI/login")    &&
-                        !request.Path.StartsWith(URLPathPrefix + "/login")                    &&
-                        !request.Path.StartsWith(URLPathPrefix + "/lostPassword")             &&
-                        !request.Path.StartsWith(URLPathPrefix + "/resetPassword")            &&
-                        !request.Path.StartsWith(URLPathPrefix + "/setPassword")              &&
-                        !request.Path.StartsWith(URLPathPrefix + "/restart")                  &&
-                        !request.Path.StartsWith(URLPathPrefix + "/stop")                     &&
-                        !request.Path.StartsWith(URLPathPrefix + "/RNs/")                     &&
-                       !(request.Path.StartsWith(URLPathPrefix + "/users/") && request.HTTPMethod.ToString() == "AUTH") &&
-                        !request.Path.StartsWith(URLPathPrefix + "/libs/leaflet"))
-                    {
-
-                        return new HTTPResponse.Builder(request) {
-                            HTTPStatusCode  = HTTPStatusCode.TemporaryRedirect,
-                            Location        = URLPathPrefix + "/login",
-                            Date            = Timestamp.Now,
-                            Server          = HTTPServer.DefaultServerName,
-
-                            // Do not delete the cookie! Otherwise users can not login multiple times, e.g. when clicking on links in e-mails.
-                            //SetCookie       = String.Concat(CookieName, "=; Expires=", Timestamp.Now.ToRfc1123(),
-                            //                                HTTPCookieDomain.IsNotNullOrEmpty()
-                            //                                    ? "; Domain=" + HTTPCookieDomain
-                            //                                    : "",
-                            //                                "; Path=", URLPathPrefix),
-
-                            CacheControl    = "private, max-age=0, no-cache",
-                            Connection      = "close"
-                        };
-
-                    }
-
+                    return Anonymous;
                 }
 
                 #endregion
@@ -3174,6 +2980,10 @@ namespace cloud.charging.open.API
                 return null;
 
             });
+
+            //HTTPServer.AddFilter(request => {
+            //    return null;
+            //});
 
             HTTPServer.Rewrite  (request => {
 
