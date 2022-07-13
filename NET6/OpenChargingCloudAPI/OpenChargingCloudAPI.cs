@@ -2711,6 +2711,9 @@ namespace cloud.charging.open.API
         /// <param name="WardenInitialDelay">The initial delay of the warden tasks.</param>
         /// <param name="WardenCheckEvery">The warden intervall.</param>
         /// 
+        /// <param name="RemoteAuthServers">Servers for remote authorization.</param>
+        /// <param name="RemoteAuthAPIKeys">API keys for incoming remote authorizations.</param>
+        /// 
         /// <param name="IsDevelopment">This HTTP API runs in development mode.</param>
         /// <param name="DevelopmentServers">An enumeration of server names which will imply to run this service in development mode.</param>
         /// <param name="SkipURLTemplates">Skip URL templates.</param>
@@ -2770,6 +2773,9 @@ namespace cloud.charging.open.API
                                     Boolean?                             DisableWardenTasks                 = null,
                                     TimeSpan?                            WardenInitialDelay                 = null,
                                     TimeSpan?                            WardenCheckEvery                   = null,
+
+                                    IEnumerable<URLWith_APIKeyId>?       RemoteAuthServers                  = null,
+                                    IEnumerable<APIKey_Id>?              RemoteAuthAPIKeys                  = null,
 
                                     Boolean?                             IsDevelopment                      = null,
                                     IEnumerable<String>                  DevelopmentServers                 = null,
@@ -2841,6 +2847,9 @@ namespace cloud.charging.open.API
                    DisableWardenTasks,
                    WardenInitialDelay,
                    WardenCheckEvery,
+
+                   RemoteAuthServers,
+                   RemoteAuthAPIKeys,
 
                    IsDevelopment,
                    DevelopmentServers,
