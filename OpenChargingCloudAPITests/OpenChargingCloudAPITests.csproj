@@ -15,14 +15,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Hermod\NET6\HermodTests\HermodTests.csproj" />
-    <ProjectReference Include="..\..\..\Hermod\NET6\Hermod\Hermod.csproj" />
-    <ProjectReference Include="..\..\..\SMSAPI\NET6\SMSAPI\SMSAPI.csproj" />
-    <ProjectReference Include="..\..\..\Styx\NET6\StyxTests\StyxTests.csproj" />
-    <ProjectReference Include="..\..\..\Styx\NET6\Styx\Styx.csproj" />
-    <ProjectReference Include="..\..\..\TelegramBotAPI\NET6\TelegramBotAPI\TelegramBotAPI.csproj" />
-    <ProjectReference Include="..\..\..\UsersAPI\NET6\UsersAPITests\UsersAPITests.csproj" />
-    <ProjectReference Include="..\..\..\UsersAPI\NET6\UsersAPI\UsersAPI.csproj" />
+    <ProjectReference Include="..\..\Hermod\HermodTests\HermodTests.csproj" />
+    <ProjectReference Include="..\..\Hermod\Hermod\Hermod.csproj" />
+    <ProjectReference Include="..\..\SMSAPI\SMSAPI\SMSAPI.csproj" />
+    <ProjectReference Include="..\..\Styx\StyxTests\StyxTests.csproj" />
+    <ProjectReference Include="..\..\Styx\Styx\Styx.csproj" />
+    <ProjectReference Include="..\..\TelegramBotAPI\TelegramBotAPI\TelegramBotAPI.csproj" />
+    <ProjectReference Include="..\..\UsersAPI\UsersAPITests\UsersAPITests.csproj" />
+    <ProjectReference Include="..\..\UsersAPI\UsersAPI\UsersAPI.csproj" />
     <ProjectReference Include="..\OpenChargingCloudAPI\OpenChargingCloudAPI.csproj" />
   </ItemGroup>
 

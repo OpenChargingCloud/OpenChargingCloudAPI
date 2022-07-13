@@ -1946,7 +1946,6 @@ namespace cloud.charging.open.API
         public new const       String              HTTPRoot                                       = "cloud.charging.open.api.HTTPRoot.";
 
         public const           String              DefaultOpenChargingCloudAPI_DatabaseFileName   = "OpenChargingCloudAPI.db";
-        public const           String              DefaultOpenChargingCloudAPI_LoggingPath        = "default";
         public const           String              DefaultOpenChargingCloudAPI_LogfileName        = "OpenChargingCloudAPI.log";
 
         public static readonly HTTPEventSource_Id  DebugLogId                                     = HTTPEventSource_Id.Parse("DebugLog");
@@ -1969,11 +1968,16 @@ namespace cloud.charging.open.API
 
         #region Properties
 
+        /// <summary>
+        /// The API version hash (git commit hash value).
+        /// </summary>
+        public new String                                   APIVersionHash              { get; }
+
         public String                                       OpenChargingCloudAPIPath    { get; }
 
-        public String                                       ChargingReservationsPath    { get; }
-        public String                                       ChargingSessionsPath        { get; }
-        public String                                       ChargeDetailRecordsPath     { get; }
+        //public String                                       ChargingReservationsPath    { get; }
+        //public String                                       ChargingSessionsPath        { get; }
+        //public String                                       ChargeDetailRecordsPath     { get; }
 
 
         public HTTPServer<RoamingNetworks, RoamingNetwork>  WWCPHTTPServer              { get; }
@@ -2689,8 +2693,6 @@ namespace cloud.charging.open.API
         /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
         /// <param name="UseSecureCookies">Force the web browser to send cookies only via HTTPS.</param>
         /// 
-        /// <param name="OwnerIdOfUnknownDevices">The unique owner identification of devices which are created automagically, e.g. on incoming devices messages.</param>
-        /// 
         /// <param name="ServerThreadName">The optional name of the TCP server thread.</param>
         /// <param name="ServerThreadPriority">The optional priority of the TCP server thread.</param>
         /// <param name="ServerThreadIsBackground">Whether the TCP server thread is a background thread or not.</param>
@@ -2708,6 +2710,9 @@ namespace cloud.charging.open.API
         /// <param name="DisableWardenTasks">Disable all warden tasks.</param>
         /// <param name="WardenInitialDelay">The initial delay of the warden tasks.</param>
         /// <param name="WardenCheckEvery">The warden intervall.</param>
+        /// 
+        /// <param name="RemoteAuthServers">Servers for remote authorization.</param>
+        /// <param name="RemoteAuthAPIKeys">API keys for incoming remote authorizations.</param>
         /// 
         /// <param name="IsDevelopment">This HTTP API runs in development mode.</param>
         /// <param name="DevelopmentServers">An enumeration of server names which will imply to run this service in development mode.</param>
@@ -2727,6 +2732,7 @@ namespace cloud.charging.open.API
 
                                     HTTPPath?                            URLPathPrefix                      = null,
                                     String                               HTTPServiceName                    = DefaultHTTPServiceName,
+                                    String                               HTMLTemplate                       = null,
                                     JObject                              APIVersionHashes                   = null,
 
                                     ServerCertificateSelectorDelegate    ServerCertificateSelector          = null,
@@ -2737,6 +2743,7 @@ namespace cloud.charging.open.API
                                     IPPort?                              TCPPort                            = null,
                                     IPPort?                              UDPPort                            = null,
 
+                                    Organization_Id?                     AdminOrganizationId                = null,
                                     EMailAddress                         APIRobotEMailAddress               = null,
                                     String                               APIRobotGPGPassphrase              = null,
                                     ISMTPClient                          SMTPClient                         = null,
@@ -2748,8 +2755,6 @@ namespace cloud.charging.open.API
                                     HTTPCookieName?                      CookieName                         = null,
                                     Boolean                              UseSecureCookies                   = true,
                                     Languages?                           DefaultLanguage                    = null,
-
-                                    Organization_Id?                     OwnerIdOfUnknownDevices            = null,
 
                                     String                               ServerThreadName                   = null,
                                     ThreadPriority?                      ServerThreadPriority               = null,
@@ -2769,13 +2774,16 @@ namespace cloud.charging.open.API
                                     TimeSpan?                            WardenInitialDelay                 = null,
                                     TimeSpan?                            WardenCheckEvery                   = null,
 
+                                    IEnumerable<URLWith_APIKeyId>?       RemoteAuthServers                  = null,
+                                    IEnumerable<APIKey_Id>?              RemoteAuthAPIKeys                  = null,
+
                                     Boolean?                             IsDevelopment                      = null,
                                     IEnumerable<String>                  DevelopmentServers                 = null,
                                     Boolean                              SkipURLTemplates                   = false,
                                     String                               DatabaseFileName                   = DefaultOpenChargingCloudAPI_DatabaseFileName,
                                     Boolean                              DisableNotifications               = false,
                                     Boolean                              DisableLogging                     = false,
-                                    String                               LoggingPath                        = DefaultOpenChargingCloudAPI_LoggingPath,
+                                    String                               LoggingPath                        = null,
                                     String                               LogfileName                        = DefaultOpenChargingCloudAPI_LogfileName,
                                     LogfileCreatorDelegate               LogfileCreator                     = null,
                                     DNSClient                            DNSClient                          = null)
@@ -2788,7 +2796,7 @@ namespace cloud.charging.open.API
 
                    URLPathPrefix,
                    HTTPServiceName,
-                   null,
+                   HTMLTemplate,
                    APIVersionHashes,
 
                    ServerCertificateSelector,
@@ -2806,7 +2814,7 @@ namespace cloud.charging.open.API
                    ConnectionTimeout,
                    MaxClientConnections,
 
-                   Organization_Id.Parse("OpenChargingCloud"),
+                   AdminOrganizationId,
                    APIRobotEMailAddress,
                    APIRobotGPGPassphrase,
                    SMTPClient,
@@ -2840,13 +2848,16 @@ namespace cloud.charging.open.API
                    WardenInitialDelay,
                    WardenCheckEvery,
 
+                   RemoteAuthServers,
+                   RemoteAuthAPIKeys,
+
                    IsDevelopment,
                    DevelopmentServers,
                    SkipURLTemplates,
                    DatabaseFileName     ?? DefaultOpenChargingCloudAPI_DatabaseFileName,
                    DisableNotifications,
                    DisableLogging,
-                   LoggingPath          ?? DefaultOpenChargingCloudAPI_LoggingPath,
+                   LoggingPath,
                    LogfileName          ?? DefaultOpenChargingCloudAPI_LogfileName,
                    LogfileCreator,
                    DNSClient,
@@ -2854,39 +2865,45 @@ namespace cloud.charging.open.API
 
         {
 
-            this.OpenChargingCloudAPIPath  = this.LoggingPath              + "OpenChargingCloudAPI" + Path.DirectorySeparatorChar;
-            this.ChargingReservationsPath  = this.OpenChargingCloudAPIPath + "ChargingReservations" + Path.DirectorySeparatorChar;
-            this.ChargingSessionsPath      = this.OpenChargingCloudAPIPath + "ChargingSessions"     + Path.DirectorySeparatorChar;
-            this.ChargeDetailRecordsPath   = this.OpenChargingCloudAPIPath + "ChargeDetailRecords"  + Path.DirectorySeparatorChar;
+            this.APIVersionHash            = APIVersionHashes?[nameof(OpenChargingCloudAPI)]?.Value<String>()?.Trim() ?? "";
 
-            Directory.CreateDirectory(OpenChargingCloudAPIPath);
-            Directory.CreateDirectory(ChargingReservationsPath);
-            Directory.CreateDirectory(ChargingSessionsPath);
-            Directory.CreateDirectory(ChargeDetailRecordsPath);
+            this.OpenChargingCloudAPIPath  = Path.Combine(this.LoggingPath, "OpenChargingCloudAPI");
+            //this.ChargingReservationsPath  = Path.Combine(OpenChargingCloudAPIPath, "ChargingReservations");
+            //this.ChargingSessionsPath      = Path.Combine(OpenChargingCloudAPIPath, "ChargingSessions");
+            //this.ChargeDetailRecordsPath   = Path.Combine(OpenChargingCloudAPIPath, "ChargeDetailRecords");
+
+            if (!DisableLogging)
+            {
+                Directory.CreateDirectory(OpenChargingCloudAPIPath);
+                //Directory.CreateDirectory(ChargingReservationsPath);
+                //Directory.CreateDirectory(ChargingSessionsPath);
+                //Directory.CreateDirectory(ChargeDetailRecordsPath);
+            }
 
             //WWCP = OpenChargingCloudAPI.AttachToHTTPAPI(HTTPServer);
 
             this.WWCPHTTPServer = new HTTPServer<RoamingNetworks, RoamingNetwork>(HTTPServer);
 
-            DebugLog     = HTTPServer.AddJSONEventSource(EventIdentification:      DebugLogId,
-                                                         URLTemplate:              this.URLPathPrefix + "/" + DebugLogId.ToString(),
-                                                         MaxNumberOfCachedEvents:  10000,
-                                                         RetryIntervall:           TimeSpan.FromSeconds(5),
-                                                         EnableLogging:            true,
-                                                         LogfilePrefix:            this.HTTPSSEsPath);
+            DebugLog     = HTTPServer.AddJSONEventSource(EventIdentification:          DebugLogId,
+                                                         URLTemplate:                  this.URLPathPrefix + "/" + DebugLogId.ToString(),
+                                                         MaxNumberOfCachedEvents:      10000,
+                                                         RetryIntervall:               TimeSpan.FromSeconds(5),
+                                                         EnableLogging:                true,
+                                                         LogfilePath:                  this.OpenChargingCloudAPIPath);
 
-            ImporterLog  = HTTPServer.AddJSONEventSource(EventIdentification:      ImporterLogId,
-                                                         URLTemplate:              this.URLPathPrefix + "/" + ImporterLogId.ToString(),
-                                                         MaxNumberOfCachedEvents:  1000,
-                                                         RetryIntervall:           TimeSpan.FromSeconds(5),
-                                                         EnableLogging:            true,
-                                                         LogfilePrefix:            this.HTTPSSEsPath);
+            ImporterLog  = HTTPServer.AddJSONEventSource(EventIdentification:          ImporterLogId,
+                                                         URLTemplate:                  this.URLPathPrefix + "/" + ImporterLogId.ToString(),
+                                                         MaxNumberOfCachedEvents:      1000,
+                                                         RetryIntervall:               TimeSpan.FromSeconds(5),
+                                                         EnableLogging:                true,
+                                                         LogfilePath:                  this.OpenChargingCloudAPIPath);
 
-
+            //RegisterNotifications().Wait();
             RegisterURLTemplates();
 
-            //if (Autostart)
-            //    Start();
+            this.HTMLTemplate = HTMLTemplate ?? GetResourceString("template.html");
+
+            DebugX.Log(nameof(OpenChargingCloudAPI) + " version '" + APIVersionHash + "' initialized...");
 
         }
 
@@ -2921,7 +2938,7 @@ namespace cloud.charging.open.API
 
         #region (protected override) GetResourceString      (ResourceName)
 
-        protected override String GetResourceString(String ResourceName)
+        protected override String? GetResourceString(String ResourceName)
 
             => GetResourceString(ResourceName,
                                  new Tuple<String, System.Reflection.Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
@@ -2943,7 +2960,7 @@ namespace cloud.charging.open.API
 
         #region (protected override) MixWithHTMLTemplate    (ResourceName)
 
-        protected override String MixWithHTMLTemplate(String ResourceName)
+        protected override String? MixWithHTMLTemplate(String ResourceName)
 
             => MixWithHTMLTemplate(ResourceName,
                                    new Tuple<String, System.Reflection.Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
@@ -2957,208 +2974,14 @@ namespace cloud.charging.open.API
         private void RegisterURLTemplates()
         {
 
-            HTTPServer.AddFilter(request => {
+            HTTPServer.AddAuth(request => {
 
-                //if ((Environment.MachineName == "QUADQUANTOR" || Environment.MachineName == "ZBOOK" ) &&
-                //    request.RemoteSocket.IPAddress.IsIPv4 &&
-                //    request.RemoteSocket.IPAddress.IsLocalhost)
-                //{
-                //    return null;
-                //}
+                #region Allow some URLs for anonymous access...
 
-                #region Allow OPTIONS requests / call pre-flight requests in Cross-origin resource sharing (CORS).
-
-                if (request.HTTPMethod == HTTPMethod.OPTIONS)
+                if (request.Path.StartsWith(URLPathPrefix + "/shared/OpenChargingCloudAPI/libs/leaflet") ||
+                    request.Path.StartsWith(URLPathPrefix + "/RNs"))
                 {
-                    return null;
-                }
-
-                #endregion
-
-                #region Got a cookie... verify it and protect /admin!
-
-                if (TryGetSecurityTokenFromCookie(request,  out SecurityToken_Id SecurityToken)       &&
-                    _HTTPCookies.TryGetValue(SecurityToken, out SecurityToken    SecurityInformation) &&
-                    Timestamp.Now < SecurityInformation.Expires)
-                {
-
-                    var isAdmin = IsAdmin(SecurityInformation.UserId);
-
-                    if ((request.Path == URLPathPrefix + "/admin") &&
-                         (!(isAdmin == Access_Levels.ReadOnly ||
-                            isAdmin == Access_Levels.ReadWrite)))
-                    {
-
-                        return new HTTPResponse.Builder(request) {
-                            HTTPStatusCode  = HTTPStatusCode.TemporaryRedirect,
-                            Location        = URLPathPrefix + "/login",
-                            Date            = Timestamp.Now,
-                            Server          = HTTPServer.DefaultServerName,
-                            CacheControl    = "private, max-age=0, no-cache",
-                            Connection      = "close"
-                        };
-
-                    }
-
-                    if ((request.Path.StartsWith(URLPathPrefix + "/admin") ||
-                         request.Path.StartsWith(URLPathPrefix + "/shared/UsersAPI/admin")) &&
-                         (!(isAdmin == Access_Levels.ReadOnly ||
-                            isAdmin == Access_Levels.ReadWrite)))
-                    {
-
-                        return new HTTPResponse.Builder(request) {
-                            HTTPStatusCode            = HTTPStatusCode.Unauthorized,
-                            Date                      = Timestamp.Now,
-                            Server                    = HTTPServer.DefaultServerName,
-                            AccessControlAllowOrigin  = "*",
-                            AccessControlMaxAge       = 3600,
-                            CacheControl              = "private, max-age=0, no-cache",
-                            Connection                = "close"
-                        };
-
-                    }
-
-                }
-
-                #endregion
-
-                #region Got HTTP Basic Authentication...
-
-                else if (request.Authorization is HTTPBasicAuthentication basicAuthentication)
-                {
-
-                    #region Find username or e-mail addresses...
-
-                    var possibleUsers = new HashSet<User>();
-                    var validUsers    = new HashSet<User>();
-
-                    if (User_Id.TryParse   (basicAuthentication.Username, out User_Id _UserId) &&
-                        _Users. TryGetValue(_UserId,                      out User    _User))
-                    {
-                        possibleUsers.Add(_User);
-                    }
-
-                    if (possibleUsers.Count == 0)
-                    {
-                        foreach (var user in _Users.Values)
-                        {
-                            if (String.Equals(basicAuthentication.Username,
-                                              user.EMail.Address.ToString(),
-                                              StringComparison.OrdinalIgnoreCase))
-                            {
-                                possibleUsers.Add(user);
-                            }
-                        }
-                    }
-
-                    if (possibleUsers.Count > 0)
-                    {
-                        foreach (var possibleUser in possibleUsers)
-                        {
-                            if (_LoginPasswords.TryGetValue(possibleUser.Id, out LoginPassword loginPassword) &&
-                                loginPassword.VerifyPassword(basicAuthentication.Password))
-                            {
-                                validUsers.Add(possibleUser);
-                            }
-                        }
-                    }
-
-                    #endregion
-
-                    #region HTTP Basic Auth is ok!
-
-                    if (validUsers.Count == 1 &&
-                        validUsers.First().AcceptedEULA.HasValue &&
-                        validUsers.First().AcceptedEULA.Value < Timestamp.Now)
-                    {
-                        return null;
-                    }
-
-                    #endregion
-
-                    //ToDo: Add some logging!
-                    //DebugX.LogT("Invalid HTTP Basic Auth: " + request.Authorization.Username);
-
-                    return new HTTPResponse.Builder(request) {
-                        HTTPStatusCode            = HTTPStatusCode.Unauthorized,
-                        Date                      = Timestamp.Now,
-                        Server                    = HTTPServer.DefaultServerName,
-                        AccessControlAllowOrigin  = "*",
-                        AccessControlMaxAge       = 3600,
-                        CacheControl              = "private, max-age=0, no-cache",
-                        Connection                = "close"
-                    };
-
-                }
-
-                #endregion
-
-                #region Got API Key...
-
-                else if (request.API_Key.HasValue)
-                {
-
-                    if (APIKeyIsValid(request.API_Key.Value))
-                        return null;
-
-                    DebugX.LogT("Invalid HTTP API Key: " + request.API_Key);
-
-                    return new HTTPResponse.Builder(request) {
-                        HTTPStatusCode            = HTTPStatusCode.Unauthorized,
-                        Date                      = Timestamp.Now,
-                        Server                    = HTTPServer.DefaultServerName,
-                        AccessControlAllowOrigin  = "*",
-                        AccessControlMaxAge       = 3600,
-                        CacheControl              = "private, max-age=0, no-cache",
-                        Connection                = "close"
-                    };
-
-                }
-
-                #endregion
-
-                #region Unknown cookie... delete it and redirect to /login/login.html, except for /login and special resources!
-
-                else
-                {
-
-                    return null;
-
-                    if (!request.Path.StartsWith(URLPathPrefix + "/messages")                 &&
-                        !request.Path.StartsWith(URLPathPrefix + "/defaults")                 &&
-                        !request.Path.StartsWith(URLPathPrefix + "/shared/UsersAPI/defaults") &&
-                        !request.Path.StartsWith(URLPathPrefix + "/shared/UsersAPI/webfonts") &&
-                        !request.Path.StartsWith(URLPathPrefix + "/shared/UsersAPI/login")    &&
-                        !request.Path.StartsWith(URLPathPrefix + "/login")                    &&
-                        !request.Path.StartsWith(URLPathPrefix + "/lostPassword")             &&
-                        !request.Path.StartsWith(URLPathPrefix + "/resetPassword")            &&
-                        !request.Path.StartsWith(URLPathPrefix + "/setPassword")              &&
-                        !request.Path.StartsWith(URLPathPrefix + "/restart")                  &&
-                        !request.Path.StartsWith(URLPathPrefix + "/stop")                     &&
-                        !request.Path.StartsWith(URLPathPrefix + "/RNs/")                     &&
-                       !(request.Path.StartsWith(URLPathPrefix + "/users/") && request.HTTPMethod.ToString() == "AUTH") &&
-                        !request.Path.StartsWith(URLPathPrefix + "/libs/leaflet"))
-                    {
-
-                        return new HTTPResponse.Builder(request) {
-                            HTTPStatusCode  = HTTPStatusCode.TemporaryRedirect,
-                            Location        = URLPathPrefix + "/login",
-                            Date            = Timestamp.Now,
-                            Server          = HTTPServer.DefaultServerName,
-
-                            // Do not delete the cookie! Otherwise users can not login multiple times, e.g. when clicking on links in e-mails.
-                            //SetCookie       = String.Concat(CookieName, "=; Expires=", Timestamp.Now.ToRfc1123(),
-                            //                                HTTPCookieDomain.IsNotNullOrEmpty()
-                            //                                    ? "; Domain=" + HTTPCookieDomain
-                            //                                    : "",
-                            //                                "; Path=", URLPathPrefix),
-
-                            CacheControl    = "private, max-age=0, no-cache",
-                            Connection      = "close"
-                        };
-
-                    }
-
+                    return Anonymous;
                 }
 
                 #endregion
@@ -3166,6 +2989,10 @@ namespace cloud.charging.open.API
                 return null;
 
             });
+
+            //HTTPServer.AddFilter(request => {
+            //    return null;
+            //});
 
             HTTPServer.Rewrite  (request => {
 
@@ -3226,6 +3053,57 @@ namespace cloud.charging.open.API
                                                HTTPRoot.Substring(0, HTTPRoot.Length - 1));
 
             #endregion
+
+
+
+            #region ~/dashboard
+
+            #region GET         ~/dashboard
+
+            // ----------------------------------------------------------------
+            // curl -v -H "Accept: text/html" http://127.0.0.1:3001/dashboard
+            // ----------------------------------------------------------------
+            HTTPServer.AddMethodCallback(Hostname,
+                                         HTTPMethod.GET,
+                                         URLPathPrefix + "dashboard",
+                                         HTTPContentType.HTML_UTF8,
+                                         HTTPDelegate: Request => {
+
+                                             #region Get HTTP user and its organizations
+
+                                             // Will return HTTP 401 Unauthorized, when the HTTP user is unknown!
+                                             if (!TryGetHTTPUser(Request,
+                                                                 out User                   HTTPUser,
+                                                                 out HashSet<Organization>  HTTPOrganizations,
+                                                                 out HTTPResponse.Builder   Response,
+                                                                 Recursive:                 true))
+                                             {
+                                                 return Task.FromResult(Response.AsImmutable);
+                                             }
+
+                                             #endregion
+
+
+                                             return Task.FromResult(
+                                                 new HTTPResponse.Builder(Request) {
+                                                     HTTPStatusCode              = HTTPStatusCode.OK,
+                                                     Server                      = HTTPServer.DefaultServerName,
+                                                     Date                        = Timestamp.Now,
+                                                     AccessControlAllowOrigin    = "*",
+                                                     AccessControlAllowMethods   = "GET",
+                                                     AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
+                                                     ContentType                 = HTTPContentType.HTML_UTF8,
+                                                     Content                     = MixWithHTMLTemplate("dashboard.dashboard2.shtml").ToUTF8Bytes(),
+                                                     Connection                  = "close",
+                                                     Vary                        = "Accept"
+                                                 }.AsImmutable);
+
+                                         }, AllowReplacement: URLReplacement.Allow);
+
+            #endregion
+
+            #endregion
+
 
 
             #region ~/RNs
@@ -10080,7 +9958,7 @@ namespace cloud.charging.open.API
 
             #region Initial checks
 
-            if (Hostname == null)
+            if (Hostname.IsNullOrEmpty)
                 throw new ArgumentNullException(nameof(Hostname), "The given HTTP hostname must not be null!");
 
             #endregion
@@ -10089,7 +9967,7 @@ namespace cloud.charging.open.API
                                              GetAllTenants(Hostname).
                                              FirstOrDefault(roamingnetwork => roamingnetwork.Id == Id);
 
-            if (ExistingRoamingNetwork == null)
+            if (ExistingRoamingNetwork is null)
             {
 
                 if (!WWCPHTTPServer.TryGetTenants(Hostname, out RoamingNetworks _RoamingNetworks))
@@ -10117,7 +9995,8 @@ namespace cloud.charging.open.API
                                                                     ChargingStationOperatorSignatureGenerator,
 
                                                                     RoamingNetworkInfos,
-                                                                    DisableNetworkSync);
+                                                                    DisableNetworkSync,
+                                                                    OpenChargingCloudAPIPath);
 
                 #region Link log events to HTTP-SSE...
 
