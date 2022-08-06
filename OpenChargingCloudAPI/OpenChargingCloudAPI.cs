@@ -2780,15 +2780,15 @@ namespace cloud.charging.open.API
                                     IEnumerable<APIKey_Id>?               RemoteAuthAPIKeys                  = null,
 
                                     Boolean?                              IsDevelopment                      = null,
-                                    IEnumerable<String>                   DevelopmentServers                 = null,
+                                    IEnumerable<String>?                  DevelopmentServers                 = null,
                                     Boolean                               SkipURLTemplates                   = false,
                                     String                                DatabaseFileName                   = DefaultOpenChargingCloudAPI_DatabaseFileName,
                                     Boolean                               DisableNotifications               = false,
                                     Boolean                               DisableLogging                     = false,
-                                    String                                LoggingPath                        = null,
+                                    String?                               LoggingPath                        = null,
                                     String                                LogfileName                        = DefaultOpenChargingCloudAPI_LogfileName,
-                                    LogfileCreatorDelegate                LogfileCreator                     = null,
-                                    DNSClient                             DNSClient                          = null)
+                                    LogfileCreatorDelegate?               LogfileCreator                     = null,
+                                    DNSClient?                            DNSClient                          = null)
 
             : base(HTTPHostname,
                    ExternalDNSName,
