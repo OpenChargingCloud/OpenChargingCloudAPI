@@ -385,9 +385,9 @@ namespace org.GraphDefined.WWCP.Net.IO.GeoJSON
                                ? new JProperty("openingTimes",      ChargingStation.OpeningTimes. ToJSON())
                                : null,
 
-                           new JProperty("accessibility",           ChargingStation.Accessibility.ToString()),
-                           new JProperty("authenticationModes",     new JArray(ChargingStation.AuthenticationModes.Select(mode   => mode.  ToString()))),
-                           new JProperty("paymentOptions",          new JArray(ChargingStation.PaymentOptions.     Select(option => option.ToString()))),
+                           new JProperty("accessibility",           ChargingStation.Accessibility.      ToString()),
+                           new JProperty("authenticationModes",     ChargingStation.AuthenticationModes.ToJSON()),
+                           new JProperty("paymentOptions",          ChargingStation.PaymentOptions.     ToJSON()),
 
                            new JProperty("EVSEs",                   new JArray(
                                ChargingStation.EVSEs.Select(evse => JSONObject.Create(
@@ -521,9 +521,9 @@ namespace org.GraphDefined.WWCP.Net.IO.GeoJSON
                                                                                                                 ExpandBrandIds:                    InfoStatus.Hidden,
                                                                                                                 ExpandDataLicenses:                InfoStatus.Hidden))),
 
-                           EVSE.ChargingStation.GeoLocation.Value.  ToJSON("geoLocation"),
-                           EVSE.ChargingStation.Address.            ToJSON("address"),
-                           EVSE.ChargingStation.AuthenticationModes.ToJSON("authenticationModes"),
+                           new JProperty("geoLocation",         EVSE.ChargingStation.GeoLocation.Value.  ToJSON()),
+                           new JProperty("address",             EVSE.ChargingStation.Address.            ToJSON()),
+                           new JProperty("authenticationModes", EVSE.ChargingStation.AuthenticationModes.ToJSON()),
 
                            EVSE.ChargingModes.Any()
                                ? new JProperty("chargingModes",  new JArray(EVSE.ChargingModes.Select(mode => mode.ToText())))
