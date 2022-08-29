@@ -380,7 +380,11 @@ namespace org.GraphDefined.WWCP.Net.IO.GeoJSON
                                ? new JProperty("brand",             ChargingStation.Brands.ToJSON())
                                : null,
                            new JProperty("address",                 ChargingStation.Address.      ToJSON()),
-                           new JProperty("openingTimes",            ChargingStation.OpeningTimes. ToJSON()),
+
+                           ChargingStation.OpeningTimes is not null
+                               ? new JProperty("openingTimes",      ChargingStation.OpeningTimes. ToJSON())
+                               : null,
+
                            new JProperty("accessibility",           ChargingStation.Accessibility.ToString()),
                            new JProperty("authenticationModes",     new JArray(ChargingStation.AuthenticationModes.Select(mode   => mode.  ToString()))),
                            new JProperty("paymentOptions",          new JArray(ChargingStation.PaymentOptions.     Select(option => option.ToString()))),
@@ -535,12 +539,16 @@ namespace org.GraphDefined.WWCP.Net.IO.GeoJSON
                            EVSE.MaxCapacity.   HasValue && EVSE.MaxCapacity.  HasValue ? new JProperty("maxCapacity",     String.Format("{0:0.00}", EVSE.MaxCapacity))    : null,
 
                            EVSE.SocketOutlets.Count > 0
-                              ? new JProperty("socketOutlets",  new JArray(EVSE.SocketOutlets.ToJSON()))
-                              : null,
+                               ? new JProperty("socketOutlets",  new JArray(EVSE.SocketOutlets.ToJSON()))
+                               : null,
 
-                           EVSE.EnergyMeterId.HasValue ? new JProperty("energyMeterId", EVSE.EnergyMeterId) : null,
+                           EVSE.EnergyMeterId.HasValue
+                               ? new JProperty("energyMeterId",  EVSE.EnergyMeterId)
+                               : null,
 
-                           EVSE.ChargingStation.OpeningTimes.ToJSON("openingTimes")
+                           EVSE.ChargingStation.OpeningTimes is not null
+                               ? new JProperty("openingTimes",   EVSE.ChargingStation.OpeningTimes.ToJSON())
+                               : null
 
                        )),
 
