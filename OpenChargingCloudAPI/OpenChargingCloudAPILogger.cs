@@ -17,9 +17,8 @@
 
 #region Usings
 
-using System;
-
 using org.GraphDefined.Vanaheimr.Hermod.HTTP;
+using org.GraphDefined.Vanaheimr.Hermod.Logging;
 
 #endregion
 
@@ -61,10 +60,10 @@ namespace cloud.charging.open.API
         /// <param name="LoggingPath">The logging path.</param>
         /// <param name="Context">A context of this API.</param>
         /// <param name="LogfileCreator">A delegate to create a log file from the given context and log file name.</param>
-        public OpenChargingCloudAPILogger(OpenChargingCloudAPI    OpenChargingCloudAPI,
-                                          String                  LoggingPath,
-                                          String                  Context         = DefaultContext,
-                                          LogfileCreatorDelegate  LogfileCreator  = null)
+        public OpenChargingCloudAPILogger(OpenChargingCloudAPI     OpenChargingCloudAPI,
+                                          String                   LoggingPath,
+                                          String                   Context         = DefaultContext,
+                                          LogfileCreatorDelegate?  LogfileCreator  = null)
 
             : this(OpenChargingCloudAPI,
                    LoggingPath,
@@ -104,26 +103,26 @@ namespace cloud.charging.open.API
         /// <param name="LogHTTPError_toHTTPSSE">A delegate to log HTTP errors to a HTTP server sent events source.</param>
         /// 
         /// <param name="LogfileCreator">A delegate to create a log file from the given context and log file name.</param>
-        public OpenChargingCloudAPILogger(OpenChargingCloudAPI        OpenChargingCloudAPI,
-                                          String                      LoggingPath,
-                                          String                      Context,
+        public OpenChargingCloudAPILogger(OpenChargingCloudAPI         OpenChargingCloudAPI,
+                                          String                       LoggingPath,
+                                          String                       Context,
 
-                                          HTTPRequestLoggerDelegate   LogHTTPRequest_toConsole,
-                                          HTTPResponseLoggerDelegate  LogHTTPResponse_toConsole,
-                                          HTTPRequestLoggerDelegate   LogHTTPRequest_toDisc,
-                                          HTTPResponseLoggerDelegate  LogHTTPResponse_toDisc,
+                                          HTTPRequestLoggerDelegate?   LogHTTPRequest_toConsole    = null,
+                                          HTTPResponseLoggerDelegate?  LogHTTPResponse_toConsole   = null,
+                                          HTTPRequestLoggerDelegate?   LogHTTPRequest_toDisc       = null,
+                                          HTTPResponseLoggerDelegate?  LogHTTPResponse_toDisc      = null,
 
-                                          HTTPRequestLoggerDelegate   LogHTTPRequest_toNetwork    = null,
-                                          HTTPResponseLoggerDelegate  LogHTTPResponse_toNetwork   = null,
-                                          HTTPRequestLoggerDelegate   LogHTTPRequest_toHTTPSSE    = null,
-                                          HTTPResponseLoggerDelegate  LogHTTPResponse_toHTTPSSE   = null,
+                                          HTTPRequestLoggerDelegate?   LogHTTPRequest_toNetwork    = null,
+                                          HTTPResponseLoggerDelegate?  LogHTTPResponse_toNetwork   = null,
+                                          HTTPRequestLoggerDelegate?   LogHTTPRequest_toHTTPSSE    = null,
+                                          HTTPResponseLoggerDelegate?  LogHTTPResponse_toHTTPSSE   = null,
 
-                                          HTTPResponseLoggerDelegate  LogHTTPError_toConsole      = null,
-                                          HTTPResponseLoggerDelegate  LogHTTPError_toDisc         = null,
-                                          HTTPResponseLoggerDelegate  LogHTTPError_toNetwork      = null,
-                                          HTTPResponseLoggerDelegate  LogHTTPError_toHTTPSSE      = null,
+                                          HTTPResponseLoggerDelegate?  LogHTTPError_toConsole      = null,
+                                          HTTPResponseLoggerDelegate?  LogHTTPError_toDisc         = null,
+                                          HTTPResponseLoggerDelegate?  LogHTTPError_toNetwork      = null,
+                                          HTTPResponseLoggerDelegate?  LogHTTPError_toHTTPSSE      = null,
 
-                                          LogfileCreatorDelegate      LogfileCreator              = null)
+                                          LogfileCreatorDelegate?      LogfileCreator              = null)
 
             : base(OpenChargingCloudAPI.HTTPServer,//.InternalHTTPServer,
                    LoggingPath,
