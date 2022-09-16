@@ -141,26 +141,29 @@ namespace org.GraphDefined.WWCP.Net.UnitTests
 
             var Pool_1  = CPO.CreateChargingPool(ChargingPool_Id.Parse(CPO.Id, "1111"),
                                                  pool => {
-                                                     pool.Address = Address.Create(Country.Austria,
-                                                                                   "07741",
-                                                                                   I18NString.Create(Languages.de, "Wien"),
-                                                                                   "Hofplatz", "17");
+                                                     pool.Address = new Address("Hofplatz",
+                                                                                "07741",
+                                                                                I18NString.Create(Languages.de, "Wien"),
+                                                                                Country.Austria,
+                                                                                "17");
                                                  });
 
             var Pool_2  = CPO.CreateChargingPool(ChargingPool_Id.Parse(CPO.Id, "2222"),
                                                  pool => {
-                                                     pool.Address = Address.Create(Country.Germany,
-                                                                                   "07749",
-                                                                                   I18NString.Create(Languages.de, "Jena"),
-                                                                                   "Biberweg", "18");
+                                                     pool.Address = new Address("Biberweg",
+                                                                                "07749",
+                                                                                I18NString.Create(Languages.de, "Jena"),
+                                                                                Country.Germany,
+                                                                                "18");
                                                  });
 
             var Pool_3  = CPO.CreateChargingPool(ChargingPool_Id.Parse(CPO.Id, "3333"),
                                                  pool => {
-                                                     pool.Address = Address.Create(Country.Belgium,
-                                                                                   "07758",
-                                                                                   I18NString.Create(Languages.bg, "Brussels"),
-                                                                                   "Avenue", "19");
+                                                     pool.Address = new Address("Avenue",
+                                                                                "07758",
+                                                                                I18NString.Create(Languages.bg, "Brussels"),
+                                                                                Country.Belgium,
+                                                                                "19");
                                                  });
 
 
