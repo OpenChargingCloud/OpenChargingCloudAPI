@@ -43,9 +43,9 @@ using org.GraphDefined.Vanaheimr.Hermod.DNS;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets.TCP;
 
-using org.GraphDefined.WWCP;
-using org.GraphDefined.WWCP.Net.IO.JSON;
-using org.GraphDefined.WWCP.Networking;
+using cloud.charging.open.protocols.WWCP;
+using cloud.charging.open.protocols.WWCP.Net.IO.JSON;
+using cloud.charging.open.protocols.WWCP.Networking;
 using org.GraphDefined.Vanaheimr.Hermod.Logging;
 
 #endregion

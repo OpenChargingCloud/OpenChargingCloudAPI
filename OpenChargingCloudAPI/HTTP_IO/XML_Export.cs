@@ -24,13 +24,13 @@ using System.Xml.Linq;
 using org.GraphDefined.Vanaheimr.Illias;
 using org.GraphDefined.Vanaheimr.Aegir;
 
-using org.GraphDefined.WWCP;
-using org.GraphDefined.WWCP.Net;
+using cloud.charging.open.protocols.WWCP;
+using cloud.charging.open.protocols.WWCP.Net;
 using cloud.charging.open.API;
 
 #endregion
 
-namespace org.GraphDefined.WWCP.Net.IO.XML
+namespace cloud.charging.open.protocols.WWCP.Net.IO.XML
 {
 
     public static class XMLExport

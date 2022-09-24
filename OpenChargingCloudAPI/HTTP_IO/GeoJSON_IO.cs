@@ -23,11 +23,11 @@ using org.GraphDefined.Vanaheimr.Hermod;
 using org.GraphDefined.Vanaheimr.Illias;
 using org.GraphDefined.Vanaheimr.Aegir;
 
-using org.GraphDefined.WWCP.Net.IO.JSON;
+using cloud.charging.open.protocols.WWCP.Net.IO.JSON;
 
 #endregion
 
-namespace org.GraphDefined.WWCP.Net.IO.GeoJSON
+namespace cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON
 {
 
     /// <summary>

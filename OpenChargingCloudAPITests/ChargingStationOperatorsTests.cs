@@ -30,7 +30,7 @@ using org.GraphDefined.Vanaheimr.Hermod.HTTP;
 
 #endregion
 
-namespace org.GraphDefined.WWCP.Net.UnitTests
+namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 {
 
     /// <summary>

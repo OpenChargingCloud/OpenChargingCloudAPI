@@ -31,13 +31,13 @@ using org.GraphDefined.Vanaheimr.Hermod;
 using org.GraphDefined.Vanaheimr.Hermod.DNS;
 using org.GraphDefined.Vanaheimr.Hermod.HTTP;
 
-using org.GraphDefined.WWCP.Net;
-using org.GraphDefined.WWCP.Net.IO.JSON;
+using cloud.charging.open.protocols.WWCP.Net;
+using cloud.charging.open.protocols.WWCP.Net.IO.JSON;
 using cloud.charging.open.API;
 
 #endregion
 
-namespace org.GraphDefined.WWCP.Net.UnitTests
+namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 {
 
     /// <summary>

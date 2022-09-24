@@ -24,12 +24,12 @@ using System.Collections.Generic;
 using org.GraphDefined.Vanaheimr.Illias;
 using org.GraphDefined.Vanaheimr.Aegir;
 
-using org.GraphDefined.WWCP;
-using org.GraphDefined.WWCP.Net;
+using cloud.charging.open.protocols.WWCP;
+using cloud.charging.open.protocols.WWCP.Net;
 
 #endregion
 
-namespace org.GraphDefined.WWCP.Net.IO.RDF
+namespace cloud.charging.open.protocols.WWCP.Net.IO.RDF
 {
 
 
