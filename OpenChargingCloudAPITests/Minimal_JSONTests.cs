@@ -70,7 +70,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             var RN      = OpenChargingCloudAPI.CreateNewRoamingNetwork(Id:   RoamingNetwork_Id.Parse("TEST_RN1"),
                                                                        Name: I18NString.Create(Languages.de,  "Test Roaming Netz 1").
                                                                                            Add(Languages.en,  "Test roaming network 1"));
-
+             
             var CPO     = RN.CreateChargingStationOperator(Id:              ChargingStationOperator_Id.Parse("DE*GEF"),
                                                            Name:            I18NString.Create(Languages.de, "GraphDefined"),
                                                            Description:     I18NString.Create(Languages.de, "GraphDefined CSO"),
@@ -140,7 +140,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
 
             var Pool_1  = CPO.CreateChargingPool(ChargingPool_Id.Parse(CPO.Id, "1111"),
-                                                 pool => {
+                                                 Configurator: pool => {
                                                      pool.Address = new Address("Hofplatz",
                                                                                 "07741",
                                                                                 I18NString.Create(Languages.de, "Wien"),
@@ -149,7 +149,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                                                  });
 
             var Pool_2  = CPO.CreateChargingPool(ChargingPool_Id.Parse(CPO.Id, "2222"),
-                                                 pool => {
+                                                 Configurator: pool => {
                                                      pool.Address = new Address("Biberweg",
                                                                                 "07749",
                                                                                 I18NString.Create(Languages.de, "Jena"),
@@ -158,7 +158,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                                                  });
 
             var Pool_3  = CPO.CreateChargingPool(ChargingPool_Id.Parse(CPO.Id, "3333"),
-                                                 pool => {
+                                                 Configurator: pool => {
                                                      pool.Address = new Address("Avenue",
                                                                                 "07758",
                                                                                 I18NString.Create(Languages.bg, "Brussels"),
