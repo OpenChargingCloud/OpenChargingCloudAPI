@@ -71,12 +71,12 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                                                                        Name: I18NString.Create(Languages.de,  "Test Roaming Netz 1").
                                                                                            Add(Languages.en,  "Test roaming network 1"));
 
-            var CPO     = RN.CreateChargingStationOperator(ChargingStationOperatorId:  ChargingStationOperator_Id.Parse("DE*GEF"),
-                                                   Name:            I18NString.Create(Languages.de, "GraphDefined"),
-                                                   Description:     I18NString.Create(Languages.de, "GraphDefined EVSE Operator"),
-                                                   Configurator:    evseoperator => {
-                                                                        evseoperator.AddDataLicense(DataLicense.OpenDatabaseLicense);
-                                                                    });
+            var CPO     = RN.CreateChargingStationOperator(Id:              ChargingStationOperator_Id.Parse("DE*GEF"),
+                                                           Name:            I18NString.Create(Languages.de, "GraphDefined"),
+                                                           Description:     I18NString.Create(Languages.de, "GraphDefined CSO"),
+                                                           Configurator:    evseoperator => {
+                                                                                evseoperator.AddDataLicense(DataLicense.OpenDatabaseLicense);
+                                                                            });
 
             #region Verify GET /RNs/TEST_RN1/ChargingPools
 
