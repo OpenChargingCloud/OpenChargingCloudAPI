@@ -8190,7 +8190,7 @@ namespace cloud.charging.open.API
                                                      var historysize  = Request.QueryString.GetUInt64("historysize", 1);
 
                                                      //ToDo: Getting the expected total count might be very expensive!
-                                                     var _ExpectedCount = _RoamingNetwork.ChargingStationOperatorAdminStatus.ULongCount();
+                                                     var _ExpectedCount = _RoamingNetwork.ChargingStationOperatorAdminStatus().ULongCount();
 
                                                      return Task.FromResult(
                                                          new HTTPResponse.Builder(Request) {
@@ -8202,7 +8202,7 @@ namespace cloud.charging.open.API
                                                              AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
                                                              ETag                          = "1",
                                                              ContentType                   = HTTPContentType.JSON_UTF8,
-                                                             Content                       = _RoamingNetwork.ChargingStationOperatorAdminStatus.
+                                                             Content                       = _RoamingNetwork.ChargingStationOperatorAdminStatus().
                                                                                                  OrderBy(kvp => kvp.Key).
                                                                                                  ToJSON (skip,
                                                                                                          take,
@@ -8243,7 +8243,7 @@ namespace cloud.charging.open.API
                                                      var historysize  = Request.QueryString.GetUInt64("historysize", 1);
 
                                                      //ToDo: Getting the expected total count might be very expensive!
-                                                     var _ExpectedCount = _RoamingNetwork.ChargingStationOperatorStatus.ULongCount();
+                                                     var _ExpectedCount = _RoamingNetwork.ChargingStationOperatorStatus().ULongCount();
 
                                                      return Task.FromResult(
                                                          new HTTPResponse.Builder(Request) {
@@ -8255,7 +8255,7 @@ namespace cloud.charging.open.API
                                                              AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
                                                              ETag                          = "1",
                                                              ContentType                   = HTTPContentType.JSON_UTF8,
-                                                             Content                       = _RoamingNetwork.ChargingStationOperatorStatus.
+                                                             Content                       = _RoamingNetwork.ChargingStationOperatorStatus().
                                                                                                  OrderBy(kvp => kvp.Key).
                                                                                                  ToJSON (skip,
                                                                                                          take,
@@ -9302,9 +9302,6 @@ namespace cloud.charging.open.API
                                                                                                   ToJSON(skip,
                                                                                                          take,
                                                                                                          false,
-                                                                                                         expandChargingPoolIds,
-                                                                                                         expandChargingStationIds,
-                                                                                                         expandEVSEIds,
                                                                                                          expandDataLicenseIds).
                                                                                                   ToUTF8Bytes(),
                                                              X_ExpectedTotalNumberOfItems   = _ExpectedCount,
@@ -9353,9 +9350,6 @@ namespace cloud.charging.open.API
                                                      var expandDataLicenseIds       = expand. ContainsIgnoreCase("operators") ? InfoStatus.Expanded : include.Contains("operators") ? InfoStatus.ShowIdOnly : InfoStatus.Hidden;
 
                                                      var BrandJSON                  = Brand.ToJSON(false,
-                                                                                                   expandChargingPoolIds,
-                                                                                                   expandChargingStationIds,
-                                                                                                   expandEVSEIds,
                                                                                                    expandDataLicenseIds);
 
                                                      #region Include charging pools
@@ -9737,7 +9731,7 @@ namespace cloud.charging.open.API
                                                      var historysize  = Request.QueryString.GetUInt64("historysize", 1);
 
                                                      //ToDo: Getting the expected total count might be very expensive!
-                                                     var _ExpectedCount = _RoamingNetwork.ChargingStationOperatorAdminStatus.ULongCount();
+                                                     var _ExpectedCount = _RoamingNetwork.ChargingStationOperatorAdminStatus().ULongCount();
 
                                                      return Task.FromResult(
                                                          new HTTPResponse.Builder(Request) {
@@ -9749,7 +9743,7 @@ namespace cloud.charging.open.API
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
                                                              ETag                         = "1",
                                                              ContentType                  = HTTPContentType.JSON_UTF8,
-                                                             Content                      = _RoamingNetwork.ChargingStationOperatorAdminStatus.
+                                                             Content                      = _RoamingNetwork.ChargingStationOperatorAdminStatus().
                                                                                                 OrderBy(kvp => kvp.Key).
                                                                                                 ToJSON (skip,
                                                                                                         take,
@@ -9785,7 +9779,7 @@ namespace cloud.charging.open.API
                                                      var historysize  = Request.QueryString.GetUInt64("historysize", 1);
 
                                                      //ToDo: Getting the expected total count might be very expensive!
-                                                     var _ExpectedCount = _RoamingNetwork.ChargingStationOperatorStatus.ULongCount();
+                                                     var _ExpectedCount = _RoamingNetwork.ChargingStationOperatorStatus().ULongCount();
 
                                                      return Task.FromResult(
                                                          new HTTPResponse.Builder(Request) {
@@ -9797,7 +9791,7 @@ namespace cloud.charging.open.API
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
                                                              ETag                         = "1",
                                                              ContentType                  = HTTPContentType.JSON_UTF8,
-                                                             Content                      = _RoamingNetwork.ChargingStationOperatorStatus.
+                                                             Content                      = _RoamingNetwork.ChargingStationOperatorStatus().
                                                                                                 OrderBy(kvp => kvp.Key).
                                                                                                 ToJSON (skip,
                                                                                                         take,
