@@ -3722,8 +3722,8 @@ namespace cloud.charging.open.API
 
                                                      #region Parse optional JSON
 
-                                                     String OldValue  = null;
-                                                     String NewValue  = null;
+                                                     String? OldValue  = null;
+                                                     String? NewValue  = null;
 
                                                      var DescriptionI18N = I18NString.Empty;
 
@@ -3765,7 +3765,7 @@ namespace cloud.charging.open.API
                                                      #endregion
 
 
-                                                     var result = _RoamingNetwork.Set(PropertyKey,
+                                                     var result = _RoamingNetwork.SetInternalData(PropertyKey,
                                                                                                   NewValue,
                                                                                                   OldValue);
 
