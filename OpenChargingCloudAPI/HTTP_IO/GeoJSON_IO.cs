@@ -463,7 +463,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON
                            new JProperty("@context",        "https://open.charging.cloud/contexts/wwcp+geojson/EVSE"),
 
                            EVSE.Description.IsNeitherNullNorEmpty()
-                             ? EVSE.Description.ToJSON("description")
+                             ? new JProperty("description", EVSE.Description.ToJSON())
                              : null,
 
                            EVSE.Brands.SafeAny()
@@ -472,7 +472,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON
                                      () => new JProperty("brand",        EVSE.Brands.ToJSON()))
                                : null,
 
-                           EVSE.DataSource.ToJSON("dataSource"),
+                           new JProperty("dataSource", EVSE.DataSource),
 
                            ExpandDataLicenses.Switch(
                                () => new JProperty("dataLicenseIds",     new JArray(EVSE.DataLicenses.SafeSelect(license => license.Id.ToString()))),
@@ -537,8 +537,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON
                                ? new JProperty("socketOutlets",  new JArray(EVSE.SocketOutlets.ToJSON()))
                                : null,
 
-                           EVSE.EnergyMeterId.HasValue
-                               ? new JProperty("energyMeterId",  EVSE.EnergyMeterId)
+                           EVSE.EnergyMeter is not null
+                               ? new JProperty("energyMeterId",  EVSE.EnergyMeter.Id)
                                : null,
 
                            EVSE.ChargingStation.OpeningTimes is not null
