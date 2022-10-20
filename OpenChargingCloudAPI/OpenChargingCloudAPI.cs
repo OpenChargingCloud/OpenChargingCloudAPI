@@ -3266,8 +3266,8 @@ namespace cloud.charging.open.API
                                                      var AllRoamingNetworks  = GetAllRoamingNetworks(Request.Host);
                                                      var skip                = Request.QueryString.GetUInt64("skip");
                                                      var take                = Request.QueryString.GetUInt64("take");
-                                                     var sinceFilter         = Request.QueryString.CreateDateTimeFilter<RoamingNetworkAdminStatus>("since", (status, timestamp) => status.Status.Timestamp >= timestamp);
-                                                     var matchFilter         = Request.QueryString.CreateStringFilter  <RoamingNetworkAdminStatus>("match", (status, pattern)   => status.Id.ToString().Contains(pattern));
+                                                     var sinceFilter         = Request.QueryString.CreateDateTimeFilter<RoamingNetworkAdminStatus>("since", (adminStatus, timestamp) => adminStatus.Timestamp >= timestamp);
+                                                     var matchFilter         = Request.QueryString.CreateStringFilter  <RoamingNetworkAdminStatus>("match", (adminStatus, pattern)   => adminStatus.Id.ToString().Contains(pattern));
 
                                                      //ToDo: Getting the expected total count might be very expensive!
                                                      var ExpectedCount       = AllRoamingNetworks.ULongCount();
@@ -3310,7 +3310,7 @@ namespace cloud.charging.open.API
                                                      var AllRoamingNetworks  = GetAllRoamingNetworks(Request.Host);
                                                      var skip                = Request.QueryString.GetUInt64("skip");
                                                      var take                = Request.QueryString.GetUInt64("take");
-                                                     var sinceFilter         = Request.QueryString.CreateDateTimeFilter<RoamingNetworkStatus>("since", (status, timestamp) => status.Status.Timestamp >= timestamp);
+                                                     var sinceFilter         = Request.QueryString.CreateDateTimeFilter<RoamingNetworkStatus>("since", (status, timestamp) => status.Timestamp >= timestamp);
                                                      var matchFilter         = Request.QueryString.CreateStringFilter  <RoamingNetworkStatus>("match", (status, pattern)   => status.Id.ToString().Contains(pattern));
 
                                                      //ToDo: Getting the expected total count might be very expensive!
