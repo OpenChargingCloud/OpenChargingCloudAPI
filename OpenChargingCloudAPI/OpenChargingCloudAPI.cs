@@ -842,7 +842,7 @@ namespace cloud.charging.open.API
         public static Boolean ParseRoamingNetworkAndEMobilityProvider(this HTTPRequest          HTTPRequest,
                                                                       OpenChargingCloudAPI      OpenChargingCloudAPI,
                                                                       out RoamingNetwork        RoamingNetwork,
-                                                                      out eMobilityProvider     EMobilityProvider,
+                                                                      out EMobilityProvider     EMobilityProvider,
                                                                       out HTTPResponse.Builder  HTTPResponse)
         {
 
@@ -879,7 +879,7 @@ namespace cloud.charging.open.API
                 return false;
 
 
-            if (!eMobilityProvider_Id.TryParse(HTTPRequest.ParsedURLParameters[1], out eMobilityProvider_Id EMobilityProviderId))
+            if (!EMobilityProvider_Id.TryParse(HTTPRequest.ParsedURLParameters[1], out EMobilityProvider_Id EMobilityProviderId))
             {
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
@@ -5858,7 +5858,7 @@ namespace cloud.charging.open.API
                                                      #region Define (optional) parameters
 
                                                      ChargingReservation_Id?  ReservationId       = null;
-                                                     eMobilityProvider_Id?    ProviderId          = null;
+                                                     EMobilityProvider_Id?    ProviderId          = null;
                                                      eMobilityAccount_Id      eMAId               = default(eMobilityAccount_Id);
                                                      DateTime?                StartTime           = null;
                                                      TimeSpan?                Duration            = null;
@@ -5907,7 +5907,7 @@ namespace cloud.charging.open.API
                                                          if (JSON.ParseOptionalStruct2("ProviderId",
                                                                                       "ProviderId",
                                                                                       HTTPServer.DefaultServerName,
-                                                                                      eMobilityProvider_Id.TryParse,
+                                                                                      EMobilityProvider_Id.TryParse,
                                                                                       out ProviderId,
                                                                                       Request,
                                                                                       out _HTTPResponse))
@@ -6671,7 +6671,7 @@ namespace cloud.charging.open.API
                                                      ChargingProduct_Id?      ChargingProductId   = null;
                                                      ChargingReservation_Id?  ReservationId       = null;
                                                      ChargingSession_Id?      SessionId           = null;
-                                                     eMobilityProvider_Id?    ProviderId          = null;
+                                                     EMobilityProvider_Id?    ProviderId          = null;
                                                      eMobilityAccount_Id      eMAId               = default;
 
                                                      if (Request.TryParseJObjectRequestBody(out JObject JSON, out _HTTPResponse))
@@ -6736,7 +6736,7 @@ namespace cloud.charging.open.API
                                                          if (!JSON.ParseOptionalStruct2("ProviderId",
                                                                                        "EV service provider identification",
                                                                                        HTTPServer.DefaultServerName,
-                                                                                       eMobilityProvider_Id.TryParse,
+                                                                                       EMobilityProvider_Id.TryParse,
                                                                                        out ProviderId,
                                                                                        Request,
                                                                                        out _HTTPResponse))
@@ -6863,7 +6863,7 @@ namespace cloud.charging.open.API
                                                      #region Parse JSON
 
                                                      ChargingSession_Id     SessionId   = default;
-                                                     eMobilityProvider_Id?  ProviderId  = null;
+                                                     EMobilityProvider_Id?  ProviderId  = null;
                                                      eMobilityAccount_Id?   eMAId       = null;
 
                                                      if (!Request.TryParseJObjectRequestBody(out JObject JSON,
@@ -6894,7 +6894,7 @@ namespace cloud.charging.open.API
                                                          if (!JSON.ParseOptionalStruct2("ProviderId",
                                                                                         "EV service provider identification",
                                                                                         HTTPServer.DefaultServerName,
-                                                                                        eMobilityProvider_Id.TryParse,
+                                                                                        EMobilityProvider_Id.TryParse,
                                                                                         out ProviderId,
                                                                                         Request,
                                                                                         out _HTTPResponse))
@@ -9712,7 +9712,7 @@ namespace cloud.charging.open.API
                                                      //var expandBrands            = expand.ContainsIgnoreCase("brands");
 
                                                      //ToDo: Getting the expected total count might be very expensive!
-                                                     var _ExpectedCount = _RoamingNetwork.eMobilityProviders.ULongCount();
+                                                     var _ExpectedCount = _RoamingNetwork.EMobilityProviders.ULongCount();
 
                                                      return Task.FromResult(
                                                          new HTTPResponse.Builder(Request) {
@@ -9724,7 +9724,7 @@ namespace cloud.charging.open.API
                                                              AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
                                                              ETag                         = "1",
                                                              ContentType                  = HTTPContentType.JSON_UTF8,
-                                                             Content                      = _RoamingNetwork.eMobilityProviders.
+                                                             Content                      = _RoamingNetwork.EMobilityProviders.
                                                                                                 ToJSON(skip,
                                                                                                        take,
                                                                                                        false).
@@ -9883,7 +9883,7 @@ namespace cloud.charging.open.API
 
                                                      if (!Request.ParseRoamingNetworkAndEMobilityProvider(this,
                                                                                                           out RoamingNetwork        _RoamingNetwork,
-                                                                                                          out eMobilityProvider     _eMobilityProvider,
+                                                                                                          out EMobilityProvider     _eMobilityProvider,
                                                                                                           out HTTPResponse.Builder  _HTTPResponse))
                                                      {
                                                          return Task.FromResult(_HTTPResponse.AsImmutable);
