@@ -191,10 +191,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                              ETag                         = "1",
                                                              ContentType                  = HTTPContentType.JSON_UTF8,
                                                              Content                      = _RoamingNetwork.ChargingStationOperatorAdminStatus().
-                                                                                                OrderBy(kvp => kvp.Key).
-                                                                                                ToJSON (skip,
-                                                                                                        take,
-                                                                                                        historysize).
+                                                                                                OrderBy(status => status.Id).
+                                                                                                ToJSON (skip, take).
                                                                                                 ToUTF8Bytes(),
                                                              X_ExpectedTotalNumberOfItems  = _ExpectedCount
                                                          }.AsImmutable);
@@ -226,7 +224,6 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
 
                                                      var skip         = Request.QueryString.GetUInt64("skip");
                                                      var take         = Request.QueryString.GetUInt64("take");
-                                                     var historysize  = Request.QueryString.GetUInt64("historysize", 1);
 
                                                      //ToDo: Getting the expected total count might be very expensive!
                                                      var _ExpectedCount = _RoamingNetwork.ChargingStationOperatorStatus().ULongCount();
@@ -242,10 +239,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                              ETag                         = "1",
                                                              ContentType                  = HTTPContentType.JSON_UTF8,
                                                              Content                      = _RoamingNetwork.ChargingStationOperatorStatus().
-                                                                                                OrderBy(kvp => kvp.Key).
-                                                                                                ToJSON (skip,
-                                                                                                        take,
-                                                                                                        historysize).
+                                                                                                OrderBy(status => status.Id).
+                                                                                                ToJSON (skip, take).
                                                                                                 ToUTF8Bytes(),
                                                              X_ExpectedTotalNumberOfItems  = _ExpectedCount
                                                          }.AsImmutable);

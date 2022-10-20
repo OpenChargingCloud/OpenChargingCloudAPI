@@ -191,10 +191,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                              ETag                         = "1",
                                                              ContentType                  = HTTPContentType.JSON_UTF8,
                                                              Content                      = _RoamingNetwork.ChargingStationOperatorAdminStatus().
-                                                                                                OrderBy(kvp => kvp.Key).
-                                                                                                ToJSON (skip,
-                                                                                                        take,
-                                                                                                        historysize).
+                                                                                                OrderBy(status => status.Id).
+                                                                                                ToJSON (skip, take).
                                                                                                 ToUTF8Bytes(),
                                                              X_ExpectedTotalNumberOfItems  = _ExpectedCount
                                                          }.AsImmutable);
@@ -242,10 +240,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                              ETag                         = "1",
                                                              ContentType                  = HTTPContentType.JSON_UTF8,
                                                              Content                      = _RoamingNetwork.ChargingStationOperatorStatus().
-                                                                                                OrderBy(kvp => kvp.Key).
-                                                                                                ToJSON (skip,
-                                                                                                        take,
-                                                                                                        historysize).
+                                                                                                OrderBy(status => status.Id).
+                                                                                                ToJSON (skip, take).
                                                                                                 ToUTF8Bytes(),
                                                              X_ExpectedTotalNumberOfItems  = _ExpectedCount
                                                          }.AsImmutable);
