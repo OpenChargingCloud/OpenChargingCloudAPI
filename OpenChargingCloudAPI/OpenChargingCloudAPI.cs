@@ -5828,23 +5828,24 @@ namespace cloud.charging.open.API
 
                                                      #region Define (optional) parameters
 
-                                                     ChargingReservation_Id?  ReservationId       = null;
-                                                     EMobilityProvider_Id?    ProviderId          = null;
-                                                     eMobilityAccount_Id      eMAId               = default(eMobilityAccount_Id);
-                                                     DateTime?                StartTime           = null;
-                                                     TimeSpan?                Duration            = null;
+                                                     ChargingReservation_Id?  ReservationId         = null;
+                                                     ChargingReservation_Id?  LinkedReservationId   = null;
+                                                     EMobilityProvider_Id?    ProviderId            = null;
+                                                     eMobilityAccount_Id      eMAId                 = default;
+                                                     DateTime?                StartTime             = null;
+                                                     TimeSpan?                Duration              = null;
 
                                                      // IntendedCharging
-                                                     ChargingProduct_Id?      ChargingProductId   = null;
-                                                     DateTime?                ChargingStartTime   = null;
-                                                     TimeSpan?                CharingDuration     = null;
-                                                     PlugTypes?               Plug                = null;
-                                                     var                      Consumption         = 0U;
+                                                     ChargingProduct_Id?      ChargingProductId     = null;
+                                                     DateTime?                ChargingStartTime     = null;
+                                                     TimeSpan?                CharingDuration       = null;
+                                                     PlugTypes?               Plug                  = null;
+                                                     var                      Consumption           = 0U;
 
                                                      // AuthorizedIds
-                                                     var                      AuthTokens          = new List<Auth_Token>();
-                                                     var                      eMAIds              = new List<eMobilityAccount_Id>();
-                                                     var                      PINs                = new List<UInt32>();
+                                                     var                      AuthTokens            = new List<Auth_Token>();
+                                                     var                      eMAIds                = new List<eMobilityAccount_Id>();
+                                                     var                      PINs                  = new List<UInt32>();
 
                                                      #endregion
 
@@ -5873,15 +5874,33 @@ namespace cloud.charging.open.API
 
                                                          #endregion
 
+                                                         #region Check LinkedReservationId        [optional]
+
+                                                         if (JSON.ParseOptionalStruct2("linkedReservationId",
+                                                                                       "linked reservation identification",
+                                                                                       HTTPServer.DefaultServerName,
+                                                                                       ChargingReservation_Id.TryParse,
+                                                                                       out LinkedReservationId,
+                                                                                       Request,
+                                                                                       out httpResponse))
+                                                         {
+
+                                                             if (httpResponse != null)
+                                                                 return httpResponse;
+
+                                                         }
+
+                                                         #endregion
+
                                                          #region Check ProviderId           [optional]
 
                                                          if (JSON.ParseOptionalStruct2("ProviderId",
-                                                                                      "ProviderId",
-                                                                                      HTTPServer.DefaultServerName,
-                                                                                      EMobilityProvider_Id.TryParse,
-                                                                                      out ProviderId,
-                                                                                      Request,
-                                                                                      out httpResponse))
+                                                                                       "ProviderId",
+                                                                                       HTTPServer.DefaultServerName,
+                                                                                       EMobilityProvider_Id.TryParse,
+                                                                                       out ProviderId,
+                                                                                       Request,
+                                                                                       out httpResponse))
                                                          {
 
                                                              if (httpResponse != null)
@@ -6198,6 +6217,7 @@ namespace cloud.charging.open.API
                                                                                     StartTime,
                                                                                     Duration,
                                                                                     ReservationId,
+                                                                                    LinkedReservationId,
                                                                                     ProviderId,
                                                                                     RemoteAuthentication.FromRemoteIdentification(eMAId),
                                                                                     ChargingProductId.HasValue
@@ -10299,7 +10319,8 @@ namespace cloud.charging.open.API
                                                              EventTrackingId,
                                                              RoamingNetworkId2,
                                                              ReservationId,
-                                                             EVSEId,
+                                                             LinkedReservationId,
+                                                             ChargingLocation,
                                                              StartTime,
                                                              Duration,
                                                              ProviderId,
@@ -10313,15 +10334,18 @@ namespace cloud.charging.open.API
                     => await DebugLog.SubmitEvent("OnReserveRequest",
                                                   JSONObject.Create(
                                                       new JProperty("Timestamp",                 Timestamp.ToIso8601()),
-                                                      EventTrackingId != null
+                                                      EventTrackingId is not null
                                                          ? new JProperty("EventTrackingId",      EventTrackingId.ToString())
                                                          : null,
                                                       new JProperty("RoamingNetwork",            Id.ToString()),
-                                                      ReservationId != null
+                                                      ReservationId.HasValue
                                                          ? new JProperty("ReservationId",        ReservationId.ToString())
                                                          : null,
-                                                      EVSEId     != null
-                                                          ? new JProperty("EVSEId",              EVSEId.ToString())
+                                                      LinkedReservationId.HasValue
+                                                         ? new JProperty("LinkedReservationId",  LinkedReservationId.ToString())
+                                                         : null,
+                                                      ChargingLocation is not null
+                                                          ? new JProperty("ChargingLocation",    ChargingLocation.ToString())
                                                           : null,
                                                       StartTime.HasValue
                                                           ? new JProperty("StartTime",           StartTime.Value.ToIso8601())
@@ -10329,7 +10353,7 @@ namespace cloud.charging.open.API
                                                       Duration.HasValue
                                                           ? new JProperty("Duration",            Duration.Value.TotalSeconds.ToString())
                                                           : null,
-                                                      ProviderId != null
+                                                      ProviderId.HasValue
                                                           ? new JProperty("ProviderId",          ProviderId.ToString())
                                                           : null,
                                                       eMAId != null
@@ -10375,7 +10399,8 @@ namespace cloud.charging.open.API
                                                               EventTrackingId,
                                                               RoamingNetworkId2,
                                                               ReservationId,
-                                                              EVSEId,
+                                                              LinkedReservationId,
+                                                              ChargingLocation,
                                                               StartTime,
                                                               Duration,
                                                               ProviderId,
@@ -10391,15 +10416,18 @@ namespace cloud.charging.open.API
                     => await DebugLog.SubmitEvent("OnReserveResponse",
                                                   JSONObject.Create(
                                                       new JProperty("Timestamp",                 Timestamp.ToIso8601()),
-                                                        EventTrackingId != null
+                                                        EventTrackingId is not null
                                                            ? new JProperty("EventTrackingId",      EventTrackingId.ToString())
                                                            : null,
                                                         new JProperty("RoamingNetwork",            Id.ToString()),
-                                                        ReservationId != null
+                                                        ReservationId.HasValue
                                                            ? new JProperty("ReservationId",        ReservationId.ToString())
                                                            : null,
-                                                        EVSEId     != null
-                                                            ? new JProperty("EVSEId",              EVSEId.ToString())
+                                                        LinkedReservationId.HasValue
+                                                           ? new JProperty("LinkedReservationId",  LinkedReservationId.ToString())
+                                                           : null,
+                                                        ChargingLocation is not null
+                                                            ? new JProperty("ChargingLocation",    ChargingLocation.ToString())
                                                             : null,
                                                         StartTime.HasValue
                                                             ? new JProperty("StartTime",           StartTime.Value.ToIso8601())
