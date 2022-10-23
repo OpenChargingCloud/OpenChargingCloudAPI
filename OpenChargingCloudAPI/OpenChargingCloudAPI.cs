@@ -469,7 +469,7 @@ namespace cloud.charging.open.API
         public static Boolean ParseRoamingNetworkAndEVSE(this HTTPRequest          HTTPRequest,
                                                          OpenChargingCloudAPI      OpenChargingCloudAPI,
                                                          out RoamingNetwork        RoamingNetwork,
-                                                         out EVSE                  EVSE,
+                                                         out IEVSE                 EVSE,
                                                          out HTTPResponse.Builder  HTTPResponse)
         {
 
@@ -1346,7 +1346,7 @@ namespace cloud.charging.open.API
                                                                                           out RoamingNetwork        RoamingNetwork,
                                                                                           out ChargingPool          ChargingPool,
                                                                                           out ChargingStation       ChargingStation,
-                                                                                          out EVSE                  EVSE,
+                                                                                          out IEVSE                 EVSE,
                                                                                           out HTTPResponse.Builder  HTTPResponse)
         {
 
@@ -4395,11 +4395,11 @@ namespace cloud.charging.open.API
                                                      #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetworkAndChargingPoolAndChargingStationAndEVSE(this,
-                                                                                                                              out RoamingNetwork        _RoamingNetwork,
-                                                                                                                              out ChargingPool          _ChargingPool,
-                                                                                                                              out ChargingStation       _ChargingStation,
-                                                                                                                              out EVSE                  _EVSE,
-                                                                                                                              out HTTPResponse.Builder  _HTTPResponse))
+                                                                                                                              out var _RoamingNetwork,
+                                                                                                                              out var _ChargingPool,
+                                                                                                                              out var _ChargingStation,
+                                                                                                                              out var _EVSE,
+                                                                                                                              out var _HTTPResponse))
                                                      {
                                                          return Task.FromResult(_HTTPResponse.AsImmutable);
                                                      }
@@ -4795,7 +4795,7 @@ namespace cloud.charging.open.API
 
                                              var skip           = Request.QueryString.GetUInt64("skip");
                                              var take           = Request.QueryString.GetUInt64("take");
-                                             var sinceFilter    = Request.QueryString.CreateDateTimeFilter<ChargingStationAdminStatus>("since", (status, timestamp) => status.Status.Timestamp >= timestamp);
+                                             var sinceFilter    = Request.QueryString.CreateDateTimeFilter<ChargingStationAdminStatus>("since", (status, timestamp) => status.Timestamp >= timestamp);
                                              var matchFilter    = Request.QueryString.CreateStringFilter  <ChargingStationAdminStatus>("match", (status, pattern)   => status.Id.ToString().Contains(pattern));
 
                                              return Task.FromResult(
@@ -4840,7 +4840,7 @@ namespace cloud.charging.open.API
 
                                              var skip           = Request.QueryString.GetUInt64                         ("skip");
                                              var take           = Request.QueryString.GetUInt64                         ("take");
-                                             var sinceFilter    = Request.QueryString.CreateDateTimeFilter<ChargingStationStatus>("since", (status, timestamp) => status.Status.Timestamp >= timestamp);
+                                             var sinceFilter    = Request.QueryString.CreateDateTimeFilter<ChargingStationStatus>("since", (status, timestamp) => status.Timestamp >= timestamp);
                                              var matchFilter    = Request.QueryString.CreateStringFilter  <ChargingStationStatus>("match", (status, pattern)   => status.Id.ToString().Contains(pattern));
 
                                              return Task.FromResult(
@@ -5626,11 +5626,11 @@ namespace cloud.charging.open.API
                                                      #region Check RoamingNetworkId and EVSEId URI parameters
 
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork        _RoamingNetwork,
-                                                                                             out EVSE                  _EVSE,
-                                                                                             out HTTPResponse.Builder  _HTTPResponse))
+                                                                                             out var roamingNetwork,
+                                                                                             out var evse,
+                                                                                             out var httpResponse))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
+                                                         return Task.FromResult(httpResponse.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -5645,7 +5645,7 @@ namespace cloud.charging.open.API
                                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
                                                              ETag                       = "1",
                                                              ContentType                = HTTPContentType.JSON_UTF8,
-                                                             Content                    = _EVSE.ToJSON().ToUTF8Bytes(),
+                                                             Content                    = evse.ToJSON().ToUTF8Bytes(),
                                                              Connection                 = "close"
                                                          }.AsImmutable);
 
@@ -5662,33 +5662,35 @@ namespace cloud.charging.open.API
                                                  HTTPMethod.GET,
                                                  URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}/AdminStatus",
                                                  HTTPContentType.JSON_UTF8,
-                                                 HTTPDelegate: async Request => {
+                                                 HTTPDelegate: Request => {
 
                                                      #region Parse RoamingNetworkId and EVSEId parameters
 
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork        RoamingNetwork,
-                                                                                             out EVSE                  EVSE,
-                                                                                             out HTTPResponse.Builder  _HTTPResponse))
-
-                                                         return _HTTPResponse;
+                                                                                             out var roamingNetwork,
+                                                                                             out var evse,
+                                                                                             out var httpResponse))
+                                                     {
+                                                         return Task.FromResult(httpResponse.AsImmutable);
+                                                     }
 
                                                      #endregion
 
-                                                     return new HTTPResponse.Builder(Request) {
-                                                         HTTPStatusCode              = HTTPStatusCode.OK,
-                                                         Server                      = HTTPServer.DefaultServerName,
-                                                         Date                        = Timestamp.Now,
-                                                         AccessControlAllowOrigin    = "*",
-                                                         AccessControlAllowMethods   = "GET",
-                                                         AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
-                                                         ETag                        = "1",
-                                                         ContentType                 = HTTPContentType.JSON_UTF8,
-                                                         Content                     = EVSE.AdminStatus.
-                                                                                           ToJSON().
-                                                                                           ToUTF8Bytes(),
-                                                         Connection                  = "close"
-                                                     };
+                                                     return Task.FromResult(
+                                                         new HTTPResponse.Builder(Request) {
+                                                             HTTPStatusCode              = HTTPStatusCode.OK,
+                                                             Server                      = HTTPServer.DefaultServerName,
+                                                             Date                        = Timestamp.Now,
+                                                             AccessControlAllowOrigin    = "*",
+                                                             AccessControlAllowMethods   = "GET",
+                                                             AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
+                                                             ETag                        = "1",
+                                                             ContentType                 = HTTPContentType.JSON_UTF8,
+                                                             Content                     = evse.AdminStatus.
+                                                                                               ToJSON().
+                                                                                               ToUTF8Bytes(),
+                                                             Connection                  = "close"
+                                                         }.AsImmutable);
 
                                                  });
 
@@ -5703,33 +5705,35 @@ namespace cloud.charging.open.API
                                                  HTTPMethod.GET,
                                                  URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}/Status",
                                                  HTTPContentType.JSON_UTF8,
-                                                 HTTPDelegate: async Request => {
+                                                 HTTPDelegate: Request => {
 
                                                      #region Parse RoamingNetworkId and EVSEId parameters
 
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork        RoamingNetwork,
-                                                                                             out EVSE                  EVSE,
-                                                                                             out HTTPResponse.Builder  _HTTPResponse))
-
-                                                         return _HTTPResponse;
+                                                                                             out var roamingNetwork,
+                                                                                             out var evse,
+                                                                                             out var httpResponse))
+                                                     {
+                                                         return Task.FromResult(httpResponse.AsImmutable);
+                                                     }
 
                                                      #endregion
 
-                                                     return new HTTPResponse.Builder(Request) {
-                                                         HTTPStatusCode              = HTTPStatusCode.OK,
-                                                         Server                      = HTTPServer.DefaultServerName,
-                                                         Date                        = Timestamp.Now,
-                                                         AccessControlAllowOrigin    = "*",
-                                                         AccessControlAllowMethods   = "GET",
-                                                         AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
-                                                         ETag                        = "1",
-                                                         ContentType                 = HTTPContentType.JSON_UTF8,
-                                                         Content                     = EVSE.Status.
-                                                                                           ToJSON().
-                                                                                           ToUTF8Bytes(),
-                                                         Connection                  = "close"
-                                                     };
+                                                     return Task.FromResult(
+                                                         new HTTPResponse.Builder(Request) {
+                                                             HTTPStatusCode              = HTTPStatusCode.OK,
+                                                             Server                      = HTTPServer.DefaultServerName,
+                                                             Date                        = Timestamp.Now,
+                                                             AccessControlAllowOrigin    = "*",
+                                                             AccessControlAllowMethods   = "GET",
+                                                             AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
+                                                             ETag                        = "1",
+                                                             ContentType                 = HTTPContentType.JSON_UTF8,
+                                                             Content                     = evse.Status.
+                                                                                               ToJSON().
+                                                                                               ToUTF8Bytes(),
+                                                             Connection                  = "close"
+                                                         }.AsImmutable);
 
                                                  });
 
@@ -5792,15 +5796,13 @@ namespace cloud.charging.open.API
 
                                                      #region Check RoamingNetworkId and EVSEId URI parameters
 
-                                                     HTTPResponse.Builder  _HTTPResponse;
-                                                     RoamingNetwork        RoamingNetwork;
-                                                     EVSE                  EVSE;
-
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork,
-                                                                                             out EVSE,
-                                                                                             out _HTTPResponse))
-                                                         return _HTTPResponse;
+                                                                                             out var roamingNetwork,
+                                                                                             out var evse,
+                                                                                             out var httpResponse))
+                                                     {
+                                                         return httpResponse.AsImmutable;
+                                                     }
 
                                                      #endregion
 
@@ -5828,8 +5830,8 @@ namespace cloud.charging.open.API
 
                                                      #region Parse  (optional) JSON
 
-                                                     if (Request.TryParseJObjectRequestBody(out JObject JSON,
-                                                                                            out _HTTPResponse,
+                                                     if (Request.TryParseJObjectRequestBody(out var JSON,
+                                                                                            out httpResponse,
                                                                                             AllowEmptyHTTPBody: true))
                                                      {
 
@@ -5841,11 +5843,11 @@ namespace cloud.charging.open.API
                                                                                       ChargingReservation_Id.TryParse,
                                                                                       out ReservationId,
                                                                                       Request,
-                                                                                      out _HTTPResponse))
+                                                                                      out httpResponse))
                                                          {
 
-                                                             if (_HTTPResponse != null)
-                                                                 return _HTTPResponse;
+                                                             if (httpResponse != null)
+                                                                 return httpResponse;
 
                                                          }
 
@@ -5859,11 +5861,11 @@ namespace cloud.charging.open.API
                                                                                       EMobilityProvider_Id.TryParse,
                                                                                       out ProviderId,
                                                                                       Request,
-                                                                                      out _HTTPResponse))
+                                                                                      out httpResponse))
                                                          {
 
-                                                             if (_HTTPResponse != null)
-                                                                 return _HTTPResponse;
+                                                             if (httpResponse != null)
+                                                                 return httpResponse;
 
                                                          }
 
@@ -5877,9 +5879,9 @@ namespace cloud.charging.open.API
                                                                                   eMobilityAccount_Id.TryParse,
                                                                                   out eMAId,
                                                                                   Request,
-                                                                                  out _HTTPResponse))
+                                                                                  out httpResponse))
                                                          {
-                                                             return _HTTPResponse;
+                                                             return httpResponse;
                                                          }
 
                                                          #endregion
@@ -5891,11 +5893,11 @@ namespace cloud.charging.open.API
                                                                                 HTTPServer.DefaultServerName,
                                                                                 out StartTime,
                                                                                 Request,
-                                                                                out _HTTPResponse))
+                                                                                out httpResponse))
                                                          {
 
-                                                             if (_HTTPResponse != null)
-                                                                 return _HTTPResponse;
+                                                             if (httpResponse != null)
+                                                                 return httpResponse;
 
                                                              if (StartTime <= Timestamp.Now)
                                                                  return new HTTPResponse.Builder(Request) {
@@ -5915,11 +5917,11 @@ namespace cloud.charging.open.API
                                                                                 HTTPServer.DefaultServerName,
                                                                                 out Duration,
                                                                                 Request,
-                                                                                out _HTTPResponse))
+                                                                                out httpResponse))
                                                          {
 
-                                                             if (_HTTPResponse != null)
-                                                                 return _HTTPResponse;
+                                                             if (httpResponse != null)
+                                                                 return httpResponse;
 
                                                          }
 
@@ -5932,11 +5934,11 @@ namespace cloud.charging.open.API
                                                                                 HTTPServer.DefaultServerName,
                                                                                 out JObject IntendedChargingJSON,
                                                                                 Request,
-                                                                                out _HTTPResponse))
+                                                                                out httpResponse))
                                                          {
 
-                                                             if (_HTTPResponse != null)
-                                                                 return _HTTPResponse;
+                                                             if (httpResponse != null)
+                                                                 return httpResponse;
 
                                                              #region Check ChargingStartTime    [optional]
 
@@ -5945,11 +5947,11 @@ namespace cloud.charging.open.API
                                                                                                     HTTPServer.DefaultServerName,
                                                                                                     out ChargingStartTime,
                                                                                                     Request,
-                                                                                                    out _HTTPResponse))
+                                                                                                    out httpResponse))
                                                              {
 
-                                                                 if (_HTTPResponse != null)
-                                                                     return _HTTPResponse;
+                                                                 if (httpResponse != null)
+                                                                     return httpResponse;
 
                                                              }
 
@@ -5962,11 +5964,11 @@ namespace cloud.charging.open.API
                                                                                                     HTTPServer.DefaultServerName,
                                                                                                     out CharingDuration,
                                                                                                     Request,
-                                                                                                    out _HTTPResponse))
+                                                                                                    out httpResponse))
                                                              {
 
-                                                                 if (_HTTPResponse != null)
-                                                                     return _HTTPResponse;
+                                                                 if (httpResponse != null)
+                                                                     return httpResponse;
 
                                                              }
 
@@ -5979,11 +5981,11 @@ namespace cloud.charging.open.API
                                                                                      HTTPServer.DefaultServerName,
                                                                                      out ChargingProductId,
                                                                                      Request,
-                                                                                     out _HTTPResponse))
+                                                                                     out httpResponse))
                                                              {
 
-                                                                 if (_HTTPResponse != null)
-                                                                     return _HTTPResponse;
+                                                                 if (httpResponse != null)
+                                                                     return httpResponse;
 
                                                              }
 
@@ -5996,11 +5998,11 @@ namespace cloud.charging.open.API
                                                                                                     HTTPServer.DefaultServerName,
                                                                                                     out Plug,
                                                                                                     Request,
-                                                                                                    out _HTTPResponse))
+                                                                                                    out httpResponse))
                                                              {
 
-                                                                 if (_HTTPResponse != null)
-                                                                     return _HTTPResponse;
+                                                                 if (httpResponse != null)
+                                                                     return httpResponse;
 
                                                              }
 
@@ -6014,11 +6016,11 @@ namespace cloud.charging.open.API
                                                                                                     UInt32.Parse,
                                                                                                     out Consumption,
                                                                                                     Request,
-                                                                                                    out _HTTPResponse))
+                                                                                                    out httpResponse))
                                                              {
 
-                                                                 if (_HTTPResponse != null)
-                                                                     return _HTTPResponse;
+                                                                 if (httpResponse != null)
+                                                                     return httpResponse;
 
                                                              }
 
@@ -6035,11 +6037,11 @@ namespace cloud.charging.open.API
                                                                                 HTTPServer.DefaultServerName,
                                                                                 out JObject AuthorizedIdsJSON,
                                                                                 Request,
-                                                                                out _HTTPResponse))
+                                                                                out httpResponse))
                                                          {
 
-                                                             if (_HTTPResponse != null)
-                                                                 return _HTTPResponse;
+                                                             if (httpResponse != null)
+                                                                 return httpResponse;
 
                                                              #region Check AuthTokens   [optional]
 
@@ -6048,11 +6050,11 @@ namespace cloud.charging.open.API
                                                                                                  HTTPServer.DefaultServerName,
                                                                                                  out JArray AuthTokensJSON,
                                                                                                  Request,
-                                                                                                 out _HTTPResponse))
+                                                                                                 out httpResponse))
                                                              {
 
-                                                                 if (_HTTPResponse == null)
-                                                                     return _HTTPResponse;
+                                                                 if (httpResponse == null)
+                                                                     return httpResponse;
 
                                                                  foreach (var jtoken in AuthTokensJSON)
                                                                  {
@@ -6084,11 +6086,11 @@ namespace cloud.charging.open.API
                                                                                                  HTTPServer.DefaultServerName,
                                                                                                  out JArray eMAIdsJSON,
                                                                                                  Request,
-                                                                                                 out _HTTPResponse))
+                                                                                                 out httpResponse))
                                                              {
 
-                                                                 if (_HTTPResponse == null)
-                                                                     return _HTTPResponse;
+                                                                 if (httpResponse == null)
+                                                                     return httpResponse;
 
 
                                                                  eMobilityAccount_Id eMAId2;
@@ -6123,11 +6125,11 @@ namespace cloud.charging.open.API
                                                                                                  HTTPServer.DefaultServerName,
                                                                                                  out JArray PINsJSON,
                                                                                                  Request,
-                                                                                                 out _HTTPResponse))
+                                                                                                 out httpResponse))
                                                              {
 
-                                                                 if (_HTTPResponse == null)
-                                                                     return _HTTPResponse;
+                                                                 if (httpResponse == null)
+                                                                     return httpResponse;
 
 
                                                                  UInt32 PIN = 0;
@@ -6161,17 +6163,17 @@ namespace cloud.charging.open.API
 
                                                      }
 
-                                                     if (_HTTPResponse                != null &&
-                                                         _HTTPResponse.HTTPStatusCode == HTTPStatusCode.BadRequest)
+                                                     if (httpResponse                != null &&
+                                                         httpResponse.HTTPStatusCode == HTTPStatusCode.BadRequest)
                                                      {
-                                                         return _HTTPResponse;
+                                                         return httpResponse;
                                                      }
 
                                                      #endregion
 
 
-                                                     var result = await RoamingNetwork.
-                                                                            Reserve(ChargingLocation.FromEVSEId(EVSE.Id),
+                                                     var result = await roamingNetwork.
+                                                                            Reserve(ChargingLocation.FromEVSEId(evse.Id),
                                                                                     ChargingReservationLevel.EVSE,
                                                                                     StartTime,
                                                                                     Duration,
@@ -6202,7 +6204,7 @@ namespace cloud.charging.open.API
                                                                     AccessControlAllowOrigin   = "*",
                                                                     AccessControlAllowMethods  = "GET, RESERVE, AUTHSTART, AUTHSTOP, REMOTESTART, REMOTESTOP, SENDCDR",
                                                                     AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
-                                                                    Location                   = HTTPPath.Parse("~/RNs/" + RoamingNetwork.Id + "/Reservations/" + result.Reservation.Id),
+                                                                    Location                   = HTTPPath.Parse("~/RNs/" + roamingNetwork.Id + "/Reservations/" + result.Reservation.Id),
                                                                     ContentType                = HTTPContentType.JSON_UTF8,
                                                                     Content                    = new JObject(new JProperty("ReservationId",           result.Reservation.Id.       ToString()),
                                                                                                              new JProperty("StartTime",               result.Reservation.StartTime.ToIso8601()),
@@ -6266,17 +6268,22 @@ namespace cloud.charging.open.API
                                                      #region Parse RoamingNetworkId and EVSEId URI parameters
 
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork        RoamingNetwork,
-                                                                                             out EVSE                  EVSE,
-                                                                                             out HTTPResponse.Builder  _HTTPResponse))
-                                                         return _HTTPResponse;
+                                                                                             out var roamingNetwork,
+                                                                                             out var evse,
+                                                                                             out var httpResponse))
+                                                     {
+                                                         return httpResponse;
+                                                     }
 
                                                      #endregion
 
                                                      #region Parse JSON
 
-                                                     if (!Request.TryParseJObjectRequestBody(out JObject JSON, out _HTTPResponse))
-                                                         return _HTTPResponse;
+                                                     if (!Request.TryParseJObjectRequestBody(out var JSON,
+                                                                                             out httpResponse))
+                                                     {
+                                                         return httpResponse;
+                                                     }
 
                                                      #region Parse OperatorId             [optional]
 
@@ -6288,9 +6295,9 @@ namespace cloud.charging.open.API
                                                                              ChargingStationOperator_Id.TryParse,
                                                                              out OperatorId,
                                                                              Request,
-                                                                             out _HTTPResponse))
+                                                                             out httpResponse))
 
-                                                         return _HTTPResponse;
+                                                         return httpResponse;
 
                                                      #endregion
 
@@ -6302,9 +6309,9 @@ namespace cloud.charging.open.API
                                                                               Auth_Token.TryParse,
                                                                               out Auth_Token AuthToken,
                                                                               Request,
-                                                                              out _HTTPResponse))
+                                                                              out httpResponse))
 
-                                                         return _HTTPResponse;
+                                                         return httpResponse;
 
                                                      #endregion
 
@@ -6316,10 +6323,10 @@ namespace cloud.charging.open.API
                                                                                    ChargingSession_Id.TryParse,
                                                                                    out ChargingSession_Id? SessionId,
                                                                                    Request,
-                                                                                   out _HTTPResponse))
+                                                                                   out httpResponse))
                                                      {
 
-                                                         return _HTTPResponse;
+                                                         return httpResponse;
 
                                                      }
 
@@ -6333,10 +6340,10 @@ namespace cloud.charging.open.API
                                                                                     ChargingSession_Id.TryParse,
                                                                                     out ChargingSession_Id? CPOPartnerSessionId,
                                                                                     Request,
-                                                                                    out _HTTPResponse))
+                                                                                    out httpResponse))
                                                      {
 
-                                                         return _HTTPResponse;
+                                                         return httpResponse;
 
                                                      }
 
@@ -6350,10 +6357,10 @@ namespace cloud.charging.open.API
                                                                                     ChargingProduct_Id.TryParse,
                                                                                     out ChargingProduct_Id? ChargingProductId,
                                                                                     Request,
-                                                                                    out _HTTPResponse))
+                                                                                    out httpResponse))
                                                      {
 
-                                                         return _HTTPResponse;
+                                                         return httpResponse;
 
                                                      }
 
@@ -6362,9 +6369,9 @@ namespace cloud.charging.open.API
                                                      #endregion
 
 
-                                                     var result = await RoamingNetwork.
+                                                     var result = await roamingNetwork.
                                                                             AuthorizeStart(LocalAuthentication.FromAuthToken(AuthToken),
-                                                                                           ChargingLocation.FromEVSEId(EVSE.Id),
+                                                                                           ChargingLocation.FromEVSEId(evse.Id),
                                                                                            ChargingProductId.HasValue
                                                                                                ? new ChargingProduct(ChargingProductId.Value)
                                                                                                : null,
@@ -6448,17 +6455,22 @@ namespace cloud.charging.open.API
                                                      #region Parse RoamingNetworkId and EVSEId URI parameters
 
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork        RoamingNetwork,
-                                                                                             out EVSE                  EVSE,
-                                                                                             out HTTPResponse.Builder  _HTTPResponse))
-                                                         return _HTTPResponse;
+                                                                                             out var roamingNetwork,
+                                                                                             out var evse,
+                                                                                             out var httpResponse))
+                                                     {
+                                                         return httpResponse;
+                                                     }
 
                                                      #endregion
 
                                                      #region Parse JSON
 
-                                                     if (!Request.TryParseJObjectRequestBody(out JObject JSON, out _HTTPResponse))
-                                                         return _HTTPResponse;
+                                                     if (!Request.TryParseJObjectRequestBody(out var JSON,
+                                                                                             out httpResponse))
+                                                     {
+                                                         return httpResponse;
+                                                     }
 
                                                      #region Parse SessionId    [mandatory]
 
@@ -6470,9 +6482,9 @@ namespace cloud.charging.open.API
                                                                               ChargingSession_Id.TryParse,
                                                                               out SessionId,
                                                                               Request,
-                                                                              out _HTTPResponse))
+                                                                              out httpResponse))
 
-                                                         return _HTTPResponse;
+                                                         return httpResponse;
 
                                                      #endregion
 
@@ -6484,9 +6496,9 @@ namespace cloud.charging.open.API
                                                                               Auth_Token.TryParse,
                                                                               out Auth_Token AuthToken,
                                                                               Request,
-                                                                              out _HTTPResponse))
+                                                                              out httpResponse))
 
-                                                         return _HTTPResponse;
+                                                         return httpResponse;
 
                                                      #endregion
 
@@ -6498,10 +6510,10 @@ namespace cloud.charging.open.API
                                                                                     ChargingSession_Id.TryParse,
                                                                                     out ChargingSession_Id? CPOPartnerSessionId,
                                                                                     Request,
-                                                                                    out _HTTPResponse))
+                                                                                    out httpResponse))
                                                      {
 
-                                                         return _HTTPResponse;
+                                                         return httpResponse;
 
                                                      }
 
@@ -6517,19 +6529,19 @@ namespace cloud.charging.open.API
                                                                              ChargingStationOperator_Id.TryParse,
                                                                              out OperatorId,
                                                                              Request,
-                                                                             out _HTTPResponse))
+                                                                             out httpResponse))
 
-                                                         return _HTTPResponse;
-
-                                                     #endregion
+                                                         return httpResponse;
 
                                                      #endregion
 
+                                                     #endregion
 
-                                                     var result = await RoamingNetwork.
+
+                                                     var result = await roamingNetwork.
                                                                             AuthorizeStop(SessionId,
                                                                                           LocalAuthentication.FromAuthToken(AuthToken),
-                                                                                          ChargingLocation.FromEVSEId(EVSE.Id),
+                                                                                          ChargingLocation.FromEVSEId(evse.Id),
                                                                                           CPOPartnerSessionId,
                                                                                           OperatorId,
 
@@ -6608,10 +6620,12 @@ namespace cloud.charging.open.API
                                                      #region Get RoamingNetwork and EVSE URI parameters
 
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork        RoamingNetwork,
-                                                                                             out EVSE                  EVSE,
-                                                                                             out HTTPResponse.Builder  _HTTPResponse))
-                                                         return _HTTPResponse;
+                                                                                             out var roamingNetwork,
+                                                                                             out var evse,
+                                                                                             out var httpResponse))
+                                                     {
+                                                         return httpResponse;
+                                                     }
 
                                                      #endregion
 
@@ -6623,7 +6637,8 @@ namespace cloud.charging.open.API
                                                      EMobilityProvider_Id?    ProviderId          = null;
                                                      eMobilityAccount_Id      eMAId               = default;
 
-                                                     if (Request.TryParseJObjectRequestBody(out JObject JSON, out _HTTPResponse))
+                                                     if (Request.TryParseJObjectRequestBody(out var JSON,
+                                                                                            out httpResponse))
                                                      {
 
                                                          #region Check ChargingProductId  [optional]
@@ -6634,10 +6649,10 @@ namespace cloud.charging.open.API
                                                                                        ChargingProduct_Id.TryParse,
                                                                                        out ChargingProductId,
                                                                                        Request,
-                                                                                       out _HTTPResponse))
+                                                                                       out httpResponse))
                                                          {
 
-                                                             return _HTTPResponse;
+                                                             return httpResponse;
 
                                                          }
 
@@ -6654,10 +6669,10 @@ namespace cloud.charging.open.API
                                                                                        ChargingReservation_Id.TryParse,
                                                                                        out ReservationId,
                                                                                        Request,
-                                                                                       out _HTTPResponse))
+                                                                                       out httpResponse))
                                                          {
 
-                                                             return _HTTPResponse;
+                                                             return httpResponse;
 
                                                          }
 
@@ -6671,10 +6686,10 @@ namespace cloud.charging.open.API
                                                                                        ChargingSession_Id.TryParse,
                                                                                        out SessionId,
                                                                                        Request,
-                                                                                       out _HTTPResponse))
+                                                                                       out httpResponse))
                                                          {
 
-                                                             return _HTTPResponse;
+                                                             return httpResponse;
 
                                                          }
 
@@ -6688,10 +6703,10 @@ namespace cloud.charging.open.API
                                                                                        EMobilityProvider_Id.TryParse,
                                                                                        out ProviderId,
                                                                                        Request,
-                                                                                       out _HTTPResponse))
+                                                                                       out httpResponse))
                                                          {
 
-                                                             return _HTTPResponse;
+                                                             return httpResponse;
 
                                                          }
 
@@ -6705,22 +6720,22 @@ namespace cloud.charging.open.API
                                                                                   eMobilityAccount_Id.TryParse,
                                                                                   out eMAId,
                                                                                   Request,
-                                                                                  out _HTTPResponse))
+                                                                                  out httpResponse))
 
-                                                             return _HTTPResponse;
+                                                             return httpResponse;
 
                                                          #endregion
 
                                                      }
 
                                                      else
-                                                         return _HTTPResponse;
+                                                         return httpResponse;
 
                                                      #endregion
 
 
-                                                     var result = await RoamingNetwork.
-                                                                            RemoteStart(ChargingLocation.FromEVSEId(EVSE.Id),
+                                                     var result = await roamingNetwork.
+                                                                            RemoteStart(ChargingLocation.FromEVSEId(evse.Id),
                                                                                         ChargingProductId.HasValue
                                                                                             ? new ChargingProduct(ChargingProductId.Value)
                                                                                             : null,
@@ -6802,10 +6817,12 @@ namespace cloud.charging.open.API
                                                      #region Get RoamingNetwork and EVSE URI parameters
 
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork        RoamingNetwork,
-                                                                                             out EVSE                  EVSE,
-                                                                                             out HTTPResponse.Builder  _HTTPResponse))
-                                                         return _HTTPResponse;
+                                                                                             out var roamingNetwork,
+                                                                                             out var evse,
+                                                                                             out var httpResponse))
+                                                     {
+                                                         return httpResponse;
+                                                     }
 
                                                      #endregion
 
@@ -6815,8 +6832,8 @@ namespace cloud.charging.open.API
                                                      EMobilityProvider_Id?  ProviderId  = null;
                                                      eMobilityAccount_Id?   eMAId       = null;
 
-                                                     if (!Request.TryParseJObjectRequestBody(out JObject JSON,
-                                                                                             out _HTTPResponse,
+                                                     if (!Request.TryParseJObjectRequestBody(out var JSON,
+                                                                                             out httpResponse,
                                                                                              AllowEmptyHTTPBody: false))
 
                                                      {
@@ -6832,9 +6849,9 @@ namespace cloud.charging.open.API
                                                                                   ChargingSession_Id.TryParse,
                                                                                   out SessionId,
                                                                                   Request,
-                                                                                  out _HTTPResponse))
+                                                                                  out httpResponse))
 
-                                                             return _HTTPResponse;
+                                                             return httpResponse;
 
                                                          #endregion
 
@@ -6846,10 +6863,10 @@ namespace cloud.charging.open.API
                                                                                         EMobilityProvider_Id.TryParse,
                                                                                         out ProviderId,
                                                                                         Request,
-                                                                                        out _HTTPResponse))
+                                                                                        out httpResponse))
                                                          {
 
-                                                             return _HTTPResponse;
+                                                             return httpResponse;
 
                                                          }
 
@@ -6863,9 +6880,9 @@ namespace cloud.charging.open.API
                                                                                        eMobilityAccount_Id.TryParse,
                                                                                        out eMAId,
                                                                                        Request,
-                                                                                       out _HTTPResponse))
+                                                                                       out httpResponse))
 
-                                                             return _HTTPResponse;
+                                                             return httpResponse;
 
                                                          #endregion
 
@@ -6874,12 +6891,12 @@ namespace cloud.charging.open.API
                                                      }
 
                                                      else
-                                                         return _HTTPResponse;
+                                                         return httpResponse;
 
                                                      #endregion
 
 
-                                                     var result = await RoamingNetwork.RemoteStop(//EVSE.Id,
+                                                     var result = await roamingNetwork.RemoteStop(//EVSE.Id,
                                                                                                   SessionId,
                                                                                                   ReservationHandling.Close, // ToDo: Parse this property!
                                                                                                   ProviderId,
@@ -6973,19 +6990,21 @@ namespace cloud.charging.open.API
                                                      #region Check RoamingNetworkId and EVSEId URI parameters
 
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork        RoamingNetwork,
-                                                                                             out EVSE                  EVSE,
-                                                                                             out HTTPResponse.Builder  _HTTPResponse))
+                                                                                             out var roamingNetwork,
+                                                                                             out var evse,
+                                                                                             out var httpResponse))
                                                      {
-                                                         return _HTTPResponse;
+                                                         return httpResponse;
                                                      }
 
                                                      #endregion
 
                                                      #region Parse JSON
 
-                                                     if (!Request.TryParseJObjectRequestBody(out JObject JSON, out _HTTPResponse))
-                                                         return _HTTPResponse;
+                                                     if (!Request.TryParseJObjectRequestBody(out var JSON, out httpResponse))
+                                                     {
+                                                         return httpResponse;
+                                                     }
 
                                                      #region Parse SessionId          [mandatory]
 
@@ -6995,9 +7014,9 @@ namespace cloud.charging.open.API
                                                                               ChargingSession_Id.TryParse,
                                                                               out ChargingSession_Id SessionId,
                                                                               Request,
-                                                                              out _HTTPResponse))
+                                                                              out httpResponse))
                                                      {
-                                                         return _HTTPResponse;
+                                                         return httpResponse;
                                                      }
 
                                                      #endregion
@@ -7010,11 +7029,11 @@ namespace cloud.charging.open.API
                                                                                   ChargingProduct_Id.TryParse,
                                                                                   out ChargingProduct_Id? ChargingProductId,
                                                                                   Request,
-                                                                                  out _HTTPResponse))
+                                                                                  out httpResponse))
                                                      {
 
-                                                         if (_HTTPResponse != null)
-                                                            return _HTTPResponse;
+                                                         if (httpResponse != null)
+                                                            return httpResponse;
 
                                                      }
 
@@ -7028,11 +7047,11 @@ namespace cloud.charging.open.API
                                                                             Auth_Token.TryParse,
                                                                             out Auth_Token AuthToken,
                                                                             Request,
-                                                                            out _HTTPResponse))
+                                                                            out httpResponse))
                                                      {
 
-                                                         if (_HTTPResponse != null)
-                                                             return _HTTPResponse;
+                                                         if (httpResponse != null)
+                                                             return httpResponse;
 
                                                      }
 
@@ -7042,11 +7061,11 @@ namespace cloud.charging.open.API
                                                                                   eMobilityAccount_Id.TryParse,
                                                                                   out eMobilityAccount_Id? eMAId,
                                                                                   Request,
-                                                                                  out _HTTPResponse))
+                                                                                  out httpResponse))
                                                      {
 
-                                                         if (_HTTPResponse != null)
-                                                             return _HTTPResponse;
+                                                         if (httpResponse != null)
+                                                             return httpResponse;
 
                                                      }
 
@@ -7069,18 +7088,20 @@ namespace cloud.charging.open.API
                                                                               HTTPServer.DefaultServerName,
                                                                               out DateTime ChargingStart,
                                                                               Request,
-                                                                              out _HTTPResponse))
-
-                                                         return _HTTPResponse;
+                                                                              out httpResponse))
+                                                     {
+                                                         return httpResponse;
+                                                     }
 
                                                      if (!JSON.ParseMandatory("ChargeEnd",
                                                                               "Charging end time",
                                                                               HTTPServer.DefaultServerName,
                                                                               out DateTime ChargingEnd,
                                                                               Request,
-                                                                              out _HTTPResponse))
-
-                                                         return _HTTPResponse;
+                                                                              out httpResponse))
+                                                     {
+                                                         return httpResponse;
+                                                     }
 
                                                      #endregion
 
@@ -7091,41 +7112,44 @@ namespace cloud.charging.open.API
                                                                               HTTPServer.DefaultServerName,
                                                                               out DateTime SessionStart,
                                                                               Request,
-                                                                              out _HTTPResponse))
-
-                                                         return _HTTPResponse;
+                                                                              out httpResponse))
+                                                     {
+                                                         return httpResponse;
+                                                     }
 
                                                      if (!JSON.ParseMandatory("SessionEnd",
                                                                               "Charging end time",
                                                                               HTTPServer.DefaultServerName,
                                                                               out DateTime SessionEnd,
                                                                               Request,
-                                                                              out _HTTPResponse))
-
-                                                         return _HTTPResponse;
+                                                                              out httpResponse))
+                                                     {
+                                                         return httpResponse;
+                                                     }
 
                                                      #endregion
 
                                                      #region Parse MeterValueStart/End...
-
 
                                                      if (!JSON.ParseMandatory("MeterValueStart",
                                                                               "Energy meter start value",
                                                                               HTTPServer.DefaultServerName,
                                                                               out Decimal MeterValueStart,
                                                                               Request,
-                                                                              out _HTTPResponse))
-
-                                                         return _HTTPResponse;
+                                                                              out httpResponse))
+                                                     {
+                                                         return httpResponse;
+                                                     }
 
                                                      if (!JSON.ParseMandatory("MeterValueEnd",
                                                                               "Energy meter end value",
                                                                               HTTPServer.DefaultServerName,
                                                                               out Decimal MeterValueEnd,
                                                                               Request,
-                                                                              out _HTTPResponse))
-
-                                                         return _HTTPResponse;
+                                                                              out httpResponse))
+                                                     {
+                                                         return httpResponse;
+                                                     }
 
                                                      #endregion
 
@@ -7134,8 +7158,8 @@ namespace cloud.charging.open.API
 
                                                      var _ChargeDetailRecord = new ChargeDetailRecord(Id:                    ChargeDetailRecord_Id.Parse(SessionId.ToString()),
                                                                                                       SessionId:             SessionId,
-                                                                                                      EVSEId:                EVSE.Id,
-                                                                                                      EVSE:                  EVSE,
+                                                                                                      EVSEId:                evse.Id,
+                                                                                                      EVSE:                  evse,
                                                                                                       ChargingProduct:       ChargingProductId.HasValue
                                                                                                                                  ? new ChargingProduct(ChargingProductId.Value)
                                                                                                                                  : null,
@@ -7149,7 +7173,7 @@ namespace cloud.charging.open.API
                                                                                                                                  new Timestamped<Decimal>(ChargingEnd,   MeterValueEnd)
                                                                                                                             });
 
-                                                     var result = await RoamingNetwork.
+                                                     var result = await roamingNetwork.
                                                                             SendChargeDetailRecords(new ChargeDetailRecord[] { _ChargeDetailRecord },
                                                                                                     TransmissionTypes.Enqueue,
 
@@ -7232,11 +7256,12 @@ namespace cloud.charging.open.API
                                                      #region Check RoamingNetworkId and EVSEId URI parameters
 
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork        _RoamingNetwork,
-                                                                                             out EVSE                  _EVSE,
-                                                                                             out HTTPResponse.Builder  _HTTPResponse))
-
-                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
+                                                                                             out var roamingNetwork,
+                                                                                             out var evse,
+                                                                                             out var httpResponse))
+                                                     {
+                                                         return Task.FromResult(httpResponse.AsImmutable);
+                                                     }
 
                                                      #endregion
 
@@ -7276,19 +7301,22 @@ namespace cloud.charging.open.API
                                                      #region Parse RoamingNetworkId and EVSEId parameters
 
                                                      if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out RoamingNetwork        RoamingNetwork,
-                                                                                             out EVSE                  EVSE,
-                                                                                             out HTTPResponse.Builder  _HTTPResponse))
+                                                                                             out var roamingNetwork,
+                                                                                             out var evse,
+                                                                                             out var httpResponse))
                                                      {
-                                                         return _HTTPResponse;
+                                                         return httpResponse;
                                                      }
 
                                                      #endregion
 
                                                      #region Parse JSON
 
-                                                     if (!Request.TryParseJObjectRequestBody(out JObject JSON, out _HTTPResponse))
-                                                         return _HTTPResponse;
+                                                     if (!Request.TryParseJObjectRequestBody(out var JSON,
+                                                                                             out httpResponse))
+                                                     {
+                                                         return httpResponse;
+                                                     }
 
                                                      #region Parse CurrentStatus  [optional]
 
@@ -7297,11 +7325,11 @@ namespace cloud.charging.open.API
                                                                             HTTPServer.DefaultServerName,
                                                                             out EVSEAdminStatusTypes? CurrentStatus,
                                                                             Request,
-                                                                            out _HTTPResponse))
+                                                                            out httpResponse))
                                                      {
 
-                                                         if (_HTTPResponse != null)
-                                                             return _HTTPResponse;
+                                                         if (httpResponse != null)
+                                                             return httpResponse;
 
                                                      }
 
@@ -7316,11 +7344,11 @@ namespace cloud.charging.open.API
                                                                             HTTPServer.DefaultServerName,
                                                                             out JObject JSONStatusList,
                                                                             Request,
-                                                                            out _HTTPResponse))
+                                                                            out httpResponse))
                                                      {
 
-                                                         if (_HTTPResponse != null)
-                                                             return _HTTPResponse;
+                                                         if (httpResponse != null)
+                                                             return httpResponse;
 
                                                          if (JSONStatusList != null)
                                                          {
@@ -7387,7 +7415,7 @@ namespace cloud.charging.open.API
                                                                           new Timestamped<EVSEAdminStatusTypes>(Request.Timestamp, CurrentStatus.Value)
                                                                       };
 
-                                                     RoamingNetwork.SetEVSEAdminStatus(EVSE.Id, StatusList);
+                                                     roamingNetwork.SetEVSEAdminStatus(evse.Id, StatusList);
 
 
                                                      return new HTTPResponse.Builder(Request) {
@@ -7430,19 +7458,22 @@ namespace cloud.charging.open.API
                                              #region Check RoamingNetworkId and EVSEId URI parameters
 
                                              if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                     out RoamingNetwork        RoamingNetwork,
-                                                                                     out EVSE                  EVSE,
-                                                                                     out HTTPResponse.Builder  _HTTPResponse))
+                                                                                     out var roamingNetwork,
+                                                                                     out var evse,
+                                                                                     out var httpResponse))
                                              {
-                                                 return _HTTPResponse;
+                                                 return httpResponse;
                                              }
 
                                              #endregion
 
                                              #region Parse JSON
 
-                                             if (!Request.TryParseJObjectRequestBody(out JObject JSON, out _HTTPResponse))
-                                                 return _HTTPResponse;
+                                             if (!Request.TryParseJObjectRequestBody(out var JSON,
+                                                                                     out httpResponse))
+                                             {
+                                                 return httpResponse;
+                                             }
 
                                              #region Parse Current status  [optional]
 
@@ -7451,11 +7482,11 @@ namespace cloud.charging.open.API
                                                                     HTTPServer.DefaultServerName,
                                                                     out EVSEStatusTypes? CurrentStatus,
                                                                     Request,
-                                                                    out _HTTPResponse))
+                                                                    out httpResponse))
                                              {
 
-                                                 if (_HTTPResponse != null)
-                                                     return _HTTPResponse;
+                                                 if (httpResponse != null)
+                                                     return httpResponse;
 
                                              }
 
@@ -7470,11 +7501,11 @@ namespace cloud.charging.open.API
                                                                     HTTPServer.DefaultServerName,
                                                                     out JObject JSONStatusList,
                                                                     Request,
-                                                                    out _HTTPResponse))
+                                                                    out httpResponse))
                                              {
 
-                                                 if (_HTTPResponse != null)
-                                                     return _HTTPResponse;
+                                                 if (httpResponse != null)
+                                                     return httpResponse;
 
                                                  if (JSONStatusList != null)
                                                  {
@@ -7536,17 +7567,11 @@ namespace cloud.charging.open.API
                                              #endregion
 
 
-                                             if (StatusList == null)
-                                             {
-                                                 if (RoamingNetwork.TryGetEVSEById(EVSE.Id, out EVSE evse))
-                                                 {
-                                                     evse.Status = new Timestamped<EVSEStatusTypes>(Request.Timestamp,
-                                                                                                    CurrentStatus.Value);
-                                                 }
-                                             }
-
+                                             if (StatusList is null)
+                                                 evse.Status = new Timestamped<EVSEStatusTypes>(Request.Timestamp,
+                                                                                                CurrentStatus.Value);
                                              else
-                                                 RoamingNetwork.SetEVSEStatus(EVSE.Id,
+                                                 roamingNetwork.SetEVSEStatus(evse!.Id,
                                                                               StatusList);
 
 
@@ -9379,7 +9404,7 @@ namespace cloud.charging.open.API
 
                                                          var pools  = ChargingStationOperator.
                                                                           ChargingPools.
-                                                                          Where(pool => pool.Brands.Contains(Brand)).
+                                                                          Where(pool => pool.Brands.ContainsKey(Brand.Id)).
                                                                           ToArray();
 
                                                          if (pools.Length > 0)
@@ -9391,7 +9416,7 @@ namespace cloud.charging.open.API
 
                                                          var pools  = ChargingStationOperator.
                                                                           ChargingPools.
-                                                                          Where(pool => pool.Brands.Contains(Brand)).
+                                                                          Where(pool => pool.Brands.ContainsKey(Brand.Id)).
                                                                           ToArray();
 
                                                          if (pools.Length > 0)
@@ -9413,7 +9438,7 @@ namespace cloud.charging.open.API
 
                                                          var stations  = ChargingStationOperator.
                                                                              ChargingStations.
-                                                                             Where(station => station.Brands.Contains(Brand)).
+                                                                             Where(station => station.Brands.ContainsKey(Brand.Id)).
                                                                              ToArray();
 
                                                          if (stations.Length > 0)
@@ -9425,13 +9450,13 @@ namespace cloud.charging.open.API
 
                                                          var stations  = ChargingStationOperator.
                                                                              ChargingStations.
-                                                                             Where(station => station.Brands.Contains(Brand)).
+                                                                             Where(station => station.Brands.ContainsKey(Brand.Id)).
                                                                              ToArray();
 
                                                          if (stations.Length > 0)
                                                              BrandJSON["chargingStations"]  = new JArray(ChargingStationOperator.
                                                                                                               ChargingStations.
-                                                                                                              Where (station => station.Brands.SafeAny(brand => brand == Brand)).
+                                                                                                              Where (station => station.Brands.SafeAny(brand => brand.Key == Brand.Id)).
                                                                                                               Select(station => station.ToJSON(Embedded:                        true,
                                                                                                                                                ExpandRoamingNetworkId:          InfoStatus.Hidden,
                                                                                                                                                ExpandChargingStationOperatorId: InfoStatus.Hidden,
@@ -9450,7 +9475,7 @@ namespace cloud.charging.open.API
 
                                                          var evses  = ChargingStationOperator.
                                                                           EVSEs.
-                                                                          Where(evse => evse.Brands.Contains(Brand)).
+                                                                          Where(evse => evse.Brands.ContainsKey(Brand.Id)).
                                                                           ToArray();
 
                                                          if (evses.Length > 0)
@@ -9462,13 +9487,13 @@ namespace cloud.charging.open.API
 
                                                          var evses  = ChargingStationOperator.
                                                                           EVSEs.
-                                                                          Where(evse => evse.Brands.Contains(Brand)).
+                                                                          Where(evse => evse.Brands.ContainsKey(Brand.Id)).
                                                                           ToArray();
 
                                                          if (evses.Length > 0)
                                                              BrandJSON["EVSEs"]   = new JArray(ChargingStationOperator.
                                                                                                    EVSEs.
-                                                                                                   Where (evse => evse.Brands.Contains(Brand)).
+                                                                                                   Where (evse => evse.Brands.ContainsKey(Brand.Id)).
                                                                                                    Select(evse => evse.ToJSON(Embedded:                        true,
                                                                                                                               ExpandRoamingNetworkId:          InfoStatus.Hidden,
                                                                                                                               ExpandChargingStationOperatorId: InfoStatus.Hidden,
@@ -9628,7 +9653,6 @@ namespace cloud.charging.open.API
                                                  });
 
             #endregion
-
 
             #endregion
 
@@ -9874,6 +9898,7 @@ namespace cloud.charging.open.API
         /// </summary>
         /// <param name="Ressource">The path and name of the ressource to load.</param>
         protected Stream GetOpenChargingCloudAPIRessource(String Ressource)
+
             => GetType().Assembly.GetManifestResourceStream(HTTPRoot + Ressource);
 
         #endregion

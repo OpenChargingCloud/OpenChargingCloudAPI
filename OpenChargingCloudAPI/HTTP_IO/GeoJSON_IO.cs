@@ -372,7 +372,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON
                            new JProperty("adminStatus",             ChargingStation.AdminStatus.  ToJSON()),
                            new JProperty("status",                  ChargingStation.Status.       ToJSON()),
                            ChargingStation.SafeAny()
-                               ? new JProperty("brand",             ChargingStation.Brands.ToJSON())
+                               ? new JProperty("brand",             ChargingStation.Brands.Values.ToJSON())
                                : null,
                            new JProperty("address",                 ChargingStation.Address.      ToJSON()),
 
@@ -468,8 +468,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON
 
                            EVSE.Brands.SafeAny()
                                ? ExpandBrandIds.Switch(
-                                     () => new JProperty("brandId",      EVSE.Brands.Select(brand => brand.Id.ToString())),
-                                     () => new JProperty("brand",        EVSE.Brands.ToJSON()))
+                                     () => new JProperty("brandId",      EVSE.Brands.Select(brand => brand.Key.ToString())),
+                                     () => new JProperty("brand",        EVSE.Brands.Values.ToJSON()))
                                : null,
 
                            new JProperty("dataSource", EVSE.DataSource),
