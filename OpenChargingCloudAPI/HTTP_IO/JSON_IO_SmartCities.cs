@@ -69,11 +69,12 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
 
                                                      #region Check parameters
 
-                                                     HTTPResponse.Builder _HTTPResponse;
-                                                     RoamingNetwork  _RoamingNetwork;
-
-                                                     if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI, out _RoamingNetwork, out _HTTPResponse))
+                                                     if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI,
+                                                                                      out var _RoamingNetwork,
+                                                                                      out var _HTTPResponse))
+                                                     {
                                                          return Task.FromResult(_HTTPResponse.AsImmutable);
+                                                     }
 
                                                      #endregion
 
@@ -125,11 +126,12 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
 
                                                      #region Check parameters
 
-                                                     HTTPResponse.Builder _HTTPResponse;
-                                                     RoamingNetwork  _RoamingNetwork;
-
-                                                     if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI, out _RoamingNetwork, out _HTTPResponse))
+                                                     if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI,
+                                                                                      out var _RoamingNetwork,
+                                                                                      out var _HTTPResponse))
+                                                     {
                                                          return Task.FromResult(_HTTPResponse.AsImmutable);
+                                                     }
 
                                                      #endregion
 
@@ -165,11 +167,12 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
 
                                                      #region Check parameters
 
-                                                     HTTPResponse.Builder _HTTPResponse;
-                                                     RoamingNetwork  _RoamingNetwork;
-
-                                                     if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI, out _RoamingNetwork, out _HTTPResponse))
+                                                     if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI,
+                                                                                      out var _RoamingNetwork,
+                                                                                      out var _HTTPResponse))
+                                                     {
                                                          return Task.FromResult(_HTTPResponse.AsImmutable);
+                                                     }
 
                                                      #endregion
 
@@ -214,11 +217,12 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
 
                                                      #region Check parameters
 
-                                                     HTTPResponse.Builder _HTTPResponse;
-                                                     RoamingNetwork  _RoamingNetwork;
-
-                                                     if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI, out _RoamingNetwork, out _HTTPResponse))
+                                                     if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI,
+                                                                                      out var _RoamingNetwork,
+                                                                                      out var _HTTPResponse))
+                                                     {
                                                          return Task.FromResult(_HTTPResponse.AsImmutable);
+                                                     }
 
                                                      #endregion
 
@@ -263,14 +267,10 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
 
                                                      #region Check HTTP parameters
 
-                                                     HTTPResponse.Builder _HTTPResponse;
-                                                     RoamingNetwork  _RoamingNetwork;
-                                                     SmartCityProxy       _SmartCity;
-
                                                      if (!Request.ParseRoamingNetworkAndSmartCity(OpenChargingCloudAPI,
-                                                                                                  out _RoamingNetwork,
-                                                                                                  out _SmartCity,
-                                                                                                  out _HTTPResponse))
+                                                                                                  out var _RoamingNetwork,
+                                                                                                  out var _SmartCity,
+                                                                                                  out var _HTTPResponse))
 
                                                          return Task.FromResult(_HTTPResponse.AsImmutable);
 

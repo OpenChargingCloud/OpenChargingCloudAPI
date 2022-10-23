@@ -75,7 +75,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                                                            Name:            I18NString.Create(Languages.de, "GraphDefined"),
                                                            Description:     I18NString.Create(Languages.de, "GraphDefined CSO"),
                                                            Configurator:    evseoperator => {
-                                                                                evseoperator.AddDataLicense(DataLicense.OpenDatabaseLicense);
+                                                                                evseoperator.DataLicenses.Add(DataLicense.OpenDatabaseLicense);
                                                                             });
 
             #region Verify GET /RNs/TEST_RN1/ChargingPools

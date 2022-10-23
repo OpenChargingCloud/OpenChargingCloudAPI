@@ -372,7 +372,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON
                            new JProperty("adminStatus",             ChargingStation.AdminStatus.  ToJSON()),
                            new JProperty("status",                  ChargingStation.Status.       ToJSON()),
                            ChargingStation.SafeAny()
-                               ? new JProperty("brand",             ChargingStation.Brands.Values.ToJSON())
+                               ? new JProperty("brand",             ChargingStation.Brands.       ToJSON())
                                : null,
                            new JProperty("address",                 ChargingStation.Address.      ToJSON()),
 
