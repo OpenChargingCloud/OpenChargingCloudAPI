@@ -468,8 +468,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON
 
                            EVSE.Brands.SafeAny()
                                ? ExpandBrandIds.Switch(
-                                     () => new JProperty("brandId",      EVSE.Brands.Select(brand => brand.Key.ToString())),
-                                     () => new JProperty("brand",        EVSE.Brands.Values.ToJSON()))
+                                     () => new JProperty("brandId",      EVSE.Brands.Select(brand => brand.Id.ToString())),
+                                     () => new JProperty("brand",        EVSE.Brands.ToJSON()))
                                : null,
 
                            new JProperty("dataSource", EVSE.DataSource),

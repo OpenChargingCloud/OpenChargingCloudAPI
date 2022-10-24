@@ -9525,7 +9525,7 @@ namespace cloud.charging.open.API
 
                                                          var evses  = ChargingStationOperator.
                                                                           EVSEs.
-                                                                          Where(evse => evse.Brands.ContainsKey(Brand.Id)).
+                                                                          Where(evse => evse.Brands.Any(brand => brand.Id == Brand.Id)).
                                                                           ToArray();
 
                                                          if (evses.Length > 0)
@@ -9537,13 +9537,13 @@ namespace cloud.charging.open.API
 
                                                          var evses  = ChargingStationOperator.
                                                                           EVSEs.
-                                                                          Where(evse => evse.Brands.ContainsKey(Brand.Id)).
+                                                                          Where(evse => evse.Brands.Any(brand => brand.Id == Brand.Id)).
                                                                           ToArray();
 
                                                          if (evses.Length > 0)
                                                              BrandJSON["EVSEs"]   = new JArray(ChargingStationOperator.
                                                                                                    EVSEs.
-                                                                                                   Where (evse => evse.Brands.ContainsKey(Brand.Id)).
+                                                                                                   Where (evse => evse.Brands.Any(brand => brand.Id == Brand.Id)).
                                                                                                    Select(evse => evse.ToJSON(Embedded:                        true,
                                                                                                                               ExpandRoamingNetworkId:          InfoStatus.Hidden,
                                                                                                                               ExpandChargingStationOperatorId: InfoStatus.Hidden,
