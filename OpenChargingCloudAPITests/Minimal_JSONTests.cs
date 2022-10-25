@@ -69,7 +69,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
             var RN      = OpenChargingCloudAPI.CreateNewRoamingNetwork(Id:   RoamingNetwork_Id.Parse("TEST_RN1"),
                                                                        Name: I18NString.Create(Languages.de,  "Test Roaming Netz 1").
-                                                                                           Add(Languages.en,  "Test roaming network 1"));
+                                                                                           Set(Languages.en,  "Test roaming network 1"));
              
             var CPO     = RN.CreateChargingStationOperator(Id:              ChargingStationOperator_Id.Parse("DE*GEF"),
                                                            Name:            I18NString.Create(Languages.de, "GraphDefined"),
