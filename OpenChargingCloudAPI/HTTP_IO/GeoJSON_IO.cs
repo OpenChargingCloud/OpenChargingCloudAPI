@@ -521,12 +521,10 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON
                            new JProperty("authenticationModes", EVSE.ChargingStation.AuthenticationModes.ToJSON()),
 
                            EVSE.ChargingModes.Any()
-                               ? new JProperty("chargingModes",  new JArray(EVSE.ChargingModes.Select(mode => mode.ToText())))
+                               ? new JProperty("chargingModes",  new JArray(EVSE.ChargingModes.Select(chargingMode => chargingMode.ToText())))
                                : null,
 
-                           EVSE.CurrentType != CurrentTypes.Unspecified
-                               ? new JProperty("currentTypes",   new JArray(EVSE.CurrentType. Value.ToText()))
-                               : null,
+                           new JProperty("currentTypes",   EVSE.CurrentType.ToText()),
 
                            EVSE.AverageVoltage.HasValue && EVSE.AverageVoltage > 0     ? new JProperty("averageVoltage",  String.Format("{0:0.00}", EVSE.AverageVoltage)) : null,
                            EVSE.MaxCurrent.    HasValue && EVSE.MaxCurrent     > 0     ? new JProperty("maxCurrent",      String.Format("{0:0.00}", EVSE.MaxCurrent))     : null,
