@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2014-2019, Achim 'ahzf' Friedland <achim@graphdefined.org>
+ * Copyright (c) 2014-2022, Achim 'ahzf' Friedland <achim@graphdefined.org>
  * This file is part of Open Charging Cloud API <http://www.github.com/OpenChargingCloud/OpenChargingCloudAPI>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,36 +17,27 @@
 
 #region Usings
 
-using System;
-using System.IO;
-using System.Linq;
-using System.Threading;
 using System.Net.Security;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 using System.Security.Authentication;
 
 using Newtonsoft.Json.Linq;
 
 using com.GraphDefined.SMSApi.API;
-
-using cloud.charging.open.API;
-using social.OpenData.UsersAPI;
-using social.OpenData.UsersAPI.Notifications;
-
 using org.GraphDefined.Vanaheimr.Illias;
 using org.GraphDefined.Vanaheimr.Hermod;
 using org.GraphDefined.Vanaheimr.Hermod.HTTP;
 using org.GraphDefined.Vanaheimr.Hermod.SMTP;
 using org.GraphDefined.Vanaheimr.Hermod.Mail;
 using org.GraphDefined.Vanaheimr.Hermod.DNS;
+using org.GraphDefined.Vanaheimr.Hermod.Logging;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets.TCP;
+
+using social.OpenData.UsersAPI;
 
 using cloud.charging.open.protocols.WWCP;
 using cloud.charging.open.protocols.WWCP.Net.IO.JSON;
 using cloud.charging.open.protocols.WWCP.Networking;
-using org.GraphDefined.Vanaheimr.Hermod.Logging;
 
 #endregion
 
@@ -54,9 +45,9 @@ namespace cloud.charging.open.API
 {
 
     /// <summary>
-    /// WWCP HTTP API extention methods.
+    /// Extention methods for the Open Charging Cloud API.
     /// </summary>
-    public static class ExtensionMethods
+    public static class OpenChargingCloudAPIExtensions
     {
 
         // Used by multiple HTTP content types
@@ -1879,14 +1870,14 @@ namespace cloud.charging.open.API
 
         #region REMOTESTART(this HTTPClient, URL, BuilderAction = null)
 
-        public static HTTPRequest.Builder REMOTESTART(this AHTTPClient             HTTPClient,
-                                                      HTTPPath                     URL,
-                                                      Action<HTTPRequest.Builder>  BuilderAction  = null)
+        public static HTTPRequest.Builder REMOTESTART(this AHTTPClient              HTTPClient,
+                                                      HTTPPath                      URL,
+                                                      Action<HTTPRequest.Builder>?  BuilderAction   = null)
         {
 
             #region Initial checks
 
-            if (HTTPClient == null)
+            if (HTTPClient is null)
                 throw new ArgumentNullException(nameof(HTTPClient),  "The given HTTP client must not be null!");
 
             if (URL.IsNullOrEmpty())
@@ -1902,14 +1893,14 @@ namespace cloud.charging.open.API
 
         #region REMOTESTOP (this HTTPClient, URL, BuilderAction = null)
 
-        public static HTTPRequest.Builder REMOTESTOP(this AHTTPClient             HTTPClient,
-                                                     HTTPPath                     URL,
-                                                     Action<HTTPRequest.Builder>  BuilderAction  = null)
+        public static HTTPRequest.Builder REMOTESTOP(this AHTTPClient              HTTPClient,
+                                                     HTTPPath                      URL,
+                                                     Action<HTTPRequest.Builder>?  BuilderAction   = null)
         {
 
             #region Initial checks
 
-            if (HTTPClient == null)
+            if (HTTPClient is null)
                 throw new ArgumentNullException(nameof(HTTPClient),  "The given HTTP client must not be null!");
 
             if (URL.IsNullOrEmpty())
@@ -2984,7 +2975,9 @@ namespace cloud.charging.open.API
 
                 #region Allow some URLs for anonymous access...
 
-                if (request.Path.StartsWith(URLPathPrefix + "/shared/OpenChargingCloudAPI/libs/leaflet") ||
+                if (request.Path.StartsWith(URLPathPrefix + "/chargy/versions") ||
+                    request.Path.StartsWith(URLPathPrefix + "/chargy/issues") ||
+                    request.Path.StartsWith(URLPathPrefix + "/shared/OpenChargingCloudAPI/libs/leaflet") ||
                     request.Path.StartsWith(URLPathPrefix + "/RNs"))
                 {
                     return Anonymous;
@@ -3105,6 +3098,137 @@ namespace cloud.charging.open.API
                                                  }.AsImmutable);
 
                                          }, AllowReplacement: URLReplacement.Allow);
+
+            #endregion
+
+            #endregion
+
+
+            #region ~/chargy/versions
+
+            #region GET         ~/chargy/versions
+
+            // -----------------------------------------------------------------------------
+            // curl -v -H "Accept: application/json" http://127.0.0.1:5500/chargy/versions
+            // -----------------------------------------------------------------------------
+            HTTPServer.AddMethodCallback(Hostname,
+                                         HTTPMethod.GET,
+                                         URLPathPrefix + "chargy/versions",
+                                         HTTPContentType.JSON_UTF8,
+                                         HTTPDelegate: Request => {
+
+                                             var skip                    = Request.QueryString.GetUInt64("skip");
+                                             var take                    = Request.QueryString.GetUInt64("take");
+
+                                             return Task.FromResult(
+                                                 new HTTPResponse.Builder(Request) {
+                                                     HTTPStatusCode                = HTTPStatusCode.OK,
+                                                     Server                        = HTTPServer.DefaultServerName,
+                                                     Date                          = Timestamp.Now,
+                                                     AccessControlAllowOrigin      = "*",
+                                                     AccessControlAllowMethods     = "GET, OPTIONS",
+                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     ETag                          = "1",
+                                                     ContentType                   = HTTPContentType.JSON_UTF8,
+                                                     Content                       = new JArray().
+                                                                                         ToUTF8Bytes(),
+                                                     X_ExpectedTotalNumberOfItems  = 0
+                                                 }.AsImmutable);
+
+                                         });
+
+            #endregion
+
+            #region OPTIONS     ~/chargy/versions
+
+            // ----------------------------------------------------------
+            // curl -v -X OPTIONS http://127.0.0.1:5500/chargy/versions
+            // ----------------------------------------------------------
+            HTTPServer.AddMethodCallback(Hostname,
+                                         HTTPMethod.OPTIONS,
+                                         URLPathPrefix + "chargy/versions",
+                                         HTTPDelegate: Request =>
+
+                                             Task.FromResult(
+                                                 new HTTPResponse.Builder(Request) {
+                                                     HTTPStatusCode               = HTTPStatusCode.NoContent,
+                                                     Server                       = HTTPServer.DefaultServerName,
+                                                     Date                         = Timestamp.Now,
+                                                     AccessControlAllowOrigin     = "*",
+                                                     AccessControlAllowMethods    = "GET, OPTIONS",
+                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                 }.AsImmutable)
+
+                                         );
+
+            #endregion
+
+            #endregion
+
+            #region ~/chargy/issues
+
+            #region POST        ~/chargy/issues
+
+            // -----------------------------------------------------------------------------------------------------------------------
+            // curl -v -X POST -H "Content-Type: application/json" -d "{ \"hello\": \"world\" }" http://127.0.0.1:5500/chargy/issues
+            // -----------------------------------------------------------------------------------------------------------------------
+            HTTPServer.AddMethodCallback(Hostname,
+                                         HTTPMethod.POST,
+                                         URLPathPrefix + "chargy/issues",
+                                         HTTPContentType.JSON_UTF8,
+                                         //HTTPRequestLogger:  PostChargyIssueRequest,
+                                         //HTTPResponseLogger: PostChargyIssueResponse,
+                                         HTTPDelegate: async Request => {
+
+                                             #region Parse JSON
+
+                                             if (!Request.TryParseJObjectRequestBody(out var json,
+                                                                                     out var httpResponse))
+                                             {
+                                                 return httpResponse!;
+                                             }
+
+                                             json ??= new JObject();
+
+                                             #endregion
+
+                                             return new HTTPResponse.Builder(Request) {
+                                                        HTTPStatusCode              = HTTPStatusCode.Created,
+                                                        Server                      = HTTPServer.DefaultServerName,
+                                                        Date                        = Timestamp.Now,
+                                                        AccessControlAllowOrigin    = "*",
+                                                        AccessControlAllowMethods   = "POST, OPTIONS",
+                                                        AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
+                                                        ETag                        = "1",
+                                                        ContentType                 = HTTPContentType.JSON_UTF8,
+                                                        Content                     = json.ToUTF8Bytes()
+                                                    }.AsImmutable;
+
+                                         });
+
+            #endregion
+
+            #region OPTIONS     ~/chargy/issues
+
+            // --------------------------------------------------------
+            // curl -v -X OPTIONS http://127.0.0.1:5500/chargy/issues
+            // --------------------------------------------------------
+            HTTPServer.AddMethodCallback(Hostname,
+                                         HTTPMethod.OPTIONS,
+                                         URLPathPrefix + "chargy/issues",
+                                         HTTPDelegate: Request =>
+
+                                             Task.FromResult(
+                                                 new HTTPResponse.Builder(Request) {
+                                                     HTTPStatusCode               = HTTPStatusCode.NoContent,
+                                                     Server                       = HTTPServer.DefaultServerName,
+                                                     Date                         = Timestamp.Now,
+                                                     AccessControlAllowOrigin     = "*",
+                                                     AccessControlAllowMethods    = "POST, OPTIONS",
+                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                 }.AsImmutable)
+
+                                         );
 
             #endregion
 
@@ -3424,7 +3548,7 @@ namespace cloud.charging.open.API
                                                                      Server          = HTTPServer.DefaultServerName,
                                                                      Date            = Timestamp.Now,
                                                                      ContentType     = HTTPContentType.JSON_UTF8,
-                                                                     Content         = HTTPExtensions.CreateError("Invalid roaming network identification!")
+                                                                     Content         = HTTPResponseExtensions.CreateError("Invalid roaming network identification!")
                                                                  }.AsImmutable);
 
                                                      }
@@ -3439,7 +3563,7 @@ namespace cloud.charging.open.API
                                                                      Server          = HTTPServer.DefaultServerName,
                                                                      Date            = Timestamp.Now,
                                                                      ContentType     = HTTPContentType.JSON_UTF8,
-                                                                     Content         = HTTPExtensions.CreateError("RoamingNetworkId already exists!")
+                                                                     Content         = HTTPResponseExtensions.CreateError("RoamingNetworkId already exists!")
                                                                  }.AsImmutable);
 
                                                      }
@@ -3482,9 +3606,9 @@ namespace cloud.charging.open.API
 
 
                                                      roamingNetwork = CreateNewRoamingNetwork(Request.Host,
-                                                                                               roamingNetworkId,
-                                                                                               RoamingNetworkName,
-                                                                                               Description: RoamingNetworkDescription ?? I18NString.Empty);
+                                                                                              roamingNetworkId,
+                                                                                              RoamingNetworkName,
+                                                                                              Description: RoamingNetworkDescription ?? I18NString.Empty);
 
 
                                                      return Task.FromResult(new HTTPResponse.Builder(Request) {
