@@ -1952,13 +1952,13 @@ namespace cloud.charging.open.API
 
         #region Additional HTTP methods
 
-        public readonly static HTTPMethod RESERVE      = HTTPMethod.Create("RESERVE",     IsSafe: false, IsIdempotent: true);
-        public readonly static HTTPMethod SETEXPIRED   = HTTPMethod.Create("SETEXPIRED",  IsSafe: false, IsIdempotent: true);
-        public readonly static HTTPMethod AUTHSTART    = HTTPMethod.Create("AUTHSTART",   IsSafe: false, IsIdempotent: true);
-        public readonly static HTTPMethod AUTHSTOP     = HTTPMethod.Create("AUTHSTOP",    IsSafe: false, IsIdempotent: true);
-        public readonly static HTTPMethod REMOTESTART  = HTTPMethod.Create("REMOTESTART", IsSafe: false, IsIdempotent: true);
-        public readonly static HTTPMethod REMOTESTOP   = HTTPMethod.Create("REMOTESTOP",  IsSafe: false, IsIdempotent: true);
-        public readonly static HTTPMethod SENDCDR      = HTTPMethod.Create("SENDCDR",     IsSafe: false, IsIdempotent: true);
+        public readonly static HTTPMethod RESERVE      = new ("RESERVE",     IsSafe: false, IsIdempotent: true);
+        public readonly static HTTPMethod SETEXPIRED   = new ("SETEXPIRED",  IsSafe: false, IsIdempotent: true);
+        public readonly static HTTPMethod AUTHSTART    = new ("AUTHSTART",   IsSafe: false, IsIdempotent: true);
+        public readonly static HTTPMethod AUTHSTOP     = new ("AUTHSTOP",    IsSafe: false, IsIdempotent: true);
+        public readonly static HTTPMethod REMOTESTART  = new ("REMOTESTART", IsSafe: false, IsIdempotent: true);
+        public readonly static HTTPMethod REMOTESTOP   = new ("REMOTESTOP",  IsSafe: false, IsIdempotent: true);
+        public readonly static HTTPMethod SENDCDR      = new ("SENDCDR",     IsSafe: false, IsIdempotent: true);
 
         #endregion
 
