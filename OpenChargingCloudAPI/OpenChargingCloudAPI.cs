@@ -5964,7 +5964,7 @@ namespace cloud.charging.open.API
                                                      var                      Consumption           = 0U;
 
                                                      // AuthorizedIds
-                                                     var                      AuthTokens            = new List<Auth_Token>();
+                                                     var                      authenticationTokens            = new List<AuthenticationToken>();
                                                      var                      eMAIds                = new List<eMobilityAccount_Id>();
                                                      var                      PINs                  = new List<UInt32>();
 
@@ -6219,7 +6219,7 @@ namespace cloud.charging.open.API
                                                                  foreach (var jtoken in AuthTokensJSON)
                                                                  {
 
-                                                                     if (!Auth_Token.TryParse(jtoken.Value<String>(), out Auth_Token AuthToken))
+                                                                     if (!AuthenticationToken.TryParse(jtoken?.Value<String>() ?? "", out var authenticationToken))
                                                                          return new HTTPResponse.Builder(Request) {
                                                                                     HTTPStatusCode             = HTTPStatusCode.BadRequest,
                                                                                     Server                     = HTTPServer.DefaultServerName,
@@ -6231,7 +6231,7 @@ namespace cloud.charging.open.API
                                                                                     Content                    = new JObject(new JProperty("description", "Invalid AuthorizedIds/RFIDId '" + jtoken.Value<String>() + "' section!")).ToUTF8Bytes()
                                                                                 };
 
-                                                                     AuthTokens.Add(AuthToken);
+                                                                     authenticationTokens.Add(authenticationToken);
 
                                                                  }
 
@@ -6258,7 +6258,7 @@ namespace cloud.charging.open.API
                                                                  foreach (var jtoken in eMAIdsJSON)
                                                                  {
 
-                                                                     if (!eMobilityAccount_Id.TryParse(jtoken.Value<String>(), out eMAId2))
+                                                                     if (!eMobilityAccount_Id.TryParse(jtoken?.Value<String>() ?? "", out eMAId2))
                                                                          return new HTTPResponse.Builder(Request) {
                                                                                     HTTPStatusCode             = HTTPStatusCode.BadRequest,
                                                                                     Server                     = HTTPServer.DefaultServerName,
@@ -6297,7 +6297,7 @@ namespace cloud.charging.open.API
                                                                  foreach (var jtoken in PINsJSON)
                                                                  {
 
-                                                                     if (!UInt32.TryParse(jtoken.Value<String>(), out PIN))
+                                                                     if (!UInt32.TryParse(jtoken?.Value<String>() ?? "", out PIN))
                                                                          return new HTTPResponse.Builder(Request) {
                                                                                     HTTPStatusCode             = HTTPStatusCode.BadRequest,
                                                                                     Server                     = HTTPServer.DefaultServerName,
@@ -6344,7 +6344,7 @@ namespace cloud.charging.open.API
                                                                                     ChargingProductId.HasValue
                                                                                             ? new ChargingProduct(ChargingProductId.Value)
                                                                                             : null,
-                                                                                    AuthTokens,
+                                                                                    authenticationTokens,
                                                                                     eMAIds,
                                                                                     PINs,
 
@@ -6467,8 +6467,8 @@ namespace cloud.charging.open.API
                                                      if (!JSON.ParseMandatory("AuthToken",
                                                                               "authentication token",
                                                                               HTTPServer.DefaultServerName,
-                                                                              Auth_Token.TryParse,
-                                                                              out Auth_Token AuthToken,
+                                                                              AuthenticationToken.TryParse,
+                                                                              out AuthenticationToken AuthToken,
                                                                               Request,
                                                                               out httpResponse))
 
@@ -6654,8 +6654,8 @@ namespace cloud.charging.open.API
                                                      if (!JSON.ParseMandatory("AuthToken",
                                                                               "Authentication token",
                                                                               HTTPServer.DefaultServerName,
-                                                                              Auth_Token.TryParse,
-                                                                              out Auth_Token AuthToken,
+                                                                              AuthenticationToken.TryParse,
+                                                                              out AuthenticationToken AuthToken,
                                                                               Request,
                                                                               out httpResponse))
 
@@ -7205,8 +7205,8 @@ namespace cloud.charging.open.API
                                                      if (JSON.ParseOptional("AuthToken",
                                                                             "authentication token",
                                                                             HTTPServer.DefaultServerName,
-                                                                            Auth_Token.TryParse,
-                                                                            out Auth_Token AuthToken,
+                                                                            AuthenticationToken.TryParse,
+                                                                            out AuthenticationToken AuthToken,
                                                                             Request,
                                                                             out httpResponse))
                                                      {
