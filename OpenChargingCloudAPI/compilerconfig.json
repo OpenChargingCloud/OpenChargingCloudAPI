@@ -42,5 +42,9 @@
   {
     "outputFile": "HTTPRoot/admin/admin.css",
     "inputFile": "HTTPRoot/admin/admin.scss"
+  },
+  {
+    "outputFile": "HTTPRoot/css/login/login.css",
+    "inputFile": "HTTPRoot/login/login.scss"
   }
 ]

@@ -4,7 +4,25 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <RootNamespace>cloud.charging.open.api</RootNamespace>
+    <AssemblyName>cloud.charging.open.api</AssemblyName>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="HTTPRoot\css\login\login.css" />
+    <None Remove="HTTPRoot\css\login\login.min.css" />
+    <None Remove="HTTPRoot\images\shutterstock_279232676_blue_s1.jpg" />
+    <None Remove="HTTPRoot\login\login-en.html" />
+    <None Remove="HTTPRoot\login\login.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="HTTPRoot\css\login\login.css" />
+    <EmbeddedResource Include="HTTPRoot\css\login\login.min.css" />
+    <EmbeddedResource Include="HTTPRoot\images\shutterstock_279232676_blue_s1.jpg" />
+    <EmbeddedResource Include="HTTPRoot\login\login-en.html" />
+    <EmbeddedResource Include="HTTPRoot\login\login.scss" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="BouncyCastle.NetCore" Version="1.9.0" />

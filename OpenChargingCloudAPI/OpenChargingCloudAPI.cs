@@ -2915,7 +2915,7 @@ namespace cloud.charging.open.API
 
         #region (protected override) GetResourceStream      (ResourceName)
 
-        protected override Stream GetResourceStream(String ResourceName)
+        protected override Stream? GetResourceStream(String ResourceName)
 
             => GetResourceStream(ResourceName,
                                  new Tuple<String, System.Reflection.Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
@@ -2926,7 +2926,7 @@ namespace cloud.charging.open.API
 
         #region (protected override) GetResourceMemoryStream(ResourceName)
 
-        protected override MemoryStream GetResourceMemoryStream(String ResourceName)
+        protected override MemoryStream? GetResourceMemoryStream(String ResourceName)
 
             => GetResourceMemoryStream(ResourceName,
                                        new Tuple<String, System.Reflection.Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
@@ -2937,7 +2937,7 @@ namespace cloud.charging.open.API
 
         #region (protected override) GetResourceString      (ResourceName)
 
-        protected override String? GetResourceString(String ResourceName)
+        protected override String GetResourceString(String ResourceName)
 
             => GetResourceString(ResourceName,
                                  new Tuple<String, System.Reflection.Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
@@ -2959,7 +2959,7 @@ namespace cloud.charging.open.API
 
         #region (protected override) MixWithHTMLTemplate    (ResourceName)
 
-        protected override String? MixWithHTMLTemplate(String ResourceName)
+        protected override String MixWithHTMLTemplate(String ResourceName)
 
             => MixWithHTMLTemplate(ResourceName,
                                    new Tuple<String, System.Reflection.Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
@@ -3055,6 +3055,131 @@ namespace cloud.charging.open.API
                                                HTTPRoot.Substring(0, HTTPRoot.Length - 1));
 
             #endregion
+
+
+
+            #region / (HTTPRoot)
+
+            AddMethodCallback(HTTPHostname.Any,
+                              HTTPMethod.GET,
+                              new HTTPPath[] {
+                                  HTTPPath.Parse("/index.html"),
+                                  HTTPPath.Parse("/"),
+                                  HTTPPath.Parse("/{FileName}")
+                              },
+                              HTTPDelegate: Request => {
+
+                                  #region Get file path
+
+                                  var filePath = (Request.ParsedURLParameters is not null && Request.ParsedURLParameters.Length > 0)
+                                                     ? Request.ParsedURLParameters.Last().Replace("/", ".")
+                                                     : "index.html";
+
+                                  if (filePath.EndsWith(".", StringComparison.Ordinal))
+                                      filePath += "index.shtml";
+
+                                  #endregion
+
+                                  #region The resource is a templated HTML file...
+
+                                  if (filePath.EndsWith(".shtml", StringComparison.Ordinal))
+                                  {
+
+                                      var file = MixWithHTMLTemplate(filePath);
+
+                                      if (file.IsNullOrEmpty())
+                                          return Task.FromResult(
+                                              new HTTPResponse.Builder(Request) {
+                                                  HTTPStatusCode  = HTTPStatusCode.NotFound,
+                                                  Server          = HTTPServer.DefaultServerName,
+                                                  Date            = Timestamp.Now,
+                                                  CacheControl    = "public, max-age=300",
+                                                  Connection      = "close"
+                                              }.AsImmutable);
+
+                                      else
+                                          return Task.FromResult(
+                                              new HTTPResponse.Builder(Request) {
+                                                  HTTPStatusCode  = HTTPStatusCode.OK,
+                                                  ContentType     = HTTPContentType.HTML_UTF8,
+                                                  Content         = file.ToUTF8Bytes(),
+                                                  CacheControl    = "public, max-age=300",
+                                                  Connection      = "close"
+                                              }.AsImmutable);
+
+                                  }
+
+                                  #endregion
+
+                                  else
+                                  {
+
+                                      var resourceStream = GetResourceStream(filePath);
+
+                                      #region File not found!
+
+                                      if (resourceStream is null)
+                                          return Task.FromResult(
+                                              new HTTPResponse.Builder(Request) {
+                                                  HTTPStatusCode  = HTTPStatusCode.NotFound,
+                                                  Server          = HTTPServer.DefaultServerName,
+                                                  Date            = Timestamp.Now,
+                                                  CacheControl    = "public, max-age=300",
+                                                  Connection      = "close"
+                                              }.AsImmutable);
+
+                                      #endregion
+
+                                      #region Choose HTTP content type based on the file name extention of the requested resource...
+
+                                      var fileName             = filePath[(filePath.LastIndexOf("/") + 1)..];
+
+                                      var responseContentType  = fileName.Remove(0, fileName.LastIndexOf(".") + 1) switch {
+
+                                          "htm"   => HTTPContentType.HTML_UTF8,
+                                          "html"  => HTTPContentType.HTML_UTF8,
+                                          "css"   => HTTPContentType.CSS_UTF8,
+                                          "gif"   => HTTPContentType.GIF,
+                                          "jpg"   => HTTPContentType.JPEG,
+                                          "jpeg"  => HTTPContentType.JPEG,
+                                          "svg"   => HTTPContentType.SVG,
+                                          "png"   => HTTPContentType.PNG,
+                                          "ico"   => HTTPContentType.ICO,
+                                          "swf"   => HTTPContentType.SWF,
+                                          "js"    => HTTPContentType.JAVASCRIPT_UTF8,
+                                          "txt"   => HTTPContentType.TEXT_UTF8,
+                                          "xml"   => HTTPContentType.XMLTEXT_UTF8,
+
+                                          _       => HTTPContentType.OCTETSTREAM,
+
+                                      };
+
+                                      #endregion
+
+                                      #region Create HTTP response
+
+                                      return Task.FromResult(
+                                          new HTTPResponse.Builder(Request) {
+                                              HTTPStatusCode  = HTTPStatusCode.OK,
+                                              Server          = HTTPServer.DefaultServerName,
+                                              Date            = Timestamp.Now,
+                                              ContentType     = responseContentType,
+                                              ContentStream   = resourceStream,
+                                              CacheControl    = "public, max-age=300",
+                                              //Expires          = "Mon, 25 Jun 2015 21:31:12 GMT",
+//                                              KeepAlive       = new KeepAliveType(TimeSpan.FromMinutes(5), 500),
+//                                              Connection      = "Keep-Alive",
+                                              Connection      = "close"
+                                          }.AsImmutable);
+
+                                      #endregion
+
+                                  }
+
+                              });
+
+            #endregion
+
 
 
 
