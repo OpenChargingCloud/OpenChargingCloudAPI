@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2014-2022, Achim 'ahzf' Friedland <achim@graphdefined.org>
+ * Copyright (c) 2014-2023, Achim 'ahzf' Friedland <achim@graphdefined.org>
  * This file is part of Open Charging Cloud API <http://www.github.com/OpenChargingCloud/OpenChargingCloudAPI>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -3176,7 +3176,7 @@ namespace cloud.charging.open.API
 
                                   }
 
-                              });
+                              }, AllowReplacement: URLReplacement.Allow);
 
             #endregion
 
@@ -10297,13 +10297,13 @@ namespace cloud.charging.open.API
 
         #region (protected) GetOpenChargingCloudAPIRessource(Ressource)
 
-        /// <summary>
-        /// Get an embedded ressource of the Open Charging Cloud API.
-        /// </summary>
-        /// <param name="Ressource">The path and name of the ressource to load.</param>
-        protected Stream GetOpenChargingCloudAPIRessource(String Ressource)
+        ///// <summary>
+        ///// Get an embedded ressource of the Open Charging Cloud API.
+        ///// </summary>
+        ///// <param name="Ressource">The path and name of the ressource to load.</param>
+        //protected Stream GetOpenChargingCloudAPIRessource(String Ressource)
 
-            => GetType().Assembly.GetManifestResourceStream(HTTPRoot + Ressource);
+        //    => GetType().Assembly.GetManifestResourceStream(HTTPRoot + Ressource);
 
         #endregion
 

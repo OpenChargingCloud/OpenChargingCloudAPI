@@ -1,5 +1,5 @@
 ﻿///*
-// * Copyright (c) 2014-2022, Achim 'ahzf' Friedland <achim@graphdefined.org>
+// * Copyright (c) 2014-2023, Achim 'ahzf' Friedland <achim@graphdefined.org>
 // * This file is part of Open Charging Cloud API <http://www.github.com/OpenChargingCloud/OpenChargingCloudAPI>
 // *
 // * Licensed under the Apache License, Version 2.0 (the "License");
