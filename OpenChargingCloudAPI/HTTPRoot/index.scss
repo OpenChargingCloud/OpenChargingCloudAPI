@@ -1,0 +1,190 @@
+﻿
+body {
+
+    background-image:       url("/images/shutterstock_279232676_blue_s1.jpg");
+    background-size:        cover;
+    background-attachment:  fixed;
+    margin:                 0px;
+    font-family:            "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /*overflow:               hidden;*/
+
+    display:                flex;
+    flex-direction:         column;
+    justify-content:        space-between;
+    /*height:                 100vh;*/
+    
+
+    #header {
+        display:            flex;
+        justify-content:    flex-end;
+        align-items:        stretch;
+        padding:            1vh 1vw 1vh 1vw;
+        font-size:          80%;
+
+        a {
+            text-decoration:    none;
+            color:              #C0C0C0;
+        }
+
+    }
+
+
+
+    #logoFrame {
+
+        text-align:     center;
+        margin-top:     5vh;
+
+        #logo {
+
+            color:          #ececec;
+            font-size:      300%;
+            font-weight:    bolder;
+            text-shadow:    0 1px 1px rgb(0 30 96 / 69%), 0 1px 3px rgb(0 0 96 / 69%), 0 1px 30px rgb(0 0 96 / 69%);
+
+            img {
+                width: 10%;
+            }
+
+        }
+
+        #GitHub {
+
+            color:          #ececec;
+            font-size:      50%;
+            font-weight:    bolder;
+            margin-top:     5vh;
+
+            a {
+                display: block;
+                margin-top: 1vh;
+                img {
+                    width: 10%;
+                    border: 0;
+                }
+            }
+
+        }
+
+        #spacer {
+            height:         70vh;
+        }
+
+    }
+
+    #impress {
+
+        padding:            6vh 5vw 10vh 5vw;
+        color:              #ececec;
+
+        h2 {
+            padding-top:        10px;
+        }
+
+        a {
+            color:              #b5cfee;
+            text-decoration:    none;
+        }
+
+    }
+
+    #privacy {
+
+
+    }
+
+
+    #areaFrame {
+
+        padding:        1vh 2vw;
+        text-align:     center;
+        font-size:      150%;
+        font-family:    "Open Sans", BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+        #headline {
+            margin-bottom:   2vh;
+        }
+
+        #areas {
+
+            display:            flex;
+            justify-content:    space-around;
+            align-items:        stretch;
+
+            .area {
+                padding:            1vh 2vw;
+                border-radius:      6px;
+                background-color:   #00000005;
+                border:             1px solid rgb(0 0 0 / 10%);
+                width:              20%;
+                font-size:          70%;
+            }
+
+        }
+
+    }
+
+    #areaFrame2 {
+
+        padding:            1vh 2vw;
+        text-align:         center;
+        font-size:          150%;
+        font-family:        "Open Sans", BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        /*background-image:   url("/images/bar.jpg");*/
+
+        #headline2 {
+            margin-bottom:      2vh;
+        }
+
+        #areas2 {
+
+            display:            flex;
+            justify-content:    space-around;
+            align-items:        stretch;
+
+            .area2 {
+                padding:            1vh 2vw;
+                border-radius:      6px;
+                background-color:   #00000005;
+                border:             1px solid rgb(0 0 0 / 10%);
+                width:              20%;
+                font-size:          70%;
+            }
+
+        }
+
+    }
+
+    #footer {
+
+        background-color:   #061a30b3;
+        display:            flex;
+        justify-content:    space-around;
+        align-items:        stretch;
+        padding:            1.5vh 1vw 1.5vh 1vw;
+        color:              #9ca9b9;
+        font-size:          80%;
+
+        .area {
+
+            /*width:              40%;*/
+            flex-grow:          1;
+
+            a {
+                color:              #9ca9b9;
+                text-decoration:    none;
+            }
+
+            a:hover {
+                color:              #c2cbd7;
+            }
+
+        }
+
+        #right {
+            text-align:         right;
+        }
+
+    }
+
+}

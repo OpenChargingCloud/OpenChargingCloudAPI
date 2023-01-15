@@ -1,8 +1,17 @@
 ﻿[
   {
-    "outputFile": "HTTPRoot/template.css",
-    "inputFile": "HTTPRoot/template.scss"
+    "outputFile": "HTTPRoot/css/index.css",
+    "inputFile": "HTTPRoot/index.scss"
   },
+  {
+    "outputFile": "HTTPRoot/css/login/login.css",
+    "inputFile": "HTTPRoot/login/login.scss"
+  },
+  {
+    "outputFile": "HTTPRoot/css/login/login.css",
+    "inputFile": "HTTPRoot/login/login.scss"
+  },
+
   {
     "outputFile": "HTTPRoot/defaults/defaults.css",
     "inputFile": "HTTPRoot/defaults/defaults.scss"
@@ -42,9 +51,5 @@
   {
     "outputFile": "HTTPRoot/admin/admin.css",
     "inputFile": "HTTPRoot/admin/admin.scss"
-  },
-  {
-    "outputFile": "HTTPRoot/css/login/login.css",
-    "inputFile": "HTTPRoot/login/login.scss"
   }
 ]

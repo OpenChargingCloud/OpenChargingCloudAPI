@@ -4,24 +4,50 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>cloud.charging.open.api</RootNamespace>
-    <AssemblyName>cloud.charging.open.api</AssemblyName>
+    <RootNamespace>cloud.charging.open.API</RootNamespace>
+    <AssemblyName>cloud.charging.open.API</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="HTTPRoot\css\index.css" />
+    <None Remove="HTTPRoot\css\index.min.css" />
     <None Remove="HTTPRoot\css\login\login.css" />
     <None Remove="HTTPRoot\css\login\login.min.css" />
+    <None Remove="HTTPRoot\css\template.css" />
+    <None Remove="HTTPRoot\css\template.min.css" />
+    <None Remove="HTTPRoot\GPGKeys\achim%40graphdefined.com_pubring.gpg" />
+    <None Remove="HTTPRoot\GPGKeys\mail%40open.charging.cloud_pubring.gpg" />
+    <None Remove="HTTPRoot\GPGKeys\robot%40open.charging.cloud_pubring.gpg" />
+    <None Remove="HTTPRoot\images\chargy_logo.svg" />
+    <None Remove="HTTPRoot\images\GitHub.svg" />
     <None Remove="HTTPRoot\images\shutterstock_279232676_blue_s1.jpg" />
+    <None Remove="HTTPRoot\impress.html" />
+    <None Remove="HTTPRoot\index.html" />
     <None Remove="HTTPRoot\login\login-en.html" />
     <None Remove="HTTPRoot\login\login.scss" />
+    <None Remove="HTTPRoot\privacy.html" />
+    <None Remove="HTTPRoot\template.html" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="HTTPRoot\css\index.css" />
+    <EmbeddedResource Include="HTTPRoot\css\index.min.css" />
     <EmbeddedResource Include="HTTPRoot\css\login\login.css" />
     <EmbeddedResource Include="HTTPRoot\css\login\login.min.css" />
+    <EmbeddedResource Include="HTTPRoot\css\template.css" />
+    <EmbeddedResource Include="HTTPRoot\css\template.min.css" />
+    <EmbeddedResource Include="HTTPRoot\GPGKeys\achim@graphdefined.com_pubring.gpg" />
+    <EmbeddedResource Include="HTTPRoot\GPGKeys\mail@open.charging.cloud_pubring.gpg" />
+    <EmbeddedResource Include="HTTPRoot\GPGKeys\robot@open.charging.cloud_pubring.gpg" />
+    <EmbeddedResource Include="HTTPRoot\images\chargy_logo.svg" />
+    <EmbeddedResource Include="HTTPRoot\images\GitHub.svg" />
     <EmbeddedResource Include="HTTPRoot\images\shutterstock_279232676_blue_s1.jpg" />
+    <EmbeddedResource Include="HTTPRoot\legal\privacy.html" />
+    <EmbeddedResource Include="HTTPRoot\legal\impress.html" />
+    <EmbeddedResource Include="HTTPRoot\index.html" />
     <EmbeddedResource Include="HTTPRoot\login\login-en.html" />
     <EmbeddedResource Include="HTTPRoot\login\login.scss" />
+    <EmbeddedResource Include="HTTPRoot\template.html" />
   </ItemGroup>
 
   <ItemGroup>

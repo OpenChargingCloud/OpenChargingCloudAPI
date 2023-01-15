@@ -17,6 +17,7 @@
 
 #region Usings
 
+using System.Reflection;
 using System.Net.Security;
 using System.Security.Authentication;
 
@@ -1939,7 +1940,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// The HTTP root for embedded ressources.
         /// </summary>
-        public new const       String              HTTPRoot                                       = "cloud.charging.open.api.HTTPRoot.";
+        public new const       String              HTTPRoot                                       = "cloud.charging.open.API.HTTPRoot.";
 
         public const           String              DefaultOpenChargingCloudAPI_DatabaseFileName   = "OpenChargingCloudAPI.db";
         public const           String              DefaultOpenChargingCloudAPI_LogfileName        = "OpenChargingCloudAPI.log";
@@ -2918,9 +2919,9 @@ namespace cloud.charging.open.API
         protected override Stream? GetResourceStream(String ResourceName)
 
             => GetResourceStream(ResourceName,
-                                 new Tuple<String, System.Reflection.Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
-                                 new Tuple<String, System.Reflection.Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
-                                 new Tuple<String, System.Reflection.Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly));
+                                 new Tuple<String, Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
+                                 new Tuple<String, Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
+                                 new Tuple<String, Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly));
 
         #endregion
 
@@ -2929,9 +2930,9 @@ namespace cloud.charging.open.API
         protected override MemoryStream? GetResourceMemoryStream(String ResourceName)
 
             => GetResourceMemoryStream(ResourceName,
-                                       new Tuple<String, System.Reflection.Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
-                                       new Tuple<String, System.Reflection.Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
-                                       new Tuple<String, System.Reflection.Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly));
+                                       new Tuple<String, Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
+                                       new Tuple<String, Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
+                                       new Tuple<String, Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly));
 
         #endregion
 
@@ -2940,9 +2941,9 @@ namespace cloud.charging.open.API
         protected override String GetResourceString(String ResourceName)
 
             => GetResourceString(ResourceName,
-                                 new Tuple<String, System.Reflection.Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
-                                 new Tuple<String, System.Reflection.Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
-                                 new Tuple<String, System.Reflection.Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly));
+                                 new Tuple<String, Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
+                                 new Tuple<String, Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
+                                 new Tuple<String, Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly));
 
         #endregion
 
@@ -2951,9 +2952,9 @@ namespace cloud.charging.open.API
         protected override Byte[] GetResourceBytes(String ResourceName)
 
             => GetResourceBytes(ResourceName,
-                                new Tuple<String, System.Reflection.Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
-                                new Tuple<String, System.Reflection.Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
-                                new Tuple<String, System.Reflection.Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly));
+                                new Tuple<String, Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
+                                new Tuple<String, Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
+                                new Tuple<String, Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly));
 
         #endregion
 
@@ -2962,9 +2963,26 @@ namespace cloud.charging.open.API
         protected override String MixWithHTMLTemplate(String ResourceName)
 
             => MixWithHTMLTemplate(ResourceName,
-                                   new Tuple<String, System.Reflection.Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
-                                   new Tuple<String, System.Reflection.Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
-                                   new Tuple<String, System.Reflection.Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly));
+                                   new Tuple<String, Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
+                                   new Tuple<String, Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
+                                   new Tuple<String, Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly));
+
+        #endregion
+
+        #region (protected override) MixWithHTMLTemplate    (Template, ResourceName, Content = null)
+
+        protected override String MixWithHTMLTemplate(String   Template,
+                                                      String   ResourceName,
+                                                      String?  Content   = null)
+
+            => MixWithHTMLTemplate(Template,
+                                   ResourceName,
+                                   new Tuple<String, Assembly>[] {
+                                       new Tuple<String, Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
+                                       new Tuple<String, Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
+                                       new Tuple<String, Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly)
+                                   },
+                                   Content);
 
         #endregion
 
@@ -2977,8 +2995,11 @@ namespace cloud.charging.open.API
 
                 #region Allow some URLs for anonymous access...
 
-                if (request.Path.StartsWith(URLPathPrefix + "/chargy/versions") ||
-                    request.Path.StartsWith(URLPathPrefix + "/chargy/issues") ||
+                if (request.Path.Equals    (URLPathPrefix)                      ||
+                    request.Path.Equals    (URLPathPrefix + "/impress")         ||
+                    request.Path.StartsWith(URLPathPrefix + "/GPGKeys")         ||
+                    request.Path.StartsWith(URLPathPrefix + "/chargy/versions") ||
+                    request.Path.StartsWith(URLPathPrefix + "/chargy/issues")   ||
                     request.Path.StartsWith(URLPathPrefix + "/shared/OpenChargingCloudAPI/libs/leaflet") ||
                     request.Path.StartsWith(URLPathPrefix + "/RNs"))
                 {
@@ -2999,46 +3020,46 @@ namespace cloud.charging.open.API
 
                 #region /               => /dashboard/index.shtml
 
-                if ((request.Path == URLPathPrefix || request.Path == (URLPathPrefix + "/")) &&
-                    request.HTTPMethod == HTTPMethod.GET &&
-                    TryGetSecurityTokenFromCookie(request, out SecurityToken_Id SecurityToken) &&
-                    _HTTPCookies.ContainsKey(SecurityToken))
-                {
+                //if ((request.Path == URLPathPrefix || request.Path == (URLPathPrefix + "/")) &&
+                //    request.HTTPMethod == HTTPMethod.GET &&
+                //    TryGetSecurityTokenFromCookie(request, out SecurityToken_Id SecurityToken) &&
+                //    _HTTPCookies.ContainsKey(SecurityToken))
+                //{
 
-                    return new HTTPRequest.Builder(request) {
-                        Path = URLPathPrefix + HTTPPath.Parse("/dashboard/index.shtml")
-                    };
+                //    return new HTTPRequest.Builder(request) {
+                //        Path = URLPathPrefix + HTTPPath.Parse("/dashboard/index.shtml")
+                //    };
 
-                }
+                //}
 
                 #endregion
 
                 #region /profile        => /profile/profile.shtml
 
-                if ((request.Path == URLPathPrefix + "/profile" ||
-                     request.Path == URLPathPrefix + "/profile/") &&
-                     request.HTTPMethod == HTTPMethod.GET)
-                {
+                //if ((request.Path == URLPathPrefix + "/profile" ||
+                //     request.Path == URLPathPrefix + "/profile/") &&
+                //     request.HTTPMethod == HTTPMethod.GET)
+                //{
 
-                    return new HTTPRequest.Builder(request) {
-                        Path = URLPathPrefix + HTTPPath.Parse("/profile/profile.shtml")
-                    };
+                //    return new HTTPRequest.Builder(request) {
+                //        Path = URLPathPrefix + HTTPPath.Parse("/profile/profile.shtml")
+                //    };
 
-                }
+                //}
 
                 #endregion
 
                 #region /admin          => /admin/index.shtml
 
-                if (request.Path == URLPathPrefix + "/admin" &&
-                    request.HTTPMethod == HTTPMethod.GET)
-                {
+                //if (request.Path == URLPathPrefix + "/admin" &&
+                //    request.HTTPMethod == HTTPMethod.GET)
+                //{
 
-                    return new HTTPRequest.Builder(request) {
-                        Path = URLPathPrefix + HTTPPath.Parse("/admin/index.shtml")
-                    };
+                //    return new HTTPRequest.Builder(request) {
+                //        Path = URLPathPrefix + HTTPPath.Parse("/admin/index.shtml")
+                //    };
 
-                }
+                //}
 
                 #endregion
 
@@ -3181,6 +3202,33 @@ namespace cloud.charging.open.API
             #endregion
 
 
+            #region ~/impress
+
+            AddMethodCallback(Hostname,
+                              HTTPMethod.GET,
+                              URLPathPrefix + "impress",
+                              HTTPContentType.HTML_UTF8,
+                              HTTPDelegate: Request => {
+
+                                  return Task.FromResult(
+                                      new HTTPResponse.Builder(Request) {
+                                          HTTPStatusCode              = HTTPStatusCode.OK,
+                                          Server                      = HTTPServer.DefaultServerName,
+                                          Date                        = Timestamp.Now,
+                                          AccessControlAllowOrigin    = "*",
+                                          AccessControlAllowMethods   = "GET",
+                                          AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
+                                          ContentType                 = HTTPContentType.HTML_UTF8,
+                                          Content                     = GetResourceBytes("legal.impress.html"),
+                                          Connection                  = "close",
+                                          Vary                        = "Accept"
+                                      }.AsImmutable);
+
+                              }, AllowReplacement: URLReplacement.Allow);
+
+            #endregion
+
+
 
 
             #region ~/dashboard
@@ -3190,43 +3238,42 @@ namespace cloud.charging.open.API
             // ----------------------------------------------------------------
             // curl -v -H "Accept: text/html" http://127.0.0.1:3001/dashboard
             // ----------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
-                                         HTTPMethod.GET,
-                                         URLPathPrefix + "dashboard",
-                                         HTTPContentType.HTML_UTF8,
-                                         HTTPDelegate: Request => {
+            AddMethodCallback(Hostname,
+                              HTTPMethod.GET,
+                              URLPathPrefix + "dashboard",
+                              HTTPContentType.HTML_UTF8,
+                              HTTPDelegate: Request => {
 
-                                             #region Get HTTP user and its organizations
+                                  #region Get HTTP user and its organizations
 
-                                             // Will return HTTP 401 Unauthorized, when the HTTP user is unknown!
-                                             if (!TryGetHTTPUser(Request,
-                                                                 out User                   HTTPUser,
-                                                                 out HashSet<Organization>  HTTPOrganizations,
-                                                                 out HTTPResponse.Builder   Response,
-                                                                 Recursive:                 true))
-                                             {
-                                                 return Task.FromResult(Response.AsImmutable);
-                                             }
+                                  // Will return HTTP 401 Unauthorized, when the HTTP user is unknown!
+                                  if (!TryGetHTTPUser(Request,
+                                                      out User                   HTTPUser,
+                                                      out HashSet<Organization>  HTTPOrganizations,
+                                                      out HTTPResponse.Builder   Response,
+                                                      Recursive:                 true))
+                                  {
+                                      return Task.FromResult(Response.AsImmutable);
+                                  }
 
-                                             #endregion
+                                  #endregion
 
 
-                                             return Task.FromResult(
-                                                 new HTTPResponse.Builder(Request) {
-                                                     HTTPStatusCode              = HTTPStatusCode.OK,
-                                                     Server                      = HTTPServer.DefaultServerName,
-                                                     Date                        = Timestamp.Now,
-                                                     AccessControlAllowOrigin    = "*",
-                                                     AccessControlAllowMethods   = "GET",
-                                                     AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
-                                                     ContentType                 = HTTPContentType.HTML_UTF8,
-                                                     Content                     = MixWithHTMLTemplate("dashboard.dashboard2.shtml").ToUTF8Bytes(),
-                                                     Connection                  = "close",
-                                                     Vary                        = "Accept"
-                                                 }.AsImmutable);
+                                  return Task.FromResult(
+                                      new HTTPResponse.Builder(Request) {
+                                          HTTPStatusCode              = HTTPStatusCode.OK,
+                                          Server                      = HTTPServer.DefaultServerName,
+                                          Date                        = Timestamp.Now,
+                                          AccessControlAllowOrigin    = "*",
+                                          AccessControlAllowMethods   = "GET",
+                                          AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
+                                          ContentType                 = HTTPContentType.HTML_UTF8,
+                                          Content                     = MixWithHTMLTemplate("dashboard.dashboard2.shtml").ToUTF8Bytes(),
+                                          Connection                  = "close",
+                                          Vary                        = "Accept"
+                                      }.AsImmutable);
 
-                                         }, AllowReplacement: URLReplacement.Allow);
+                              }, AllowReplacement: URLReplacement.Allow);
 
             #endregion
 
