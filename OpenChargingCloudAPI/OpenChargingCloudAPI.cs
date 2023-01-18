@@ -3084,9 +3084,9 @@ namespace cloud.charging.open.API
             AddMethodCallback(HTTPHostname.Any,
                               HTTPMethod.GET,
                               new HTTPPath[] {
-                                  HTTPPath.Parse("/index.html"),
-                                  HTTPPath.Parse("/"),
-                                  HTTPPath.Parse("/{FileName}")
+                                  URLPathPrefix + HTTPPath.Parse("/index.html"),
+                                  URLPathPrefix + HTTPPath.Parse("/"),
+                                  URLPathPrefix + HTTPPath.Parse("/{FileName}")
                               },
                               HTTPDelegate: Request => {
 

@@ -9,12 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="HTTPRoot\css\defaults\defaults.css" />
+    <None Remove="HTTPRoot\css\defaults\defaults.min.css" />
     <None Remove="HTTPRoot\css\index.css" />
     <None Remove="HTTPRoot\css\index.min.css" />
     <None Remove="HTTPRoot\css\login\login.css" />
     <None Remove="HTTPRoot\css\login\login.min.css" />
     <None Remove="HTTPRoot\css\template.css" />
     <None Remove="HTTPRoot\css\template.min.css" />
+    <None Remove="HTTPRoot\defaults\defaults.js" />
+    <None Remove="HTTPRoot\defaults\defaults.js.map" />
+    <None Remove="HTTPRoot\defaults\defaults.ts" />
     <None Remove="HTTPRoot\GPGKeys\achim%40graphdefined.com_pubring.gpg" />
     <None Remove="HTTPRoot\GPGKeys\mail%40open.charging.cloud_pubring.gpg" />
     <None Remove="HTTPRoot\GPGKeys\robot%40open.charging.cloud_pubring.gpg" />
@@ -30,12 +35,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="HTTPRoot\css\defaults\defaults.css" />
+    <EmbeddedResource Include="HTTPRoot\css\defaults\defaults.min.css" />
     <EmbeddedResource Include="HTTPRoot\css\index.css" />
     <EmbeddedResource Include="HTTPRoot\css\index.min.css" />
     <EmbeddedResource Include="HTTPRoot\css\login\login.css" />
     <EmbeddedResource Include="HTTPRoot\css\login\login.min.css" />
     <EmbeddedResource Include="HTTPRoot\css\template.css" />
     <EmbeddedResource Include="HTTPRoot\css\template.min.css" />
+    <EmbeddedResource Include="HTTPRoot\defaults\defaults.js" />
+    <EmbeddedResource Include="HTTPRoot\defaults\defaults.js.map" />
+    <EmbeddedResource Include="HTTPRoot\defaults\defaults.ts" />
     <EmbeddedResource Include="HTTPRoot\GPGKeys\achim@graphdefined.com_pubring.gpg" />
     <EmbeddedResource Include="HTTPRoot\GPGKeys\mail@open.charging.cloud_pubring.gpg" />
     <EmbeddedResource Include="HTTPRoot\GPGKeys\robot@open.charging.cloud_pubring.gpg" />
@@ -63,5 +73,9 @@
     <ProjectReference Include="..\..\UsersAPI\UsersAPI\UsersAPI.csproj" />
     <ProjectReference Include="..\..\WWCP_Core\WWCP_Core\WWCP_Core.csproj" />
   </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="tsc" />
+  </Target>
 
 </Project>

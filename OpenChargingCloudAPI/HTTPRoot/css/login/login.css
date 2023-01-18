@@ -391,7 +391,7 @@ body #AdditionalAuthenticationFactor #frame #page {
 body #loginframe {
   background: rgb(108, 155, 245);
   background: radial-gradient(circle, rgb(108, 155, 245) 0%, rgb(9, 30, 56) 72%);
-  background-image: url("/images/shutterstock_279232676_blue_s1.jpg");
+  background-image: url("../../images/shutterstock_279232676_blue_s1.jpg");
   background-size: cover;
 }
 body #loginframe #logindiv {
