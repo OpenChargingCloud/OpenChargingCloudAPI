@@ -28,8 +28,11 @@
     <None Remove="HTTPRoot\images\shutterstock_279232676_blue_s1.jpg" />
     <None Remove="HTTPRoot\impress.html" />
     <None Remove="HTTPRoot\index.html" />
+    <None Remove="HTTPRoot\login\login-de.html" />
     <None Remove="HTTPRoot\login\login-en.html" />
     <None Remove="HTTPRoot\login\login.scss" />
+    <None Remove="HTTPRoot\login\lostPassword-en.html" />
+    <None Remove="HTTPRoot\login\setPassword-en.html" />
     <None Remove="HTTPRoot\privacy.html" />
     <None Remove="HTTPRoot\template.html" />
   </ItemGroup>
@@ -55,8 +58,11 @@
     <EmbeddedResource Include="HTTPRoot\legal\privacy.html" />
     <EmbeddedResource Include="HTTPRoot\legal\impress.html" />
     <EmbeddedResource Include="HTTPRoot\index.html" />
+    <EmbeddedResource Include="HTTPRoot\login\login-de.html" />
     <EmbeddedResource Include="HTTPRoot\login\login-en.html" />
     <EmbeddedResource Include="HTTPRoot\login\login.scss" />
+    <EmbeddedResource Include="HTTPRoot\login\lostPassword-en.html" />
+    <EmbeddedResource Include="HTTPRoot\login\setPassword-en.html" />
     <EmbeddedResource Include="HTTPRoot\template.html" />
   </ItemGroup>
 
