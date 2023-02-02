@@ -4,6 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <RootNamespace>cloud.charging.open.API.tests</RootNamespace>
+    <AssemblyName>cloud.charging.open.API.tests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

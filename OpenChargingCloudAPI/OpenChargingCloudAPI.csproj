@@ -4,7 +4,73 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <RootNamespace>cloud.charging.open.API</RootNamespace>
+    <AssemblyName>cloud.charging.open.API</AssemblyName>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="HTTPRoot\css\defaults\defaults.css" />
+    <None Remove="HTTPRoot\css\defaults\defaults.min.css" />
+    <None Remove="HTTPRoot\css\index.css" />
+    <None Remove="HTTPRoot\css\index.min.css" />
+    <None Remove="HTTPRoot\css\login\login.css" />
+    <None Remove="HTTPRoot\css\login\login.min.css" />
+    <None Remove="HTTPRoot\css\template.css" />
+    <None Remove="HTTPRoot\css\template.min.css" />
+    <None Remove="HTTPRoot\defaults\defaults.js" />
+    <None Remove="HTTPRoot\defaults\defaults.js.map" />
+    <None Remove="HTTPRoot\defaults\defaults.ts" />
+    <None Remove="HTTPRoot\GPGKeys\achim%40graphdefined.com_pubring.gpg" />
+    <None Remove="HTTPRoot\GPGKeys\mail%40open.charging.cloud_pubring.gpg" />
+    <None Remove="HTTPRoot\GPGKeys\robot%40open.charging.cloud_pubring.gpg" />
+    <None Remove="HTTPRoot\images\chargy_logo.svg" />
+    <None Remove="HTTPRoot\images\GitHub.svg" />
+    <None Remove="HTTPRoot\images\shutterstock_279232676_blue_s1.jpg" />
+    <None Remove="HTTPRoot\impress.html" />
+    <None Remove="HTTPRoot\index.html" />
+    <None Remove="HTTPRoot\login\login-de.html" />
+    <None Remove="HTTPRoot\login\login-en.html" />
+    <None Remove="HTTPRoot\login\login.scss" />
+    <None Remove="HTTPRoot\login\lostPassword-de.html" />
+    <None Remove="HTTPRoot\login\lostPassword-en.html" />
+    <None Remove="HTTPRoot\login\setPassword-de.html" />
+    <None Remove="HTTPRoot\login\setPassword-en.html" />
+    <None Remove="HTTPRoot\newsletters\announcements-en.html" />
+    <None Remove="HTTPRoot\privacy.html" />
+    <None Remove="HTTPRoot\template.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="HTTPRoot\css\defaults\defaults.css" />
+    <EmbeddedResource Include="HTTPRoot\css\defaults\defaults.min.css" />
+    <EmbeddedResource Include="HTTPRoot\css\index.css" />
+    <EmbeddedResource Include="HTTPRoot\css\index.min.css" />
+    <EmbeddedResource Include="HTTPRoot\css\login\login.css" />
+    <EmbeddedResource Include="HTTPRoot\css\login\login.min.css" />
+    <EmbeddedResource Include="HTTPRoot\css\template.css" />
+    <EmbeddedResource Include="HTTPRoot\css\template.min.css" />
+    <EmbeddedResource Include="HTTPRoot\defaults\defaults.js" />
+    <EmbeddedResource Include="HTTPRoot\defaults\defaults.js.map" />
+    <EmbeddedResource Include="HTTPRoot\defaults\defaults.ts" />
+    <EmbeddedResource Include="HTTPRoot\GPGKeys\achim@graphdefined.com_pubring.gpg" />
+    <EmbeddedResource Include="HTTPRoot\GPGKeys\mail@open.charging.cloud_pubring.gpg" />
+    <EmbeddedResource Include="HTTPRoot\GPGKeys\robot@open.charging.cloud_pubring.gpg" />
+    <EmbeddedResource Include="HTTPRoot\images\chargy_logo.svg" />
+    <EmbeddedResource Include="HTTPRoot\images\GitHub.svg" />
+    <EmbeddedResource Include="HTTPRoot\images\shutterstock_279232676_blue_s1.jpg" />
+    <EmbeddedResource Include="HTTPRoot\legal\privacy.html" />
+    <EmbeddedResource Include="HTTPRoot\legal\impress.html" />
+    <EmbeddedResource Include="HTTPRoot\index.html" />
+    <EmbeddedResource Include="HTTPRoot\login\login-de.html" />
+    <EmbeddedResource Include="HTTPRoot\login\login-en.html" />
+    <EmbeddedResource Include="HTTPRoot\login\login.scss" />
+    <EmbeddedResource Include="HTTPRoot\login\lostPassword-de.html" />
+    <EmbeddedResource Include="HTTPRoot\login\lostPassword-en.html" />
+    <EmbeddedResource Include="HTTPRoot\login\setPassword-de.html" />
+    <EmbeddedResource Include="HTTPRoot\login\setPassword-en.html" />
+    <EmbeddedResource Include="HTTPRoot\newsletters\announcements-en.html" />
+    <EmbeddedResource Include="HTTPRoot\template.html" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="BouncyCastle.NetCore" Version="1.9.0" />
@@ -19,5 +85,9 @@
     <ProjectReference Include="..\..\UsersAPI\UsersAPI\UsersAPI.csproj" />
     <ProjectReference Include="..\..\WWCP_Core\WWCP_Core\WWCP_Core.csproj" />
   </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="tsc" />
+  </Target>
 
 </Project>

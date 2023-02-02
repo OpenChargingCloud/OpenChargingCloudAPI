@@ -1,4 +1,124 @@
 ﻿@import "../defaults/defaults.scss";
+@import "../../../../UsersAPI/UsersAPI/HTTPRoot/login/login.scss";
+
+body {
+
+    #loginframe {
+
+        background:        rgb(108,155,245);
+        background:        radial-gradient(circle, rgba(108,155,245,1) 0%, rgba(9,30,56,1) 72%);
+        background-image:  url("../images/shutterstock_279232676_blue_s1.jpg");
+        background-size:   cover;
+
+        #logindiv {
+
+            background-color:       none;
+
+            #headline {
+                background-color:   $OCCBlue;
+            }
+
+            #loginform {
+
+                .input {
+                    .in {
+                        input:-webkit-autofill,
+                        input:-webkit-autofill:hover,
+                        input:-webkit-autofill:focus {
+                            -webkit-box-shadow: 0 0 0px 1000px #fef0f5 inset;
+                        }
+
+                        input:-internal-autofill-selected {
+                            -webkit-box-shadow: 0 0 0px 1000px #fef0f5 inset;
+                        }
+                    }
+                }
+
+                .loginbuttons {
+
+                    input {
+                        background-color: $OCCBlue;
+                    }
+
+                    .error {
+                        color:            #d8bec8;
+                        background-color: #eadae0;
+                    }
+
+                }
+
+                #copyright {
+
+                    font-size: 70%;
+
+                    a {
+                        color:           #C0C0C0;
+                        text-decoration: none;
+                    }
+
+                }
+
+            }
+        }
+    }
+
+
+    #EULA {
+
+        #frame {
+
+            background-color:  #e8d6c6;
+            border:            8px solid $OCCBlue;
+
+            #page {
+
+                #AcceptFrame {
+                    #IAccept {
+                        border:             1px solid rgba(117, 96, 78, 0.5);
+                        color:              rgb(117, 96, 78);
+                        background-color:   #e2c9b3;
+                    }
+                }
+
+                #buttons {
+
+                    text-align:     center;
+                    margin:         30px;
+
+                    #acceptEULAButton {
+                        background-image:   linear-gradient(to bottom, #ffc99e77, #ffba8377);
+                        color:              #d4a07c;
+                        box-shadow:         1px 1px 6px #999;
+                    }
+
+                    #acceptEULAButton.accepted {
+                        background-image:   linear-gradient(to bottom, #ffc99e, #ffba83);
+                        color:              #b36630;
+                        box-shadow:         2px 2px 6px #999;
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+
+    #AdditionalAuthenticationFactor {
+        #frame {
+            background-color:  #e8d6c6;
+            border:            8px solid $OCCBlue;
+        }
+    }
+
+}
+
+
+
+
+/*@import "../defaults/defaults.scss";
 
 body {
     margin:                 0px;
@@ -169,3 +289,4 @@ body {
     }
 
 }
+*/
