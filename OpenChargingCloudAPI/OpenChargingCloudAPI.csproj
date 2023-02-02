@@ -35,6 +35,7 @@
     <None Remove="HTTPRoot\login\lostPassword-en.html" />
     <None Remove="HTTPRoot\login\setPassword-de.html" />
     <None Remove="HTTPRoot\login\setPassword-en.html" />
+    <None Remove="HTTPRoot\newsletters\announcements-en.html" />
     <None Remove="HTTPRoot\privacy.html" />
     <None Remove="HTTPRoot\template.html" />
   </ItemGroup>
@@ -67,6 +68,7 @@
     <EmbeddedResource Include="HTTPRoot\login\lostPassword-en.html" />
     <EmbeddedResource Include="HTTPRoot\login\setPassword-de.html" />
     <EmbeddedResource Include="HTTPRoot\login\setPassword-en.html" />
+    <EmbeddedResource Include="HTTPRoot\newsletters\announcements-en.html" />
     <EmbeddedResource Include="HTTPRoot\template.html" />
   </ItemGroup>
 

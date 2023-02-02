@@ -19,18 +19,70 @@
     <script type="text/javascript" src="/defaults/defaults.js"></script>
     <script type="text/javascript" src="/shared/UsersAPI/login/SignInOut.js"></script>
 
-    <!--<script>
+    <script>
 
-        function ShowElement(DivName) {
-            return ShowElement2(DivName, "inline-block");
+        function setup() {
+
+            const subscribeButton  = document.getElementById("subscribeButton");
+            const wrongDiv         = document.getElementById("wrong");
+            const thanksDiv        = document.getElementById("thanks");
+            const sorryDiv         = document.getElementById("sorry");
+
+            subscribeButton.onclick = () => {
+
+                const emailAddress  = document.getElementById("emailAddress").value.trim();
+
+                if (emailAddress.length       > 3 &&
+                    emailAddress.indexOf("@") > 0 &&
+                    emailAddress.indexOf("@") < emailAddress.length - 1) {
+
+                    const ajax          = new XMLHttpRequest();
+                    ajax.open("SIGNUP", "newsletters", true);
+                    ajax.setRequestHeader("Accept",       "application/json; charset=UTF-8");
+                    ajax.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+
+                    ajax.onreadystatechange = function () {
+
+                        // 0 UNSENT | 1 OPENED | 2 HEADERS_RECEIVED | 3 LOADING | 4 DONE
+                        if (this.readyState == 4) {
+
+                            // CREATED
+                            if (this.status == 201) {
+                                wrongDiv. style.display = "none";
+                                thanksDiv.style.display = "block";
+                                sorryDiv. style.display = "none";
+                            }
+
+                            else {
+                                wrongDiv. style.display = "none";
+                                thanksDiv.style.display = "none";
+                                sorryDiv. style.display = "block";
+                            }
+
+                        }
+
+                    }
+
+                    ajax.send(JSON.stringify({ "email": emailAddress, "newsletterId": "announcements" }));
+
+                }
+
+                else {
+                    wrongDiv. style.display = "block";
+                    thanksDiv.style.display = "none";
+                    sorryDiv. style.display = "none";
+                }
+
+            };
+
         }
 
-    </script>-->
+    </script>
 
 </head>
 
 <!--aerial-view-overpass-night-shanghai-china-279232676-->
-<body>
+<body onload="setup()">
 
     <div id="header">
         <a href="login">login</a>
@@ -48,9 +100,24 @@
                 <a href="https://github.com/OpenChargingCloud"><img src="/images/GitHub.svg" /></a>
             </div>
 
-            <div id="spacer">
+            <div id="newsletter">
+
+                <div id="text">Or subscribe our newsletter...</div>
+
+                <div id="email">
+                    <input type="email" id="emailAddress" />
+                    <button id="subscribeButton">Subscribe</button>
+                </div>
+
+                <div id="wrong">Sorry, this does not look like a valid e-mail address.</div>
+
+                <div id="thanks">Thank you for subscribing. Please check your e-mail inbox for further instructions...</div>
+
+                <div id="sorry">Sorry, something went wrong. Please send us an <a href="mailto:mail@charging.cloud">e-mail</a>.</div>
 
             </div>
+
+            <div id="spacer"></div>
 
         </div>
 

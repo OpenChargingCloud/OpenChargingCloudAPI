@@ -48,8 +48,52 @@ body #logoFrame #GitHub a img {
   width: 10%;
   border: 0;
 }
+body #logoFrame #newsletter {
+  margin-top: 5vh;
+}
+body #logoFrame #newsletter #text {
+  font-size: 50%;
+  padding-bottom: 10px;
+}
+body #logoFrame #newsletter #email {
+  font-size: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1vh;
+}
+body #logoFrame #newsletter #email input {
+  font-size: 80%;
+  margin-right: 5px;
+  padding: 0.7vh 0.7vw;
+  border: 0;
+  border-radius: 5px;
+}
+body #logoFrame #newsletter #email button {
+  font-size: 80%;
+  padding: 0.7vh 1vw;
+  border: 0;
+  border-radius: 5px;
+}
+body #logoFrame #newsletter #wrong {
+  display: none;
+  font-size: 40%;
+}
+body #logoFrame #newsletter #thanks {
+  display: none;
+  font-size: 40%;
+}
+body #logoFrame #newsletter #sorry {
+  display: none;
+  font-size: 40%;
+}
+body #logoFrame #newsletter #sorry a {
+  color: #9aafc4;
+  text-decoration: none;
+}
 body #logoFrame #spacer {
   height: 70vh;
+  user-select: none;
 }
 body #impress {
   padding: 6vh 5vw 10vh 5vw;
