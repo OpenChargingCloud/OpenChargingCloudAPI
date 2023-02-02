@@ -1997,7 +1997,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnCreateRoamingNetworkRequest = new HTTPRequestLogEvent();
+        public HTTPRequestLogEvent OnCreateRoamingNetworkRequest = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
@@ -2020,7 +2020,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnCreateRoamingNetworkResponse = new HTTPResponseLogEvent();
+        public HTTPResponseLogEvent OnCreateRoamingNetworkResponse = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
@@ -2047,7 +2047,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnDeleteRoamingNetworkRequest = new HTTPRequestLogEvent();
+        public HTTPRequestLogEvent OnDeleteRoamingNetworkRequest = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
@@ -2070,7 +2070,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnDeleteRoamingNetworkResponse = new HTTPResponseLogEvent();
+        public HTTPResponseLogEvent OnDeleteRoamingNetworkResponse = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
@@ -2098,7 +2098,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnCreateChargingPoolRequest = new HTTPRequestLogEvent();
+        public HTTPRequestLogEvent OnCreateChargingPoolRequest = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
@@ -2121,7 +2121,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnCreateChargingPoolResponse = new HTTPResponseLogEvent();
+        public HTTPResponseLogEvent OnCreateChargingPoolResponse = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
@@ -2148,7 +2148,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnDeleteChargingPoolRequest = new HTTPRequestLogEvent();
+        public HTTPRequestLogEvent OnDeleteChargingPoolRequest = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
@@ -2171,7 +2171,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnDeleteChargingPoolResponse = new HTTPResponseLogEvent();
+        public HTTPResponseLogEvent OnDeleteChargingPoolResponse = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
@@ -2199,7 +2199,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnCreateChargingStationRequest = new HTTPRequestLogEvent();
+        public HTTPRequestLogEvent OnCreateChargingStationRequest = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
@@ -2222,7 +2222,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnCreateChargingStationResponse = new HTTPResponseLogEvent();
+        public HTTPResponseLogEvent OnCreateChargingStationResponse = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
@@ -2249,7 +2249,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnDeleteChargingStationRequest = new HTTPRequestLogEvent();
+        public HTTPRequestLogEvent OnDeleteChargingStationRequest = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
@@ -2272,7 +2272,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnDeleteChargingStationResponse = new HTTPResponseLogEvent();
+        public HTTPResponseLogEvent OnDeleteChargingStationResponse = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
@@ -2300,7 +2300,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a EVSEs->Status request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnGetEVSEsStatusRequest = new HTTPRequestLogEvent();
+        public HTTPRequestLogEvent OnGetEVSEsStatusRequest = new ();
 
         /// <summary>
         /// An event sent whenever a EVSEs->Status request was received.
@@ -2323,7 +2323,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a EVSEs->Status response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnGetEVSEsStatusResponse = new HTTPResponseLogEvent();
+        public HTTPResponseLogEvent OnGetEVSEsStatusResponse = new ();
 
         /// <summary>
         /// An event sent whenever a EVSEs->Status response was sent.
@@ -2351,7 +2351,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnSendRemoteStartEVSERequest = new HTTPRequestLogEvent();
+        public HTTPRequestLogEvent OnSendRemoteStartEVSERequest = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
@@ -2374,7 +2374,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnSendRemoteStartEVSEResponse = new HTTPResponseLogEvent();
+        public HTTPResponseLogEvent OnSendRemoteStartEVSEResponse = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
@@ -2401,7 +2401,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnSendRemoteStopEVSERequest = new HTTPRequestLogEvent();
+        public HTTPRequestLogEvent OnSendRemoteStopEVSERequest = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
@@ -2424,7 +2424,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnSendRemoteStopEVSEResponse = new HTTPResponseLogEvent();
+        public HTTPResponseLogEvent OnSendRemoteStopEVSEResponse = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
@@ -2455,7 +2455,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnSendReserveEVSERequest = new HTTPRequestLogEvent();
+        public HTTPRequestLogEvent OnSendReserveEVSERequest = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
@@ -2478,7 +2478,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnSendReserveEVSEResponse = new HTTPResponseLogEvent();
+        public HTTPResponseLogEvent OnSendReserveEVSEResponse = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
@@ -2505,7 +2505,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnAuthStartEVSERequest = new HTTPRequestLogEvent();
+        public HTTPRequestLogEvent OnAuthStartEVSERequest = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
@@ -2528,7 +2528,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnAuthStartEVSEResponse = new HTTPResponseLogEvent();
+        public HTTPResponseLogEvent OnAuthStartEVSEResponse = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
@@ -2555,7 +2555,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate stop EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnAuthStopEVSERequest = new HTTPRequestLogEvent();
+        public HTTPRequestLogEvent OnAuthStopEVSERequest = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate stop EVSE request was received.
@@ -2578,7 +2578,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate stop EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnAuthStopEVSEResponse = new HTTPResponseLogEvent();
+        public HTTPResponseLogEvent OnAuthStopEVSEResponse = new ();
 
         /// <summary>
         /// An event sent whenever a authenticate stop EVSE response was sent.
@@ -2605,7 +2605,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a charge detail record was received.
         /// </summary>
-        public HTTPRequestLogEvent OnSendCDRsRequest = new HTTPRequestLogEvent();
+        public HTTPRequestLogEvent OnSendCDRsRequest = new ();
 
         /// <summary>
         /// An event sent whenever a charge detail record was received.
@@ -2628,7 +2628,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a charge detail record response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnSendCDRsResponse = new HTTPResponseLogEvent();
+        public HTTPResponseLogEvent OnSendCDRsResponse = new ();
 
         /// <summary>
         /// An event sent whenever a charge detail record response was sent.
