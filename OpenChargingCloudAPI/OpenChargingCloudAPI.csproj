@@ -22,6 +22,7 @@
     <None Remove="HTTPRoot\defaults\defaults.ts" />
     <None Remove="HTTPRoot\GPGKeys\achim%40graphdefined.com_pubring.gpg" />
     <None Remove="HTTPRoot\GPGKeys\mail%40open.charging.cloud_pubring.gpg" />
+    <None Remove="HTTPRoot\GPGKeys\newsletter%40open.charging.cloud_pubring.gpg" />
     <None Remove="HTTPRoot\GPGKeys\robot%40open.charging.cloud_pubring.gpg" />
     <None Remove="HTTPRoot\images\chargy_logo.svg" />
     <None Remove="HTTPRoot\images\GitHub.svg" />
@@ -54,6 +55,9 @@
     <EmbeddedResource Include="HTTPRoot\defaults\defaults.ts" />
     <EmbeddedResource Include="HTTPRoot\GPGKeys\achim@graphdefined.com_pubring.gpg" />
     <EmbeddedResource Include="HTTPRoot\GPGKeys\mail@open.charging.cloud_pubring.gpg" />
+    <EmbeddedResource Include="HTTPRoot\GPGKeys\newsletter@open.charging.cloud_pubring.gpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="HTTPRoot\GPGKeys\robot@open.charging.cloud_pubring.gpg" />
     <EmbeddedResource Include="HTTPRoot\images\chargy_logo.svg" />
     <EmbeddedResource Include="HTTPRoot\images\GitHub.svg" />

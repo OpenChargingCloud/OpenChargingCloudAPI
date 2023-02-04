@@ -98,6 +98,10 @@ body {
                     border-radius:      5px;
                 }
 
+                #validationButton {
+                    margin-top:         1vh;
+                }
+
             }
 
             #wrong {
@@ -106,8 +110,16 @@ body {
             }
 
             #thanks {
+
                 display:            none;
                 font-size:          40%;
+                line-height:        150%;
+
+                a {
+                    color:              #9aafc4;
+                    text-decoration:    none;
+                }
+
             }
 
             #sorry {

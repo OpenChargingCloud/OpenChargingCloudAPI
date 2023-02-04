@@ -19,18 +19,58 @@
     <script type="text/javascript" src="/defaults/defaults.js"></script>
     <script type="text/javascript" src="/shared/UsersAPI/login/SignInOut.js"></script>
 
-    <!--<script>
+    <script>
 
-        function ShowElement(DivName) {
-            return ShowElement2(DivName, "inline-block");
+        function setup() {
+
+            const newsletter        = document.getElementById("newsletter");
+
+            const text              = newsletter.querySelector("#text");
+            const validationButton  = newsletter.querySelector("#validationButton");
+            const thanksDiv         = newsletter.querySelector("#thanks");
+            const sorryDiv          = newsletter.querySelector("#sorry");
+
+            validationButton.onclick = () => {
+
+                const ajax = new XMLHttpRequest();
+                ajax.open("VALIDATE", "{securityTokenId}", true);
+
+                ajax.onreadystatechange = function () {
+
+                    // 0 UNSENT | 1 OPENED | 2 HEADERS_RECEIVED | 3 LOADING | 4 DONE
+                    if (this.readyState == 4) {
+
+                        // CREATED
+                        if (this.status == 201) {
+                            text.            style.display = "none";
+                            validationButton.style.display = "none";
+                            thanksDiv.       style.display = "block";
+                            sorryDiv.        style.display = "none";
+                        }
+
+                        else {
+                            text.            style.display = "block";
+                            validationButton.style.display = "block";
+                            thanksDiv.       style.display = "none";
+                            sorryDiv.        style.display = "block";
+                        }
+
+                    }
+
+                }
+
+                ajax.send();
+
+            };
+
         }
 
-    </script>-->
+    </script>
 
 </head>
 
 <!--aerial-view-overpass-night-shanghai-china-279232676-->
-<body>
+<body onload="setup()">
 
     <div id="header">
         <a href="login">login</a>
@@ -45,13 +85,16 @@
 
             <div id="newsletter">
 
-                <div id="text">Do you want to subscribe '{eMailAddress}' our '{newsletterId}' newsletter?</div>
+                <div id="text">Do you want to subscribe '{eMailAddress}' to our '{newsletterId}' newsletter?</div>
 
                 <div id="email">
-                    <button>Yes</button>
+                    <button id="validationButton">Yes</button>
                 </div>
 
-                <div id="thanks">Thank you for subscribing. Please check your e-mail inbox for further instructions...</div>
+                <div id="thanks">
+                    Thank you for subscribing to our '{newsletterId}' newsletter.<br />
+                    All e-mail of the newsletter are digital signed via the this <a href="../../GPGKeys/newsletter@open.charging.cloud_pubring.gpg">PGP/GPG public key</a>
+                </div>
 
                 <div id="sorry">Sorry, something went wrong. Please send us an <a href="mailto:mail@charging.cloud">e-mail</a>.</div>
 

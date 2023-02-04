@@ -75,6 +75,9 @@ body #logoFrame #newsletter #email button {
   border: 0;
   border-radius: 5px;
 }
+body #logoFrame #newsletter #email #validationButton {
+  margin-top: 1vh;
+}
 body #logoFrame #newsletter #wrong {
   display: none;
   font-size: 40%;
@@ -82,6 +85,11 @@ body #logoFrame #newsletter #wrong {
 body #logoFrame #newsletter #thanks {
   display: none;
   font-size: 40%;
+  line-height: 150%;
+}
+body #logoFrame #newsletter #thanks a {
+  color: #9aafc4;
+  text-decoration: none;
 }
 body #logoFrame #newsletter #sorry {
   display: none;

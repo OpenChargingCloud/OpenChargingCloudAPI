@@ -23,10 +23,12 @@
 
         function setup() {
 
-            const subscribeButton  = document.getElementById("subscribeButton");
-            const wrongDiv         = document.getElementById("wrong");
-            const thanksDiv        = document.getElementById("thanks");
-            const sorryDiv         = document.getElementById("sorry");
+            const newsletter       = document.getElementById("newsletter");
+
+            const subscribeButton  = newsletter.querySelector("#subscribeButton");
+            const wrongDiv         = newsletter.querySelector("#wrong");
+            const thanksDiv        = newsletter.querySelector("#thanks");
+            const sorryDiv         = newsletter.querySelector("#sorry");
 
             subscribeButton.onclick = () => {
 
