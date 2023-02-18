@@ -70,13 +70,13 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             var RN      = OpenChargingCloudAPI.CreateNewRoamingNetwork(Id:   RoamingNetwork_Id.Parse("TEST_RN1"),
                                                                        Name: I18NString.Create(Languages.de,  "Test Roaming Netz 1").
                                                                                            Set(Languages.en,  "Test roaming network 1"));
-             
+
             var CPO     = RN.CreateChargingStationOperator(Id:              ChargingStationOperator_Id.Parse("DE*GEF"),
                                                            Name:            I18NString.Create(Languages.de, "GraphDefined"),
                                                            Description:     I18NString.Create(Languages.de, "GraphDefined CSO"),
                                                            Configurator:    evseoperator => {
                                                                                 evseoperator.DataLicenses.Add(DataLicense.OpenDatabaseLicense);
-                                                                            });
+                                                                            }).Result.ChargingStationOperator;
 
             #region Verify GET /RNs/TEST_RN1/ChargingPools
 
@@ -146,7 +146,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                                                                                 I18NString.Create(Languages.de, "Wien"),
                                                                                 Country.Austria,
                                                                                 "17");
-                                                 });
+                                                 }).Result.ChargingPool;
 
             var Pool_2  = CPO.CreateChargingPool(ChargingPool_Id.Parse(CPO.Id, "2222"),
                                                  Configurator: pool => {
@@ -155,7 +155,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                                                                                 I18NString.Create(Languages.de, "Jena"),
                                                                                 Country.Germany,
                                                                                 "18");
-                                                 });
+                                                 }).Result.ChargingPool;
 
             var Pool_3  = CPO.CreateChargingPool(ChargingPool_Id.Parse(CPO.Id, "3333"),
                                                  Configurator: pool => {
@@ -164,7 +164,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                                                                                 I18NString.Create(Languages.bg, "Brussels"),
                                                                                 Country.Belgium,
                                                                                 "19");
-                                                 });
+                                                 }).Result.ChargingPool;
 
 
             #region Verify GET   /RNs/TEST_RN1/ChargingPools
