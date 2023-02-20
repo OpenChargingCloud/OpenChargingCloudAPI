@@ -9022,7 +9022,7 @@ namespace cloud.charging.open.API
 
                                              _RoamingNetwork.ChargingStationOperators.ForEach(evseoperator => {
 
-                                                 if (evseoperator.ContainsChargingPool(ChargingPoolId))
+                                                 if (evseoperator.ChargingPoolExists(ChargingPoolId))
                                                      evseoperator.SetChargingPoolAdminStatus(ChargingPoolId, new Timestamped<ChargingPoolAdminStatusTypes>(NewChargingPoolAdminStatus), SendUpstream: true);
 
                                              });
