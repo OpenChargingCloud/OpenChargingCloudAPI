@@ -834,7 +834,7 @@ namespace cloud.charging.open.API
         public static Boolean ParseRoamingNetworkAndEMobilityProvider(this HTTPRequest           HTTPRequest,
                                                                       OpenChargingCloudAPI       OpenChargingCloudAPI,
                                                                       out IRoamingNetwork?       RoamingNetwork,
-                                                                      out EMobilityProvider?     EMobilityProvider,
+                                                                      out IEMobilityProvider?    EMobilityProvider,
                                                                       out HTTPResponse.Builder?  HTTPResponse)
         {
 
