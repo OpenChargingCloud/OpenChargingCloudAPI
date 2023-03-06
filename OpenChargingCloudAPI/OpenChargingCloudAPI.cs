@@ -7440,7 +7440,7 @@ namespace cloud.charging.open.API
                                                                             "authentication token",
                                                                             HTTPServer.DefaultServerName,
                                                                             AuthenticationToken.TryParse,
-                                                                            out AuthenticationToken AuthToken,
+                                                                            out AuthenticationToken? AuthToken,
                                                                             Request,
                                                                             out httpResponse))
                                                      {
@@ -7559,13 +7559,13 @@ namespace cloud.charging.open.API
                                                                                                                          ? new ChargingProduct(ChargingProductId.Value)
                                                                                                                          : null,
                                                                                               SessionTime:           new StartEndDateTime(SessionStart, SessionEnd),
-                                                                                              AuthenticationStart:   AuthToken != null
-                                                                                                                         ? (AAuthentication) LocalAuthentication. FromAuthToken(AuthToken)
+                                                                                              AuthenticationStart:   AuthToken.HasValue
+                                                                                                                         ? (AAuthentication) LocalAuthentication. FromAuthToken(AuthToken.Value)
                                                                                                                          : (AAuthentication) RemoteAuthentication.FromRemoteIdentification(eMAId.Value),
                                                                                               //ChargingTime:        new StartEndDateTime(ChargingStart.Value, ChargingEnd.Value),
-                                                                                              EnergyMeteringValues:  new List<Timestamped<Decimal>>() {
-                                                                                                                         new Timestamped<Decimal>(ChargingStart, MeterValueStart),
-                                                                                                                         new Timestamped<Decimal>(ChargingEnd,   MeterValueEnd)
+                                                                                              EnergyMeteringValues:  new List<EnergyMeteringValue>() {
+                                                                                                                         new EnergyMeteringValue(ChargingStart, MeterValueStart),
+                                                                                                                         new EnergyMeteringValue(ChargingEnd,   MeterValueEnd)
                                                                                                                     });
 
                                              var result = await roamingNetwork.
