@@ -475,8 +475,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON
                            new JProperty("dataSource", EVSE.DataSource),
 
                            ExpandDataLicenses.Switch(
-                               () => new JProperty("dataLicenseIds",     new JArray(EVSE.DataLicenses.SafeSelect(license => license.Id.ToString()))),
-                               () => new JProperty("dataLicenses",       EVSE.DataLicenses.ToJSON())),
+                               () => new JProperty("openDataLicenseIds",         new JArray(EVSE.OpenDataLicenses.SafeSelect(license => license.Id.ToString()))),
+                               () => new JProperty("openDataLicenses",           EVSE.OpenDataLicenses.ToJSON())),
 
                            ExpandRoamingNetworkId.Switch(
                                () => new JProperty("roamingNetworkId",           EVSE.RoamingNetwork.Id. ToString()),
