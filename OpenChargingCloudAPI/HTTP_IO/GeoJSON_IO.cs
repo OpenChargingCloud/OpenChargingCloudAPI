@@ -531,16 +531,16 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON
                            EVSE.MaxPower.      HasValue && EVSE.MaxPower.     HasValue ? new JProperty("maxPower",        String.Format("{0:0.00}", EVSE.MaxPower))       : null,
                            EVSE.MaxCapacity.   HasValue && EVSE.MaxCapacity.  HasValue ? new JProperty("maxCapacity",     String.Format("{0:0.00}", EVSE.MaxCapacity))    : null,
 
-                           EVSE.SocketOutlets.Count > 0
-                               ? new JProperty("socketOutlets",  new JArray(EVSE.SocketOutlets.ToJSON()))
+                           EVSE.ChargingConnectors.Count > 0
+                               ? new JProperty("chargingConnectors",  new JArray(EVSE.ChargingConnectors.ToJSON()))
                                : null,
 
                            EVSE.EnergyMeter is not null
-                               ? new JProperty("energyMeterId",  EVSE.EnergyMeter.Id)
+                               ? new JProperty("energyMeterId",       EVSE.EnergyMeter.Id)
                                : null,
 
                            EVSE.ChargingStation.OpeningTimes is not null
-                               ? new JProperty("openingTimes",   EVSE.ChargingStation.OpeningTimes.ToJSON())
+                               ? new JProperty("openingTimes",        EVSE.ChargingStation.OpeningTimes.ToJSON())
                                : null
 
                        )),

@@ -180,7 +180,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.XML
 
         }
 
-        public static XDocument ToXML(this SocketOutlet Socket)
+        public static XDocument ToXML(this ChargingConnector Socket)
         {
 
             var _XDocument = new XDocument();

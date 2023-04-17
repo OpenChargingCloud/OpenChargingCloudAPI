@@ -6189,7 +6189,7 @@ namespace cloud.charging.open.API
                                                      ChargingProduct_Id?      ChargingProductId     = null;
                                                      DateTime?                ChargingStartTime     = null;
                                                      TimeSpan?                CharingDuration       = null;
-                                                     PlugTypes?               Plug                  = null;
+                                                     ChargingPlugTypes?               Plug                  = null;
                                                      var                      Consumption           = 0U;
 
                                                      // AuthorizedIds
