@@ -39,6 +39,11 @@ var WWCP;
     }
     WWCP.EVSEOperator = EVSEOperator;
     class ChargingPool {
+        get ChargingPoolId() { return this._ChargingPoolId; }
+        get Name() { return this._Name; }
+        get Description() { return this._Description; }
+        get GeoLocation() { return this._GeoLocation; }
+        get ChargingStations() { return this._ChargingStations; }
         constructor(JSON) {
             if (JSON !== undefined) {
                 this._ChargingPoolId = JSON.hasOwnProperty("ChargingPoolId") ? JSON.ChargingPoolId : null;
@@ -49,14 +54,13 @@ var WWCP;
                     JSON.ChargingStations instanceof Array) ? JSON.ChargingStations.map((station, index, array) => new ChargingStation(station)) : null;
             }
         }
-        get ChargingPoolId() { return this._ChargingPoolId; }
-        get Name() { return this._Name; }
-        get Description() { return this._Description; }
-        get GeoLocation() { return this._GeoLocation; }
-        get ChargingStations() { return this._ChargingStations; }
     }
     WWCP.ChargingPool = ChargingPool;
     class ChargingStation {
+        get ChargingStationId() { return this._ChargingStationId; }
+        get Name() { return this._Name; }
+        get Description() { return this._Description; }
+        get EVSEs() { return this._EVSEs; }
         constructor(JSON) {
             if (JSON !== undefined) {
                 this._ChargingStationId = JSON.hasOwnProperty("ChargingStationId") ? JSON.ChargingStationId : null;
@@ -66,26 +70,24 @@ var WWCP;
                     JSON.EVSEs instanceof Array) ? JSON.EVSEs.map((evse, index, array) => new EVSE(evse)) : null;
             }
         }
-        get ChargingStationId() { return this._ChargingStationId; }
-        get Name() { return this._Name; }
-        get Description() { return this._Description; }
-        get EVSEs() { return this._EVSEs; }
     }
     WWCP.ChargingStation = ChargingStation;
     class EVSE {
+        get EVSEId() { return this._EVSEId; }
+        get Description() { return this._Description; }
+        get MaxPower() { return this._MaxPower; }
+        get SocketOutlets() { return this._SocketOutlets; }
         constructor(JSON) {
             this._EVSEId = JSON.EVSEId;
             this._Description = new WWCP.I18NString(JSON.Description);
             this._MaxPower = JSON.MaxPower;
             this._SocketOutlets = JSON.SocketOutlets.map((socketOutlet, index, array) => new SocketOutlet(socketOutlet));
         }
-        get EVSEId() { return this._EVSEId; }
-        get Description() { return this._Description; }
-        get MaxPower() { return this._MaxPower; }
-        get SocketOutlets() { return this._SocketOutlets; }
     }
     WWCP.EVSE = EVSE;
     class SocketOutlet {
+        get Plug() { return this._Plug; }
+        get PlugImage() { return this._PlugImage; }
         constructor(JSON) {
             const prefix = "images/Ladestecker/";
             switch (JSON.Plug) {
@@ -115,15 +117,9 @@ var WWCP;
                     break;
             }
         }
-        get Plug() { return this._Plug; }
-        get PlugImage() { return this._PlugImage; }
     }
     WWCP.SocketOutlet = SocketOutlet;
     class EVSEStatusRecord {
-        constructor(EVSEId, EVSEStatus) {
-            this._EVSEId = EVSEId;
-            this._EVSEStatus = EVSEStatus;
-        }
         get EVSEId() { return this._EVSEId; }
         get EVSEStatus() { return this._EVSEStatus; }
         static Parse(EVSEId, JSON) {
@@ -135,6 +131,10 @@ var WWCP;
             if (JSON !== undefined) {
                 return new EVSEStatusRecord(EVSEId, status);
             }
+        }
+        constructor(EVSEId, EVSEStatus) {
+            this._EVSEId = EVSEId;
+            this._EVSEStatus = EVSEStatus;
         }
     }
     WWCP.EVSEStatusRecord = EVSEStatusRecord;
