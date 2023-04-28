@@ -11236,14 +11236,15 @@ namespace cloud.charging.open.API
                                                               EventTrackingId,
                                                               EVSE,
                                                               PropertyName,
+                                                              NewValue,
                                                               OldValue,
-                                                              NewValue)
+                                                              dataSource)
 
                     => await DebugLog.SubmitEvent("OnEVSEDataChanged",
                                                   JSONObject.Create(
                                                       new JProperty("timestamp",        Timestamp.           ToIso8601()),
                                                       new JProperty("eventTrackingId",  EventTrackingId.     ToString()),
-                                                      new JProperty("roamingNetworkId",   NewRoamingNetwork.Id.ToString()),
+                                                      new JProperty("roamingNetworkId", NewRoamingNetwork.Id.ToString()),
                                                       new JProperty("EVSEId",           EVSE.Id.             ToString()),
                                                       new JProperty("propertyName",     PropertyName),
                                                       new JProperty("oldValue",         OldValue?.           ToString()),
@@ -11255,14 +11256,15 @@ namespace cloud.charging.open.API
                 NewRoamingNetwork.OnEVSEStatusChanged += async (Timestamp,
                                                                 EventTrackingId,
                                                                 EVSE,
+                                                                NewStatus,
                                                                 OldStatus,
-                                                                NewStatus)
+                                                                dataSource)
 
                     => await DebugLog.SubmitEvent("OnEVSEStatusChanged",
                                                   JSONObject.Create(
                                                       new JProperty("timestamp",        Timestamp.           ToIso8601()),
                                                       new JProperty("eventTrackingId",  EventTrackingId.     ToString()),
-                                                      new JProperty("roamingNetworkId",   NewRoamingNetwork.Id.ToString()),
+                                                      new JProperty("roamingNetworkId", NewRoamingNetwork.Id.ToString()),
                                                       new JProperty("EVSEId",           EVSE.Id.             ToString()),
                                                       new JProperty("oldStatus",        OldStatus.Value.     ToString()),
                                                       new JProperty("newStatus",        NewStatus.Value.     ToString())
@@ -11273,14 +11275,15 @@ namespace cloud.charging.open.API
                 NewRoamingNetwork.OnEVSEAdminStatusChanged += async (Timestamp,
                                                                      EventTrackingId,
                                                                      EVSE,
+                                                                     NewStatus,
                                                                      OldStatus,
-                                                                     NewStatus)
+                                                                     dataSource)
 
                     => await DebugLog.SubmitEvent("OnEVSEAdminStatusChanged",
                                                   JSONObject.Create(
                                                       new JProperty("timestamp",        Timestamp.           ToIso8601()),
                                                       new JProperty("eventTrackingId",  EventTrackingId.     ToString()),
-                                                      new JProperty("roamingNetworkId",   NewRoamingNetwork.Id.ToString()),
+                                                      new JProperty("roamingNetworkId", NewRoamingNetwork.Id.ToString()),
                                                       new JProperty("EVSEId",           EVSE.Id.             ToString()),
                                                       new JProperty("oldStatus",        OldStatus.Value.     ToString()),
                                                       new JProperty("newStatus",        NewStatus.Value.     ToString())
