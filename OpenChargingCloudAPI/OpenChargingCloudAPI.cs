@@ -2299,12 +2299,12 @@ namespace cloud.charging.open.API
         #region (protected internal) SendGetEVSEsStatusRequest (Request)
 
         /// <summary>
-        /// An event sent whenever a EVSEs->Status request was received.
+        /// An event sent whenever an EVSEs->Status request was received.
         /// </summary>
         public HTTPRequestLogEvent OnGetEVSEsStatusRequest = new ();
 
         /// <summary>
-        /// An event sent whenever a EVSEs->Status request was received.
+        /// An event sent whenever an EVSEs->Status request was received.
         /// </summary>
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
@@ -2322,12 +2322,12 @@ namespace cloud.charging.open.API
         #region (protected internal) SendGetEVSEsStatusResponse(Response)
 
         /// <summary>
-        /// An event sent whenever a EVSEs->Status response was sent.
+        /// An event sent whenever an EVSEs->Status response was sent.
         /// </summary>
         public HTTPResponseLogEvent OnGetEVSEsStatusResponse = new ();
 
         /// <summary>
-        /// An event sent whenever a EVSEs->Status response was sent.
+        /// An event sent whenever an EVSEs->Status response was sent.
         /// </summary>
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
