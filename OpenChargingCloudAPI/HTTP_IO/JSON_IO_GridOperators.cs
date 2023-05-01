@@ -66,10 +66,11 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                                   #region Check parameters
 
                                                                   if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI,
-                                                                                                   out var _RoamingNetwork,
-                                                                                                   out var _HTTPResponse))
+                                                                                                   out var roamingNetwork,
+                                                                                                   out var httpResponse) ||
+                                                                       roamingNetwork is null)
                                                                   {
-                                                                      return Task.FromResult(_HTTPResponse.AsImmutable);
+                                                                      return Task.FromResult(httpResponse.AsImmutable);
                                                                   }
 
                                                                   #endregion
@@ -82,7 +83,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                                   //var expandBrands            = expand.Contains("brands");
 
                                                                   //ToDo: Getting the expected total count might be very expensive!
-                                                                  var _ExpectedCount = _RoamingNetwork.GridOperators.ULongCount();
+                                                                  var _ExpectedCount = roamingNetwork.GridOperators.ULongCount();
 
                                                                   return Task.FromResult(
                                                                       new HTTPResponse.Builder(Request) {
@@ -90,11 +91,11 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                                           Server                       = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                                                                           Date                         = Timestamp.Now,
                                                                           AccessControlAllowOrigin     = "*",
-                                                                          AccessControlAllowMethods    = "GET, COUNT, STATUS",
+                                                                          AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
                                                                           AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
                                                                           ETag                         = "1",
                                                                           ContentType                  = HTTPContentType.JSON_UTF8,
-                                                                          Content                      = _RoamingNetwork.GridOperators.
+                                                                          Content                      = roamingNetwork.GridOperators.
                                                                                                              ToJSON(skip,
                                                                                                                     take,
                                                                                                                     false).
@@ -138,7 +139,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                                           Server                       = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                                                                           Date                         = Timestamp.Now,
                                                                           AccessControlAllowOrigin     = "*",
-                                                                          AccessControlAllowMethods    = "GET, COUNT, STATUS",
+                                                                          AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
                                                                           AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
                                                                           ETag                         = "1",
                                                                           ContentType                  = HTTPContentType.JSON_UTF8,
@@ -187,7 +188,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                                           Server                       = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                                                                           Date                         = Timestamp.Now,
                                                                           AccessControlAllowOrigin     = "*",
-                                                                          AccessControlAllowMethods    = "GET",
+                                                                          AccessControlAllowMethods    = new[] { "GET" },
                                                                           AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
                                                                           ETag                         = "1",
                                                                           ContentType                  = HTTPContentType.JSON_UTF8,
@@ -237,7 +238,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                                           Server                        = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                                                                           Date                          = Timestamp.Now,
                                                                           AccessControlAllowOrigin      = "*",
-                                                                          AccessControlAllowMethods     = "GET",
+                                                                          AccessControlAllowMethods     = new[] { "GET" },
                                                                           AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
                                                                           ETag                          = "1",
                                                                           ContentType                   = HTTPContentType.JSON_UTF8,
@@ -283,7 +284,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                                           Server                     = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                                                                           Date                       = Timestamp.Now,
                                                                           AccessControlAllowOrigin   = "*",
-                                                                          AccessControlAllowMethods  = "GET, CREATE, DELETE",
+                                                                          AccessControlAllowMethods  = new[] { "GET", "CREATE", "DELETE" },
                                                                           AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
                                                                           ETag                       = "1",
                                                                           ContentType                = HTTPContentType.JSON_UTF8,
