@@ -40,9 +40,6 @@ var WWCP;
     //#endregion
     //#region General data types...
     class I18NString {
-        get de() { return this._de; }
-        get en() { return this._en; }
-        get fr() { return this._fr; }
         constructor(JSON) {
             if (JSON !== undefined) {
                 this._de = JSON.hasOwnProperty("de") ? JSON.de : "";
@@ -50,6 +47,9 @@ var WWCP;
                 this._fr = JSON.hasOwnProperty("fr") ? JSON.fr : "";
             }
         }
+        get de() { return this._de; }
+        get en() { return this._en; }
+        get fr() { return this._fr; }
     }
     WWCP.I18NString = I18NString;
     /**
@@ -57,8 +57,6 @@ var WWCP;
     * @class WWCP.GeoCoordinate
     */
     class GeoCoordinate {
-        get lat() { return this._lat; }
-        get lng() { return this._lng; }
         /**
         * Create a new geo coordinate.
         * @param {number} Latitude A geo latitude.
@@ -68,6 +66,8 @@ var WWCP;
             this._lat = Latitude;
             this._lng = Longitude;
         }
+        get lat() { return this._lat; }
+        get lng() { return this._lng; }
         static Parse(JSON) {
             if (JSON !== undefined) {
                 return new GeoCoordinate(JSON.hasOwnProperty("lat") ? JSON.lat : 0, JSON.hasOwnProperty("lng") ? JSON.lng : 0);
