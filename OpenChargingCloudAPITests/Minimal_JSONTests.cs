@@ -139,7 +139,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             #endregion
 
 
-            var Pool_1  = CPO.CreateChargingPool(ChargingPool_Id.Parse(CPO.Id, "1111"),
+            var Pool_1  = CPO.AddChargingPool(ChargingPool_Id.Parse(CPO.Id, "1111"),
                                                  Configurator: pool => {
                                                      pool.Address = new Address("Hofplatz",
                                                                                 "07741",
@@ -148,7 +148,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                                                                                 "17");
                                                  }).Result.ChargingPool;
 
-            var Pool_2  = CPO.CreateChargingPool(ChargingPool_Id.Parse(CPO.Id, "2222"),
+            var Pool_2  = CPO.AddChargingPool(ChargingPool_Id.Parse(CPO.Id, "2222"),
                                                  Configurator: pool => {
                                                      pool.Address = new Address("Biberweg",
                                                                                 "07749",
@@ -157,7 +157,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                                                                                 "18");
                                                  }).Result.ChargingPool;
 
-            var Pool_3  = CPO.CreateChargingPool(ChargingPool_Id.Parse(CPO.Id, "3333"),
+            var Pool_3  = CPO.AddChargingPool(ChargingPool_Id.Parse(CPO.Id, "3333"),
                                                  Configurator: pool => {
                                                      pool.Address = new Address("Avenue",
                                                                                 "07758",
