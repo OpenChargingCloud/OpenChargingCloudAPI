@@ -6181,7 +6181,7 @@ namespace cloud.charging.open.API
                                                      ChargingReservation_Id?  ReservationId         = null;
                                                      ChargingReservation_Id?  LinkedReservationId   = null;
                                                      EMobilityProvider_Id?    ProviderId            = null;
-                                                     eMobilityAccount_Id      eMAId                 = default;
+                                                     EMobilityAccount_Id      eMAId                 = default;
                                                      DateTime?                StartTime             = null;
                                                      TimeSpan?                Duration              = null;
 
@@ -6194,7 +6194,7 @@ namespace cloud.charging.open.API
 
                                                      // AuthorizedIds
                                                      var                      authenticationTokens            = new List<AuthenticationToken>();
-                                                     var                      eMAIds                = new List<eMobilityAccount_Id>();
+                                                     var                      eMAIds                = new List<EMobilityAccount_Id>();
                                                      var                      PINs                  = new List<UInt32>();
 
                                                      #endregion
@@ -6265,7 +6265,7 @@ namespace cloud.charging.open.API
                                                          if (!JSON.ParseMandatory("eMAId",
                                                                                   "eMAId",
                                                                                   HTTPServer.DefaultServerName,
-                                                                                  eMobilityAccount_Id.TryParse,
+                                                                                  EMobilityAccount_Id.TryParse,
                                                                                   out eMAId,
                                                                                   Request,
                                                                                   out httpResponse))
@@ -6482,12 +6482,12 @@ namespace cloud.charging.open.API
                                                                      return httpResponse;
 
 
-                                                                 eMobilityAccount_Id eMAId2;
+                                                                 EMobilityAccount_Id eMAId2;
 
                                                                  foreach (var jtoken in eMAIdsJSON)
                                                                  {
 
-                                                                     if (!eMobilityAccount_Id.TryParse(jtoken?.Value<String>() ?? "", out eMAId2))
+                                                                     if (!EMobilityAccount_Id.TryParse(jtoken?.Value<String>() ?? "", out eMAId2))
                                                                          return new HTTPResponse.Builder(Request) {
                                                                                     HTTPStatusCode             = HTTPStatusCode.BadRequest,
                                                                                     Server                     = HTTPServer.DefaultServerName,
@@ -7028,7 +7028,7 @@ namespace cloud.charging.open.API
                                                      ChargingReservation_Id?  ReservationId       = null;
                                                      ChargingSession_Id?      SessionId           = null;
                                                      EMobilityProvider_Id?    ProviderId          = null;
-                                                     eMobilityAccount_Id      eMAId               = default;
+                                                     EMobilityAccount_Id      eMAId               = default;
 
                                                      if (Request.TryParseJObjectRequestBody(out var JSON,
                                                                                             out httpResponse))
@@ -7110,7 +7110,7 @@ namespace cloud.charging.open.API
                                                          if (!JSON.ParseMandatory("eMAId",
                                                                                   "e-Mobility account identification",
                                                                                   HTTPServer.DefaultServerName,
-                                                                                  eMobilityAccount_Id.TryParse,
+                                                                                  EMobilityAccount_Id.TryParse,
                                                                                   out eMAId,
                                                                                   Request,
                                                                                   out httpResponse))
@@ -7224,7 +7224,7 @@ namespace cloud.charging.open.API
 
                                                      ChargingSession_Id     SessionId   = default;
                                                      EMobilityProvider_Id?  ProviderId  = null;
-                                                     eMobilityAccount_Id?   eMAId       = null;
+                                                     EMobilityAccount_Id?   eMAId       = null;
 
                                                      if (!Request.TryParseJObjectRequestBody(out var JSON,
                                                                                              out httpResponse,
@@ -7271,7 +7271,7 @@ namespace cloud.charging.open.API
                                                          if (!JSON.ParseOptionalStruct2("eMAId",
                                                                                        "e-Mobility account identification",
                                                                                        HTTPServer.DefaultServerName,
-                                                                                       eMobilityAccount_Id.TryParse,
+                                                                                       EMobilityAccount_Id.TryParse,
                                                                                        out eMAId,
                                                                                        Request,
                                                                                        out httpResponse))
@@ -7453,8 +7453,8 @@ namespace cloud.charging.open.API
                                                      if (JSON.ParseOptionalStruct2("eMAId",
                                                                                   "e-mobility account identification",
                                                                                   HTTPServer.DefaultServerName,
-                                                                                  eMobilityAccount_Id.TryParse,
-                                                                                  out eMobilityAccount_Id? eMAId,
+                                                                                  EMobilityAccount_Id.TryParse,
+                                                                                  out EMobilityAccount_Id? eMAId,
                                                                                   Request,
                                                                                   out httpResponse))
                                                      {
