@@ -222,7 +222,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON
 
             #endregion
 
-            return new JObject(
+            return JSONObject.Create(
 
                        new JProperty("type",  "Feature"),
 
@@ -241,13 +241,15 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON
 
                        )),
 
-                       new JProperty("geometry",  new JObject(
-                                                      new JProperty("type",         "Point"),
-                                                      new JProperty("coordinates",  new JArray(
-                                                                                        ChargingStationOperator.GeoLocation.Longitude.Value,
-                                                                                        ChargingStationOperator.GeoLocation.Latitude. Value
-                                                                                    ))
-                                                  ))
+                       ChargingStationOperator.GeoLocation.HasValue
+                           ? new JProperty("geometry",  new JObject(
+                                                            new JProperty("type",         "Point"),
+                                                            new JProperty("coordinates",  new JArray(
+                                                                                              ChargingStationOperator.GeoLocation.Value.Longitude.Value,
+                                                                                              ChargingStationOperator.GeoLocation.Value.Latitude. Value
+                                                                                          ))
+                                                        ))
+                           : null
                    );
 
         }
