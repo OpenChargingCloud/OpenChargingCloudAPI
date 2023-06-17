@@ -1881,7 +1881,7 @@ namespace cloud.charging.open.API
             if (HTTPClient is null)
                 throw new ArgumentNullException(nameof(HTTPClient),  "The given HTTP client must not be null!");
 
-            if (URL.IsNullOrEmpty())
+            if (URL.IsNullOrEmpty)
                 throw new ArgumentNullException(nameof(URL),         "The given URI must not be null!");
 
             #endregion
@@ -1904,7 +1904,7 @@ namespace cloud.charging.open.API
             if (HTTPClient is null)
                 throw new ArgumentNullException(nameof(HTTPClient),  "The given HTTP client must not be null!");
 
-            if (URL.IsNullOrEmpty())
+            if (URL.IsNullOrEmpty)
                 throw new ArgumentNullException(nameof(URL),         "The given URI must not be null!");
 
             #endregion
@@ -6155,488 +6155,488 @@ namespace cloud.charging.open.API
             //                               } \
             //          }" \
             //      http://127.0.0.1:5500/RNs/Test/EVSEs/DE*GEF*E000001*1
-            AddMethodCallback(
-                                         Hostname,
-                                         RESERVE,
-                                         URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
-                                         HTTPContentType.JSON_UTF8,
-                                         HTTPRequestLogger:  SendReserveEVSERequest,
-                                         HTTPResponseLogger: SendReserveEVSEResponse,
-                                         HTTPDelegate:       async Request => {
+            AddMethodCallback(Hostname,
+                              RESERVE,
+                              URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
+                              HTTPContentType.JSON_UTF8,
+                              HTTPRequestLogger:   SendReserveEVSERequest,
+                              HTTPResponseLogger:  SendReserveEVSEResponse,
+                              HTTPDelegate:        async Request => {
 
-                                             #region Check RoamingNetworkId and EVSEId URI parameters
-
-                                                     if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out var roamingNetwork,
-                                                                                             out var evse,
-                                                                                             out var httpResponse))
-                                                     {
-                                                         return httpResponse.AsImmutable;
-                                                     }
-
-                                                     #endregion
-
-                                             #region Define (optional) parameters
-
-                                                     ChargingReservation_Id?  ReservationId         = null;
-                                                     ChargingReservation_Id?  LinkedReservationId   = null;
-                                                     EMobilityProvider_Id?    ProviderId            = null;
-                                                     EMobilityAccount_Id      eMAId                 = default;
-                                                     DateTime?                StartTime             = null;
-                                                     TimeSpan?                Duration              = null;
-
-                                                     // IntendedCharging
-                                                     ChargingProduct_Id?      ChargingProductId     = null;
-                                                     DateTime?                ChargingStartTime     = null;
-                                                     TimeSpan?                CharingDuration       = null;
-                                                     ChargingPlugTypes?               Plug                  = null;
-                                                     var                      Consumption           = 0U;
-
-                                                     // AuthorizedIds
-                                                     var                      authenticationTokens            = new List<AuthenticationToken>();
-                                                     var                      eMAIds                = new List<EMobilityAccount_Id>();
-                                                     var                      PINs                  = new List<UInt32>();
-
-                                                     #endregion
-
-                                             #region Parse  (optional) JSON
-
-                                                     if (Request.TryParseJObjectRequestBody(out var JSON,
-                                                                                            out httpResponse,
-                                                                                            AllowEmptyHTTPBody: true))
-                                                     {
-
-                                                         #region Check ReservationId        [optional]
-
-                                                         if (JSON.ParseOptionalStruct2("ReservationId",
-                                                                                      "ReservationId",
-                                                                                      HTTPServer.DefaultServerName,
-                                                                                      ChargingReservation_Id.TryParse,
-                                                                                      out ReservationId,
-                                                                                      Request,
-                                                                                      out httpResponse))
-                                                         {
-
-                                                             if (httpResponse != null)
-                                                                 return httpResponse;
+                                  #region Check RoamingNetworkId and EVSEId URI parameters
+
+                                  if (!Request.ParseRoamingNetworkAndEVSE(this,
+                                                                          out var roamingNetwork,
+                                                                          out var evse,
+                                                                          out var httpResponse))
+                                  {
+                                      return httpResponse.AsImmutable;
+                                  }
+
+                                  #endregion
+
+                                  #region Define (optional) parameters
+
+                                  ChargingReservation_Id?  ReservationId         = null;
+                                  ChargingReservation_Id?  LinkedReservationId   = null;
+                                  EMobilityProvider_Id?    ProviderId            = null;
+                                  EMobilityAccount_Id      eMAId                 = default;
+                                  DateTime?                StartTime             = null;
+                                  TimeSpan?                Duration              = null;
+
+                                  // IntendedCharging
+                                  ChargingProduct_Id?      ChargingProductId     = null;
+                                  DateTime?                ChargingStartTime     = null;
+                                  TimeSpan?                CharingDuration       = null;
+                                  ChargingPlugTypes?               Plug                  = null;
+                                  var                      Consumption           = 0U;
+
+                                  // AuthorizedIds
+                                  var                      authenticationTokens  = new List<AuthenticationToken>();
+                                  var                      eMAIds                = new List<EMobilityAccount_Id>();
+                                  var                      PINs                  = new List<UInt32>();
+
+                                  #endregion
+
+                                  #region Parse  (optional) JSON
+
+                                  if (Request.TryParseJObjectRequestBody(out var JSON,
+                                                                      out httpResponse,
+                                                                      AllowEmptyHTTPBody: true))
+                                  {
+
+                                      #region Check ReservationId        [optional]
+
+                                      if (JSON.ParseOptionalStruct2("ReservationId",
+                                                                  "ReservationId",
+                                                                  HTTPServer.DefaultServerName,
+                                                                  ChargingReservation_Id.TryParse,
+                                                                  out ReservationId,
+                                                                  Request,
+                                                                  out httpResponse))
+                                      {
 
-                                                         }
-
-                                                         #endregion
-
-                                                         #region Check LinkedReservationId        [optional]
-
-                                                         if (JSON.ParseOptionalStruct2("linkedReservationId",
-                                                                                       "linked reservation identification",
-                                                                                       HTTPServer.DefaultServerName,
-                                                                                       ChargingReservation_Id.TryParse,
-                                                                                       out LinkedReservationId,
-                                                                                       Request,
-                                                                                       out httpResponse))
-                                                         {
-
-                                                             if (httpResponse != null)
-                                                                 return httpResponse;
-
-                                                         }
-
-                                                         #endregion
-
-                                                         #region Check ProviderId           [optional]
-
-                                                         if (JSON.ParseOptionalStruct2("ProviderId",
-                                                                                       "ProviderId",
-                                                                                       HTTPServer.DefaultServerName,
-                                                                                       EMobilityProvider_Id.TryParse,
-                                                                                       out ProviderId,
-                                                                                       Request,
-                                                                                       out httpResponse))
-                                                         {
-
-                                                             if (httpResponse != null)
-                                                                 return httpResponse;
-
-                                                         }
+                                          if (httpResponse is not null)
+                                              return httpResponse;
 
-                                                         #endregion
+                                      }
+
+                                      #endregion
+
+                                      #region Check LinkedReservationId  [optional]
+
+                                      if (JSON.ParseOptionalStruct2("linkedReservationId",
+                                                                  "linked reservation identification",
+                                                                  HTTPServer.DefaultServerName,
+                                                                  ChargingReservation_Id.TryParse,
+                                                                  out LinkedReservationId,
+                                                                  Request,
+                                                                  out httpResponse))
+                                      {
+
+                                          if (httpResponse is not null)
+                                              return httpResponse;
+
+                                      }
+
+                                      #endregion
+
+                                      #region Check ProviderId           [optional]
+
+                                      if (JSON.ParseOptionalStruct2("ProviderId",
+                                                                  "ProviderId",
+                                                                  HTTPServer.DefaultServerName,
+                                                                  EMobilityProvider_Id.TryParse,
+                                                                  out ProviderId,
+                                                                  Request,
+                                                                  out httpResponse))
+                                      {
 
-                                                         #region Check eMAId                [mandatory]
+                                          if (httpResponse is not null)
+                                              return httpResponse;
+
+                                      }
 
-                                                         if (!JSON.ParseMandatory("eMAId",
-                                                                                  "eMAId",
-                                                                                  HTTPServer.DefaultServerName,
-                                                                                  EMobilityAccount_Id.TryParse,
-                                                                                  out eMAId,
-                                                                                  Request,
-                                                                                  out httpResponse))
-                                                         {
-                                                             return httpResponse;
-                                                         }
+                                      #endregion
 
-                                                         #endregion
+                                      #region Check eMAId                [mandatory]
 
-                                                         #region Check StartTime            [optional]
+                                      if (!JSON.ParseMandatory("eMAId",
+                                                              "eMAId",
+                                                              HTTPServer.DefaultServerName,
+                                                              EMobilityAccount_Id.TryParse,
+                                                              out eMAId,
+                                                              Request,
+                                                              out httpResponse))
+                                      {
+                                          return httpResponse;
+                                      }
 
-                                                         if (JSON.ParseOptional("StartTime",
-                                                                                "start time!",
-                                                                                HTTPServer.DefaultServerName,
-                                                                                out StartTime,
-                                                                                Request,
-                                                                                out httpResponse))
-                                                         {
+                                      #endregion
 
-                                                             if (httpResponse != null)
-                                                                 return httpResponse;
+                                      #region Check StartTime            [optional]
 
-                                                             if (StartTime <= Timestamp.Now)
-                                                                 return new HTTPResponse.Builder(Request) {
-                                                                            HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                                            ContentType     = HTTPContentType.JSON_UTF8,
-                                                                            Content         = new JObject(new JProperty("description", "The starting time must be in the future!")).ToUTF8Bytes()
-                                                                        };
+                                      if (JSON.ParseOptional("StartTime",
+                                                          "start time!",
+                                                          HTTPServer.DefaultServerName,
+                                                          out StartTime,
+                                                          Request,
+                                                          out httpResponse))
+                                      {
 
-                                                         }
+                                          if (httpResponse is not null)
+                                              return httpResponse;
 
-                                                         #endregion
+                                          if (StartTime <= Timestamp.Now)
+                                              return new HTTPResponse.Builder(Request) {
+                                                      HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                                                      ContentType     = HTTPContentType.JSON_UTF8,
+                                                      Content         = new JObject(new JProperty("description", "The starting time must be in the future!")).ToUTF8Bytes()
+                                                  };
 
-                                                         #region Check Duration             [optional]
+                                      }
 
-                                                         if (JSON.ParseOptional("Duration",
-                                                                                "Duration",
-                                                                                HTTPServer.DefaultServerName,
-                                                                                out Duration,
-                                                                                Request,
-                                                                                out httpResponse))
-                                                         {
+                                      #endregion
 
-                                                             if (httpResponse != null)
-                                                                 return httpResponse;
+                                      #region Check Duration             [optional]
 
-                                                         }
+                                      if (JSON.ParseOptional("Duration",
+                                                          "Duration",
+                                                          HTTPServer.DefaultServerName,
+                                                          out Duration,
+                                                          Request,
+                                                          out httpResponse))
+                                      {
 
-                                                         #endregion
+                                          if (httpResponse is not null)
+                                              return httpResponse;
 
-                                                         #region Check IntendedCharging     [optional]
+                                      }
 
-                                                         if (JSON.ParseOptional("IntendedCharging",
-                                                                                "IntendedCharging",
-                                                                                HTTPServer.DefaultServerName,
-                                                                                out JObject IntendedChargingJSON,
-                                                                                Request,
-                                                                                out httpResponse))
-                                                         {
+                                      #endregion
 
-                                                             if (httpResponse != null)
-                                                                 return httpResponse;
+                                      #region Check IntendedCharging     [optional]
 
-                                                             #region Check ChargingStartTime    [optional]
+                                      if (JSON.ParseOptional("IntendedCharging",
+                                                          "IntendedCharging",
+                                                          HTTPServer.DefaultServerName,
+                                                          out JObject IntendedChargingJSON,
+                                                          Request,
+                                                          out httpResponse))
+                                      {
 
-                                                             if (IntendedChargingJSON.ParseOptional("StartTime",
-                                                                                                    "IntendedCharging/StartTime",
-                                                                                                    HTTPServer.DefaultServerName,
-                                                                                                    out ChargingStartTime,
-                                                                                                    Request,
-                                                                                                    out httpResponse))
-                                                             {
+                                          if (httpResponse is not null)
+                                              return httpResponse;
 
-                                                                 if (httpResponse != null)
-                                                                     return httpResponse;
+                                          #region Check ChargingStartTime    [optional]
 
-                                                             }
+                                          if (IntendedChargingJSON.ParseOptional("StartTime",
+                                                                              "IntendedCharging/StartTime",
+                                                                              HTTPServer.DefaultServerName,
+                                                                              out ChargingStartTime,
+                                                                              Request,
+                                                                              out httpResponse))
+                                          {
 
-                                                             #endregion
+                                              if (httpResponse is not null)
+                                                  return httpResponse;
 
-                                                             #region Check Duration             [optional]
+                                          }
 
-                                                             if (IntendedChargingJSON.ParseOptional("Duration",
-                                                                                                    "IntendedCharging/Duration",
-                                                                                                    HTTPServer.DefaultServerName,
-                                                                                                    out CharingDuration,
-                                                                                                    Request,
-                                                                                                    out httpResponse))
-                                                             {
+                                          #endregion
 
-                                                                 if (httpResponse != null)
-                                                                     return httpResponse;
+                                          #region Check Duration             [optional]
 
-                                                             }
+                                          if (IntendedChargingJSON.ParseOptional("Duration",
+                                                                              "IntendedCharging/Duration",
+                                                                              HTTPServer.DefaultServerName,
+                                                                              out CharingDuration,
+                                                                              Request,
+                                                                              out httpResponse))
+                                          {
 
-                                                             #endregion
+                                              if (httpResponse is not null)
+                                                  return httpResponse;
 
-                                                             #region Check ChargingProductId    [optional]
+                                          }
 
-                                                             if (!JSON.ParseOptional("ChargingProductId",
-                                                                                     "IntendedCharging/ChargingProductId",
-                                                                                     HTTPServer.DefaultServerName,
-                                                                                     out ChargingProductId,
-                                                                                     Request,
-                                                                                     out httpResponse))
-                                                             {
+                                          #endregion
 
-                                                                 if (httpResponse != null)
-                                                                     return httpResponse;
+                                          #region Check ChargingProductId    [optional]
 
-                                                             }
+                                          if (!JSON.ParseOptional("ChargingProductId",
+                                                                  "IntendedCharging/ChargingProductId",
+                                                                  HTTPServer.DefaultServerName,
+                                                                  out ChargingProductId,
+                                                                  Request,
+                                                                  out httpResponse))
+                                          {
 
-                                                             #endregion
+                                              if (httpResponse is not null)
+                                                  return httpResponse;
 
-                                                             #region Check Plug                 [optional]
+                                          }
 
-                                                             if (IntendedChargingJSON.ParseOptional("Plug",
-                                                                                                    "IntendedCharging/ChargingProductId",
-                                                                                                    HTTPServer.DefaultServerName,
-                                                                                                    out Plug,
-                                                                                                    Request,
-                                                                                                    out httpResponse))
-                                                             {
+                                          #endregion
 
-                                                                 if (httpResponse != null)
-                                                                     return httpResponse;
+                                          #region Check Plug                 [optional]
 
-                                                             }
+                                          if (IntendedChargingJSON.ParseOptional("Plug",
+                                                                              "IntendedCharging/ChargingProductId",
+                                                                              HTTPServer.DefaultServerName,
+                                                                              out Plug,
+                                                                              Request,
+                                                                              out httpResponse))
+                                          {
 
-                                                             #endregion
+                                              if (httpResponse is not null)
+                                                  return httpResponse;
 
-                                                             #region Check Consumption          [optional, kWh]
+                                          }
 
-                                                             if (IntendedChargingJSON.ParseOptional("Consumption",
-                                                                                                    "IntendedCharging/Consumption",
-                                                                                                    HTTPServer.DefaultServerName,
-                                                                                                    UInt32.Parse,
-                                                                                                    out Consumption,
-                                                                                                    Request,
-                                                                                                    out httpResponse))
-                                                             {
+                                          #endregion
 
-                                                                 if (httpResponse != null)
-                                                                     return httpResponse;
+                                          #region Check Consumption          [optional, kWh]
 
-                                                             }
+                                          if (IntendedChargingJSON.ParseOptional("Consumption",
+                                                                              "IntendedCharging/Consumption",
+                                                                              HTTPServer.DefaultServerName,
+                                                                              UInt32.Parse,
+                                                                              out Consumption,
+                                                                              Request,
+                                                                              out httpResponse))
+                                          {
 
-                                                             #endregion
+                                              if (httpResponse is not null)
+                                                  return httpResponse;
 
-                                                         }
+                                          }
 
-                                                         #endregion
+                                          #endregion
 
-                                                         #region Check AuthorizedIds        [optional]
+                                      }
 
-                                                         if (JSON.ParseOptional("AuthorizedIds",
-                                                                                "AuthorizedIds",
-                                                                                HTTPServer.DefaultServerName,
-                                                                                out JObject AuthorizedIdsJSON,
-                                                                                Request,
-                                                                                out httpResponse))
-                                                         {
+                                      #endregion
 
-                                                             if (httpResponse != null)
-                                                                 return httpResponse;
+                                      #region Check AuthorizedIds        [optional]
 
-                                                             #region Check AuthTokens   [optional]
+                                      if (JSON.ParseOptional("AuthorizedIds",
+                                                          "AuthorizedIds",
+                                                          HTTPServer.DefaultServerName,
+                                                          out JObject AuthorizedIdsJSON,
+                                                          Request,
+                                                          out httpResponse))
+                                      {
 
-                                                             if (AuthorizedIdsJSON.ParseOptional("AuthTokens",
-                                                                                                 "AuthorizedIds/AuthTokens",
-                                                                                                 HTTPServer.DefaultServerName,
-                                                                                                 out JArray AuthTokensJSON,
-                                                                                                 Request,
-                                                                                                 out httpResponse))
-                                                             {
+                                          if (httpResponse is not null)
+                                              return httpResponse;
 
-                                                                 if (httpResponse == null)
-                                                                     return httpResponse;
+                                          #region Check AuthTokens   [optional]
 
-                                                                 foreach (var jtoken in AuthTokensJSON)
-                                                                 {
+                                          if (AuthorizedIdsJSON.ParseOptional("AuthTokens",
+                                                                              "AuthorizedIds/AuthTokens",
+                                                                              HTTPServer.DefaultServerName,
+                                                                              out JArray AuthTokensJSON,
+                                                                              Request,
+                                                                              out httpResponse))
+                                          {
 
-                                                                     if (!AuthenticationToken.TryParse(jtoken?.Value<String>() ?? "", out var authenticationToken))
-                                                                         return new HTTPResponse.Builder(Request) {
-                                                                                    HTTPStatusCode             = HTTPStatusCode.BadRequest,
-                                                                                    Server                     = HTTPServer.DefaultServerName,
-                                                                                    Date                       = Timestamp.Now,
-                                                                                    AccessControlAllowOrigin   = "*",
-                                                                                    AccessControlAllowMethods  = new[] { "RESERVE", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                                                    AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
-                                                                                    ContentType                = HTTPContentType.JSON_UTF8,
-                                                                                    Content                    = new JObject(new JProperty("description", "Invalid AuthorizedIds/RFIDId '" + jtoken.Value<String>() + "' section!")).ToUTF8Bytes()
-                                                                                };
+                                              if (httpResponse is null)
+                                                  return httpResponse;
 
-                                                                     authenticationTokens.Add(authenticationToken);
+                                              foreach (var jtoken in AuthTokensJSON)
+                                              {
 
-                                                                 }
+                                                  if (!AuthenticationToken.TryParse(jtoken?.Value<String>() ?? "", out var authenticationToken))
+                                                      return new HTTPResponse.Builder(Request) {
+                                                              HTTPStatusCode             = HTTPStatusCode.BadRequest,
+                                                              Server                     = HTTPServer.DefaultServerName,
+                                                              Date                       = Timestamp.Now,
+                                                              AccessControlAllowOrigin   = "*",
+                                                              AccessControlAllowMethods  = new[] { "RESERVE", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
+                                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                              ContentType                = HTTPContentType.JSON_UTF8,
+                                                              Content                    = new JObject(new JProperty("description", "Invalid AuthorizedIds/RFIDId '" + jtoken.Value<String>() + "' section!")).ToUTF8Bytes()
+                                                          };
 
-                                                             }
+                                                  authenticationTokens.Add(authenticationToken);
 
-                                                             #endregion
+                                              }
 
-                                                             #region Check eMAIds       [optional]
+                                          }
 
-                                                             if (AuthorizedIdsJSON.ParseOptional("eMAIds",
-                                                                                                 "AuthorizedIds/eMAIds",
-                                                                                                 HTTPServer.DefaultServerName,
-                                                                                                 out JArray eMAIdsJSON,
-                                                                                                 Request,
-                                                                                                 out httpResponse))
-                                                             {
+                                          #endregion
 
-                                                                 if (httpResponse == null)
-                                                                     return httpResponse;
+                                          #region Check eMAIds       [optional]
 
+                                          if (AuthorizedIdsJSON.ParseOptional("eMAIds",
+                                                                              "AuthorizedIds/eMAIds",
+                                                                              HTTPServer.DefaultServerName,
+                                                                              out JArray eMAIdsJSON,
+                                                                              Request,
+                                                                              out httpResponse))
+                                          {
 
-                                                                 EMobilityAccount_Id eMAId2;
+                                              if (httpResponse is null)
+                                                  return httpResponse;
 
-                                                                 foreach (var jtoken in eMAIdsJSON)
-                                                                 {
 
-                                                                     if (!EMobilityAccount_Id.TryParse(jtoken?.Value<String>() ?? "", out eMAId2))
-                                                                         return new HTTPResponse.Builder(Request) {
-                                                                                    HTTPStatusCode             = HTTPStatusCode.BadRequest,
-                                                                                    Server                     = HTTPServer.DefaultServerName,
-                                                                                    Date                       = Timestamp.Now,
-                                                                                    AccessControlAllowOrigin   = "*",
-                                                                                    AccessControlAllowMethods  = new[] { "RESERVE", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                                                    AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
-                                                                                    ContentType                = HTTPContentType.JSON_UTF8,
-                                                                                    Content                    = new JObject(new JProperty("description", "Invalid AuthorizedIds/eMAIds '" + jtoken.Value<String>() + "' section!")).ToUTF8Bytes()
-                                                                                };
+                                              EMobilityAccount_Id eMAId2;
 
-                                                                     eMAIds.Add(eMAId2);
+                                              foreach (var jtoken in eMAIdsJSON)
+                                              {
 
-                                                                 }
+                                                  if (!EMobilityAccount_Id.TryParse(jtoken?.Value<String>() ?? "", out eMAId2))
+                                                      return new HTTPResponse.Builder(Request) {
+                                                              HTTPStatusCode             = HTTPStatusCode.BadRequest,
+                                                              Server                     = HTTPServer.DefaultServerName,
+                                                              Date                       = Timestamp.Now,
+                                                              AccessControlAllowOrigin   = "*",
+                                                              AccessControlAllowMethods  = new[] { "RESERVE", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
+                                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                              ContentType                = HTTPContentType.JSON_UTF8,
+                                                              Content                    = new JObject(new JProperty("description", "Invalid AuthorizedIds/eMAIds '" + jtoken.Value<String>() + "' section!")).ToUTF8Bytes()
+                                                          };
 
-                                                             }
+                                                  eMAIds.Add(eMAId2);
 
-                                                             #endregion
+                                              }
 
-                                                             #region Check PINs         [optional]
+                                          }
 
-                                                             if (AuthorizedIdsJSON.ParseOptional("PINs",
-                                                                                                 "AuthorizedIds/PINs",
-                                                                                                 HTTPServer.DefaultServerName,
-                                                                                                 out JArray PINsJSON,
-                                                                                                 Request,
-                                                                                                 out httpResponse))
-                                                             {
+                                          #endregion
 
-                                                                 if (httpResponse == null)
-                                                                     return httpResponse;
+                                          #region Check PINs         [optional]
 
+                                          if (AuthorizedIdsJSON.ParseOptional("PINs",
+                                                                              "AuthorizedIds/PINs",
+                                                                              HTTPServer.DefaultServerName,
+                                                                              out JArray PINsJSON,
+                                                                              Request,
+                                                                              out httpResponse))
+                                          {
 
-                                                                 UInt32 PIN = 0;
+                                              if (httpResponse == null)
+                                                  return httpResponse;
 
-                                                                 foreach (var jtoken in PINsJSON)
-                                                                 {
 
-                                                                     if (!UInt32.TryParse(jtoken?.Value<String>() ?? "", out PIN))
-                                                                         return new HTTPResponse.Builder(Request) {
-                                                                                    HTTPStatusCode             = HTTPStatusCode.BadRequest,
-                                                                                    Server                     = HTTPServer.DefaultServerName,
-                                                                                    Date                       = Timestamp.Now,
-                                                                                    AccessControlAllowOrigin   = "*",
-                                                                                    AccessControlAllowMethods  = new[] { "RESERVE", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                                                    AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
-                                                                                    ContentType                = HTTPContentType.JSON_UTF8,
-                                                                                    Content                    = new JObject(new JProperty("description", "Invalid AuthorizedIds/PINs '" + jtoken.Value<String>() + "' section!")).ToUTF8Bytes()
-                                                                                };
+                                              UInt32 PIN = 0;
 
-                                                                     PINs.Add(PIN);
+                                              foreach (var jtoken in PINsJSON)
+                                              {
 
-                                                                 }
+                                                  if (!UInt32.TryParse(jtoken?.Value<String>() ?? "", out PIN))
+                                                      return new HTTPResponse.Builder(Request) {
+                                                              HTTPStatusCode             = HTTPStatusCode.BadRequest,
+                                                              Server                     = HTTPServer.DefaultServerName,
+                                                              Date                       = Timestamp.Now,
+                                                              AccessControlAllowOrigin   = "*",
+                                                              AccessControlAllowMethods  = new[] { "RESERVE", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
+                                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                              ContentType                = HTTPContentType.JSON_UTF8,
+                                                              Content                    = new JObject(new JProperty("description", "Invalid AuthorizedIds/PINs '" + jtoken.Value<String>() + "' section!")).ToUTF8Bytes()
+                                                          };
 
-                                                             }
+                                                  PINs.Add(PIN);
 
-                                                             #endregion
+                                              }
 
-                                                         }
+                                          }
 
-                                                         #endregion
+                                          #endregion
 
-                                                     }
+                                      }
 
-                                                     if (httpResponse                != null &&
-                                                         httpResponse.HTTPStatusCode == HTTPStatusCode.BadRequest)
-                                                     {
-                                                         return httpResponse;
-                                                     }
+                                      #endregion
 
-                                                     #endregion
+                                  }
 
+                                  if (httpResponse                is not null &&
+                                      httpResponse.HTTPStatusCode == HTTPStatusCode.BadRequest)
+                                  {
+                                      return httpResponse;
+                                  }
 
-                                             var result = await roamingNetwork.
-                                                                    Reserve(ChargingLocation.FromEVSEId(evse.Id),
-                                                                            ChargingReservationLevel.EVSE,
-                                                                            StartTime,
-                                                                            Duration,
-                                                                            ReservationId,
-                                                                            LinkedReservationId,
-                                                                            ProviderId,
-                                                                            RemoteAuthentication.FromRemoteIdentification(eMAId),
-                                                                            ChargingProductId.HasValue
-                                                                                    ? new ChargingProduct(ChargingProductId.Value)
-                                                                                    : null,
-                                                                            authenticationTokens,
-                                                                            eMAIds,
-                                                                            PINs,
+                                  #endregion
 
-                                                                            Request.Timestamp,
-                                                                            Request.CancellationToken,
-                                                                            Request.EventTrackingId);
 
+                                  var result = await roamingNetwork.
+                                                      Reserve(ChargingLocation.FromEVSEId(evse.Id),
+                                                              ChargingReservationLevel.EVSE,
+                                                              StartTime,
+                                                              Duration,
+                                                              ReservationId,
+                                                              LinkedReservationId,
+                                                              ProviderId,
+                                                              RemoteAuthentication.FromRemoteIdentification(eMAId),
+                                                              ChargingProductId.HasValue
+                                                                      ? new ChargingProduct(ChargingProductId.Value)
+                                                                      : null,
+                                                              authenticationTokens,
+                                                              eMAIds,
+                                                              PINs,
 
-                                             var Now = Timestamp.Now;
+                                                              Request.Timestamp,
+                                                              Request.CancellationToken,
+                                                              Request.EventTrackingId);
 
-                                             #region Success
 
-                                                     if (result.Result == ReservationResultType.Success)
-                                                         return new HTTPResponse.Builder(Request) {
-                                                                    HTTPStatusCode             = HTTPStatusCode.Created,
-                                                                    Server                     = HTTPServer.DefaultServerName,
-                                                                    Date                       = Now,
-                                                                    AccessControlAllowOrigin   = "*",
-                                                                    AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                                    AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
-                                                                    Location                   = HTTPPath.Parse("~/RNs/" + roamingNetwork.Id + "/Reservations/" + result.Reservation.Id),
-                                                                    ContentType                = HTTPContentType.JSON_UTF8,
-                                                                    Content                    = new JObject(new JProperty("ReservationId",           result.Reservation.Id.       ToString()),
-                                                                                                             new JProperty("StartTime",               result.Reservation.StartTime.ToIso8601()),
-                                                                                                             new JProperty("Duration",       (UInt32) result.Reservation.Duration. TotalSeconds)
-                                                                                                            ).ToUTF8Bytes()
-                                                                };
+                                  var Now = Timestamp.Now;
 
-                                                     #endregion
+                                  #region Success
 
-                                             #region AlreadInUse
+                                  if (result.Result == ReservationResultType.Success && result.Reservation is not null)
+                                      return new HTTPResponse.Builder(Request) {
+                                              HTTPStatusCode             = HTTPStatusCode.Created,
+                                              Server                     = HTTPServer.DefaultServerName,
+                                              Date                       = Now,
+                                              AccessControlAllowOrigin   = "*",
+                                              AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
+                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                              Location                   = Location.From(URLPathPrefix + "RNs/" + roamingNetwork.Id.ToString() + "/Reservations/" + result.Reservation.Id.ToString()),
+                                              ContentType                = HTTPContentType.JSON_UTF8,
+                                              Content                    = JSONObject.Create(
+                                                                                  new JProperty("reservationId",           result.Reservation.Id.       ToString()),
+                                                                                  new JProperty("startTime",               result.Reservation.StartTime.ToIso8601()),
+                                                                                  new JProperty("duration",       (UInt32) result.Reservation.Duration. TotalSeconds)
+                                                                              ).ToUTF8Bytes()
+                                          };
 
-                                                     //else if (result.Result == ReservationResultType.ReservationId_AlreadyInUse)
-                                                     //    return new HTTPResponse.Builder(HTTPRequest) {
-                                                     //        HTTPStatusCode             = HTTPStatusCode.Conflict,
-                                                     //        Server                     = API.HTTPServer.DefaultServerName,
-                                                     //        Date                       = Timestamp.Now,
-                                                     //        AccessControlAllowOrigin   = "*",
-                                                     //        AccessControlAllowMethods  = new[] { "RESERVE", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                     //        AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
-                                                     //        ContentType                = HTTPContentType.JSON_UTF8,
-                                                     //        Content                    = new JObject(new JProperty("description",  "ReservationId is already in use!")).ToUTF8Bytes(),
-                                                     //        Connection                 = "close"
-                                                     //    };
+                                  #endregion
 
-                                                     #endregion
+                                  #region AlreadInUse
 
-                                             #region ...or fail
+                                  //else if (result.Result == ReservationResultType.ReservationId_AlreadyInUse)
+                                  //    return new HTTPResponse.Builder(HTTPRequest) {
+                                  //        HTTPStatusCode             = HTTPStatusCode.Conflict,
+                                  //        Server                     = API.HTTPServer.DefaultServerName,
+                                  //        Date                       = Timestamp.Now,
+                                  //        AccessControlAllowOrigin   = "*",
+                                  //        AccessControlAllowMethods  = new[] { "RESERVE", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
+                                  //        AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                  //        ContentType                = HTTPContentType.JSON_UTF8,
+                                  //        Content                    = new JObject(new JProperty("description",  "ReservationId is already in use!")).ToUTF8Bytes(),
+                                  //        Connection                 = "close"
+                                  //    };
 
-                                                     else
-                                                        return new HTTPResponse.Builder(Request) {
-                                                                   HTTPStatusCode             = HTTPStatusCode.BadRequest,
-                                                                   Server                     = HTTPServer.DefaultServerName,
-                                                                   Date                       = Now,
-                                                                   AccessControlAllowOrigin   = "*",
-                                                                   AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                                   AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
-                                                                   Connection                 = "close"
-                                                               };
+                                  #endregion
 
-                                                     #endregion
+                                  #region ...or fail
 
-                                         }, AllowReplacement: URLReplacement.Allow);
+                                  else
+                                  return new HTTPResponse.Builder(Request) {
+                                              HTTPStatusCode             = HTTPStatusCode.BadRequest,
+                                              Server                     = HTTPServer.DefaultServerName,
+                                              Date                       = Now,
+                                              AccessControlAllowOrigin   = "*",
+                                              AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
+                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                              Connection                 = "close"
+                                          };
+
+                                  #endregion
+
+                              }, AllowReplacement: URLReplacement.Allow);
 
             #endregion
 
