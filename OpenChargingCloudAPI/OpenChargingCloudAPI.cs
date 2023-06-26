@@ -7327,7 +7327,7 @@ namespace cloud.charging.open.API
                                                                      AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
                                                                      ContentType                = HTTPContentType.JSON_UTF8,
                                                                      Content                    = new JObject(
-                                                                                                      new JProperty("KeepAlive", (Int32) result.ReservationHandling.KeepAliveTime.Value.TotalSeconds)
+                                                                                                      new JProperty("KeepAlive", (Int32) result.ReservationHandling.KeepAliveTime.TotalSeconds)
                                                                                                   ).ToUTF8Bytes()
                                                                  };
 
