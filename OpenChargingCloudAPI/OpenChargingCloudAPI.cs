@@ -3217,7 +3217,7 @@ namespace cloud.charging.open.API
                                           Date                        = Timestamp.Now,
                                           AccessControlAllowOrigin    = "*",
                                           AccessControlAllowMethods   = new[] { "GET" },
-                                          AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
+                                          AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
                                           ContentType                 = HTTPContentType.HTML_UTF8,
                                           Content                     = GetResourceBytes("legal.impress.html"),
                                           Connection                  = "close",
@@ -3266,7 +3266,7 @@ namespace cloud.charging.open.API
                                           Date                        = Timestamp.Now,
                                           AccessControlAllowOrigin    = "*",
                                           AccessControlAllowMethods   = new[] { "GET" },
-                                          AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
+                                          AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
                                           ContentType                 = HTTPContentType.HTML_UTF8,
                                           Content                     = MixWithHTMLTemplate("dashboard.dashboard2.shtml").ToUTF8Bytes(),
                                           Connection                  = "close",
@@ -3304,7 +3304,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET", "OPTIONS" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = new JArray().
@@ -3334,7 +3334,7 @@ namespace cloud.charging.open.API
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "OPTIONS" },
-                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                  }.AsImmutable)
 
                                          );
@@ -3377,7 +3377,7 @@ namespace cloud.charging.open.API
                                                         Date                        = Timestamp.Now,
                                                         AccessControlAllowOrigin    = "*",
                                                         AccessControlAllowMethods   = new[] { "OPTIONS", "POST" },
-                                                        AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
+                                                        AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
                                                         ETag                        = "1",
                                                         ContentType                 = HTTPContentType.JSON_UTF8,
                                                         Content                     = json.ToUTF8Bytes()
@@ -3405,7 +3405,7 @@ namespace cloud.charging.open.API
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "OPTIONS", "POST" },
-                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                  }.AsImmutable)
 
                                          );
@@ -3440,7 +3440,7 @@ namespace cloud.charging.open.API
                                           Date                          = Timestamp.Now,
                                           AccessControlAllowOrigin      = "*",
                                           AccessControlAllowMethods     = new[] { "GET", "COUNT", "OPTIONS" },
-                                          AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                          AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                           ETag                          = "1",
                                           ContentType                   = HTTPContentType.JSON_UTF8,
                                           Content                       = allRoamingNetworks.
@@ -3474,7 +3474,7 @@ namespace cloud.charging.open.API
                                           Date                         = Timestamp.Now,
                                           AccessControlAllowOrigin     = "*",
                                           AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
-                                          AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                          AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                           ETag                         = "1",
                                           ContentType                  = HTTPContentType.JSON_UTF8,
                                           Content                      = JSONObject.Create(
@@ -3504,7 +3504,7 @@ namespace cloud.charging.open.API
                                           Date                       = Timestamp.Now,
                                           AccessControlAllowOrigin   = "*",
                                           AccessControlAllowMethods  = new[] { "GET", "COUNT", "OPTIONS" },
-                                          AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                          AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                           Connection                 = "close"
                                       }.AsImmutable)
 
@@ -3536,7 +3536,7 @@ namespace cloud.charging.open.API
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = new[] { "GET" },
-                                                     AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
                                                      ContentType                    = HTTPContentType.JSON_UTF8,
                                                      Content                        = new JArray(allRoamingNetworks.
@@ -3577,7 +3577,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = allRoamingNetworks.
@@ -3619,7 +3619,7 @@ namespace cloud.charging.open.API
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = new[] { "GET" },
-                                                     AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
                                                      ContentType                    = HTTPContentType.JSON_UTF8,
                                                      Content                        = allRoamingNetworks.
@@ -3670,7 +3670,7 @@ namespace cloud.charging.open.API
                                                      Date                       = Timestamp.Now,
                                                      AccessControlAllowOrigin   = "*",
                                                      AccessControlAllowMethods  = new[] { "GET", "CREATE", "DELETE" },
-                                                     AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                       = "1",
                                                      ContentType                = HTTPContentType.JSON_UTF8,
                                                      Content                    = roamingNetwork.ToJSON().ToUTF8Bytes()
@@ -3802,7 +3802,7 @@ namespace cloud.charging.open.API
                                                          Date                       = Timestamp.Now,
                                                          AccessControlAllowOrigin   = "*",
                                                          AccessControlAllowMethods  = new[] { "GET", "CREATE", "DELETE" },
-                                                         AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                         AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                          ETag                       = "1",
                                                          ContentType                = HTTPContentType.JSON_UTF8,
                                                          Content                    = roamingNetwork.ToJSON().ToUTF8Bytes(),
@@ -3865,7 +3865,7 @@ namespace cloud.charging.open.API
                                                          Date                       = Timestamp.Now,
                                                          AccessControlAllowOrigin   = "*",
                                                          AccessControlAllowMethods  = new[] { "GET", "CREATE", "DELETE" },
-                                                         AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                         AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                          ETag                       = "1",
                                                          ContentType                = HTTPContentType.JSON_UTF8,
                                                          Content                    = RoamingNetwork.ToJSON().ToUTF8Bytes()
@@ -3904,7 +3904,7 @@ namespace cloud.charging.open.API
                                                      Date                       = Timestamp.Now,
                                                      AccessControlAllowOrigin   = "*",
                                                      AccessControlAllowMethods  = new[] { "GET", "COUNT", "OPTIONS" },
-                                                     AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                      Connection                 = "close"
                                                  }.AsImmutable);
 
@@ -3965,7 +3965,7 @@ namespace cloud.charging.open.API
                                                          Date                       = Timestamp.Now,
                                                          AccessControlAllowOrigin   = "*",
                                                          AccessControlAllowMethods  = new[] { "GET", "SET" },
-                                                         AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                         AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                          ETag                       = "1",
                                                          Connection                 = "close"
                                                      }.AsImmutable);
@@ -3978,7 +3978,7 @@ namespace cloud.charging.open.API
                                                      Date                       = Timestamp.Now,
                                                      AccessControlAllowOrigin   = "*",
                                                      AccessControlAllowMethods  = new[] { "GET", "SET" },
-                                                     AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                       = "1",
                                                      ContentType                = HTTPContentType.JSON_UTF8,
                                                      Content                    = JSONObject.Create(
@@ -4116,7 +4116,7 @@ namespace cloud.charging.open.API
                                                      Date                       = Timestamp.Now,
                                                      AccessControlAllowOrigin   = "*",
                                                      AccessControlAllowMethods  = new[] { "GET", "SET" },
-                                                     AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                       = "1",
                                                      ContentType                = HTTPContentType.JSON_UTF8,
                                                      Content                    = JSONObject.Create(
@@ -4173,7 +4173,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET", "COUNT", "OPTIONS" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = roamingNetwork.ChargingPools.
@@ -4219,7 +4219,7 @@ namespace cloud.charging.open.API
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
-                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
                                                      ContentType                  = HTTPContentType.JSON_UTF8,
                                                      Content                      = JSONObject.Create(
@@ -4249,7 +4249,7 @@ namespace cloud.charging.open.API
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
-                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                  }.AsImmutable)
 
                                          );
@@ -4283,7 +4283,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = new JArray(roamingNetwork.ChargingPools.
@@ -4329,7 +4329,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = roamingNetwork.ChargingPoolAdminStatus().
@@ -4375,7 +4375,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = roamingNetwork.ChargingPoolStatus().
@@ -4417,7 +4417,7 @@ namespace cloud.charging.open.API
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
-                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
                                                      ContentType                  = HTTPContentType.JSON_UTF8,
                                                      Content                      = JSONObject.Create(
@@ -4472,7 +4472,7 @@ namespace cloud.charging.open.API
                                                      Date                       = Timestamp.Now,
                                                      AccessControlAllowOrigin   = "*",
                                                      AccessControlAllowMethods  = new[] { "GET", "SET" },
-                                                     AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                       = "1",
                                                      ContentType                = HTTPContentType.JSON_UTF8,
                                                      Content                    = chargingPool.ToJSON().ToUTF8Bytes()
@@ -4529,7 +4529,7 @@ namespace cloud.charging.open.API
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
-                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
                                                      ContentType                  = HTTPContentType.JSON_UTF8,
                                                      Content                      = _ChargingPool.ChargingStations.
@@ -4587,7 +4587,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = _ChargingPool.ChargingStationAdminStatus().
@@ -4639,7 +4639,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = _ChargingPool.ChargingStationStatus().
@@ -4699,7 +4699,7 @@ namespace cloud.charging.open.API
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
-                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
                                                      ContentType                  = HTTPContentType.JSON_UTF8,
                                                      Content                      = _ChargingStation.EVSEs.
@@ -4755,7 +4755,7 @@ namespace cloud.charging.open.API
                                                      Date                       = Timestamp.Now,
                                                      AccessControlAllowOrigin   = "*",
                                                      AccessControlAllowMethods  = new[] { "GET" },
-                                                     AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                       = "1",
                                                      ContentType                = HTTPContentType.JSON_UTF8,
                                                      Content                    = _EVSE.ToJSON().ToUTF8Bytes()
@@ -4812,7 +4812,7 @@ namespace cloud.charging.open.API
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
-                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
                                                      ContentType                  = HTTPContentType.JSON_UTF8,
                                                      Content                      = _ChargingPool.EVSEs.
@@ -4871,7 +4871,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = _ChargingPool.EVSEAdminStatus().
@@ -4923,7 +4923,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = _ChargingPool.EVSEStatus().
@@ -4982,7 +4982,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET", "COUNT", "OPTIONS" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = roamingNetwork.ChargingStations.
@@ -5034,7 +5034,7 @@ namespace cloud.charging.open.API
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
-                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
                                                      ContentType                  = HTTPContentType.JSON_UTF8,
                                                      Content                      = JSONObject.Create(
@@ -5075,7 +5075,7 @@ namespace cloud.charging.open.API
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
-                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                  }.AsImmutable);
 
                                          });
@@ -5109,7 +5109,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = new JArray(roamingNetwork.ChargingStations.
@@ -5155,7 +5155,7 @@ namespace cloud.charging.open.API
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = new[] { "GET" },
-                                                     AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
                                                      ContentType                    = HTTPContentType.JSON_UTF8,
                                                      Content                        = roamingNetwork.ChargingStationAdminStatus().
@@ -5201,7 +5201,7 @@ namespace cloud.charging.open.API
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = new[] { "GET" },
-                                                     AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
                                                      ContentType                    = HTTPContentType.JSON_UTF8,
                                                      Content                        = roamingNetwork.ChargingStationStatus().
@@ -5247,7 +5247,7 @@ namespace cloud.charging.open.API
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
-                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
                                                      ContentType                  = HTTPContentType.JSON_UTF8,
                                                      Content                      = JSONObject.Create(
@@ -5300,7 +5300,7 @@ namespace cloud.charging.open.API
                                                      Date                       = Timestamp.Now,
                                                      AccessControlAllowOrigin   = "*",
                                                      AccessControlAllowMethods  = new[] { "GET", "SET" },
-                                                     AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                       = "1",
                                                      ContentType                = HTTPContentType.JSON_UTF8,
                                                      Content                    = _ChargingStation.ToJSON().ToUTF8Bytes()
@@ -5358,7 +5358,7 @@ namespace cloud.charging.open.API
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
-                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
                                                      ContentType                  = HTTPContentType.JSON_UTF8,
                                                      Content                      = _ChargingStation.EVSEs.
@@ -5417,7 +5417,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = _ChargingStation.EVSEAdminStatus().
@@ -5469,7 +5469,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = _ChargingStation.EVSEStatus().
@@ -5532,7 +5532,7 @@ namespace cloud.charging.open.API
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
-                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
                                                      ContentType                  = HTTPContentType.JSON_UTF8,
                                                      Content                      = RoamingNetwork.EVSEs.
@@ -5585,7 +5585,7 @@ namespace cloud.charging.open.API
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
-                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
                                                      ContentType                  = HTTPContentType.JSON_UTF8,
                                                      Content                      = JSONObject.Create(
@@ -5627,7 +5627,7 @@ namespace cloud.charging.open.API
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
-                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                  }.AsImmutable);
 
                                          });
@@ -5665,7 +5665,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = new JArray(RoamingNetwork.EVSEs.
@@ -5721,7 +5721,7 @@ namespace cloud.charging.open.API
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = new[] { "GET" },
-                                                     AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
                                                      ContentType                    = HTTPContentType.JSON_UTF8,
                                                      Content                        = RoamingNetwork.EVSEAdminStatus(evse            => matchFilter (evse.Id)).
@@ -5779,7 +5779,7 @@ namespace cloud.charging.open.API
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = new[] { "GET" },
-                                                     AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
                                                      ContentType                    = HTTPContentType.JSON_UTF8,
                                                      //Content                        = RoamingNetwork.EVSEAdminStatusSchedule(IncludeEVSEs:    evse      => matchFilter (evse.Id),
@@ -5840,7 +5840,7 @@ namespace cloud.charging.open.API
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = new[] { "GET" },
-                                                     AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
                                                      ContentType                    = HTTPContentType.JSON_UTF8,
                                                      Content                        = RoamingNetwork.EVSEStatus    (evse       => matchFilter (evse.Id)).
@@ -5899,7 +5899,7 @@ namespace cloud.charging.open.API
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = new[] { "GET" },
-                                                     AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
                                                      ContentType                    = HTTPContentType.JSON_UTF8,
                                                      Content                        = new JArray(RoamingNetwork.EVSEStatusSchedule(IncludeEVSEs:    evse      => matchFilter (evse.Id),
@@ -5953,7 +5953,7 @@ namespace cloud.charging.open.API
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "OPTIONS" },
-                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
                                                      ContentType                  = HTTPContentType.JSON_UTF8,
                                                      Content                      = JSONObject.Create(
@@ -6009,7 +6009,7 @@ namespace cloud.charging.open.API
                                                      Date                       = Timestamp.Now,
                                                      AccessControlAllowOrigin   = "*",
                                                      AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                     AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                       = "1",
                                                      ContentType                = HTTPContentType.JSON_UTF8,
                                                      Content                    = evse.ToJSON().ToUTF8Bytes(),
@@ -6051,7 +6051,7 @@ namespace cloud.charging.open.API
                                                      Date                        = Timestamp.Now,
                                                      AccessControlAllowOrigin    = "*",
                                                      AccessControlAllowMethods   = new[] { "GET" },
-                                                     AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                        = "1",
                                                      ContentType                 = HTTPContentType.JSON_UTF8,
                                                      Content                     = evse.AdminStatus.
@@ -6095,7 +6095,7 @@ namespace cloud.charging.open.API
                                                      Date                        = Timestamp.Now,
                                                      AccessControlAllowOrigin    = "*",
                                                      AccessControlAllowMethods   = new[] { "GET" },
-                                                     AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                        = "1",
                                                      ContentType                 = HTTPContentType.JSON_UTF8,
                                                      Content                     = evse.Status.
@@ -6454,7 +6454,7 @@ namespace cloud.charging.open.API
                                                               Date                       = Timestamp.Now,
                                                               AccessControlAllowOrigin   = "*",
                                                               AccessControlAllowMethods  = new[] { "RESERVE", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                              AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                               ContentType                = HTTPContentType.JSON_UTF8,
                                                               Content                    = new JObject(new JProperty("description", "Invalid AuthorizedIds/RFIDId '" + jtoken.Value<String>() + "' section!")).ToUTF8Bytes()
                                                           };
@@ -6493,7 +6493,7 @@ namespace cloud.charging.open.API
                                                               Date                       = Timestamp.Now,
                                                               AccessControlAllowOrigin   = "*",
                                                               AccessControlAllowMethods  = new[] { "RESERVE", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                              AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                               ContentType                = HTTPContentType.JSON_UTF8,
                                                               Content                    = new JObject(new JProperty("description", "Invalid AuthorizedIds/eMAIds '" + jtoken.Value<String>() + "' section!")).ToUTF8Bytes()
                                                           };
@@ -6532,7 +6532,7 @@ namespace cloud.charging.open.API
                                                               Date                       = Timestamp.Now,
                                                               AccessControlAllowOrigin   = "*",
                                                               AccessControlAllowMethods  = new[] { "RESERVE", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                              AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                               ContentType                = HTTPContentType.JSON_UTF8,
                                                               Content                    = new JObject(new JProperty("description", "Invalid AuthorizedIds/PINs '" + jtoken.Value<String>() + "' section!")).ToUTF8Bytes()
                                                           };
@@ -6592,7 +6592,7 @@ namespace cloud.charging.open.API
                                               Date                       = Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                              AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                               Location                   = Location.From(URLPathPrefix + "RNs/" + roamingNetwork.Id.ToString() + "/Reservations/" + result.Reservation.Id.ToString()),
                                               ContentType                = HTTPContentType.JSON_UTF8,
                                               Content                    = JSONObject.Create(
@@ -6613,7 +6613,7 @@ namespace cloud.charging.open.API
                                   //        Date                       = Timestamp.Now,
                                   //        AccessControlAllowOrigin   = "*",
                                   //        AccessControlAllowMethods  = new[] { "RESERVE", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                  //        AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                  //        AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                   //        ContentType                = HTTPContentType.JSON_UTF8,
                                   //        Content                    = new JObject(new JProperty("description",  "ReservationId is already in use!")).ToUTF8Bytes(),
                                   //        Connection                 = "close"
@@ -6630,7 +6630,7 @@ namespace cloud.charging.open.API
                                               Date                       = Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                              AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                              AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                               Connection                 = "close"
                                           };
 
@@ -6784,7 +6784,7 @@ namespace cloud.charging.open.API
                                                                     Date                       = Timestamp.Now,
                                                                     AccessControlAllowOrigin   = "*",
                                                                     AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                                    AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                                    AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                                     ContentType                = HTTPContentType.JSON_UTF8,
                                                                     Content                    = result.ToJSON().ToUTF8Bytes()
                                                                 };
@@ -6800,7 +6800,7 @@ namespace cloud.charging.open.API
                                                                     Date                       = Timestamp.Now,
                                                                     AccessControlAllowOrigin   = "*",
                                                                     AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                                    AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                                    AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                                     ContentType                = HTTPContentType.JSON_UTF8,
                                                                     Content                    = result.ToJSON().ToUTF8Bytes()
                                                                 };
@@ -6816,7 +6816,7 @@ namespace cloud.charging.open.API
                                                                     Date                       = Timestamp.Now,
                                                                     AccessControlAllowOrigin   = "*",
                                                                     AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                                    AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                                    AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                                     ContentType                = HTTPContentType.JSON_UTF8,
                                                                     Content                    = result.ToJSON().ToUTF8Bytes()
                                                                 };
@@ -6951,7 +6951,7 @@ namespace cloud.charging.open.API
                                                                     Date                       = Timestamp.Now,
                                                                     AccessControlAllowOrigin   = "*",
                                                                     AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                                    AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                                    AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                                     ContentType                = HTTPContentType.JSON_UTF8,
                                                                     Content                    = result.ToJSON().ToUTF8Bytes()
                                                                 };
@@ -6967,7 +6967,7 @@ namespace cloud.charging.open.API
                                                                     Date                       = Timestamp.Now,
                                                                     AccessControlAllowOrigin   = "*",
                                                                     AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                                    AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                                    AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                                     ContentType                = HTTPContentType.JSON_UTF8,
                                                                     Content                    = result.ToJSON().ToUTF8Bytes()
                                                                 };
@@ -6982,7 +6982,7 @@ namespace cloud.charging.open.API
                                                                 Date                       = Timestamp.Now,
                                                                 AccessControlAllowOrigin   = "*",
                                                                 AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                                AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                                AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                                 ContentType                = HTTPContentType.JSON_UTF8,
                                                                 Content                    = result.ToJSON().ToUTF8Bytes()
                                                             };
@@ -7152,7 +7152,7 @@ namespace cloud.charging.open.API
                                                                  Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                                 AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                                 AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                                  ContentType                = HTTPContentType.JSON_UTF8,
                                                                  Content                    = JSONObject.Create(
                                                                                                   new JProperty("SessionId",  result.Session.Id.ToString())
@@ -7171,7 +7171,7 @@ namespace cloud.charging.open.API
                                                                  Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                                 AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                                 AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                                  ContentType                = HTTPContentType.JSON_UTF8,
                                                                  Content                    = JSONObject.Create(
                                                                                                   result.Session.Id != null
@@ -7313,7 +7313,7 @@ namespace cloud.charging.open.API
                                                                         Date                       = Timestamp.Now,
                                                                         AccessControlAllowOrigin   = "*",
                                                                         AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                                        AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                                        AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                                     };
 
                                                          else
@@ -7324,7 +7324,7 @@ namespace cloud.charging.open.API
                                                                      Date                       = Timestamp.Now,
                                                                      AccessControlAllowOrigin   = "*",
                                                                      AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                                     AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                                     AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                                      ContentType                = HTTPContentType.JSON_UTF8,
                                                                      Content                    = new JObject(
                                                                                                       new JProperty("KeepAlive", (Int32) result.ReservationHandling.KeepAliveTime.TotalSeconds)
@@ -7345,7 +7345,7 @@ namespace cloud.charging.open.API
                                                                  Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                                 AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                                 AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                                  ContentType                = HTTPContentType.JSON_UTF8,
                                                                  Content                    = new JObject(
                                                                                                   new JProperty("description",  result.Result.ToString())
@@ -7586,7 +7586,7 @@ namespace cloud.charging.open.API
                                                                  Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                                 AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                                 AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                                  ContentType                = HTTPContentType.JSON_UTF8,
                                                                  Content                    = JSONObject.Create(
                                                                                                   new JProperty("Status",          "forwarded"),
@@ -7605,7 +7605,7 @@ namespace cloud.charging.open.API
                                                                  Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                                 AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                                 AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                                  ContentType                = HTTPContentType.JSON_UTF8,
                                                                  Content                    = JSONObject.Create(
                                                                                                   new JProperty("Status",    "Not forwarded")
@@ -7623,7 +7623,7 @@ namespace cloud.charging.open.API
                                                                  Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
-                                                                 AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                                 AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                                  ContentType                = HTTPContentType.JSON_UTF8,
                                                                  Content                    = JSONObject.Create(
                                                                                                   new JProperty("SessionId",       SessionId.ToString()),
@@ -7668,7 +7668,7 @@ namespace cloud.charging.open.API
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR", "OPTIONS" },
-                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                  }.AsImmutable);
 
                                          }, AllowReplacement: URLReplacement.Allow);
@@ -8050,7 +8050,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET", "COUNT", "OPTIONS" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = RoamingNetwork.ChargingSessions.
@@ -8115,7 +8115,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = new JArray(RoamingNetwork.ChargingSessions.
@@ -8190,7 +8190,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET", "COUNT", "OPTIONS" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = ChargingSession.
@@ -8275,14 +8275,14 @@ namespace cloud.charging.open.API
                                                  Date                       = Timestamp.Now,
                                                  AccessControlAllowOrigin   = "*",
                                                  AccessControlAllowMethods  = new[] { "GET" },
-                                                 AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                 AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                  ETag                       = "1",
                                                  ContentType                = HTTPContentType.JSON_UTF8,
                                                  Content                    = (_ChargingReservations.Any()
                                                                                   ? _ChargingReservations.ToJSON()
                                                                                   : new JArray()
                                                                               ).ToUTF8Bytes()
-                                             }.Set(new HTTPHeaderField("X-ExpectedTotalNumberOfItems", typeof(UInt64), HeaderFieldType.Response, RequestPathSemantic.EndToEnd),
+                                             }.Set(new HTTPHeaderField("X-ExpectedTotalNumberOfItems", HeaderFieldType.Response, RequestPathSemantic.EndToEnd),
                                                                        _ExpectedCount);
 
                                          });
@@ -8338,7 +8338,7 @@ namespace cloud.charging.open.API
                                                  Date                       = Timestamp.Now,
                                                  AccessControlAllowOrigin   = "*",
                                                  AccessControlAllowMethods  = new[] { "GET", "SETEXPIRED", "DELETE" },
-                                                 AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                 AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                  ETag                       = "1",
                                                  ContentType                = HTTPContentType.JSON_UTF8,
                                                  Content                    = Reservation.ToJSON().ToUTF8Bytes()
@@ -8408,7 +8408,7 @@ namespace cloud.charging.open.API
                                                          Date                       = Timestamp.Now,
                                                          AccessControlAllowOrigin   = "*",
                                                          AccessControlAllowMethods  = new[] { "GET", "SETEXPIRED", "DELETE" },
-                                                         AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                         AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                          ContentType                = HTTPContentType.JSON_UTF8,
                                                          Content                    = JSONObject.Create(new JProperty("en", "Reservation removed. Additional costs may be charged!")).ToUTF8Bytes()
                                                      };
@@ -8420,7 +8420,7 @@ namespace cloud.charging.open.API
                                                          Date                       = Timestamp.Now,
                                                          AccessControlAllowOrigin   = "*",
                                                          AccessControlAllowMethods  = new[] { "GET", "DELETE" },
-                                                         AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                         AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                          ContentType                = HTTPContentType.JSON_UTF8,
                                                          Content                    = JSONObject.Create(new JProperty("description", "Could not remove reservation!")).ToUTF8Bytes()
                                                      };
@@ -8491,7 +8491,7 @@ namespace cloud.charging.open.API
                                                          Date                       = Timestamp.Now,
                                                          AccessControlAllowOrigin   = "*",
                                                          AccessControlAllowMethods  = new[] { "GET", "SETEXPIRED", "DELETE" },
-                                                         AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                         AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                          ContentType                = HTTPContentType.JSON_UTF8,
                                                          Content                    = JSONObject.Create(new JProperty("en", "Reservation removed. Additional costs may be charged!")).ToUTF8Bytes()
                                                      };
@@ -8503,7 +8503,7 @@ namespace cloud.charging.open.API
                                                          Date                       = Timestamp.Now,
                                                          AccessControlAllowOrigin   = "*",
                                                          AccessControlAllowMethods  = new[] { "GET", "DELETE" },
-                                                         AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                         AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                          ContentType                = HTTPContentType.JSON_UTF8,
                                                          Content                    = JSONObject.Create(new JProperty("description", "Could not remove reservation!")).ToUTF8Bytes()
                                                      };
@@ -8563,7 +8563,7 @@ namespace cloud.charging.open.API
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
-                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
                                                      ContentType                  = HTTPContentType.JSON_UTF8,
                                                      Content                      = _RoamingNetwork.ChargingStationOperators.
@@ -8616,7 +8616,7 @@ namespace cloud.charging.open.API
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
-                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
                                                      ContentType                  = HTTPContentType.JSON_UTF8,
                                                      Content                      = JSONObject.Create(
@@ -8666,7 +8666,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = _RoamingNetwork.ChargingStationOperatorAdminStatus().
@@ -8718,7 +8718,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = _RoamingNetwork.ChargingStationOperatorStatus().
@@ -8765,7 +8765,7 @@ namespace cloud.charging.open.API
                                                      Date                        = Timestamp.Now,
                                                      AccessControlAllowOrigin    = "*",
                                                      AccessControlAllowMethods   = new[] { "GET", "CREATE", "DELETE" },
-                                                     AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                        = "1",
                                                      ContentType                 = HTTPContentType.JSON_UTF8,
                                                      Content                     = _ChargingStationOperator.ToJSON().ToUTF8Bytes(),
@@ -8821,7 +8821,7 @@ namespace cloud.charging.open.API
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = new[] { "GET", "COUNT", "STATUS" },
-                                                     AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
                                                      ContentType                    = HTTPContentType.JSON_UTF8,
                                                      Content                        = RoamingNetwork.ChargingPools.
@@ -8920,7 +8920,7 @@ namespace cloud.charging.open.API
                                                          Date                        = Timestamp.Now,
                                                          AccessControlAllowOrigin    = "*",
                                                          AccessControlAllowMethods   = new[] { "GET", "CREATE", "DELETE" },
-                                                         AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
+                                                         AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
                                                          ETag                        = "1",
                                                          ContentType                 = HTTPContentType.JSON_UTF8,
                                                          Content                     = _RoamingNetwork.ToJSON().ToUTF8Bytes(),
@@ -9070,7 +9070,7 @@ namespace cloud.charging.open.API
                                                      Date                        = Timestamp.Now,
                                                      AccessControlAllowOrigin    = "*",
                                                      AccessControlAllowMethods   = new[] { "GET", "SET" },
-                                                     AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                        = "1",
                                                      ContentType                 = HTTPContentType.JSON_UTF8,
                                                      Content                     = _ChargingStation.ToJSON().ToUTF8Bytes(),
@@ -9300,7 +9300,7 @@ namespace cloud.charging.open.API
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = new[] { "GET", "COUNT", "STATUS" },
-                                                     AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
                                                      ContentType                    = HTTPContentType.JSON_UTF8,
                                                      Content                        = ChargingStationOperator.ChargingStationGroups.
@@ -9477,7 +9477,7 @@ namespace cloud.charging.open.API
                                                      Date                        = Timestamp.Now,
                                                      AccessControlAllowOrigin    = "*",
                                                      AccessControlAllowMethods   = new[] { "GET", "COUNT", "STATUS" },
-                                                     AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                        = "1",
                                                      ContentType                 = HTTPContentType.JSON_UTF8,
                                                      Content                     = ChargingStationGroupJSON.ToUTF8Bytes(),
@@ -9535,7 +9535,7 @@ namespace cloud.charging.open.API
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = new[] { "GET", "COUNT", "STATUS" },
-                                                     AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
                                                      ContentType                    = HTTPContentType.JSON_UTF8,
                                                      Content                        = ChargingStationOperator.EVSEGroups.
@@ -9712,7 +9712,7 @@ namespace cloud.charging.open.API
                                                      Date                        = Timestamp.Now,
                                                      AccessControlAllowOrigin    = "*",
                                                      AccessControlAllowMethods   = new[] { "GET", "COUNT", "STATUS" },
-                                                     AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                        = "1",
                                                      ContentType                 = HTTPContentType.JSON_UTF8,
                                                      Content                     = EVSEGroupJSON.ToUTF8Bytes(),
@@ -9770,7 +9770,7 @@ namespace cloud.charging.open.API
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = new[] { "GET", "COUNT", "STATUS" },
-                                                     AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
                                                      ContentType                    = HTTPContentType.JSON_UTF8,
                                                      Content                        = ChargingStationOperator.Brands.
@@ -9944,7 +9944,7 @@ namespace cloud.charging.open.API
                                                      Date                        = Timestamp.Now,
                                                      AccessControlAllowOrigin    = "*",
                                                      AccessControlAllowMethods   = new[] { "GET", "COUNT", "STATUS" },
-                                                     AccessControlAllowHeaders   = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                        = "1",
                                                      ContentType                 = HTTPContentType.JSON_UTF8,
                                                      Content                     = BrandJSON.ToUTF8Bytes(),
@@ -10003,7 +10003,7 @@ namespace cloud.charging.open.API
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = new[] { "GET", "COUNT", "STATUS" },
-                                                     AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
                                                      ContentType                    = HTTPContentType.JSON_UTF8,
                                                      Content                        = ChargingStationOperator.ChargingTariffs.
@@ -10062,7 +10062,7 @@ namespace cloud.charging.open.API
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = new[] { "GET", "COUNT", "STATUS" },
-                                                     AccessControlAllowHeaders      = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
                                                      ContentType                    = HTTPContentType.TEXT_UTF8,
                                                      Content                        = chargingStationOperator.ChargingStations.
@@ -10132,7 +10132,7 @@ namespace cloud.charging.open.API
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
-                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
                                                      ContentType                  = HTTPContentType.JSON_UTF8,
                                                      Content                      = _RoamingNetwork.EMobilityProviders.
@@ -10180,7 +10180,7 @@ namespace cloud.charging.open.API
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
-                                                     AccessControlAllowHeaders    = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
                                                      ContentType                  = HTTPContentType.JSON_UTF8,
                                                      Content                      = JSONObject.Create(
@@ -10229,7 +10229,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = _RoamingNetwork.ChargingStationOperatorAdminStatus().
@@ -10279,7 +10279,7 @@ namespace cloud.charging.open.API
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = new[] { "GET" },
-                                                     AccessControlAllowHeaders     = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
                                                      ContentType                   = HTTPContentType.JSON_UTF8,
                                                      Content                       = _RoamingNetwork.ChargingStationOperatorStatus().
@@ -10325,7 +10325,7 @@ namespace cloud.charging.open.API
                                                      Date                       = Timestamp.Now,
                                                      AccessControlAllowOrigin   = "*",
                                                      AccessControlAllowMethods  = new[] { "GET", "CREATE", "DELETE" },
-                                                     AccessControlAllowHeaders  = "Content-Type, Accept, Authorization",
+                                                     AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                       = "1",
                                                      ContentType                = HTTPContentType.JSON_UTF8,
                                                      Content                    = eMobilityProvider.ToJSON().ToUTF8Bytes()
