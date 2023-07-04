@@ -7763,7 +7763,7 @@ namespace cloud.charging.open.API
                                                                                   ToArray();
 
                                                              }
-                                                             catch (Exception)
+                                                             catch
                                                              {
                                                                  // Will send the below BadRequest HTTP reply...
                                                              }
@@ -7921,7 +7921,7 @@ namespace cloud.charging.open.API
                                                                           ToArray();
 
                                                      }
-                                                     catch (Exception)
+                                                     catch
                                                      {
                                                          // Will send the below BadRequest HTTP reply...
                                                      }
