@@ -6577,8 +6577,9 @@ namespace cloud.charging.open.API
                                                               PINs,
 
                                                               Request.Timestamp,
-                                                              Request.CancellationToken,
-                                                              Request.EventTrackingId);
+                                                              Request.EventTrackingId,
+                                                              null,
+                                                              Request.CancellationToken);
 
 
                                   var Now = Timestamp.Now;
@@ -6771,8 +6772,9 @@ namespace cloud.charging.open.API
                                                                                    OperatorId,
 
                                                                                    Request.Timestamp,
-                                                                                   Request.CancellationToken,
-                                                                                   Request.EventTrackingId);
+                                                                                   Request.EventTrackingId,
+                                                                                   null,
+                                                                                   Request.CancellationToken);
 
 
                                              #region Authorized
@@ -6933,13 +6935,14 @@ namespace cloud.charging.open.API
                                              var result = await roamingNetwork.
                                                                     AuthorizeStop(SessionId,
                                                                                   LocalAuthentication.FromAuthToken(AuthToken),
-                                                                                  ChargingLocation.FromEVSEId(evse.Id),
+                                                                                  ChargingLocation.   FromEVSEId    (evse.Id),
                                                                                   CPOPartnerSessionId,
                                                                                   OperatorId,
 
                                                                                   Request.Timestamp,
-                                                                                  Request.CancellationToken,
-                                                                                  Request.EventTrackingId);
+                                                                                  Request.EventTrackingId,
+                                                                                  null,
+                                                                                  Request.CancellationToken);
 
 
                                              #region Authorized
@@ -7001,40 +7004,41 @@ namespace cloud.charging.open.API
             //      -d "{ \"ProviderId\":  \"DE*GDF\", \
             //            \"eMAId\":       \"DE*GDF*00112233*1\" }" \
             //      http://127.0.0.1:5500/RNs/Test/EVSEs/DE*GEF*E000001*1
-            AddMethodCallback(
-                                         Hostname,
-                                         REMOTESTART,
-                                         URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
-                                         HTTPContentType.JSON_UTF8,
-                                         HTTPRequestLogger:  SendRemoteStartEVSERequest,
-                                         HTTPResponseLogger: SendRemoteStartEVSEResponse,
-                                         HTTPDelegate: async Request => {
+            AddMethodCallback(Hostname,
+                              REMOTESTART,
+                              URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
+                              HTTPContentType.JSON_UTF8,
+                              HTTPRequestLogger:   SendRemoteStartEVSERequest,
+                              HTTPResponseLogger:  SendRemoteStartEVSEResponse,
+                              HTTPDelegate:        async Request => {
 
                                              #region Get RoamingNetwork and EVSE URI parameters
 
-                                                     if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out var roamingNetwork,
-                                                                                             out var evse,
-                                                                                             out var httpResponse))
-                                                     {
-                                                         return httpResponse;
-                                                     }
+                                             if (!Request.ParseRoamingNetworkAndEVSE(this,
+                                                                                     out var roamingNetwork,
+                                                                                     out var evse,
+                                                                                     out var httpResponse) ||
+                                                  roamingNetwork is null ||
+                                                  evse           is null)
+                                             {
+                                                 return httpResponse!;
+                                             }
 
-                                                     #endregion
+                                             #endregion
 
                                              #region Parse JSON  [optional]
 
-                                                     ChargingProduct_Id?      ChargingProductId   = null;
-                                                     ChargingReservation_Id?  ReservationId       = null;
-                                                     ChargingSession_Id?      SessionId           = null;
-                                                     EMobilityProvider_Id?    ProviderId          = null;
-                                                     EMobilityAccount_Id      eMAId               = default;
+                                             ChargingProduct_Id?      ChargingProductId   = null;
+                                             ChargingReservation_Id?  ReservationId       = null;
+                                             ChargingSession_Id?      SessionId           = null;
+                                             EMobilityProvider_Id?    ProviderId          = null;
+                                             EMobilityAccount_Id      eMAId               = default;
 
-                                                     if (Request.TryParseJObjectRequestBody(out var JSON,
-                                                                                            out httpResponse))
-                                                     {
+                                             if (Request.TryParseJObjectRequestBody(out var JSON,
+                                                                                    out httpResponse))
+                                             {
 
-                                                         #region Check ChargingProductId  [optional]
+                                                 #region Check ChargingProductId  [optional]
 
                                                          if (!JSON.ParseOptionalStruct2("ChargingProductId",
                                                                                        "Charging product identification",
@@ -7051,10 +7055,10 @@ namespace cloud.charging.open.API
 
                                                          #endregion
 
-                                                         // MaxKWh
-                                                         // MaxPrice
+                                                 // MaxKWh
+                                                 // MaxPrice
 
-                                                         #region Check ReservationId      [optional]
+                                                 #region Check ReservationId      [optional]
 
                                                          if (!JSON.ParseOptionalStruct2("ReservationId",
                                                                                        "Charging reservation identification",
@@ -7071,7 +7075,7 @@ namespace cloud.charging.open.API
 
                                                          #endregion
 
-                                                         #region Parse SessionId          [optional]
+                                                 #region Parse SessionId          [optional]
 
                                                          if (!JSON.ParseOptionalStruct2("SessionId",
                                                                                        "Charging session identification",
@@ -7088,7 +7092,7 @@ namespace cloud.charging.open.API
 
                                                          #endregion
 
-                                                         #region Parse ProviderId         [optional]
+                                                 #region Parse ProviderId         [optional]
 
                                                          if (!JSON.ParseOptionalStruct2("ProviderId",
                                                                                        "EV service provider identification",
@@ -7105,7 +7109,7 @@ namespace cloud.charging.open.API
 
                                                          #endregion
 
-                                                         #region Parse eMAId             [mandatory]
+                                                 #region Parse eMAId             [mandatory]
 
                                                          if (!JSON.ParseMandatory("eMAId",
                                                                                   "e-Mobility account identification",
@@ -7119,12 +7123,12 @@ namespace cloud.charging.open.API
 
                                                          #endregion
 
-                                                     }
+                                             }
 
-                                                     else
-                                                         return httpResponse;
+                                             else
+                                                 return httpResponse;
 
-                                                     #endregion
+                                             #endregion
 
 
                                              var result = await roamingNetwork.
@@ -7139,8 +7143,9 @@ namespace cloud.charging.open.API
                                                                               //  null,
 
                                                                                 Request.Timestamp,
-                                                                                Request.CancellationToken,
-                                                                                Request.EventTrackingId);
+                                                                                Request.EventTrackingId,
+                                                                                null,
+                                                                                Request.CancellationToken);
 
 
                                              #region Success
@@ -7199,95 +7204,92 @@ namespace cloud.charging.open.API
             //            \"SessionId\":   \"60ce73f6-0a88-1296-3d3d-623fdd276ddc\", \
             //            \"eMAId\":       \"DE*GDF*00112233*1\" }" \
             //      http://127.0.0.1:5500/RNs/Test/EVSEs/DE*GEF*E000001*1
-            AddMethodCallback(
-                                         Hostname,
-                                         REMOTESTOP,
-                                         URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
-                                         HTTPContentType.JSON_UTF8,
-                                         HTTPRequestLogger:  SendRemoteStopEVSERequest,
-                                         HTTPResponseLogger: SendRemoteStopEVSEResponse,
-                                         HTTPDelegate: async Request => {
+            AddMethodCallback(Hostname,
+                              REMOTESTOP,
+                              URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
+                              HTTPContentType.JSON_UTF8,
+                              HTTPRequestLogger:   SendRemoteStopEVSERequest,
+                              HTTPResponseLogger:  SendRemoteStopEVSEResponse,
+                              HTTPDelegate:        async Request => {
 
                                              #region Get RoamingNetwork and EVSE URI parameters
 
-                                                     if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out var roamingNetwork,
-                                                                                             out var evse,
-                                                                                             out var httpResponse))
-                                                     {
-                                                         return httpResponse;
-                                                     }
+                                             if (!Request.ParseRoamingNetworkAndEVSE(this,
+                                                                                     out var roamingNetwork,
+                                                                                     out var evse,
+                                                                                     out var httpResponse) ||
+                                                  roamingNetwork is null ||
+                                                  evse           is null)
+                                             {
+                                                 return httpResponse!;
+                                             }
 
-                                                     #endregion
+                                             #endregion
 
                                              #region Parse JSON
 
-                                                     ChargingSession_Id     SessionId   = default;
-                                                     EMobilityProvider_Id?  ProviderId  = null;
-                                                     EMobilityAccount_Id?   eMAId       = null;
+                                             ChargingSession_Id     SessionId   = default;
+                                             EMobilityProvider_Id?  ProviderId  = null;
+                                             EMobilityAccount_Id?   eMAId       = null;
 
-                                                     if (!Request.TryParseJObjectRequestBody(out var JSON,
-                                                                                             out httpResponse,
-                                                                                             AllowEmptyHTTPBody: false))
+                                             if (!Request.TryParseJObjectRequestBody(out var JSON,
+                                                                                     out httpResponse,
+                                                                                     AllowEmptyHTTPBody: false) || JSON is null)
+                                             {
+                                                 return httpResponse!;
+                                             }
 
-                                                     {
+                                             // Bypass SessionId check for remote safety admins
+                                             // coming from the same ev service provider
 
-                                                         // Bypass SessionId check for remote safety admins
-                                                         // coming from the same ev service provider
+                                             #region Parse SessionId         [mandatory]
 
-                                                         #region Parse SessionId         [mandatory]
+                                             if (!JSON.ParseMandatory("SessionId",
+                                                                      "Charging session identification",
+                                                                      HTTPServer.DefaultServerName,
+                                                                      ChargingSession_Id.TryParse,
+                                                                      out SessionId,
+                                                                      Request,
+                                                                      out httpResponse))
+                                             {
+                                                 return httpResponse;
+                                             }
 
-                                                         if (!JSON.ParseMandatory("SessionId",
-                                                                                  "Charging session identification",
-                                                                                  HTTPServer.DefaultServerName,
-                                                                                  ChargingSession_Id.TryParse,
-                                                                                  out SessionId,
-                                                                                  Request,
-                                                                                  out httpResponse))
+                                             #endregion
 
-                                                             return httpResponse;
+                                             #region Parse ProviderId         [optional]
 
-                                                         #endregion
+                                             if (!JSON.ParseOptionalStruct2("ProviderId",
+                                                                            "EV service provider identification",
+                                                                            HTTPServer.DefaultServerName,
+                                                                            EMobilityProvider_Id.TryParse,
+                                                                            out ProviderId,
+                                                                            Request,
+                                                                            out httpResponse))
+                                             {
+                                                 return httpResponse!;
+                                             }
 
-                                                         #region Parse ProviderId         [optional]
+                                             #endregion
 
-                                                         if (!JSON.ParseOptionalStruct2("ProviderId",
-                                                                                        "EV service provider identification",
-                                                                                        HTTPServer.DefaultServerName,
-                                                                                        EMobilityProvider_Id.TryParse,
-                                                                                        out ProviderId,
-                                                                                        Request,
-                                                                                        out httpResponse))
-                                                         {
+                                             #region Parse eMAId              [optional]
 
-                                                             return httpResponse;
+                                             if (!JSON.ParseOptionalStruct2("eMAId",
+                                                                           "e-Mobility account identification",
+                                                                           HTTPServer.DefaultServerName,
+                                                                           EMobilityAccount_Id.TryParse,
+                                                                           out eMAId,
+                                                                           Request,
+                                                                           out httpResponse))
+                                             {
+                                                 return httpResponse!;
+                                             }
 
-                                                         }
+                                             #endregion
 
-                                                         #endregion
+                                             // ReservationHandling
 
-                                                         #region Parse eMAId              [optional]
-
-                                                         if (!JSON.ParseOptionalStruct2("eMAId",
-                                                                                       "e-Mobility account identification",
-                                                                                       HTTPServer.DefaultServerName,
-                                                                                       EMobilityAccount_Id.TryParse,
-                                                                                       out eMAId,
-                                                                                       Request,
-                                                                                       out httpResponse))
-
-                                                             return httpResponse;
-
-                                                         #endregion
-
-                                                         // ReservationHandling
-
-                                                     }
-
-                                                     else
-                                                         return httpResponse;
-
-                                                     #endregion
+                                             #endregion
 
 
                                              var result = await roamingNetwork.RemoteStop(//EVSE.Id,
@@ -7297,8 +7299,9 @@ namespace cloud.charging.open.API
                                                                                           RemoteAuthentication.FromRemoteIdentification(eMAId),
 
                                                                                           Request.Timestamp,
-                                                                                          Request.CancellationToken,
-                                                                                          Request.EventTrackingId);
+                                                                                          Request.EventTrackingId,
+                                                                                          null,
+                                                                                          Request.CancellationToken);
 
 
                                              #region Success
@@ -7373,211 +7376,213 @@ namespace cloud.charging.open.API
             //            \"ChargeEnd\":        \"2014-08-18T14:36:11.351Z\", \
             //            \"SessionEnd\":       \"2014-08-18T14:36:12.662Z\" }" \
             //      http://127.0.0.1:5500/RNs/Test/EVSEs/DE*GEF*E000001*1
-            AddMethodCallback(
-                                         Hostname,
-                                         SENDCDR,
-                                         URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
-                                         HTTPContentType.JSON_UTF8,
-                                         HTTPRequestLogger:  SendCDRsRequest,
-                                         HTTPResponseLogger: SendCDRsResponse,
-                                         HTTPDelegate: async Request => {
+            AddMethodCallback(Hostname,
+                              SENDCDR,
+                              URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
+                              HTTPContentType.JSON_UTF8,
+                              HTTPRequestLogger:   SendCDRsRequest,
+                              HTTPResponseLogger:  SendCDRsResponse,
+                              HTTPDelegate:        async Request => {
 
-                                             #region Check RoamingNetworkId and EVSEId URI parameters
+                                  #region Check RoamingNetworkId and EVSEId URI parameters
 
-                                                     if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out var roamingNetwork,
-                                                                                             out var evse,
-                                                                                             out var httpResponse))
-                                                     {
-                                                         return httpResponse;
-                                                     }
+                                  if (!Request.ParseRoamingNetworkAndEVSE(this,
+                                                                          out var roamingNetwork,
+                                                                          out var evse,
+                                                                          out var httpResponse) ||
+                                       roamingNetwork is null ||
+                                       evse           is null)
+                                  {
+                                      return httpResponse!;
+                                  }
 
-                                                     #endregion
+                                  #endregion
 
-                                             #region Parse JSON
+                                  #region Parse JSON
 
-                                                     if (!Request.TryParseJObjectRequestBody(out var JSON, out httpResponse))
-                                                     {
-                                                         return httpResponse;
-                                                     }
+                                  if (!Request.TryParseJObjectRequestBody(out var JSON, out httpResponse) || JSON is null)
+                                      return httpResponse!;
 
-                                                     #region Parse SessionId          [mandatory]
+                                  #region Parse SessionId          [mandatory]
 
-                                                     if (!JSON.ParseMandatory("SessionId",
-                                                                              "charging session identification",
-                                                                              HTTPServer.DefaultServerName,
-                                                                              ChargingSession_Id.TryParse,
-                                                                              out ChargingSession_Id SessionId,
-                                                                              Request,
-                                                                              out httpResponse))
-                                                     {
-                                                         return httpResponse;
-                                                     }
+                                  if (!JSON.ParseMandatory("SessionId",
+                                                           "charging session identification",
+                                                           HTTPServer.DefaultServerName,
+                                                           ChargingSession_Id.TryParse,
+                                                           out ChargingSession_Id SessionId,
+                                                           Request,
+                                                           out httpResponse))
+                                  {
+                                      return httpResponse;
+                                  }
 
-                                                     #endregion
+                                  #endregion
 
-                                                     #region Parse ChargingProductId
+                                  #region Parse ChargingProductId
 
-                                                     if (JSON.ParseOptionalStruct2("ChargingProductId",
-                                                                                  "charging product identification",
-                                                                                  HTTPServer.DefaultServerName,
-                                                                                  ChargingProduct_Id.TryParse,
-                                                                                  out ChargingProduct_Id? ChargingProductId,
-                                                                                  Request,
-                                                                                  out httpResponse))
-                                                     {
+                                  if (JSON.ParseOptionalStruct2("ChargingProductId",
+                                                               "charging product identification",
+                                                               HTTPServer.DefaultServerName,
+                                                               ChargingProduct_Id.TryParse,
+                                                               out ChargingProduct_Id? ChargingProductId,
+                                                               Request,
+                                                               out httpResponse))
+                                  {
 
-                                                         if (httpResponse != null)
-                                                            return httpResponse;
+                                      if (httpResponse != null)
+                                         return httpResponse;
 
-                                                     }
+                                  }
 
-                                                     #endregion
+                                  #endregion
 
-                                                     #region Parse AuthToken or eMAId
+                                  #region Parse AuthToken or eMAId
 
-                                                     if (JSON.ParseOptional("AuthToken",
-                                                                            "authentication token",
-                                                                            HTTPServer.DefaultServerName,
-                                                                            AuthenticationToken.TryParse,
-                                                                            out AuthenticationToken? AuthToken,
-                                                                            Request,
-                                                                            out httpResponse))
-                                                     {
+                                  if (JSON.ParseOptional("AuthToken",
+                                                         "authentication token",
+                                                         HTTPServer.DefaultServerName,
+                                                         AuthenticationToken.TryParse,
+                                                         out AuthenticationToken? AuthToken,
+                                                         Request,
+                                                         out httpResponse))
+                                  {
 
-                                                         if (httpResponse != null)
-                                                             return httpResponse;
+                                      if (httpResponse != null)
+                                          return httpResponse;
 
-                                                     }
+                                  }
 
-                                                     if (JSON.ParseOptionalStruct2("eMAId",
-                                                                                  "e-mobility account identification",
-                                                                                  HTTPServer.DefaultServerName,
-                                                                                  EMobilityAccount_Id.TryParse,
-                                                                                  out EMobilityAccount_Id? eMAId,
-                                                                                  Request,
-                                                                                  out httpResponse))
-                                                     {
+                                  if (JSON.ParseOptionalStruct2("eMAId",
+                                                               "e-mobility account identification",
+                                                               HTTPServer.DefaultServerName,
+                                                               EMobilityAccount_Id.TryParse,
+                                                               out EMobilityAccount_Id? eMAId,
+                                                               Request,
+                                                               out httpResponse))
+                                  {
 
-                                                         if (httpResponse != null)
-                                                             return httpResponse;
+                                      if (httpResponse != null)
+                                          return httpResponse;
 
-                                                     }
-
-
-                                                     if (AuthToken == null && eMAId == null)
-                                                         return new HTTPResponse.Builder(Request) {
-                                                             HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                             Server          = HTTPServer.DefaultServerName,
-                                                             Date            = Timestamp.Now,
-                                                             ContentType     = HTTPContentType.JSON_UTF8,
-                                                             Content         = new JObject(new JProperty("description", "Missing authentication token or eMAId!")).ToUTF8Bytes()
-                                                         };
-
-                                                     #endregion
-
-                                                     #region Parse ChargeStart/End...
-
-                                                     if (!JSON.ParseMandatory("ChargeStart",
-                                                                              "Charging start time",
-                                                                              HTTPServer.DefaultServerName,
-                                                                              out DateTime ChargingStart,
-                                                                              Request,
-                                                                              out httpResponse))
-                                                     {
-                                                         return httpResponse;
-                                                     }
-
-                                                     if (!JSON.ParseMandatory("ChargeEnd",
-                                                                              "Charging end time",
-                                                                              HTTPServer.DefaultServerName,
-                                                                              out DateTime ChargingEnd,
-                                                                              Request,
-                                                                              out httpResponse))
-                                                     {
-                                                         return httpResponse;
-                                                     }
-
-                                                     #endregion
-
-                                                     #region Parse SessionStart/End...
-
-                                                     if (!JSON.ParseMandatory("SessionStart",
-                                                                              "Charging start time",
-                                                                              HTTPServer.DefaultServerName,
-                                                                              out DateTime SessionStart,
-                                                                              Request,
-                                                                              out httpResponse))
-                                                     {
-                                                         return httpResponse;
-                                                     }
-
-                                                     if (!JSON.ParseMandatory("SessionEnd",
-                                                                              "Charging end time",
-                                                                              HTTPServer.DefaultServerName,
-                                                                              out DateTime SessionEnd,
-                                                                              Request,
-                                                                              out httpResponse))
-                                                     {
-                                                         return httpResponse;
-                                                     }
-
-                                                     #endregion
-
-                                                     #region Parse MeterValueStart/End...
-
-                                                     if (!JSON.ParseMandatory("MeterValueStart",
-                                                                              "Energy meter start value",
-                                                                              HTTPServer.DefaultServerName,
-                                                                              out Decimal MeterValueStart,
-                                                                              Request,
-                                                                              out httpResponse))
-                                                     {
-                                                         return httpResponse;
-                                                     }
-
-                                                     if (!JSON.ParseMandatory("MeterValueEnd",
-                                                                              "Energy meter end value",
-                                                                              HTTPServer.DefaultServerName,
-                                                                              out Decimal MeterValueEnd,
-                                                                              Request,
-                                                                              out httpResponse))
-                                                     {
-                                                         return httpResponse;
-                                                     }
-
-                                                     #endregion
-
-                                                     #endregion
+                                  }
 
 
-                                             var _ChargeDetailRecord = new ChargeDetailRecord(Id:                    ChargeDetailRecord_Id.Parse(SessionId.ToString()),
-                                                                                              SessionId:             SessionId,
-                                                                                              EVSEId:                evse.Id,
-                                                                                              EVSE:                  evse,
-                                                                                              ChargingProduct:       ChargingProductId.HasValue
-                                                                                                                         ? new ChargingProduct(ChargingProductId.Value)
-                                                                                                                         : null,
-                                                                                              SessionTime:           new StartEndDateTime(SessionStart, SessionEnd),
-                                                                                              AuthenticationStart:   AuthToken.HasValue
-                                                                                                                         ? (AAuthentication) LocalAuthentication. FromAuthToken(AuthToken.Value)
-                                                                                                                         : (AAuthentication) RemoteAuthentication.FromRemoteIdentification(eMAId.Value),
-                                                                                              //ChargingTime:        new StartEndDateTime(ChargingStart.Value, ChargingEnd.Value),
-                                                                                              EnergyMeteringValues:  new List<EnergyMeteringValue>() {
-                                                                                                                         new EnergyMeteringValue(ChargingStart, MeterValueStart),
-                                                                                                                         new EnergyMeteringValue(ChargingEnd,   MeterValueEnd)
-                                                                                                                    });
+                                  if (AuthToken is null && eMAId is null)
+                                      return new HTTPResponse.Builder(Request) {
+                                          HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                                          Server          = HTTPServer.DefaultServerName,
+                                          Date            = Timestamp.Now,
+                                          ContentType     = HTTPContentType.JSON_UTF8,
+                                          Content         = new JObject(new JProperty("description", "Missing authentication token or eMAId!")).ToUTF8Bytes()
+                                      };
 
-                                             var result = await roamingNetwork.
-                                                                    SendChargeDetailRecords(new ChargeDetailRecord[] { _ChargeDetailRecord },
-                                                                                            TransmissionTypes.Enqueue,
+                                  #endregion
 
-                                                                                            Request.Timestamp,
-                                                                                            Request.CancellationToken,
-                                                                                            Request.EventTrackingId);
+                                  #region Parse ChargeStart/End...
+
+                                  if (!JSON.ParseMandatory("ChargeStart",
+                                                           "Charging start time",
+                                                           HTTPServer.DefaultServerName,
+                                                           out DateTime ChargingStart,
+                                                           Request,
+                                                           out httpResponse))
+                                  {
+                                      return httpResponse;
+                                  }
+
+                                  if (!JSON.ParseMandatory("ChargeEnd",
+                                                           "Charging end time",
+                                                           HTTPServer.DefaultServerName,
+                                                           out DateTime ChargingEnd,
+                                                           Request,
+                                                           out httpResponse))
+                                  {
+                                      return httpResponse;
+                                  }
+
+                                  #endregion
+
+                                  #region Parse SessionStart/End...
+
+                                  if (!JSON.ParseMandatory("SessionStart",
+                                                           "Charging start time",
+                                                           HTTPServer.DefaultServerName,
+                                                           out DateTime SessionStart,
+                                                           Request,
+                                                           out httpResponse))
+                                  {
+                                      return httpResponse;
+                                  }
+
+                                  if (!JSON.ParseMandatory("SessionEnd",
+                                                           "Charging end time",
+                                                           HTTPServer.DefaultServerName,
+                                                           out DateTime SessionEnd,
+                                                           Request,
+                                                           out httpResponse))
+                                  {
+                                      return httpResponse;
+                                  }
+
+                                  #endregion
+
+                                  #region Parse MeterValueStart/End...
+
+                                  if (!JSON.ParseMandatory("MeterValueStart",
+                                                           "Energy meter start value",
+                                                           HTTPServer.DefaultServerName,
+                                                           out Decimal MeterValueStart,
+                                                           Request,
+                                                           out httpResponse))
+                                  {
+                                      return httpResponse;
+                                  }
+
+                                  if (!JSON.ParseMandatory("MeterValueEnd",
+                                                           "Energy meter end value",
+                                                           HTTPServer.DefaultServerName,
+                                                           out Decimal MeterValueEnd,
+                                                           Request,
+                                                           out httpResponse))
+                                  {
+                                      return httpResponse;
+                                  }
+
+                                  #endregion
+
+                                  #endregion
 
 
-                                             #region Forwarded
+                                  var chargeDetailRecord  = new ChargeDetailRecord(
+                                                                Id:                    ChargeDetailRecord_Id.Parse(SessionId.ToString()),
+                                                                SessionId:             SessionId,
+                                                                EVSEId:                evse.Id,
+                                                                EVSE:                  evse,
+                                                                ChargingProduct:       ChargingProductId.HasValue
+                                                                                           ? new ChargingProduct(ChargingProductId.Value)
+                                                                                           : null,
+                                                                SessionTime:           new StartEndDateTime(SessionStart, SessionEnd),
+                                                                AuthenticationStart:   AuthToken.HasValue
+                                                                                           ? (AAuthentication) LocalAuthentication. FromAuthToken(AuthToken.Value)
+                                                                                           : (AAuthentication) RemoteAuthentication.FromRemoteIdentification(eMAId.Value),
+                                                                //ChargingTime:        new StartEndDateTime(ChargingStart.Value, ChargingEnd.Value),
+                                                                EnergyMeteringValues:  new List<EnergyMeteringValue>() {
+                                                                                           new EnergyMeteringValue(ChargingStart, MeterValueStart),
+                                                                                           new EnergyMeteringValue(ChargingEnd,   MeterValueEnd)
+                                                                                      }
+                                                            );
+
+                                  var result = await roamingNetwork.
+                                                         SendChargeDetailRecords(new[] { chargeDetailRecord },
+                                                                                 TransmissionTypes.Enqueue,
+
+                                                                                 Request.Timestamp,
+                                                                                 Request.EventTrackingId,
+                                                                                 null,
+                                                                                 Request.CancellationToken);
+
+
+                                  #region Forwarded
 
                                                      if (result.Result == SendCDRsResultTypes.Success)
                                                          return new HTTPResponse.Builder(Request) {
@@ -7596,7 +7601,7 @@ namespace cloud.charging.open.API
 
                                                      #endregion
 
-                                             #region NotForwared
+                                  #region NotForwared
 
                                                      else if (result.Result == SendCDRsResultTypes.Error)
                                                          return new HTTPResponse.Builder(Request) {
@@ -7614,7 +7619,7 @@ namespace cloud.charging.open.API
 
                                                      #endregion
 
-                                             #region ...or fail!
+                                  #region ...or fail!
 
                                                      else
                                                          return new HTTPResponse.Builder(Request) {
@@ -7634,7 +7639,7 @@ namespace cloud.charging.open.API
 
                                                      #endregion
 
-                                         }, AllowReplacement: URLReplacement.Allow);
+                              }, AllowReplacement: URLReplacement.Allow);
 
             #endregion
 
@@ -8394,9 +8399,9 @@ namespace cloud.charging.open.API
                                                                                          //    null,
 
                                                                                              Request.Timestamp,
-                                                                                             Request.CancellationToken,
                                                                                              Request.EventTrackingId,
-                                                                                             TimeSpan.FromSeconds(60)).Result;
+                                                                                             TimeSpan.FromSeconds(60),
+                                                                                             Request.CancellationToken).Result;
 
                                              switch (response.Result)
                                              {
@@ -8477,9 +8482,9 @@ namespace cloud.charging.open.API
                                                                                          //    null,
 
                                                                                              Request.Timestamp,
-                                                                                             Request.CancellationToken,
                                                                                              Request.EventTrackingId,
-                                                                                             TimeSpan.FromSeconds(60)).Result;
+                                                                                             TimeSpan.FromSeconds(60),
+                                                                                             Request.CancellationToken).Result;
 
                                              switch (response.Result)
                                              {
