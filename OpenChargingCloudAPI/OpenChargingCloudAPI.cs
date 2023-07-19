@@ -8231,49 +8231,50 @@ namespace cloud.charging.open.API
                                          HTTPMethod.GET,
                                          URLPathPrefix + "/RNs/{RoamingNetworkId}/Reservations",
                                          HTTPContentType.JSON_UTF8,
-                                         HTTPDelegate: async HTTPRequest => {
+                                         HTTPDelegate:  async httpRequest => {
 
                                              #region Check HTTP Basic Authentication
 
-                                                     //if (HTTPRequest.Authorization          == null        ||
-                                                     //    HTTPRequest.Authorization.Username != HTTPLogin   ||
-                                                     //    HTTPRequest.Authorization.Password != HTTPPassword)
-                                                     //    return new HTTPResponse.Builder(HTTPRequest) {
-                                                     //        HTTPStatusCode   = HTTPStatusCode.Unauthorized,
-                                                     //        WWWAuthenticate  = @"Basic realm=""WWCP EV Charging""",
-                                                     //        Server           = _API.HTTPServer.DefaultServerName,
-                                                     //        Date             = Timestamp.Now,
-                                                     //        Connection       = "close"
-                                                     //    };
+                                             //if (HTTPRequest.Authorization          == null        ||
+                                             //    HTTPRequest.Authorization.Username != HTTPLogin   ||
+                                             //    HTTPRequest.Authorization.Password != HTTPPassword)
+                                             //    return new HTTPResponse.Builder(HTTPRequest) {
+                                             //        HTTPStatusCode   = HTTPStatusCode.Unauthorized,
+                                             //        WWWAuthenticate  = @"Basic realm=""WWCP EV Charging""",
+                                             //        Server           = _API.HTTPServer.DefaultServerName,
+                                             //        Date             = Timestamp.Now,
+                                             //        Connection       = "close"
+                                             //    };
 
-                                                     #endregion
+                                             #endregion
 
                                              #region Check parameters
 
-                                                     if (!HTTPRequest.ParseRoamingNetwork(this,
-                                                                                          out var RoamingNetwork,
-                                                                                          out var _HTTPResponse))
-                                                     {
-                                                         return _HTTPResponse;
-                                                     }
+                                             if (!httpRequest.ParseRoamingNetwork(this,
+                                                                                  out var roamingNetwork,
+                                                                                  out var httpResponse) ||
+                                                  roamingNetwork is null)
+                                             {
+                                                 return httpResponse!;
+                                             }
 
-                                                     #endregion
+                                             #endregion
 
-                                             var skip                   = HTTPRequest.QueryString.GetUInt64("skip");
-                                             var take                   = HTTPRequest.QueryString.GetUInt32("take");
+                                             var skip                     = httpRequest.QueryString.GetUInt64("skip");
+                                             var take                     = httpRequest.QueryString.GetUInt32("take");
 
-                                             var _ChargingReservations  = RoamingNetwork.
-                                                                              ChargingReservations.
-                                                                              OrderBy(reservation => reservation.Id.ToString()).
-                                                                              Skip(skip).
-                                                                              Take(take).
-                                                                              ToArray();
+                                             var allChargingReservations  = roamingNetwork.
+                                                                                ChargingReservations.
+                                                                                OrderBy(reservation => reservation.Id.ToString()).
+                                                                                Skip   (skip).
+                                                                                Take   (take).
+                                                                                ToArray();
 
                                              //ToDo: Getting the expected total count might be very expensive!
-                                             var _ExpectedCount         = RoamingNetwork.ChargingReservations.LongCount();
+                                             var expectedCount            = roamingNetwork.ChargingReservations.LongCount();
 
-                                             return new HTTPResponse.Builder(HTTPRequest) {
-                                                 HTTPStatusCode             = _ChargingReservations.Any()
+                                             return new HTTPResponse.Builder(httpRequest) {
+                                                 HTTPStatusCode             = allChargingReservations.Any()
                                                                                   ? HTTPStatusCode.OK
                                                                                   : HTTPStatusCode.NoContent,
                                                  Server                     = HTTPServer.DefaultServerName,
@@ -8283,12 +8284,12 @@ namespace cloud.charging.open.API
                                                  AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                  ETag                       = "1",
                                                  ContentType                = HTTPContentType.JSON_UTF8,
-                                                 Content                    = (_ChargingReservations.Any()
-                                                                                  ? _ChargingReservations.ToJSON()
+                                                 Content                    = (allChargingReservations.Any()
+                                                                                  ? allChargingReservations.ToJSON()
                                                                                   : new JArray()
                                                                               ).ToUTF8Bytes()
                                              }.Set(new HTTPHeaderField("X-ExpectedTotalNumberOfItems", HeaderFieldType.Response, RequestPathSemantic.EndToEnd),
-                                                                       _ExpectedCount);
+                                                                       expectedCount);
 
                                          });
 
@@ -8520,6 +8521,211 @@ namespace cloud.charging.open.API
             #endregion
 
             #endregion
+
+
+            #region ~/RNs/{RoamingNetworkId}/AuthStartCache
+
+            //ToDo: OPTIONS
+
+            #region GET    ~/RNs/{RoamingNetworkId}/AuthStartCache
+
+            // -------------------------------------------------------------------------------------
+            // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/AuthStartCache
+            // -------------------------------------------------------------------------------------
+            AddMethodCallback(Hostname,
+                              HTTPMethod.GET,
+                              URLPathPrefix + "/RNs/{RoamingNetworkId}/AuthStartCache",
+                              HTTPContentType:  HTTPContentType.JSON_UTF8,
+                              HTTPDelegate:     async httpRequest => {
+
+                                  #region Try to get HTTP user and its organizations
+
+                                  // Will return HTTP 401 Unauthorized, when the HTTP user is unknown!
+                                  if (!TryGetHTTPUser(httpRequest,
+                                                      out var       httpUser,
+                                                      out var       httpOrganizations,
+                                                      out var       httpResponse,
+                                                      AccessLevel:  Access_Levels.Admin,
+                                                      Recursive:    true))
+                                  {
+                                      return httpResponse!;
+                                  }
+
+                                  #endregion
+
+                                  #region Check parameters
+
+                                  if (!httpRequest.ParseRoamingNetwork(this,
+                                                                       out var roamingNetwork,
+                                                                       out     httpResponse) ||
+                                       roamingNetwork is null)
+                                  {
+                                      return httpResponse!;
+                                  }
+
+                                  #endregion
+
+
+                                  var withMetadata              = httpRequest.QueryString.GetBoolean("withMetadata", false);
+
+                                  var includeFilter             = httpRequest.QueryString.CreateStringFilter<AuthenticationToken>("match", (authenticationToken, include) => authenticationToken.ToString().Contains(include));
+
+                                  var allAuthStartResults       = roamingNetwork.CachedAuthStartResults.
+                                                                      ToArray();
+
+                                  var totalCount                = allAuthStartResults.ULongLength();
+
+                                  var filteredAuthStartResults  = allAuthStartResults.
+                                                                      Where            (authStartResultKeyValuePair => includeFilter(authStartResultKeyValuePair.Key)).
+                                                                      OrderByDescending(authStartResultKeyValuePair => authStartResultKeyValuePair.Value.CachedResultEndOfLifeTime).
+                                                                      Skip             (httpRequest.QueryString.GetUInt64("skip")).
+                                                                      Take             (httpRequest.QueryString.GetUInt32("take")).
+                                                                      Select           (authStartResultKeyValuePair => {
+                                                                                           var authStartResultInfo = authStartResultKeyValuePair.Value.ToJSON(Embedded: true);
+                                                                                           authStartResultInfo.Add("authenticationToken", authStartResultKeyValuePair.Key.ToString());
+                                                                                           return authStartResultInfo;
+                                                                                       }).
+                                                                      ToArray          ();
+
+                                  var filteredCount             = filteredAuthStartResults.ULongLength();
+
+                                  var jsonResults               = new JArray(filteredAuthStartResults);
+
+
+                                  return new HTTPResponse.Builder(httpRequest) {
+                                             HTTPStatusCode                = HTTPStatusCode.OK,
+                                             Server                        = HTTPServer.DefaultServerName,
+                                             Date                          = Timestamp.Now,
+                                             AccessControlAllowOrigin      = "*",
+                                             AccessControlAllowMethods     = new[] { "GET", "COUNT", "CLEAR" },
+                                             AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
+                                             ContentType                   = HTTPContentType.JSON_UTF8,
+                                             Content                       = withMetadata
+                                                                                 ? JSONObject.Create(
+                                                                                       new JProperty("totalCount",        totalCount),
+                                                                                       new JProperty("filteredCount",     filteredCount),
+                                                                                       new JProperty("authStartResults",  jsonResults)
+                                                                                   ).ToUTF8Bytes()
+                                                                                 : jsonResults.ToUTF8Bytes(),
+                                             X_ExpectedTotalNumberOfItems  = filteredCount,
+                                             Connection                    = "close",
+                                             Vary                          = "Accept"
+                                         };
+
+                              });
+
+            #endregion
+
+            #region COUNT  ~/RNs/{RoamingNetworkId}/AuthStartCache
+
+            // -------------------------------------------------------------------------------------
+            // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/AuthStartCache
+            // -------------------------------------------------------------------------------------
+            AddMethodCallback(Hostname,
+                              HTTPMethod.COUNT,
+                              URLPathPrefix + "/RNs/{RoamingNetworkId}/AuthStartCache",
+                              HTTPContentType:  HTTPContentType.TEXT_UTF8,
+                              HTTPDelegate:     async httpRequest => {
+
+                                  #region Try to get HTTP user and its organizations
+
+                                  // Will return HTTP 401 Unauthorized, when the HTTP user is unknown!
+                                  if (!TryGetHTTPUser(httpRequest,
+                                                      out var       httpUser,
+                                                      out var       httpOrganizations,
+                                                      out var       httpResponse,
+                                                      AccessLevel:  Access_Levels.Admin,
+                                                      Recursive:    true))
+                                  {
+                                      return httpResponse!;
+                                  }
+
+                                  #endregion
+
+                                  #region Check parameters
+
+                                  if (!httpRequest.ParseRoamingNetwork(this,
+                                                                       out var roamingNetwork,
+                                                                       out     httpResponse) ||
+                                       roamingNetwork is null)
+                                  {
+                                      return httpResponse!;
+                                  }
+
+                                  #endregion
+
+
+                                  return new HTTPResponse.Builder(httpRequest) {
+                                             HTTPStatusCode             = HTTPStatusCode.OK,
+                                             Server                     = HTTPServer.DefaultServerName,
+                                             Date                       = Timestamp.Now,
+                                             AccessControlAllowOrigin   = "*",
+                                             AccessControlAllowMethods  = new[] { "GET", "COUNT", "CLEAR" },
+                                             AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
+                                             ContentType                = HTTPContentType.TEXT_UTF8,
+                                             Content                    = roamingNetwork.CachedAuthStartResults.Count().ToString().ToUTF8Bytes()
+                                         };
+
+                              });
+
+            #endregion
+
+            #region CLEAR  ~/RNs/{RoamingNetworkId}/AuthStartCache
+
+            // -------------------------------------------------------------------------------------
+            // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/AuthStartCache
+            // -------------------------------------------------------------------------------------
+            AddMethodCallback(Hostname,
+                              HTTPMethod.CLEAR,
+                              URLPathPrefix + "/RNs/{RoamingNetworkId}/AuthStartCache",
+                              HTTPDelegate: async httpRequest => {
+
+                                  #region Try to get HTTP user and its organizations
+
+                                  // Will return HTTP 401 Unauthorized, when the HTTP user is unknown!
+                                  if (!TryGetHTTPUser(httpRequest,
+                                                      out var       httpUser,
+                                                      out var       httpOrganizations,
+                                                      out var       httpResponse,
+                                                      AccessLevel:  Access_Levels.Admin,
+                                                      Recursive:    true))
+                                  {
+                                      return httpResponse!;
+                                  }
+
+                                  #endregion
+
+                                  #region Check parameters
+
+                                  if (!httpRequest.ParseRoamingNetwork(this,
+                                                                   out var roamingNetwork,
+                                                                   out     httpResponse) ||
+                                       roamingNetwork is null)
+                                  {
+                                      return httpResponse!;
+                                  }
+
+                                  #endregion
+
+
+                                  await roamingNetwork.ClearAuthStartResultCache();
+
+
+                                  return new HTTPResponse.Builder(httpRequest) {
+                                             HTTPStatusCode             = HTTPStatusCode.OK,
+                                             Server                     = HTTPServer.DefaultServerName,
+                                             Date                       = Timestamp.Now,
+                                             AccessControlAllowOrigin   = "*",
+                                             AccessControlAllowMethods  = new[] { "GET", "COUNT", "CLEAR" },
+                                             AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
+                                         };
+
+                              });
+
+            #endregion
+
+            #endregion
+
 
 
 
