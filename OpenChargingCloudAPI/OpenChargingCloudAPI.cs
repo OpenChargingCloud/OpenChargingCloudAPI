@@ -2770,7 +2770,7 @@ namespace cloud.charging.open.API
                                     TimeSpan?                             WardenInitialDelay                 = null,
                                     TimeSpan?                             WardenCheckEvery                   = null,
 
-                                    IEnumerable<URLWithAPIKey>?        RemoteAuthServers                  = null,
+                                    IEnumerable<URLWithAPIKey>?           RemoteAuthServers                  = null,
                                     IEnumerable<APIKey_Id>?               RemoteAuthAPIKeys                  = null,
 
                                     Boolean?                              IsDevelopment                      = null,
