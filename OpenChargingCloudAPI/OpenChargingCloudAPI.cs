@@ -1950,12 +1950,10 @@ namespace cloud.charging.open.API
         public static readonly HTTPEventSource_Id   ForwardingInfosId                              = HTTPEventSource_Id.Parse("ForwardingInfos");
 
 
-        public                 IEnumerable<String>  WWWAuthenticateDefaults                        = new[] {
-                                                                                                         @"Basic realm=""Open Charging Cloud"", charset =""UTF-8""",
-                                                                                                         @"Bearer realm=""Open Charging Cloud"", error=""invalid_token"", error_description=""The access token is invalid!""",
-                                                                                                         "Token",
-                                                                                                         "API-Key"
-                                                                                                     };
+        public                 String               WWWAuthenticateDefaults                        = @"Basic realm=""Open Charging Cloud"", charset =""UTF-8""";
+                                                                                                     //@"Bearer realm=""Open Charging Cloud"", error=""invalid_token"", error_description=""The access token is invalid!""",
+                                                                                                     //"Token",
+                                                                                                     //"API-Key"
 
         #endregion
 
