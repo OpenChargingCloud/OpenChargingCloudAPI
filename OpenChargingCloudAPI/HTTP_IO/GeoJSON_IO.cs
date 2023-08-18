@@ -228,7 +228,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON
 
                        new JProperty("properties",  Properties ?? new JObject(
 
-                           new JProperty("LastChange",              ChargingStationOperator.LastChange),
+                           new JProperty("LastChange",              ChargingStationOperator.LastChangeDate),
                            new JProperty("UserComment",             ""),
                            new JProperty("ServiceProviderComment",  ""),
                            new JProperty("Features",                new JArray()),
@@ -298,7 +298,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON
 
                        new JProperty("properties",  Properties ?? new JObject(
 
-                           new JProperty("LastChange",              ChargingPool.LastChange),
+                           new JProperty("LastChange",              ChargingPool.LastChangeDate),
                            new JProperty("UserComment",             ""),
                            new JProperty("ServiceProviderComment",  ""),
                            new JProperty("Features",                new JArray()),
@@ -370,7 +370,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON
                            new JProperty("@context",                "https://open.charging.cloud/contexts/wwcp+geojson/ChargingStation"),
                            new JProperty("name",                    ChargingStation.Name.         ToJSON()),
                            new JProperty("description",             ChargingStation.Description.  ToJSON()),
-                           new JProperty("lastChange",              ChargingStation.LastChange),
+                           new JProperty("lastChange",              ChargingStation.LastChangeDate),
                            new JProperty("adminStatus",             ChargingStation.AdminStatus.  ToJSON()),
                            new JProperty("status",                  ChargingStation.Status.       ToJSON()),
                            ChargingStation.SafeAny()
@@ -464,7 +464,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON
                            new JProperty("@id",             EVSE.Id.ToString()),
                            new JProperty("@context",        "https://open.charging.cloud/contexts/wwcp+geojson/EVSE"),
 
-                           EVSE.Description.IsNeitherNullNorEmpty()
+                           EVSE.Description.IsNotNullOrEmpty()
                              ? new JProperty("description", EVSE.Description.ToJSON())
                              : null,
 
