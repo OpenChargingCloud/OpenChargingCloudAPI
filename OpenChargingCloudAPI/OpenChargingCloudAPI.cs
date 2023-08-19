@@ -3366,7 +3366,7 @@ namespace cloud.charging.open.API
 
                                   #region Parse JSON
 
-                                  if (!Request.TryParseJObjectRequestBody(out var json,
+                                  if (!Request.TryParseJSONObjectRequestBody(out var json,
                                                                           out var httpResponse))
                                   {
                                       return httpResponse!;
@@ -4041,7 +4041,7 @@ namespace cloud.charging.open.API
 
                                   #region Parse optional JSON
 
-                                  if (!Request.TryParseJObjectRequestBody(out var json,
+                                  if (!Request.TryParseJSONObjectRequestBody(out var json,
                                                                           out httpResponseBuilder,
                                                                           AllowEmptyHTTPBody: true) ||
                                       json is null)
@@ -4325,7 +4325,7 @@ namespace cloud.charging.open.API
 
                                   #region Parse optional JSON
 
-                                  if (Request.TryParseJObjectRequestBody(out var json,
+                                  if (Request.TryParseJSONObjectRequestBody(out var json,
                                                                          out httpResponseBuilder,
                                                                          AllowEmptyHTTPBody: false) ||
                                       json is null)
@@ -6833,7 +6833,7 @@ namespace cloud.charging.open.API
 
                                   #region Parse  (optional) JSON
 
-                                  if (Request.TryParseJObjectRequestBody(out var JSON,
+                                  if (Request.TryParseJSONObjectRequestBody(out var JSON,
                                                                       out httpResponse,
                                                                       AllowEmptyHTTPBody: true))
                                   {
@@ -7304,7 +7304,7 @@ namespace cloud.charging.open.API
 
                                              #region Parse JSON
 
-                                                     if (!Request.TryParseJObjectRequestBody(out var JSON,
+                                                     if (!Request.TryParseJSONObjectRequestBody(out var JSON,
                                                                                              out httpResponse))
                                                      {
                                                          return httpResponse;
@@ -7493,7 +7493,7 @@ namespace cloud.charging.open.API
 
                                              #region Parse JSON
 
-                                                     if (!Request.TryParseJObjectRequestBody(out var JSON,
+                                                     if (!Request.TryParseJSONObjectRequestBody(out var JSON,
                                                                                              out httpResponse))
                                                      {
                                                          return httpResponse;
@@ -7667,7 +7667,7 @@ namespace cloud.charging.open.API
                                              EMobilityProvider_Id?    ProviderId          = null;
                                              EMobilityAccount_Id      eMAId               = default;
 
-                                             if (Request.TryParseJObjectRequestBody(out var json,
+                                             if (Request.TryParseJSONObjectRequestBody(out var json,
                                                                                     out httpResponseBuilder))
                                              {
 
@@ -7865,7 +7865,7 @@ namespace cloud.charging.open.API
                                              EMobilityProvider_Id?  ProviderId  = null;
                                              EMobilityAccount_Id?   eMAId       = null;
 
-                                             if (!Request.TryParseJObjectRequestBody(out var json,
+                                             if (!Request.TryParseJSONObjectRequestBody(out var json,
                                                                                      out httpResponseBuilder,
                                                                                      AllowEmptyHTTPBody: false) || json is null)
                                              {
@@ -8033,7 +8033,7 @@ namespace cloud.charging.open.API
 
                                   #region Parse JSON
 
-                                  if (!Request.TryParseJObjectRequestBody(out var JSON, out httpResponseBuilder) || JSON is null)
+                                  if (!Request.TryParseJSONObjectRequestBody(out var JSON, out httpResponseBuilder) || JSON is null)
                                       return httpResponseBuilder!;
 
                                   #region Parse SessionId          [mandatory]
@@ -8347,7 +8347,7 @@ namespace cloud.charging.open.API
 
                                              #region Parse JSON
 
-                                                     if (!Request.TryParseJObjectRequestBody(out var JSON,
+                                                     if (!Request.TryParseJSONObjectRequestBody(out var JSON,
                                                                                              out httpResponse))
                                                      {
                                                          return httpResponse;
@@ -8505,7 +8505,7 @@ namespace cloud.charging.open.API
 
                                              #region Parse JSON
 
-                                             if (!Request.TryParseJObjectRequestBody(out var JSON,
+                                             if (!Request.TryParseJSONObjectRequestBody(out var JSON,
                                                                                      out httpResponse))
                                              {
                                                  return httpResponse;
@@ -9728,7 +9728,7 @@ namespace cloud.charging.open.API
 
                                                      I18NString DescriptionI18N = null;
 
-                                                     if (Request.TryParseJObjectRequestBody(out JObject JSON,
+                                                     if (Request.TryParseJSONObjectRequestBody(out JObject JSON,
                                                                                             out _HTTPResponse,
                                                                                             AllowEmptyHTTPBody: true))
                                                      {
@@ -9834,7 +9834,7 @@ namespace cloud.charging.open.API
 
                                              #region Parse JSON and new charging pool admin status
 
-                                                     if (!Request.TryParseJObjectRequestBody(out JObject JSON, out _HTTPResponse))
+                                                     if (!Request.TryParseJSONObjectRequestBody(out JObject JSON, out _HTTPResponse))
                                                          return Task.FromResult(_HTTPResponse.AsImmutable);
 
                                                      if (!JSON.ParseMandatoryEnum("newstatus",
@@ -9991,7 +9991,7 @@ namespace cloud.charging.open.API
 
                                                          #endregion
 
-                                                         if (!HTTPRequest.TryParseJObjectRequestBody(out JObject JSON, out _HTTPResponse))
+                                                         if (!HTTPRequest.TryParseJSONObjectRequestBody(out JObject JSON, out _HTTPResponse))
                                                              return _HTTPResponse;
 
                                                          #region Parse newstatus
