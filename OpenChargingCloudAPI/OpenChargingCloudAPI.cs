@@ -2893,7 +2893,7 @@ namespace cloud.charging.open.API
             DebugLog     = HTTPServer.AddJSONEventSource(EventIdentification:      DebugLogId,
                                                          HTTPAPI:                  this,
                                                          URLTemplate:              this.URLPathPrefix + "/" + DebugLogId.ToString(),
-                                                         MaxNumberOfCachedEvents:  10000,
+                                                         MaxNumberOfCachedEvents:  1000,
                                                          RetryIntervall:           TimeSpan.FromSeconds(5),
                                                          EnableLogging:            true,
                                                          LogfilePath:              this.OpenChargingCloudAPIPath);
