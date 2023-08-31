@@ -2909,7 +2909,7 @@ namespace cloud.charging.open.API
             //RegisterNotifications().Wait();
             RegisterURLTemplates();
 
-            this.HTMLTemplate = HTMLTemplate ?? GetResourceString("template.html");
+            //this.HTMLTemplate = HTMLTemplate ?? GetResourceString("template.html");
 
             DebugX.Log(nameof(OpenChargingCloudAPI) + " version '" + APIVersionHash + "' initialized...");
 
