@@ -17,15 +17,10 @@
 
 #region Usings
 
-using System;
-using System.Linq;
-using System.Threading;
-
 using NUnit.Framework;
 using Newtonsoft.Json.Linq;
 
 using org.GraphDefined.Vanaheimr.Illias;
-using org.GraphDefined.Vanaheimr.Hermod;
 using org.GraphDefined.Vanaheimr.Hermod.HTTP;
 
 #endregion
@@ -39,7 +34,6 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
     [TestFixture]
     public class ChargingPoolTests : ATests
     {
-
 
         #region Init()
 
