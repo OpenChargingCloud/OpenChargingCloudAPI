@@ -6816,12 +6816,13 @@ namespace cloud.charging.open.API
                                   EMobilityAccount_Id      eMAId                 = default;
                                   DateTime?                StartTime             = null;
                                   TimeSpan?                Duration              = null;
+                                  Auth_Path?               AuthenticationPath    = null;
 
                                   // IntendedCharging
                                   ChargingProduct_Id?      ChargingProductId     = null;
                                   DateTime?                ChargingStartTime     = null;
                                   TimeSpan?                CharingDuration       = null;
-                                  ChargingPlugTypes?               Plug                  = null;
+                                  ChargingPlugTypes?       Plug                  = null;
                                   var                      Consumption           = 0U;
 
                                   // AuthorizedIds
@@ -6910,11 +6911,11 @@ namespace cloud.charging.open.API
                                       #region Check StartTime            [optional]
 
                                       if (JSON.ParseOptional("StartTime",
-                                                          "start time!",
-                                                          HTTPServer.DefaultServerName,
-                                                          out StartTime,
-                                                          Request,
-                                                          out httpResponse))
+                                                             "start time!",
+                                                             HTTPServer.DefaultServerName,
+                                                             out StartTime,
+                                                             Request,
+                                                             out httpResponse))
                                       {
 
                                           if (httpResponse is not null)
@@ -6922,10 +6923,10 @@ namespace cloud.charging.open.API
 
                                           if (StartTime <= Timestamp.Now)
                                               return new HTTPResponse.Builder(Request) {
-                                                      HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                      ContentType     = HTTPContentType.JSON_UTF8,
-                                                      Content         = new JObject(new JProperty("description", "The starting time must be in the future!")).ToUTF8Bytes()
-                                                  };
+                                                         HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                                                         ContentType     = HTTPContentType.JSON_UTF8,
+                                                         Content         = new JObject(new JProperty("description", "The starting time must be in the future!")).ToUTF8Bytes()
+                                                     };
 
                                       }
 
@@ -7182,6 +7183,24 @@ namespace cloud.charging.open.API
 
                                       #endregion
 
+                                      #region Parse AuthenticationPath    [optional]
+
+                                      if (JSON.ParseOptional("authenticationPath",
+                                                             "authentication path",
+                                                             Auth_Path.TryParse,
+                                                             out AuthenticationPath,
+                                                             out var errorResponse))
+                                      {
+                                          if (errorResponse is not null)
+                                              return new HTTPResponse.Builder(Request) {
+                                                         HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                                                         ContentType     = HTTPContentType.JSON_UTF8,
+                                                         Content         = new JObject(new JProperty("description", "Invalid authentication path: " + errorResponse)).ToUTF8Bytes()
+                                                     };
+                                      }
+
+                                      #endregion
+
                                   }
 
                                   if (httpResponse                is not null &&
@@ -7202,6 +7221,7 @@ namespace cloud.charging.open.API
                                                               LinkedReservationId,
                                                               ProviderId,
                                                               RemoteAuthentication.FromRemoteIdentification(eMAId),
+                                                              AuthenticationPath,
                                                               ChargingProductId.HasValue
                                                                       ? new ChargingProduct(ChargingProductId.Value)
                                                                       : null,
@@ -7661,11 +7681,12 @@ namespace cloud.charging.open.API
 
                                              #region Parse JSON  [optional]
 
-                                             ChargingProduct_Id?      ChargingProductId   = null;
-                                             ChargingReservation_Id?  ReservationId       = null;
-                                             ChargingSession_Id?      SessionId           = null;
-                                             EMobilityProvider_Id?    ProviderId          = null;
-                                             EMobilityAccount_Id      eMAId               = default;
+                                             ChargingProduct_Id?      ChargingProductId    = null;
+                                             ChargingReservation_Id?  ReservationId        = null;
+                                             ChargingSession_Id?      SessionId            = null;
+                                             EMobilityProvider_Id?    ProviderId           = null;
+                                             EMobilityAccount_Id      eMAId                = default;
+                                             Auth_Path?               AuthenticationPath   = null;
 
                                              if (Request.TryParseJSONObjectRequestBody(out var json,
                                                                                     out httpResponseBuilder))
@@ -7744,17 +7765,35 @@ namespace cloud.charging.open.API
 
                                                  #region Parse eMAId             [mandatory]
 
-                                                         if (!json.ParseMandatory("eMAId",
-                                                                                  "e-Mobility account identification",
-                                                                                  HTTPServer.DefaultServerName,
-                                                                                  EMobilityAccount_Id.TryParse,
-                                                                                  out eMAId,
-                                                                                  Request,
-                                                                                  out httpResponseBuilder))
+                                                 if (!json.ParseMandatory("eMAId",
+                                                                          "e-Mobility account identification",
+                                                                          HTTPServer.DefaultServerName,
+                                                                          EMobilityAccount_Id.TryParse,
+                                                                          out eMAId,
+                                                                          Request,
+                                                                          out httpResponseBuilder))
 
-                                                             return httpResponseBuilder;
+                                                     return httpResponseBuilder;
 
-                                                         #endregion
+                                                 #endregion
+
+                                                 #region Parse AuthenticationPath    [optional]
+
+                                                 if (json.ParseOptional("authenticationPath",
+                                                                        "authentication path",
+                                                                        Auth_Path.TryParse,
+                                                                        out AuthenticationPath,
+                                                                        out var errorResponse))
+                                                 {
+                                                     if (errorResponse is not null)
+                                                         return new HTTPResponse.Builder(Request) {
+                                                                    HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                                                                    ContentType     = HTTPContentType.JSON_UTF8,
+                                                                    Content         = new JObject(new JProperty("description", "Invalid authentication path: " + errorResponse)).ToUTF8Bytes()
+                                                                };
+                                                 }
+
+                                                 #endregion
 
                                              }
 
@@ -7773,7 +7812,7 @@ namespace cloud.charging.open.API
                                                                                 SessionId,
                                                                                 ProviderId,
                                                                                 RemoteAuthentication.FromRemoteIdentification(eMAId),
-                                                                              //  null,
+                                                                                AuthenticationPath,
 
                                                                                 Request.Timestamp,
                                                                                 Request.EventTrackingId,
@@ -7861,9 +7900,10 @@ namespace cloud.charging.open.API
 
                                              #region Parse JSON
 
-                                             ChargingSession_Id     SessionId   = default;
-                                             EMobilityProvider_Id?  ProviderId  = null;
-                                             EMobilityAccount_Id?   eMAId       = null;
+                                             ChargingSession_Id     SessionId            = default;
+                                             EMobilityProvider_Id?  ProviderId           = null;
+                                             EMobilityAccount_Id?   eMAId                = null;
+                                             Auth_Path?             AuthenticationPath   = null;
 
                                              if (!Request.TryParseJSONObjectRequestBody(out var json,
                                                                                      out httpResponseBuilder,
@@ -7922,6 +7962,24 @@ namespace cloud.charging.open.API
 
                                              // ReservationHandling
 
+                                             #region Parse AuthenticationPath    [optional]
+
+                                             if (json.ParseOptional("authenticationPath",
+                                                                    "authentication path",
+                                                                    Auth_Path.TryParse,
+                                                                    out AuthenticationPath,
+                                                                    out var errorResponse))
+                                             {
+                                                 if (errorResponse is not null)
+                                                     return new HTTPResponse.Builder(Request) {
+                                                                HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                                                                ContentType     = HTTPContentType.JSON_UTF8,
+                                                                Content         = new JObject(new JProperty("description", "Invalid authentication path: " + errorResponse)).ToUTF8Bytes()
+                                                            };
+                                             }
+
+                                             #endregion
+
                                              #endregion
 
 
@@ -7930,6 +7988,7 @@ namespace cloud.charging.open.API
                                                                                           ReservationHandling.Close, // ToDo: Parse this property!
                                                                                           ProviderId,
                                                                                           RemoteAuthentication.FromRemoteIdentification(eMAId),
+                                                                                          AuthenticationPath,
 
                                                                                           Request.Timestamp,
                                                                                           Request.EventTrackingId,
