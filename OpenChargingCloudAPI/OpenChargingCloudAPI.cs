@@ -46,7 +46,7 @@ namespace cloud.charging.open.API
 {
 
     /// <summary>
-    /// Extention methods for the Open Charging Cloud API.
+    /// Extension methods for the Open Charging Cloud API.
     /// </summary>
     public static class OpenChargingCloudAPIExtensions
     {
@@ -3159,7 +3159,7 @@ namespace cloud.charging.open.API
 
                                       #endregion
 
-                                      #region Choose HTTP content type based on the file name extention of the requested resource...
+                                      #region Choose HTTP content type based on the file name extension of the requested resource...
 
                                       var fileName             = filePath[(filePath.LastIndexOf("/") + 1)..];
 
