@@ -53,8 +53,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
                                                                                    requestbuilder => {
                                                                                        requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                       requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                       requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                       requestbuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
+                                                                                       requestbuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
@@ -81,8 +81,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             using (var HTTPTask  = _HTTPClient.Execute(client => client.COUNTRequest(URI,
                                                                                      requestbuilder => {
                                                                                          requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                         requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                         requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                         requestbuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
+                                                                                         requestbuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                      }),
                                                                                       RequestTimeout: Timeout,
                                                                                       CancellationToken: new CancellationTokenSource().Token))
@@ -130,8 +130,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
                                                                                    requestbuilder => {
                                                                                        requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                       requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                       requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                       requestbuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
+                                                                                       requestbuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
@@ -172,8 +172,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             using (var HTTPTask  = _HTTPClient.Execute(client => client.COUNTRequest(URI,
                                                                                      requestbuilder => {
                                                                                          requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                         requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                         requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                         requestbuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
+                                                                                         requestbuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                      }),
                                                                                       RequestTimeout: Timeout,
                                                                                       CancellationToken: new CancellationTokenSource().Token))
@@ -203,8 +203,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
                                                                                    requestbuilder => {
                                                                                        requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                       requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                       requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                       requestbuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
+                                                                                       requestbuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
@@ -240,8 +240,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
                                                                                    requestbuilder => {
                                                                                        requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                       requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                       requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                       requestbuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
+                                                                                       requestbuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
@@ -277,8 +277,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
                                                                                    requestbuilder => {
                                                                                        requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                       requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                       requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                       requestbuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
+                                                                                       requestbuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
@@ -314,8 +314,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
                                                                                    requestbuilder => {
                                                                                        requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                       requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                       requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                       requestbuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
+                                                                                       requestbuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
@@ -345,8 +345,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
                                                                                    requestbuilder => {
                                                                                        requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                       requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                       requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                       requestbuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
+                                                                                       requestbuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
@@ -387,8 +387,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             var task0001  = _HTTPClient.Execute(client => client.GETRequest(HTTPPath.Parse("/RNs"),
                                                                             requestbuilder => {
                                                                                 requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                requestbuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
+                                                                                requestbuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                             }),
                                                                             RequestTimeout:    Timeout,
                                                                             CancellationToken: new CancellationTokenSource().Token);
@@ -409,8 +409,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             var task0002  = _HTTPClient.Execute(client => client.GETRequest(HTTPPath.Parse("/RNs"),
                                                                             requestbuilder => {
                                                                                 requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                requestbuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
+                                                                                requestbuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                             }),
                                                                             RequestTimeout:    Timeout,
                                                                             CancellationToken: new CancellationTokenSource().Token);
@@ -434,8 +434,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             var task0003  = _HTTPClient.Execute(client => client.GETRequest(HTTPPath.Parse("/RNs/TEST_RN1"),
                                                                             requestbuilder => {
                                                                                 requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                requestbuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
+                                                                                requestbuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                             }),
                                                                             RequestTimeout:    Timeout,
                                                                             CancellationToken: new CancellationTokenSource().Token);
@@ -456,8 +456,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             var task0004  = _HTTPClient.Execute(client => client.GETRequest(HTTPPath.Parse("/RNs/TEST_RN1"),
                                                                             requestbuilder => {
                                                                                 requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                requestbuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
+                                                                                requestbuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                             }),
                                                                             RequestTimeout:    Timeout,
                                                                             CancellationToken: new CancellationTokenSource().Token);
@@ -478,8 +478,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             var task0005  = _HTTPClient.Execute(client => client.GETRequest(HTTPPath.Parse("/RNs/TEST_RN2"),
                                                                             requestbuilder => {
                                                                                 requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                requestbuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
+                                                                                requestbuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                             }),
                                                                             RequestTimeout:    Timeout,
                                                                             CancellationToken: new CancellationTokenSource().Token);

@@ -105,7 +105,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -125,7 +125,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -199,7 +199,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -216,7 +216,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -290,7 +290,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingPoolId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -307,7 +307,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingPoolId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -377,7 +377,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -397,7 +397,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -413,7 +413,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -430,7 +430,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -500,7 +500,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -520,7 +520,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -536,7 +536,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid EVSEId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -553,7 +553,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown EVSEId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -630,7 +630,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -648,7 +648,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -666,7 +666,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid charging session identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -683,7 +683,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown charging session identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -752,7 +752,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -772,7 +772,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -787,7 +787,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid reservation identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -804,7 +804,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown reservation identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -878,7 +878,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid EMobilityProviderId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -895,7 +895,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown EMobilityProviderId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -975,7 +975,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ParkingOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -992,7 +992,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ParkingOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1066,7 +1066,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid SmartCityId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1083,7 +1083,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown SmartCityId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1156,7 +1156,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid GridOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1173,7 +1173,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown GridOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1252,7 +1252,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingPoolId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1269,7 +1269,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingPoolId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1289,7 +1289,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1306,7 +1306,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1388,7 +1388,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingPoolId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1405,7 +1405,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingPoolId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1425,7 +1425,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1442,7 +1442,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1462,7 +1462,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid EVSEId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1479,7 +1479,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown EVSEId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1556,7 +1556,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1572,7 +1572,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1589,7 +1589,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid BrandId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1605,7 +1605,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown BrandId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1679,7 +1679,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1695,7 +1695,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1712,7 +1712,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationGroupId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1728,7 +1728,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationGroupId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1802,7 +1802,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1818,7 +1818,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationOperatorId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1835,7 +1835,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid EVSEGroupId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -1851,7 +1851,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
                     Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                     Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.JSON_UTF8,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown EVSEGroupId!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
@@ -3078,10 +3078,9 @@ namespace cloud.charging.open.API
 
             #region /shared/OpenChargingCloudAPI
 
-            HTTPServer.RegisterResourcesFolder(this,
-                                               HTTPHostname.Any,
-                                               HTTPPath.Parse("/shared/OpenChargingCloudAPI"),
-                                               HTTPRoot.Substring(0, HTTPRoot.Length - 1));
+            this.MapResourceAssemblyFolder(HTTPHostname.Any,
+                                           HTTPPath.Parse("/shared/OpenChargingCloudAPI"),
+                                           HTTPRoot.Substring(0, HTTPRoot.Length - 1));
 
             #endregion
 
@@ -3130,7 +3129,7 @@ namespace cloud.charging.open.API
                                           return Task.FromResult(
                                               new HTTPResponse.Builder(Request) {
                                                   HTTPStatusCode  = HTTPStatusCode.OK,
-                                                  ContentType     = HTTPContentType.HTML_UTF8,
+                                                  ContentType     = HTTPContentType.Text.HTML_UTF8,
                                                   Content         = file.ToUTF8Bytes(),
                                                   CacheControl    = "public, max-age=300",
                                                   Connection      = "close"
@@ -3165,21 +3164,20 @@ namespace cloud.charging.open.API
 
                                       var responseContentType  = fileName.Remove(0, fileName.LastIndexOf(".") + 1) switch {
 
-                                          "htm"   => HTTPContentType.HTML_UTF8,
-                                          "html"  => HTTPContentType.HTML_UTF8,
-                                          "css"   => HTTPContentType.CSS_UTF8,
-                                          "gif"   => HTTPContentType.GIF,
-                                          "jpg"   => HTTPContentType.JPEG,
-                                          "jpeg"  => HTTPContentType.JPEG,
-                                          "svg"   => HTTPContentType.SVG,
-                                          "png"   => HTTPContentType.PNG,
-                                          "ico"   => HTTPContentType.ICO,
-                                          "swf"   => HTTPContentType.SWF,
-                                          "js"    => HTTPContentType.JAVASCRIPT_UTF8,
-                                          "txt"   => HTTPContentType.TEXT_UTF8,
-                                          "xml"   => HTTPContentType.XMLTEXT_UTF8,
+                                          "htm"   => HTTPContentType.Text.HTML_UTF8,
+                                          "html"  => HTTPContentType.Text.HTML_UTF8,
+                                          "css"   => HTTPContentType.Text.CSS_UTF8,
+                                          "gif"   => HTTPContentType.Image.GIF,
+                                          "jpg"   => HTTPContentType.Image.JPEG,
+                                          "jpeg"  => HTTPContentType.Image.JPEG,
+                                          "svg"   => HTTPContentType.Image.SVG,
+                                          "png"   => HTTPContentType.Image.PNG,
+                                          "ico"   => HTTPContentType.Image.ICO,
+                                          "js"    => HTTPContentType.Text.JAVASCRIPT_UTF8,
+                                          "txt"   => HTTPContentType.Text.PLAIN,
+                                          "xml"   => HTTPContentType.Text.XML_UTF8,
 
-                                          _       => HTTPContentType.OCTETSTREAM,
+                                          _       => HTTPContentType.Application.OCTETSTREAM,
 
                                       };
 
@@ -3215,7 +3213,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.GET,
                               URLPathPrefix + "impress",
-                              HTTPContentType.HTML_UTF8,
+                              HTTPContentType.Text.HTML_UTF8,
                               HTTPDelegate: Request => {
 
                                   return Task.FromResult(
@@ -3226,7 +3224,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowOrigin    = "*",
                                           AccessControlAllowMethods   = new[] { "GET" },
                                           AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
-                                          ContentType                 = HTTPContentType.HTML_UTF8,
+                                          ContentType                 = HTTPContentType.Text.HTML_UTF8,
                                           Content                     = GetResourceBytes("legal.impress.html"),
                                           Connection                  = "close",
                                           Vary                        = "Accept"
@@ -3249,7 +3247,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.GET,
                               URLPathPrefix + "dashboard",
-                              HTTPContentType.HTML_UTF8,
+                              HTTPContentType.Text.HTML_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Get HTTP user and its organizations
@@ -3275,7 +3273,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowOrigin    = "*",
                                           AccessControlAllowMethods   = new[] { "GET" },
                                           AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
-                                          ContentType                 = HTTPContentType.HTML_UTF8,
+                                          ContentType                 = HTTPContentType.Text.HTML_UTF8,
                                           Content                     = MixWithHTMLTemplate("dashboard.dashboard2.shtml").ToUTF8Bytes(),
                                           Connection                  = "close",
                                           Vary                        = "Accept"
@@ -3298,7 +3296,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.GET,
                               URLPathPrefix + "chargy/versions",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   var skip                    = Request.QueryString.GetUInt64("skip");
@@ -3313,7 +3311,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods     = new[] { "GET", "OPTIONS" },
                                           AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                           ETag                          = "1",
-                                          ContentType                   = HTTPContentType.JSON_UTF8,
+                                          ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                           Content                       = new JArray().
                                                                               ToUTF8Bytes(),
                                           X_ExpectedTotalNumberOfItems  = 0
@@ -3359,7 +3357,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.POST,
                               URLPathPrefix + "chargy/issues",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               //HTTPRequestLogger:  PostChargyIssueRequest,
                               //HTTPResponseLogger: PostChargyIssueResponse,
                               HTTPDelegate: async Request => {
@@ -3384,7 +3382,7 @@ namespace cloud.charging.open.API
                                              AccessControlAllowMethods   = new[] { "OPTIONS", "POST" },
                                              AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
                                              ETag                        = "1",
-                                             ContentType                 = HTTPContentType.JSON_UTF8,
+                                             ContentType                 = HTTPContentType.Application.JSON_UTF8,
                                              Content                     = json.ToUTF8Bytes()
                                          }.AsImmutable;
 
@@ -3474,7 +3472,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.GET,
                               URLPathPrefix + "RNs",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Check anonymous access
@@ -3507,7 +3505,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods     = new[] { "GET", "COUNT", "OPTIONS" },
                                           AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                           ETag                          = "1",
-                                          ContentType                   = HTTPContentType.JSON_UTF8,
+                                          ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                           Content                       = allRoamingNetworks.
                                                                               ToJSON(skip, take).
                                                                               ToUTF8Bytes(),
@@ -3527,7 +3525,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.HEAD,
                               URLPathPrefix + "RNs",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Check anonymous access
@@ -3560,7 +3558,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods     = new[] { "GET", "COUNT", "OPTIONS" },
                                           AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                           ETag                          = "1",
-                                          ContentType                   = HTTPContentType.JSON_UTF8,
+                                          ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                           Content                       = allRoamingNetworks.
                                                                               ToJSON(skip, take).
                                                                               ToUTF8Bytes(),
@@ -3580,7 +3578,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.COUNT,
                               URLPathPrefix + "RNs",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Check anonymous access
@@ -3611,7 +3609,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
                                           AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                           ETag                         = "1",
-                                          ContentType                  = HTTPContentType.JSON_UTF8,
+                                          ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                           Content                      = JSONObject.Create(
                                                                              new JProperty("count",  allRoamingNetworks.ULongCount())
                                                                          ).ToUTF8Bytes(),
@@ -3631,7 +3629,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.GET,
                               URLPathPrefix + "RNs->Id",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Check anonymous access
@@ -3664,7 +3662,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods      = new[] { "GET" },
                                           AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                           ETag                           = "1",
-                                          ContentType                    = HTTPContentType.JSON_UTF8,
+                                          ContentType                    = HTTPContentType.Application.JSON_UTF8,
                                           Content                        = new JArray(allRoamingNetworks.
                                                                                           Select(rn => rn.Id.ToString()).
                                                                                           Skip  (Request.QueryString.GetUInt64("skip")).
@@ -3686,7 +3684,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.GET,
                               URLPathPrefix + "RNs->AdminStatus",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Check anonymous access
@@ -3721,7 +3719,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods     = new[] { "GET" },
                                           AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                           ETag                          = "1",
-                                          ContentType                   = HTTPContentType.JSON_UTF8,
+                                          ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                           Content                       = allRoamingNetworks.
                                                                               Select(rn => new RoamingNetworkAdminStatus(rn.Id, rn.AdminStatus)).
                                                                               Where (matchFilter).
@@ -3744,7 +3742,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.GET,
                               URLPathPrefix + "RNs->Status",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Check anonymous access
@@ -3779,7 +3777,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods      = new[] { "GET" },
                                           AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                           ETag                           = "1",
-                                          ContentType                    = HTTPContentType.JSON_UTF8,
+                                          ContentType                    = HTTPContentType.Application.JSON_UTF8,
                                           Content                        = allRoamingNetworks.
                                                                                Select(rn => new RoamingNetworkStatus(rn.Id, rn.Status)).
                                                                                Where (matchFilter).
@@ -3860,7 +3858,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.GET,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Check anonymous access
@@ -3901,7 +3899,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods  = new[] { "GET", "CREATE", "DELETE" },
                                           AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                           ETag                       = "1",
-                                          ContentType                = HTTPContentType.JSON_UTF8,
+                                          ContentType                = HTTPContentType.Application.JSON_UTF8,
                                           Content                    = roamingNetwork.ToJSON().ToUTF8Bytes(),
                                           Connection                 = "close"
                                       }.AsImmutable);
@@ -3918,7 +3916,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.HEAD,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Check anonymous access
@@ -3974,7 +3972,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.CREATE,
                               URLPathPrefix + "RNs/{RoamingNetworkId}",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPRequestLogger:   CreateRoamingNetworkRequest,
                               HTTPResponseLogger:  CreateRoamingNetworkResponse,
                               HTTPDelegate:        Request => {
@@ -4016,7 +4014,7 @@ namespace cloud.charging.open.API
                                                   HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                   Server          = HTTPServer.DefaultServerName,
                                                   Date            = Timestamp.Now,
-                                                  ContentType     = HTTPContentType.JSON_UTF8,
+                                                  ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                   Content         = HTTPResponseExtensions.CreateError("Invalid roaming network identification!")
                                               }.AsImmutable);
 
@@ -4031,7 +4029,7 @@ namespace cloud.charging.open.API
                                                   HTTPStatusCode  = HTTPStatusCode.Conflict,
                                                   Server          = HTTPServer.DefaultServerName,
                                                   Date            = Timestamp.Now,
-                                                  ContentType     = HTTPContentType.JSON_UTF8,
+                                                  ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                   Content         = HTTPResponseExtensions.CreateError("RoamingNetworkId already exists!")
                                               }.AsImmutable);
 
@@ -4094,7 +4092,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = new[] { "GET", "CREATE", "DELETE" },
                                               AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                               ETag                       = "1",
-                                              ContentType                = HTTPContentType.JSON_UTF8,
+                                              ContentType                = HTTPContentType.Application.JSON_UTF8,
                                               Content                    = roamingNetwork.ToJSON().ToUTF8Bytes(),
                                               Connection                 = "close"
                                           }.AsImmutable);
@@ -4111,7 +4109,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.DELETE,
                               URLPathPrefix + "RNs/{RoamingNetworkId}",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPRequestLogger:   DeleteRoamingNetworkRequest,
                               HTTPResponseLogger:  DeleteRoamingNetworkResponse,
                               HTTPDelegate:        Request => {
@@ -4157,7 +4155,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = new[] { "GET", "CREATE", "DELETE" },
                                               AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                               ETag                       = "1",
-                                              ContentType                = HTTPContentType.JSON_UTF8,
+                                              ContentType                = HTTPContentType.Application.JSON_UTF8,
                                               Content                    = RoamingNetwork.ToJSON().ToUTF8Bytes()
                                           }.AsImmutable);
 
@@ -4174,7 +4172,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.GET,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/{PropertyKey}",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Check anonymous access
@@ -4222,7 +4220,7 @@ namespace cloud.charging.open.API
                                               HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                               Server          = HTTPServer.DefaultServerName,
                                               Date            = Timestamp.Now,
-                                              ContentType     = HTTPContentType.JSON_UTF8,
+                                              ContentType     = HTTPContentType.Application.JSON_UTF8,
                                               Content         = @"{ ""description"": ""Invalid property key!"" }".ToUTF8Bytes()
                                           }.AsImmutable);
 
@@ -4250,7 +4248,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods  = new[] { "GET", "SET" },
                                           AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                           ETag                       = "1",
-                                          ContentType                = HTTPContentType.JSON_UTF8,
+                                          ContentType                = HTTPContentType.Application.JSON_UTF8,
                                           Content                    = JSONObject.Create(
                                                                            new JProperty(PropertyKey, Value)
                                                                        ).ToUTF8Bytes(),
@@ -4269,7 +4267,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.SET,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/{PropertyKey}",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Try to get HTTP user and its organizations
@@ -4317,7 +4315,7 @@ namespace cloud.charging.open.API
                                               HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                               Server          = HTTPServer.DefaultServerName,
                                               Date            = Timestamp.Now,
-                                              ContentType     = HTTPContentType.JSON_UTF8,
+                                              ContentType     = HTTPContentType.Application.JSON_UTF8,
                                               Content         = @"{ ""description"": ""Invalid property key!"" }".ToUTF8Bytes(),
                                               Connection      = "close"
                                           }.AsImmutable);
@@ -4401,7 +4399,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods  = new[] { "GET", "SET" },
                                           AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                           ETag                       = "1",
-                                          ContentType                = HTTPContentType.JSON_UTF8,
+                                          ContentType                = HTTPContentType.Application.JSON_UTF8,
                                           Content                    = JSONObject.Create(
                                                                            new JProperty("oldValue",  OldValue),
                                                                            new JProperty("newValue",  NewValue)
@@ -4482,7 +4480,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.GET,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Check anonymous access
@@ -4535,7 +4533,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods     = new[] { "GET", "COUNT", "OPTIONS" },
                                           AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                           ETag                          = "1",
-                                          ContentType                   = HTTPContentType.JSON_UTF8,
+                                          ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                           Content                       = roamingNetwork.ChargingPools.
                                                                               ToJSON(skip,
                                                                                      take,
@@ -4563,7 +4561,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.HEAD,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Check anonymous access
@@ -4619,7 +4617,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.COUNT,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Check anonymous access
@@ -4660,7 +4658,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
                                           AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                           ETag                         = "1",
-                                          ContentType                  = HTTPContentType.JSON_UTF8,
+                                          ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                           Content                      = JSONObject.Create(
                                                                              new JProperty("count",  roamingNetwork.ChargingPools.ULongCount())
                                                                          ).ToUTF8Bytes(),
@@ -4681,7 +4679,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools->Id",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -4700,7 +4698,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods     = new[] { "GET" },
                                                      AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
-                                                     ContentType                   = HTTPContentType.JSON_UTF8,
+                                                     ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                                      Content                       = new JArray(roamingNetwork.ChargingPools.
                                                                                                     Select(pool => pool.Id.ToString()).
                                                                                                     Skip  (Request.QueryString.GetUInt64("skip")).
@@ -4722,7 +4720,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools->AdminStatus",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -4746,7 +4744,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods     = new[] { "GET" },
                                                      AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
-                                                     ContentType                   = HTTPContentType.JSON_UTF8,
+                                                     ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                                      Content                       = roamingNetwork.ChargingPoolAdminStatus().
                                                                                          Where (matchFilter).
                                                                                          Where (sinceFilter).
@@ -4768,7 +4766,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools->Status",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -4792,7 +4790,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods     = new[] { "GET" },
                                                      AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
-                                                     ContentType                   = HTTPContentType.JSON_UTF8,
+                                                     ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                                      Content                       = roamingNetwork.ChargingPoolStatus().
                                                                                          Where (matchFilter).
                                                                                          Where (sinceFilter).
@@ -4815,7 +4813,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "/RNs/{RoamingNetworkId}/ChargingPools/DynamicStatusReport",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -4834,7 +4832,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
                                                      AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
-                                                     ContentType                  = HTTPContentType.JSON_UTF8,
+                                                     ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                                      Content                      = JSONObject.Create(
 
                                                                                         new JProperty("count",  roamingNetwork.ChargingPools.Count()),
@@ -4865,7 +4863,7 @@ namespace cloud.charging.open.API
                                          HTTPHostname.Any,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check HTTP parameters
@@ -4889,7 +4887,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods  = new[] { "GET", "SET" },
                                                      AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                       = "1",
-                                                     ContentType                = HTTPContentType.JSON_UTF8,
+                                                     ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                      Content                    = chargingPool.ToJSON().ToUTF8Bytes()
                                                  }.AsImmutable);
 
@@ -4910,7 +4908,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/ChargingStations",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check HTTP parameters
@@ -4946,7 +4944,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
                                                      AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
-                                                     ContentType                  = HTTPContentType.JSON_UTF8,
+                                                     ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                                      Content                      = _ChargingPool.ChargingStations.
                                                                                         OrderBy(station => station.Id).
                                                                                         ToJSON (skip,
@@ -4973,7 +4971,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations/{ChargingStationId}/ChargingStations->AdminStatus",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check HTTP parameters
@@ -5004,7 +5002,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods     = new[] { "GET" },
                                                      AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
-                                                     ContentType                   = HTTPContentType.JSON_UTF8,
+                                                     ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                                      Content                       = _ChargingPool.ChargingStationAdminStatus().
                                                                                          ToJSON(skip,
                                                                                                 take).
@@ -5025,7 +5023,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations/{ChargingStationId}/ChargingStations->Status",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check HTTP parameters
@@ -5056,7 +5054,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods     = new[] { "GET" },
                                                      AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
-                                                     ContentType                   = HTTPContentType.JSON_UTF8,
+                                                     ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                                      Content                       = _ChargingPool.ChargingStationStatus().
                                                                                          ToJSON(skip,
                                                                                                 take).
@@ -5081,7 +5079,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/ChargingStations/{ChargingStationId}/EVSEs",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check HTTP parameters
@@ -5116,7 +5114,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
                                                      AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
-                                                     ContentType                  = HTTPContentType.JSON_UTF8,
+                                                     ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                                      Content                      = _ChargingStation.EVSEs.
                                                                                         OrderBy(evse => evse.Id).
                                                                                         ToJSON (skip,
@@ -5146,7 +5144,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/ChargingStations/{ChargingStationId}/EVSEs/{EVSEId}",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check HTTP parameters
@@ -5172,7 +5170,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods  = new[] { "GET" },
                                                      AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                       = "1",
-                                                     ContentType                = HTTPContentType.JSON_UTF8,
+                                                     ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                      Content                    = _EVSE.ToJSON().ToUTF8Bytes()
                                                  }.AsImmutable);
 
@@ -5193,7 +5191,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/EVSEs",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check HTTP parameters
@@ -5229,7 +5227,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
                                                      AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
-                                                     ContentType                  = HTTPContentType.JSON_UTF8,
+                                                     ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                                      Content                      = _ChargingPool.EVSEs.
                                                                                         OrderBy(evse => evse.Id).
                                                                                         ToJSON (skip,
@@ -5257,7 +5255,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/EVSEs->AdminStatus",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check HTTP parameters
@@ -5288,7 +5286,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods     = new[] { "GET" },
                                                      AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
-                                                     ContentType                   = HTTPContentType.JSON_UTF8,
+                                                     ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                                      Content                       = _ChargingPool.EVSEAdminStatus().
                                                                                          ToJSON(skip,
                                                                                                 take).
@@ -5309,7 +5307,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/EVSEs->Status",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check HTTP parameters
@@ -5340,7 +5338,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods     = new[] { "GET" },
                                                      AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
-                                                     ContentType                   = HTTPContentType.JSON_UTF8,
+                                                     ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                                      Content                       = _ChargingPool.EVSEStatus().
                                                                                          ToJSON(skip,
                                                                                                 take).
@@ -5419,7 +5417,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.GET,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}/ChargingStations",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Check anonymous access
@@ -5470,7 +5468,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods     = new[] { "GET", "COUNT", "OPTIONS" },
                                           AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                           ETag                          = "1",
-                                          ContentType                   = HTTPContentType.JSON_UTF8,
+                                          ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                           Content                       = roamingNetwork.ChargingStations.
                                                                               OrderBy(station => station.Id).
                                                                               ToJSON (skip,
@@ -5499,7 +5497,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.HEAD,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}/ChargingStations",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Check anonymous access
@@ -5555,7 +5553,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.COUNT,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}/ChargingStations",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Check anonymous access
@@ -5596,7 +5594,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
                                           AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                           ETag                         = "1",
-                                          ContentType                  = HTTPContentType.JSON_UTF8,
+                                          ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                           Content                      = JSONObject.Create(
                                                                              new JProperty("count",  roamingNetwork.ChargingStations.ULongCount())
                                                                          ).ToUTF8Bytes(),
@@ -5617,7 +5615,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations->Id",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -5636,7 +5634,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods     = new[] { "GET" },
                                                      AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
-                                                     ContentType                   = HTTPContentType.JSON_UTF8,
+                                                     ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                                      Content                       = new JArray(roamingNetwork.ChargingStations.
                                                                                                     Select(station => station.Id.ToString()).
                                                                                                     Skip  (Request.QueryString.GetUInt64("skip")).
@@ -5658,7 +5656,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations->AdminStatus",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -5682,7 +5680,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods      = new[] { "GET" },
                                                      AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
-                                                     ContentType                    = HTTPContentType.JSON_UTF8,
+                                                     ContentType                    = HTTPContentType.Application.JSON_UTF8,
                                                      Content                        = roamingNetwork.ChargingStationAdminStatus().
                                                                                                      Where (matchFilter).
                                                                                                      Where (sinceFilter).
@@ -5704,7 +5702,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations->Status",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -5728,7 +5726,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods      = new[] { "GET" },
                                                      AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
-                                                     ContentType                    = HTTPContentType.JSON_UTF8,
+                                                     ContentType                    = HTTPContentType.Application.JSON_UTF8,
                                                      Content                        = roamingNetwork.ChargingStationStatus().
                                                                                                      Where (matchFilter).
                                                                                                      Where (sinceFilter).
@@ -5751,7 +5749,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "/RNs/{RoamingNetworkId}/ChargingStations/DynamicStatusReport",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -5774,7 +5772,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
                                                      AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
-                                                     ContentType                  = HTTPContentType.JSON_UTF8,
+                                                     ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                                      Content                      = JSONObject.Create(
 
                                                                                         new JProperty("count",  roamingNetwork.ChargingStations.Count()),
@@ -5805,7 +5803,7 @@ namespace cloud.charging.open.API
                                          HTTPHostname.Any,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations/{ChargingStationId}",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check HTTP parameters
@@ -5827,7 +5825,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods  = new[] { "GET", "SET" },
                                                      AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                       = "1",
-                                                     ContentType                = HTTPContentType.JSON_UTF8,
+                                                     ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                      Content                    = _ChargingStation.ToJSON().ToUTF8Bytes()
                                                  }.AsImmutable);
 
@@ -5848,7 +5846,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations/{ChargingStationId}/EVSEs",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check HTTP parameters
@@ -5885,7 +5883,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
                                                      AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
-                                                     ContentType                  = HTTPContentType.JSON_UTF8,
+                                                     ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                                      Content                      = _ChargingStation.EVSEs.
                                                                                         OrderBy(evse => evse.Id).
                                                                                         ToJSON (skip,
@@ -5913,7 +5911,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations/{ChargingStationId}/EVSEs->AdminStatus",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check HTTP parameters
@@ -5944,7 +5942,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods     = new[] { "GET" },
                                                      AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
-                                                     ContentType                   = HTTPContentType.JSON_UTF8,
+                                                     ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                                      Content                       = _ChargingStation.EVSEAdminStatus().
                                                                                          ToJSON(skip,
                                                                                                 take).
@@ -5965,7 +5963,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations/{ChargingStationId}/EVSEs->Status",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check HTTP parameters
@@ -5996,7 +5994,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods     = new[] { "GET" },
                                                      AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
-                                                     ContentType                   = HTTPContentType.JSON_UTF8,
+                                                     ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                                      Content                       = _ChargingStation.EVSEStatus().
                                                                                          ToJSON(skip,
                                                                                                 take).
@@ -6075,7 +6073,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.GET,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Check anonymous access
@@ -6130,7 +6128,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
                                           AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                           ETag                         = "1",
-                                          ContentType                  = HTTPContentType.JSON_UTF8,
+                                          ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                           Content                      = roamingNetwork.EVSEs.
                                                                              OrderBy(evse => evse.Id).
                                                                              ToJSON (skip,
@@ -6159,7 +6157,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.HEAD,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Check anonymous access
@@ -6215,7 +6213,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.COUNT,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Check anonymous access
@@ -6256,7 +6254,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
                                           AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                           ETag                         = "1",
-                                          ContentType                  = HTTPContentType.JSON_UTF8,
+                                          ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                           Content                      = JSONObject.Create(
                                                                              new JProperty("count",  roamingNetwork.EVSEs.ULongCount())
                                                                          ).ToUTF8Bytes(),
@@ -6277,7 +6275,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs->Id",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -6300,7 +6298,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods     = new[] { "GET" },
                                                      AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
-                                                     ContentType                   = HTTPContentType.JSON_UTF8,
+                                                     ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                                      Content                       = new JArray(RoamingNetwork.EVSEs.
                                                                                                     Select(evse => evse.Id.ToString()).
                                                                                                     Skip  (Request.QueryString.GetUInt64("skip")).
@@ -6323,7 +6321,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs->AdminStatus",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -6356,7 +6354,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods      = new[] { "GET" },
                                                      AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
-                                                     ContentType                    = HTTPContentType.JSON_UTF8,
+                                                     ContentType                    = HTTPContentType.Application.JSON_UTF8,
                                                      Content                        = RoamingNetwork.EVSEAdminStatus(evse            => matchFilter (evse.Id)).
                                                                                                      Where          (evseAdminStatus => notBeforeFilter(evseAdminStatus) &&
                                                                                                                                         notAfterFilter (evseAdminStatus)).
@@ -6379,7 +6377,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs->AdminStatusSchedule",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -6414,7 +6412,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods      = new[] { "GET" },
                                                      AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
-                                                     ContentType                    = HTTPContentType.JSON_UTF8,
+                                                     ContentType                    = HTTPContentType.Application.JSON_UTF8,
                                                      //Content                        = RoamingNetwork.EVSEAdminStatusSchedule(IncludeEVSEs:    evse      => matchFilter (evse.Id),
                                                      //                                                                        TimestampFilter: timestamp => beforeFilter(timestamp) &&
                                                      //                                                                                                      afterFilter (timestamp),
@@ -6439,7 +6437,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs->Status",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPRequestLogger:  SendGetEVSEsStatusRequest,
                                          HTTPResponseLogger: SendGetEVSEsStatusResponse,
                                          HTTPDelegate:       Request => {
@@ -6475,7 +6473,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods      = new[] { "GET" },
                                                      AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
-                                                     ContentType                    = HTTPContentType.JSON_UTF8,
+                                                     ContentType                    = HTTPContentType.Application.JSON_UTF8,
                                                      Content                        = RoamingNetwork.EVSEStatus    (evse       => matchFilter (evse.Id)).
                                                                                                      Where         (evseStatus => notBeforeFilter(evseStatus) &&
                                                                                                                                   notAfterFilter (evseStatus)).
@@ -6498,7 +6496,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs->StatusSchedule",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPRequestLogger:  SendGetEVSEsStatusRequest,
                                          HTTPResponseLogger: SendGetEVSEsStatusResponse,
                                          HTTPDelegate:       Request => {
@@ -6534,7 +6532,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods      = new[] { "GET" },
                                                      AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
-                                                     ContentType                    = HTTPContentType.JSON_UTF8,
+                                                     ContentType                    = HTTPContentType.Application.JSON_UTF8,
                                                      Content                        = new JArray(RoamingNetwork.EVSEStatusSchedule(IncludeEVSEs:    evse      => matchFilter (evse.Id),
                                                                                                                                    TimestampFilter: timestamp => beforeFilter(timestamp) &&
                                                                                                                                                                  afterFilter (timestamp),
@@ -6565,7 +6563,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/DynamicStatusReport",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -6588,7 +6586,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods    = new[] { "GET", "OPTIONS" },
                                                      AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
-                                                     ContentType                  = HTTPContentType.JSON_UTF8,
+                                                     ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                                      Content                      = JSONObject.Create(
 
                                                                                         new JProperty("count",  RoamingNetwork.EVSEs.Count()),
@@ -6620,7 +6618,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check RoamingNetworkId and EVSEId URI parameters
@@ -6644,7 +6642,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
                                                      AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                       = "1",
-                                                     ContentType                = HTTPContentType.JSON_UTF8,
+                                                     ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                      Content                    = evse.ToJSON().ToUTF8Bytes(),
                                                      Connection                 = "close"
                                                  }.AsImmutable);
@@ -6662,7 +6660,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}/AdminStatus",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Parse RoamingNetworkId and EVSEId parameters
@@ -6686,7 +6684,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods   = new[] { "GET" },
                                                      AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                        = "1",
-                                                     ContentType                 = HTTPContentType.JSON_UTF8,
+                                                     ContentType                 = HTTPContentType.Application.JSON_UTF8,
                                                      Content                     = evse.AdminStatus.
                                                                                        ToJSON().
                                                                                        ToUTF8Bytes(),
@@ -6706,7 +6704,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}/Status",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Parse RoamingNetworkId and EVSEId parameters
@@ -6730,7 +6728,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods   = new[] { "GET" },
                                                      AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                        = "1",
-                                                     ContentType                 = HTTPContentType.JSON_UTF8,
+                                                     ContentType                 = HTTPContentType.Application.JSON_UTF8,
                                                      Content                     = evse.Status.
                                                                                        ToJSON().
                                                                                        ToUTF8Bytes(),
@@ -6791,7 +6789,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               RESERVE,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPRequestLogger:   SendReserveEVSERequest,
                               HTTPResponseLogger:  SendReserveEVSEResponse,
                               HTTPDelegate:        async Request => {
@@ -6924,7 +6922,7 @@ namespace cloud.charging.open.API
                                           if (StartTime <= Timestamp.Now)
                                               return new HTTPResponse.Builder(Request) {
                                                          HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                         ContentType     = HTTPContentType.JSON_UTF8,
+                                                         ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                          Content         = new JObject(new JProperty("description", "The starting time must be in the future!")).ToUTF8Bytes()
                                                      };
 
@@ -7089,7 +7087,7 @@ namespace cloud.charging.open.API
                                                               AccessControlAllowOrigin   = "*",
                                                               AccessControlAllowMethods  = new[] { "RESERVE", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
                                                               AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                                              ContentType                = HTTPContentType.JSON_UTF8,
+                                                              ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                               Content                    = new JObject(new JProperty("description", "Invalid AuthorizedIds/RFIDId '" + jtoken.Value<String>() + "' section!")).ToUTF8Bytes()
                                                           };
 
@@ -7128,7 +7126,7 @@ namespace cloud.charging.open.API
                                                               AccessControlAllowOrigin   = "*",
                                                               AccessControlAllowMethods  = new[] { "RESERVE", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
                                                               AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                                              ContentType                = HTTPContentType.JSON_UTF8,
+                                                              ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                               Content                    = new JObject(new JProperty("description", "Invalid AuthorizedIds/eMAIds '" + jtoken.Value<String>() + "' section!")).ToUTF8Bytes()
                                                           };
 
@@ -7167,7 +7165,7 @@ namespace cloud.charging.open.API
                                                               AccessControlAllowOrigin   = "*",
                                                               AccessControlAllowMethods  = new[] { "RESERVE", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
                                                               AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                                              ContentType                = HTTPContentType.JSON_UTF8,
+                                                              ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                               Content                    = new JObject(new JProperty("description", "Invalid AuthorizedIds/PINs '" + jtoken.Value<String>() + "' section!")).ToUTF8Bytes()
                                                           };
 
@@ -7194,7 +7192,7 @@ namespace cloud.charging.open.API
                                           if (errorResponse is not null)
                                               return new HTTPResponse.Builder(Request) {
                                                          HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                         ContentType     = HTTPContentType.JSON_UTF8,
+                                                         ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                          Content         = new JObject(new JProperty("description", "Invalid authentication path: " + errorResponse)).ToUTF8Bytes()
                                                      };
                                       }
@@ -7248,7 +7246,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
                                               AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                               Location                   = Location.From(URLPathPrefix + "RNs/" + roamingNetwork.Id.ToString() + "/Reservations/" + result.Reservation.Id.ToString()),
-                                              ContentType                = HTTPContentType.JSON_UTF8,
+                                              ContentType                = HTTPContentType.Application.JSON_UTF8,
                                               Content                    = JSONObject.Create(
                                                                                   new JProperty("reservationId",           result.Reservation.Id.       ToString()),
                                                                                   new JProperty("startTime",               result.Reservation.StartTime.ToIso8601()),
@@ -7268,7 +7266,7 @@ namespace cloud.charging.open.API
                                   //        AccessControlAllowOrigin   = "*",
                                   //        AccessControlAllowMethods  = new[] { "RESERVE", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
                                   //        AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                  //        ContentType                = HTTPContentType.JSON_UTF8,
+                                  //        ContentType                = HTTPContentType.Application.JSON_UTF8,
                                   //        Content                    = new JObject(new JProperty("description",  "ReservationId is already in use!")).ToUTF8Bytes(),
                                   //        Connection                 = "close"
                                   //    };
@@ -7305,7 +7303,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          AUTHSTART,
                                          URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPRequestLogger:  SendAuthStartEVSERequest,
                                          HTTPResponseLogger: SendAuthStartEVSEResponse,
                                          HTTPDelegate: async Request => {
@@ -7440,7 +7438,7 @@ namespace cloud.charging.open.API
                                                                     AccessControlAllowOrigin   = "*",
                                                                     AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
                                                                     AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                                                    ContentType                = HTTPContentType.JSON_UTF8,
+                                                                    ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                                     Content                    = result.ToJSON().ToUTF8Bytes()
                                                                 };
 
@@ -7456,7 +7454,7 @@ namespace cloud.charging.open.API
                                                                     AccessControlAllowOrigin   = "*",
                                                                     AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
                                                                     AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                                                    ContentType                = HTTPContentType.JSON_UTF8,
+                                                                    ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                                     Content                    = result.ToJSON().ToUTF8Bytes()
                                                                 };
 
@@ -7472,7 +7470,7 @@ namespace cloud.charging.open.API
                                                                     AccessControlAllowOrigin   = "*",
                                                                     AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
                                                                     AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                                                    ContentType                = HTTPContentType.JSON_UTF8,
+                                                                    ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                                     Content                    = result.ToJSON().ToUTF8Bytes()
                                                                 };
 
@@ -7494,7 +7492,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          AUTHSTOP,
                                          URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPRequestLogger:  SendAuthStopEVSERequest,
                                          HTTPResponseLogger: SendAuthStopEVSEResponse,
                                          HTTPDelegate: async Request => {
@@ -7608,7 +7606,7 @@ namespace cloud.charging.open.API
                                                                     AccessControlAllowOrigin   = "*",
                                                                     AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
                                                                     AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                                                    ContentType                = HTTPContentType.JSON_UTF8,
+                                                                    ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                                     Content                    = result.ToJSON().ToUTF8Bytes()
                                                                 };
 
@@ -7624,7 +7622,7 @@ namespace cloud.charging.open.API
                                                                     AccessControlAllowOrigin   = "*",
                                                                     AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
                                                                     AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                                                    ContentType                = HTTPContentType.JSON_UTF8,
+                                                                    ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                                     Content                    = result.ToJSON().ToUTF8Bytes()
                                                                 };
 
@@ -7639,7 +7637,7 @@ namespace cloud.charging.open.API
                                                                 AccessControlAllowOrigin   = "*",
                                                                 AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
                                                                 AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                                                ContentType                = HTTPContentType.JSON_UTF8,
+                                                                ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                                 Content                    = result.ToJSON().ToUTF8Bytes()
                                                             };
 
@@ -7660,7 +7658,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               REMOTESTART,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPRequestLogger:   SendRemoteStartEVSERequest,
                               HTTPResponseLogger:  SendRemoteStartEVSEResponse,
                               HTTPDelegate:        async Request => {
@@ -7788,7 +7786,7 @@ namespace cloud.charging.open.API
                                                      if (errorResponse is not null)
                                                          return new HTTPResponse.Builder(Request) {
                                                                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                                    ContentType     = HTTPContentType.JSON_UTF8,
+                                                                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                                     Content         = new JObject(new JProperty("description", "Invalid authentication path: " + errorResponse)).ToUTF8Bytes()
                                                                 };
                                                  }
@@ -7830,7 +7828,7 @@ namespace cloud.charging.open.API
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
                                                                  AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                                                 ContentType                = HTTPContentType.JSON_UTF8,
+                                                                 ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                                  Content                    = JSONObject.Create(
                                                                                                   new JProperty("SessionId",  result.Session.Id.ToString())
                                                                                               ).ToUTF8Bytes()
@@ -7849,7 +7847,7 @@ namespace cloud.charging.open.API
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
                                                                  AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                                                 ContentType                = HTTPContentType.JSON_UTF8,
+                                                                 ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                                  Content                    = JSONObject.Create(
                                                                                                   result.Session.Id != null
                                                                                                       ? new JProperty("SessionId",  result.Session.Id.ToString())
@@ -7879,7 +7877,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               REMOTESTOP,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPRequestLogger:   SendRemoteStopEVSERequest,
                               HTTPResponseLogger:  SendRemoteStopEVSEResponse,
                               HTTPDelegate:        async Request => {
@@ -7973,7 +7971,7 @@ namespace cloud.charging.open.API
                                                  if (errorResponse is not null)
                                                      return new HTTPResponse.Builder(Request) {
                                                                 HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                                ContentType     = HTTPContentType.JSON_UTF8,
+                                                                ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                                 Content         = new JObject(new JProperty("description", "Invalid authentication path: " + errorResponse)).ToUTF8Bytes()
                                                             };
                                              }
@@ -8020,7 +8018,7 @@ namespace cloud.charging.open.API
                                                                      AccessControlAllowOrigin   = "*",
                                                                      AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
                                                                      AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                                                     ContentType                = HTTPContentType.JSON_UTF8,
+                                                                     ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                                      Content                    = new JObject(
                                                                                                       new JProperty("KeepAlive", (Int32) result.ReservationHandling.KeepAliveTime.TotalSeconds)
                                                                                                   ).ToUTF8Bytes()
@@ -8041,7 +8039,7 @@ namespace cloud.charging.open.API
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
                                                                  AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                                                 ContentType                = HTTPContentType.JSON_UTF8,
+                                                                 ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                                  Content                    = new JObject(
                                                                                                   new JProperty("description",  result.Result.ToString())
                                                                                               ).ToUTF8Bytes()
@@ -8071,7 +8069,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               SENDCDR,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPRequestLogger:   SendCDRsRequest,
                               HTTPResponseLogger:  SendCDRsResponse,
                               HTTPDelegate:        async Request => {
@@ -8164,7 +8162,7 @@ namespace cloud.charging.open.API
                                           HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                           Server          = HTTPServer.DefaultServerName,
                                           Date            = Timestamp.Now,
-                                          ContentType     = HTTPContentType.JSON_UTF8,
+                                          ContentType     = HTTPContentType.Application.JSON_UTF8,
                                           Content         = new JObject(new JProperty("description", "Missing authentication token or eMAId!")).ToUTF8Bytes()
                                       };
 
@@ -8284,7 +8282,7 @@ namespace cloud.charging.open.API
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
                                                                  AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                                                 ContentType                = HTTPContentType.JSON_UTF8,
+                                                                 ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                                  Content                    = JSONObject.Create(
                                                                                                   new JProperty("Status",          "forwarded"),
                                                                                                   new JProperty("AuthorizatorId",  result.AuthorizatorId.ToString())
@@ -8303,7 +8301,7 @@ namespace cloud.charging.open.API
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
                                                                  AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                                                 ContentType                = HTTPContentType.JSON_UTF8,
+                                                                 ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                                  Content                    = JSONObject.Create(
                                                                                                   new JProperty("Status",    "Not forwarded")
                                                                                               ).ToUTF8Bytes()
@@ -8321,7 +8319,7 @@ namespace cloud.charging.open.API
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
                                                                  AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                                                 ContentType                = HTTPContentType.JSON_UTF8,
+                                                                 ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                                  Content                    = JSONObject.Create(
                                                                                                   new JProperty("SessionId",       SessionId.ToString()),
                                                                                                   new JProperty("Description",     result.Description),
@@ -8389,7 +8387,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.SET,
                                          URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}/AdminStatus",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: async Request => {
 
                                              #region Parse RoamingNetworkId and EVSEId parameters
@@ -8472,7 +8470,7 @@ namespace cloud.charging.open.API
                                                                  HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                                  Server          = HTTPServer.DefaultServerName,
                                                                  Date            = Timestamp.Now,
-                                                                 ContentType     = HTTPContentType.JSON_UTF8,
+                                                                 ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                                  Content         = new JObject(
                                                                                        new JProperty("description", "Invalid status list!")
                                                                                    ).ToUTF8Bytes()
@@ -8491,7 +8489,7 @@ namespace cloud.charging.open.API
                                                              HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                              Server          = HTTPServer.DefaultServerName,
                                                              Date            = Timestamp.Now,
-                                                             ContentType     = HTTPContentType.JSON_UTF8,
+                                                             ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                              Content         = new JObject(
                                                                                    new JProperty("description", "Either a 'CurrentStatus' or a 'StatusList' must be send!")
                                                                                ).ToUTF8Bytes()
@@ -8547,7 +8545,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.SET,
                                          URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}/Status",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: async Request => {
 
                                              #region Check RoamingNetworkId and EVSEId URI parameters
@@ -8630,7 +8628,7 @@ namespace cloud.charging.open.API
                                                          HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                          Server          = HTTPServer.DefaultServerName,
                                                          Date            = Timestamp.Now,
-                                                         ContentType     = HTTPContentType.JSON_UTF8,
+                                                         ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                          Content         = new JObject(
                                                                              new JProperty("description", "Invalid status list!")
                                                                          ).ToUTF8Bytes()
@@ -8649,7 +8647,7 @@ namespace cloud.charging.open.API
                                                      HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                      Server          = HTTPServer.DefaultServerName,
                                                      Date            = Timestamp.Now,
-                                                     ContentType     = HTTPContentType.JSON_UTF8,
+                                                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                      Content         = new JObject(
                                                                          new JProperty("description", "Either a 'currentStatus' or a 'statusList' must be send!")
                                                                      ).ToUTF8Bytes()
@@ -8694,7 +8692,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.GET,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/chargingSessions",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Get HTTP user and its organizations
@@ -8748,7 +8746,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods     = new[] { "GET", "COUNT", "OPTIONS" },
                                           AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                           ETag                          = "1",
-                                          ContentType                   = HTTPContentType.JSON_UTF8,
+                                          ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                           Content                       = RoamingNetwork.ChargingSessions.
                                                                               OrderBy(session => session.Id).
                                                                               ToJSON (false,
@@ -8774,7 +8772,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.GET,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/chargingSessions->Id",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Get HTTP user and its organizations
@@ -8812,7 +8810,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods     = new[] { "GET" },
                                           AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                           ETag                          = "1",
-                                          ContentType                   = HTTPContentType.JSON_UTF8,
+                                          ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                           Content                       = new JArray(RoamingNetwork.ChargingSessions.
                                                                                          Select(seession => seession.Id.ToString()).
                                                                                          Skip  (Request.QueryString.GetUInt64("skip")).
@@ -8835,7 +8833,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.GET,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/chargingSessions/{ChargingSession_Id}",
-                              HTTPContentType.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
                                   #region Get HTTP user and its organizations
@@ -8886,7 +8884,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods     = new[] { "GET", "COUNT", "OPTIONS" },
                                           AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                           ETag                          = "1",
-                                          ContentType                   = HTTPContentType.JSON_UTF8,
+                                          ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                           Content                       = ChargingSession.
                                                                               ToJSON(false).
                                                                               ToUTF8Bytes(),
@@ -8919,7 +8917,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "/RNs/{RoamingNetworkId}/Reservations",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate:  async httpRequest => {
 
                                              #region Check HTTP Basic Authentication
@@ -8972,7 +8970,7 @@ namespace cloud.charging.open.API
                                                  AccessControlAllowMethods  = new[] { "GET" },
                                                  AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                  ETag                       = "1",
-                                                 ContentType                = HTTPContentType.JSON_UTF8,
+                                                 ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                  Content                    = (allChargingReservations.Any()
                                                                                   ? allChargingReservations.ToJSON()
                                                                                   : new JArray()
@@ -8997,7 +8995,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/Reservations/{ReservationId}",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: async HTTPRequest => {
 
                                              #region Check HTTP Basic Authentication
@@ -9035,7 +9033,7 @@ namespace cloud.charging.open.API
                                                  AccessControlAllowMethods  = new[] { "GET", "SETEXPIRED", "DELETE" },
                                                  AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                  ETag                       = "1",
-                                                 ContentType                = HTTPContentType.JSON_UTF8,
+                                                 ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                  Content                    = Reservation.ToJSON().ToUTF8Bytes()
                                              };
 
@@ -9052,7 +9050,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          SETEXPIRED,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/Reservations/{ReservationId}",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: async Request => {
 
                                              #region Check HTTP Basic Authentication
@@ -9104,7 +9102,7 @@ namespace cloud.charging.open.API
                                                          AccessControlAllowOrigin   = "*",
                                                          AccessControlAllowMethods  = new[] { "GET", "SETEXPIRED", "DELETE" },
                                                          AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                                         ContentType                = HTTPContentType.JSON_UTF8,
+                                                         ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                          Content                    = JSONObject.Create(new JProperty("en", "Reservation removed. Additional costs may be charged!")).ToUTF8Bytes()
                                                      };
 
@@ -9116,7 +9114,7 @@ namespace cloud.charging.open.API
                                                          AccessControlAllowOrigin   = "*",
                                                          AccessControlAllowMethods  = new[] { "GET", "DELETE" },
                                                          AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                                         ContentType                = HTTPContentType.JSON_UTF8,
+                                                         ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                          Content                    = JSONObject.Create(new JProperty("description", "Could not remove reservation!")).ToUTF8Bytes()
                                                      };
 
@@ -9135,7 +9133,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.DELETE,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/Reservations/{ReservationId}",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: async Request => {
 
                                              #region Check HTTP Basic Authentication
@@ -9187,7 +9185,7 @@ namespace cloud.charging.open.API
                                                          AccessControlAllowOrigin   = "*",
                                                          AccessControlAllowMethods  = new[] { "GET", "SETEXPIRED", "DELETE" },
                                                          AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                                         ContentType                = HTTPContentType.JSON_UTF8,
+                                                         ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                          Content                    = JSONObject.Create(new JProperty("en", "Reservation removed. Additional costs may be charged!")).ToUTF8Bytes()
                                                      };
 
@@ -9199,7 +9197,7 @@ namespace cloud.charging.open.API
                                                          AccessControlAllowOrigin   = "*",
                                                          AccessControlAllowMethods  = new[] { "GET", "DELETE" },
                                                          AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                                         ContentType                = HTTPContentType.JSON_UTF8,
+                                                         ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                          Content                    = JSONObject.Create(new JProperty("description", "Could not remove reservation!")).ToUTF8Bytes()
                                                      };
 
@@ -9224,7 +9222,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.GET,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}/AuthStartCache",
-                              HTTPContentType:  HTTPContentType.JSON_UTF8,
+                              HTTPContentType:  HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate:     async httpRequest => {
 
                                   #region Try to get HTTP user and its organizations
@@ -9288,7 +9286,7 @@ namespace cloud.charging.open.API
                                              AccessControlAllowOrigin      = "*",
                                              AccessControlAllowMethods     = new[] { "GET", "COUNT", "CLEAR" },
                                              AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
-                                             ContentType                   = HTTPContentType.JSON_UTF8,
+                                             ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                              Content                       = withMetadata
                                                                                  ? JSONObject.Create(
                                                                                        new JProperty("totalCount",        totalCount),
@@ -9313,7 +9311,7 @@ namespace cloud.charging.open.API
             AddMethodCallback(Hostname,
                               HTTPMethod.COUNT,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}/AuthStartCache",
-                              HTTPContentType:  HTTPContentType.TEXT_UTF8,
+                              HTTPContentType:  HTTPContentType.Text.PLAIN,
                               HTTPDelegate:     async httpRequest => {
 
                                   #region Try to get HTTP user and its organizations
@@ -9351,7 +9349,7 @@ namespace cloud.charging.open.API
                                              AccessControlAllowOrigin   = "*",
                                              AccessControlAllowMethods  = new[] { "GET", "COUNT", "CLEAR" },
                                              AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
-                                             ContentType                = HTTPContentType.TEXT_UTF8,
+                                             ContentType                = HTTPContentType.Text.PLAIN,
                                              Content                    = roamingNetwork.CachedAuthStartResults.Count().ToString().ToUTF8Bytes()
                                          };
 
@@ -9429,7 +9427,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -9465,7 +9463,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
                                                      AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
-                                                     ContentType                  = HTTPContentType.JSON_UTF8,
+                                                     ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                                      Content                      = _RoamingNetwork.ChargingStationOperators.
                                                                                         OrderBy(cso => cso.Id).
                                                                                         ToJSON(skip,
@@ -9495,7 +9493,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.COUNT,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -9518,7 +9516,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
                                                      AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
-                                                     ContentType                  = HTTPContentType.JSON_UTF8,
+                                                     ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                                      Content                      = JSONObject.Create(
                                                                                         new JProperty("count",  _RoamingNetwork.ChargingStationOperators.ULongCount())
                                                                                     ).ToUTF8Bytes(),
@@ -9538,7 +9536,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators->AdminStatus",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -9568,7 +9566,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods     = new[] { "GET" },
                                                      AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
-                                                     ContentType                   = HTTPContentType.JSON_UTF8,
+                                                     ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                                      Content                       = _RoamingNetwork.ChargingStationOperatorAdminStatus().
                                                                                          OrderBy(adminStatus => adminStatus.Id).
                                                                                          ToJSON (skip, take).
@@ -9590,7 +9588,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators->Status",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -9620,7 +9618,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods     = new[] { "GET" },
                                                      AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
-                                                     ContentType                   = HTTPContentType.JSON_UTF8,
+                                                     ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                                      Content                       = _RoamingNetwork.ChargingStationOperatorStatus().
                                                                                          OrderBy(status => status.Id).
                                                                                          ToJSON (skip, take).
@@ -9643,7 +9641,7 @@ namespace cloud.charging.open.API
                                          HTTPHostname.Any,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check HTTP parameters
@@ -9667,7 +9665,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods   = new[] { "GET", "CREATE", "DELETE" },
                                                      AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                        = "1",
-                                                     ContentType                 = HTTPContentType.JSON_UTF8,
+                                                     ContentType                 = HTTPContentType.Application.JSON_UTF8,
                                                      Content                     = _ChargingStationOperator.ToJSON().ToUTF8Bytes(),
                                                      Connection                  = "close"
                                                  }.AsImmutable);
@@ -9689,7 +9687,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/ChargingPools",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -9723,7 +9721,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods      = new[] { "GET", "COUNT", "STATUS" },
                                                      AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
-                                                     ContentType                    = HTTPContentType.JSON_UTF8,
+                                                     ContentType                    = HTTPContentType.Application.JSON_UTF8,
                                                      Content                        = RoamingNetwork.ChargingPools.
                                                                                           ToJSON(skip,
                                                                                                  take,
@@ -9750,7 +9748,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.CREATE,
                                          URLPathPrefix + "RNs/{RNId}/ChargingPools/{ChargingPoolId}",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPRequestLogger:  CreateChargingPoolRequest,
                                          HTTPResponseLogger: CreateChargingPoolResponse,
                                          HTTPDelegate: Request => {
@@ -9822,7 +9820,7 @@ namespace cloud.charging.open.API
                                                          AccessControlAllowMethods   = new[] { "GET", "CREATE", "DELETE" },
                                                          AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
                                                          ETag                        = "1",
-                                                         ContentType                 = HTTPContentType.JSON_UTF8,
+                                                         ContentType                 = HTTPContentType.Application.JSON_UTF8,
                                                          Content                     = _RoamingNetwork.ToJSON().ToUTF8Bytes(),
                                                          Connection                  = "close"
                                                      }.AsImmutable);
@@ -9842,7 +9840,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.SET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/ChargingPools/{ChargingPoolId}/AdminStatus",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check RoamingNetworkId and EVSEId URI parameters
@@ -9867,7 +9865,7 @@ namespace cloud.charging.open.API
                                                          return Task.FromResult(
                                                              new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                                 ContentType     = HTTPContentType.JSON_UTF8,
+                                                                 ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                                  Content         = new JObject(//new JProperty("@context",    "http://wwcp.graphdefined.org/contexts/BadRequest.jsonld"),
                                                                                                new JProperty("description", "Invalid ChargingPoolId query parameter!")).ToUTF8Bytes()
                                                              }.AsImmutable);
@@ -9882,7 +9880,7 @@ namespace cloud.charging.open.API
                                                          return Task.FromResult(
                                                              new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                                 ContentType     = HTTPContentType.JSON_UTF8,
+                                                                 ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                                  Content         = new JObject(//new JProperty("@context",    "http://wwcp.graphdefined.org/contexts/BadRequest.jsonld"),
                                                                                                new JProperty("description", "Unknown ChargingPoolId query parameter!")).ToUTF8Bytes()
                                                              }.AsImmutable);
@@ -9948,7 +9946,7 @@ namespace cloud.charging.open.API
                                          HTTPHostname.Any,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/ChargingStations/{StationId}",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check HTTP parameters
@@ -9972,7 +9970,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods   = new[] { "GET", "SET" },
                                                      AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                        = "1",
-                                                     ContentType                 = HTTPContentType.JSON_UTF8,
+                                                     ContentType                 = HTTPContentType.Application.JSON_UTF8,
                                                      Content                     = _ChargingStation.ToJSON().ToUTF8Bytes(),
                                                      Connection                  = "close"
                                                  }.AsImmutable);
@@ -10012,7 +10010,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.SET,
                                          URLPathPrefix + "/RNs/{RNId}/ChargingStationOperators/{CSOId}/ChargingStations/{StationId}/AdminStatus",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: async HTTPRequest => {
 
                                              #region Parse Query/Request Parameters
@@ -10037,14 +10035,14 @@ namespace cloud.charging.open.API
                                                          if (!ChargingStation_Id.TryParse(HTTPRequest.ParsedURLParameters[1], out ChargingStationId))
                                                              return new HTTPResponse.Builder(HTTPRequest) {
                                                                  HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                                 ContentType     = HTTPContentType.JSON_UTF8,
+                                                                 ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                                  Content         = new JObject(new JProperty("Description", "Invalid ChargingStationId query parameter!")).ToUTF8Bytes()
                                                              };
 
                                                          if (!RoamingNetwork.ContainsChargingStation(ChargingStationId))
                                                              return new HTTPResponse.Builder(HTTPRequest) {
                                                                  HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                                 ContentType     = HTTPContentType.JSON_UTF8,
+                                                                 ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                                  Content         = new JObject(new JProperty("Description", "Unknown ChargingStationId query parameter!")).ToUTF8Bytes()
                                                              };
 
@@ -10073,7 +10071,7 @@ namespace cloud.charging.open.API
 
                                                          return new HTTPResponse.Builder(HTTPRequest) {
                                                                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                                    ContentType     = HTTPContentType.JSON_UTF8,
+                                                                    ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                                     Content         = new JObject(new JProperty("Description", "An exception occured: " + e.Message)).ToUTF8Bytes()
                                                                 };
 
@@ -10116,7 +10114,7 @@ namespace cloud.charging.open.API
                                                  return new HTTPResponse.Builder(HTTPRequest) {
                                                      HTTPStatusCode  = HTTPStatusCode.OK,
                                                      Date            = Timestamp.Now,
-                                                     ContentType     = HTTPContentType.JSON_UTF8,
+                                                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                      Content         = new JObject(
                                                                            new JProperty("Description",  "Ok")
                                                                        ).ToString().
@@ -10136,7 +10134,7 @@ namespace cloud.charging.open.API
 
                                                          return new HTTPResponse.Builder(HTTPRequest) {
                                                              HTTPStatusCode  = HTTPStatusCode.InternalServerError,
-                                                             ContentType     = HTTPContentType.JSON_UTF8,
+                                                             ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                              Content         = new JObject(new JProperty("@context",           "http://wwcp.graphdefined.org/contexts/SETSTATUS-Response.jsonld"),
                                                                                            new JProperty("RoamingNetwork",     RoamingNetwork.ToString()),
                                                                                            new JProperty("ChargingStationId",  ChargingStationId.ToString()),
@@ -10167,7 +10165,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/ChargingStationGroups",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -10202,7 +10200,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods      = new[] { "GET", "COUNT", "STATUS" },
                                                      AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
-                                                     ContentType                    = HTTPContentType.JSON_UTF8,
+                                                     ContentType                    = HTTPContentType.Application.JSON_UTF8,
                                                      Content                        = ChargingStationOperator.ChargingStationGroups.
                                                                                           ToJSON(skip,
                                                                                                  take,
@@ -10233,7 +10231,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/ChargingStationGroups/{ChargingStationGroupId}",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -10379,7 +10377,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods   = new[] { "GET", "COUNT", "STATUS" },
                                                      AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                        = "1",
-                                                     ContentType                 = HTTPContentType.JSON_UTF8,
+                                                     ContentType                 = HTTPContentType.Application.JSON_UTF8,
                                                      Content                     = ChargingStationGroupJSON.ToUTF8Bytes(),
                                                      Connection                  = "close"
                                                  }.AsImmutable);
@@ -10402,7 +10400,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/EVSEGroups",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -10437,7 +10435,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods      = new[] { "GET", "COUNT", "STATUS" },
                                                      AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
-                                                     ContentType                    = HTTPContentType.JSON_UTF8,
+                                                     ContentType                    = HTTPContentType.Application.JSON_UTF8,
                                                      Content                        = ChargingStationOperator.EVSEGroups.
                                                                                           ToJSON(skip,
                                                                                                  take,
@@ -10468,7 +10466,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/EVSEGroups/{EVSEGroupId}",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -10614,7 +10612,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods   = new[] { "GET", "COUNT", "STATUS" },
                                                      AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                        = "1",
-                                                     ContentType                 = HTTPContentType.JSON_UTF8,
+                                                     ContentType                 = HTTPContentType.Application.JSON_UTF8,
                                                      Content                     = EVSEGroupJSON.ToUTF8Bytes(),
                                                      Connection                  = "close"
                                                  }.AsImmutable);
@@ -10637,7 +10635,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/Brands",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -10672,7 +10670,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods      = new[] { "GET", "COUNT", "STATUS" },
                                                      AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
-                                                     ContentType                    = HTTPContentType.JSON_UTF8,
+                                                     ContentType                    = HTTPContentType.Application.JSON_UTF8,
                                                      Content                        = ChargingStationOperator.Brands.
                                                                                           ToJSON(skip,
                                                                                                  take,
@@ -10700,7 +10698,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/Brands/{BrandId}",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -10846,7 +10844,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods   = new[] { "GET", "COUNT", "STATUS" },
                                                      AccessControlAllowHeaders   = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                        = "1",
-                                                     ContentType                 = HTTPContentType.JSON_UTF8,
+                                                     ContentType                 = HTTPContentType.Application.JSON_UTF8,
                                                      Content                     = BrandJSON.ToUTF8Bytes(),
                                                      Connection                  = "close"
                                                  }.AsImmutable);
@@ -10870,7 +10868,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/Tariffs",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -10905,7 +10903,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods      = new[] { "GET", "COUNT", "STATUS" },
                                                      AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
-                                                     ContentType                    = HTTPContentType.JSON_UTF8,
+                                                     ContentType                    = HTTPContentType.Application.JSON_UTF8,
                                                      Content                        = ChargingStationOperator.ChargingTariffs.
                                                                                           ToJSON(skip,
                                                                                                  take,
@@ -10932,7 +10930,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/TariffOverview",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -10964,7 +10962,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods      = new[] { "GET", "COUNT", "STATUS" },
                                                      AccessControlAllowHeaders      = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                           = "1",
-                                                     ContentType                    = HTTPContentType.TEXT_UTF8,
+                                                     ContentType                    = HTTPContentType.Text.PLAIN,
                                                      Content                        = chargingStationOperator.ChargingStations.
                                                                                           GetTariffs(skip,
                                                                                                      take,
@@ -11001,7 +10999,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/eMobilityProviders",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -11034,7 +11032,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
                                                      AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
-                                                     ContentType                  = HTTPContentType.JSON_UTF8,
+                                                     ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                                      Content                      = _RoamingNetwork.EMobilityProviders.
                                                                                         ToJSON(skip,
                                                                                                take,
@@ -11059,7 +11057,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.COUNT,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/eMobilityProviders",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -11082,7 +11080,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
                                                      AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                         = "1",
-                                                     ContentType                  = HTTPContentType.JSON_UTF8,
+                                                     ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                                      Content                      = JSONObject.Create(
                                                                                         new JProperty("count",  _RoamingNetwork.ChargingStationOperators.ULongCount())
                                                                                     ).ToUTF8Bytes()
@@ -11101,7 +11099,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/eMobilityProviders->AdminStatus",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -11131,7 +11129,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods     = new[] { "GET" },
                                                      AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
-                                                     ContentType                   = HTTPContentType.JSON_UTF8,
+                                                     ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                                      Content                       = _RoamingNetwork.ChargingStationOperatorAdminStatus().
                                                                                          OrderBy(adminStatus => adminStatus.Id).
                                                                                          ToJSON (skip, take).
@@ -11152,7 +11150,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/eMobilityProviders->Status",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check parameters
@@ -11181,7 +11179,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods     = new[] { "GET" },
                                                      AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                          = "1",
-                                                     ContentType                   = HTTPContentType.JSON_UTF8,
+                                                     ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                                      Content                       = _RoamingNetwork.ChargingStationOperatorStatus().
                                                                                          OrderBy(status => status.Id).
                                                                                          ToJSON (skip, take).
@@ -11203,7 +11201,7 @@ namespace cloud.charging.open.API
                                          Hostname,
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/eMobilityProviders/{eMobilityProviderId}",
-                                         HTTPContentType.JSON_UTF8,
+                                         HTTPContentType.Application.JSON_UTF8,
                                          HTTPDelegate: Request => {
 
                                              #region Check HTTP parameters
@@ -11227,7 +11225,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowMethods  = new[] { "GET", "CREATE", "DELETE" },
                                                      AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                      ETag                       = "1",
-                                                     ContentType                = HTTPContentType.JSON_UTF8,
+                                                     ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                      Content                    = eMobilityProvider.ToJSON().ToUTF8Bytes()
                                                  }.AsImmutable);
 

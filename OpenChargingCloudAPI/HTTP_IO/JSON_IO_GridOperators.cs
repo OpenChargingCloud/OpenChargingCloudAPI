@@ -60,7 +60,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                               _Hostname,
                                                               HTTPMethod.GET,
                                                               _URIPrefix + "RNs/{RoamingNetworkId}/GridOperators",
-                                                              HTTPContentType.JSON_UTF8,
+                                                              HTTPContentType.Application.JSON_UTF8,
                                                               HTTPDelegate: Request => {
 
                                                                   #region Check parameters
@@ -94,7 +94,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                                           AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
                                                                           AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                                           ETag                         = "1",
-                                                                          ContentType                  = HTTPContentType.JSON_UTF8,
+                                                                          ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                                                           Content                      = roamingNetwork.GridOperators.
                                                                                                              ToJSON(skip,
                                                                                                                     take,
@@ -119,7 +119,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                               _Hostname,
                                                               HTTPMethod.COUNT,
                                                               _URIPrefix + "RNs/{RoamingNetworkId}/GridOperators",
-                                                              HTTPContentType.JSON_UTF8,
+                                                              HTTPContentType.Application.JSON_UTF8,
                                                               HTTPDelegate: Request => {
 
                                                                   #region Check parameters
@@ -142,7 +142,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                                           AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
                                                                           AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                                           ETag                         = "1",
-                                                                          ContentType                  = HTTPContentType.JSON_UTF8,
+                                                                          ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                                                           Content                      = JSONObject.Create(
                                                                                                              new JProperty("count",  _RoamingNetwork.ChargingStationOperators.ULongCount())
                                                                                                          ).ToUTF8Bytes()
@@ -161,7 +161,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                               _Hostname,
                                                               HTTPMethod.GET,
                                                               _URIPrefix + "RNs/{RoamingNetworkId}/GridOperators->AdminStatus",
-                                                              HTTPContentType.JSON_UTF8,
+                                                              HTTPContentType.Application.JSON_UTF8,
                                                               HTTPDelegate: Request => {
 
                                                                   #region Check parameters
@@ -191,7 +191,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                                           AccessControlAllowMethods    = new[] { "GET" },
                                                                           AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
                                                                           ETag                         = "1",
-                                                                          ContentType                  = HTTPContentType.JSON_UTF8,
+                                                                          ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                                                           Content                      = _RoamingNetwork.ChargingStationOperatorAdminStatus().
                                                                                                              OrderBy(status => status.Id).
                                                                                                              ToJSON (skip, take).
@@ -212,7 +212,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                               _Hostname,
                                                               HTTPMethod.GET,
                                                               _URIPrefix + "RNs/{RoamingNetworkId}/GridOperators->Status",
-                                                              HTTPContentType.JSON_UTF8,
+                                                              HTTPContentType.Application.JSON_UTF8,
                                                               HTTPDelegate: Request => {
 
                                                                   #region Check parameters
@@ -241,7 +241,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                                           AccessControlAllowMethods     = new[] { "GET" },
                                                                           AccessControlAllowHeaders     = new[] { "Content-Type", "Accept", "Authorization" },
                                                                           ETag                          = "1",
-                                                                          ContentType                   = HTTPContentType.JSON_UTF8,
+                                                                          ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                                                           Content                       = _RoamingNetwork.ChargingStationOperatorStatus().
                                                                                                               OrderBy(status => status.Id).
                                                                                                               ToJSON (skip, take).
@@ -263,7 +263,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                               HTTPHostname.Any,
                                                               HTTPMethod.GET,
                                                               _URIPrefix + "RNs/{RoamingNetworkId}/GridOperators/{GridOperatorId}",
-                                                              HTTPContentType.JSON_UTF8,
+                                                              HTTPContentType.Application.JSON_UTF8,
                                                               HTTPDelegate: Request => {
 
                                                                   #region Check HTTP parameters
@@ -287,7 +287,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                                           AccessControlAllowMethods  = new[] { "GET", "CREATE", "DELETE" },
                                                                           AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
                                                                           ETag                       = "1",
-                                                                          ContentType                = HTTPContentType.JSON_UTF8,
+                                                                          ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                                           Content                    = _GridOperator.ToJSON().ToUTF8Bytes()
                                                                       }.AsImmutable);
 
