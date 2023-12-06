@@ -1869,49 +1869,178 @@ namespace cloud.charging.open.API
 
         // Additional HTTP methods for HTTP clients
 
-        #region REMOTESTART(this HTTPClient, URL, BuilderAction = null)
+        #region RESERVE    (this HTTPClient, Path, ...)
 
-        public static HTTPRequest.Builder REMOTESTART(this AHTTPClient              HTTPClient,
-                                                      HTTPPath                      URL,
-                                                      Action<HTTPRequest.Builder>?  BuilderAction   = null)
-        {
+        /// <summary>
+        /// Create a new HTTP RESERVE request.
+        /// </summary>
+        /// <param name="HTTPClient">A HTTP client.</param>
+        /// <param name="Path">A HTTP path.</param>
+        /// <param name="BuilderAction">A delegate to configure the new HTTP request builder.</param>
+        /// <param name="Authentication">An optional HTTP authentication.</param>
+        public static Task<HTTPResponse> RESERVE(this AHTTPClient              HTTPClient,
+                                                 HTTPPath                      Path,
+                                                 Action<HTTPRequest.Builder>?  BuilderAction    = null,
+                                                 IHTTPAuthentication?          Authentication   = null)
 
-            #region Initial checks
-
-            if (HTTPClient is null)
-                throw new ArgumentNullException(nameof(HTTPClient),  "The given HTTP client must not be null!");
-
-            if (URL.IsNullOrEmpty)
-                throw new ArgumentNullException(nameof(URL),         "The given URI must not be null!");
-
-            #endregion
-
-            return HTTPClient.CreateRequest(OpenChargingCloudAPI.REMOTESTART, URL, BuilderAction);
-
-        }
+            => HTTPClient.Execute(
+                   client => client.CreateRequest(
+                                 OpenChargingCloudAPI.RESERVE,
+                                 Path,
+                                 BuilderAction,
+                                 Authentication
+                             )
+               );
 
         #endregion
 
-        #region REMOTESTOP (this HTTPClient, URL, BuilderAction = null)
+        #region SETEXPIRED (this HTTPClient, Path, ...)
 
-        public static HTTPRequest.Builder REMOTESTOP(this AHTTPClient              HTTPClient,
-                                                     HTTPPath                      URL,
-                                                     Action<HTTPRequest.Builder>?  BuilderAction   = null)
-        {
+        /// <summary>
+        /// Create a new HTTP SETEXPIRED request.
+        /// </summary>
+        /// <param name="HTTPClient">A HTTP client.</param>
+        /// <param name="Path">A HTTP path.</param>
+        /// <param name="BuilderAction">A delegate to configure the new HTTP request builder.</param>
+        /// <param name="Authentication">An optional HTTP authentication.</param>
+        public static Task<HTTPResponse> SETEXPIRED(this AHTTPClient              HTTPClient,
+                                                    HTTPPath                      Path,
+                                                    Action<HTTPRequest.Builder>?  BuilderAction    = null,
+                                                    IHTTPAuthentication?          Authentication   = null)
 
-            #region Initial checks
+            => HTTPClient.Execute(
+                   client => client.CreateRequest(
+                                 OpenChargingCloudAPI.SETEXPIRED,
+                                 Path,
+                                 BuilderAction,
+                                 Authentication
+                             )
+               );
 
-            if (HTTPClient is null)
-                throw new ArgumentNullException(nameof(HTTPClient),  "The given HTTP client must not be null!");
+        #endregion
 
-            if (URL.IsNullOrEmpty)
-                throw new ArgumentNullException(nameof(URL),         "The given URI must not be null!");
+        #region AUTHSTART  (this HTTPClient, Path, ...)
 
-            #endregion
+        /// <summary>
+        /// Create a new HTTP AUTHSTART request.
+        /// </summary>
+        /// <param name="HTTPClient">A HTTP client.</param>
+        /// <param name="Path">A HTTP path.</param>
+        /// <param name="BuilderAction">A delegate to configure the new HTTP request builder.</param>
+        /// <param name="Authentication">An optional HTTP authentication.</param>
+        public static Task<HTTPResponse> AUTHSTART(this AHTTPClient              HTTPClient,
+                                                   HTTPPath                      Path,
+                                                   Action<HTTPRequest.Builder>?  BuilderAction    = null,
+                                                   IHTTPAuthentication?          Authentication   = null)
 
-            return HTTPClient.CreateRequest(OpenChargingCloudAPI.REMOTESTOP, URL, BuilderAction);
+            => HTTPClient.Execute(
+                   client => client.CreateRequest(
+                                 OpenChargingCloudAPI.AUTHSTART,
+                                 Path,
+                                 BuilderAction,
+                                 Authentication
+                             )
+               );
 
-        }
+        #endregion
+
+        #region AUTHSTOP   (this HTTPClient, Path, ...)
+
+        /// <summary>
+        /// Create a new HTTP REMOTESTOP request.
+        /// </summary>
+        /// <param name="HTTPClient">A HTTP client.</param>
+        /// <param name="Path">A HTTP path.</param>
+        /// <param name="BuilderAction">A delegate to configure the new HTTP request builder.</param>
+        /// <param name="Authentication">An optional HTTP authentication.</param>
+        public static Task<HTTPResponse> AUTHSTOP(this AHTTPClient              HTTPClient,
+                                                  HTTPPath                      Path,
+                                                  Action<HTTPRequest.Builder>?  BuilderAction    = null,
+                                                  IHTTPAuthentication?          Authentication   = null)
+
+            => HTTPClient.Execute(
+                   client => client.CreateRequest(
+                                 OpenChargingCloudAPI.AUTHSTOP,
+                                 Path,
+                                 BuilderAction,
+                                 Authentication
+                             )
+               );
+
+        #endregion
+
+        #region REMOTESTART(this HTTPClient, Path, ...)
+
+        /// <summary>
+        /// Create a new HTTP REMOTESTART request.
+        /// </summary>
+        /// <param name="HTTPClient">A HTTP client.</param>
+        /// <param name="Path">A HTTP path.</param>
+        /// <param name="BuilderAction">A delegate to configure the new HTTP request builder.</param>
+        /// <param name="Authentication">An optional HTTP authentication.</param>
+        public static Task<HTTPResponse> REMOTESTART(this AHTTPClient              HTTPClient,
+                                                     HTTPPath                      Path,
+                                                     Action<HTTPRequest.Builder>?  BuilderAction    = null,
+                                                     IHTTPAuthentication?          Authentication   = null)
+
+            => HTTPClient.Execute(
+                   client => client.CreateRequest(
+                                 OpenChargingCloudAPI.REMOTESTART,
+                                 Path,
+                                 BuilderAction,
+                                 Authentication
+                             )
+               );
+
+        #endregion
+
+        #region REMOTESTOP (this HTTPClient, Path, ...)
+
+        /// <summary>
+        /// Create a new HTTP REMOTESTOP request.
+        /// </summary>
+        /// <param name="HTTPClient">A HTTP client.</param>
+        /// <param name="Path">A HTTP path.</param>
+        /// <param name="BuilderAction">A delegate to configure the new HTTP request builder.</param>
+        /// <param name="Authentication">An optional HTTP authentication.</param>
+        public static Task<HTTPResponse> REMOTESTOP(this AHTTPClient              HTTPClient,
+                                                    HTTPPath                      Path,
+                                                    Action<HTTPRequest.Builder>?  BuilderAction    = null,
+                                                    IHTTPAuthentication?          Authentication   = null)
+
+            => HTTPClient.Execute(
+                   client => client.CreateRequest(
+                                 OpenChargingCloudAPI.REMOTESTOP,
+                                 Path,
+                                 BuilderAction,
+                                 Authentication
+                             )
+               );
+
+        #endregion
+
+        #region SENDCDR    (this HTTPClient, Path, ...)
+
+        /// <summary>
+        /// Create a new HTTP SENDCDR request.
+        /// </summary>
+        /// <param name="HTTPClient">A HTTP client.</param>
+        /// <param name="Path">A HTTP path.</param>
+        /// <param name="BuilderAction">A delegate to configure the new HTTP request builder.</param>
+        /// <param name="Authentication">An optional HTTP authentication.</param>
+        public static Task<HTTPResponse> SENDCDR(this AHTTPClient              HTTPClient,
+                                                 HTTPPath                      Path,
+                                                 Action<HTTPRequest.Builder>?  BuilderAction    = null,
+                                                 IHTTPAuthentication?          Authentication   = null)
+
+            => HTTPClient.Execute(
+                   client => client.CreateRequest(
+                                 OpenChargingCloudAPI.SENDCDR,
+                                 Path,
+                                 BuilderAction,
+                                 Authentication
+                             )
+               );
 
         #endregion
 
@@ -1959,13 +2088,13 @@ namespace cloud.charging.open.API
 
         #region Additional HTTP methods
 
-        public readonly static HTTPMethod RESERVE      = HTTPMethod.Register("RESERVE",     IsSafe: false, IsIdempotent: true)!.Value;
-        public readonly static HTTPMethod SETEXPIRED   = HTTPMethod.Register("SETEXPIRED",  IsSafe: false, IsIdempotent: true)!.Value;
-        public readonly static HTTPMethod AUTHSTART    = HTTPMethod.Register("AUTHSTART",   IsSafe: false, IsIdempotent: true)!.Value;
-        public readonly static HTTPMethod AUTHSTOP     = HTTPMethod.Register("AUTHSTOP",    IsSafe: false, IsIdempotent: true)!.Value;
-        public readonly static HTTPMethod REMOTESTART  = HTTPMethod.Register("REMOTESTART", IsSafe: false, IsIdempotent: true)!.Value;
-        public readonly static HTTPMethod REMOTESTOP   = HTTPMethod.Register("REMOTESTOP",  IsSafe: false, IsIdempotent: true)!.Value;
-        public readonly static HTTPMethod SENDCDR      = HTTPMethod.Register("SENDCDR",     IsSafe: false, IsIdempotent: true)!.Value;
+        public readonly static HTTPMethod RESERVE      = HTTPMethod.TryParse("RESERVE",     IsSafe: false, IsIdempotent: true)!;
+        public readonly static HTTPMethod SETEXPIRED   = HTTPMethod.TryParse("SETEXPIRED",  IsSafe: false, IsIdempotent: true)!;
+        public readonly static HTTPMethod AUTHSTART    = HTTPMethod.TryParse("AUTHSTART",   IsSafe: false, IsIdempotent: true)!;
+        public readonly static HTTPMethod AUTHSTOP     = HTTPMethod.TryParse("AUTHSTOP",    IsSafe: false, IsIdempotent: true)!;
+        public readonly static HTTPMethod REMOTESTART  = HTTPMethod.TryParse("REMOTESTART", IsSafe: false, IsIdempotent: true)!;
+        public readonly static HTTPMethod REMOTESTOP   = HTTPMethod.TryParse("REMOTESTOP",  IsSafe: false, IsIdempotent: true)!;
+        public readonly static HTTPMethod SENDCDR      = HTTPMethod.TryParse("SENDCDR",     IsSafe: false, IsIdempotent: true)!;
 
         #endregion
 
