@@ -17,15 +17,12 @@
 
 #region Usings
 
-using System;
-using System.Linq;
-using System.Threading;
-
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
+
 using Newtonsoft.Json.Linq;
 
 using org.GraphDefined.Vanaheimr.Illias;
-using org.GraphDefined.Vanaheimr.Hermod;
 using org.GraphDefined.Vanaheimr.Hermod.HTTP;
 
 #endregion
@@ -65,8 +62,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                 using (var HTTPResult = HTTPTask.Result)
                 {
 
-                    Assert.AreEqual(HTTPStatusCode.Created, HTTPResult.HTTPStatusCode, "'CREATE " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
-                    Assert.AreEqual(new JObject(
+                    ClassicAssert.AreEqual(HTTPStatusCode.Created, HTTPResult.HTTPStatusCode, "'CREATE " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
+                    ClassicAssert.AreEqual(new JObject(
                                         new JProperty("RoamingNetworkId",  "TestRN1"),
                                         new JProperty("description",       new JObject())
                                     ).ToString(),
@@ -108,8 +105,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                 using (var HTTPResult = HTTPTask.Result)
                 {
 
-                    Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
-                    Assert.AreEqual(new JArray().ToString(),
+                    ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
+                    ClassicAssert.AreEqual(new JArray().ToString(),
                                     JArray.Parse(HTTPResult.HTTPBody.ToUTF8String()).ToString(),
                                     "Invalid response for 'GET " + URI + "'!");
 
@@ -136,8 +133,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                 using (var HTTPResult = HTTPTask.Result)
                 {
 
-                    Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
-                    Assert.AreEqual(new JObject(new JProperty("count", 0)).ToString(),
+                    ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
+                    ClassicAssert.AreEqual(new JObject(new JProperty("count", 0)).ToString(),
                                     JObject.Parse(HTTPResult.HTTPBody.ToUTF8String()).ToString(),
                                     "Invalid response for 'COUNT " + URI + "'!");
 
@@ -168,8 +165,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             //    using (var HTTPResult = HTTPTask.Result)
             //    {
 
-            //        Assert.AreEqual(HTTPStatusCode.Created, HTTPResult.HTTPStatusCode, "'CREATE " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
-            //        Assert.AreEqual(new JObject(
+            //        ClassicAssert.AreEqual(HTTPStatusCode.Created, HTTPResult.HTTPStatusCode, "'CREATE " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
+            //        ClassicAssert.AreEqual(new JObject(
             //                            new JProperty("RoamingNetworkId",  "TestRN1"),
             //                            new JProperty("description",       new JObject())
             //                        ).ToString(),
@@ -183,11 +180,11 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             //if (RemoteAddress == IPv4Address.Localhost)
             //{
 
-            //    Assert.IsTrue(WWCPAPI.RoamingNetworkExists(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN1")), "Roaming network 'TestRN1' was not found via .NET API!");
+            //    ClassicAssert.IsTrue(WWCPAPI.RoamingNetworkExists(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN1")), "Roaming network 'TestRN1' was not found via .NET API!");
 
             //    var _TestRN1 = WWCPAPI.GetRoamingNetwork(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN1"));
-            //    Assert.IsNotNull(_TestRN1, "Roaming network 'TestRN1' was not returned via .NET API!");
-            //    Assert.IsFalse  (_TestRN1.Description.Any(), "The description of roaming network 'TestRN1' must be empty!");
+            //    ClassicAssert.IsNotNull(_TestRN1, "Roaming network 'TestRN1' was not returned via .NET API!");
+            //    ClassicAssert.IsFalse  (_TestRN1.Description.Any(), "The description of roaming network 'TestRN1' must be empty!");
 
             //}
 
@@ -214,8 +211,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             //    using (var HTTPResult = HTTPTask.Result)
             //    {
 
-            //        Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
-            //        Assert.AreEqual(new JArray(
+            //        ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
+            //        ClassicAssert.AreEqual(new JArray(
             //                            new JObject(
             //                                new JProperty("RoamingNetworkId",  "TestRN1"),
             //                                new JProperty("description",       new JObject())
@@ -248,8 +245,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             //    using (var HTTPResult = HTTPTask.Result)
             //    {
 
-            //        Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
-            //        Assert.AreEqual(new JObject(new JProperty("count", 1)).ToString(),
+            //        ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
+            //        ClassicAssert.AreEqual(new JObject(new JProperty("count", 1)).ToString(),
             //                        JObject.Parse(HTTPResult.HTTPBody.ToUTF8String()).ToString(),
             //                        "Invalid response for 'COUNT " + URI + "'!");
 
@@ -285,8 +282,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             //    using (var HTTPResult = HTTPTask.Result)
             //    {
 
-            //        Assert.AreEqual(HTTPStatusCode.Created, HTTPResult.HTTPStatusCode, "'CREATE " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
-            //        Assert.AreEqual(new JObject(
+            //        ClassicAssert.AreEqual(HTTPStatusCode.Created, HTTPResult.HTTPStatusCode, "'CREATE " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
+            //        ClassicAssert.AreEqual(new JObject(
             //                            new JProperty("RoamingNetworkId",  "TestRN3"),
             //                            new JProperty("description",       new JObject(
             //                                                                   new JProperty("en", "This is a roaming network!")
@@ -302,13 +299,13 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             //if (RemoteAddress == IPv4Address.Localhost)
             //{
 
-            //    Assert.IsTrue(WWCPAPI.RoamingNetworkExists(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN3")), "Roaming network 'TestRN3' was not found via .NET API!");
+            //    ClassicAssert.IsTrue(WWCPAPI.RoamingNetworkExists(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN3")), "Roaming network 'TestRN3' was not found via .NET API!");
 
             //    var _TestRN3 = WWCPAPI.GetRoamingNetwork(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN3"));
-            //    Assert.IsNotNull(_TestRN3, "Roaming network 'TestRN3' was not returned via .NET API!");
-            //    Assert.IsTrue   (_TestRN3.Description.Any(), "The description of roaming network 'TestRN3' must not be empty!");
-            //    Assert.AreEqual (_TestRN3.Description.Count(), 1);
-            //    Assert.AreEqual (_TestRN3.Description[Languages.en], "This is a roaming network!");
+            //    ClassicAssert.IsNotNull(_TestRN3, "Roaming network 'TestRN3' was not returned via .NET API!");
+            //    ClassicAssert.IsTrue   (_TestRN3.Description.Any(), "The description of roaming network 'TestRN3' must not be empty!");
+            //    ClassicAssert.AreEqual (_TestRN3.Description.Count(), 1);
+            //    ClassicAssert.AreEqual (_TestRN3.Description[Languages.en], "This is a roaming network!");
 
             //}
 
@@ -340,8 +337,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             //    using (var HTTPResult = HTTPTask.Result)
             //    {
 
-            //        Assert.AreEqual(HTTPStatusCode.Created, HTTPResult.HTTPStatusCode, "'CREATE " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
-            //        Assert.AreEqual(new JObject(
+            //        ClassicAssert.AreEqual(HTTPStatusCode.Created, HTTPResult.HTTPStatusCode, "'CREATE " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
+            //        ClassicAssert.AreEqual(new JObject(
             //                            new JProperty("RoamingNetworkId",  "TestRN2"),
             //                            new JProperty("description",       new JObject(
             //                                                                   new JProperty("de", "Auch ein schönes Roaming Netzwerk!"),
@@ -358,14 +355,14 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             //if (RemoteAddress == IPv4Address.Localhost)
             //{
 
-            //    Assert.IsTrue(WWCPAPI.RoamingNetworkExists(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN2")), "Roaming network 'TestRN2' was not found via .NET API!");
+            //    ClassicAssert.IsTrue(WWCPAPI.RoamingNetworkExists(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN2")), "Roaming network 'TestRN2' was not found via .NET API!");
 
             //    var _TestRN2 = WWCPAPI.GetRoamingNetwork(HTTPHostname.Localhost, RoamingNetwork_Id.Parse("TestRN2"));
-            //    Assert.IsNotNull(_TestRN2, "Roaming network 'TestRN2' was not returned via .NET API!");
-            //    Assert.IsTrue   (_TestRN2.Description.Any(), "The description of roaming network 'TestRN2' must not be empty!");
-            //    Assert.AreEqual (_TestRN2.Description.Count(), 2);
-            //    Assert.AreEqual (_TestRN2.Description[Languages.de], "Auch ein schönes Roaming Netzwerk!");
-            //    Assert.AreEqual (_TestRN2.Description[Languages.en], "This is another roaming network!");
+            //    ClassicAssert.IsNotNull(_TestRN2, "Roaming network 'TestRN2' was not returned via .NET API!");
+            //    ClassicAssert.IsTrue   (_TestRN2.Description.Any(), "The description of roaming network 'TestRN2' must not be empty!");
+            //    ClassicAssert.AreEqual (_TestRN2.Description.Count(), 2);
+            //    ClassicAssert.AreEqual (_TestRN2.Description[Languages.de], "Auch ein schönes Roaming Netzwerk!");
+            //    ClassicAssert.AreEqual (_TestRN2.Description[Languages.en], "This is another roaming network!");
 
             //}
 
@@ -392,8 +389,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             //    using (var HTTPResult = HTTPTask.Result)
             //    {
 
-            //        Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
-            //        Assert.AreEqual(new JArray(
+            //        ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
+            //        ClassicAssert.AreEqual(new JArray(
             //                            new JObject(
             //                                new JProperty("RoamingNetworkId",  "TestRN1"),
             //                                new JProperty("description",       new JObject())
@@ -439,8 +436,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             //    using (var HTTPResult = HTTPTask.Result)
             //    {
 
-            //        Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
-            //        Assert.AreEqual(new JObject(new JProperty("count", 3)).ToString(),
+            //        ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
+            //        ClassicAssert.AreEqual(new JObject(new JProperty("count", 3)).ToString(),
             //                        JObject.Parse(HTTPResult.HTTPBody.ToUTF8String()).ToString(),
             //                        "Invalid response for 'COUNT " + URI + "'!");
 

@@ -17,15 +17,12 @@
 
 #region Usings
 
-using System;
-using System.Linq;
-using System.Threading;
-
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
+
 using Newtonsoft.Json.Linq;
 
 using org.GraphDefined.Vanaheimr.Illias;
-using org.GraphDefined.Vanaheimr.Hermod;
 using org.GraphDefined.Vanaheimr.Hermod.HTTP;
 
 #endregion
@@ -65,8 +62,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                 using (var HTTPResult = HTTPTask.Result)
                 {
 
-                    Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
-                    Assert.AreEqual(new JArray().ToString(),
+                    ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
+                    ClassicAssert.AreEqual(new JArray().ToString(),
                                     JArray.Parse(HTTPResult.HTTPBody.ToUTF8String()).ToString(),
                                     "Invalid response for 'GET " + URI + "'!");
 
@@ -94,8 +91,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                 using (var HTTPResult = HTTPTask.Result)
                 {
 
-                    Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
-                    Assert.AreEqual(new JObject(new JProperty("count", 0)).ToString(),
+                    ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
+                    ClassicAssert.AreEqual(new JObject(new JProperty("count", 0)).ToString(),
                                     JObject.Parse(HTTPResult.HTTPBody.ToUTF8String()).ToString(),
                                     "Invalid response for 'COUNT " + URI + "'!");
 
@@ -143,8 +140,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                 using (var HTTPResult = HTTPTask.Result)
                 {
 
-                    Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
-                    Assert.AreEqual(new JArray(
+                    ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
+                    ClassicAssert.AreEqual(new JArray(
                                         new JObject(new JProperty("RoamingNetworkId",  "TEST_RN1"),
                                                     new JProperty("description",       new JObject(new JProperty("de", "Test Roaming Netz 1"),
                                                                                                    new JProperty("en", "Test roaming network 1")))),
@@ -185,8 +182,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                 using (var HTTPResult = HTTPTask.Result)
                 {
 
-                    Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
-                    Assert.AreEqual(new JObject(new JProperty("count", 4)).ToString(),
+                    ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
+                    ClassicAssert.AreEqual(new JObject(new JProperty("count", 4)).ToString(),
                                     JObject.Parse(HTTPResult.HTTPBody.ToUTF8String()).ToString(),
                                     "Invalid response for 'COUNT " + URI + "'!");
 
@@ -215,8 +212,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                 using (var HTTPResult = HTTPTask.Result)
                 {
 
-                    Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
-                    Assert.AreEqual(new JArray(
+                    ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
+                    ClassicAssert.AreEqual(new JArray(
                                         new JObject(new JProperty("RoamingNetworkId",  "TEST_RN3"),
                                                     new JProperty("description",       new JObject(new JProperty("de", "Test Roaming Netz 3"),
                                                                                                    new JProperty("en", "Test roaming network 3")))),
@@ -252,8 +249,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                 using (var HTTPResult = HTTPTask.Result)
                 {
 
-                    Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
-                    Assert.AreEqual(new JArray(
+                    ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
+                    ClassicAssert.AreEqual(new JArray(
                                         new JObject(new JProperty("RoamingNetworkId",  "TEST_RN1"),
                                                     new JProperty("description",       new JObject(new JProperty("de", "Test Roaming Netz 1"),
                                                                                                    new JProperty("en", "Test roaming network 1")))),
@@ -289,8 +286,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                 using (var HTTPResult = HTTPTask.Result)
                 {
 
-                    Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
-                    Assert.AreEqual(new JArray(
+                    ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
+                    ClassicAssert.AreEqual(new JArray(
                                         new JObject(new JProperty("RoamingNetworkId",  "TEST_RN2"),
                                                     new JProperty("description",       new JObject(new JProperty("de", "Test Roaming Netz 2"),
                                                                                                    new JProperty("en", "Test roaming network 2")))),
@@ -326,8 +323,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                 using (var HTTPResult = HTTPTask.Result)
                 {
 
-                    Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
-                    Assert.AreEqual(new JArray().ToString(),
+                    ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
+                    ClassicAssert.AreEqual(new JArray().ToString(),
                                     JArray.Parse(HTTPResult.HTTPBody.ToUTF8String()).ToString(),
                                     "Invalid response for 'GET " + URI + "'!");
 
@@ -357,8 +354,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                 using (var HTTPResult = HTTPTask.Result)
                 {
 
-                    Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
-                    Assert.AreEqual(new JObject(new JProperty("RoamingNetworkId",  "TEST_RN1"),
+                    ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed! " + HTTPResult.HTTPBody.ToUTF8String());
+                    ClassicAssert.AreEqual(new JObject(new JProperty("RoamingNetworkId",  "TEST_RN1"),
                                                 new JProperty("description",       new JObject(new JProperty("de", "Test Roaming Netz 1"),
                                                                                                new JProperty("en", "Test roaming network 1")))
                                     ).ToString(),
@@ -396,8 +393,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             task0001.Wait(Timeout);
             var result0001 = task0001.Result;
 
-            Assert.AreEqual(HTTPStatusCode.OK, result0001.HTTPStatusCode);
-            Assert.AreEqual(new JArray(new JObject(new JProperty("RoamingNetworkId",  "TEST_RN1"),
+            ClassicAssert.AreEqual(HTTPStatusCode.OK, result0001.HTTPStatusCode);
+            ClassicAssert.AreEqual(new JArray(new JObject(new JProperty("RoamingNetworkId",  "TEST_RN1"),
                                                    new JProperty("description",       new JObject(new JProperty("de", "Test Roaming Netz 1"),
                                                                                                   new JProperty("en", "Test roaming network 1"))))).ToString(),
                             JArray.Parse(result0001.HTTPBody.ToUTF8String()).ToString());
@@ -418,8 +415,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             task0002.Wait(Timeout);
             var result0002 = task0002.Result;
 
-            Assert.AreEqual(HTTPStatusCode.OK, result0002.HTTPStatusCode);
-            Assert.AreEqual(new JArray(new JObject(new JProperty("RoamingNetworkId",  "TEST_RN1"),
+            ClassicAssert.AreEqual(HTTPStatusCode.OK, result0002.HTTPStatusCode);
+            ClassicAssert.AreEqual(new JArray(new JObject(new JProperty("RoamingNetworkId",  "TEST_RN1"),
                                                    new JProperty("description",       new JObject(new JProperty("de", "Test Roaming Netz 1"),
                                                                                                   new JProperty("en", "Test roaming network 1")))),
                                        new JObject(new JProperty("RoamingNetworkId",  "TEST_RN2"),
@@ -443,8 +440,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             task0003.Wait(Timeout);
             var result0003 = task0003.Result;
 
-            Assert.AreEqual(HTTPStatusCode.OK, result0003.HTTPStatusCode);
-            Assert.AreEqual(new JObject(new JProperty("RoamingNetworkId",  "TEST_RN1"),
+            ClassicAssert.AreEqual(HTTPStatusCode.OK, result0003.HTTPStatusCode);
+            ClassicAssert.AreEqual(new JObject(new JProperty("RoamingNetworkId",  "TEST_RN1"),
                                         new JProperty("description",       new JObject(new JProperty("de", "Test Roaming Netz 1"),
                                                                                        new JProperty("en", "Test roaming network 1")))).ToString(),
                             JObject.Parse(result0003.HTTPBody.ToUTF8String()).ToString());
@@ -465,8 +462,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             task0004.Wait(Timeout);
             var result0004 = task0004.Result;
 
-            Assert.AreEqual(HTTPStatusCode.OK, result0004.HTTPStatusCode);
-            Assert.AreEqual(new JObject(new JProperty("RoamingNetworkId",  "TEST_RN1"),
+            ClassicAssert.AreEqual(HTTPStatusCode.OK, result0004.HTTPStatusCode);
+            ClassicAssert.AreEqual(new JObject(new JProperty("RoamingNetworkId",  "TEST_RN1"),
                                         new JProperty("description",       new JObject(new JProperty("de", "Test Roaming Netz 1"),
                                                                                        new JProperty("en", "Test roaming network 1")))).ToString(),
                             JObject.Parse(result0004.HTTPBody.ToUTF8String()).ToString());
@@ -487,8 +484,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             task0005.Wait(Timeout);
             var result0005 = task0005.Result;
 
-            Assert.AreEqual(HTTPStatusCode.OK, result0005.HTTPStatusCode);
-            Assert.AreEqual(new JObject(new JProperty("RoamingNetworkId",  "TEST_RN2"),
+            ClassicAssert.AreEqual(HTTPStatusCode.OK, result0005.HTTPStatusCode);
+            ClassicAssert.AreEqual(new JObject(new JProperty("RoamingNetworkId",  "TEST_RN2"),
                                         new JProperty("description",       new JObject(new JProperty("de", "Test Roaming Netz 2"),
                                                                                        new JProperty("en", "Test roaming network 2")))).ToString(),
                             JObject.Parse(result0005.HTTPBody.ToUTF8String()).ToString());

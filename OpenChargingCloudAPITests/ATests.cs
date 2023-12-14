@@ -17,11 +17,9 @@
 
 #region Usings
 
-using System;
-using System.Linq;
-using System.Threading;
-
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
+
 using Newtonsoft.Json.Linq;
 
 using org.GraphDefined.Vanaheimr.Illias;
@@ -29,8 +27,6 @@ using org.GraphDefined.Vanaheimr.Hermod;
 using org.GraphDefined.Vanaheimr.Hermod.DNS;
 using org.GraphDefined.Vanaheimr.Hermod.HTTP;
 
-using cloud.charging.open.protocols.WWCP.Net.IO.JSON;
-using cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON;
 using cloud.charging.open.API;
 
 #endregion
@@ -128,7 +124,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                 using (var HTTPResult = HTTPTask.Result)
                 {
 
-                    Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode);
+                    ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode);
 
                     RoamingNetworkIds = JArray.Parse(HTTPResult.HTTPBody.ToUTF8String()).
                                                AsEnumerable().
@@ -161,7 +157,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                     using (var HTTPResult = HTTPTask.Result)
                     {
 
-                        Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode);
+                        ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode);
 
                     }
 

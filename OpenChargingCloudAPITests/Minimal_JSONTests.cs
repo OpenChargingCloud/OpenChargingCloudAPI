@@ -17,22 +17,16 @@
 
 #region Usings
 
-using System;
-using System.Linq;
-using System.Threading;
-using System.Collections.Generic;
-
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
+
 using Newtonsoft.Json.Linq;
 
 using org.GraphDefined.Vanaheimr.Illias;
-using org.GraphDefined.Vanaheimr.Aegir;
 using org.GraphDefined.Vanaheimr.Hermod;
 using org.GraphDefined.Vanaheimr.Hermod.DNS;
 using org.GraphDefined.Vanaheimr.Hermod.HTTP;
 
-using cloud.charging.open.protocols.WWCP.Net;
-using cloud.charging.open.protocols.WWCP.Net.IO.JSON;
 using cloud.charging.open.API;
 
 #endregion
@@ -98,8 +92,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                 using (var HTTPResult = HTTPTask.Result)
                 {
 
-                    Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed!");
-                    Assert.AreEqual(new JArray().ToString(),
+                    ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed!");
+                    ClassicAssert.AreEqual(new JArray().ToString(),
                                     JArray.Parse(HTTPResult.HTTPBody.ToUTF8String()).ToString(),
                                     "Invalid response for 'GET " + URI + "'!");
 
@@ -127,8 +121,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                 using (var HTTPResult = HTTPTask.Result)
                 {
 
-                    Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed!");
-                    Assert.AreEqual(new JObject(new JProperty("count", 0)).ToString(),
+                    ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed!");
+                    ClassicAssert.AreEqual(new JObject(new JProperty("count", 0)).ToString(),
                                     JObject.Parse(HTTPResult.HTTPBody.ToUTF8String()).ToString(),
                                     "Invalid response for 'COUNT " + URI + "'!");
 
@@ -187,8 +181,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                 using (var HTTPResult = HTTPTask.Result)
                 {
 
-                    Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed!");
-                    Assert.AreEqual(new JArray(
+                    ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed!");
+                    ClassicAssert.AreEqual(new JArray(
 
                                         new JObject(new JProperty("ChargingPoolId",   "DE*GEF*P1111"),
                                                     new JProperty("OperatorId",       "DE*GEF"),
@@ -270,8 +264,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                 using (var HTTPResult = HTTPTask.Result)
                 {
 
-                    Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed!");
-                    Assert.AreEqual(new JObject(new JProperty("count", 3)).ToString(),
+                    ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode, "'GET " + URI + "' failed!");
+                    ClassicAssert.AreEqual(new JObject(new JProperty("count", 3)).ToString(),
                                     JObject.Parse(HTTPResult.HTTPBody.ToUTF8String()).ToString(),
                                     "Invalid response for 'COUNT " + URI + "'!");
 
