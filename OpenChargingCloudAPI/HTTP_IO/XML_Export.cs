@@ -141,7 +141,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.XML
 
             return new XElement(NS_ChargingPool + NS_EVSPool_Root,
                         Pool.Id.              ToXML(NS_ChargingPool, NS_EVSPool_Id),
-                        Pool.LastChange.       ToXML(NS_ChargingPool, NS_EVSPool_Timestamp),
+                        Pool.LastChangeDate.       ToXML(NS_ChargingPool, NS_EVSPool_Timestamp),
                         Pool.Name.            ToXML(NS_ChargingPool, NS_EVSPool_Name),
                         (!Pool.Description.IsNullOrEmpty()) ?
                         Pool.Description.     ToXML(NS_ChargingPool, NS_EVSPool_Description)      : null,

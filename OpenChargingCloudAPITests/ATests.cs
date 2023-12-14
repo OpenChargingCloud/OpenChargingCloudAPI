@@ -17,11 +17,9 @@
 
 #region Usings
 
-using System;
-using System.Linq;
-using System.Threading;
-
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
+
 using Newtonsoft.Json.Linq;
 
 using org.GraphDefined.Vanaheimr.Illias;
@@ -29,8 +27,6 @@ using org.GraphDefined.Vanaheimr.Hermod;
 using org.GraphDefined.Vanaheimr.Hermod.DNS;
 using org.GraphDefined.Vanaheimr.Hermod.HTTP;
 
-using cloud.charging.open.protocols.WWCP.Net.IO.JSON;
-using cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON;
 using cloud.charging.open.API;
 
 #endregion
@@ -115,8 +111,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
                                                                                    requestbuilder => {
                                                                                        requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                       requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                       requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                       requestbuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
+                                                                                       requestbuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
@@ -128,7 +124,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                 using (var HTTPResult = HTTPTask.Result)
                 {
 
-                    Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode);
+                    ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode);
 
                     RoamingNetworkIds = JArray.Parse(HTTPResult.HTTPBody.ToUTF8String()).
                                                AsEnumerable().
@@ -148,8 +144,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                 using (var HTTPTask  = _HTTPClient.Execute(client => client.DELETERequest(URI,
                                                                                           requestbuilder => {
                                                                                               requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                              requestbuilder.ContentType  = HTTPContentType.JSON_UTF8;
-                                                                                              requestbuilder.Accept.Add(HTTPContentType.JSON_UTF8);
+                                                                                              requestbuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
+                                                                                              requestbuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                           }),
                                                                                            RequestTimeout: Timeout,
                                                                                            CancellationToken: new CancellationTokenSource().Token))
@@ -161,7 +157,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                     using (var HTTPResult = HTTPTask.Result)
                     {
 
-                        Assert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode);
+                        ClassicAssert.AreEqual(HTTPStatusCode.OK, HTTPResult.HTTPStatusCode);
 
                     }
 
