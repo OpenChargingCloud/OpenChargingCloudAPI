@@ -1,5 +1,9 @@
 ﻿/*
- * Copyright (c) 2014-2024 GraphDefined GmbH <achim.friedland@graphdefined.com> <achim.friedland@graphdefined.com>
+<<<<<<< HEAD
+ * Copyright (c) 2014-2024 GraphDefined GmbH <achim.friedland@graphdefined.com>
+=======
+ * Copyright (c) 2014-2024 GraphDefined GmbH <achim.friedland@graphdefined.com>
+>>>>>>> 29b17e9300782939c23d9211c6514cbb3282a990
  * This file is part of WWCP Net <https://github.com/GraphDefined/WWCP_Net>
  *
  * Licensed under the Affero GPL license, Version 3.0 (the "License");
