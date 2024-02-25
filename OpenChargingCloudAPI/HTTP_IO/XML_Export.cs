@@ -21,16 +21,13 @@
 
 #region Usings
 
-using System;
-using System.Linq;
 using System.Xml.Linq;
 
 using org.GraphDefined.Vanaheimr.Illias;
 using org.GraphDefined.Vanaheimr.Aegir;
 
-using cloud.charging.open.protocols.WWCP;
-using cloud.charging.open.protocols.WWCP.Net;
 using cloud.charging.open.API;
+using cloud.charging.open.protocols.WWCP;
 
 #endregion
 
@@ -55,36 +52,47 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.XML
         public static XDocument Generate(XElement Element)
         {
 
-            var XMLRoot = new XElement(NS_WWCP + eMI3_Root,
+            var xmlRoot = new XElement(
+                              NS_WWCP + eMI3_Root,
                               new XAttribute(NS_WWCP + eMI3_Version, "0.1"),
                               new XAttribute(XNamespace.Xmlns + "eMI3",             NS_WWCP.           NamespaceName),
                               new XAttribute(XNamespace.Xmlns + "ChargingPool",     NS_ChargingPool.   NamespaceName),
                               new XAttribute(XNamespace.Xmlns + "ChargingStation",  NS_ChargingStation.NamespaceName),
                               new XAttribute(XNamespace.Xmlns + "EVSE",             NS_EVSE.           NamespaceName),
                               new XAttribute(XNamespace.Xmlns + "SocketOutlet",     NS_SocketOutlet.   NamespaceName),
-                              Element);
+                              Element
+                          );
 
             return new XDocument(
-                new XDeclaration("1.0", "utf-8", null), XMLRoot);
+                       new XDeclaration("1.0", "utf-8", null),
+                       xmlRoot
+                   );
 
         }
 
 
         #region ToXML(this Object, Namespace, ElementName)
 
-        public static XElement ToXML(this Object Object, XNamespace Namespace, String ElementName)
-        {
-            return new XElement(Namespace + ElementName, Object.ToString());
-        }
+        public static XElement ToXML(this Object  Object,
+                                     XNamespace   Namespace,
+                                     String       ElementName)
+
+            => new (Namespace + ElementName,
+                    Object.ToString());
 
         #endregion
 
-        #region ToXML(this DateTime, Namespace, ElementName)
+        #region ToXML(this DateTime, Namespace, ElementName, Format = ...)
 
-        public static XElement ToXML(this DateTime DateTime, XNamespace Namespace, String ElementName, String Format = "yyyyMMdd HHmmss")
-        {
-            return new XElement(Namespace + ElementName, DateTime.ToUniversalTime().ToString(Format));
-        }
+        public static XElement ToXML(this DateTime  DateTime,
+                                     XNamespace     Namespace,
+                                     String         ElementName,
+                                     String         Format   = "yyyyMMdd HHmmss")
+
+            => new (
+                   Namespace + ElementName,
+                   DateTime.ToUniversalTime().ToString(Format)
+               );
 
         #endregion
 
@@ -93,15 +101,22 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.XML
         public static readonly String I8N_Root      = "I8N";
         public static readonly String I8N_Language  = "lang";
 
-        public static XElement ToXML(this I18NString I8N, XNamespace Namespace, String ElementName)
-        {
+        public static XElement ToXML(this I18NString  I8N,
+                                     XNamespace       Namespace,
+                                     String           ElementName)
 
-            return new XElement(Namespace + ElementName,
-                                I8N.Select(v => new XElement(NS_WWCP + I8N_Root,
-                                     new XAttribute(NS_WWCP + I8N_Language, v.Language),
-                                     v.Text)));
-
-        }
+            => new (
+                   Namespace + ElementName,
+                   I8N.Select(v => new XElement(
+                                       NS_WWCP + I8N_Root,
+                                       new XAttribute(
+                                           NS_WWCP + I8N_Language,
+                                           v.Language
+                                       ),
+                                       v.Text
+                                   )
+                             )
+               );
 
         #endregion
 
@@ -112,7 +127,9 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.XML
         public static readonly String Geo_Longitude = "longitude";
         public static readonly String Geo_Altitude  = "altitude";
 
-        public static XElement ToXML(this GeoCoordinate Location, XNamespace Namespace, String ElementName)
+        public static XElement? ToXML(this GeoCoordinate  Location,
+                                      XNamespace          Namespace,
+                                      String              ElementName)
         {
 
             if (Location.Longitude.Value == 0 && Location.Latitude.Value == 0)

@@ -100,7 +100,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                                           Date                         = Timestamp.Now,
                                                                           AccessControlAllowOrigin     = "*",
                                                                           AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
-                                                                          AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
+                                                                          AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
                                                                           ETag                         = "1",
                                                                           ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                                                           Content                      = _RoamingNetwork.SmartCities.
@@ -148,7 +148,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                                           Date                         = Timestamp.Now,
                                                                           AccessControlAllowOrigin     = "*",
                                                                           AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
-                                                                          AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
+                                                                          AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
                                                                           ETag                         = "1",
                                                                           ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                                                           Content                      = JSONObject.Create(
@@ -196,8 +196,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                                           Server                       = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                                                                           Date                         = Timestamp.Now,
                                                                           AccessControlAllowOrigin     = "*",
-                                                                          AccessControlAllowMethods    = new[] { "GET" },
-                                                                          AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
+                                                                          AccessControlAllowMethods    = [ "GET" ],
+                                                                          AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
                                                                           ETag                         = "1",
                                                                           ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                                                           Content                      = _RoamingNetwork.ChargingStationOperatorAdminStatus().
@@ -246,8 +246,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                                           Server                       = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
                                                                           Date                         = Timestamp.Now,
                                                                           AccessControlAllowOrigin     = "*",
-                                                                          AccessControlAllowMethods    = new[] { "GET" },
-                                                                          AccessControlAllowHeaders    = new[] { "Content-Type", "Accept", "Authorization" },
+                                                                          AccessControlAllowMethods    = [ "GET" ],
+                                                                          AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
                                                                           ETag                         = "1",
                                                                           ContentType                  = HTTPContentType.Application.JSON_UTF8,
                                                                           Content                      = _RoamingNetwork.ChargingStationOperatorStatus().
@@ -292,7 +292,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                                           Date                       = Timestamp.Now,
                                                                           AccessControlAllowOrigin   = "*",
                                                                           AccessControlAllowMethods  = new[] { "GET", "CREATE", "DELETE" },
-                                                                          AccessControlAllowHeaders  = new[] { "Content-Type", "Accept", "Authorization" },
+                                                                          AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                                                           ETag                       = "1",
                                                                           ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                                           Content                    = _SmartCity.ToJSON().ToUTF8Bytes()
