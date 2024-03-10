@@ -8373,26 +8373,26 @@ namespace cloud.charging.open.API
 
 
                                   var chargeDetailRecord  = new ChargeDetailRecord(
-                                                                Id:                    ChargeDetailRecord_Id.Parse(SessionId.ToString()),
-                                                                SessionId:             SessionId,
-                                                                EVSEId:                evse.Id,
-                                                                EVSE:                  evse,
-                                                                ChargingProduct:       ChargingProductId.HasValue
-                                                                                           ? new ChargingProduct(ChargingProductId.Value)
-                                                                                           : null,
-                                                                SessionTime:           new StartEndDateTime(SessionStart, SessionEnd),
-                                                                AuthenticationStart:   AuthToken.HasValue
-                                                                                           ? (AAuthentication) LocalAuthentication. FromAuthToken(AuthToken.Value)
-                                                                                           : (AAuthentication) RemoteAuthentication.FromRemoteIdentification(eMAId.Value),
-                                                                //ChargingTime:        new StartEndDateTime(ChargingStart.Value, ChargingEnd.Value),
-                                                                EnergyMeteringValues:  new List<EnergyMeteringValue>() {
-                                                                                           new EnergyMeteringValue(ChargingStart, MeterValueStart),
-                                                                                           new EnergyMeteringValue(ChargingEnd,   MeterValueEnd)
-                                                                                      }
+                                                                Id:                     ChargeDetailRecord_Id.Parse(SessionId.ToString()),
+                                                                SessionId:              SessionId,
+                                                                EVSEId:                 evse.Id,
+                                                                EVSE:                   evse,
+                                                                ChargingProduct:        ChargingProductId.HasValue
+                                                                                            ? new ChargingProduct(ChargingProductId.Value)
+                                                                                            : null,
+                                                                SessionTime:            new StartEndDateTime(SessionStart, SessionEnd),
+                                                                AuthenticationStart:    AuthToken.HasValue
+                                                                                            ? (AAuthentication) LocalAuthentication. FromAuthToken(AuthToken.Value)
+                                                                                            : (AAuthentication) RemoteAuthentication.FromRemoteIdentification(eMAId.Value),
+                                                                //ChargingTime:         new StartEndDateTime(ChargingStart.Value, ChargingEnd.Value),
+                                                                EnergyMeteringValues:   new List<EnergyMeteringValue>() {
+                                                                                            new EnergyMeteringValue(ChargingStart, MeterValueStart, EnergyMeteringValueTypes.Start),
+                                                                                            new EnergyMeteringValue(ChargingEnd,   MeterValueEnd,   EnergyMeteringValueTypes.Stop)
+                                                                                        }
                                                             );
 
                                   var result = await roamingNetwork.
-                                                         SendChargeDetailRecords(new[] { chargeDetailRecord },
+                                                         SendChargeDetailRecords([ chargeDetailRecord ],
                                                                                  TransmissionTypes.Enqueue,
 
                                                                                  Request.Timestamp,
