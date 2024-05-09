@@ -2148,12 +2148,12 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         protected internal Task CreateRoamingNetworkRequest(DateTime     Timestamp,
-                                                       HTTPAPI      API,
-                                                       HTTPRequest  Request)
+                                                            HTTPAPI      API,
+                                                            HTTPRequest  Request)
 
             => OnCreateRoamingNetworkRequest?.WhenAll(Timestamp,
-                                                 API ?? this,
-                                                 Request);
+                                                      API ?? this,
+                                                      Request) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2172,14 +2172,14 @@ namespace cloud.charging.open.API
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
         protected internal Task CreateRoamingNetworkResponse(DateTime      Timestamp,
-                                                        HTTPAPI       API,
-                                                        HTTPRequest   Request,
-                                                        HTTPResponse  Response)
+                                                             HTTPAPI       API,
+                                                             HTTPRequest   Request,
+                                                             HTTPResponse  Response)
 
             => OnCreateRoamingNetworkResponse?.WhenAll(Timestamp,
-                                                  API ?? this,
-                                                  Request,
-                                                  Response);
+                                                       API ?? this,
+                                                       Request,
+                                                       Response) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2198,12 +2198,12 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         protected internal Task DeleteRoamingNetworkRequest(DateTime     Timestamp,
-                                                       HTTPAPI      API,
-                                                       HTTPRequest  Request)
+                                                            HTTPAPI      API,
+                                                            HTTPRequest  Request)
 
             => OnDeleteRoamingNetworkRequest?.WhenAll(Timestamp,
-                                                 API ?? this,
-                                                 Request);
+                                                      API ?? this,
+                                                      Request) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2222,14 +2222,14 @@ namespace cloud.charging.open.API
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
         protected internal Task DeleteRoamingNetworkResponse(DateTime      Timestamp,
-                                                        HTTPAPI       API,
-                                                        HTTPRequest   Request,
-                                                        HTTPResponse  Response)
+                                                             HTTPAPI       API,
+                                                             HTTPRequest   Request,
+                                                             HTTPResponse  Response)
 
             => OnDeleteRoamingNetworkResponse?.WhenAll(Timestamp,
-                                                  API ?? this,
-                                                  Request,
-                                                  Response);
+                                                       API ?? this,
+                                                       Request,
+                                                       Response) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2249,12 +2249,12 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         protected internal Task CreateChargingPoolRequest(DateTime     Timestamp,
-                                                       HTTPAPI      API,
-                                                       HTTPRequest  Request)
+                                                          HTTPAPI      API,
+                                                          HTTPRequest  Request)
 
             => OnCreateChargingPoolRequest?.WhenAll(Timestamp,
-                                                 API ?? this,
-                                                 Request);
+                                                    API ?? this,
+                                                    Request) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2273,14 +2273,14 @@ namespace cloud.charging.open.API
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
         protected internal Task CreateChargingPoolResponse(DateTime      Timestamp,
-                                                        HTTPAPI       API,
-                                                        HTTPRequest   Request,
-                                                        HTTPResponse  Response)
+                                                           HTTPAPI       API,
+                                                           HTTPRequest   Request,
+                                                           HTTPResponse  Response)
 
             => OnCreateChargingPoolResponse?.WhenAll(Timestamp,
-                                                  API ?? this,
-                                                  Request,
-                                                  Response);
+                                                     API ?? this,
+                                                     Request,
+                                                     Response) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2299,12 +2299,12 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         protected internal Task DeleteChargingPoolRequest(DateTime     Timestamp,
-                                                       HTTPAPI      API,
-                                                       HTTPRequest  Request)
+                                                          HTTPAPI      API,
+                                                          HTTPRequest  Request)
 
             => OnDeleteChargingPoolRequest?.WhenAll(Timestamp,
-                                                 API ?? this,
-                                                 Request);
+                                                    API ?? this,
+                                                    Request) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2323,14 +2323,14 @@ namespace cloud.charging.open.API
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
         protected internal Task DeleteChargingPoolResponse(DateTime      Timestamp,
-                                                        HTTPAPI       API,
-                                                        HTTPRequest   Request,
-                                                        HTTPResponse  Response)
+                                                           HTTPAPI       API,
+                                                           HTTPRequest   Request,
+                                                           HTTPResponse  Response)
 
             => OnDeleteChargingPoolResponse?.WhenAll(Timestamp,
-                                                  API ?? this,
-                                                  Request,
-                                                  Response);
+                                                     API ?? this,
+                                                     Request,
+                                                     Response) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2350,12 +2350,12 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         protected internal Task CreateChargingStationRequest(DateTime     Timestamp,
-                                                       HTTPAPI      API,
-                                                       HTTPRequest  Request)
+                                                             HTTPAPI      API,
+                                                             HTTPRequest  Request)
 
             => OnCreateChargingStationRequest?.WhenAll(Timestamp,
-                                                 API ?? this,
-                                                 Request);
+                                                       API ?? this,
+                                                       Request) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2374,14 +2374,14 @@ namespace cloud.charging.open.API
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
         protected internal Task CreateChargingStationResponse(DateTime      Timestamp,
-                                                        HTTPAPI       API,
-                                                        HTTPRequest   Request,
-                                                        HTTPResponse  Response)
+                                                              HTTPAPI       API,
+                                                              HTTPRequest   Request,
+                                                              HTTPResponse  Response)
 
             => OnCreateChargingStationResponse?.WhenAll(Timestamp,
-                                                  API ?? this,
-                                                  Request,
-                                                  Response);
+                                                        API ?? this,
+                                                        Request,
+                                                        Response) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2400,12 +2400,12 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         protected internal Task DeleteChargingStationRequest(DateTime     Timestamp,
-                                                       HTTPAPI      API,
-                                                       HTTPRequest  Request)
+                                                             HTTPAPI      API,
+                                                             HTTPRequest  Request)
 
             => OnDeleteChargingStationRequest?.WhenAll(Timestamp,
-                                                 API ?? this,
-                                                 Request);
+                                                       API ?? this,
+                                                       Request) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2424,14 +2424,14 @@ namespace cloud.charging.open.API
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
         protected internal Task DeleteChargingStationResponse(DateTime      Timestamp,
-                                                        HTTPAPI       API,
-                                                        HTTPRequest   Request,
-                                                        HTTPResponse  Response)
+                                                              HTTPAPI       API,
+                                                              HTTPRequest   Request,
+                                                              HTTPResponse  Response)
 
             => OnDeleteChargingStationResponse?.WhenAll(Timestamp,
-                                                  API ?? this,
-                                                  Request,
-                                                  Response);
+                                                        API ?? this,
+                                                        Request,
+                                                        Response) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2456,7 +2456,7 @@ namespace cloud.charging.open.API
 
             => OnGetEVSEsStatusRequest?.WhenAll(Timestamp,
                                                 API ?? this,
-                                                Request);
+                                                Request) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2482,7 +2482,7 @@ namespace cloud.charging.open.API
             => OnGetEVSEsStatusResponse?.WhenAll(Timestamp,
                                                  API ?? this,
                                                  Request,
-                                                 Response);
+                                                 Response) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2502,12 +2502,12 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         protected internal Task SendRemoteStartEVSERequest(DateTime     Timestamp,
-                                                       HTTPAPI      API,
-                                                       HTTPRequest  Request)
+                                                           HTTPAPI      API,
+                                                           HTTPRequest  Request)
 
             => OnSendRemoteStartEVSERequest?.WhenAll(Timestamp,
-                                                 API ?? this,
-                                                 Request);
+                                                     API ?? this,
+                                                     Request) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2526,14 +2526,14 @@ namespace cloud.charging.open.API
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
         protected internal Task SendRemoteStartEVSEResponse(DateTime      Timestamp,
-                                                        HTTPAPI       API,
-                                                        HTTPRequest   Request,
-                                                        HTTPResponse  Response)
+                                                            HTTPAPI       API,
+                                                            HTTPRequest   Request,
+                                                            HTTPResponse  Response)
 
             => OnSendRemoteStartEVSEResponse?.WhenAll(Timestamp,
-                                                  API ?? this,
-                                                  Request,
-                                                  Response);
+                                                      API ?? this,
+                                                      Request,
+                                                      Response) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2552,12 +2552,12 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         protected internal Task SendRemoteStopEVSERequest(DateTime     Timestamp,
-                                                       HTTPAPI      API,
-                                                       HTTPRequest  Request)
+                                                          HTTPAPI      API,
+                                                          HTTPRequest  Request)
 
             => OnSendRemoteStopEVSERequest?.WhenAll(Timestamp,
-                                                 API ?? this,
-                                                 Request);
+                                                    API ?? this,
+                                                    Request) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2576,19 +2576,16 @@ namespace cloud.charging.open.API
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
         protected internal Task SendRemoteStopEVSEResponse(DateTime      Timestamp,
-                                                        HTTPAPI       API,
-                                                        HTTPRequest   Request,
-                                                        HTTPResponse  Response)
+                                                           HTTPAPI       API,
+                                                           HTTPRequest   Request,
+                                                           HTTPResponse  Response)
 
             => OnSendRemoteStopEVSEResponse?.WhenAll(Timestamp,
-                                                  API ?? this,
-                                                  Request,
-                                                  Response);
+                                                     API ?? this,
+                                                     Request,
+                                                     Response) ?? Task.CompletedTask;
 
         #endregion
-
-
-
 
 
 
@@ -2611,7 +2608,7 @@ namespace cloud.charging.open.API
 
             => OnSendReserveEVSERequest?.WhenAll(Timestamp,
                                                  API ?? this,
-                                                 Request);
+                                                 Request) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2637,7 +2634,7 @@ namespace cloud.charging.open.API
             => OnSendReserveEVSEResponse?.WhenAll(Timestamp,
                                                   API ?? this,
                                                   Request,
-                                                  Response);
+                                                  Response) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2661,7 +2658,7 @@ namespace cloud.charging.open.API
 
             => OnAuthStartEVSERequest?.WhenAll(Timestamp,
                                                API ?? this,
-                                               Request);
+                                               Request) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2687,7 +2684,7 @@ namespace cloud.charging.open.API
             => OnAuthStartEVSEResponse?.WhenAll(Timestamp,
                                                 API ?? this,
                                                 Request,
-                                                Response);
+                                                Response) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2711,7 +2708,7 @@ namespace cloud.charging.open.API
 
             => OnAuthStopEVSERequest?.WhenAll(Timestamp,
                                               API ?? this,
-                                              Request);
+                                              Request) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2737,7 +2734,7 @@ namespace cloud.charging.open.API
             => OnAuthStopEVSEResponse?.WhenAll(Timestamp,
                                                API ?? this,
                                                Request,
-                                               Response);
+                                               Response) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2761,7 +2758,7 @@ namespace cloud.charging.open.API
 
             => OnSendCDRsRequest?.WhenAll(Timestamp,
                                           API ?? this,
-                                          Request);
+                                          Request) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2787,7 +2784,7 @@ namespace cloud.charging.open.API
             => OnSendCDRsResponse?.WhenAll(Timestamp,
                                            API ?? this,
                                            Request,
-                                           Response);
+                                           Response) ?? Task.CompletedTask;
 
         #endregion
 
@@ -2814,7 +2811,7 @@ namespace cloud.charging.open.API
         /// 
         /// <param name="ServerCertificateSelector">An optional delegate to select a TLS server certificate.</param>
         /// <param name="ClientCertificateValidator">An optional delegate to verify the TLS client certificate used for authentication.</param>
-        /// <param name="ClientCertificateSelector">An optional delegate to select the TLS client certificate used for authentication.</param>
+        /// <param name="LocalCertificateSelector">An optional delegate to select the TLS client certificate used for authentication.</param>
         /// <param name="AllowedTLSProtocols">The TLS protocol(s) allowed for this connection.</param>
         /// 
         /// <param name="TCPPort"></param>
@@ -2859,70 +2856,70 @@ namespace cloud.charging.open.API
         /// <param name="LogfileName">The name of the logfile.</param>
         /// <param name="LogfileCreator">A delegate for creating the name of the logfile for this API.</param>
         /// <param name="DNSClient">The DNS client of the API.</param>
-        public OpenChargingCloudAPI(HTTPHostname?                        HTTPHostname                 = null,
-                                    String?                              ExternalDNSName              = null,
-                                    IPPort?                              HTTPServerPort               = null,
-                                    HTTPPath?                            BasePath                     = null,
-                                    String                               HTTPServerName               = DefaultHTTPServerName,
+        public OpenChargingCloudAPI(HTTPHostname?                                              HTTPHostname                 = null,
+                                    String?                                                    ExternalDNSName              = null,
+                                    IPPort?                                                    HTTPServerPort               = null,
+                                    HTTPPath?                                                  BasePath                     = null,
+                                    String                                                     HTTPServerName               = DefaultHTTPServerName,
 
-                                    HTTPPath?                            URLPathPrefix                = null,
-                                    String                               HTTPServiceName              = DefaultHTTPServiceName,
-                                    String?                              HTMLTemplate                 = null,
-                                    JObject?                             APIVersionHashes             = null,
+                                    HTTPPath?                                                  URLPathPrefix                = null,
+                                    String                                                     HTTPServiceName              = DefaultHTTPServiceName,
+                                    String?                                                    HTMLTemplate                 = null,
+                                    JObject?                                                   APIVersionHashes             = null,
 
-                                    ServerCertificateSelectorDelegate?   ServerCertificateSelector    = null,
-                                    RemoteCertificateValidationHandler?  ClientCertificateValidator   = null,
-                                    LocalCertificateSelectionHandler?    ClientCertificateSelector    = null,
-                                    SslProtocols?                        AllowedTLSProtocols          = null,
-                                    Boolean?                             ClientCertificateRequired    = null,
-                                    Boolean?                             CheckCertificateRevocation   = null,
+                                    ServerCertificateSelectorDelegate?                         ServerCertificateSelector    = null,
+                                    RemoteTLSClientCertificateValidationHandler<IHTTPServer>?  ClientCertificateValidator   = null,
+                                    LocalCertificateSelectionHandler?                          LocalCertificateSelector     = null,
+                                    SslProtocols?                                              AllowedTLSProtocols          = null,
+                                    Boolean?                                                   ClientCertificateRequired    = null,
+                                    Boolean?                                                   CheckCertificateRevocation   = null,
 
-                                    ServerThreadNameCreatorDelegate?     ServerThreadNameCreator      = null,
-                                    ServerThreadPriorityDelegate?        ServerThreadPrioritySetter   = null,
-                                    Boolean?                             ServerThreadIsBackground     = null,
-                                    ConnectionIdBuilder?                 ConnectionIdBuilder          = null,
-                                    TimeSpan?                            ConnectionTimeout            = null,
-                                    UInt32?                              MaxClientConnections         = null,
+                                    ServerThreadNameCreatorDelegate?                           ServerThreadNameCreator      = null,
+                                    ServerThreadPriorityDelegate?                              ServerThreadPrioritySetter   = null,
+                                    Boolean?                                                   ServerThreadIsBackground     = null,
+                                    ConnectionIdBuilder?                                       ConnectionIdBuilder          = null,
+                                    TimeSpan?                                                  ConnectionTimeout            = null,
+                                    UInt32?                                                    MaxClientConnections         = null,
 
-                                    IPPort?                              TCPPort                      = null,
-                                    IPPort?                              UDPPort                      = null,
+                                    IPPort?                                                    TCPPort                      = null,
+                                    IPPort?                                                    UDPPort                      = null,
 
-                                    Organization_Id?                     AdminOrganizationId          = null,
-                                    EMailAddress?                        APIRobotEMailAddress         = null,
-                                    String?                              APIRobotGPGPassphrase        = null,
-                                    ISMTPClient?                         SMTPClient                   = null,
-                                    ISMSClient?                          SMSClient                    = null,
-                                    String?                              SMSSenderName                = null,
-                                    ITelegramStore?                      TelegramClient               = null,
+                                    Organization_Id?                                           AdminOrganizationId          = null,
+                                    EMailAddress?                                              APIRobotEMailAddress         = null,
+                                    String?                                                    APIRobotGPGPassphrase        = null,
+                                    ISMTPClient?                                               SMTPClient                   = null,
+                                    ISMSClient?                                                SMSClient                    = null,
+                                    String?                                                    SMSSenderName                = null,
+                                    ITelegramStore?                                            TelegramClient               = null,
 
-                                    PasswordQualityCheckDelegate?        PasswordQualityCheck         = null,
-                                    HTTPCookieName?                      CookieName                   = null,
-                                    Boolean                              UseSecureCookies             = true,
-                                    Languages?                           DefaultLanguage              = null,
+                                    PasswordQualityCheckDelegate?                              PasswordQualityCheck         = null,
+                                    HTTPCookieName?                                            CookieName                   = null,
+                                    Boolean                                                    UseSecureCookies             = true,
+                                    Languages?                                                 DefaultLanguage              = null,
 
-                                    Boolean?                             DisableMaintenanceTasks      = null,
-                                    TimeSpan?                            MaintenanceInitialDelay      = null,
-                                    TimeSpan?                            MaintenanceEvery             = null,
+                                    Boolean?                                                   DisableMaintenanceTasks      = null,
+                                    TimeSpan?                                                  MaintenanceInitialDelay      = null,
+                                    TimeSpan?                                                  MaintenanceEvery             = null,
 
-                                    Boolean?                             DisableWardenTasks           = null,
-                                    TimeSpan?                            WardenInitialDelay           = null,
-                                    TimeSpan?                            WardenCheckEvery             = null,
+                                    Boolean?                                                   DisableWardenTasks           = null,
+                                    TimeSpan?                                                  WardenInitialDelay           = null,
+                                    TimeSpan?                                                  WardenCheckEvery             = null,
 
-                                    IEnumerable<URLWithAPIKey>?          RemoteAuthServers            = null,
-                                    IEnumerable<APIKey_Id>?              RemoteAuthAPIKeys            = null,
+                                    IEnumerable<URLWithAPIKey>?                                RemoteAuthServers            = null,
+                                    IEnumerable<APIKey_Id>?                                    RemoteAuthAPIKeys            = null,
 
-                                    Boolean?                             AllowsAnonymousReadAccesss   = true,
+                                    Boolean?                                                   AllowsAnonymousReadAccesss   = true,
 
-                                    Boolean?                             IsDevelopment                = null,
-                                    IEnumerable<String>?                 DevelopmentServers           = null,
-                                    Boolean                              SkipURLTemplates             = false,
-                                    String                               DatabaseFileName             = DefaultOpenChargingCloudAPI_DatabaseFileName,
-                                    Boolean                              DisableNotifications         = false,
-                                    Boolean                              DisableLogging               = false,
-                                    String?                              LoggingPath                  = null,
-                                    String                               LogfileName                  = DefaultOpenChargingCloudAPI_LogfileName,
-                                    LogfileCreatorDelegate?              LogfileCreator               = null,
-                                    DNSClient?                           DNSClient                    = null)
+                                    Boolean?                                                   IsDevelopment                = null,
+                                    IEnumerable<String>?                                       DevelopmentServers           = null,
+                                    Boolean                                                    SkipURLTemplates             = false,
+                                    String                                                     DatabaseFileName             = DefaultOpenChargingCloudAPI_DatabaseFileName,
+                                    Boolean                                                    DisableNotifications         = false,
+                                    Boolean                                                    DisableLogging               = false,
+                                    String?                                                    LoggingPath                  = null,
+                                    String                                                     LogfileName                  = DefaultOpenChargingCloudAPI_LogfileName,
+                                    LogfileCreatorDelegate?                                    LogfileCreator               = null,
+                                    DNSClient?                                                 DNSClient                    = null)
 
             : base(HTTPHostname,
                    ExternalDNSName,
@@ -2937,7 +2934,7 @@ namespace cloud.charging.open.API
 
                    ServerCertificateSelector,
                    ClientCertificateValidator,
-                   ClientCertificateSelector,
+                   LocalCertificateSelector,
                    AllowedTLSProtocols,
                    ClientCertificateRequired,
                    CheckCertificateRevocation,
@@ -3220,20 +3217,20 @@ namespace cloud.charging.open.API
 
             AddMethodCallback(HTTPHostname.Any,
                               HTTPMethod.GET,
-                              new HTTPPath[] {
+                              [
                                   URLPathPrefix + HTTPPath.Parse("/index.html"),
                                   URLPathPrefix + HTTPPath.Parse("/"),
                                   URLPathPrefix + HTTPPath.Parse("/{FileName}")
-                              },
+                              ],
                               HTTPDelegate: Request => {
 
                                   #region Get file path
 
                                   var filePath = (Request.ParsedURLParameters is not null && Request.ParsedURLParameters.Length > 0)
-                                                     ? Request.ParsedURLParameters.Last().Replace("/", ".")
+                                                     ? Request.ParsedURLParameters.Last().Replace('/', '.')
                                                      : "index.html";
 
-                                  if (filePath.EndsWith(".", StringComparison.Ordinal))
+                                  if (filePath.EndsWith('.'))
                                       filePath += "index.shtml";
 
                                   #endregion
@@ -3438,7 +3435,7 @@ namespace cloud.charging.open.API
                                           Server                        = HTTPServer.DefaultServerName,
                                           Date                          = Timestamp.Now,
                                           AccessControlAllowOrigin      = "*",
-                                          AccessControlAllowMethods     = new[] { "GET", "OPTIONS" },
+                                          AccessControlAllowMethods     = [ "GET", "OPTIONS" ],
                                           AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
                                           ETag                          = "1",
                                           ContentType                   = HTTPContentType.Application.JSON_UTF8,
@@ -3467,7 +3464,7 @@ namespace cloud.charging.open.API
                                           Server                       = HTTPServer.DefaultServerName,
                                           Date                         = Timestamp.Now,
                                           AccessControlAllowOrigin     = "*",
-                                          AccessControlAllowMethods    = new[] { "GET", "OPTIONS" },
+                                          AccessControlAllowMethods    = [ "GET", "OPTIONS" ],
                                           AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
                                       }.AsImmutable)
 
@@ -3495,12 +3492,12 @@ namespace cloud.charging.open.API
                                   #region Parse JSON
 
                                   if (!Request.TryParseJSONObjectRequestBody(out var json,
-                                                                          out var httpResponse))
+                                                                             out var httpResponse))
                                   {
                                       return httpResponse!;
                                   }
 
-                                  json ??= new JObject();
+                                  json ??= [];
 
                                   #endregion
 
@@ -3509,7 +3506,7 @@ namespace cloud.charging.open.API
                                              Server                      = HTTPServer.DefaultServerName,
                                              Date                        = Timestamp.Now,
                                              AccessControlAllowOrigin    = "*",
-                                             AccessControlAllowMethods   = new[] { "OPTIONS", "POST" },
+                                             AccessControlAllowMethods   = [ "OPTIONS", "POST" ],
                                              AccessControlAllowHeaders   = [ "Content-Type", "Accept", "Authorization" ],
                                              ETag                        = "1",
                                              ContentType                 = HTTPContentType.Application.JSON_UTF8,
@@ -3536,7 +3533,7 @@ namespace cloud.charging.open.API
                                           Server                       = HTTPServer.DefaultServerName,
                                           Date                         = Timestamp.Now,
                                           AccessControlAllowOrigin     = "*",
-                                          AccessControlAllowMethods    = new[] { "OPTIONS", "POST" },
+                                          AccessControlAllowMethods    = [ "OPTIONS", "POST" ],
                                           AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
                                       }.AsImmutable)
 
@@ -6773,7 +6770,7 @@ namespace cloud.charging.open.API
                                                      AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                                      ETag                       = "1",
                                                      ContentType                = HTTPContentType.Application.JSON_UTF8,
-                                                     Content                    = evse.ToJSON().ToUTF8Bytes(),
+                                                     Content                    = (evse?.ToJSON() ?? []).ToUTF8Bytes(),
                                                      Connection                 = "close"
                                                  }.AsImmutable);
 
@@ -12434,12 +12431,14 @@ namespace cloud.charging.open.API
 
                     => await DebugLog.SubmitEvent("OnEVSEStatusChanged",
                                                   JSONObject.Create(
-                                                      new JProperty("timestamp",        Timestamp.           ToIso8601()),
-                                                      new JProperty("eventTrackingId",  EventTrackingId.     ToString()),
-                                                      new JProperty("roamingNetworkId", NewRoamingNetwork.Id.ToString()),
-                                                      new JProperty("EVSEId",           EVSE.Id.             ToString()),
-                                                      new JProperty("oldStatus",        OldStatus.Value.     ToString()),
-                                                      new JProperty("newStatus",        NewStatus.Value.     ToString())
+                                                            new JProperty("timestamp",         Timestamp.           ToIso8601()),
+                                                            new JProperty("eventTrackingId",   EventTrackingId.     ToString()),
+                                                            new JProperty("roamingNetworkId",  NewRoamingNetwork.Id.ToString()),
+                                                            new JProperty("EVSEId",            EVSE.Id.             ToString()),
+                                                      OldStatus.HasValue
+                                                          ? new JProperty("oldStatus",         OldStatus?.Value.    ToString())
+                                                          : null,
+                                                            new JProperty("newStatus",         NewStatus. Value.    ToString())
                                                   ));
 
 
@@ -12453,12 +12452,14 @@ namespace cloud.charging.open.API
 
                     => await DebugLog.SubmitEvent("OnEVSEAdminStatusChanged",
                                                   JSONObject.Create(
-                                                      new JProperty("timestamp",        Timestamp.           ToIso8601()),
-                                                      new JProperty("eventTrackingId",  EventTrackingId.     ToString()),
-                                                      new JProperty("roamingNetworkId", NewRoamingNetwork.Id.ToString()),
-                                                      new JProperty("EVSEId",           EVSE.Id.             ToString()),
-                                                      new JProperty("oldStatus",        OldStatus.Value.     ToString()),
-                                                      new JProperty("newStatus",        NewStatus.Value.     ToString())
+                                                            new JProperty("timestamp",         Timestamp.           ToIso8601()),
+                                                            new JProperty("eventTrackingId",   EventTrackingId.     ToString()),
+                                                            new JProperty("roamingNetworkId",  NewRoamingNetwork.Id.ToString()),
+                                                            new JProperty("EVSEId",            EVSE.Id.             ToString()),
+                                                      OldStatus.HasValue
+                                                          ? new JProperty("oldStatus",         OldStatus?.Value.    ToString())
+                                                          : null,
+                                                            new JProperty("newStatus",         NewStatus.Value.     ToString())
                                                   ));
 
                 #endregion
