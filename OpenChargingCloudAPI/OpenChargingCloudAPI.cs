@@ -2790,6 +2790,11 @@ namespace cloud.charging.open.API
 
         #endregion
 
+        public CustomJObjectSerializerDelegate<ReceivedCDRInfo>?     CustomCDRReceivedInfoSerializer       { get; set; }
+        public CustomJObjectSerializerDelegate<ChargeDetailRecord>?  CustomChargeDetailRecordSerializer    { get; set; }
+        public CustomJObjectSerializerDelegate<SendCDRResult>?       CustomSendCDRResultSerializer         { get; set; }
+        public CustomJObjectSerializerDelegate<ChargingSession>?     CustomChargingSessionSerializer       { get; set; }
+
         #region E-Mail delegates
 
         #endregion
@@ -8868,11 +8873,12 @@ namespace cloud.charging.open.API
                                           ContentType                   = HTTPContentType.Application.JSON_UTF8,
                                           Content                       = roamingNetwork.ChargingSessions.
                                                                               OrderBy(session => session.Id).
-                                                                              ToJSON (false,
-                                                                                      null,
-                                                                                      null,
-                                                                                      null,
-                                                                                      null,
+                                                                              ToJSON (Embedded:    false,
+                                                                                      OnlineInfos: false,
+                                                                                      CustomChargingSessionSerializer,
+                                                                                      CustomCDRReceivedInfoSerializer,
+                                                                                      CustomChargeDetailRecordSerializer,
+                                                                                      CustomSendCDRResultSerializer,
                                                                                       skip,
                                                                                       take).
                                                                               ToUTF8Bytes(),
