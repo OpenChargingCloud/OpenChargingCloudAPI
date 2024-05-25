@@ -8353,7 +8353,8 @@ namespace cloud.charging.open.API
                                   if (!JSON.ParseMandatory("MeterValueStart",
                                                            "Energy meter start value",
                                                            HTTPServer.DefaultServerName,
-                                                           out Decimal MeterValueStart,
+                                                           WattHour.TryParseKWh,
+                                                           out WattHour MeterValueStart,
                                                            Request,
                                                            out httpResponseBuilder))
                                   {
@@ -8363,7 +8364,8 @@ namespace cloud.charging.open.API
                                   if (!JSON.ParseMandatory("MeterValueEnd",
                                                            "Energy meter end value",
                                                            HTTPServer.DefaultServerName,
-                                                           out Decimal MeterValueEnd,
+                                                           WattHour.TryParseKWh,
+                                                           out WattHour MeterValueEnd,
                                                            Request,
                                                            out httpResponseBuilder))
                                   {
@@ -8388,10 +8390,10 @@ namespace cloud.charging.open.API
                                                                                             ? (AAuthentication) LocalAuthentication. FromAuthToken(AuthToken.Value)
                                                                                             : (AAuthentication) RemoteAuthentication.FromRemoteIdentification(eMAId.Value),
                                                                 //ChargingTime:         new StartEndDateTime(ChargingStart.Value, ChargingEnd.Value),
-                                                                EnergyMeteringValues:   new List<EnergyMeteringValue>() {
+                                                                EnergyMeteringValues:   [
                                                                                             new EnergyMeteringValue(ChargingStart, MeterValueStart, EnergyMeteringValueTypes.Start),
                                                                                             new EnergyMeteringValue(ChargingEnd,   MeterValueEnd,   EnergyMeteringValueTypes.Stop)
-                                                                                        }
+                                                                                        ]
                                                             );
 
                                   var result = await roamingNetwork.
@@ -12323,17 +12325,17 @@ namespace cloud.charging.open.API
 
                                                              new JProperty("sessionId",                        ChargeDetailRecord.SessionId.                               ToString()),
 
-                                                             ChargeDetailRecord.SessionTime != null
+                                                             ChargeDetailRecord.SessionTime is not null
                                                                  ? new JProperty("sessionStart",               ChargeDetailRecord.SessionTime.StartTime.                   ToIso8601())
                                                                  : null,
-                                                             ChargeDetailRecord.SessionTime != null && ChargeDetailRecord.SessionTime.EndTime.HasValue
+                                                             ChargeDetailRecord.SessionTime is not null && ChargeDetailRecord.SessionTime.EndTime.HasValue
                                                                  ? new JProperty("sessionStop",                ChargeDetailRecord.SessionTime.EndTime.Value.               ToIso8601())
                                                                  : null,
 
-                                                             ChargeDetailRecord.AuthenticationStart != null
+                                                             ChargeDetailRecord.AuthenticationStart is not null
                                                                  ? new JProperty("authenticationStart",        ChargeDetailRecord.AuthenticationStart.                     ToJSON())
                                                                  : null,
-                                                             ChargeDetailRecord.AuthenticationStop  != null
+                                                             ChargeDetailRecord.AuthenticationStop is not null
                                                                  ? new JProperty("authenticationStop",         ChargeDetailRecord.AuthenticationStop.                      ToJSON())
                                                                  : null,
                                                              ChargeDetailRecord.ProviderIdStart.HasValue
@@ -12346,27 +12348,27 @@ namespace cloud.charging.open.API
                                                              ChargeDetailRecord.ReservationId.HasValue
                                                                  ? new JProperty("reservationId",              ChargeDetailRecord.ReservationId.                           ToString())
                                                                  : null,
-                                                             ChargeDetailRecord.ReservationTime != null
+                                                             ChargeDetailRecord.ReservationTime is not null
                                                                  ? new JProperty("reservationStart",           ChargeDetailRecord.ReservationTime.StartTime.               ToString())
                                                                  : null,
-                                                             ChargeDetailRecord.ReservationTime != null && ChargeDetailRecord.ReservationTime.EndTime.HasValue
+                                                             ChargeDetailRecord.ReservationTime is not null && ChargeDetailRecord.ReservationTime.EndTime.HasValue
                                                                  ? new JProperty("reservationStop",            ChargeDetailRecord.ReservationTime.EndTime.Value.           ToIso8601())
                                                                  : null,
-                                                             ChargeDetailRecord.Reservation             != null
+                                                             ChargeDetailRecord.Reservation is not null
                                                                  ? new JProperty("reservationLevel",           ChargeDetailRecord.Reservation.ReservationLevel.            ToString())
                                                                  : null,
 
-                                                             ChargeDetailRecord.ChargingStationOperator != null
+                                                             ChargeDetailRecord.ChargingStationOperator is not null
                                                                  ? new JProperty("chargingStationOperator",    ChargeDetailRecord.ChargingStationOperator.                 ToString())
                                                                  : null,
 
-                                                             ChargeDetailRecord.EVSE != null
+                                                             ChargeDetailRecord.EVSE is not null
                                                                  ? new JProperty("EVSEId",                     ChargeDetailRecord.EVSE.Id.                                 ToString())
                                                                  : ChargeDetailRecord.EVSEId.HasValue
                                                                        ? new JProperty("EVSEId",               ChargeDetailRecord.EVSEId.                                  ToString())
                                                                        : null,
 
-                                                             ChargeDetailRecord.ChargingProduct != null
+                                                             ChargeDetailRecord.ChargingProduct is not null
                                                                  ? new JProperty("chargingProduct",            ChargeDetailRecord.ChargingProduct.ToJSON())
                                                                  : null,
 
@@ -12377,7 +12379,7 @@ namespace cloud.charging.open.API
                                                              ChargeDetailRecord.EnergyMeteringValues.Any()
                                                                  ? new JProperty("energyMeteringValues", JSONObject.Create(
                                                                        ChargeDetailRecord.EnergyMeteringValues.Select(metervalue => new JProperty(metervalue.Timestamp.ToIso8601(),
-                                                                                                                                                  metervalue.Value)))
+                                                                                                                                                  metervalue.WattHours.kWh)))
                                                                    )
                                                                  : null,
                                                              //ChargeDetailRecord.MeteringSignature.IsNotNullOrEmpty()
@@ -12387,10 +12389,10 @@ namespace cloud.charging.open.API
                                                              ChargeDetailRecord.ParkingSpaceId.HasValue
                                                                  ? new JProperty("parkingSpaceId",             ChargeDetailRecord.ParkingSpaceId.                      ToString())
                                                                  : null,
-                                                             ChargeDetailRecord.ParkingTime != null
+                                                             ChargeDetailRecord.ParkingTime is not null
                                                                  ? new JProperty("parkingTimeStart",           ChargeDetailRecord.ParkingTime.StartTime.               ToIso8601())
                                                                  : null,
-                                                             ChargeDetailRecord.ParkingTime != null && ChargeDetailRecord.ParkingTime.EndTime.HasValue
+                                                             ChargeDetailRecord.ParkingTime is not null && ChargeDetailRecord.ParkingTime.EndTime.HasValue
                                                                  ? new JProperty("parkingTimeEnd",             ChargeDetailRecord.ParkingTime.EndTime.Value.           ToString())
                                                                  : null,
                                                              ChargeDetailRecord.ParkingFee.HasValue
