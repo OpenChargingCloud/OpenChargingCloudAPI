@@ -7983,11 +7983,11 @@ namespace cloud.charging.open.API
                                                                  AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                                                  ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                                  Content                    = JSONObject.Create(
-                                                                                                  result.Session.Id != null
-                                                                                                      ? new JProperty("SessionId",  result.Session.Id.ToString())
+                                                                                                  result.Session?.Id is not null
+                                                                                                      ? new JProperty("SessionId",    result.Session.Id.ToString())
                                                                                                       : null,
                                                                                                   new JProperty("Result",       result.Result.ToString()),
-                                                                                                  result.Description != null
+                                                                                                  result.Description is not null
                                                                                                       ? new JProperty("Description",  result.Description)
                                                                                                       : null
                                                                                               ).ToUTF8Bytes()
@@ -8253,7 +8253,7 @@ namespace cloud.charging.open.API
                                                                out httpResponseBuilder))
                                   {
 
-                                      if (httpResponseBuilder != null)
+                                      if (httpResponseBuilder is not null)
                                          return httpResponseBuilder;
 
                                   }
@@ -8271,7 +8271,7 @@ namespace cloud.charging.open.API
                                                          out httpResponseBuilder))
                                   {
 
-                                      if (httpResponseBuilder != null)
+                                      if (httpResponseBuilder is not null)
                                           return httpResponseBuilder;
 
                                   }
@@ -8285,7 +8285,7 @@ namespace cloud.charging.open.API
                                                                out httpResponseBuilder))
                                   {
 
-                                      if (httpResponseBuilder != null)
+                                      if (httpResponseBuilder is not null)
                                           return httpResponseBuilder;
 
                                   }
@@ -8556,7 +8556,7 @@ namespace cloud.charging.open.API
                                                                             out httpResponse))
                                                      {
 
-                                                         if (httpResponse != null)
+                                                         if (httpResponse is not null)
                                                              return httpResponse;
 
                                                      }
@@ -8575,10 +8575,10 @@ namespace cloud.charging.open.API
                                                                             out httpResponse))
                                                      {
 
-                                                         if (httpResponse != null)
+                                                         if (httpResponse is not null)
                                                              return httpResponse;
 
-                                                         if (JSONStatusList != null)
+                                                         if (JSONStatusList is not null)
                                                          {
 
                                                              try
@@ -8714,7 +8714,7 @@ namespace cloud.charging.open.API
                                                                     out httpResponse))
                                              {
 
-                                                 if (httpResponse != null)
+                                                 if (httpResponse is not null)
                                                      return httpResponse;
 
                                              }
@@ -8733,10 +8733,10 @@ namespace cloud.charging.open.API
                                                                     out httpResponse))
                                              {
 
-                                                 if (httpResponse != null)
+                                                 if (httpResponse is not null)
                                                      return httpResponse;
 
-                                                 if (JSONStatusList != null)
+                                                 if (JSONStatusList is not null)
                                                  {
 
                                                      try
@@ -9079,14 +9079,14 @@ namespace cloud.charging.open.API
             #endregion
 
 
-            #region GET         ~/RNs/{RoamingNetworkId}/chargingSessions/{ChargingSession_Id}
+            #region GET         ~/RNs/{RoamingNetworkId}/chargingSessions/{chargingSessionId}
 
             // -----------------------------------------------------------------------------------------------------------
-            // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/chargingSessions/{ChargingSession_Id}
+            // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/chargingSessions/{chargingSessionId}
             // -----------------------------------------------------------------------------------------------------------
             AddMethodCallback(Hostname,
                               HTTPMethod.GET,
-                              URLPathPrefix + "RNs/{RoamingNetworkId}/chargingSessions/{ChargingSession_Id}",
+                              URLPathPrefix + "RNs/{RoamingNetworkId}/chargingSessions/{chargingSessionId}",
                               HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate: Request => {
 
@@ -11703,13 +11703,13 @@ namespace cloud.charging.open.API
                                                       OperatorId.    HasValue
                                                           ? new JProperty("operatorId",            OperatorId.          ToString())
                                                           : null,
-                                                      Authentication != null
+                                                      Authentication is not null
                                                           ? new JProperty("authentication",        Authentication.      ToJSON())
                                                           : null,
                                                       ChargingLocation.IsDefined()
                                                           ? new JProperty("chargingLocation",      ChargingLocation.    ToJSON())
                                                           : null,
-                                                      ChargingProduct != null
+                                                      ChargingProduct is not null
                                                           ? new JProperty("chargingProduct",       ChargingProduct.     ToJSON())
                                                           : null,
                                                       SessionId.     HasValue
@@ -11761,7 +11761,7 @@ namespace cloud.charging.open.API
                                                       ChargingLocation.IsDefined()
                                                           ? new JProperty("chargingLocation",      ChargingLocation.    ToJSON())
                                                           : null,
-                                                      ChargingProduct != null
+                                                      ChargingProduct is not null
                                                           ? new JProperty("chargingProduct",       ChargingProduct.     ToJSON())
                                                           : null,
                                                       SessionId.HasValue
@@ -11809,7 +11809,7 @@ namespace cloud.charging.open.API
                                                       CSORoamingProviderId.HasValue
                                                           ? new JProperty("CSORoamingProviderId",  CSORoamingProviderId.ToString())
                                                           : null,
-                                                      OperatorId != null
+                                                      OperatorId is not null
                                                           ? new JProperty("operatorId",            OperatorId.          ToString())
                                                           : null,
                                                       ChargingLocation.IsDefined()
@@ -11924,10 +11924,10 @@ namespace cloud.charging.open.API
                                                       ProviderId.HasValue
                                                           ? new JProperty("ProviderId",          ProviderId.ToString())
                                                           : null,
-                                                      eMAId != null
+                                                      eMAId is not null
                                                           ? new JProperty("eMAId",               eMAId.ToString())
                                                           : null,
-                                                      ChargingProduct != null
+                                                      ChargingProduct is not null
                                                           ? new JProperty("ChargingProduct",     JSONObject.Create(
                                                                 new JProperty("Id",                              ChargingProduct.Id.ToString()),
                                                                 ChargingProduct.MinDuration.HasValue
@@ -11950,13 +11950,13 @@ namespace cloud.charging.open.API
                                                                     : null
                                                                ))
                                                           : null,
-                                                      AuthTokens != null
+                                                      AuthTokens is not null
                                                           ? new JProperty("AuthTokens",          new JArray(AuthTokens.Select(_ => _.ToString())))
                                                           : null,
-                                                      eMAIds != null
+                                                      eMAIds is not null
                                                           ? new JProperty("eMAIds",              new JArray(eMAIds.Select(_ => _.ToString())))
                                                           : null,
-                                                      PINs != null
+                                                      PINs is not null
                                                           ? new JProperty("PINs",                new JArray(PINs.Select(_ => _.ToString())))
                                                           : null
                                                   ));
@@ -12003,13 +12003,13 @@ namespace cloud.charging.open.API
                                                         Duration.HasValue
                                                             ? new JProperty("Duration",            Duration.Value.TotalSeconds.ToString())
                                                             : null,
-                                                        ProviderId != null
+                                                        ProviderId is not null
                                                             ? new JProperty("ProviderId",          ProviderId.ToString()+"X")
                                                             : null,
-                                                        eMAId != null
+                                                        eMAId is not null
                                                             ? new JProperty("eMAId",               eMAId.ToString())
                                                             : null,
-                                                        ChargingProduct != null
+                                                        ChargingProduct is not null
                                                           ? new JProperty("ChargingProduct",     JSONObject.Create(
                                                                 new JProperty("Id",                              ChargingProduct.Id.ToString()),
                                                                 ChargingProduct.MinDuration.HasValue
@@ -12032,13 +12032,13 @@ namespace cloud.charging.open.API
                                                                     : null
                                                                ))
                                                           : null,
-                                                        AuthTokens != null
+                                                        AuthTokens is not null
                                                             ? new JProperty("AuthTokens",          new JArray(AuthTokens.Select(_ => _.ToString())))
                                                             : null,
-                                                        eMAIds != null
+                                                        eMAIds is not null
                                                             ? new JProperty("eMAIds",              new JArray(eMAIds.Select(_ => _.ToString())))
                                                             : null,
-                                                        PINs != null
+                                                        PINs is not null
                                                             ? new JProperty("PINs",                new JArray(PINs.Select(_ => _.ToString())))
                                                             : null,
                                                         new JProperty("Result",                    Result.Result.ToString()),
@@ -12068,20 +12068,20 @@ namespace cloud.charging.open.API
                     => await DebugLog.SubmitEvent("OnCancelReservation",
                                                   JSONObject.Create(
                                                       new JProperty("Timestamp",                Timestamp.ToIso8601()),
-                                                      EventTrackingId != null
+                                                      EventTrackingId is not null
                                                           ? new JProperty("EventTrackingId",    EventTrackingId.ToString())
                                                           : null,
                                                       new JProperty("ReservationId",            ReservationId.ToString()),
 
                                                       new JProperty("RoamingNetwork",           RoamingNetworkId.ToString()),
 
-                                                      Reservation?.EVSEId != null
+                                                      Reservation?.EVSEId is not null
                                                           ? new JProperty("EVSEId",             Reservation.EVSEId.ToString())
                                                           : null,
-                                                      Reservation?.ChargingStationId != null
+                                                      Reservation?.ChargingStationId is not null
                                                           ? new JProperty("ChargingStationId",  Reservation.ChargingStationId.ToString())
                                                           : null,
-                                                      Reservation?.ChargingPoolId != null
+                                                      Reservation?.ChargingPoolId is not null
                                                           ? new JProperty("ChargingPoolId",     Reservation.EVSEId.ToString())
                                                           : null,
 
@@ -12107,26 +12107,26 @@ namespace cloud.charging.open.API
                                                                  EventTrackingId,
                                                                  RoamingNetworkId,
                                                                  ChargingLocation,
-                                                                 ChargingProduct,
-                                                                 ReservationId,
+                                                                 remoteAuthentication,
                                                                  SessionId,
+                                                                 ReservationId,
+                                                                 ChargingProduct,
                                                                  EMPRoamingProviderId,
                                                                  CSORoamingProviderId,
                                                                  ProviderId,
-                                                                 Authentication,
                                                                  RequestTimeout)
 
                     => await DebugLog.SubmitEvent("OnRemoteStartRequest",
                                                   JSONObject.Create(
                                                       new JProperty("timestamp",                   Timestamp.           ToIso8601()),
-                                                      EventTrackingId != null
+                                                      EventTrackingId is not null
                                                           ? new JProperty("eventTrackingId",       EventTrackingId.     ToString())
                                                           : null,
                                                       new JProperty("roamingNetworkId",            RoamingNetworkId.    ToString()),
                                                       ChargingLocation.IsDefined()
                                                           ? new JProperty("chargingLocation",      ChargingLocation.    ToJSON())
                                                           : null,
-                                                      ChargingProduct != null
+                                                      ChargingProduct is not null
                                                           ? new JProperty("chargingProduct",       ChargingProduct.     ToJSON())
                                                           : null,
                                                       ReservationId.HasValue
@@ -12144,8 +12144,8 @@ namespace cloud.charging.open.API
                                                       ProviderId.HasValue
                                                           ? new JProperty("providerId",            ProviderId.          ToString())
                                                           : null,
-                                                      Authentication != null
-                                                          ? new JProperty("authentication",        Authentication.      ToJSON())
+                                                      remoteAuthentication is not null
+                                                          ? new JProperty("authentication",        remoteAuthentication.      ToJSON())
                                                           : null,
                                                       RequestTimeout.HasValue
                                                           ? new JProperty("requestTimeout",        Math.Round(RequestTimeout.Value.TotalSeconds, 0))
@@ -12158,13 +12158,13 @@ namespace cloud.charging.open.API
                                                                   EventTrackingId,
                                                                   RoamingNetworkId,
                                                                   ChargingLocation,
-                                                                  ChargingProduct,
-                                                                  ReservationId,
+                                                                  remoteAuthentication,
                                                                   SessionId,
+                                                                  ReservationId,
+                                                                  ChargingProduct,
                                                                   EMPRoamingProviderId,
                                                                   CSORoamingProviderId,
                                                                   ProviderId,
-                                                                  Authentication,
                                                                   RequestTimeout,
                                                                   Result,
                                                                   Runtime)
@@ -12172,20 +12172,20 @@ namespace cloud.charging.open.API
                     => await DebugLog.SubmitEvent("OnRemoteStartResponse",
                                                   JSONObject.Create(
                                                       new JProperty("timestamp",                   Timestamp.           ToIso8601()),
-                                                      EventTrackingId      != null
+                                                      EventTrackingId      is not null
                                                           ? new JProperty("eventTrackingId",       EventTrackingId.     ToString())
                                                           : null,
                                                       new JProperty("roamingNetworkId",            RoamingNetworkId.    ToString()),
                                                       ChargingLocation.IsDefined()
                                                           ? new JProperty("chargingLocation",      ChargingLocation.    ToJSON())
                                                           : null,
-                                                      ChargingProduct      != null
+                                                      ChargingProduct      is not null
                                                           ? new JProperty("chargingProduct",       ChargingProduct.     ToJSON())
                                                           : null,
-                                                      ReservationId        != null
+                                                      ReservationId        is not null
                                                           ? new JProperty("reservationId",         ReservationId.       ToString())
                                                           : null,
-                                                      SessionId            != null
+                                                      SessionId            is not null
                                                           ? new JProperty("sessionId",             SessionId.           ToString())
                                                           : null,
                                                       EMPRoamingProviderId.HasValue
@@ -12194,11 +12194,11 @@ namespace cloud.charging.open.API
                                                       CSORoamingProviderId.HasValue
                                                           ? new JProperty("CSORoamingProviderId",  CSORoamingProviderId.ToString())
                                                           : null,
-                                                      ProviderId           != null
+                                                      ProviderId           is not null
                                                           ? new JProperty("providerId",            ProviderId.          ToString())
                                                           : null,
-                                                      Authentication != null
-                                                          ? new JProperty("authentication",        Authentication.      ToJSON())
+                                                      remoteAuthentication is not null
+                                                          ? new JProperty("authentication",        remoteAuthentication.      ToJSON())
                                                           : null,
                                                       RequestTimeout.HasValue
                                                           ? new JProperty("requestTimeout",        Math.Round(RequestTimeout.Value.TotalSeconds, 0))
@@ -12227,7 +12227,7 @@ namespace cloud.charging.open.API
                     => await DebugLog.SubmitEvent("OnRemoteStopRequest",
                                                   JSONObject.Create(
                                                       new JProperty("timestamp",                   Timestamp.           ToIso8601()),
-                                                      EventTrackingId != null
+                                                      EventTrackingId is not null
                                                           ? new JProperty("eventTrackingId",       EventTrackingId.     ToString())
                                                           : null,
                                                       new JProperty("roamingNetworkId",            RoamingNetworkId.    ToString()),
@@ -12244,7 +12244,7 @@ namespace cloud.charging.open.API
                                                       ProviderId.HasValue
                                                           ? new JProperty("providerId",            ProviderId.          ToString())
                                                           : null,
-                                                      Authentication != null
+                                                      Authentication is not null
                                                           ? new JProperty("authentication",        Authentication.      ToJSON())
                                                           : null,
                                                       RequestTimeout.HasValue
@@ -12270,7 +12270,7 @@ namespace cloud.charging.open.API
                     => await DebugLog.SubmitEvent("OnRemoteStopResponse",
                                                   JSONObject.Create(
                                                       new JProperty("timestamp",                   Timestamp.           ToIso8601()),
-                                                      EventTrackingId != null
+                                                      EventTrackingId is not null
                                                           ? new JProperty("eventTrackingId",       EventTrackingId.     ToString())
                                                           : null,
                                                       new JProperty("roamingNetworkId",            RoamingNetworkId.    ToString()),
@@ -12287,7 +12287,7 @@ namespace cloud.charging.open.API
                                                       ProviderId.HasValue
                                                           ? new JProperty("providerId",            ProviderId.          ToString())
                                                           : null,
-                                                      Authentication != null
+                                                      Authentication is not null
                                                           ? new JProperty("authentication",        Authentication.      ToJSON())
                                                           : null,
                                                       RequestTimeout.HasValue
@@ -12530,7 +12530,7 @@ namespace cloud.charging.open.API
             RoamingNetwork  = WWCPHTTPServer.GetAllTenants(Hostname).
                                   FirstOrDefault(roamingnetwork => roamingnetwork.Id == RoamingNetworkId);
 
-            return RoamingNetwork != null;
+            return RoamingNetwork is not null;
 
         }
 
@@ -12550,7 +12550,7 @@ namespace cloud.charging.open.API
             var RoamingNetwork = WWCPHTTPServer.GetAllTenants(Hostname).
                                      FirstOrDefault(roamingnetwork => roamingnetwork.Id == RoamingNetworkId);
 
-            return RoamingNetwork != null;
+            return RoamingNetwork is not null;
 
         }
 
@@ -12597,7 +12597,7 @@ namespace cloud.charging.open.API
 
             RoamingNetwork = _RoamingNetworks.RemoveRoamingNetwork(RoamingNetworkId);
 
-            return RoamingNetwork != null;
+            return RoamingNetwork is not null;
 
         }
 
