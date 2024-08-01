@@ -528,10 +528,10 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON
 
                            new JProperty("currentTypes",   EVSE.CurrentType.ToText()),
 
-                           EVSE.AverageVoltage.HasValue && EVSE.AverageVoltage > 0     ? new JProperty("averageVoltage",  String.Format("{0:0.00}", EVSE.AverageVoltage)) : null,
-                           EVSE.MaxCurrent.    HasValue && EVSE.MaxCurrent     > 0     ? new JProperty("maxCurrent",      String.Format("{0:0.00}", EVSE.MaxCurrent))     : null,
-                           EVSE.MaxPower.      HasValue && EVSE.MaxPower.     HasValue ? new JProperty("maxPower",        String.Format("{0:0.00}", EVSE.MaxPower))       : null,
-                           EVSE.MaxCapacity.   HasValue && EVSE.MaxCapacity.  HasValue ? new JProperty("maxCapacity",     String.Format("{0:0.00}", EVSE.MaxCapacity))    : null,
+                           EVSE.AverageVoltage.HasValue && EVSE.AverageVoltage.Value.Value > 0 ? new JProperty("averageVoltage",  String.Format("{0:0.00}", EVSE.AverageVoltage.Value.Value)) : null,
+                           EVSE.MaxCurrent.    HasValue && EVSE.MaxCurrent.    Value.Value > 0 ? new JProperty("maxCurrent",      String.Format("{0:0.00}", EVSE.MaxCurrent.    Value.Value)) : null,
+                           EVSE.MaxPower.      HasValue && EVSE.MaxPower.      Value.Value > 0 ? new JProperty("maxPower",        String.Format("{0:0.00}", EVSE.MaxPower.      Value.Value)) : null,
+                           EVSE.MaxCapacity.   HasValue && EVSE.MaxCapacity.   Value.Value > 0 ? new JProperty("maxCapacity",     String.Format("{0:0.00}", EVSE.MaxCapacity.   Value.Value)) : null,
 
                            EVSE.ChargingConnectors.Count > 0
                                ? new JProperty("chargingConnectors",  new JArray(EVSE.ChargingConnectors.ToJSON()))
