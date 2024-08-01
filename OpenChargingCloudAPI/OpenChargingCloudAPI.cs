@@ -7983,8 +7983,8 @@ namespace cloud.charging.open.API
                                                                  AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                                                  ContentType                = HTTPContentType.Application.JSON_UTF8,
                                                                  Content                    = JSONObject.Create(
-                                                                                                  result.Session?.Id is not null
-                                                                                                      ? new JProperty("SessionId",    result.Session.Id.ToString())
+                                                                                                  result.Session is not null
+                                                                                                      ? new JProperty("SessionId",  result.Session.Id.ToString())
                                                                                                       : null,
                                                                                                   new JProperty("Result",       result.Result.ToString()),
                                                                                                   result.Description is not null
@@ -12145,7 +12145,7 @@ namespace cloud.charging.open.API
                                                           ? new JProperty("providerId",            ProviderId.          ToString())
                                                           : null,
                                                       remoteAuthentication is not null
-                                                          ? new JProperty("authentication",        remoteAuthentication.      ToJSON())
+                                                          ? new JProperty("authentication",        remoteAuthentication.ToJSON())
                                                           : null,
                                                       RequestTimeout.HasValue
                                                           ? new JProperty("requestTimeout",        Math.Round(RequestTimeout.Value.TotalSeconds, 0))
@@ -12198,7 +12198,7 @@ namespace cloud.charging.open.API
                                                           ? new JProperty("providerId",            ProviderId.          ToString())
                                                           : null,
                                                       remoteAuthentication is not null
-                                                          ? new JProperty("authentication",        remoteAuthentication.      ToJSON())
+                                                          ? new JProperty("authentication",        remoteAuthentication.ToJSON())
                                                           : null,
                                                       RequestTimeout.HasValue
                                                           ? new JProperty("requestTimeout",        Math.Round(RequestTimeout.Value.TotalSeconds, 0))
