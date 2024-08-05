@@ -273,11 +273,11 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                                   #region Check HTTP parameters
 
                                                      if (!Request.ParseRoamingNetworkAndGridOperator(OpenChargingCloudAPI,
-                                                                                                     out var _RoamingNetwork,
-                                                                                                     out var _GridOperator,
-                                                                                                     out var _HTTPResponse))
+                                                                                                     out var roamingNetwork,
+                                                                                                     out var gridOperator,
+                                                                                                     out var httpResponseBuilder))
                                                      {
-                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
+                                                         return Task.FromResult(httpResponseBuilder.AsImmutable);
                                                      }
 
                                                      #endregion
@@ -292,7 +292,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
                                                                           AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                                                           ETag                       = "1",
                                                                           ContentType                = HTTPContentType.Application.JSON_UTF8,
-                                                                          Content                    = _GridOperator.ToJSON().ToUTF8Bytes()
+                                                                          Content                    = gridOperator.ToJSON().ToUTF8Bytes()
                                                                       }.AsImmutable);
 
                                                                });
