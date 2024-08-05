@@ -40,6 +40,7 @@ using cloud.charging.open.protocols.WWCP;
 using cloud.charging.open.protocols.WWCP.Net.IO.JSON;
 using cloud.charging.open.protocols.WWCP.Networking;
 using System.Diagnostics.CodeAnalysis;
+using com.GraphDefined.SMSApi.API.Response;
 
 #endregion
 
@@ -499,6 +500,106 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown EVSEId!"" }".ToUTF8Bytes(),
+                    Connection      = "close"
+                };
+
+                return false;
+
+            }
+
+            return true;
+
+        }
+
+        #endregion
+
+        #region ParseRoamingNetworkAndChargingSessionId       (this HTTPRequest, OpenChargingCloudAPI, out RoamingNetwork, out ChargingSession,         out HTTPResponseBuilder)
+
+        /// <summary>
+        /// Parse the given HTTP request and return the roaming network and charging session
+        /// for the given HTTP hostname and HTTP query parameters
+        /// or an HTTP error response.
+        /// </summary>
+        /// <param name="HTTPRequest">A HTTP request.</param>
+        /// <param name="OpenChargingCloudAPI">The OpenChargingCloud API.</param>
+        /// <param name="RoamingNetworkId">The roaming network identification.</param>
+        /// <param name="RoamingNetwork">The roaming network.</param>
+        /// <param name="ChargingSessionId">The charging session identification.</param>
+        /// <param name="ChargingSession">The charging session.</param>
+        /// <param name="HTTPResponseBuilder">A HTTP error response.</param>
+        public static Boolean ParseRoamingNetworkAndChargingSessionId(this HTTPRequest                                HTTPRequest,
+                                                                      OpenChargingCloudAPI                            OpenChargingCloudAPI,
+                                                                      [NotNullWhen(true)]  out RoamingNetwork_Id?     RoamingNetworkId,
+                                                                      [NotNullWhen(true)]  out IRoamingNetwork?       RoamingNetwork,
+                                                                      [NotNullWhen(true)]  out ChargingSession_Id?    ChargingSessionId,
+                                                                      [NotNullWhen(false)] out HTTPResponse.Builder?  HTTPResponseBuilder)
+        {
+
+            RoamingNetworkId     = null;
+            RoamingNetwork       = null;
+            ChargingSessionId    = null;
+            HTTPResponseBuilder  = null;
+
+            if (HTTPRequest.ParsedURLParameters.Length < 2) {
+
+                HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
+                    HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Date            = Timestamp.Now,
+                    Connection      = "close"
+                };
+
+                return false;
+
+            }
+
+            RoamingNetworkId = RoamingNetwork_Id.TryParse(HTTPRequest.ParsedURLParameters[0]);
+
+            if (!RoamingNetworkId.HasValue)
+            {
+
+                HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
+                    HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Date            = Timestamp.Now,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
+                    Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
+                    Connection      = "close"
+                };
+
+                return false;
+
+            }
+
+            RoamingNetwork  = OpenChargingCloudAPI.GetRoamingNetwork(HTTPRequest.Host, RoamingNetworkId.Value);
+
+            if (RoamingNetwork == null)
+            {
+
+                HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
+                    HTTPStatusCode  = HTTPStatusCode.NotFound,
+                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Date            = Timestamp.Now,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
+                    Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
+                    Connection      = "close"
+                };
+
+                return false;
+
+            }
+
+            ChargingSessionId = ChargingSession_Id.TryParse(HTTPRequest.ParsedURLParameters[1]);
+
+            if (!ChargingSessionId.HasValue)
+            {
+
+                HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
+                    HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Date            = Timestamp.Now,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
+                    Content         = @"{ ""description"": ""Invalid charging session identification!"" }".ToUTF8Bytes(),
                     Connection      = "close"
                 };
 
@@ -7337,136 +7438,135 @@ namespace cloud.charging.open.API
             //                      -H "Accept:       application/json" \
             //      -d "{ \"AuthToken\":  \"00112233\" }" \
             //      http://127.0.0.1:5500/RNs/Test/EVSEs/DE*GEF*E000001*1
-            AddMethodCallback(
-                                         Hostname,
-                                         AUTHSTART,
-                                         URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
-                                         HTTPContentType.Application.JSON_UTF8,
-                                         HTTPRequestLogger:  SendAuthStartEVSERequest,
-                                         HTTPResponseLogger: SendAuthStartEVSEResponse,
-                                         HTTPDelegate: async Request => {
+            AddMethodCallback(Hostname,
+                              AUTHSTART,
+                              URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
+                              HTTPContentType.Application.JSON_UTF8,
+                              HTTPRequestLogger:  SendAuthStartEVSERequest,
+                              HTTPResponseLogger: SendAuthStartEVSEResponse,
+                              HTTPDelegate: async Request => {
 
-                                             #region Parse RoamingNetworkId and EVSEId URI parameters
+                                  #region Parse RoamingNetworkId and EVSEId URI parameters
 
-                                                     if (!Request.ParseRoamingNetworkAndEVSE(this,
-                                                                                             out var roamingNetwork,
-                                                                                             out var evse,
-                                                                                             out var httpResponse))
-                                                     {
-                                                         return httpResponse;
-                                                     }
+                                  if (!Request.ParseRoamingNetworkAndEVSE(this,
+                                                                          out var roamingNetwork,
+                                                                          out var evse,
+                                                                          out var httpResponseBuilder))
+                                  {
+                                      return httpResponseBuilder;
+                                  }
 
-                                                     #endregion
+                                  #endregion
 
-                                             #region Parse JSON
+                                  #region Parse JSON
 
-                                                     if (!Request.TryParseJSONObjectRequestBody(out var JSON,
-                                                                                             out httpResponse))
-                                                     {
-                                                         return httpResponse;
-                                                     }
+                                  if (!Request.TryParseJSONObjectRequestBody(out var json,
+                                                                             out httpResponseBuilder))
+                                  {
+                                      return httpResponseBuilder;
+                                  }
 
-                                                     #region Parse OperatorId             [optional]
+                                  #region Parse OperatorId             [optional]
 
-                                                     ChargingStationOperator_Id OperatorId;
+                                  ChargingStationOperator_Id OperatorId;
 
-                                                     if (!JSON.ParseOptional("OperatorId",
-                                                                             "Charging Station Operator identification",
-                                                                             HTTPServer.DefaultServerName,
-                                                                             ChargingStationOperator_Id.TryParse,
-                                                                             out OperatorId,
-                                                                             Request,
-                                                                             out httpResponse))
+                                  if (!json.ParseOptional("OperatorId",
+                                                          "Charging Station Operator identification",
+                                                          HTTPServer.DefaultServerName,
+                                                          ChargingStationOperator_Id.TryParse,
+                                                          out OperatorId,
+                                                          Request,
+                                                          out httpResponseBuilder))
 
-                                                         return httpResponse;
+                                      return httpResponseBuilder;
 
-                                                     #endregion
+                                  #endregion
 
-                                                     #region Parse AuthToken              [mandatory]
+                                  #region Parse AuthToken              [mandatory]
 
-                                                     if (!JSON.ParseMandatory("AuthToken",
-                                                                              "authentication token",
-                                                                              HTTPServer.DefaultServerName,
-                                                                              AuthenticationToken.TryParse,
-                                                                              out AuthenticationToken AuthToken,
-                                                                              Request,
-                                                                              out httpResponse))
+                                  if (!json.ParseMandatory("AuthToken",
+                                                          "authentication token",
+                                                          HTTPServer.DefaultServerName,
+                                                          AuthenticationToken.TryParse,
+                                                          out AuthenticationToken AuthToken,
+                                                          Request,
+                                                          out httpResponseBuilder))
 
-                                                         return httpResponse;
+                                      return httpResponseBuilder;
 
-                                                     #endregion
+                                  #endregion
 
-                                                     #region Parse SessionId              [optional]
+                                  #region Parse SessionId              [optional]
 
-                                                     if (!JSON.ParseOptionalStruct2("SessionId",
-                                                                                   "Charging session identification",
-                                                                                   HTTPServer.DefaultServerName,
-                                                                                   ChargingSession_Id.TryParse,
-                                                                                   out ChargingSession_Id? SessionId,
-                                                                                   Request,
-                                                                                   out httpResponse))
-                                                     {
+                                  if (!json.ParseOptionalStruct2("SessionId",
+                                                              "Charging session identification",
+                                                              HTTPServer.DefaultServerName,
+                                                              ChargingSession_Id.TryParse,
+                                                              out ChargingSession_Id? SessionId,
+                                                              Request,
+                                                              out httpResponseBuilder))
+                                  {
 
-                                                         return httpResponse;
+                                      return httpResponseBuilder;
 
-                                                     }
+                                  }
 
-                                                     #endregion
+                                  #endregion
 
-                                                     #region Parse CPOPartnerSessionId    [optional]
+                                  #region Parse CPOPartnerSessionId    [optional]
 
-                                                     if (!JSON.ParseOptionalStruct2("CPOPartnerSessionId",
-                                                                                    "CPO partner charging session identification",
-                                                                                    HTTPServer.DefaultServerName,
-                                                                                    ChargingSession_Id.TryParse,
-                                                                                    out ChargingSession_Id? CPOPartnerSessionId,
-                                                                                    Request,
-                                                                                    out httpResponse))
-                                                     {
+                                  if (!json.ParseOptionalStruct2("CPOPartnerSessionId",
+                                                              "CPO partner charging session identification",
+                                                              HTTPServer.DefaultServerName,
+                                                              ChargingSession_Id.TryParse,
+                                                              out ChargingSession_Id? CPOPartnerSessionId,
+                                                              Request,
+                                                              out httpResponseBuilder))
+                                  {
 
-                                                         return httpResponse;
+                                      return httpResponseBuilder;
 
-                                                     }
+                                  }
 
-                                                     #endregion
+                                  #endregion
 
-                                                     #region Parse ChargingProductId      [optional]
+                                  #region Parse ChargingProductId      [optional]
 
-                                                     if (!JSON.ParseOptionalStruct2("ChargingProductId",
-                                                                                    "Charging product identification",
-                                                                                    HTTPServer.DefaultServerName,
-                                                                                    ChargingProduct_Id.TryParse,
-                                                                                    out ChargingProduct_Id? ChargingProductId,
-                                                                                    Request,
-                                                                                    out httpResponse))
-                                                     {
+                                  if (!json.ParseOptionalStruct2("ChargingProductId",
+                                                              "Charging product identification",
+                                                              HTTPServer.DefaultServerName,
+                                                              ChargingProduct_Id.TryParse,
+                                                              out ChargingProduct_Id? ChargingProductId,
+                                                              Request,
+                                                              out httpResponseBuilder))
+                                  {
 
-                                                         return httpResponse;
+                                      return httpResponseBuilder;
 
-                                                     }
+                                  }
 
-                                                     #endregion
+                                  #endregion
 
-                                                     #endregion
-
-
-                                             var result = await roamingNetwork.
-                                                                    AuthorizeStart(LocalAuthentication.FromAuthToken(AuthToken),
-                                                                                   ChargingLocation.FromEVSEId(evse.Id),
-                                                                                   ChargingProductId.HasValue
-                                                                                       ? new ChargingProduct(ChargingProductId.Value)
-                                                                                       : null,
-                                                                                   SessionId,
-                                                                                   CPOPartnerSessionId,
-                                                                                   OperatorId,
-
-                                                                                   Request.Timestamp,
-                                                                                   Request.EventTrackingId,
-                                                                                   null,
-                                                                                   Request.CancellationToken);
+                                  #endregion
 
 
-                                             #region Authorized
+                                  var result = await roamingNetwork.
+                                                         AuthorizeStart(LocalAuthentication.FromAuthToken(AuthToken),
+                                                                        ChargingLocation.FromEVSEId(evse.Id),
+                                                                        ChargingProductId.HasValue
+                                                                            ? new ChargingProduct(ChargingProductId.Value)
+                                                                            : null,
+                                                                        SessionId,
+                                                                        CPOPartnerSessionId,
+                                                                        OperatorId,
+
+                                                                        Request.Timestamp,
+                                                                        Request.EventTrackingId,
+                                                                        null,
+                                                                        Request.CancellationToken);
+
+
+                                  #region Authorized
 
                                                      if (result.Result == AuthStartResultTypes.Authorized)
                                                          return new HTTPResponse.Builder(Request) {
@@ -7482,7 +7582,7 @@ namespace cloud.charging.open.API
 
                                                      #endregion
 
-                                             #region NotAuthorized
+                                  #region NotAuthorized
 
                                                      else if (result.Result == AuthStartResultTypes.Error)
                                                          return new HTTPResponse.Builder(Request) {
@@ -7498,7 +7598,7 @@ namespace cloud.charging.open.API
 
                                                      #endregion
 
-                                             #region Forbidden
+                                  #region Forbidden
 
                                                      else
                                                          return new HTTPResponse.Builder(Request) {
@@ -7514,7 +7614,7 @@ namespace cloud.charging.open.API
 
                                                      #endregion
 
-                                         }, AllowReplacement: URLReplacement.Allow);
+                              }, AllowReplacement: URLReplacement.Allow);
 
             #endregion
 
@@ -9046,6 +9146,133 @@ namespace cloud.charging.open.API
 
             #endregion
 
+            #region SET         ~/RNs/{RoamingNetworkId}/ChargingSessions/{ChargingSessionId}
+
+            // --------------------------------------------------------------------------------------------------------------------------------------
+            // curl -v -X SET -H "Content-Type: application/json" -d  http://127.0.0.1:5500/RNs/Test/ChargingSessions/{ChargingSessionId}/{command}
+            // --------------------------------------------------------------------------------------------------------------------------------------
+            AddMethodCallback(Hostname,
+                              HTTPMethod.SET,
+                              URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingSessions/{ChargingSessionId}/{command}",
+                              HTTPContentType.Application.JSON_UTF8,
+                              HTTPDelegate: async Request => {
+
+                                  #region Get HTTP user and its organizations
+
+                                  // Will return HTTP 401 Unauthorized, when the HTTP user is unknown!
+                                  if (!TryGetHTTPUser(Request,
+                                                      out var httpUser,
+                                                      out var httpOrganizations,
+                                                      out var httpResponseBuilder,
+                                                      Recursive: true))
+                                  {
+                                      return httpResponseBuilder.AsImmutable;
+                                  }
+
+                                  #endregion
+
+                                  #region Get roaming network and charging session identification
+
+                                  if (!Request.ParseRoamingNetworkAndChargingSessionId(this,
+                                                                                       out var roamingNetworkId,
+                                                                                       out var roamingNetwork,
+                                                                                       out var chargingSessionId,
+                                                                                       out httpResponseBuilder))
+                                  {
+                                      return httpResponseBuilder.AsImmutable;
+                                  }
+
+                                  #endregion
+
+                                  #region Parse command
+
+                                  if (Request.ParsedURLParameters.Length < 3)
+                                      return new HTTPResponse.Builder(Request) {
+                                          HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                                          Server          = HTTPServer.DefaultServerName,
+                                          Date            = Timestamp.Now,
+                                          Connection      = "close"
+                                      };
+
+                                  var command = Request.ParsedURLParameters[2]?.Trim();
+
+                                  if (command.IsNullOrEmpty())
+                                      return new HTTPResponse.Builder(Request) {
+                                          HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                                          Server          = HTTPServer.DefaultServerName,
+                                          Date            = Timestamp.Now,
+                                          ContentType     = HTTPContentType.Application.JSON_UTF8,
+                                          Content         = @"{ ""description"": ""Invalid command!"" }".ToUTF8Bytes(),
+                                          Connection      = "close"
+                                      };
+
+                                  #endregion
+
+                                  #region Parse Charging Session JSON
+
+                                  if (!Request.TryParseJSONObjectRequestBody(out var json,
+                                                                             out httpResponseBuilder))
+                                  {
+                                      return httpResponseBuilder;
+                                  }
+
+                                  if (!ChargingSession.TryParse(json, out var chargingSession, out var errorResponse))
+                                      return new HTTPResponse.Builder(Request) {
+                                                 HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                                                 Server          = HTTPServer.DefaultServerName,
+                                                 Date            = Timestamp.Now,
+                                                 ContentType     = HTTPContentType.Application.JSON_UTF8,
+                                                 Content         = new JObject(
+                                                                       new JProperty("description", errorResponse)
+                                                                   ).ToUTF8Bytes()
+                                             };
+
+                                  #endregion
+
+
+                                  var result = await roamingNetwork.RegisterExternalChargingSession(
+                                                         Timestamp.Now,
+                                                         this,
+                                                         command,
+                                                         chargingSession
+                                                     );
+
+
+                                  return result
+
+                                             ? new HTTPResponse.Builder(Request) {
+                                                   HTTPStatusCode             = HTTPStatusCode.OK,
+                                                   Server                     = HTTPServer.DefaultServerName,
+                                                   Date                       = Timestamp.Now,
+                                                   AccessControlAllowOrigin   = "*",
+                                                   AccessControlAllowMethods  = [ "SET" ],
+                                                   AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
+                                                   ContentType                = HTTPContentType.Application.JSON_UTF8,
+                                                   Content                    = chargingSession.
+                                                                                    ToJSON(Embedded:                         false,
+                                                                                           CustomChargingSessionSerializer:  CustomChargingSessionSerializer).
+                                                                                    ToUTF8Bytes(),
+                                                   Connection                 = "close"
+                                               }
+
+                                             : new HTTPResponse.Builder(Request) {
+                                                   HTTPStatusCode             = HTTPStatusCode.BadRequest,
+                                                   Server                     = HTTPServer.DefaultServerName,
+                                                   Date                       = Timestamp.Now,
+                                                   AccessControlAllowOrigin   = "*",
+                                                   AccessControlAllowMethods  = [ "SET" ],
+                                                   AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
+                                                   //ContentType                = HTTPContentType.Application.JSON_UTF8,
+                                                   //Content                    = chargingSession.
+                                                   //                                 ToJSON(Embedded:                         false,
+                                                   //                                        CustomChargingSessionSerializer:  CustomChargingSessionSerializer).
+                                                   //                                 ToUTF8Bytes(),
+                                                   Connection                 = "close"
+                                               };
+
+                              });
+
+            #endregion
 
 
             #region GET         ~/RNs/{RoamingNetworkId}/ChargingSessions/MissingCDRResponses
