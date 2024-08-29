@@ -573,7 +573,7 @@ namespace cloud.charging.open.API
 
             RoamingNetwork  = OpenChargingCloudAPI.GetRoamingNetwork(HTTPRequest.Host, RoamingNetworkId.Value);
 
-            if (RoamingNetwork == null)
+            if (RoamingNetwork is null)
             {
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
@@ -9149,7 +9149,7 @@ namespace cloud.charging.open.API
             #region SET         ~/RNs/{RoamingNetworkId}/ChargingSessions/{ChargingSessionId}
 
             // --------------------------------------------------------------------------------------------------------------------------------------
-            // curl -v -X SET -H "Content-Type: application/json" -d  http://127.0.0.1:5500/RNs/Test/ChargingSessions/{ChargingSessionId}/{command}
+            // curl -v -X SET -H "Content-Type: application/json" --data @session.json http://127.0.0.1:3004/RNs/Prod/ChargingSessions/{ChargingSessionId}/{command}
             // --------------------------------------------------------------------------------------------------------------------------------------
             AddMethodCallback(Hostname,
                               HTTPMethod.SET,
