@@ -12594,7 +12594,9 @@ namespace cloud.charging.open.API
                                                              ChargeDetailRecord.EnergyMeterId.HasValue
                                                                  ? new JProperty("energyMeterId",              ChargeDetailRecord.EnergyMeterId.                      ToString())
                                                                  : null,
-                                                                   new JProperty("consumedEnergy",             ChargeDetailRecord.ConsumedEnergy),
+                                                             ChargeDetailRecord.ConsumedEnergy.HasValue
+                                                                 ? new JProperty("consumedEnergy",             ChargeDetailRecord.ConsumedEnergy.Value.kWh)
+                                                                 : null,
                                                              ChargeDetailRecord.EnergyMeteringValues.Any()
                                                                  ? new JProperty("energyMeteringValues", JSONObject.Create(
                                                                        ChargeDetailRecord.EnergyMeteringValues.Select(metervalue => new JProperty(metervalue.Timestamp.ToIso8601(),
