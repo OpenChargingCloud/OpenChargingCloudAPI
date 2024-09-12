@@ -20,10 +20,12 @@
 using System.Reflection;
 using System.Net.Security;
 using System.Security.Authentication;
+using System.Diagnostics.CodeAnalysis;
 
 using Newtonsoft.Json.Linq;
 
 using com.GraphDefined.SMSApi.API;
+using com.GraphDefined.SMSApi.API.Response;
 using org.GraphDefined.Vanaheimr.Illias;
 using org.GraphDefined.Vanaheimr.Hermod;
 using org.GraphDefined.Vanaheimr.Hermod.HTTP;
@@ -34,13 +36,9 @@ using org.GraphDefined.Vanaheimr.Hermod.Logging;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets;
 using org.GraphDefined.Vanaheimr.Hermod.Sockets.TCP;
 
-using social.OpenData.UsersAPI;
-
 using cloud.charging.open.protocols.WWCP;
 using cloud.charging.open.protocols.WWCP.Net.IO.JSON;
 using cloud.charging.open.protocols.WWCP.Networking;
-using System.Diagnostics.CodeAnalysis;
-using com.GraphDefined.SMSApi.API.Response;
 
 #endregion
 
@@ -2054,7 +2052,7 @@ namespace cloud.charging.open.API
     /// <summary>
     /// The common Open Charging Cloud API.
     /// </summary>
-    public class OpenChargingCloudAPI : UsersAPI
+    public class OpenChargingCloudAPI : HTTPExtAPI
     {
 
         #region Data
@@ -2897,7 +2895,7 @@ namespace cloud.charging.open.API
                                     ISMTPClient?                                               SMTPClient                   = null,
                                     ISMSClient?                                                SMSClient                    = null,
                                     String?                                                    SMSSenderName                = null,
-                                    ITelegramStore?                                            TelegramClient               = null,
+                                    //ITelegramStore?                                            TelegramClient               = null,
 
                                     PasswordQualityCheckDelegate?                              PasswordQualityCheck         = null,
                                     HTTPCookieName?                                            CookieName                   = null,
@@ -2957,9 +2955,9 @@ namespace cloud.charging.open.API
                    APIRobotEMailAddress,
                    APIRobotGPGPassphrase,
                    SMTPClient,
-                   SMSClient,
-                   SMSSenderName,
-                   TelegramClient,
+                   //SMSClient,
+                   //SMSSenderName,
+                   //TelegramClient,
 
                    PasswordQualityCheck,
                    CookieName           ?? HTTPCookieName.Parse(nameof(OpenChargingCloudAPI)),
@@ -3062,7 +3060,7 @@ namespace cloud.charging.open.API
 
             => GetResourceStream(ResourceName,
                                  new Tuple<String, Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
-                                 new Tuple<String, Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
+                                 //new Tuple<String, Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
                                  new Tuple<String, Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly));
 
         #endregion
@@ -3073,7 +3071,7 @@ namespace cloud.charging.open.API
 
             => GetResourceMemoryStream(ResourceName,
                                        new Tuple<String, Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
-                                       new Tuple<String, Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
+                                       //new Tuple<String, Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
                                        new Tuple<String, Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly));
 
         #endregion
@@ -3084,7 +3082,7 @@ namespace cloud.charging.open.API
 
             => GetResourceString(ResourceName,
                                  new Tuple<String, Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
-                                 new Tuple<String, Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
+                                 //new Tuple<String, Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
                                  new Tuple<String, Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly));
 
         #endregion
@@ -3095,7 +3093,7 @@ namespace cloud.charging.open.API
 
             => GetResourceBytes(ResourceName,
                                 new Tuple<String, Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
-                                new Tuple<String, Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
+                                //new Tuple<String, Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
                                 new Tuple<String, Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly));
 
         #endregion
@@ -3106,7 +3104,7 @@ namespace cloud.charging.open.API
 
             => MixWithHTMLTemplate(ResourceName,
                                    new Tuple<String, Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
-                                   new Tuple<String, Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
+                                   //new Tuple<String, Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
                                    new Tuple<String, Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly));
 
         #endregion
@@ -3121,7 +3119,7 @@ namespace cloud.charging.open.API
                                    ResourceName,
                                    new Tuple<String, Assembly>[] {
                                        new Tuple<String, Assembly>(OpenChargingCloudAPI.HTTPRoot, typeof(OpenChargingCloudAPI).Assembly),
-                                       new Tuple<String, Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
+                                       //new Tuple<String, Assembly>(UsersAPI.            HTTPRoot, typeof(UsersAPI).            Assembly),
                                        new Tuple<String, Assembly>(HTTPAPI.             HTTPRoot, typeof(HTTPAPI).             Assembly)
                                    },
                                    Content);

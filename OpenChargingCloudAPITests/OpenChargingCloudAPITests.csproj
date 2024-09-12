@@ -19,7 +19,6 @@
     <ProjectReference Include="..\..\SMSAPI\SMSAPI\SMSAPI.csproj" />
     <ProjectReference Include="..\..\Styx\Styx\Styx.csproj" />
     <ProjectReference Include="..\..\TelegramBotAPI\TelegramBotAPI\TelegramBotAPI.csproj" />
-    <ProjectReference Include="..\..\UsersAPI\UsersAPI\UsersAPI.csproj" />
     <ProjectReference Include="..\OpenChargingCloudAPI\OpenChargingCloudAPI.csproj" />
   </ItemGroup>
 
