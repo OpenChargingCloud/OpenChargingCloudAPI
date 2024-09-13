@@ -8713,7 +8713,7 @@ namespace cloud.charging.open.API
                                              if (JSON.ParseOptional("currentStatus",
                                                                     "EVSE status",
                                                                     HTTPServer.DefaultServerName,
-                                                                    out EVSEStatusTypes? CurrentStatus,
+                                                                    out EVSEStatusType? CurrentStatus,
                                                                     Request,
                                                                     out httpResponse))
                                              {
@@ -8727,7 +8727,7 @@ namespace cloud.charging.open.API
 
                                              #region Parse Status list     [optional]
 
-                                             Timestamped<EVSEStatusTypes>[] StatusList = null;
+                                             Timestamped<EVSEStatusType>[] StatusList = null;
 
                                              if (JSON.ParseOptional("statusList",
                                                                     "status list",
@@ -8748,9 +8748,9 @@ namespace cloud.charging.open.API
 
                                                          StatusList = JSONStatusList.
                                                                           Values<JProperty>().
-                                                                          Select(jproperty => new Timestamped<EVSEStatusTypes>(
+                                                                          Select(jproperty => new Timestamped<EVSEStatusType>(
                                                                                                   DateTime.Parse(jproperty.Name),
-                                                                                                  (EVSEStatusTypes) Enum.Parse(typeof(EVSEStatusTypes), jproperty.Value.ToString())
+                                                                                                  (EVSEStatusType) Enum.Parse(typeof(EVSEStatusType), jproperty.Value.ToString())
                                                                                               )).
                                                                           OrderBy(status   => status.Timestamp).
                                                                           ToArray();
@@ -8801,7 +8801,7 @@ namespace cloud.charging.open.API
 
 
                                              if (StatusList is null)
-                                                 evse.Status = new Timestamped<EVSEStatusTypes>(Request.Timestamp,
+                                                 evse.Status = new Timestamped<EVSEStatusType>(Request.Timestamp,
                                                                                                 CurrentStatus.Value);
                                              else
                                                  roamingNetwork.SetEVSEStatus(evse!.Id,
