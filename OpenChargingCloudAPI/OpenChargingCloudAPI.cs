@@ -2079,11 +2079,7 @@ namespace cloud.charging.open.API
         public static readonly HTTPEventSource_Id   ImporterLogId                                  = HTTPEventSource_Id.Parse("ImporterLog");
         public static readonly HTTPEventSource_Id   ForwardingInfosId                              = HTTPEventSource_Id.Parse("ForwardingInfos");
 
-
-        public                 String               WWWAuthenticateDefaults                        = @"Basic realm=""Open Charging Cloud"", charset =""UTF-8""";
-                                                                                                     //@"Bearer realm=""Open Charging Cloud"", error=""invalid_token"", error_description=""The access token is invalid!""",
-                                                                                                     //"Token",
-                                                                                                     //"API-Key"
+        public                 WWWAuthenticate      WWWAuthenticateDefaults                        = WWWAuthenticate.Basic("Open Charging Cloud");
 
         #endregion
 
@@ -3574,7 +3570,7 @@ namespace cloud.charging.open.API
                                               Server                     = HTTPServer.DefaultServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
-                                              AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD", "COUNT" },
+                                              AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
                                               Connection                 = "close"
@@ -3588,7 +3584,7 @@ namespace cloud.charging.open.API
                                           Server                     = HTTPServer.DefaultServerName,
                                           Date                       = Timestamp.Now,
                                           AccessControlAllowOrigin   = "*",
-                                          AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD", "COUNT" },
+                                          AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                           AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                           Connection                 = "close"
                                       }.AsImmutable);
@@ -3617,7 +3613,7 @@ namespace cloud.charging.open.API
                                               Server                     = HTTPServer.DefaultServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
-                                              AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD", "COUNT" },
+                                              AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
                                               Connection                 = "close"
@@ -3670,7 +3666,7 @@ namespace cloud.charging.open.API
                                               Server                     = HTTPServer.DefaultServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
-                                              AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD", "COUNT" },
+                                              AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
                                               Connection                 = "close"
@@ -3688,7 +3684,7 @@ namespace cloud.charging.open.API
                                           Server                        = HTTPServer.DefaultServerName,
                                           Date                          = Timestamp.Now,
                                           AccessControlAllowOrigin      = "*",
-                                          AccessControlAllowMethods     = new[] { "GET", "COUNT", "OPTIONS" },
+                                          AccessControlAllowMethods     = [ "GET", "COUNT", "OPTIONS" ],
                                           AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
                                           ETag                          = "1",
                                           ContentType                   = HTTPContentType.Application.JSON_UTF8,
@@ -3723,7 +3719,7 @@ namespace cloud.charging.open.API
                                               Server                     = HTTPServer.DefaultServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
-                                              AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD", "COUNT" },
+                                              AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
                                               Connection                 = "close"
@@ -3739,7 +3735,7 @@ namespace cloud.charging.open.API
                                           Server                       = HTTPServer.DefaultServerName,
                                           Date                         = Timestamp.Now,
                                           AccessControlAllowOrigin     = "*",
-                                          AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
+                                          AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
                                           AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
                                           ETag                         = "1",
                                           ContentType                  = HTTPContentType.Application.JSON_UTF8,
@@ -3948,7 +3944,7 @@ namespace cloud.charging.open.API
                                               Server                     = HTTPServer.DefaultServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
-                                              AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD", "COUNT" },
+                                              AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
                                               Connection                 = "close"
@@ -4003,7 +3999,7 @@ namespace cloud.charging.open.API
                                               Server                     = HTTPServer.DefaultServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
-                                              AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD", "COUNT" },
+                                              AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
                                               Connection                 = "close"
@@ -4061,7 +4057,7 @@ namespace cloud.charging.open.API
                                               Server                     = HTTPServer.DefaultServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
-                                              AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD", "COUNT" },
+                                              AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
                                               Connection                 = "close"
@@ -4321,7 +4317,7 @@ namespace cloud.charging.open.API
             //                                  Server                     = HTTPServer.DefaultServerName,
             //                                  Date                       = Timestamp.Now,
             //                                  AccessControlAllowOrigin   = "*",
-            //                                  AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD", "COUNT" },
+            //                                  AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
             //                                  AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
             //                                  WWWAuthenticate            = WWWAuthenticateDefaults,
             //                                  Connection                 = "close"
@@ -4574,7 +4570,7 @@ namespace cloud.charging.open.API
                                               Server                     = HTTPServer.DefaultServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
-                                              AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD", "COUNT" },
+                                              AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
                                               Connection                 = "close"
@@ -4600,7 +4596,7 @@ namespace cloud.charging.open.API
                                           Server                     = HTTPServer.DefaultServerName,
                                           Date                       = Timestamp.Now,
                                           AccessControlAllowOrigin   = "*",
-                                          AccessControlAllowMethods  = new[] { "GET", "COUNT", "OPTIONS" },
+                                          AccessControlAllowMethods  = [ "GET", "COUNT", "OPTIONS" ],
                                           AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                           Connection                 = "close"
                                       }.AsImmutable);
@@ -4629,7 +4625,7 @@ namespace cloud.charging.open.API
                                               Server                     = HTTPServer.DefaultServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
-                                              AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD", "COUNT" },
+                                              AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
                                               Connection                 = "close"
@@ -4667,7 +4663,7 @@ namespace cloud.charging.open.API
                                           Server                        = HTTPServer.DefaultServerName,
                                           Date                          = Timestamp.Now,
                                           AccessControlAllowOrigin      = "*",
-                                          AccessControlAllowMethods     = new[] { "GET", "COUNT", "OPTIONS" },
+                                          AccessControlAllowMethods     = [ "GET", "COUNT", "OPTIONS" ],
                                           AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
                                           ETag                          = "1",
                                           ContentType                   = HTTPContentType.Application.JSON_UTF8,
@@ -4710,7 +4706,7 @@ namespace cloud.charging.open.API
                                               Server                     = HTTPServer.DefaultServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
-                                              AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD", "COUNT" },
+                                              AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
                                               Connection                 = "close"
@@ -4736,7 +4732,7 @@ namespace cloud.charging.open.API
                                           Server                        = HTTPServer.DefaultServerName,
                                           Date                          = Timestamp.Now,
                                           AccessControlAllowOrigin      = "*",
-                                          AccessControlAllowMethods     = new[] { "GET", "COUNT", "OPTIONS" },
+                                          AccessControlAllowMethods     = [ "GET", "COUNT", "OPTIONS" ],
                                           AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
                                           ETag                          = "1",
                                           Connection                    = "close"
@@ -4766,7 +4762,7 @@ namespace cloud.charging.open.API
                                               Server                     = HTTPServer.DefaultServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
-                                              AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD", "COUNT" },
+                                              AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
                                               Connection                 = "close"
@@ -4792,7 +4788,7 @@ namespace cloud.charging.open.API
                                           Server                       = HTTPServer.DefaultServerName,
                                           Date                         = Timestamp.Now,
                                           AccessControlAllowOrigin     = "*",
-                                          AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
+                                          AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
                                           AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
                                           ETag                         = "1",
                                           ContentType                  = HTTPContentType.Application.JSON_UTF8,
@@ -4966,7 +4962,7 @@ namespace cloud.charging.open.API
                                                      Server                       = HTTPServer.DefaultServerName,
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
-                                                     AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
+                                                     AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
                                                      AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
                                                      ETag                         = "1",
                                                      ContentType                  = HTTPContentType.Application.JSON_UTF8,
@@ -5078,7 +5074,7 @@ namespace cloud.charging.open.API
                                                      Server                       = HTTPServer.DefaultServerName,
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
-                                                     AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
+                                                     AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
                                                      AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
                                                      ETag                         = "1",
                                                      ContentType                  = HTTPContentType.Application.JSON_UTF8,
@@ -5248,7 +5244,7 @@ namespace cloud.charging.open.API
                                                      Server                       = HTTPServer.DefaultServerName,
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
-                                                     AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
+                                                     AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
                                                      AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
                                                      ETag                         = "1",
                                                      ContentType                  = HTTPContentType.Application.JSON_UTF8,
@@ -5361,7 +5357,7 @@ namespace cloud.charging.open.API
                                                      Server                       = HTTPServer.DefaultServerName,
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
-                                                     AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
+                                                     AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
                                                      AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
                                                      ETag                         = "1",
                                                      ContentType                  = HTTPContentType.Application.JSON_UTF8,
@@ -5511,7 +5507,7 @@ namespace cloud.charging.open.API
                                               Server                     = HTTPServer.DefaultServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
-                                              AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD", "COUNT" },
+                                              AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
                                               Connection                 = "close"
@@ -5537,7 +5533,7 @@ namespace cloud.charging.open.API
                                           Server                       = HTTPServer.DefaultServerName,
                                           Date                         = Timestamp.Now,
                                           AccessControlAllowOrigin     = "*",
-                                          AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
+                                          AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
                                           AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
                                           Connection                   = "close"
                                       }.AsImmutable);
@@ -5566,7 +5562,7 @@ namespace cloud.charging.open.API
                                               Server                     = HTTPServer.DefaultServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
-                                              AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD", "COUNT" },
+                                              AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
                                               Connection                 = "close"
@@ -5602,7 +5598,7 @@ namespace cloud.charging.open.API
                                           Server                        = HTTPServer.DefaultServerName,
                                           Date                          = Timestamp.Now,
                                           AccessControlAllowOrigin      = "*",
-                                          AccessControlAllowMethods     = new[] { "GET", "COUNT", "OPTIONS" },
+                                          AccessControlAllowMethods     = [ "GET", "COUNT", "OPTIONS" ],
                                           AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
                                           ETag                          = "1",
                                           ContentType                   = HTTPContentType.Application.JSON_UTF8,
@@ -5646,7 +5642,7 @@ namespace cloud.charging.open.API
                                               Server                     = HTTPServer.DefaultServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
-                                              AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD", "COUNT" },
+                                              AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
                                               Connection                 = "close"
@@ -5672,7 +5668,7 @@ namespace cloud.charging.open.API
                                           Server                     = HTTPServer.DefaultServerName,
                                           Date                       = Timestamp.Now,
                                           AccessControlAllowOrigin   = "*",
-                                          AccessControlAllowMethods  = new[] { "GET", "COUNT", "OPTIONS" },
+                                          AccessControlAllowMethods  = [ "GET", "COUNT", "OPTIONS" ],
                                           AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                           ETag                       = "1",
                                           Connection                 = "close"
@@ -5702,7 +5698,7 @@ namespace cloud.charging.open.API
                                               Server                     = HTTPServer.DefaultServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
-                                              AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD", "COUNT" },
+                                              AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
                                               Connection                 = "close"
@@ -5728,7 +5724,7 @@ namespace cloud.charging.open.API
                                           Server                       = HTTPServer.DefaultServerName,
                                           Date                         = Timestamp.Now,
                                           AccessControlAllowOrigin     = "*",
-                                          AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
+                                          AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
                                           AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
                                           ETag                         = "1",
                                           ContentType                  = HTTPContentType.Application.JSON_UTF8,
@@ -5906,7 +5902,7 @@ namespace cloud.charging.open.API
                                                      Server                       = HTTPServer.DefaultServerName,
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
-                                                     AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
+                                                     AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
                                                      AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
                                                      ETag                         = "1",
                                                      ContentType                  = HTTPContentType.Application.JSON_UTF8,
@@ -6017,7 +6013,7 @@ namespace cloud.charging.open.API
                                                      Server                       = HTTPServer.DefaultServerName,
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
-                                                     AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
+                                                     AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
                                                      AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
                                                      ETag                         = "1",
                                                      ContentType                  = HTTPContentType.Application.JSON_UTF8,
@@ -6167,7 +6163,7 @@ namespace cloud.charging.open.API
                                               Server                     = HTTPServer.DefaultServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
-                                              AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD", "COUNT" },
+                                              AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
                                               Connection                 = "close"
@@ -6193,7 +6189,7 @@ namespace cloud.charging.open.API
                                           Server                       = HTTPServer.DefaultServerName,
                                           Date                         = Timestamp.Now,
                                           AccessControlAllowOrigin     = "*",
-                                          AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
+                                          AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
                                           AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
                                           Connection                   = "close"
                                       }.AsImmutable);
@@ -6222,7 +6218,7 @@ namespace cloud.charging.open.API
                                               Server                     = HTTPServer.DefaultServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
-                                              AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD", "COUNT" },
+                                              AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
                                               Connection                 = "close"
@@ -6262,7 +6258,7 @@ namespace cloud.charging.open.API
                                           Server                       = HTTPServer.DefaultServerName,
                                           Date                         = Timestamp.Now,
                                           AccessControlAllowOrigin     = "*",
-                                          AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
+                                          AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
                                           AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
                                           ETag                         = "1",
                                           ContentType                  = HTTPContentType.Application.JSON_UTF8,
@@ -6306,7 +6302,7 @@ namespace cloud.charging.open.API
                                               Server                     = HTTPServer.DefaultServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
-                                              AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD", "COUNT" },
+                                              AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
                                               Connection                 = "close"
@@ -6332,7 +6328,7 @@ namespace cloud.charging.open.API
                                           Server                       = HTTPServer.DefaultServerName,
                                           Date                         = Timestamp.Now,
                                           AccessControlAllowOrigin     = "*",
-                                          AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
+                                          AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
                                           AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
                                           ETag                         = "1",
                                           Connection                   = "close"
@@ -6362,7 +6358,7 @@ namespace cloud.charging.open.API
                                               Server                     = HTTPServer.DefaultServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
-                                              AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD", "COUNT" },
+                                              AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
                                               Connection                 = "close"
@@ -6388,7 +6384,7 @@ namespace cloud.charging.open.API
                                           Server                       = HTTPServer.DefaultServerName,
                                           Date                         = Timestamp.Now,
                                           AccessControlAllowOrigin     = "*",
-                                          AccessControlAllowMethods    = new[] { "GET", "COUNT", "OPTIONS" },
+                                          AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
                                           AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
                                           ETag                         = "1",
                                           ContentType                  = HTTPContentType.Application.JSON_UTF8,
