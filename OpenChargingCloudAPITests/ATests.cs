@@ -109,10 +109,10 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             String[] RoamingNetworkIds  = null;
 
             using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
-                                                                                   requestbuilder => {
-                                                                                       requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                       requestbuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
-                                                                                       requestbuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
+                                                                                   RequestBuilder: requestBuilder => {
+                                                                                       requestBuilder.Host         = HTTPHostname.Localhost;
+                                                                                       requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
+                                                                                       requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                    }),
                                                                                     RequestTimeout: Timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
@@ -142,10 +142,10 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
                 URI = HTTPPath.Parse("/RNs/" + RoamingNetworkId);
 
                 using (var HTTPTask  = _HTTPClient.Execute(client => client.DELETERequest(URI,
-                                                                                          requestbuilder => {
-                                                                                              requestbuilder.Host         = HTTPHostname.Localhost;
-                                                                                              requestbuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
-                                                                                              requestbuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
+                                                                                          RequestBuilder: requestBuilder => {
+                                                                                              requestBuilder.Host         = HTTPHostname.Localhost;
+                                                                                              requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
+                                                                                              requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                           }),
                                                                                            RequestTimeout: Timeout,
                                                                                            CancellationToken: new CancellationTokenSource().Token))
