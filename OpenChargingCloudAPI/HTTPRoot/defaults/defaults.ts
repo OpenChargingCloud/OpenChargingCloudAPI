@@ -1,2 +1,3 @@
 ﻿
-var HTTPCookieId:  string = "OpenChargingCloudAPI";
+
+HTTPCookieId = "OpenChargingCloudAPI";

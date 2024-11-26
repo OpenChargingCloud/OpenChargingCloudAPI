@@ -6,6 +6,7 @@
     "allowJs": false
   },
   "files": [
+    "../../UsersAPI/UsersAPI/HTTPRoot/defaults/defaults.ts",
     "HTTPRoot/defaults/defaults.ts"
   ]
 }

@@ -1,2 +1,2 @@
-var HTTPCookieId = "OpenChargingCloudAPI";
+HTTPCookieId = "OpenChargingCloudAPI";
 //# sourceMappingURL=defaults.js.map

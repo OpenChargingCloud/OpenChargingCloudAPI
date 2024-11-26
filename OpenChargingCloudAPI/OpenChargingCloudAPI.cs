@@ -3204,11 +3204,12 @@ namespace cloud.charging.open.API
             });
 
 
+
             #region /shared/OpenChargingCloudAPI
 
             this.MapResourceAssemblyFolder(HTTPHostname.Any,
                                            HTTPPath.Parse("/shared/OpenChargingCloudAPI"),
-                                           HTTPRoot.Substring(0, HTTPRoot.Length - 1));
+                                           HTTPRoot[..^1]);
 
             #endregion
 
