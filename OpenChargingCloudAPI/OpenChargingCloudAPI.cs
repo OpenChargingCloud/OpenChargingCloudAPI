@@ -3217,150 +3217,159 @@ namespace cloud.charging.open.API
 
             #region / (HTTPRoot)
 
-            AddMethodCallback(HTTPHostname.Any,
-                              HTTPMethod.GET,
-                              [
-                                  URLPathPrefix + HTTPPath.Parse("/index.html"),
-                                  URLPathPrefix + HTTPPath.Parse("/"),
-                                  URLPathPrefix + HTTPPath.Parse("/{FileName}")
-                              ],
-                              OpenEnd: true,
-                              HTTPDelegate: Request => {
+            AddMethodCallback(
 
-                                  #region Get file path
+                HTTPHostname.Any,
+                HTTPMethod.GET,
+                [
+                    URLPathPrefix + HTTPPath.Parse("/index.html"),
+                    URLPathPrefix + HTTPPath.Parse("/"),
+                    URLPathPrefix + HTTPPath.Parse("/{FileName}")
+                ],
+                OpenEnd:       true,
+                HTTPDelegate:  request => {
 
-                                  var filePath = (Request.ParsedURLParameters is not null && Request.ParsedURLParameters.Length > 0)
-                                                     ? Request.ParsedURLParameters.Last().Replace('/', '.')
-                                                     : "index.html";
+                    #region Get file path
 
-                                  if (filePath.EndsWith('.'))
-                                      filePath += "index.shtml";
+                    var filePath = (request.ParsedURLParameters is not null && request.ParsedURLParameters.Length > 0)
+                                        ? request.ParsedURLParameters.Last().Replace('/', '.')
+                                        : "index.html";
 
-                                  #endregion
+                    if (filePath.EndsWith('.'))
+                        filePath += "index.shtml";
 
-                                  #region The resource is a templated HTML file...
+                    #endregion
 
-                                  if (filePath.EndsWith(".shtml", StringComparison.Ordinal))
-                                  {
+                    #region The resource is a templated HTML file...
 
-                                      var file = MixWithHTMLTemplate(filePath);
+                    if (filePath.EndsWith(".shtml", StringComparison.Ordinal))
+                    {
 
-                                      if (file.IsNullOrEmpty())
-                                          return Task.FromResult(
-                                              new HTTPResponse.Builder(Request) {
-                                                  HTTPStatusCode  = HTTPStatusCode.NotFound,
-                                                  Server          = HTTPServer.DefaultServerName,
-                                                  Date            = Timestamp.Now,
-                                                  CacheControl    = "public, max-age=300",
-                                                  Connection      = ConnectionType.Close
-                                              }.AsImmutable);
+                        var file = MixWithHTMLTemplate(filePath);
 
-                                      else
-                                          return Task.FromResult(
-                                              new HTTPResponse.Builder(Request) {
-                                                  HTTPStatusCode  = HTTPStatusCode.OK,
-                                                  ContentType     = HTTPContentType.Text.HTML_UTF8,
-                                                  Content         = file.ToUTF8Bytes(),
-                                                  CacheControl    = "public, max-age=300",
-                                                  Connection      = ConnectionType.Close
-                                              }.AsImmutable);
+                        if (file.IsNullOrEmpty())
+                            return Task.FromResult(
+                                new HTTPResponse.Builder(request) {
+                                    HTTPStatusCode  = HTTPStatusCode.NotFound,
+                                    Server          = HTTPServer.DefaultServerName,
+                                    Date            = Timestamp.Now,
+                                    CacheControl    = "public, max-age=300",
+                                    Connection      = ConnectionType.Close
+                                }.AsImmutable);
 
-                                  }
+                        else
+                            return Task.FromResult(
+                                new HTTPResponse.Builder(request) {
+                                    HTTPStatusCode  = HTTPStatusCode.OK,
+                                    ContentType     = HTTPContentType.Text.HTML_UTF8,
+                                    Content         = file.ToUTF8Bytes(),
+                                    CacheControl    = "public, max-age=300",
+                                    Connection      = ConnectionType.Close
+                                }.AsImmutable);
 
-                                  #endregion
+                    }
 
-                                  else
-                                  {
+                    #endregion
 
-                                      var resourceStream = GetResourceStream(filePath);
+                    else
+                    {
 
-                                      #region File not found!
+                        var resourceStream = GetResourceStream(filePath);
 
-                                      if (resourceStream is null)
-                                          return Task.FromResult(
-                                              new HTTPResponse.Builder(Request) {
-                                                  HTTPStatusCode  = HTTPStatusCode.NotFound,
-                                                  Server          = HTTPServer.DefaultServerName,
-                                                  Date            = Timestamp.Now,
-                                                  CacheControl    = "public, max-age=300",
-                                                  Connection      = ConnectionType.Close
-                                              }.AsImmutable);
+                        #region File not found!
 
-                                      #endregion
+                        if (resourceStream is null)
+                            return Task.FromResult(
+                                new HTTPResponse.Builder(request) {
+                                    HTTPStatusCode  = HTTPStatusCode.NotFound,
+                                    Server          = HTTPServer.DefaultServerName,
+                                    Date            = Timestamp.Now,
+                                    CacheControl    = "public, max-age=300",
+                                    Connection      = ConnectionType.Close
+                                }.AsImmutable);
 
-                                      #region Choose HTTP content type based on the file name extension of the requested resource...
+                        #endregion
 
-                                      var fileName             = filePath[(filePath.LastIndexOf("/") + 1)..];
+                        #region Choose HTTP content type based on the file name extension of the requested resource...
 
-                                      var responseContentType  = fileName.Remove(0, fileName.LastIndexOf(".") + 1) switch {
+                        var fileName             = filePath[(filePath.LastIndexOf("/") + 1)..];
 
-                                          "htm"   => HTTPContentType.Text.HTML_UTF8,
-                                          "html"  => HTTPContentType.Text.HTML_UTF8,
-                                          "css"   => HTTPContentType.Text.CSS_UTF8,
-                                          "gif"   => HTTPContentType.Image.GIF,
-                                          "jpg"   => HTTPContentType.Image.JPEG,
-                                          "jpeg"  => HTTPContentType.Image.JPEG,
-                                          "svg"   => HTTPContentType.Image.SVG,
-                                          "png"   => HTTPContentType.Image.PNG,
-                                          "ico"   => HTTPContentType.Image.ICO,
-                                          "js"    => HTTPContentType.Text.JAVASCRIPT_UTF8,
-                                          "txt"   => HTTPContentType.Text.PLAIN,
-                                          "xml"   => HTTPContentType.Text.XML_UTF8,
+                        var responseContentType  = fileName.Remove(0, fileName.LastIndexOf(".") + 1) switch {
 
-                                          _       => HTTPContentType.Application.OCTETSTREAM,
+                            "htm"   => HTTPContentType.Text.HTML_UTF8,
+                            "html"  => HTTPContentType.Text.HTML_UTF8,
+                            "css"   => HTTPContentType.Text.CSS_UTF8,
+                            "gif"   => HTTPContentType.Image.GIF,
+                            "jpg"   => HTTPContentType.Image.JPEG,
+                            "jpeg"  => HTTPContentType.Image.JPEG,
+                            "svg"   => HTTPContentType.Image.SVG,
+                            "png"   => HTTPContentType.Image.PNG,
+                            "ico"   => HTTPContentType.Image.ICO,
+                            "js"    => HTTPContentType.Text.JAVASCRIPT_UTF8,
+                            "txt"   => HTTPContentType.Text.PLAIN,
+                            "xml"   => HTTPContentType.Text.XML_UTF8,
 
-                                      };
+                            _       => HTTPContentType.Application.OCTETSTREAM,
 
-                                      #endregion
+                        };
 
-                                      #region Create HTTP response
+                        #endregion
 
-                                      return Task.FromResult(
-                                          new HTTPResponse.Builder(Request) {
-                                              HTTPStatusCode  = HTTPStatusCode.OK,
-                                              Server          = HTTPServer.DefaultServerName,
-                                              Date            = Timestamp.Now,
-                                              ContentType     = responseContentType,
-                                              ContentStream   = resourceStream,
-                                              CacheControl    = "public, max-age=300",
-                                              //Expires          = "Mon, 25 Jun 2015 21:31:12 GMT",
+                        #region Create HTTP response
+
+                        return Task.FromResult(
+                            new HTTPResponse.Builder(request) {
+                                HTTPStatusCode  = HTTPStatusCode.OK,
+                                Server          = HTTPServer.DefaultServerName,
+                                Date            = Timestamp.Now,
+                                ContentType     = responseContentType,
+                                ContentStream   = resourceStream,
+                                CacheControl    = "public, max-age=300",
+                                //Expires          = "Mon, 25 Jun 2015 21:31:12 GMT",
 //                                              KeepAlive       = new KeepAliveType(TimeSpan.FromMinutes(5), 500),
 //                                              Connection      = "Keep-Alive",
-                                              Connection      = ConnectionType.Close
-                                          }.AsImmutable);
+                                Connection      = ConnectionType.Close
+                            }.AsImmutable);
 
-                                      #endregion
+                        #endregion
 
-                                  }
+                    }
 
-                              }, AllowReplacement: URLReplacement.Allow);
+                },
+                AllowReplacement: URLReplacement.Allow
+
+            );
 
             #endregion
 
 
             #region ~/impress
 
-            AddMethodCallback(Hostname,
-                              HTTPMethod.GET,
-                              URLPathPrefix + "impress",
-                              HTTPContentType.Text.HTML_UTF8,
-                              HTTPDelegate: Request => {
+            AddMethodCallback(
 
-                                  return Task.FromResult(
-                                      new HTTPResponse.Builder(Request) {
-                                          HTTPStatusCode              = HTTPStatusCode.OK,
-                                          Server                      = HTTPServer.DefaultServerName,
-                                          Date                        = Timestamp.Now,
-                                          AccessControlAllowOrigin    = "*",
-                                          AccessControlAllowMethods   = [ "GET" ],
-                                          AccessControlAllowHeaders   = [ "Content-Type", "Accept", "Authorization" ],
-                                          ContentType                 = HTTPContentType.Text.HTML_UTF8,
-                                          Content                     = GetResourceBytes("legal.impress.html"),
-                                          Connection                  = ConnectionType.Close,
-                                          Vary                        = "Accept"
-                                      }.AsImmutable);
+                Hostname,
+                HTTPMethod.GET,
+                URLPathPrefix + "impress",
+                HTTPContentType.Text.HTML_UTF8,
+                HTTPDelegate: request =>
 
-                              }, AllowReplacement: URLReplacement.Allow);
+                    Task.FromResult(
+                        new HTTPResponse.Builder(request) {
+                            HTTPStatusCode              = HTTPStatusCode.OK,
+                            Server                      = HTTPServer.DefaultServerName,
+                            Date                        = Timestamp.Now,
+                            AccessControlAllowOrigin    = "*",
+                            AccessControlAllowMethods   = [ "GET" ],
+                            AccessControlAllowHeaders   = [ "Content-Type", "Accept", "Authorization" ],
+                            ContentType                 = HTTPContentType.Text.HTML_UTF8,
+                            Content                     = GetResourceBytes("legal.impress.html"),
+                            Connection                  = ConnectionType.Close,
+                            Vary                        = "Accept"
+                        }.AsImmutable),
+
+                AllowReplacement: URLReplacement.Allow
+
+            );
 
             #endregion
 
