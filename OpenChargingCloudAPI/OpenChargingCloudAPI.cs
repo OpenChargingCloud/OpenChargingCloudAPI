@@ -3020,7 +3020,7 @@ namespace cloud.charging.open.API
 
             DebugLog     = HTTPServer.AddJSONEventSource(EventIdentification:      DebugLogId,
                                                          HTTPAPI:                  this,
-                                                         URLTemplate:              this.URLPathPrefix + "/" + DebugLogId.ToString(),
+                                                         URLTemplate:              this.URLPathPrefix + DebugLogId.ToString(),
                                                          MaxNumberOfCachedEvents:  1000,
                                                          RetryIntervall:           TimeSpan.FromSeconds(5),
                                                          EnableLogging:            true,
@@ -3028,7 +3028,7 @@ namespace cloud.charging.open.API
 
             ImporterLog  = HTTPServer.AddJSONEventSource(EventIdentification:      ImporterLogId,
                                                          HTTPAPI:                  this,
-                                                         URLTemplate:              this.URLPathPrefix + "/" + ImporterLogId.ToString(),
+                                                         URLTemplate:              this.URLPathPrefix + ImporterLogId.ToString(),
                                                          MaxNumberOfCachedEvents:  1000,
                                                          RetryIntervall:           TimeSpan.FromSeconds(5),
                                                          EnableLogging:            true,
