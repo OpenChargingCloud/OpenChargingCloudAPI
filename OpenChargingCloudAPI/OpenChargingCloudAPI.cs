@@ -9150,11 +9150,11 @@ namespace cloud.charging.open.API
 
             #endregion
 
-            #region SET         ~/RNs/{RoamingNetworkId}/ChargingSessions/{ChargingSessionId}
+            #region SET         ~/RNs/{RoamingNetworkId}/ChargingSessions/{ChargingSessionId}/{command}
 
-            // --------------------------------------------------------------------------------------------------------------------------------------
+            // -------------------------------------------------------------------------------------------------------------------------------------------------------
             // curl -v -X SET -H "Content-Type: application/json" --data @session.json http://127.0.0.1:3004/RNs/Prod/ChargingSessions/{ChargingSessionId}/{command}
-            // --------------------------------------------------------------------------------------------------------------------------------------
+            // -------------------------------------------------------------------------------------------------------------------------------------------------------
             AddMethodCallback(Hostname,
                               HTTPMethod.SET,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingSessions/{ChargingSessionId}/{command}",
