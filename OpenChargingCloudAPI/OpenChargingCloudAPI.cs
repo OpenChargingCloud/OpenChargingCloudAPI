@@ -8561,7 +8561,7 @@ namespace cloud.charging.open.API
                                                      if (JSON.ParseOptional("CurrentStatus",
                                                                             "EVSE admin status",
                                                                             HTTPServer.DefaultServerName,
-                                                                            out EVSEAdminStatusTypes? CurrentStatus,
+                                                                            out EVSEAdminStatusType? CurrentStatus,
                                                                             Request,
                                                                             out httpResponse))
                                                      {
@@ -8575,7 +8575,7 @@ namespace cloud.charging.open.API
 
                                                      #region Parse StatusList     [optional]
 
-                                                     Timestamped<EVSEAdminStatusTypes>[] StatusList  = null;
+                                                     Timestamped<EVSEAdminStatusType>[] StatusList  = null;
 
                                                      if (JSON.ParseOptional("StatusList",
                                                                             "status list",
@@ -8596,9 +8596,9 @@ namespace cloud.charging.open.API
 
                                                                  StatusList = JSONStatusList.
                                                                                   Values<JProperty>().
-                                                                                  Select(jproperty => new Timestamped<EVSEAdminStatusTypes>(
+                                                                                  Select(jproperty => new Timestamped<EVSEAdminStatusType>(
                                                                                                           DateTime.Parse(jproperty.Name),
-                                                                                                          (EVSEAdminStatusTypes) Enum.Parse(typeof(EVSEAdminStatusTypes), jproperty.Value.ToString())
+                                                                                                          (EVSEAdminStatusType) Enum.Parse(typeof(EVSEAdminStatusType), jproperty.Value.ToString())
                                                                                                       )).
                                                                                   OrderBy(status   => status.Timestamp).
                                                                                   ToArray();
@@ -8649,8 +8649,8 @@ namespace cloud.charging.open.API
 
 
                                              if (StatusList == null)
-                                                 StatusList = new Timestamped<EVSEAdminStatusTypes>[] {
-                                                                  new Timestamped<EVSEAdminStatusTypes>(Request.Timestamp, CurrentStatus.Value)
+                                                 StatusList = new Timestamped<EVSEAdminStatusType>[] {
+                                                                  new Timestamped<EVSEAdminStatusType>(Request.Timestamp, CurrentStatus.Value)
                                                               };
 
                                              roamingNetwork.SetEVSEAdminStatus(evse.Id, StatusList);

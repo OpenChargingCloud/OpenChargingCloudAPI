@@ -166,8 +166,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.XML
                         Pool.Name.            ToXML(NS_ChargingPool, NS_EVSPool_Name),
                         (!Pool.Description.IsNullOrEmpty()) ?
                         Pool.Description.     ToXML(NS_ChargingPool, NS_EVSPool_Description)      : null,
-                        (Pool.LocationLanguage != Languages.unknown) ?
-                        Pool.LocationLanguage.ToXML(NS_ChargingPool, NS_EVSPool_LocationLanguage) : null,
+                 //       (Pool.LocationLanguage != Languages.unknown) ?
+                 //       Pool.LocationLanguage.ToXML(NS_ChargingPool, NS_EVSPool_LocationLanguage) : null,
                         Pool.GeoLocation.     ToXML(NS_ChargingPool, "GeoLocation"),
                         Pool.EntranceLocation.ToXML(NS_ChargingPool, "EntranceLocation")
                    );
