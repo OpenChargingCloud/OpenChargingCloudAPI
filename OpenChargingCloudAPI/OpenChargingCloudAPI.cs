@@ -10364,7 +10364,7 @@ namespace cloud.charging.open.API
                                                      if (!JSON.ParseMandatoryEnum("newstatus",
                                                                                   "charging pool admin status",
                                                                                   HTTPServer.DefaultServerName,
-                                                                                  out ChargingPoolAdminStatusTypes NewChargingPoolAdminStatus,
+                                                                                  out ChargingPoolAdminStatusType NewChargingPoolAdminStatus,
                                                                                   Request,
                                                                                   out _HTTPResponse))
                                                      {
@@ -10388,7 +10388,7 @@ namespace cloud.charging.open.API
                                              _RoamingNetwork.ChargingStationOperators.ForEach(evseoperator => {
 
                                                  if (evseoperator.ChargingPoolExists(ChargingPoolId))
-                                                     evseoperator.SetChargingPoolAdminStatus(ChargingPoolId, new Timestamped<ChargingPoolAdminStatusTypes>(NewChargingPoolAdminStatus), SendUpstream: true);
+                                                     evseoperator.SetChargingPoolAdminStatus(ChargingPoolId, new Timestamped<ChargingPoolAdminStatusType>(NewChargingPoolAdminStatus), SendUpstream: true);
 
                                              });
 
