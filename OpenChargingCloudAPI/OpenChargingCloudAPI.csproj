@@ -86,8 +86,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\SMSAPI\SMSAPI\SMSAPI.csproj" />
-    <ProjectReference Include="..\..\TelegramBotAPI\TelegramBotAPI\TelegramBotAPI.csproj" />
     <ProjectReference Include="..\..\WWCP_Core\WWCP_Core\WWCP_Core.csproj" />
   </ItemGroup>
 

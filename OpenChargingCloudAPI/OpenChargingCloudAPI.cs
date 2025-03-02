@@ -24,8 +24,8 @@ using System.Diagnostics.CodeAnalysis;
 
 using Newtonsoft.Json.Linq;
 
-using com.GraphDefined.SMSApi.API;
-using com.GraphDefined.SMSApi.API.Response;
+//using com.GraphDefined.SMSApi.API;
+//using com.GraphDefined.SMSApi.API.Response;
 using org.GraphDefined.Vanaheimr.Illias;
 using org.GraphDefined.Vanaheimr.Hermod;
 using org.GraphDefined.Vanaheimr.Hermod.HTTP;
@@ -2801,10 +2801,10 @@ namespace cloud.charging.open.API
         /// Create an instance of the Open Charging Cloud API.
         /// </summary>
         /// <param name="HTTPHostname">The HTTP hostname for all URLs within this API.</param>
-        /// <param name="ExternalDNSName">The offical URL/DNS name of this service, e.g. for sending e-mails.</param>
+        /// <param name="ExternalDNSName">The official URL/DNS name of this service, e.g. for sending e-mails.</param>
         /// <param name="HTTPServerPort">A TCP port to listen on.</param>
         /// <param name="BasePath">When the API is served from an optional subdirectory path.</param>
-        /// <param name="HTTPServerName">The default HTTP servername, used whenever no HTTP Host-header has been given.</param>
+        /// <param name="HTTPServerName">The default HTTP server name, used whenever no HTTP Host-header has been given.</param>
         /// 
         /// <param name="URLPathPrefix">A common prefix for all URLs.</param>
         /// <param name="HTTPServiceName">The name of the HTTP service.</param>
@@ -2823,7 +2823,7 @@ namespace cloud.charging.open.API
         /// <param name="SMTPClient">A SMTP client for sending e-mails.</param>
         /// <param name="SMSClient">A SMS client for sending SMS.</param>
         /// <param name="SMSSenderName">The (default) SMS sender name.</param>
-        /// <param name="TelegramClient">A Telegram client for sendind and receiving Telegrams.</param>
+        /// <param name="TelegramClient">A Telegram client for sending and receiving Telegrams.</param>
         /// 
         /// <param name="PasswordQualityCheck">A delegate to ensure a minimal password quality.</param>
         /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
@@ -2889,8 +2889,8 @@ namespace cloud.charging.open.API
                                     EMailAddress?                                              APIRobotEMailAddress         = null,
                                     String?                                                    APIRobotGPGPassphrase        = null,
                                     ISMTPClient?                                               SMTPClient                   = null,
-                                    ISMSClient?                                                SMSClient                    = null,
-                                    String?                                                    SMSSenderName                = null,
+                                    //ISMSClient?                                                SMSClient                    = null,
+                                    //String?                                                    SMSSenderName                = null,
                                     //ITelegramStore?                                            TelegramClient               = null,
 
                                     PasswordQualityCheckDelegate?                              PasswordQualityCheck         = null,
