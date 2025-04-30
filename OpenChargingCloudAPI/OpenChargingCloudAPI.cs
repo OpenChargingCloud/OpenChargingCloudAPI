@@ -2068,7 +2068,7 @@ namespace cloud.charging.open.API
         public new const       String               DefaultHTTPServiceName                         = "Open Charging Cloud API";
 
         /// <summary>
-        /// The HTTP root for embedded ressources.
+        /// The HTTP root for embedded resources.
         /// </summary>
         public new const       String               HTTPRoot                                       = "cloud.charging.open.API.HTTPRoot.";
 
