@@ -7392,7 +7392,7 @@ namespace cloud.charging.open.API
                                               ContentType                = HTTPContentType.Application.JSON_UTF8,
                                               Content                    = JSONObject.Create(
                                                                                   new JProperty("reservationId",           result.Reservation.Id.       ToString()),
-                                                                                  new JProperty("startTime",               result.Reservation.StartTime.ToIso8601()),
+                                                                                  new JProperty("startTime",               result.Reservation.StartTime.ToISO8601()),
                                                                                   new JProperty("duration",       (UInt32) result.Reservation.Duration. TotalSeconds)
                                                                               ).ToUTF8Bytes()
                                           };
@@ -10378,7 +10378,7 @@ namespace cloud.charging.open.API
                                              HTTPServer.Get<JObject>(DebugLogId).
                                                  SubmitEvent("SetChargingPoolAdminStatusRequest",
                                                              new JObject(
-                                                                 new JProperty("Timestamp",       Timestamp.Now.ToIso8601()),
+                                                                 new JProperty("Timestamp",       Timestamp.Now.ToISO8601()),
                                                                  new JProperty("RoamingNetwork",  _RoamingNetwork.ToString()),
                                                                  new JProperty("ChargingPoolId",  ChargingPoolId.ToString()),
                                                                  new JProperty("NewStatus",       NewChargingPoolAdminStatus.ToString())
@@ -10552,7 +10552,7 @@ namespace cloud.charging.open.API
                                                  HTTPServer.Get<JObject>(DebugLogId).
                                                      SubmitEvent("SetChargingStationAdminStatusRequest",
                                                                  new JObject(
-                                                                     new JProperty("Timestamp",          Timestamp.Now.ToIso8601()),
+                                                                     new JProperty("Timestamp",          Timestamp.Now.ToISO8601()),
                                                                      new JProperty("RoamingNetwork",     RoamingNetwork.ToString()),
                                                                      new JProperty("ChargingStationId",  ChargingStationId.ToString()),
                                                                      new JProperty("NewStatus",          NewChargingStationAdminStatus.ToString())
@@ -11912,7 +11912,7 @@ namespace cloud.charging.open.API
 
                     => await DebugLog.SubmitEvent("AUTHSTARTRequest",
                                                   JSONObject.Create(
-                                                      new JProperty("timestamp",                   RequestTimestamp.    ToIso8601()),
+                                                      new JProperty("timestamp",                   RequestTimestamp.    ToISO8601()),
                                                       new JProperty("eventTrackingId",             EventTrackingId.     ToString()),
                                                       new JProperty("roamingNetworkId",            RoamingNetworkId.    ToString()),
                                                       EMPRoamingProviderId.HasValue
@@ -11966,7 +11966,7 @@ namespace cloud.charging.open.API
 
                     => await DebugLog.SubmitEvent("AUTHSTARTResponse",
                                                   JSONObject.Create(
-                                                      new JProperty("timestamp",                   RequestTimestamp.    ToIso8601()),
+                                                      new JProperty("timestamp",                   RequestTimestamp.    ToISO8601()),
                                                       new JProperty("eventTrackingId",             EventTrackingId.     ToString()),
                                                       new JProperty("roamingNetworkId",            RoamingNetworkId2.   ToString()),
                                                       EMPRoamingProviderId.HasValue
@@ -12021,7 +12021,7 @@ namespace cloud.charging.open.API
 
                     => await DebugLog.SubmitEvent("AUTHSTOPRequest",
                                                   JSONObject.Create(
-                                                      new JProperty("timestamp",                   RequestTimestamp.    ToIso8601()),
+                                                      new JProperty("timestamp",                   RequestTimestamp.    ToISO8601()),
                                                       new JProperty("eventTrackingId",             EventTrackingId.     ToString()),
                                                       new JProperty("roamingNetworkId",            RoamingNetworkId2.   ToString()),
                                                       EMPRoamingProviderId.HasValue
@@ -12066,7 +12066,7 @@ namespace cloud.charging.open.API
                     => await DebugLog.SubmitEvent("AUTHSTOPResponse",
                                                   JSONObject.Create(
 
-                                                      new JProperty("timestamp",                   RequestTimestamp.    ToIso8601()),
+                                                      new JProperty("timestamp",                   RequestTimestamp.    ToISO8601()),
                                                       new JProperty("eventTrackingId",             EventTrackingId.     ToString()),
                                                       new JProperty("roamingNetworkId",            RoamingNetworkId2.   ToString()),
                                                       EMPRoamingProviderId.HasValue
@@ -12122,7 +12122,7 @@ namespace cloud.charging.open.API
 
                     => await DebugLog.SubmitEvent("OnReserveRequest",
                                                   JSONObject.Create(
-                                                      new JProperty("Timestamp",                 Timestamp.ToIso8601()),
+                                                      new JProperty("Timestamp",                 Timestamp.ToISO8601()),
                                                       EventTrackingId is not null
                                                          ? new JProperty("EventTrackingId",      EventTrackingId.ToString())
                                                          : null,
@@ -12137,7 +12137,7 @@ namespace cloud.charging.open.API
                                                           ? new JProperty("ChargingLocation",    ChargingLocation.ToString())
                                                           : null,
                                                       StartTime.HasValue
-                                                          ? new JProperty("StartTime",           StartTime.Value.ToIso8601())
+                                                          ? new JProperty("StartTime",           StartTime.Value.ToISO8601())
                                                           : null,
                                                       Duration.HasValue
                                                           ? new JProperty("Duration",            Duration.Value.TotalSeconds.ToString())
@@ -12204,7 +12204,7 @@ namespace cloud.charging.open.API
 
                     => await DebugLog.SubmitEvent("OnReserveResponse",
                                                   JSONObject.Create(
-                                                      new JProperty("Timestamp",                 Timestamp.ToIso8601()),
+                                                      new JProperty("Timestamp",                 Timestamp.ToISO8601()),
                                                         EventTrackingId is not null
                                                            ? new JProperty("EventTrackingId",      EventTrackingId.ToString())
                                                            : null,
@@ -12219,7 +12219,7 @@ namespace cloud.charging.open.API
                                                             ? new JProperty("ChargingLocation",    ChargingLocation.ToString())
                                                             : null,
                                                         StartTime.HasValue
-                                                            ? new JProperty("StartTime",           StartTime.Value.ToIso8601())
+                                                            ? new JProperty("StartTime",           StartTime.Value.ToISO8601())
                                                             : null,
                                                         Duration.HasValue
                                                             ? new JProperty("Duration",            Duration.Value.TotalSeconds.ToString())
@@ -12288,7 +12288,7 @@ namespace cloud.charging.open.API
 
                     => await DebugLog.SubmitEvent("OnCancelReservation",
                                                   JSONObject.Create(
-                                                      new JProperty("Timestamp",                Timestamp.ToIso8601()),
+                                                      new JProperty("Timestamp",                Timestamp.ToISO8601()),
                                                       EventTrackingId is not null
                                                           ? new JProperty("EventTrackingId",    EventTrackingId.ToString())
                                                           : null,
@@ -12339,7 +12339,7 @@ namespace cloud.charging.open.API
 
                     => await DebugLog.SubmitEvent("OnRemoteStartRequest",
                                                   JSONObject.Create(
-                                                      new JProperty("timestamp",                   Timestamp.           ToIso8601()),
+                                                      new JProperty("timestamp",                   Timestamp.           ToISO8601()),
                                                       EventTrackingId is not null
                                                           ? new JProperty("eventTrackingId",       EventTrackingId.     ToString())
                                                           : null,
@@ -12392,7 +12392,7 @@ namespace cloud.charging.open.API
 
                     => await DebugLog.SubmitEvent("OnRemoteStartResponse",
                                                   JSONObject.Create(
-                                                      new JProperty("timestamp",                   Timestamp.           ToIso8601()),
+                                                      new JProperty("timestamp",                   Timestamp.           ToISO8601()),
                                                       EventTrackingId      is not null
                                                           ? new JProperty("eventTrackingId",       EventTrackingId.     ToString())
                                                           : null,
@@ -12447,7 +12447,7 @@ namespace cloud.charging.open.API
 
                     => await DebugLog.SubmitEvent("OnRemoteStopRequest",
                                                   JSONObject.Create(
-                                                      new JProperty("timestamp",                   Timestamp.           ToIso8601()),
+                                                      new JProperty("timestamp",                   Timestamp.           ToISO8601()),
                                                       EventTrackingId is not null
                                                           ? new JProperty("eventTrackingId",       EventTrackingId.     ToString())
                                                           : null,
@@ -12490,7 +12490,7 @@ namespace cloud.charging.open.API
 
                     => await DebugLog.SubmitEvent("OnRemoteStopResponse",
                                                   JSONObject.Create(
-                                                      new JProperty("timestamp",                   Timestamp.           ToIso8601()),
+                                                      new JProperty("timestamp",                   Timestamp.           ToISO8601()),
                                                       EventTrackingId is not null
                                                           ? new JProperty("eventTrackingId",       EventTrackingId.     ToString())
                                                           : null,
@@ -12535,7 +12535,7 @@ namespace cloud.charging.open.API
 
                     => await DebugLog.SubmitEvent("OnSendCDRsRequest",
                                                   JSONObject.Create(
-                                                      new JProperty("timestamp",                RequestTimestamp.  ToIso8601()),
+                                                      new JProperty("timestamp",                RequestTimestamp.  ToISO8601()),
                                                       new JProperty("eventTrackingId",          EventTrackingId.   ToString()),
                                                       new JProperty("roamingNetworkId",         RoamingNetworkId2. ToString()),
                                                       //new JProperty("LogTimestamp",                     LogTimestamp.                                          ToIso8601()),
@@ -12549,10 +12549,10 @@ namespace cloud.charging.open.API
                                                              new JProperty("sessionId",                        ChargeDetailRecord.SessionId.                               ToString()),
 
                                                              ChargeDetailRecord.SessionTime is not null
-                                                                 ? new JProperty("sessionStart",               ChargeDetailRecord.SessionTime.StartTime.                   ToIso8601())
+                                                                 ? new JProperty("sessionStart",               ChargeDetailRecord.SessionTime.StartTime.                   ToISO8601())
                                                                  : null,
                                                              ChargeDetailRecord.SessionTime is not null && ChargeDetailRecord.SessionTime.EndTime.HasValue
-                                                                 ? new JProperty("sessionStop",                ChargeDetailRecord.SessionTime.EndTime.Value.               ToIso8601())
+                                                                 ? new JProperty("sessionStop",                ChargeDetailRecord.SessionTime.EndTime.Value.               ToISO8601())
                                                                  : null,
 
                                                              ChargeDetailRecord.AuthenticationStart is not null
@@ -12575,7 +12575,7 @@ namespace cloud.charging.open.API
                                                                  ? new JProperty("reservationStart",           ChargeDetailRecord.ReservationTime.StartTime.               ToString())
                                                                  : null,
                                                              ChargeDetailRecord.ReservationTime is not null && ChargeDetailRecord.ReservationTime.EndTime.HasValue
-                                                                 ? new JProperty("reservationStop",            ChargeDetailRecord.ReservationTime.EndTime.Value.           ToIso8601())
+                                                                 ? new JProperty("reservationStop",            ChargeDetailRecord.ReservationTime.EndTime.Value.           ToISO8601())
                                                                  : null,
                                                              ChargeDetailRecord.Reservation is not null
                                                                  ? new JProperty("reservationLevel",           ChargeDetailRecord.Reservation.ReservationLevel.            ToString())
@@ -12603,7 +12603,7 @@ namespace cloud.charging.open.API
                                                                  : null,
                                                              ChargeDetailRecord.EnergyMeteringValues.Any()
                                                                  ? new JProperty("energyMeteringValues", JSONObject.Create(
-                                                                       ChargeDetailRecord.EnergyMeteringValues.Select(metervalue => new JProperty(metervalue.Timestamp.ToIso8601(),
+                                                                       ChargeDetailRecord.EnergyMeteringValues.Select(metervalue => new JProperty(metervalue.Timestamp.ToISO8601(),
                                                                                                                                                   metervalue.WattHours.kWh)))
                                                                    )
                                                                  : null,
@@ -12615,7 +12615,7 @@ namespace cloud.charging.open.API
                                                                  ? new JProperty("parkingSpaceId",             ChargeDetailRecord.ParkingSpaceId.                      ToString())
                                                                  : null,
                                                              ChargeDetailRecord.ParkingTime is not null
-                                                                 ? new JProperty("parkingTimeStart",           ChargeDetailRecord.ParkingTime.StartTime.               ToIso8601())
+                                                                 ? new JProperty("parkingTimeStart",           ChargeDetailRecord.ParkingTime.StartTime.               ToISO8601())
                                                                  : null,
                                                              ChargeDetailRecord.ParkingTime is not null && ChargeDetailRecord.ParkingTime.EndTime.HasValue
                                                                  ? new JProperty("parkingTimeEnd",             ChargeDetailRecord.ParkingTime.EndTime.Value.           ToString())
@@ -12645,7 +12645,7 @@ namespace cloud.charging.open.API
 
                     => await DebugLog.SubmitEvent("OnEVSEDataChanged",
                                                   JSONObject.Create(
-                                                      new JProperty("timestamp",        Timestamp.           ToIso8601()),
+                                                      new JProperty("timestamp",        Timestamp.           ToISO8601()),
                                                       new JProperty("eventTrackingId",  EventTrackingId.     ToString()),
                                                       new JProperty("roamingNetworkId", NewRoamingNetwork.Id.ToString()),
                                                       new JProperty("EVSEId",           EVSE.Id.             ToString()),
@@ -12665,7 +12665,7 @@ namespace cloud.charging.open.API
 
                     => await DebugLog.SubmitEvent("OnEVSEStatusChanged",
                                                   JSONObject.Create(
-                                                            new JProperty("timestamp",         Timestamp.           ToIso8601()),
+                                                            new JProperty("timestamp",         Timestamp.           ToISO8601()),
                                                             new JProperty("eventTrackingId",   EventTrackingId.     ToString()),
                                                             new JProperty("roamingNetworkId",  NewRoamingNetwork.Id.ToString()),
                                                             new JProperty("EVSEId",            EVSE.Id.             ToString()),
@@ -12686,7 +12686,7 @@ namespace cloud.charging.open.API
 
                     => await DebugLog.SubmitEvent("OnEVSEAdminStatusChanged",
                                                   JSONObject.Create(
-                                                            new JProperty("timestamp",         Timestamp.           ToIso8601()),
+                                                            new JProperty("timestamp",         Timestamp.           ToISO8601()),
                                                             new JProperty("eventTrackingId",   EventTrackingId.     ToString()),
                                                             new JProperty("roamingNetworkId",  NewRoamingNetwork.Id.ToString()),
                                                             new JProperty("EVSEId",            EVSE.Id.             ToString()),
