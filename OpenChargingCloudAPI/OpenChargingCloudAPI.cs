@@ -730,6 +730,151 @@ namespace cloud.charging.open.API
 
         #endregion
 
+        #region ParseRoamingNetworkAndChargingSession         (this HTTPRequest, OpenChargingCloudAPI, out RoamingNetwork, out EMobilityProviderId, out ChargingSession,         out HTTPResponseBuilder)
+
+        /// <summary>
+        /// Parse the given HTTP request and return the roaming network and charging session
+        /// for the given HTTP hostname and HTTP query parameters
+        /// or an HTTP error response.
+        /// </summary>
+        /// <param name="HTTPRequest">A HTTP request.</param>
+        /// <param name="OpenChargingCloudAPI">The OpenChargingCloud API.</param>
+        /// <param name="RoamingNetworkId">The roaming network identification.</param>
+        /// <param name="RoamingNetwork">The roaming network.</param>
+        /// <param name="ChargingSessionId">The charging session identification.</param>
+        /// <param name="ChargingSession">The charging session.</param>
+        /// <param name="HTTPResponseBuilder">A HTTP error response.</param>
+        public static Boolean ParseRoamingNetworkAndChargingSession(this HTTPRequest                                HTTPRequest,
+                                                                    OpenChargingCloudAPI                            OpenChargingCloudAPI,
+                                                                    [NotNullWhen(true)]  out RoamingNetwork_Id?     RoamingNetworkId,
+                                                                    [NotNullWhen(true)]  out IRoamingNetwork?       RoamingNetwork,
+                                                                    [NotNullWhen(true)]  out EMobilityProvider_Id?  EMobilityProviderId,
+                                                                    [NotNullWhen(true)]  out ChargingSession_Id?    ChargingSessionId,
+                                                                    [NotNullWhen(true)]  out ChargingSession?       ChargingSession,
+                                                                    [NotNullWhen(false)] out HTTPResponse.Builder?  HTTPResponseBuilder)
+        {
+
+            RoamingNetworkId     = null;
+            RoamingNetwork       = null;
+            EMobilityProviderId  = null;
+            ChargingSessionId    = null;
+            ChargingSession      = null;
+            HTTPResponseBuilder  = null;
+
+            if (HTTPRequest.ParsedURLParameters.Length < 3) {
+
+                HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
+                    HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Date            = Timestamp.Now,
+                    Connection      = ConnectionType.Close
+                };
+
+                return false;
+
+            }
+
+            RoamingNetworkId = RoamingNetwork_Id.TryParse(HTTPRequest.ParsedURLParameters[0]);
+
+            if (!RoamingNetworkId.HasValue)
+            {
+
+                HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
+                    HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Date            = Timestamp.Now,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
+                    Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
+                    Connection      = ConnectionType.Close
+                };
+
+                return false;
+
+            }
+
+            RoamingNetwork  = OpenChargingCloudAPI.GetRoamingNetwork(HTTPRequest.Host, RoamingNetworkId.Value);
+
+            if (RoamingNetwork == null)
+            {
+
+                HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
+                    HTTPStatusCode  = HTTPStatusCode.NotFound,
+                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Date            = Timestamp.Now,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
+                    Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
+                    Connection      = ConnectionType.Close
+                };
+
+                return false;
+
+            }
+
+
+
+            EMobilityProviderId = EMobilityProvider_Id.TryParse(HTTPRequest.ParsedURLParameters[1]);
+
+            if (!EMobilityProviderId.HasValue)
+            {
+
+                HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
+                    HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Date            = Timestamp.Now,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
+                    Content         = @"{ ""description"": ""Invalid e-mobility provider identification!"" }".ToUTF8Bytes(),
+                    Connection      = ConnectionType.Close
+                };
+
+                return false;
+
+            }
+
+
+
+
+            ChargingSessionId = ChargingSession_Id.TryParse(HTTPRequest.ParsedURLParameters[2]);
+
+            if (!ChargingSessionId.HasValue)
+            {
+
+                HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
+                    HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Date            = Timestamp.Now,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
+                    Content         = @"{ ""description"": ""Invalid charging session identification!"" }".ToUTF8Bytes(),
+                    Connection      = ConnectionType.Close
+                };
+
+                return false;
+
+            }
+
+            //ToDo: May fail for empty sequences!
+            if (!RoamingNetwork.TryGetChargingSessionById(ChargingSessionId.Value, out ChargingSession))
+            {
+
+                HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
+                    HTTPStatusCode  = HTTPStatusCode.NotFound,
+                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Date            = Timestamp.Now,
+                    ContentType     = HTTPContentType.Application.JSON_UTF8,
+                    Content         = @"{ ""description"": ""Unknown charging session identification!"" }".ToUTF8Bytes(),
+                    Connection      = ConnectionType.Close
+                };
+
+                return false;
+
+            }
+
+            return true;
+
+        }
+
+        #endregion
+
+
         #region ParseRoamingNetworkAndReservation             (this HTTPRequest, OpenChargingCloudAPI, out RoamingNetwork, out Reservation,             out HTTPResponseBuilder)
 
         /// <summary>
