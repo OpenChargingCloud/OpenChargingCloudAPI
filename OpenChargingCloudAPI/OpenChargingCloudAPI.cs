@@ -2288,9 +2288,9 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task CreateRoamingNetworkRequest(DateTime     Timestamp,
-                                                            HTTPAPI      API,
-                                                            HTTPRequest  Request)
+        protected internal Task CreateRoamingNetworkRequest(DateTimeOffset  Timestamp,
+                                                            HTTPAPI         API,
+                                                            HTTPRequest     Request)
 
             => OnCreateRoamingNetworkRequest?.WhenAll(Timestamp,
                                                       API ?? this,
@@ -2312,10 +2312,10 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task CreateRoamingNetworkResponse(DateTime      Timestamp,
-                                                             HTTPAPI       API,
-                                                             HTTPRequest   Request,
-                                                             HTTPResponse  Response)
+        protected internal Task CreateRoamingNetworkResponse(DateTimeOffset  Timestamp,
+                                                             HTTPAPI         API,
+                                                             HTTPRequest     Request,
+                                                             HTTPResponse    Response)
 
             => OnCreateRoamingNetworkResponse?.WhenAll(Timestamp,
                                                        API ?? this,
@@ -2338,9 +2338,9 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task DeleteRoamingNetworkRequest(DateTime     Timestamp,
-                                                            HTTPAPI      API,
-                                                            HTTPRequest  Request)
+        protected internal Task DeleteRoamingNetworkRequest(DateTimeOffset  Timestamp,
+                                                            HTTPAPI         API,
+                                                            HTTPRequest     Request)
 
             => OnDeleteRoamingNetworkRequest?.WhenAll(Timestamp,
                                                       API ?? this,
@@ -2362,7 +2362,7 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task DeleteRoamingNetworkResponse(DateTime      Timestamp,
+        protected internal Task DeleteRoamingNetworkResponse(DateTimeOffset Timestamp,
                                                              HTTPAPI       API,
                                                              HTTPRequest   Request,
                                                              HTTPResponse  Response)
@@ -2389,9 +2389,9 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task CreateChargingPoolRequest(DateTime     Timestamp,
-                                                          HTTPAPI      API,
-                                                          HTTPRequest  Request)
+        protected internal Task CreateChargingPoolRequest(DateTimeOffset  Timestamp,
+                                                          HTTPAPI         API,
+                                                          HTTPRequest     Request)
 
             => OnCreateChargingPoolRequest?.WhenAll(Timestamp,
                                                     API ?? this,
@@ -2413,10 +2413,10 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task CreateChargingPoolResponse(DateTime      Timestamp,
-                                                           HTTPAPI       API,
-                                                           HTTPRequest   Request,
-                                                           HTTPResponse  Response)
+        protected internal Task CreateChargingPoolResponse(DateTimeOffset  Timestamp,
+                                                           HTTPAPI         API,
+                                                           HTTPRequest     Request,
+                                                           HTTPResponse    Response)
 
             => OnCreateChargingPoolResponse?.WhenAll(Timestamp,
                                                      API ?? this,
@@ -2439,9 +2439,9 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task DeleteChargingPoolRequest(DateTime     Timestamp,
-                                                          HTTPAPI      API,
-                                                          HTTPRequest  Request)
+        protected internal Task DeleteChargingPoolRequest(DateTimeOffset  Timestamp,
+                                                          HTTPAPI         API,
+                                                          HTTPRequest     Request)
 
             => OnDeleteChargingPoolRequest?.WhenAll(Timestamp,
                                                     API ?? this,
@@ -2463,10 +2463,10 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task DeleteChargingPoolResponse(DateTime      Timestamp,
-                                                           HTTPAPI       API,
-                                                           HTTPRequest   Request,
-                                                           HTTPResponse  Response)
+        protected internal Task DeleteChargingPoolResponse(DateTimeOffset  Timestamp,
+                                                           HTTPAPI         API,
+                                                           HTTPRequest     Request,
+                                                           HTTPResponse    Response)
 
             => OnDeleteChargingPoolResponse?.WhenAll(Timestamp,
                                                      API ?? this,
@@ -2490,9 +2490,9 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task CreateChargingStationRequest(DateTime     Timestamp,
-                                                             HTTPAPI      API,
-                                                             HTTPRequest  Request)
+        protected internal Task CreateChargingStationRequest(DateTimeOffset  Timestamp,
+                                                             HTTPAPI         API,
+                                                             HTTPRequest     Request)
 
             => OnCreateChargingStationRequest?.WhenAll(Timestamp,
                                                        API ?? this,
@@ -2514,10 +2514,10 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task CreateChargingStationResponse(DateTime      Timestamp,
-                                                              HTTPAPI       API,
-                                                              HTTPRequest   Request,
-                                                              HTTPResponse  Response)
+        protected internal Task CreateChargingStationResponse(DateTimeOffset  Timestamp,
+                                                              HTTPAPI         API,
+                                                              HTTPRequest     Request,
+                                                              HTTPResponse    Response)
 
             => OnCreateChargingStationResponse?.WhenAll(Timestamp,
                                                         API ?? this,
@@ -2540,9 +2540,9 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task DeleteChargingStationRequest(DateTime     Timestamp,
-                                                             HTTPAPI      API,
-                                                             HTTPRequest  Request)
+        protected internal Task DeleteChargingStationRequest(DateTimeOffset  Timestamp,
+                                                             HTTPAPI         API,
+                                                             HTTPRequest     Request)
 
             => OnDeleteChargingStationRequest?.WhenAll(Timestamp,
                                                        API ?? this,
@@ -2564,10 +2564,10 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task DeleteChargingStationResponse(DateTime      Timestamp,
-                                                              HTTPAPI       API,
-                                                              HTTPRequest   Request,
-                                                              HTTPResponse  Response)
+        protected internal Task DeleteChargingStationResponse(DateTimeOffset  Timestamp,
+                                                              HTTPAPI         API,
+                                                              HTTPRequest     Request,
+                                                              HTTPResponse    Response)
 
             => OnDeleteChargingStationResponse?.WhenAll(Timestamp,
                                                         API ?? this,
@@ -2591,7 +2591,7 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task SendGetEVSEsStatusRequest(DateTime     Timestamp,
+        protected internal Task SendGetEVSEsStatusRequest(DateTimeOffset  Timestamp,
                                                           HTTPAPI      API,
                                                           HTTPRequest  Request)
 
@@ -2615,7 +2615,7 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task SendGetEVSEsStatusResponse(DateTime      Timestamp,
+        protected internal Task SendGetEVSEsStatusResponse(DateTimeOffset Timestamp,
                                                            HTTPAPI       API,
                                                            HTTPRequest   Request,
                                                            HTTPResponse  Response)
@@ -2642,7 +2642,7 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task SendRemoteStartEVSERequest(DateTime     Timestamp,
+        protected internal Task SendRemoteStartEVSERequest(DateTimeOffset  Timestamp,
                                                            HTTPAPI      API,
                                                            HTTPRequest  Request)
 
@@ -2666,7 +2666,7 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task SendRemoteStartEVSEResponse(DateTime      Timestamp,
+        protected internal Task SendRemoteStartEVSEResponse(DateTimeOffset Timestamp,
                                                             HTTPAPI       API,
                                                             HTTPRequest   Request,
                                                             HTTPResponse  Response)
@@ -2692,7 +2692,7 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task SendRemoteStopEVSERequest(DateTime     Timestamp,
+        protected internal Task SendRemoteStopEVSERequest(DateTimeOffset  Timestamp,
                                                           HTTPAPI      API,
                                                           HTTPRequest  Request)
 
@@ -2716,7 +2716,7 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task SendRemoteStopEVSEResponse(DateTime      Timestamp,
+        protected internal Task SendRemoteStopEVSEResponse(DateTimeOffset Timestamp,
                                                            HTTPAPI       API,
                                                            HTTPRequest   Request,
                                                            HTTPResponse  Response)
@@ -2743,7 +2743,7 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task SendReserveEVSERequest(DateTime     Timestamp,
+        protected internal Task SendReserveEVSERequest(DateTimeOffset  Timestamp,
                                                        HTTPAPI      API,
                                                        HTTPRequest  Request)
 
@@ -2767,7 +2767,7 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task SendReserveEVSEResponse(DateTime      Timestamp,
+        protected internal Task SendReserveEVSEResponse(DateTimeOffset Timestamp,
                                                         HTTPAPI       API,
                                                         HTTPRequest   Request,
                                                         HTTPResponse  Response)
@@ -2793,7 +2793,7 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task SendAuthStartEVSERequest(DateTime     Timestamp,
+        protected internal Task SendAuthStartEVSERequest(DateTimeOffset  Timestamp,
                                                          HTTPAPI      API,
                                                          HTTPRequest  Request)
 
@@ -2817,7 +2817,7 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task SendAuthStartEVSEResponse(DateTime      Timestamp,
+        protected internal Task SendAuthStartEVSEResponse(DateTimeOffset Timestamp,
                                                           HTTPAPI       API,
                                                           HTTPRequest   Request,
                                                           HTTPResponse  Response)
@@ -2843,7 +2843,7 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task SendAuthStopEVSERequest(DateTime     Timestamp,
+        protected internal Task SendAuthStopEVSERequest(DateTimeOffset  Timestamp,
                                                         HTTPAPI      API,
                                                         HTTPRequest  Request)
 
@@ -2867,7 +2867,7 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task SendAuthStopEVSEResponse(DateTime      Timestamp,
+        protected internal Task SendAuthStopEVSEResponse(DateTimeOffset Timestamp,
                                                          HTTPAPI       API,
                                                          HTTPRequest   Request,
                                                          HTTPResponse  Response)
@@ -2893,7 +2893,7 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task SendCDRsRequest(DateTime     Timestamp,
+        protected internal Task SendCDRsRequest(DateTimeOffset  Timestamp,
                                                 HTTPAPI      API,
                                                 HTTPRequest  Request)
 
@@ -2917,7 +2917,7 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task SendCDRsResponse(DateTime      Timestamp,
+        protected internal Task SendCDRsResponse(DateTimeOffset Timestamp,
                                                  HTTPAPI       API,
                                                  HTTPRequest   Request,
                                                  HTTPResponse  Response)
@@ -6800,13 +6800,13 @@ namespace cloud.charging.open.API
 
                                              #endregion
 
-                                             var skip          = Request.QueryString.GetUInt64                     ("skip");
-                                             var take          = Request.QueryString.GetUInt64                     ("take");
-                                             var statusSkip    = Request.QueryString.GetUInt64                     ("statusSkip",  1);
-                                             var statusTake    = Request.QueryString.GetUInt64                     ("statusTake",  1);
-                                             var afterFilter   = Request.QueryString.CreateDateTimeFilter<DateTime>("after",       (timestamp, pattern) => timestamp >= pattern);
-                                             var beforeFilter  = Request.QueryString.CreateDateTimeFilter<DateTime>("before",      (timestamp, pattern) => timestamp <= pattern);
-                                             var matchFilter   = Request.QueryString.CreateStringFilter  <EVSE_Id> ("match",       (evseId,    pattern) => evseId.ToString().Contains(pattern));
+                                             var skip          = Request.QueryString.GetUInt64                           ("skip");
+                                             var take          = Request.QueryString.GetUInt64                           ("take");
+                                             var statusSkip    = Request.QueryString.GetUInt64                           ("statusSkip",  1);
+                                             var statusTake    = Request.QueryString.GetUInt64                           ("statusTake",  1);
+                                             var afterFilter   = Request.QueryString.CreateDateTimeFilter<DateTimeOffset>("after",       (timestamp, pattern) => timestamp >= pattern);
+                                             var beforeFilter  = Request.QueryString.CreateDateTimeFilter<DateTimeOffset>("before",      (timestamp, pattern) => timestamp <= pattern);
+                                             var matchFilter   = Request.QueryString.CreateStringFilter  <EVSE_Id>       ("match",       (evseId,    pattern) => evseId.ToString().Contains(pattern));
 
                                              //ToDo: Getting the expected total count might be very expensive!
                                              var ExpectedCount  = RoamingNetwork.EVSEStatus().ULongCount();
