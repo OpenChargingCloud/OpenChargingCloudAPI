@@ -39,6 +39,7 @@ using org.GraphDefined.Vanaheimr.Hermod.Sockets.TCP;
 using cloud.charging.open.protocols.WWCP;
 using cloud.charging.open.protocols.WWCP.Net.IO.JSON;
 using cloud.charging.open.protocols.WWCP.Networking;
+using org.GraphDefined.Vanaheimr.Hermod.HTTPTest;
 
 #endregion
 
@@ -78,7 +79,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     Connection      = ConnectionType.Close
                 };
@@ -92,7 +93,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
@@ -110,7 +111,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network!"" }".ToUTF8Bytes(),
@@ -154,7 +155,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     Connection      = ConnectionType.Close
                 };
@@ -173,7 +174,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationOperatorId!"" }".ToUTF8Bytes(),
@@ -190,7 +191,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationOperatorId!"" }".ToUTF8Bytes(),
@@ -234,7 +235,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     Connection      = ConnectionType.Close
                 };
@@ -253,7 +254,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingPoolId!"" }".ToUTF8Bytes(),
@@ -270,7 +271,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingPoolId!"" }".ToUTF8Bytes(),
@@ -315,7 +316,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     Connection      = ConnectionType.Close
                 };
@@ -329,7 +330,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
@@ -349,7 +350,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
@@ -365,7 +366,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationId!"" }".ToUTF8Bytes(),
@@ -382,7 +383,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationId!"" }".ToUTF8Bytes(),
@@ -427,7 +428,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     Connection      = ConnectionType.Close
                 };
@@ -441,7 +442,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
@@ -461,7 +462,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
@@ -477,7 +478,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid EVSEId!"" }".ToUTF8Bytes(),
@@ -494,7 +495,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown EVSEId!"" }".ToUTF8Bytes(),
@@ -542,7 +543,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     Connection      = ConnectionType.Close
                 };
@@ -558,7 +559,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
@@ -576,7 +577,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
@@ -594,7 +595,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid charging session identification!"" }".ToUTF8Bytes(),
@@ -644,7 +645,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     Connection      = ConnectionType.Close
                 };
@@ -660,7 +661,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
@@ -678,7 +679,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
@@ -696,7 +697,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid charging session identification!"" }".ToUTF8Bytes(),
@@ -713,7 +714,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown charging session identification!"" }".ToUTF8Bytes(),
@@ -765,7 +766,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     Connection      = ConnectionType.Close
                 };
@@ -781,7 +782,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
@@ -799,7 +800,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
@@ -819,7 +820,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid e-mobility provider identification!"" }".ToUTF8Bytes(),
@@ -840,7 +841,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid charging session identification!"" }".ToUTF8Bytes(),
@@ -857,7 +858,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown charging session identification!"" }".ToUTF8Bytes(),
@@ -903,7 +904,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                 };
 
@@ -916,7 +917,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
@@ -936,7 +937,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
@@ -951,7 +952,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid reservation identification!"" }".ToUTF8Bytes(),
@@ -968,7 +969,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown reservation identification!"" }".ToUTF8Bytes(),
@@ -1012,7 +1013,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     Connection      = ConnectionType.Close
                 };
@@ -1031,7 +1032,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid EMobilityProviderId!"" }".ToUTF8Bytes(),
@@ -1048,7 +1049,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown EMobilityProviderId!"" }".ToUTF8Bytes(),
@@ -1092,7 +1093,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                 };
 
@@ -1110,7 +1111,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid GridOperatorId!"" }".ToUTF8Bytes(),
@@ -1127,7 +1128,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown GridOperatorId!"" }".ToUTF8Bytes(),
@@ -1185,7 +1186,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     Connection      = ConnectionType.Close
                 };
@@ -1208,7 +1209,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ParkingOperatorId!"" }".ToUTF8Bytes(),
@@ -1225,7 +1226,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ParkingOperatorId!"" }".ToUTF8Bytes(),
@@ -1280,7 +1281,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     Connection      = ConnectionType.Close
                 };
@@ -1299,7 +1300,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid SmartCityId!"" }".ToUTF8Bytes(),
@@ -1316,7 +1317,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown SmartCityId!"" }".ToUTF8Bytes(),
@@ -1377,7 +1378,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     Connection      = ConnectionType.Close
                 };
@@ -1396,7 +1397,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingPoolId!"" }".ToUTF8Bytes(),
@@ -1413,7 +1414,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingPoolId!"" }".ToUTF8Bytes(),
@@ -1433,7 +1434,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationId!"" }".ToUTF8Bytes(),
@@ -1450,7 +1451,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationId!"" }".ToUTF8Bytes(),
@@ -1513,7 +1514,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     Connection      = ConnectionType.Close
                 };
@@ -1532,7 +1533,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingPoolId!"" }".ToUTF8Bytes(),
@@ -1549,7 +1550,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingPoolId!"" }".ToUTF8Bytes(),
@@ -1569,7 +1570,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationId!"" }".ToUTF8Bytes(),
@@ -1586,7 +1587,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationId!"" }".ToUTF8Bytes(),
@@ -1606,7 +1607,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid EVSEId!"" }".ToUTF8Bytes(),
@@ -1623,7 +1624,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown EVSEId!"" }".ToUTF8Bytes(),
@@ -1683,7 +1684,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                 };
 
@@ -1700,7 +1701,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationOperatorId!"" }".ToUTF8Bytes(),
@@ -1716,7 +1717,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationOperatorId!"" }".ToUTF8Bytes(),
@@ -1733,7 +1734,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid BrandId!"" }".ToUTF8Bytes(),
@@ -1749,7 +1750,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown BrandId!"" }".ToUTF8Bytes(),
@@ -1806,7 +1807,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                 };
 
@@ -1823,7 +1824,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationOperatorId!"" }".ToUTF8Bytes(),
@@ -1839,7 +1840,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationOperatorId!"" }".ToUTF8Bytes(),
@@ -1856,7 +1857,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationGroupId!"" }".ToUTF8Bytes(),
@@ -1872,7 +1873,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationGroupId!"" }".ToUTF8Bytes(),
@@ -1929,7 +1930,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                 };
 
@@ -1946,7 +1947,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationOperatorId!"" }".ToUTF8Bytes(),
@@ -1962,7 +1963,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationOperatorId!"" }".ToUTF8Bytes(),
@@ -1979,7 +1980,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid EVSEGroupId!"" }".ToUTF8Bytes(),
@@ -1995,7 +1996,7 @@ namespace cloud.charging.open.API
 
                 HTTPResponse = new HTTPResponse.Builder(HTTPRequest) {
                     HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+                    Server          = OpenChargingCloudAPI.HTTPTestServer?.HTTPServerName,
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown EVSEGroupId!"" }".ToUTF8Bytes(),
@@ -2197,7 +2198,7 @@ namespace cloud.charging.open.API
     /// <summary>
     /// The common Open Charging Cloud API.
     /// </summary>
-    public class OpenChargingCloudAPI : HTTPExtAPI
+    public class OpenChargingCloudAPI : HTTPExtAPIX
     {
 
         #region Data
@@ -2254,7 +2255,7 @@ namespace cloud.charging.open.API
         //public String                                       ChargeDetailRecordsPath       { get; }
 
 
-        public HTTPServer<RoamingNetworks, RoamingNetwork>  WWCPHTTPServer                { get; }
+        //public HTTPServer<RoamingNetworks, RoamingNetwork>  WWCPHTTPServer                { get; }
 
         /// <summary>
         /// Send debug information via HTTP Server Sent Events.
@@ -2280,7 +2281,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnCreateRoamingNetworkRequest = new ();
+        public HTTPRequestLogEventX OnCreateRoamingNetworkRequest = new();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
@@ -2288,13 +2289,14 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task CreateRoamingNetworkRequest(DateTimeOffset  Timestamp,
-                                                            HTTPAPI         API,
-                                                            HTTPRequest     Request)
+        protected internal Task CreateRoamingNetworkRequest(DateTimeOffset     Timestamp,
+                                                            HTTPAPIX           API,
+                                                            HTTPRequest        Request,
+                                                            CancellationToken  CancellationToken)
 
-            => OnCreateRoamingNetworkRequest?.WhenAll(Timestamp,
-                                                      API ?? this,
-                                                      Request) ?? Task.CompletedTask;
+            => OnCreateRoamingNetworkRequest.WhenAll(Timestamp,
+                                                     API ?? this,
+                                                     Request);
 
         #endregion
 
@@ -2303,7 +2305,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnCreateRoamingNetworkResponse = new ();
+        public HTTPResponseLogEventX OnCreateRoamingNetworkResponse = new();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
@@ -2312,15 +2314,16 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task CreateRoamingNetworkResponse(DateTimeOffset  Timestamp,
-                                                             HTTPAPI         API,
-                                                             HTTPRequest     Request,
-                                                             HTTPResponse    Response)
+        protected internal Task CreateRoamingNetworkResponse(DateTimeOffset     Timestamp,
+                                                             HTTPAPIX           API,
+                                                             HTTPRequest        Request,
+                                                             HTTPResponse       Response,
+                                                             CancellationToken  CancellationToken)
 
-            => OnCreateRoamingNetworkResponse?.WhenAll(Timestamp,
-                                                       API ?? this,
-                                                       Request,
-                                                       Response) ?? Task.CompletedTask;
+            => OnCreateRoamingNetworkResponse.WhenAll(Timestamp,
+                                                      API ?? this,
+                                                      Request,
+                                                      Response);
 
         #endregion
 
@@ -2330,7 +2333,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnDeleteRoamingNetworkRequest = new ();
+        public HTTPRequestLogEventX OnDeleteRoamingNetworkRequest = new();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
@@ -2338,13 +2341,14 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task DeleteRoamingNetworkRequest(DateTimeOffset  Timestamp,
-                                                            HTTPAPI         API,
-                                                            HTTPRequest     Request)
+        protected internal Task DeleteRoamingNetworkRequest(DateTimeOffset     Timestamp,
+                                                            HTTPAPIX           API,
+                                                            HTTPRequest        Request,
+                                                            CancellationToken  CancellationToken)
 
-            => OnDeleteRoamingNetworkRequest?.WhenAll(Timestamp,
-                                                      API ?? this,
-                                                      Request) ?? Task.CompletedTask;
+            => OnDeleteRoamingNetworkRequest.WhenAll(Timestamp,
+                                                     API ?? this,
+                                                     Request);
 
         #endregion
 
@@ -2353,7 +2357,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnDeleteRoamingNetworkResponse = new ();
+        public HTTPResponseLogEventX OnDeleteRoamingNetworkResponse = new();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
@@ -2362,15 +2366,16 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task DeleteRoamingNetworkResponse(DateTimeOffset Timestamp,
-                                                             HTTPAPI       API,
-                                                             HTTPRequest   Request,
-                                                             HTTPResponse  Response)
+        protected internal Task DeleteRoamingNetworkResponse(DateTimeOffset     Timestamp,
+                                                             HTTPAPIX           API,
+                                                             HTTPRequest        Request,
+                                                             HTTPResponse       Response,
+                                                             CancellationToken  CancellationToken)
 
-            => OnDeleteRoamingNetworkResponse?.WhenAll(Timestamp,
-                                                       API ?? this,
-                                                       Request,
-                                                       Response) ?? Task.CompletedTask;
+            => OnDeleteRoamingNetworkResponse.WhenAll(Timestamp,
+                                                      API ?? this,
+                                                      Request,
+                                                      Response);
 
         #endregion
 
@@ -2381,7 +2386,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnCreateChargingPoolRequest = new ();
+        public HTTPRequestLogEventX OnCreateChargingPoolRequest = new();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
@@ -2389,13 +2394,14 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task CreateChargingPoolRequest(DateTimeOffset  Timestamp,
-                                                          HTTPAPI         API,
-                                                          HTTPRequest     Request)
+        protected internal Task CreateChargingPoolRequest(DateTimeOffset     Timestamp,
+                                                          HTTPAPIX           API,
+                                                          HTTPRequest        Request,
+                                                          CancellationToken  CancellationToken)
 
-            => OnCreateChargingPoolRequest?.WhenAll(Timestamp,
-                                                    API ?? this,
-                                                    Request) ?? Task.CompletedTask;
+            => OnCreateChargingPoolRequest.WhenAll(Timestamp,
+                                                   API ?? this,
+                                                   Request);
 
         #endregion
 
@@ -2404,7 +2410,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnCreateChargingPoolResponse = new ();
+        public HTTPResponseLogEventX OnCreateChargingPoolResponse = new();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
@@ -2413,15 +2419,16 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task CreateChargingPoolResponse(DateTimeOffset  Timestamp,
-                                                           HTTPAPI         API,
-                                                           HTTPRequest     Request,
-                                                           HTTPResponse    Response)
+        protected internal Task CreateChargingPoolResponse(DateTimeOffset     Timestamp,
+                                                           HTTPAPIX           API,
+                                                           HTTPRequest        Request,
+                                                           HTTPResponse       Response,
+                                                           CancellationToken  CancellationToken)
 
-            => OnCreateChargingPoolResponse?.WhenAll(Timestamp,
-                                                     API ?? this,
-                                                     Request,
-                                                     Response) ?? Task.CompletedTask;
+            => OnCreateChargingPoolResponse.WhenAll(Timestamp,
+                                                    API ?? this,
+                                                    Request,
+                                                    Response);
 
         #endregion
 
@@ -2431,7 +2438,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnDeleteChargingPoolRequest = new ();
+        public HTTPRequestLogEventX OnDeleteChargingPoolRequest = new();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
@@ -2439,13 +2446,14 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task DeleteChargingPoolRequest(DateTimeOffset  Timestamp,
-                                                          HTTPAPI         API,
-                                                          HTTPRequest     Request)
+        protected internal Task DeleteChargingPoolRequest(DateTimeOffset     Timestamp,
+                                                          HTTPAPIX           API,
+                                                          HTTPRequest        Request,
+                                                          CancellationToken  CancellationToken)
 
-            => OnDeleteChargingPoolRequest?.WhenAll(Timestamp,
-                                                    API ?? this,
-                                                    Request) ?? Task.CompletedTask;
+            => OnDeleteChargingPoolRequest.WhenAll(Timestamp,
+                                                   API ?? this,
+                                                   Request);
 
         #endregion
 
@@ -2454,7 +2462,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnDeleteChargingPoolResponse = new ();
+        public HTTPResponseLogEventX OnDeleteChargingPoolResponse = new();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
@@ -2463,15 +2471,16 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task DeleteChargingPoolResponse(DateTimeOffset  Timestamp,
-                                                           HTTPAPI         API,
-                                                           HTTPRequest     Request,
-                                                           HTTPResponse    Response)
+        protected internal Task DeleteChargingPoolResponse(DateTimeOffset     Timestamp,
+                                                           HTTPAPIX           API,
+                                                           HTTPRequest        Request,
+                                                           HTTPResponse       Response,
+                                                           CancellationToken  CancellationToken)
 
-            => OnDeleteChargingPoolResponse?.WhenAll(Timestamp,
-                                                     API ?? this,
-                                                     Request,
-                                                     Response) ?? Task.CompletedTask;
+            => OnDeleteChargingPoolResponse.WhenAll(Timestamp,
+                                                    API ?? this,
+                                                    Request,
+                                                    Response);
 
         #endregion
 
@@ -2482,7 +2491,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnCreateChargingStationRequest = new ();
+        public HTTPRequestLogEventX OnCreateChargingStationRequest = new();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
@@ -2491,12 +2500,12 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         protected internal Task CreateChargingStationRequest(DateTimeOffset  Timestamp,
-                                                             HTTPAPI         API,
+                                                             HTTPAPIX        API,
                                                              HTTPRequest     Request)
 
             => OnCreateChargingStationRequest?.WhenAll(Timestamp,
                                                        API ?? this,
-                                                       Request) ?? Task.CompletedTask;
+                                                       Request);
 
         #endregion
 
@@ -2505,7 +2514,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnCreateChargingStationResponse = new ();
+        public HTTPResponseLogEventX OnCreateChargingStationResponse = new();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
@@ -2514,15 +2523,16 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task CreateChargingStationResponse(DateTimeOffset  Timestamp,
-                                                              HTTPAPI         API,
-                                                              HTTPRequest     Request,
-                                                              HTTPResponse    Response)
+        protected internal Task CreateChargingStationResponse(DateTimeOffset     Timestamp,
+                                                              HTTPAPIX           API,
+                                                              HTTPRequest        Request,
+                                                              HTTPResponse       Response,
+                                                              CancellationToken  CancellationToken)
 
-            => OnCreateChargingStationResponse?.WhenAll(Timestamp,
-                                                        API ?? this,
-                                                        Request,
-                                                        Response) ?? Task.CompletedTask;
+            => OnCreateChargingStationResponse.WhenAll(Timestamp,
+                                                       API ?? this,
+                                                       Request,
+                                                       Response);
 
         #endregion
 
@@ -2532,7 +2542,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnDeleteChargingStationRequest = new ();
+        public HTTPRequestLogEventX OnDeleteChargingStationRequest = new();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
@@ -2540,13 +2550,14 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task DeleteChargingStationRequest(DateTimeOffset  Timestamp,
-                                                             HTTPAPI         API,
-                                                             HTTPRequest     Request)
+        protected internal Task DeleteChargingStationRequest(DateTimeOffset     Timestamp,
+                                                             HTTPAPIX           API,
+                                                             HTTPRequest        Request,
+                                                             CancellationToken  CancellationToken)
 
-            => OnDeleteChargingStationRequest?.WhenAll(Timestamp,
-                                                       API ?? this,
-                                                       Request) ?? Task.CompletedTask;
+            => OnDeleteChargingStationRequest.WhenAll(Timestamp,
+                                                      API ?? this,
+                                                      Request);
 
         #endregion
 
@@ -2555,7 +2566,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnDeleteChargingStationResponse = new ();
+        public HTTPResponseLogEventX OnDeleteChargingStationResponse = new();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
@@ -2564,15 +2575,16 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task DeleteChargingStationResponse(DateTimeOffset  Timestamp,
-                                                              HTTPAPI         API,
-                                                              HTTPRequest     Request,
-                                                              HTTPResponse    Response)
+        protected internal Task DeleteChargingStationResponse(DateTimeOffset     Timestamp,
+                                                              HTTPAPIX           API,
+                                                              HTTPRequest        Request,
+                                                              HTTPResponse       Response,
+                                                              CancellationToken  CancellationToken)
 
-            => OnDeleteChargingStationResponse?.WhenAll(Timestamp,
-                                                        API ?? this,
-                                                        Request,
-                                                        Response) ?? Task.CompletedTask;
+            => OnDeleteChargingStationResponse.WhenAll(Timestamp,
+                                                       API ?? this,
+                                                       Request,
+                                                       Response);
 
         #endregion
 
@@ -2583,7 +2595,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever an EVSEs->Status request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnGetEVSEsStatusRequest = new ();
+        public HTTPRequestLogEventX OnGetEVSEsStatusRequest = new();
 
         /// <summary>
         /// An event sent whenever an EVSEs->Status request was received.
@@ -2591,13 +2603,14 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task SendGetEVSEsStatusRequest(DateTimeOffset  Timestamp,
-                                                          HTTPAPI      API,
-                                                          HTTPRequest  Request)
+        protected internal Task SendGetEVSEsStatusRequest(DateTimeOffset     Timestamp,
+                                                          HTTPAPIX           API,
+                                                          HTTPRequest        Request,
+                                                          CancellationToken  CancellationToken)
 
-            => OnGetEVSEsStatusRequest?.WhenAll(Timestamp,
-                                                API ?? this,
-                                                Request) ?? Task.CompletedTask;
+            => OnGetEVSEsStatusRequest.WhenAll(Timestamp,
+                                               API ?? this,
+                                               Request);
 
         #endregion
 
@@ -2606,7 +2619,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever an EVSEs->Status response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnGetEVSEsStatusResponse = new ();
+        public HTTPResponseLogEventX OnGetEVSEsStatusResponse = new();
 
         /// <summary>
         /// An event sent whenever an EVSEs->Status response was sent.
@@ -2615,15 +2628,16 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task SendGetEVSEsStatusResponse(DateTimeOffset Timestamp,
-                                                           HTTPAPI       API,
-                                                           HTTPRequest   Request,
-                                                           HTTPResponse  Response)
+        protected internal Task SendGetEVSEsStatusResponse(DateTimeOffset     Timestamp,
+                                                           HTTPAPIX           API,
+                                                           HTTPRequest        Request,
+                                                           HTTPResponse       Response,
+                                                           CancellationToken  CancellationToken)
 
-            => OnGetEVSEsStatusResponse?.WhenAll(Timestamp,
-                                                 API ?? this,
-                                                 Request,
-                                                 Response) ?? Task.CompletedTask;
+            => OnGetEVSEsStatusResponse.WhenAll(Timestamp,
+                                                API ?? this,
+                                                Request,
+                                                Response);
 
         #endregion
 
@@ -2634,7 +2648,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnSendRemoteStartEVSERequest = new ();
+        public HTTPRequestLogEventX OnSendRemoteStartEVSERequest = new();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
@@ -2642,13 +2656,14 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task SendRemoteStartEVSERequest(DateTimeOffset  Timestamp,
-                                                           HTTPAPI      API,
-                                                           HTTPRequest  Request)
+        protected internal Task SendRemoteStartEVSERequest(DateTimeOffset     Timestamp,
+                                                           HTTPAPIX           API,
+                                                           HTTPRequest        Request,
+                                                           CancellationToken  CancellationToken)
 
-            => OnSendRemoteStartEVSERequest?.WhenAll(Timestamp,
-                                                     API ?? this,
-                                                     Request) ?? Task.CompletedTask;
+            => OnSendRemoteStartEVSERequest.WhenAll(Timestamp,
+                                                    API ?? this,
+                                                    Request);
 
         #endregion
 
@@ -2657,7 +2672,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnSendRemoteStartEVSEResponse = new ();
+        public HTTPResponseLogEventX OnSendRemoteStartEVSEResponse = new();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
@@ -2666,15 +2681,16 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task SendRemoteStartEVSEResponse(DateTimeOffset Timestamp,
-                                                            HTTPAPI       API,
-                                                            HTTPRequest   Request,
-                                                            HTTPResponse  Response)
+        protected internal Task SendRemoteStartEVSEResponse(DateTimeOffset     Timestamp,
+                                                            HTTPAPIX           API,
+                                                            HTTPRequest        Request,
+                                                            HTTPResponse       Response,
+                                                            CancellationToken  CancellationToken)
 
-            => OnSendRemoteStartEVSEResponse?.WhenAll(Timestamp,
-                                                      API ?? this,
-                                                      Request,
-                                                      Response) ?? Task.CompletedTask;
+            => OnSendRemoteStartEVSEResponse.WhenAll(Timestamp,
+                                                     API ?? this,
+                                                     Request,
+                                                     Response);
 
         #endregion
 
@@ -2684,7 +2700,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnSendRemoteStopEVSERequest = new ();
+        public HTTPRequestLogEventX OnSendRemoteStopEVSERequest = new();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
@@ -2692,13 +2708,14 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task SendRemoteStopEVSERequest(DateTimeOffset  Timestamp,
-                                                          HTTPAPI      API,
-                                                          HTTPRequest  Request)
+        protected internal Task SendRemoteStopEVSERequest(DateTimeOffset     Timestamp,
+                                                          HTTPAPIX           API,
+                                                          HTTPRequest        Request,
+                                                          CancellationToken  CancellationToken)
 
-            => OnSendRemoteStopEVSERequest?.WhenAll(Timestamp,
-                                                    API ?? this,
-                                                    Request) ?? Task.CompletedTask;
+            => OnSendRemoteStopEVSERequest.WhenAll(Timestamp,
+                                                   API ?? this,
+                                                   Request);
 
         #endregion
 
@@ -2707,7 +2724,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnSendRemoteStopEVSEResponse = new ();
+        public HTTPResponseLogEventX OnSendRemoteStopEVSEResponse = new();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
@@ -2716,15 +2733,16 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task SendRemoteStopEVSEResponse(DateTimeOffset Timestamp,
-                                                           HTTPAPI       API,
-                                                           HTTPRequest   Request,
-                                                           HTTPResponse  Response)
+        protected internal Task SendRemoteStopEVSEResponse(DateTimeOffset     Timestamp,
+                                                           HTTPAPIX           API,
+                                                           HTTPRequest        Request,
+                                                           HTTPResponse       Response,
+                                                           CancellationToken  CancellationToken)
 
-            => OnSendRemoteStopEVSEResponse?.WhenAll(Timestamp,
-                                                     API ?? this,
-                                                     Request,
-                                                     Response) ?? Task.CompletedTask;
+            => OnSendRemoteStopEVSEResponse.WhenAll(Timestamp,
+                                                    API ?? this,
+                                                    Request,
+                                                    Response);
 
         #endregion
 
@@ -2735,7 +2753,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnSendReserveEVSERequest = new ();
+        public HTTPRequestLogEventX OnSendReserveEVSERequest = new();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
@@ -2743,13 +2761,14 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task SendReserveEVSERequest(DateTimeOffset  Timestamp,
-                                                       HTTPAPI      API,
-                                                       HTTPRequest  Request)
+        protected internal Task SendReserveEVSERequest(DateTimeOffset     Timestamp,
+                                                       HTTPAPIX           API,
+                                                       HTTPRequest        Request,
+                                                       CancellationToken  CancellationToken)
 
-            => OnSendReserveEVSERequest?.WhenAll(Timestamp,
-                                                 API ?? this,
-                                                 Request) ?? Task.CompletedTask;
+            => OnSendReserveEVSERequest.WhenAll(Timestamp,
+                                                API ?? this,
+                                                Request);
 
         #endregion
 
@@ -2758,7 +2777,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnSendReserveEVSEResponse = new ();
+        public HTTPResponseLogEventX OnSendReserveEVSEResponse = new();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
@@ -2767,15 +2786,16 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task SendReserveEVSEResponse(DateTimeOffset Timestamp,
-                                                        HTTPAPI       API,
-                                                        HTTPRequest   Request,
-                                                        HTTPResponse  Response)
+        protected internal Task SendReserveEVSEResponse(DateTimeOffset     Timestamp,
+                                                        HTTPAPIX           API,
+                                                        HTTPRequest        Request,
+                                                        HTTPResponse       Response,
+                                                        CancellationToken  CancellationToken)
 
-            => OnSendReserveEVSEResponse?.WhenAll(Timestamp,
-                                                  API ?? this,
-                                                  Request,
-                                                  Response) ?? Task.CompletedTask;
+            => OnSendReserveEVSEResponse.WhenAll(Timestamp,
+                                                 API ?? this,
+                                                 Request,
+                                                 Response);
 
         #endregion
 
@@ -2785,7 +2805,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnAuthStartEVSERequest = new ();
+        public HTTPRequestLogEventX OnAuthStartEVSERequest = new();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE request was received.
@@ -2793,13 +2813,14 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task SendAuthStartEVSERequest(DateTimeOffset  Timestamp,
-                                                         HTTPAPI      API,
-                                                         HTTPRequest  Request)
+        protected internal Task SendAuthStartEVSERequest(DateTimeOffset     Timestamp,
+                                                         HTTPAPIX           API,
+                                                         HTTPRequest        Request,
+                                                         CancellationToken  CancellationToken)
 
-            => OnAuthStartEVSERequest?.WhenAll(Timestamp,
-                                               API ?? this,
-                                               Request) ?? Task.CompletedTask;
+            => OnAuthStartEVSERequest.WhenAll(Timestamp,
+                                              API ?? this,
+                                              Request);
 
         #endregion
 
@@ -2808,7 +2829,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnAuthStartEVSEResponse = new ();
+        public HTTPResponseLogEventX OnAuthStartEVSEResponse = new();
 
         /// <summary>
         /// An event sent whenever a authenticate start EVSE response was sent.
@@ -2817,15 +2838,16 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task SendAuthStartEVSEResponse(DateTimeOffset Timestamp,
-                                                          HTTPAPI       API,
-                                                          HTTPRequest   Request,
-                                                          HTTPResponse  Response)
+        protected internal Task SendAuthStartEVSEResponse(DateTimeOffset     Timestamp,
+                                                          HTTPAPIX           API,
+                                                          HTTPRequest        Request,
+                                                          HTTPResponse       Response,
+                                                          CancellationToken  CancellationToken)
 
-            => OnAuthStartEVSEResponse?.WhenAll(Timestamp,
-                                                API ?? this,
-                                                Request,
-                                                Response) ?? Task.CompletedTask;
+            => OnAuthStartEVSEResponse.WhenAll(Timestamp,
+                                               API ?? this,
+                                               Request,
+                                               Response);
 
         #endregion
 
@@ -2835,7 +2857,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate stop EVSE request was received.
         /// </summary>
-        public HTTPRequestLogEvent OnAuthStopEVSERequest = new ();
+        public HTTPRequestLogEventX OnAuthStopEVSERequest = new();
 
         /// <summary>
         /// An event sent whenever a authenticate stop EVSE request was received.
@@ -2843,13 +2865,14 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task SendAuthStopEVSERequest(DateTimeOffset  Timestamp,
-                                                        HTTPAPI      API,
-                                                        HTTPRequest  Request)
+        protected internal Task SendAuthStopEVSERequest(DateTimeOffset     Timestamp,
+                                                        HTTPAPIX           API,
+                                                        HTTPRequest        Request,
+                                                        CancellationToken  CancellationToken)
 
-            => OnAuthStopEVSERequest?.WhenAll(Timestamp,
-                                              API ?? this,
-                                              Request) ?? Task.CompletedTask;
+            => OnAuthStopEVSERequest.WhenAll(Timestamp,
+                                             API ?? this,
+                                             Request);
 
         #endregion
 
@@ -2858,7 +2881,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a authenticate stop EVSE response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnAuthStopEVSEResponse = new ();
+        public HTTPResponseLogEventX OnAuthStopEVSEResponse = new();
 
         /// <summary>
         /// An event sent whenever a authenticate stop EVSE response was sent.
@@ -2867,15 +2890,16 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task SendAuthStopEVSEResponse(DateTimeOffset Timestamp,
-                                                         HTTPAPI       API,
-                                                         HTTPRequest   Request,
-                                                         HTTPResponse  Response)
+        protected internal Task SendAuthStopEVSEResponse(DateTimeOffset     Timestamp,
+                                                         HTTPAPIX           API,
+                                                         HTTPRequest        Request,
+                                                         HTTPResponse       Response,
+                                                         CancellationToken  CancellationToken)
 
-            => OnAuthStopEVSEResponse?.WhenAll(Timestamp,
-                                               API ?? this,
-                                               Request,
-                                               Response) ?? Task.CompletedTask;
+            => OnAuthStopEVSEResponse.WhenAll(Timestamp,
+                                              API ?? this,
+                                              Request,
+                                              Response);
 
         #endregion
 
@@ -2885,7 +2909,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a charge detail record was received.
         /// </summary>
-        public HTTPRequestLogEvent OnSendCDRsRequest = new ();
+        public HTTPRequestLogEventX OnSendCDRsRequest = new();
 
         /// <summary>
         /// An event sent whenever a charge detail record was received.
@@ -2893,13 +2917,14 @@ namespace cloud.charging.open.API
         /// <param name="Timestamp">The timestamp of the request.</param>
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
-        protected internal Task SendCDRsRequest(DateTimeOffset  Timestamp,
-                                                HTTPAPI      API,
-                                                HTTPRequest  Request)
+        protected internal Task SendCDRsRequest(DateTimeOffset     Timestamp,
+                                                HTTPAPIX           API,
+                                                HTTPRequest        Request,
+                                                CancellationToken  CancellationToken)
 
-            => OnSendCDRsRequest?.WhenAll(Timestamp,
-                                          API ?? this,
-                                          Request) ?? Task.CompletedTask;
+            => OnSendCDRsRequest.WhenAll(Timestamp,
+                                         API ?? this,
+                                         Request);
 
         #endregion
 
@@ -2908,7 +2933,7 @@ namespace cloud.charging.open.API
         /// <summary>
         /// An event sent whenever a charge detail record response was sent.
         /// </summary>
-        public HTTPResponseLogEvent OnSendCDRsResponse = new ();
+        public HTTPResponseLogEventX OnSendCDRsResponse = new();
 
         /// <summary>
         /// An event sent whenever a charge detail record response was sent.
@@ -2917,15 +2942,16 @@ namespace cloud.charging.open.API
         /// <param name="API">The HTTP API.</param>
         /// <param name="Request">A HTTP request.</param>
         /// <param name="Response">A HTTP response.</param>
-        protected internal Task SendCDRsResponse(DateTimeOffset Timestamp,
-                                                 HTTPAPI       API,
-                                                 HTTPRequest   Request,
-                                                 HTTPResponse  Response)
+        protected internal Task SendCDRsResponse(DateTimeOffset     Timestamp,
+                                                 HTTPAPIX           API,
+                                                 HTTPRequest        Request,
+                                                 HTTPResponse       Response,
+                                                 CancellationToken  CancellationToken)
 
-            => OnSendCDRsResponse?.WhenAll(Timestamp,
-                                           API ?? this,
-                                           Request,
-                                           Response) ?? Task.CompletedTask;
+            => OnSendCDRsResponse.WhenAll(Timestamp,
+                                          API ?? this,
+                                          Request,
+                                          Response);
 
         #endregion
 
@@ -3002,16 +3028,25 @@ namespace cloud.charging.open.API
         /// <param name="LogfileName">The name of the logfile.</param>
         /// <param name="LogfileCreator">A delegate for creating the name of the logfile for this API.</param>
         /// <param name="DNSClient">The DNS client of the API.</param>
-        public OpenChargingCloudAPI(HTTPHostname?                                              HTTPHostname                 = null,
-                                    String?                                                    ExternalDNSName              = null,
-                                    IPPort?                                                    HTTPServerPort               = null,
-                                    HTTPPath?                                                  BasePath                     = null,
-                                    String                                                     HTTPServerName               = DefaultHTTPServerName,
+        public OpenChargingCloudAPI(HTTPTestServerX?               HTTPTestServer     = null,
+                                    IEnumerable<HTTPHostname>?     Hostnames          = null,
+                                    HTTPPath?                      RootPath           = null,
+                                    IEnumerable<HTTPContentType>?  HTTPContentTypes   = null,
+                                    I18NString?                    Description        = null,
 
-                                    HTTPPath?                                                  URLPathPrefix                = null,
-                                    String                                                     HTTPServiceName              = DefaultHTTPServiceName,
+                                    String?                        ExternalDNSName    = null,
+                                    HTTPPath?                      BasePath           = null,
+                                    JObject?                       APIVersionHashes   = null,
+
+                                    //HTTPHostname?                                              HTTPHostname                 = null,
+                                    //String?                                                    ExternalDNSName              = null,
+                                    //IPPort?                                                    HTTPServerPort               = null,
+                                    //HTTPPath?                                                  BasePath                     = null,
+                                    //String                                                     HTTPServerName               = DefaultHTTPServerName,
+                                    //
+                                    //HTTPPath?                                                  URLPathPrefix                = null,
+                                    //String                                                     HTTPServiceName              = DefaultHTTPServiceName,
                                     String?                                                    HTMLTemplate                 = null,
-                                    JObject?                                                   APIVersionHashes             = null,
 
                                     ServerCertificateSelectorDelegate?                         ServerCertificateSelector    = null,
                                     RemoteTLSClientCertificateValidationHandler<IHTTPServer>?  ClientCertificateValidator   = null,
@@ -3061,36 +3096,52 @@ namespace cloud.charging.open.API
                                     Boolean                                                    SkipURLTemplates             = false,
                                     String                                                     DatabaseFileName             = DefaultOpenChargingCloudAPI_DatabaseFileName,
                                     Boolean                                                    DisableNotifications         = false,
-                                    Boolean                                                    DisableLogging               = false,
-                                    String?                                                    LoggingPath                  = null,
-                                    String                                                     LogfileName                  = DefaultOpenChargingCloudAPI_LogfileName,
-                                    LogfileCreatorDelegate?                                    LogfileCreator               = null,
-                                    DNSClient?                                                 DNSClient                    = null)
+                                    //Boolean                                                    DisableLogging               = false,
+                                    //String?                                                    LoggingPath                  = null,
+                                    //String                                                     LogfileName                  = DefaultOpenChargingCloudAPI_LogfileName,
+                                    //LogfileCreatorDelegate?                                    LogfileCreator               = null,
+                                    //DNSClient?                                                 DNSClient                    = null)
 
-            : base(HTTPHostname,
+                                    Boolean                        DisableLogging     = false,
+                                    String                         LoggingPath        = null, //DefaultHTTPAPI_LoggingPath,
+                                    String                         LoggingContext     = null, //DefaultLoggingContext,
+                                    String                         LogfileName        = DefaultOpenChargingCloudAPI_LogfileName,
+                                    LogfileCreatorDelegate?        LogfileCreator     = null)
+
+            : base(//HTTPHostname,
+                   //ExternalDNSName,
+                   //HTTPServerPort,
+                   //BasePath,
+                   //HTTPServerName,
+                   //
+                   //URLPathPrefix,
+                   //HTTPServiceName,
+
+                   HTTPTestServer,
+                   Hostnames,
+                   RootPath,
+                   HTTPContentTypes,
+                   Description,
+
                    ExternalDNSName,
-                   HTTPServerPort,
                    BasePath,
-                   HTTPServerName,
-
-                   URLPathPrefix,
-                   HTTPServiceName,
-                   HTMLTemplate,
                    APIVersionHashes,
 
-                   ServerCertificateSelector,
-                   ClientCertificateValidator,
-                   LocalCertificateSelector,
-                   AllowedTLSProtocols,
-                   ClientCertificateRequired,
-                   CheckCertificateRevocation,
+                   HTMLTemplate,
 
-                   ServerThreadNameCreator,
-                   ServerThreadPrioritySetter,
-                   ServerThreadIsBackground,
-                   ConnectionIdBuilder,
-                   ConnectionTimeout,
-                   MaxClientConnections,
+                   //ServerCertificateSelector,
+                   //ClientCertificateValidator,
+                   //LocalCertificateSelector,
+                   //AllowedTLSProtocols,
+                   //ClientCertificateRequired,
+                   //CheckCertificateRevocation,
+
+                   //ServerThreadNameCreator,
+                   //ServerThreadPrioritySetter,
+                   //ServerThreadIsBackground,
+                   //ConnectionIdBuilder,
+                   //ConnectionTimeout,
+                   //MaxClientConnections,
 
                    AdminOrganizationId,
                    APIRobotEMailAddress,
@@ -3134,12 +3185,18 @@ namespace cloud.charging.open.API
                    SkipURLTemplates,
                    DatabaseFileName     ?? DefaultOpenChargingCloudAPI_DatabaseFileName,
                    DisableNotifications,
+                   //DisableLogging,
+                   //LoggingPath,
+                   //LogfileName          ?? DefaultOpenChargingCloudAPI_LogfileName,
+                   //LogfileCreator,
+                   //DNSClient,
+                   //false) // AutoStart
+
                    DisableLogging,
                    LoggingPath,
-                   LogfileName          ?? DefaultOpenChargingCloudAPI_LogfileName,
-                   LogfileCreator,
-                   DNSClient,
-                   false) // AutoStart
+                   LoggingContext,
+                   LogfileName,
+                   LogfileCreator)
 
         {
 
@@ -3161,23 +3218,23 @@ namespace cloud.charging.open.API
 
             //WWCP = OpenChargingCloudAPI.AttachToHTTPAPI(HTTPServer);
 
-            this.WWCPHTTPServer = new HTTPServer<RoamingNetworks, RoamingNetwork>(HTTPServer);
+          //  this.WWCPHTTPServer = new HTTPServer<RoamingNetworks, RoamingNetwork>(HTTPServer);
 
-            DebugLog     = HTTPServer.AddJSONEventSource(EventIdentification:      DebugLogId,
-                                                         HTTPAPI:                  this,
-                                                         URLTemplate:              this.URLPathPrefix + DebugLogId.ToString(),
-                                                         MaxNumberOfCachedEvents:  1000,
-                                                         RetryInterval :           TimeSpan.FromSeconds(5),
-                                                         EnableLogging:            true,
-                                                         LogfilePath:              this.OpenChargingCloudAPIPath);
+            //DebugLog     = HTTPServer.AddJSONEventSource(EventIdentification:      DebugLogId,
+            //                                             HTTPAPI:                  this,
+            //                                             URLTemplate:              this.URLPathPrefix + DebugLogId.ToString(),
+            //                                             MaxNumberOfCachedEvents:  1000,
+            //                                             RetryInterval :           TimeSpan.FromSeconds(5),
+            //                                             EnableLogging:            true,
+            //                                             LogfilePath:              this.OpenChargingCloudAPIPath);
 
-            ImporterLog  = HTTPServer.AddJSONEventSource(EventIdentification:      ImporterLogId,
-                                                         HTTPAPI:                  this,
-                                                         URLTemplate:              this.URLPathPrefix + ImporterLogId.ToString(),
-                                                         MaxNumberOfCachedEvents:  1000,
-                                                         RetryInterval :           TimeSpan.FromSeconds(5),
-                                                         EnableLogging:            true,
-                                                         LogfilePath:              this.OpenChargingCloudAPIPath);
+            //ImporterLog  = HTTPServer.AddJSONEventSource(EventIdentification:      ImporterLogId,
+            //                                             HTTPAPI:                  this,
+            //                                             URLTemplate:              this.URLPathPrefix + ImporterLogId.ToString(),
+            //                                             MaxNumberOfCachedEvents:  1000,
+            //                                             RetryInterval :           TimeSpan.FromSeconds(5),
+            //                                             EnableLogging:            true,
+            //                                             LogfilePath:              this.OpenChargingCloudAPIPath);
 
             //RegisterNotifications().Wait();
             RegisterURLTemplates();
@@ -3272,227 +3329,226 @@ namespace cloud.charging.open.API
         private void RegisterURLTemplates()
         {
 
-            HTTPServer.AddAuth(request => {
+            //HTTPServer.AddAuth(request => {
 
-                #region Allow some URLs for anonymous access...
+            //    #region Allow some URLs for anonymous access...
 
-                if (request.Path.Equals    (URLPathPrefix)                      ||
-                    request.Path.Equals    (URLPathPrefix + "/impress")         ||
-                    request.Path.StartsWith(URLPathPrefix + "/GPGKeys")         ||
-                    request.Path.StartsWith(URLPathPrefix + "/chargy/versions") ||
-                    request.Path.StartsWith(URLPathPrefix + "/chargy/issues")   ||
-                    request.Path.StartsWith(URLPathPrefix + "/shared/OpenChargingCloudAPI/libs/leaflet") ||
-                    request.Path.StartsWith(URLPathPrefix + "/RNs"))
-                {
-                    return Anonymous;
-                }
+            //    if (request.Path.Equals    (URLPathPrefix)                      ||
+            //        request.Path.Equals    (URLPathPrefix + "/impress")         ||
+            //        request.Path.StartsWith(URLPathPrefix + "/GPGKeys")         ||
+            //        request.Path.StartsWith(URLPathPrefix + "/chargy/versions") ||
+            //        request.Path.StartsWith(URLPathPrefix + "/chargy/issues")   ||
+            //        request.Path.StartsWith(URLPathPrefix + "/shared/OpenChargingCloudAPI/libs/leaflet") ||
+            //        request.Path.StartsWith(URLPathPrefix + "/RNs"))
+            //    {
+            //        return Anonymous;
+            //    }
 
-                #endregion
+            //    #endregion
 
-                return null;
-
-            });
-
-            //HTTPServer.AddFilter(request => {
             //    return null;
+
             //});
 
-            HTTPServer.Rewrite  (request => {
+            ////HTTPServer.AddFilter(request => {
+            ////    return null;
+            ////});
 
-                #region /               => /dashboard/index.shtml
+            //HTTPServer.Rewrite  (request => {
 
-                //if ((request.Path == URLPathPrefix || request.Path == (URLPathPrefix + "/")) &&
-                //    request.HTTPMethod == HTTPMethod.GET &&
-                //    TryGetSecurityTokenFromCookie(request, out SecurityToken_Id SecurityToken) &&
-                //    _HTTPCookies.ContainsKey(SecurityToken))
-                //{
+            //    #region /               => /dashboard/index.shtml
 
-                //    return new HTTPRequest.Builder(request) {
-                //        Path = URLPathPrefix + HTTPPath.Parse("/dashboard/index.shtml")
-                //    };
+            //    //if ((request.Path == URLPathPrefix || request.Path == (URLPathPrefix + "/")) &&
+            //    //    request.HTTPMethod == HTTPMethod.GET &&
+            //    //    TryGetSecurityTokenFromCookie(request, out SecurityToken_Id SecurityToken) &&
+            //    //    _HTTPCookies.ContainsKey(SecurityToken))
+            //    //{
 
-                //}
+            //    //    return new HTTPRequest.Builder(request) {
+            //    //        Path = URLPathPrefix + HTTPPath.Parse("/dashboard/index.shtml")
+            //    //    };
 
-                #endregion
+            //    //}
 
-                #region /profile        => /profile/profile.shtml
+            //    #endregion
 
-                //if ((request.Path == URLPathPrefix + "/profile" ||
-                //     request.Path == URLPathPrefix + "/profile/") &&
-                //     request.HTTPMethod == HTTPMethod.GET)
-                //{
+            //    #region /profile        => /profile/profile.shtml
 
-                //    return new HTTPRequest.Builder(request) {
-                //        Path = URLPathPrefix + HTTPPath.Parse("/profile/profile.shtml")
-                //    };
+            //    //if ((request.Path == URLPathPrefix + "/profile" ||
+            //    //     request.Path == URLPathPrefix + "/profile/") &&
+            //    //     request.HTTPMethod == HTTPMethod.GET)
+            //    //{
 
-                //}
+            //    //    return new HTTPRequest.Builder(request) {
+            //    //        Path = URLPathPrefix + HTTPPath.Parse("/profile/profile.shtml")
+            //    //    };
 
-                #endregion
+            //    //}
 
-                #region /admin          => /admin/index.shtml
+            //    #endregion
 
-                //if (request.Path == URLPathPrefix + "/admin" &&
-                //    request.HTTPMethod == HTTPMethod.GET)
-                //{
+            //    #region /admin          => /admin/index.shtml
 
-                //    return new HTTPRequest.Builder(request) {
-                //        Path = URLPathPrefix + HTTPPath.Parse("/admin/index.shtml")
-                //    };
+            //    //if (request.Path == URLPathPrefix + "/admin" &&
+            //    //    request.HTTPMethod == HTTPMethod.GET)
+            //    //{
 
-                //}
+            //    //    return new HTTPRequest.Builder(request) {
+            //    //        Path = URLPathPrefix + HTTPPath.Parse("/admin/index.shtml")
+            //    //    };
 
-                #endregion
+            //    //}
 
-                return request;
+            //    #endregion
 
-            });
+            //    return request;
+
+            //});
 
 
 
             #region /shared/OpenChargingCloudAPI
 
-            this.MapResourceAssemblyFolder(HTTPHostname.Any,
-                                           HTTPPath.Parse("/shared/OpenChargingCloudAPI"),
-                                           HTTPRoot[..^1]);
+            //this.MapResourceAssemblyFolder(HTTPHostname.Any,
+            //                               HTTPPath.Parse("/shared/OpenChargingCloudAPI"),
+            //                               HTTPRoot[..^1]);
 
             #endregion
 
-
+            var URLPathPrefix = HTTPPath.Root;
 
             #region / (HTTPRoot)
 
-            AddMethodCallback(
+//            AddHandler(
 
-                HTTPHostname.Any,
-                HTTPMethod.GET,
-                [
-                    URLPathPrefix + HTTPPath.Parse("/index.html"),
-                    URLPathPrefix + HTTPPath.Parse("/"),
-                    URLPathPrefix + HTTPPath.Parse("/{FileName}")
-                ],
-                OpenEnd:       true,
-                HTTPDelegate:  request => {
+//                HTTPHostname.Any,
+//                HTTPMethod.GET,
+//                [
+//                    URLPathPrefix + HTTPPath.Parse("/index.html"),
+//                    URLPathPrefix + HTTPPath.Parse("/"),
+//                    URLPathPrefix + HTTPPath.Parse("/{FileName}")
+//                ],
+//                OpenEnd:       true,
+//                HTTPDelegate:  request => {
 
-                    #region Get file path
+//                    #region Get file path
 
-                    var filePath = (request.ParsedURLParameters is not null && request.ParsedURLParameters.Length > 0)
-                                        ? request.ParsedURLParameters.Last().Replace('/', '.')
-                                        : "index.html";
+//                    var filePath = (request.ParsedURLParameters is not null && request.ParsedURLParameters.Length > 0)
+//                                        ? request.ParsedURLParameters.Last().Replace('/', '.')
+//                                        : "index.html";
 
-                    if (filePath.EndsWith('.'))
-                        filePath += "index.shtml";
+//                    if (filePath.EndsWith('.'))
+//                        filePath += "index.shtml";
 
-                    #endregion
+//                    #endregion
 
-                    #region The resource is a templated HTML file...
+//                    #region The resource is a templated HTML file...
 
-                    if (filePath.EndsWith(".shtml", StringComparison.Ordinal))
-                    {
+//                    if (filePath.EndsWith(".shtml", StringComparison.Ordinal))
+//                    {
 
-                        var file = MixWithHTMLTemplate(filePath);
+//                        var file = MixWithHTMLTemplate(filePath);
 
-                        if (file.IsNullOrEmpty())
-                            return Task.FromResult(
-                                new HTTPResponse.Builder(request) {
-                                    HTTPStatusCode  = HTTPStatusCode.NotFound,
-                                    Server          = HTTPServer.DefaultServerName,
-                                    Date            = Timestamp.Now,
-                                    CacheControl    = "public, max-age=300",
-                                    Connection      = ConnectionType.Close
-                                }.AsImmutable);
+//                        if (file.IsNullOrEmpty())
+//                            return Task.FromResult(
+//                                new HTTPResponse.Builder(request) {
+//                                    HTTPStatusCode  = HTTPStatusCode.NotFound,
+//                                    Server          = HTTPTestServer?.HTTPServerName,
+//                                    Date            = Timestamp.Now,
+//                                    CacheControl    = "public, max-age=300",
+//                                    Connection      = ConnectionType.Close
+//                                }.AsImmutable);
 
-                        else
-                            return Task.FromResult(
-                                new HTTPResponse.Builder(request) {
-                                    HTTPStatusCode  = HTTPStatusCode.OK,
-                                    ContentType     = HTTPContentType.Text.HTML_UTF8,
-                                    Content         = file.ToUTF8Bytes(),
-                                    CacheControl    = "public, max-age=300",
-                                    Connection      = ConnectionType.Close
-                                }.AsImmutable);
+//                        else
+//                            return Task.FromResult(
+//                                new HTTPResponse.Builder(request) {
+//                                    HTTPStatusCode  = HTTPStatusCode.OK,
+//                                    ContentType     = HTTPContentType.Text.HTML_UTF8,
+//                                    Content         = file.ToUTF8Bytes(),
+//                                    CacheControl    = "public, max-age=300",
+//                                    Connection      = ConnectionType.Close
+//                                }.AsImmutable);
 
-                    }
+//                    }
 
-                    #endregion
+//                    #endregion
 
-                    else
-                    {
+//                    else
+//                    {
 
-                        var resourceStream = GetResourceStream(filePath);
+//                        var resourceStream = GetResourceStream(filePath);
 
-                        #region File not found!
+//                        #region File not found!
 
-                        if (resourceStream is null)
-                            return Task.FromResult(
-                                new HTTPResponse.Builder(request) {
-                                    HTTPStatusCode  = HTTPStatusCode.NotFound,
-                                    Server          = HTTPServer.DefaultServerName,
-                                    Date            = Timestamp.Now,
-                                    CacheControl    = "public, max-age=300",
-                                    Connection      = ConnectionType.Close
-                                }.AsImmutable);
+//                        if (resourceStream is null)
+//                            return Task.FromResult(
+//                                new HTTPResponse.Builder(request) {
+//                                    HTTPStatusCode  = HTTPStatusCode.NotFound,
+//                                    Server          = HTTPTestServer?.HTTPServerName,
+//                                    Date            = Timestamp.Now,
+//                                    CacheControl    = "public, max-age=300",
+//                                    Connection      = ConnectionType.Close
+//                                }.AsImmutable);
 
-                        #endregion
+//                        #endregion
 
-                        #region Choose HTTP content type based on the file name extension of the requested resource...
+//                        #region Choose HTTP content type based on the file name extension of the requested resource...
 
-                        var fileName             = filePath[(filePath.LastIndexOf("/") + 1)..];
+//                        var fileName             = filePath[(filePath.LastIndexOf("/") + 1)..];
 
-                        var responseContentType  = fileName.Remove(0, fileName.LastIndexOf(".") + 1) switch {
+//                        var responseContentType  = fileName.Remove(0, fileName.LastIndexOf(".") + 1) switch {
 
-                            "htm"   => HTTPContentType.Text.HTML_UTF8,
-                            "html"  => HTTPContentType.Text.HTML_UTF8,
-                            "css"   => HTTPContentType.Text.CSS_UTF8,
-                            "gif"   => HTTPContentType.Image.GIF,
-                            "jpg"   => HTTPContentType.Image.JPEG,
-                            "jpeg"  => HTTPContentType.Image.JPEG,
-                            "svg"   => HTTPContentType.Image.SVG,
-                            "png"   => HTTPContentType.Image.PNG,
-                            "ico"   => HTTPContentType.Image.ICO,
-                            "js"    => HTTPContentType.Text.JAVASCRIPT_UTF8,
-                            "txt"   => HTTPContentType.Text.PLAIN,
-                            "xml"   => HTTPContentType.Text.XML_UTF8,
+//                            "htm"   => HTTPContentType.Text.HTML_UTF8,
+//                            "html"  => HTTPContentType.Text.HTML_UTF8,
+//                            "css"   => HTTPContentType.Text.CSS_UTF8,
+//                            "gif"   => HTTPContentType.Image.GIF,
+//                            "jpg"   => HTTPContentType.Image.JPEG,
+//                            "jpeg"  => HTTPContentType.Image.JPEG,
+//                            "svg"   => HTTPContentType.Image.SVG,
+//                            "png"   => HTTPContentType.Image.PNG,
+//                            "ico"   => HTTPContentType.Image.ICO,
+//                            "js"    => HTTPContentType.Text.JAVASCRIPT_UTF8,
+//                            "txt"   => HTTPContentType.Text.PLAIN,
+//                            "xml"   => HTTPContentType.Text.XML_UTF8,
 
-                            _       => HTTPContentType.Application.OCTETSTREAM,
+//                            _       => HTTPContentType.Application.OCTETSTREAM,
 
-                        };
+//                        };
 
-                        #endregion
+//                        #endregion
 
-                        #region Create HTTP response
+//                        #region Create HTTP response
 
-                        return Task.FromResult(
-                            new HTTPResponse.Builder(request) {
-                                HTTPStatusCode  = HTTPStatusCode.OK,
-                                Server          = HTTPServer.DefaultServerName,
-                                Date            = Timestamp.Now,
-                                ContentType     = responseContentType,
-                                ContentStream   = resourceStream,
-                                CacheControl    = "public, max-age=300",
-                                //Expires          = "Mon, 25 Jun 2015 21:31:12 GMT",
-//                                              KeepAlive       = new KeepAliveType(TimeSpan.FromMinutes(5), 500),
-//                                              Connection      = "Keep-Alive",
-                                Connection      = ConnectionType.Close
-                            }.AsImmutable);
+//                        return Task.FromResult(
+//                            new HTTPResponse.Builder(request) {
+//                                HTTPStatusCode  = HTTPStatusCode.OK,
+//                                Server          = HTTPTestServer?.HTTPServerName,
+//                                Date            = Timestamp.Now,
+//                                ContentType     = responseContentType,
+//                                ContentStream   = resourceStream,
+//                                CacheControl    = "public, max-age=300",
+//                                //Expires          = "Mon, 25 Jun 2015 21:31:12 GMT",
+////                                              KeepAlive       = new KeepAliveType(TimeSpan.FromMinutes(5), 500),
+////                                              Connection      = "Keep-Alive",
+//                                Connection      = ConnectionType.Close
+//                            }.AsImmutable);
 
-                        #endregion
+//                        #endregion
 
-                    }
+//                    }
 
-                },
-                AllowReplacement: URLReplacement.Allow
+//                },
+//                AllowReplacement: URLReplacement.Allow
 
-            );
+//            );
 
             #endregion
 
 
             #region ~/impress
 
-            AddMethodCallback(
+            AddHandler(
 
-                Hostname,
                 HTTPMethod.GET,
                 URLPathPrefix + "impress",
                 HTTPContentType.Text.HTML_UTF8,
@@ -3501,7 +3557,7 @@ namespace cloud.charging.open.API
                     Task.FromResult(
                         new HTTPResponse.Builder(request) {
                             HTTPStatusCode              = HTTPStatusCode.OK,
-                            Server                      = HTTPServer.DefaultServerName,
+                            Server                      = HTTPTestServer?.HTTPServerName,
                             Date                        = Timestamp.Now,
                             AccessControlAllowOrigin    = "*",
                             AccessControlAllowMethods   = [ "GET" ],
@@ -3528,7 +3584,7 @@ namespace cloud.charging.open.API
             // ----------------------------------------------------------------
             // curl -v -H "Accept: text/html" http://127.0.0.1:3001/dashboard
             // ----------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.GET,
                               URLPathPrefix + "dashboard",
                               HTTPContentType.Text.HTML_UTF8,
@@ -3552,7 +3608,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode              = HTTPStatusCode.OK,
-                                          Server                      = HTTPServer.DefaultServerName,
+                                          Server                      = HTTPTestServer?.HTTPServerName,
                                           Date                        = Timestamp.Now,
                                           AccessControlAllowOrigin    = "*",
                                           AccessControlAllowMethods   = [ "GET" ],
@@ -3577,7 +3633,7 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/chargy/versions
             // -----------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.GET,
                               URLPathPrefix + "chargy/versions",
                               HTTPContentType.Application.JSON_UTF8,
@@ -3589,7 +3645,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode                = HTTPStatusCode.OK,
-                                          Server                        = HTTPServer.DefaultServerName,
+                                          Server                        = HTTPTestServer?.HTTPServerName,
                                           Date                          = Timestamp.Now,
                                           AccessControlAllowOrigin      = "*",
                                           AccessControlAllowMethods     = [ "GET", "OPTIONS" ],
@@ -3610,7 +3666,7 @@ namespace cloud.charging.open.API
             // ----------------------------------------------------------
             // curl -v -X OPTIONS http://127.0.0.1:5500/chargy/versions
             // ----------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.OPTIONS,
                               URLPathPrefix + "chargy/versions",
                               HTTPDelegate: Request =>
@@ -3618,7 +3674,7 @@ namespace cloud.charging.open.API
                                   Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode               = HTTPStatusCode.NoContent,
-                                          Server                       = HTTPServer.DefaultServerName,
+                                          Server                       = HTTPTestServer?.HTTPServerName,
                                           Date                         = Timestamp.Now,
                                           AccessControlAllowOrigin     = "*",
                                           AccessControlAllowMethods    = [ "GET", "OPTIONS" ],
@@ -3638,7 +3694,7 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------------------------------------------------------
             // curl -v -X POST -H "Content-Type: application/json" -d "{ \"hello\": \"world\" }" http://127.0.0.1:5500/chargy/issues
             // -----------------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.POST,
                               URLPathPrefix + "chargy/issues",
                               HTTPContentType.Application.JSON_UTF8,
@@ -3660,7 +3716,7 @@ namespace cloud.charging.open.API
 
                                   return new HTTPResponse.Builder(Request) {
                                              HTTPStatusCode              = HTTPStatusCode.Created,
-                                             Server                      = HTTPServer.DefaultServerName,
+                                             Server                      = HTTPTestServer?.HTTPServerName,
                                              Date                        = Timestamp.Now,
                                              AccessControlAllowOrigin    = "*",
                                              AccessControlAllowMethods   = [ "OPTIONS", "POST" ],
@@ -3679,7 +3735,7 @@ namespace cloud.charging.open.API
             // --------------------------------------------------------
             // curl -v -X OPTIONS http://127.0.0.1:5500/chargy/issues
             // --------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.OPTIONS,
                               URLPathPrefix + "chargy/issues",
                               HTTPDelegate: Request =>
@@ -3687,7 +3743,7 @@ namespace cloud.charging.open.API
                                   Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode               = HTTPStatusCode.NoContent,
-                                          Server                       = HTTPServer.DefaultServerName,
+                                          Server                       = HTTPTestServer?.HTTPServerName,
                                           Date                         = Timestamp.Now,
                                           AccessControlAllowOrigin     = "*",
                                           AccessControlAllowMethods    = [ "OPTIONS", "POST" ],
@@ -3711,7 +3767,7 @@ namespace cloud.charging.open.API
             // ----------------------------------------------------------------------------
             // curl -v -X OPTIONS -H "Accept: application/json" http://127.0.0.1:3004/RNs
             // ----------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.OPTIONS,
                               URLPathPrefix + "RNs",
                               HTTPDelegate: Request => {
@@ -3722,7 +3778,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
@@ -3736,7 +3792,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode             = HTTPStatusCode.NoContent,
-                                          Server                     = HTTPServer.DefaultServerName,
+                                          Server                     = HTTPTestServer?.HTTPServerName,
                                           Date                       = Timestamp.Now,
                                           AccessControlAllowOrigin   = "*",
                                           AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
@@ -3753,7 +3809,7 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs
             // -----------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.GET,
                               URLPathPrefix + "RNs",
                               HTTPContentType.Application.JSON_UTF8,
@@ -3765,7 +3821,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
@@ -3783,7 +3839,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode                = HTTPStatusCode.OK,
-                                          Server                        = HTTPServer.DefaultServerName,
+                                          Server                        = HTTPTestServer?.HTTPServerName,
                                           Date                          = Timestamp.Now,
                                           AccessControlAllowOrigin      = "*",
                                           AccessControlAllowMethods     = [ "GET", "COUNT", "OPTIONS" ],
@@ -3806,7 +3862,7 @@ namespace cloud.charging.open.API
             // ---------------------------------------------------------------------------
             // curl -v -X "HEAD" -H "Accept: application/json" http://127.0.0.1:3004/RNs
             // ---------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.HEAD,
                               URLPathPrefix + "RNs",
                               HTTPContentType.Application.JSON_UTF8,
@@ -3818,7 +3874,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
@@ -3836,7 +3892,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode                = HTTPStatusCode.OK,
-                                          Server                        = HTTPServer.DefaultServerName,
+                                          Server                        = HTTPTestServer?.HTTPServerName,
                                           Date                          = Timestamp.Now,
                                           AccessControlAllowOrigin      = "*",
                                           AccessControlAllowMethods     = [ "GET", "COUNT", "OPTIONS" ],
@@ -3859,7 +3915,7 @@ namespace cloud.charging.open.API
             // --------------------------------------------------------------------------
             // curl -v -X COUNT -H "Accept: application/json" http://127.0.0.1:3004/RNs
             // --------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.COUNT,
                               URLPathPrefix + "RNs",
                               HTTPContentType.Application.JSON_UTF8,
@@ -3871,7 +3927,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
@@ -3887,7 +3943,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode               = HTTPStatusCode.OK,
-                                          Server                       = HTTPServer.DefaultServerName,
+                                          Server                       = HTTPTestServer?.HTTPServerName,
                                           Date                         = Timestamp.Now,
                                           AccessControlAllowOrigin     = "*",
                                           AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
@@ -3910,7 +3966,7 @@ namespace cloud.charging.open.API
             // -------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs->Id
             // -------------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.GET,
                               URLPathPrefix + "RNs->Id",
                               HTTPContentType.Application.JSON_UTF8,
@@ -3922,7 +3978,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD" },
@@ -3940,7 +3996,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode                 = HTTPStatusCode.OK,
-                                          Server                         = HTTPServer.DefaultServerName,
+                                          Server                         = HTTPTestServer?.HTTPServerName,
                                           Date                           = Timestamp.Now,
                                           AccessControlAllowOrigin       = "*",
                                           AccessControlAllowMethods      = [ "GET" ],
@@ -3965,7 +4021,7 @@ namespace cloud.charging.open.API
             // ------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs->AdminStatus
             // ------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.GET,
                               URLPathPrefix + "RNs->AdminStatus",
                               HTTPContentType.Application.JSON_UTF8,
@@ -3977,7 +4033,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD" },
@@ -3997,7 +4053,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode                = HTTPStatusCode.OK,
-                                          Server                        = HTTPServer.DefaultServerName,
+                                          Server                        = HTTPTestServer?.HTTPServerName,
                                           Date                          = Timestamp.Now,
                                           AccessControlAllowOrigin      = "*",
                                           AccessControlAllowMethods     = [ "GET" ],
@@ -4023,7 +4079,7 @@ namespace cloud.charging.open.API
             // -------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs->Status
             // -------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.GET,
                               URLPathPrefix + "RNs->Status",
                               HTTPContentType.Application.JSON_UTF8,
@@ -4035,7 +4091,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD" },
@@ -4055,7 +4111,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode                 = HTTPStatusCode.OK,
-                                          Server                         = HTTPServer.DefaultServerName,
+                                          Server                         = HTTPTestServer?.HTTPServerName,
                                           Date                           = Timestamp.Now,
                                           AccessControlAllowOrigin       = "*",
                                           AccessControlAllowMethods      = [ "GET" ],
@@ -4085,7 +4141,7 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------------------------------
             // curl -v -X OPTIONS -H "Accept: application/json" http://127.0.0.1:5500/RNs/{RoamingNetworkId}
             // -----------------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.OPTIONS,
                               URLPathPrefix + "RNs/{RoamingNetworkId}",
                               HTTPDelegate: Request => {
@@ -4096,7 +4152,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
@@ -4122,7 +4178,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode             = HTTPStatusCode.NoContent,
-                                          Server                     = HTTPServer.DefaultServerName,
+                                          Server                     = HTTPTestServer?.HTTPServerName,
                                           Date                       = Timestamp.Now,
                                           AccessControlAllowOrigin   = "*",
                                           AccessControlAllowMethods  = [ "GET", "COUNT", "OPTIONS" ],
@@ -4139,7 +4195,7 @@ namespace cloud.charging.open.API
             // ----------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test
             // ----------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.GET,
                               URLPathPrefix + "RNs/{RoamingNetworkId}",
                               HTTPContentType.Application.JSON_UTF8,
@@ -4151,7 +4207,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
@@ -4177,7 +4233,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode             = HTTPStatusCode.OK,
-                                          Server                     = HTTPServer.DefaultServerName,
+                                          Server                     = HTTPTestServer?.HTTPServerName,
                                           Date                       = Timestamp.Now,
                                           AccessControlAllowOrigin   = "*",
                                           AccessControlAllowMethods  = [ "GET", "CREATE", "DELETE" ],
@@ -4197,7 +4253,7 @@ namespace cloud.charging.open.API
             // --------------------------------------------------------------------------------
             // curl -v -X "HEAD" -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test
             // --------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.HEAD,
                               URLPathPrefix + "RNs/{RoamingNetworkId}",
                               HTTPContentType.Application.JSON_UTF8,
@@ -4209,7 +4265,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
@@ -4235,7 +4291,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode             = HTTPStatusCode.OK,
-                                          Server                     = HTTPServer.DefaultServerName,
+                                          Server                     = HTTPTestServer?.HTTPServerName,
                                           Date                       = Timestamp.Now,
                                           AccessControlAllowOrigin   = "*",
                                           AccessControlAllowMethods  = new[] { "GET", "CREATE", "DELETE" },
@@ -4253,7 +4309,7 @@ namespace cloud.charging.open.API
             // ---------------------------------------------------------------------------------
             // curl -v -X CREATE -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test2
             // ---------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.CREATE,
                               URLPathPrefix + "RNs/{RoamingNetworkId}",
                               HTTPContentType.Application.JSON_UTF8,
@@ -4283,7 +4339,7 @@ namespace cloud.charging.open.API
 
                                       return Task.FromResult(new HTTPResponse.Builder(Request) {
                                                   HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                  Server          = HTTPServer.DefaultServerName,
+                                                  Server          = HTTPTestServer?.HTTPServerName,
                                                   Date            = Timestamp.Now,
                                               }.AsImmutable);
 
@@ -4296,7 +4352,7 @@ namespace cloud.charging.open.API
 
                                       return Task.FromResult(new HTTPResponse.Builder(Request) {
                                                   HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                  Server          = HTTPServer.DefaultServerName,
+                                                  Server          = HTTPTestServer?.HTTPServerName,
                                                   Date            = Timestamp.Now,
                                                   ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                   Content         = HTTPResponseExtensions.CreateError("Invalid roaming network identification!")
@@ -4311,7 +4367,7 @@ namespace cloud.charging.open.API
 
                                       return Task.FromResult(new HTTPResponse.Builder(Request) {
                                                   HTTPStatusCode  = HTTPStatusCode.Conflict,
-                                                  Server          = HTTPServer.DefaultServerName,
+                                                  Server          = HTTPTestServer?.HTTPServerName,
                                                   Date            = Timestamp.Now,
                                                   ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                   Content         = HTTPResponseExtensions.CreateError("RoamingNetworkId already exists!")
@@ -4333,7 +4389,7 @@ namespace cloud.charging.open.API
 
                                   if (!json.ParseMandatory("name",
                                                            "roaming network name",
-                                                           HTTPServer.DefaultServerName,
+                                                           HTTPTestServer?.HTTPServerName,
                                                            out I18NString RoamingNetworkName,
                                                            Request,
                                                            out httpResponseBuilder))
@@ -4350,7 +4406,7 @@ namespace cloud.charging.open.API
                                       if (errorResponse is not null)
                                           return Task.FromResult(new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.BadRequest,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = new[] { "GET", "CREATE", "DELETE" },
@@ -4372,7 +4428,7 @@ namespace cloud.charging.open.API
 
                                   return Task.FromResult(new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Created,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "GET", "CREATE", "DELETE" ],
@@ -4392,7 +4448,7 @@ namespace cloud.charging.open.API
             // ---------------------------------------------------------------------------------
             // curl -v -X DELETE -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test2
             // ---------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.DELETE,
                               URLPathPrefix + "RNs/{RoamingNetworkId}",
                               HTTPContentType.Application.JSON_UTF8,
@@ -4437,7 +4493,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.OK,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "GET", "CREATE", "DELETE" ],
@@ -4457,7 +4513,7 @@ namespace cloud.charging.open.API
             //// ----------------------------------------------------------------------
             //// curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test
             //// ----------------------------------------------------------------------
-            //AddMethodCallback(Hostname,
+            //AddHandler(
             //                  HTTPMethod.GET,
             //                  URLPathPrefix + "RNs/{RoamingNetworkId}/{PropertyKey}",
             //                  HTTPContentType.Application.JSON_UTF8,
@@ -4469,7 +4525,7 @@ namespace cloud.charging.open.API
             //                          return Task.FromResult(
             //                              new HTTPResponse.Builder(Request) {
             //                                  HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-            //                                  Server                     = HTTPServer.DefaultServerName,
+            //                                  Server                     = HTTPTestServer?.HTTPServerName,
             //                                  Date                       = Timestamp.Now,
             //                                  AccessControlAllowOrigin   = "*",
             //                                  AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
@@ -4496,7 +4552,7 @@ namespace cloud.charging.open.API
             //                          return Task.FromResult(
             //                              new HTTPResponse.Builder(Request) {
             //                                  HTTPStatusCode  = HTTPStatusCode.BadRequest,
-            //                                  Server          = HTTPServer.DefaultServerName,
+            //                                  Server          = HTTPTestServer?.HTTPServerName,
             //                                  Date            = Timestamp.Now,
             //                              }.AsImmutable);
 
@@ -4506,7 +4562,7 @@ namespace cloud.charging.open.API
             //                          return Task.FromResult(
             //                              new HTTPResponse.Builder(Request) {
             //                                  HTTPStatusCode  = HTTPStatusCode.BadRequest,
-            //                                  Server          = HTTPServer.DefaultServerName,
+            //                                  Server          = HTTPTestServer?.HTTPServerName,
             //                                  Date            = Timestamp.Now,
             //                                  ContentType     = HTTPContentType.Application.JSON_UTF8,
             //                                  Content         = @"{ ""description"": ""Invalid property key!"" }".ToUTF8Bytes()
@@ -4517,7 +4573,7 @@ namespace cloud.charging.open.API
             //                          return Task.FromResult(
             //                              new HTTPResponse.Builder(Request) {
             //                                  HTTPStatusCode             = HTTPStatusCode.NotFound,
-            //                                  Server                     = HTTPServer.DefaultServerName,
+            //                                  Server                     = HTTPTestServer?.HTTPServerName,
             //                                  Date                       = Timestamp.Now,
             //                                  AccessControlAllowOrigin   = "*",
             //                                  AccessControlAllowMethods  = new[] { "GET", "SET" },
@@ -4530,7 +4586,7 @@ namespace cloud.charging.open.API
             //                      return Task.FromResult(
             //                          new HTTPResponse.Builder(Request) {
             //                              HTTPStatusCode             = HTTPStatusCode.OK,
-            //                              Server                     = HTTPServer.DefaultServerName,
+            //                              Server                     = HTTPTestServer?.HTTPServerName,
             //                              Date                       = Timestamp.Now,
             //                              AccessControlAllowOrigin   = "*",
             //                              AccessControlAllowMethods  = new[] { "GET", "SET" },
@@ -4552,7 +4608,7 @@ namespace cloud.charging.open.API
             //// -----------------------------------------------------------------------------
             //// curl -v -X SET -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test
             //// -----------------------------------------------------------------------------
-            //AddMethodCallback(Hostname,
+            //AddHandler(
             //                  HTTPMethod.SET,
             //                  URLPathPrefix + "RNs/{RoamingNetworkId}/{PropertyKey}",
             //                  HTTPContentType.Application.JSON_UTF8,
@@ -4590,7 +4646,7 @@ namespace cloud.charging.open.API
             //                          return Task.FromResult(
             //                              new HTTPResponse.Builder(Request) {
             //                                  HTTPStatusCode  = HTTPStatusCode.BadRequest,
-            //                                  Server          = HTTPServer.DefaultServerName,
+            //                                  Server          = HTTPTestServer?.HTTPServerName,
             //                                  Date            = Timestamp.Now,
             //                                  Connection      = ConnectionType.Close
             //                              }.AsImmutable);
@@ -4601,7 +4657,7 @@ namespace cloud.charging.open.API
             //                          return Task.FromResult(
             //                              new HTTPResponse.Builder(Request) {
             //                                  HTTPStatusCode  = HTTPStatusCode.BadRequest,
-            //                                  Server          = HTTPServer.DefaultServerName,
+            //                                  Server          = HTTPTestServer?.HTTPServerName,
             //                                  Date            = Timestamp.Now,
             //                                  ContentType     = HTTPContentType.Application.JSON_UTF8,
             //                                  Content         = @"{ ""description"": ""Invalid property key!"" }".ToUTF8Bytes(),
@@ -4624,7 +4680,7 @@ namespace cloud.charging.open.API
 
             //                      if (!json.ParseMandatoryText("oldValue",
             //                                                   "old value of the property",
-            //                                                   HTTPServer.DefaultServerName,
+            //                                                   HTTPTestServer?.HTTPServerName,
             //                                                   out String OldValue,
             //                                                   Request,
             //                                                   out httpResponseBuilder))
@@ -4638,7 +4694,7 @@ namespace cloud.charging.open.API
 
             //                      if (!json.ParseMandatoryText("newValue",
             //                                                   "new value of the property",
-            //                                                   HTTPServer.DefaultServerName,
+            //                                                   HTTPTestServer?.HTTPServerName,
             //                                                   out String NewValue,
             //                                                   Request,
             //                                                   out httpResponseBuilder))
@@ -4681,7 +4737,7 @@ namespace cloud.charging.open.API
             //                      return Task.FromResult(
             //                          new HTTPResponse.Builder(Request) {
             //                              HTTPStatusCode             = _HTTPStatusCode,
-            //                              Server                     = HTTPServer.DefaultServerName,
+            //                              Server                     = HTTPTestServer?.HTTPServerName,
             //                              Date                       = Timestamp.Now,
             //                              AccessControlAllowOrigin   = "*",
             //                              AccessControlAllowMethods  = new[] { "GET", "SET" },
@@ -4711,7 +4767,7 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------------------------------
             // curl -v -X OPTIONS -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingPools
             // -----------------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.OPTIONS,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools",
                               HTTPDelegate: Request => {
@@ -4722,7 +4778,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
@@ -4748,7 +4804,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode             = HTTPStatusCode.NoContent,
-                                          Server                     = HTTPServer.DefaultServerName,
+                                          Server                     = HTTPTestServer?.HTTPServerName,
                                           Date                       = Timestamp.Now,
                                           AccessControlAllowOrigin   = "*",
                                           AccessControlAllowMethods  = [ "GET", "COUNT", "OPTIONS" ],
@@ -4765,7 +4821,7 @@ namespace cloud.charging.open.API
             // ------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingPools
             // ------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.GET,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools",
                               HTTPContentType.Application.JSON_UTF8,
@@ -4777,7 +4833,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
@@ -4815,7 +4871,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode                = HTTPStatusCode.OK,
-                                          Server                        = HTTPServer.DefaultServerName,
+                                          Server                        = HTTPTestServer?.HTTPServerName,
                                           Date                          = Timestamp.Now,
                                           AccessControlAllowOrigin      = "*",
                                           AccessControlAllowMethods     = [ "GET", "COUNT", "OPTIONS" ],
@@ -4846,7 +4902,7 @@ namespace cloud.charging.open.API
             // ------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingPools
             // ------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.HEAD,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools",
                               HTTPContentType.Application.JSON_UTF8,
@@ -4858,7 +4914,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
@@ -4884,7 +4940,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode                = HTTPStatusCode.OK,
-                                          Server                        = HTTPServer.DefaultServerName,
+                                          Server                        = HTTPTestServer?.HTTPServerName,
                                           Date                          = Timestamp.Now,
                                           AccessControlAllowOrigin      = "*",
                                           AccessControlAllowMethods     = [ "GET", "COUNT", "OPTIONS" ],
@@ -4902,7 +4958,7 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------------------------------------------
             // curl -v -X COUNT -H "Accept: application/json" http://127.0.0.1:5500/RNs/{RoamingNetworkId}/ChargingPools
             // -----------------------------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.COUNT,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools",
                               HTTPContentType.Application.JSON_UTF8,
@@ -4914,7 +4970,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
@@ -4940,7 +4996,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode               = HTTPStatusCode.OK,
-                                          Server                       = HTTPServer.DefaultServerName,
+                                          Server                       = HTTPTestServer?.HTTPServerName,
                                           Date                         = Timestamp.Now,
                                           AccessControlAllowOrigin     = "*",
                                           AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
@@ -4963,8 +5019,7 @@ namespace cloud.charging.open.API
             // -------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingPools->Id
             // -------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools->Id",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -4980,7 +5035,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                = HTTPStatusCode.OK,
-                                                     Server                        = HTTPServer.DefaultServerName,
+                                                     Server                        = HTTPTestServer?.HTTPServerName,
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = [ "GET" ],
@@ -5004,8 +5059,7 @@ namespace cloud.charging.open.API
             // -------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingPools->AdminStatus
             // -------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools->AdminStatus",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -5026,7 +5080,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                = HTTPStatusCode.OK,
-                                                     Server                        = HTTPServer.DefaultServerName,
+                                                     Server                        = HTTPTestServer?.HTTPServerName,
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = [ "GET" ],
@@ -5050,8 +5104,7 @@ namespace cloud.charging.open.API
             // --------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingPools->Status
             // --------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools->Status",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -5072,7 +5125,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                = HTTPStatusCode.OK,
-                                                     Server                        = HTTPServer.DefaultServerName,
+                                                     Server                        = HTTPTestServer?.HTTPServerName,
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = [ "GET" ],
@@ -5097,8 +5150,7 @@ namespace cloud.charging.open.API
             // --------------------------------------------------------------------------------------------------------------
             // curl -v -X COUNT -H "Accept: application/json" http://127.0.0.1:5500/RNs/{RoamingNetworkId}/ChargingPools/DynamicStatusReport
             // --------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "/RNs/{RoamingNetworkId}/ChargingPools/DynamicStatusReport",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -5114,7 +5166,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode               = HTTPStatusCode.OK,
-                                                     Server                       = HTTPServer.DefaultServerName,
+                                                     Server                       = HTTPTestServer?.HTTPServerName,
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
@@ -5147,8 +5199,7 @@ namespace cloud.charging.open.API
             // ---------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingPools/...
             // ---------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         HTTPHostname.Any,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -5169,7 +5220,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode             = HTTPStatusCode.OK,
-                                                     Server                     = HTTPServer.DefaultServerName,
+                                                     Server                     = HTTPTestServer?.HTTPServerName,
                                                      Date                       = Timestamp.Now,
                                                      AccessControlAllowOrigin   = "*",
                                                      AccessControlAllowMethods  = new[] { "GET", "SET" },
@@ -5192,8 +5243,7 @@ namespace cloud.charging.open.API
             // ---------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingPools/.../ChargingStations
             // ---------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/ChargingStations",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -5226,7 +5276,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode               = HTTPStatusCode.OK,
-                                                     Server                       = HTTPServer.DefaultServerName,
+                                                     Server                       = HTTPTestServer?.HTTPServerName,
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
@@ -5255,8 +5305,7 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingStations/{ChargingStationId}/ChargingStations->AdminStatus
             // -----------------------------------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations/{ChargingStationId}/ChargingStations->AdminStatus",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -5284,7 +5333,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                = HTTPStatusCode.OK,
-                                                     Server                        = HTTPServer.DefaultServerName,
+                                                     Server                        = HTTPTestServer?.HTTPServerName,
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = [ "GET" ],
@@ -5307,8 +5356,7 @@ namespace cloud.charging.open.API
             // ------------------------------------------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingStations/{ChargingStationId}/ChargingStations->Status
             // ------------------------------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations/{ChargingStationId}/ChargingStations->Status",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -5336,7 +5384,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                = HTTPStatusCode.OK,
-                                                     Server                        = HTTPServer.DefaultServerName,
+                                                     Server                        = HTTPTestServer?.HTTPServerName,
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = [ "GET" ],
@@ -5363,8 +5411,7 @@ namespace cloud.charging.open.API
             // ---------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingPools/.../ChargingStations
             // ---------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/ChargingStations/{ChargingStationId}/EVSEs",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -5396,7 +5443,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode               = HTTPStatusCode.OK,
-                                                     Server                       = HTTPServer.DefaultServerName,
+                                                     Server                       = HTTPTestServer?.HTTPServerName,
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
@@ -5428,8 +5475,7 @@ namespace cloud.charging.open.API
             // ---------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingPools/.../ChargingStations
             // ---------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/ChargingStations/{ChargingStationId}/EVSEs/{EVSEId}",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -5452,7 +5498,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode             = HTTPStatusCode.OK,
-                                                     Server                     = HTTPServer.DefaultServerName,
+                                                     Server                     = HTTPTestServer?.HTTPServerName,
                                                      Date                       = Timestamp.Now,
                                                      AccessControlAllowOrigin   = "*",
                                                      AccessControlAllowMethods  = [ "GET" ],
@@ -5475,8 +5521,7 @@ namespace cloud.charging.open.API
             // ---------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingPools/.../EVSEs
             // ---------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/EVSEs",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -5509,7 +5554,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode               = HTTPStatusCode.OK,
-                                                     Server                       = HTTPServer.DefaultServerName,
+                                                     Server                       = HTTPTestServer?.HTTPServerName,
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
@@ -5539,8 +5584,7 @@ namespace cloud.charging.open.API
             // ------------------------------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingPools/{ChargingPoolId}/EVSEs->AdminStatus
             // ------------------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/EVSEs->AdminStatus",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -5568,7 +5612,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                = HTTPStatusCode.OK,
-                                                     Server                        = HTTPServer.DefaultServerName,
+                                                     Server                        = HTTPTestServer?.HTTPServerName,
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = [ "GET" ],
@@ -5591,8 +5635,7 @@ namespace cloud.charging.open.API
             // -------------------------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingPools/{ChargingPoolId}/EVSEs->Status
             // -------------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/EVSEs->Status",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -5620,7 +5663,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                = HTTPStatusCode.OK,
-                                                     Server                        = HTTPServer.DefaultServerName,
+                                                     Server                        = HTTPTestServer?.HTTPServerName,
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = [ "GET" ],
@@ -5648,7 +5691,7 @@ namespace cloud.charging.open.API
             // --------------------------------------------------------------------------------------------------
             // curl -v -X OPTIONS -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingStations
             // --------------------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.OPTIONS,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations",
                               HTTPDelegate: Request => {
@@ -5659,7 +5702,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
@@ -5685,7 +5728,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode               = HTTPStatusCode.NoContent,
-                                          Server                       = HTTPServer.DefaultServerName,
+                                          Server                       = HTTPTestServer?.HTTPServerName,
                                           Date                         = Timestamp.Now,
                                           AccessControlAllowOrigin     = "*",
                                           AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
@@ -5702,7 +5745,7 @@ namespace cloud.charging.open.API
             // --------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingStations
             // --------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.GET,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}/ChargingStations",
                               HTTPContentType.Application.JSON_UTF8,
@@ -5714,7 +5757,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
@@ -5750,7 +5793,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode                = HTTPStatusCode.OK,
-                                          Server                        = HTTPServer.DefaultServerName,
+                                          Server                        = HTTPTestServer?.HTTPServerName,
                                           Date                          = Timestamp.Now,
                                           AccessControlAllowOrigin      = "*",
                                           AccessControlAllowMethods     = [ "GET", "COUNT", "OPTIONS" ],
@@ -5782,7 +5825,7 @@ namespace cloud.charging.open.API
             // --------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingStations
             // --------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.HEAD,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}/ChargingStations",
                               HTTPContentType.Application.JSON_UTF8,
@@ -5794,7 +5837,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
@@ -5820,7 +5863,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode             = HTTPStatusCode.OK,
-                                          Server                     = HTTPServer.DefaultServerName,
+                                          Server                     = HTTPTestServer?.HTTPServerName,
                                           Date                       = Timestamp.Now,
                                           AccessControlAllowOrigin   = "*",
                                           AccessControlAllowMethods  = [ "GET", "COUNT", "OPTIONS" ],
@@ -5838,7 +5881,7 @@ namespace cloud.charging.open.API
             // --------------------------------------------------------------------------------------------------------------
             // curl -v -X COUNT -H "Accept: application/json" http://127.0.0.1:5500/RNs/{RoamingNetworkId}/ChargingStations
             // --------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.COUNT,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}/ChargingStations",
                               HTTPContentType.Application.JSON_UTF8,
@@ -5850,7 +5893,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
@@ -5876,7 +5919,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode               = HTTPStatusCode.OK,
-                                          Server                       = HTTPServer.DefaultServerName,
+                                          Server                       = HTTPTestServer?.HTTPServerName,
                                           Date                         = Timestamp.Now,
                                           AccessControlAllowOrigin     = "*",
                                           AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
@@ -5899,8 +5942,7 @@ namespace cloud.charging.open.API
             // -------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingStations->Id
             // -------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations->Id",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -5916,7 +5958,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                = HTTPStatusCode.OK,
-                                                     Server                        = HTTPServer.DefaultServerName,
+                                                     Server                        = HTTPTestServer?.HTTPServerName,
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = [ "GET" ],
@@ -5940,8 +5982,7 @@ namespace cloud.charging.open.API
             // ----------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingStations->AdminStatus
             // ----------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations->AdminStatus",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -5962,7 +6003,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                 = HTTPStatusCode.OK,
-                                                     Server                         = HTTPServer.DefaultServerName,
+                                                     Server                         = HTTPTestServer?.HTTPServerName,
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = [ "GET" ],
@@ -5986,8 +6027,7 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingStations->Status
             // -----------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations->Status",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -6008,7 +6048,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                 = HTTPStatusCode.OK,
-                                                     Server                         = HTTPServer.DefaultServerName,
+                                                     Server                         = HTTPTestServer?.HTTPServerName,
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = [ "GET" ],
@@ -6033,8 +6073,7 @@ namespace cloud.charging.open.API
             // --------------------------------------------------------------------------------------------------------------
             // curl -v -X COUNT -H "Accept: application/json" http://127.0.0.1:5500/RNs/{RoamingNetworkId}/ChargingStations/DynamicStatusReport
             // --------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "/RNs/{RoamingNetworkId}/ChargingStations/DynamicStatusReport",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -6054,7 +6093,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode               = HTTPStatusCode.OK,
-                                                     Server                       = HTTPServer.DefaultServerName,
+                                                     Server                       = HTTPTestServer?.HTTPServerName,
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
@@ -6087,8 +6126,7 @@ namespace cloud.charging.open.API
             // ---------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingStations/...
             // ---------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         HTTPHostname.Any,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations/{ChargingStationId}",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -6107,7 +6145,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode             = HTTPStatusCode.OK,
-                                                     Server                     = HTTPServer.DefaultServerName,
+                                                     Server                     = HTTPTestServer?.HTTPServerName,
                                                      Date                       = Timestamp.Now,
                                                      AccessControlAllowOrigin   = "*",
                                                      AccessControlAllowMethods  = new[] { "GET", "SET" },
@@ -6130,8 +6168,7 @@ namespace cloud.charging.open.API
             // ---------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingStations/.../EVSEs
             // ---------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations/{ChargingStationId}/EVSEs",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -6165,7 +6202,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode               = HTTPStatusCode.OK,
-                                                     Server                       = HTTPServer.DefaultServerName,
+                                                     Server                       = HTTPTestServer?.HTTPServerName,
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
@@ -6195,8 +6232,7 @@ namespace cloud.charging.open.API
             // ------------------------------------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingStations/{ChargingStationId}/EVSEs->AdminStatus
             // ------------------------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations/{ChargingStationId}/EVSEs->AdminStatus",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -6224,7 +6260,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                = HTTPStatusCode.OK,
-                                                     Server                        = HTTPServer.DefaultServerName,
+                                                     Server                        = HTTPTestServer?.HTTPServerName,
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = [ "GET" ],
@@ -6247,8 +6283,7 @@ namespace cloud.charging.open.API
             // -------------------------------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingStations/{ChargingStationId}/EVSEs->Status
             // -------------------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations/{ChargingStationId}/EVSEs->Status",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -6276,7 +6311,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                = HTTPStatusCode.OK,
-                                                     Server                        = HTTPServer.DefaultServerName,
+                                                     Server                        = HTTPTestServer?.HTTPServerName,
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = [ "GET" ],
@@ -6304,7 +6339,7 @@ namespace cloud.charging.open.API
             // ---------------------------------------------------------------------------------------
             // curl -v -X OPTIONS -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/EVSEs
             // ---------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.OPTIONS,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs",
                               HTTPDelegate: Request => {
@@ -6315,7 +6350,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
@@ -6341,7 +6376,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode               = HTTPStatusCode.NoContent,
-                                          Server                       = HTTPServer.DefaultServerName,
+                                          Server                       = HTTPTestServer?.HTTPServerName,
                                           Date                         = Timestamp.Now,
                                           AccessControlAllowOrigin     = "*",
                                           AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
@@ -6358,7 +6393,7 @@ namespace cloud.charging.open.API
             // ----------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/EVSEs
             // ----------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.GET,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs",
                               HTTPContentType.Application.JSON_UTF8,
@@ -6370,7 +6405,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
@@ -6410,7 +6445,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode               = HTTPStatusCode.OK,
-                                          Server                       = HTTPServer.DefaultServerName,
+                                          Server                       = HTTPTestServer?.HTTPServerName,
                                           Date                         = Timestamp.Now,
                                           AccessControlAllowOrigin     = "*",
                                           AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
@@ -6442,7 +6477,7 @@ namespace cloud.charging.open.API
             // ----------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/EVSEs
             // ----------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.HEAD,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs",
                               HTTPContentType.Application.JSON_UTF8,
@@ -6454,7 +6489,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
@@ -6480,7 +6515,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode               = HTTPStatusCode.OK,
-                                          Server                       = HTTPServer.DefaultServerName,
+                                          Server                       = HTTPTestServer?.HTTPServerName,
                                           Date                         = Timestamp.Now,
                                           AccessControlAllowOrigin     = "*",
                                           AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
@@ -6498,7 +6533,7 @@ namespace cloud.charging.open.API
             // ---------------------------------------------------------------------------------------------------
             // curl -v -X COUNT -H "Accept: application/json" http://127.0.0.1:5500/RNs/{RoamingNetworkId}/EVSEs
             // ---------------------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.COUNT,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs",
                               HTTPContentType.Application.JSON_UTF8,
@@ -6510,7 +6545,7 @@ namespace cloud.charging.open.API
                                       return Task.FromResult(
                                           new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Timestamp.Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
@@ -6536,7 +6571,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode               = HTTPStatusCode.OK,
-                                          Server                       = HTTPServer.DefaultServerName,
+                                          Server                       = HTTPTestServer?.HTTPServerName,
                                           Date                         = Timestamp.Now,
                                           AccessControlAllowOrigin     = "*",
                                           AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
@@ -6559,8 +6594,7 @@ namespace cloud.charging.open.API
             // --------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/EVSEs->Id
             // --------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs->Id",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -6580,7 +6614,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                = HTTPStatusCode.OK,
-                                                     Server                        = HTTPServer.DefaultServerName,
+                                                     Server                        = HTTPTestServer?.HTTPServerName,
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = [ "GET" ],
@@ -6605,8 +6639,7 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/EVSEs->AdminStatus
             // -----------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs->AdminStatus",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -6636,7 +6669,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                 = HTTPStatusCode.OK,
-                                                     Server                         = HTTPServer.DefaultServerName,
+                                                     Server                         = HTTPTestServer?.HTTPServerName,
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = [ "GET" ],
@@ -6661,8 +6694,7 @@ namespace cloud.charging.open.API
             // -------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/EVSEs->AdminStatusSchedule
             // -------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs->AdminStatusSchedule",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -6694,7 +6726,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                 = HTTPStatusCode.OK,
-                                                     Server                         = HTTPServer.DefaultServerName,
+                                                     Server                         = HTTPTestServer?.HTTPServerName,
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = [ "GET" ],
@@ -6721,8 +6753,7 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/EVSEs->Status
             // -----------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs->Status",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -6755,7 +6786,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                 = HTTPStatusCode.OK,
-                                                     Server                         = HTTPServer.DefaultServerName,
+                                                     Server                         = HTTPTestServer?.HTTPServerName,
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = [ "GET" ],
@@ -6780,8 +6811,7 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/EVSEs->StatusSchedule
             // -----------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs->StatusSchedule",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -6814,7 +6844,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                 = HTTPStatusCode.OK,
-                                                     Server                         = HTTPServer.DefaultServerName,
+                                                     Server                         = HTTPTestServer?.HTTPServerName,
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = [ "GET" ],
@@ -6847,8 +6877,7 @@ namespace cloud.charging.open.API
             // --------------------------------------------------------------------------------------------------------------
             // curl -v -X COUNT -H "Accept: application/json" http://127.0.0.1:5500/RNs/{RoamingNetworkId}/EVSEs/DynamicStatusReport
             // --------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/DynamicStatusReport",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -6868,7 +6897,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode               = HTTPStatusCode.OK,
-                                                     Server                       = HTTPServer.DefaultServerName,
+                                                     Server                       = HTTPTestServer?.HTTPServerName,
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "OPTIONS" },
@@ -6902,8 +6931,7 @@ namespace cloud.charging.open.API
             // ---------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/EVSEs/DE*GEF*E000001*1
             // ---------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -6924,7 +6952,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode             = HTTPStatusCode.OK,
-                                                     Server                     = HTTPServer.DefaultServerName,
+                                                     Server                     = HTTPTestServer?.HTTPServerName,
                                                      Date                       = Timestamp.Now,
                                                      AccessControlAllowOrigin   = "*",
                                                      AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
@@ -6944,8 +6972,7 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------
             // curl -v -H "Accept:       application/json" \
             //      http://127.0.0.1:5500/RNs/TEST/EVSEs/DE*GEF*E0001*1/AdminStatus
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}/AdminStatus",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -6966,7 +6993,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode              = HTTPStatusCode.OK,
-                                                     Server                      = HTTPServer.DefaultServerName,
+                                                     Server                      = HTTPTestServer?.HTTPServerName,
                                                      Date                        = Timestamp.Now,
                                                      AccessControlAllowOrigin    = "*",
                                                      AccessControlAllowMethods   = [ "GET" ],
@@ -6988,8 +7015,7 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------
             // curl -v -H "Accept:       application/json" \
             //      http://127.0.0.1:5500/RNs/TEST/EVSEs/DE*GEF*E0001*1/Status
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}/Status",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -7010,7 +7036,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode              = HTTPStatusCode.OK,
-                                                     Server                      = HTTPServer.DefaultServerName,
+                                                     Server                      = HTTPTestServer?.HTTPServerName,
                                                      Date                        = Timestamp.Now,
                                                      AccessControlAllowOrigin    = "*",
                                                      AccessControlAllowMethods   = [ "GET" ],
@@ -7074,7 +7100,7 @@ namespace cloud.charging.open.API
             //                               } \
             //          }" \
             //      http://127.0.0.1:5500/RNs/Test/EVSEs/DE*GEF*E000001*1
-            AddMethodCallback(Hostname,
+            AddHandler(
                               RESERVE,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
                               HTTPContentType.Application.JSON_UTF8,
@@ -7129,7 +7155,7 @@ namespace cloud.charging.open.API
 
                                       if (JSON.ParseOptionalStruct2("ReservationId",
                                                                   "ReservationId",
-                                                                  HTTPServer.DefaultServerName,
+                                                                  HTTPTestServer?.HTTPServerName,
                                                                   ChargingReservation_Id.TryParse,
                                                                   out ReservationId,
                                                                   Request,
@@ -7147,7 +7173,7 @@ namespace cloud.charging.open.API
 
                                       if (JSON.ParseOptionalStruct2("linkedReservationId",
                                                                   "linked reservation identification",
-                                                                  HTTPServer.DefaultServerName,
+                                                                  HTTPTestServer?.HTTPServerName,
                                                                   ChargingReservation_Id.TryParse,
                                                                   out LinkedReservationId,
                                                                   Request,
@@ -7165,7 +7191,7 @@ namespace cloud.charging.open.API
 
                                       if (JSON.ParseOptionalStruct2("ProviderId",
                                                                   "ProviderId",
-                                                                  HTTPServer.DefaultServerName,
+                                                                  HTTPTestServer?.HTTPServerName,
                                                                   EMobilityProvider_Id.TryParse,
                                                                   out ProviderId,
                                                                   Request,
@@ -7183,7 +7209,7 @@ namespace cloud.charging.open.API
 
                                       if (!JSON.ParseMandatory("eMAId",
                                                               "eMAId",
-                                                              HTTPServer.DefaultServerName,
+                                                              HTTPTestServer?.HTTPServerName,
                                                               EMobilityAccount_Id.TryParse,
                                                               out eMAId,
                                                               Request,
@@ -7198,7 +7224,7 @@ namespace cloud.charging.open.API
 
                                       if (JSON.ParseOptional("StartTime",
                                                              "start time!",
-                                                             HTTPServer.DefaultServerName,
+                                                             HTTPTestServer?.HTTPServerName,
                                                              out StartTime,
                                                              Request,
                                                              out httpResponse))
@@ -7222,7 +7248,7 @@ namespace cloud.charging.open.API
 
                                       if (JSON.ParseOptional("Duration",
                                                           "Duration",
-                                                          HTTPServer.DefaultServerName,
+                                                          HTTPTestServer?.HTTPServerName,
                                                           out Duration,
                                                           Request,
                                                           out httpResponse))
@@ -7239,7 +7265,7 @@ namespace cloud.charging.open.API
 
                                       if (JSON.ParseOptional("IntendedCharging",
                                                           "IntendedCharging",
-                                                          HTTPServer.DefaultServerName,
+                                                          HTTPTestServer?.HTTPServerName,
                                                           out JObject IntendedChargingJSON,
                                                           Request,
                                                           out httpResponse))
@@ -7252,7 +7278,7 @@ namespace cloud.charging.open.API
 
                                           if (IntendedChargingJSON.ParseOptional("StartTime",
                                                                               "IntendedCharging/StartTime",
-                                                                              HTTPServer.DefaultServerName,
+                                                                              HTTPTestServer?.HTTPServerName,
                                                                               out ChargingStartTime,
                                                                               Request,
                                                                               out httpResponse))
@@ -7269,7 +7295,7 @@ namespace cloud.charging.open.API
 
                                           if (IntendedChargingJSON.ParseOptional("Duration",
                                                                               "IntendedCharging/Duration",
-                                                                              HTTPServer.DefaultServerName,
+                                                                              HTTPTestServer?.HTTPServerName,
                                                                               out CharingDuration,
                                                                               Request,
                                                                               out httpResponse))
@@ -7286,7 +7312,7 @@ namespace cloud.charging.open.API
 
                                           if (!JSON.ParseOptional("ChargingProductId",
                                                                   "IntendedCharging/ChargingProductId",
-                                                                  HTTPServer.DefaultServerName,
+                                                                  HTTPTestServer?.HTTPServerName,
                                                                   out ChargingProductId,
                                                                   Request,
                                                                   out httpResponse))
@@ -7303,7 +7329,7 @@ namespace cloud.charging.open.API
 
                                           if (IntendedChargingJSON.ParseOptional("Plug",
                                                                               "IntendedCharging/ChargingProductId",
-                                                                              HTTPServer.DefaultServerName,
+                                                                              HTTPTestServer?.HTTPServerName,
                                                                               out Plug,
                                                                               Request,
                                                                               out httpResponse))
@@ -7320,7 +7346,7 @@ namespace cloud.charging.open.API
 
                                           if (IntendedChargingJSON.ParseOptional("Consumption",
                                                                               "IntendedCharging/Consumption",
-                                                                              HTTPServer.DefaultServerName,
+                                                                              HTTPTestServer?.HTTPServerName,
                                                                               UInt32.Parse,
                                                                               out Consumption,
                                                                               Request,
@@ -7342,7 +7368,7 @@ namespace cloud.charging.open.API
 
                                       if (JSON.ParseOptional("AuthorizedIds",
                                                           "AuthorizedIds",
-                                                          HTTPServer.DefaultServerName,
+                                                          HTTPTestServer?.HTTPServerName,
                                                           out JObject AuthorizedIdsJSON,
                                                           Request,
                                                           out httpResponse))
@@ -7355,7 +7381,7 @@ namespace cloud.charging.open.API
 
                                           if (AuthorizedIdsJSON.ParseOptional("AuthTokens",
                                                                               "AuthorizedIds/AuthTokens",
-                                                                              HTTPServer.DefaultServerName,
+                                                                              HTTPTestServer?.HTTPServerName,
                                                                               out JArray AuthTokensJSON,
                                                                               Request,
                                                                               out httpResponse))
@@ -7370,7 +7396,7 @@ namespace cloud.charging.open.API
                                                   if (!AuthenticationToken.TryParse(jtoken?.Value<String>() ?? "", out var authenticationToken))
                                                       return new HTTPResponse.Builder(Request) {
                                                               HTTPStatusCode             = HTTPStatusCode.BadRequest,
-                                                              Server                     = HTTPServer.DefaultServerName,
+                                                              Server                     = HTTPTestServer?.HTTPServerName,
                                                               Date                       = Timestamp.Now,
                                                               AccessControlAllowOrigin   = "*",
                                                               AccessControlAllowMethods  = new[] { "RESERVE", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
@@ -7391,7 +7417,7 @@ namespace cloud.charging.open.API
 
                                           if (AuthorizedIdsJSON.ParseOptional("eMAIds",
                                                                               "AuthorizedIds/eMAIds",
-                                                                              HTTPServer.DefaultServerName,
+                                                                              HTTPTestServer?.HTTPServerName,
                                                                               out JArray eMAIdsJSON,
                                                                               Request,
                                                                               out httpResponse))
@@ -7409,7 +7435,7 @@ namespace cloud.charging.open.API
                                                   if (!EMobilityAccount_Id.TryParse(jtoken?.Value<String>() ?? "", out eMAId2))
                                                       return new HTTPResponse.Builder(Request) {
                                                               HTTPStatusCode             = HTTPStatusCode.BadRequest,
-                                                              Server                     = HTTPServer.DefaultServerName,
+                                                              Server                     = HTTPTestServer?.HTTPServerName,
                                                               Date                       = Timestamp.Now,
                                                               AccessControlAllowOrigin   = "*",
                                                               AccessControlAllowMethods  = new[] { "RESERVE", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
@@ -7430,7 +7456,7 @@ namespace cloud.charging.open.API
 
                                           if (AuthorizedIdsJSON.ParseOptional("PINs",
                                                                               "AuthorizedIds/PINs",
-                                                                              HTTPServer.DefaultServerName,
+                                                                              HTTPTestServer?.HTTPServerName,
                                                                               out JArray PINsJSON,
                                                                               Request,
                                                                               out httpResponse))
@@ -7448,7 +7474,7 @@ namespace cloud.charging.open.API
                                                   if (!UInt32.TryParse(jtoken?.Value<String>() ?? "", out PIN))
                                                       return new HTTPResponse.Builder(Request) {
                                                               HTTPStatusCode             = HTTPStatusCode.BadRequest,
-                                                              Server                     = HTTPServer.DefaultServerName,
+                                                              Server                     = HTTPTestServer?.HTTPServerName,
                                                               Date                       = Timestamp.Now,
                                                               AccessControlAllowOrigin   = "*",
                                                               AccessControlAllowMethods  = new[] { "RESERVE", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
@@ -7528,7 +7554,7 @@ namespace cloud.charging.open.API
                                   if (result.Result == ReservationResultType.Success && result.Reservation is not null)
                                       return new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.Created,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
@@ -7549,7 +7575,7 @@ namespace cloud.charging.open.API
                                   //else if (result.Result == ReservationResultType.ReservationId_AlreadyInUse)
                                   //    return new HTTPResponse.Builder(HTTPRequest) {
                                   //        HTTPStatusCode             = HTTPStatusCode.Conflict,
-                                  //        Server                     = API.HTTPServer.DefaultServerName,
+                                  //        Server                     = API.HTTPTestServer?.HTTPServerName,
                                   //        Date                       = Timestamp.Now,
                                   //        AccessControlAllowOrigin   = "*",
                                   //        AccessControlAllowMethods  = new[] { "RESERVE", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
@@ -7566,7 +7592,7 @@ namespace cloud.charging.open.API
                                   else
                                   return new HTTPResponse.Builder(Request) {
                                               HTTPStatusCode             = HTTPStatusCode.BadRequest,
-                                              Server                     = HTTPServer.DefaultServerName,
+                                              Server                     = HTTPTestServer?.HTTPServerName,
                                               Date                       = Now,
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
@@ -7587,7 +7613,7 @@ namespace cloud.charging.open.API
             //                      -H "Accept:       application/json" \
             //      -d "{ \"AuthToken\":  \"00112233\" }" \
             //      http://127.0.0.1:5500/RNs/Test/EVSEs/DE*GEF*E000001*1
-            AddMethodCallback(Hostname,
+            AddHandler(
                               AUTHSTART,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
                               HTTPContentType.Application.JSON_UTF8,
@@ -7621,7 +7647,7 @@ namespace cloud.charging.open.API
 
                                   if (!json.ParseOptional("OperatorId",
                                                           "Charging Station Operator identification",
-                                                          HTTPServer.DefaultServerName,
+                                                          HTTPTestServer?.HTTPServerName,
                                                           ChargingStationOperator_Id.TryParse,
                                                           out OperatorId,
                                                           Request,
@@ -7635,7 +7661,7 @@ namespace cloud.charging.open.API
 
                                   if (!json.ParseMandatory("AuthToken",
                                                           "authentication token",
-                                                          HTTPServer.DefaultServerName,
+                                                          HTTPTestServer?.HTTPServerName,
                                                           AuthenticationToken.TryParse,
                                                           out AuthenticationToken AuthToken,
                                                           Request,
@@ -7649,7 +7675,7 @@ namespace cloud.charging.open.API
 
                                   if (!json.ParseOptionalStruct2("SessionId",
                                                               "Charging session identification",
-                                                              HTTPServer.DefaultServerName,
+                                                              HTTPTestServer?.HTTPServerName,
                                                               ChargingSession_Id.TryParse,
                                                               out ChargingSession_Id? SessionId,
                                                               Request,
@@ -7666,7 +7692,7 @@ namespace cloud.charging.open.API
 
                                   if (!json.ParseOptionalStruct2("CPOPartnerSessionId",
                                                               "CPO partner charging session identification",
-                                                              HTTPServer.DefaultServerName,
+                                                              HTTPTestServer?.HTTPServerName,
                                                               ChargingSession_Id.TryParse,
                                                               out ChargingSession_Id? CPOPartnerSessionId,
                                                               Request,
@@ -7683,7 +7709,7 @@ namespace cloud.charging.open.API
 
                                   if (!json.ParseOptionalStruct2("ChargingProductId",
                                                               "Charging product identification",
-                                                              HTTPServer.DefaultServerName,
+                                                              HTTPTestServer?.HTTPServerName,
                                                               ChargingProduct_Id.TryParse,
                                                               out ChargingProduct_Id? ChargingProductId,
                                                               Request,
@@ -7720,7 +7746,7 @@ namespace cloud.charging.open.API
                                                      if (result.Result == AuthStartResultTypes.Authorized)
                                                          return new HTTPResponse.Builder(Request) {
                                                                     HTTPStatusCode             = HTTPStatusCode.OK,
-                                                                    Server                     = HTTPServer.DefaultServerName,
+                                                                    Server                     = HTTPTestServer?.HTTPServerName,
                                                                     Date                       = Timestamp.Now,
                                                                     AccessControlAllowOrigin   = "*",
                                                                     AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
@@ -7736,7 +7762,7 @@ namespace cloud.charging.open.API
                                                      else if (result.Result == AuthStartResultTypes.Error)
                                                          return new HTTPResponse.Builder(Request) {
                                                                     HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                                                    Server                     = HTTPServer.DefaultServerName,
+                                                                    Server                     = HTTPTestServer?.HTTPServerName,
                                                                     Date                       = Timestamp.Now,
                                                                     AccessControlAllowOrigin   = "*",
                                                                     AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
@@ -7752,7 +7778,7 @@ namespace cloud.charging.open.API
                                                      else
                                                          return new HTTPResponse.Builder(Request) {
                                                                     HTTPStatusCode             = HTTPStatusCode.Forbidden, //ToDo: Is this smart?
-                                                                    Server                     = HTTPServer.DefaultServerName,
+                                                                    Server                     = HTTPTestServer?.HTTPServerName,
                                                                     Date                       = Timestamp.Now,
                                                                     AccessControlAllowOrigin   = "*",
                                                                     AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
@@ -7775,8 +7801,7 @@ namespace cloud.charging.open.API
             //      -d "{ \"SessionId\":  \"60ce73f6-0a88-1296-3d3d-623fdd276ddc\", \
             //            \"AuthToken\":  \"00112233\" }" \
             //      http://127.0.0.1:5500/RNs/Test/EVSEs/DE*GEF*E000001*1
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          AUTHSTOP,
                                          URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -7810,7 +7835,7 @@ namespace cloud.charging.open.API
 
                                                      if (!JSON.ParseMandatory("SessionId",
                                                                               "Charging session identification",
-                                                                              HTTPServer.DefaultServerName,
+                                                                              HTTPTestServer?.HTTPServerName,
                                                                               ChargingSession_Id.TryParse,
                                                                               out SessionId,
                                                                               Request,
@@ -7824,7 +7849,7 @@ namespace cloud.charging.open.API
 
                                                      if (!JSON.ParseMandatory("AuthToken",
                                                                               "Authentication token",
-                                                                              HTTPServer.DefaultServerName,
+                                                                              HTTPTestServer?.HTTPServerName,
                                                                               AuthenticationToken.TryParse,
                                                                               out AuthenticationToken AuthToken,
                                                                               Request,
@@ -7838,7 +7863,7 @@ namespace cloud.charging.open.API
 
                                                      if (!JSON.ParseOptionalStruct2("CPOPartnerSessionId",
                                                                                     "CPO partner charging session identification",
-                                                                                    HTTPServer.DefaultServerName,
+                                                                                    HTTPTestServer?.HTTPServerName,
                                                                                     ChargingSession_Id.TryParse,
                                                                                     out ChargingSession_Id? CPOPartnerSessionId,
                                                                                     Request,
@@ -7857,7 +7882,7 @@ namespace cloud.charging.open.API
 
                                                      if (!JSON.ParseOptional("OperatorId",
                                                                              "Charging Station Operator identification",
-                                                                             HTTPServer.DefaultServerName,
+                                                                             HTTPTestServer?.HTTPServerName,
                                                                              ChargingStationOperator_Id.TryParse,
                                                                              out OperatorId,
                                                                              Request,
@@ -7888,7 +7913,7 @@ namespace cloud.charging.open.API
                                                      if (result.Result == AuthStopResultTypes.Authorized)
                                                          return new HTTPResponse.Builder(Request) {
                                                                     HTTPStatusCode  = HTTPStatusCode.OK,
-                                                                    Server                     = HTTPServer.DefaultServerName,
+                                                                    Server                     = HTTPTestServer?.HTTPServerName,
                                                                     Date                       = Timestamp.Now,
                                                                     AccessControlAllowOrigin   = "*",
                                                                     AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
@@ -7904,7 +7929,7 @@ namespace cloud.charging.open.API
                                                      else if (result.Result == AuthStopResultTypes.NotAuthorized)
                                                          return new HTTPResponse.Builder(Request) {
                                                                     HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                                                    Server                     = HTTPServer.DefaultServerName,
+                                                                    Server                     = HTTPTestServer?.HTTPServerName,
                                                                     Date                       = Timestamp.Now,
                                                                     AccessControlAllowOrigin   = "*",
                                                                     AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
@@ -7919,7 +7944,7 @@ namespace cloud.charging.open.API
 
                                                      return new HTTPResponse.Builder(Request) {
                                                                 HTTPStatusCode             = HTTPStatusCode.Forbidden, //ToDo: Is this smart?
-                                                                Server                     = HTTPServer.DefaultServerName,
+                                                                Server                     = HTTPTestServer?.HTTPServerName,
                                                                 Date                       = Timestamp.Now,
                                                                 AccessControlAllowOrigin   = "*",
                                                                 AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
@@ -7942,7 +7967,7 @@ namespace cloud.charging.open.API
             //      -d "{ \"ProviderId\":  \"DE*GDF\", \
             //            \"eMAId\":       \"DE*GDF*00112233*1\" }" \
             //      http://127.0.0.1:5500/RNs/Test/EVSEs/DE*GEF*E000001*1
-            AddMethodCallback(Hostname,
+            AddHandler(
                               REMOTESTART,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
                               HTTPContentType.Application.JSON_UTF8,
@@ -7981,7 +8006,7 @@ namespace cloud.charging.open.API
 
                                                          if (!json.ParseOptionalStruct2("ChargingProductId",
                                                                                        "Charging product identification",
-                                                                                       HTTPServer.DefaultServerName,
+                                                                                       HTTPTestServer?.HTTPServerName,
                                                                                        ChargingProduct_Id.TryParse,
                                                                                        out ChargingProductId,
                                                                                        Request,
@@ -8001,7 +8026,7 @@ namespace cloud.charging.open.API
 
                                                          if (!json.ParseOptionalStruct2("ReservationId",
                                                                                        "Charging reservation identification",
-                                                                                       HTTPServer.DefaultServerName,
+                                                                                       HTTPTestServer?.HTTPServerName,
                                                                                        ChargingReservation_Id.TryParse,
                                                                                        out ReservationId,
                                                                                        Request,
@@ -8018,7 +8043,7 @@ namespace cloud.charging.open.API
 
                                                          if (!json.ParseOptionalStruct2("SessionId",
                                                                                        "Charging session identification",
-                                                                                       HTTPServer.DefaultServerName,
+                                                                                       HTTPTestServer?.HTTPServerName,
                                                                                        ChargingSession_Id.TryParse,
                                                                                        out SessionId,
                                                                                        Request,
@@ -8035,7 +8060,7 @@ namespace cloud.charging.open.API
 
                                                          if (!json.ParseOptionalStruct2("ProviderId",
                                                                                        "EV service provider identification",
-                                                                                       HTTPServer.DefaultServerName,
+                                                                                       HTTPTestServer?.HTTPServerName,
                                                                                        EMobilityProvider_Id.TryParse,
                                                                                        out ProviderId,
                                                                                        Request,
@@ -8052,7 +8077,7 @@ namespace cloud.charging.open.API
 
                                                  if (!json.ParseMandatory("eMAId",
                                                                           "e-Mobility account identification",
-                                                                          HTTPServer.DefaultServerName,
+                                                                          HTTPTestServer?.HTTPServerName,
                                                                           EMobilityAccount_Id.TryParse,
                                                                           out eMAId,
                                                                           Request,
@@ -8112,7 +8137,7 @@ namespace cloud.charging.open.API
                                                      if (result.Result == RemoteStartResultTypes.Success)
                                                          return new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode             = HTTPStatusCode.Created,
-                                                                 Server                     = HTTPServer.DefaultServerName,
+                                                                 Server                     = HTTPTestServer?.HTTPServerName,
                                                                  Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
@@ -8131,7 +8156,7 @@ namespace cloud.charging.open.API
                                                          return 
                                                              new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode             = HTTPStatusCode.BadRequest,
-                                                                 Server                     = HTTPServer.DefaultServerName,
+                                                                 Server                     = HTTPTestServer?.HTTPServerName,
                                                                  Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
@@ -8163,7 +8188,7 @@ namespace cloud.charging.open.API
             //            \"SessionId\":   \"60ce73f6-0a88-1296-3d3d-623fdd276ddc\", \
             //            \"eMAId\":       \"DE*GDF*00112233*1\" }" \
             //      http://127.0.0.1:5500/RNs/Test/EVSEs/DE*GEF*E000001*1
-            AddMethodCallback(Hostname,
+            AddHandler(
                               REMOTESTOP,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
                               HTTPContentType.Application.JSON_UTF8,
@@ -8206,7 +8231,7 @@ namespace cloud.charging.open.API
 
                                              if (!json.ParseMandatory("SessionId",
                                                                       "Charging session identification",
-                                                                      HTTPServer.DefaultServerName,
+                                                                      HTTPTestServer?.HTTPServerName,
                                                                       ChargingSession_Id.TryParse,
                                                                       out SessionId,
                                                                       Request,
@@ -8221,7 +8246,7 @@ namespace cloud.charging.open.API
 
                                              if (!json.ParseOptionalStruct2("ProviderId",
                                                                             "EV service provider identification",
-                                                                            HTTPServer.DefaultServerName,
+                                                                            HTTPTestServer?.HTTPServerName,
                                                                             EMobilityProvider_Id.TryParse,
                                                                             out ProviderId,
                                                                             Request,
@@ -8236,7 +8261,7 @@ namespace cloud.charging.open.API
 
                                              if (!json.ParseOptionalStruct2("eMAId",
                                                                            "e-Mobility account identification",
-                                                                           HTTPServer.DefaultServerName,
+                                                                           HTTPTestServer?.HTTPServerName,
                                                                            EMobilityAccount_Id.TryParse,
                                                                            out eMAId,
                                                                            Request,
@@ -8291,7 +8316,7 @@ namespace cloud.charging.open.API
                                                          if (result.ReservationHandling.IsKeepAlive == false)
                                                              return new HTTPResponse.Builder(Request) {
                                                                         HTTPStatusCode             = HTTPStatusCode.NoContent,
-                                                                        Server                     = HTTPServer.DefaultServerName,
+                                                                        Server                     = HTTPTestServer?.HTTPServerName,
                                                                         Date                       = Timestamp.Now,
                                                                         AccessControlAllowOrigin   = "*",
                                                                         AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
@@ -8302,7 +8327,7 @@ namespace cloud.charging.open.API
                                                              return 
                                                                  new HTTPResponse.Builder(Request) {
                                                                      HTTPStatusCode             = HTTPStatusCode.OK,
-                                                                     Server                     = HTTPServer.DefaultServerName,
+                                                                     Server                     = HTTPTestServer?.HTTPServerName,
                                                                      Date                       = Timestamp.Now,
                                                                      AccessControlAllowOrigin   = "*",
                                                                      AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
@@ -8323,7 +8348,7 @@ namespace cloud.charging.open.API
                                                          return 
                                                              new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode             = HTTPStatusCode.BadRequest,
-                                                                 Server                     = HTTPServer.DefaultServerName,
+                                                                 Server                     = HTTPTestServer?.HTTPServerName,
                                                                  Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
@@ -8355,7 +8380,7 @@ namespace cloud.charging.open.API
             //            \"ChargeEnd\":        \"2014-08-18T14:36:11.351Z\", \
             //            \"SessionEnd\":       \"2014-08-18T14:36:12.662Z\" }" \
             //      http://127.0.0.1:5500/RNs/Test/EVSEs/DE*GEF*E000001*1
-            AddMethodCallback(Hostname,
+            AddHandler(
                               SENDCDR,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
                               HTTPContentType.Application.JSON_UTF8,
@@ -8386,7 +8411,7 @@ namespace cloud.charging.open.API
 
                                   if (!JSON.ParseMandatory("SessionId",
                                                            "charging session identification",
-                                                           HTTPServer.DefaultServerName,
+                                                           HTTPTestServer?.HTTPServerName,
                                                            ChargingSession_Id.TryParse,
                                                            out ChargingSession_Id SessionId,
                                                            Request,
@@ -8401,7 +8426,7 @@ namespace cloud.charging.open.API
 
                                   if (JSON.ParseOptionalStruct2("ChargingProductId",
                                                                "charging product identification",
-                                                               HTTPServer.DefaultServerName,
+                                                               HTTPTestServer?.HTTPServerName,
                                                                ChargingProduct_Id.TryParse,
                                                                out ChargingProduct_Id? ChargingProductId,
                                                                Request,
@@ -8419,7 +8444,7 @@ namespace cloud.charging.open.API
 
                                   if (JSON.ParseOptional("AuthToken",
                                                          "authentication token",
-                                                         HTTPServer.DefaultServerName,
+                                                         HTTPTestServer?.HTTPServerName,
                                                          AuthenticationToken.TryParse,
                                                          out AuthenticationToken? AuthToken,
                                                          Request,
@@ -8433,7 +8458,7 @@ namespace cloud.charging.open.API
 
                                   if (JSON.ParseOptionalStruct2("eMAId",
                                                                "e-mobility account identification",
-                                                               HTTPServer.DefaultServerName,
+                                                               HTTPTestServer?.HTTPServerName,
                                                                EMobilityAccount_Id.TryParse,
                                                                out EMobilityAccount_Id? eMAId,
                                                                Request,
@@ -8449,7 +8474,7 @@ namespace cloud.charging.open.API
                                   if (AuthToken is null && eMAId is null)
                                       return new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                          Server          = HTTPServer.DefaultServerName,
+                                          Server          = HTTPTestServer?.HTTPServerName,
                                           Date            = Timestamp.Now,
                                           ContentType     = HTTPContentType.Application.JSON_UTF8,
                                           Content         = new JObject(new JProperty("description", "Missing authentication token or eMAId!")).ToUTF8Bytes()
@@ -8461,7 +8486,7 @@ namespace cloud.charging.open.API
 
                                   if (!JSON.ParseMandatory("ChargeStart",
                                                            "Charging start time",
-                                                           HTTPServer.DefaultServerName,
+                                                           HTTPTestServer?.HTTPServerName,
                                                            out DateTime ChargingStart,
                                                            Request,
                                                            out httpResponseBuilder))
@@ -8471,7 +8496,7 @@ namespace cloud.charging.open.API
 
                                   if (!JSON.ParseMandatory("ChargeEnd",
                                                            "Charging end time",
-                                                           HTTPServer.DefaultServerName,
+                                                           HTTPTestServer?.HTTPServerName,
                                                            out DateTime ChargingEnd,
                                                            Request,
                                                            out httpResponseBuilder))
@@ -8485,7 +8510,7 @@ namespace cloud.charging.open.API
 
                                   if (!JSON.ParseMandatory("SessionStart",
                                                            "Charging start time",
-                                                           HTTPServer.DefaultServerName,
+                                                           HTTPTestServer?.HTTPServerName,
                                                            out DateTime SessionStart,
                                                            Request,
                                                            out httpResponseBuilder))
@@ -8495,7 +8520,7 @@ namespace cloud.charging.open.API
 
                                   if (!JSON.ParseMandatory("SessionEnd",
                                                            "Charging end time",
-                                                           HTTPServer.DefaultServerName,
+                                                           HTTPTestServer?.HTTPServerName,
                                                            out DateTime SessionEnd,
                                                            Request,
                                                            out httpResponseBuilder))
@@ -8509,7 +8534,7 @@ namespace cloud.charging.open.API
 
                                   if (!JSON.ParseMandatory("MeterValueStart",
                                                            "Energy meter start value",
-                                                           HTTPServer.DefaultServerName,
+                                                           HTTPTestServer?.HTTPServerName,
                                                            WattHour.TryParseKWh,
                                                            out WattHour MeterValueStart,
                                                            Request,
@@ -8520,7 +8545,7 @@ namespace cloud.charging.open.API
 
                                   if (!JSON.ParseMandatory("MeterValueEnd",
                                                            "Energy meter end value",
-                                                           HTTPServer.DefaultServerName,
+                                                           HTTPTestServer?.HTTPServerName,
                                                            WattHour.TryParseKWh,
                                                            out WattHour MeterValueEnd,
                                                            Request,
@@ -8568,7 +8593,7 @@ namespace cloud.charging.open.API
                                                      if (result.Result == SendCDRsResultTypes.Success)
                                                          return new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode             = HTTPStatusCode.OK,
-                                                                 Server                     = HTTPServer.DefaultServerName,
+                                                                 Server                     = HTTPTestServer?.HTTPServerName,
                                                                  Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
@@ -8587,7 +8612,7 @@ namespace cloud.charging.open.API
                                                      else if (result.Result == SendCDRsResultTypes.Error)
                                                          return new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode             = HTTPStatusCode.OK,
-                                                                 Server                     = HTTPServer.DefaultServerName,
+                                                                 Server                     = HTTPTestServer?.HTTPServerName,
                                                                  Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
@@ -8605,7 +8630,7 @@ namespace cloud.charging.open.API
                                                      else
                                                          return new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode             = HTTPStatusCode.NotFound,
-                                                                 Server                     = HTTPServer.DefaultServerName,
+                                                                 Server                     = HTTPTestServer?.HTTPServerName,
                                                                  Date                       = Timestamp.Now,
                                                                  AccessControlAllowOrigin   = "*",
                                                                  AccessControlAllowMethods  = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" },
@@ -8629,8 +8654,7 @@ namespace cloud.charging.open.API
             // --------------------------------------------------------------------------------------------------------
             // curl -v -X OPTIONS -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/EVSEs/DE*GEF*E000001*1
             // --------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.OPTIONS,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
                                          HTTPDelegate: Request => {
@@ -8650,7 +8674,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode               = HTTPStatusCode.NoContent,
-                                                     Server                       = HTTPServer.DefaultServerName,
+                                                     Server                       = HTTPTestServer?.HTTPServerName,
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR", "OPTIONS" },
@@ -8674,8 +8698,7 @@ namespace cloud.charging.open.API
             //                -H "Accept:       application/json" \
             //      -d "{ \"CurrentStatus\":  \"OutOfService\" }" \
             //      http://127.0.0.1:3004/RNs/Prod/EVSEs/DE*BDO*EVSE*CI*TESTS*A*1/AdminStatus
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.SET,
                                          URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}/AdminStatus",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -8705,7 +8728,7 @@ namespace cloud.charging.open.API
 
                                                      if (JSON.ParseOptional("CurrentStatus",
                                                                             "EVSE admin status",
-                                                                            HTTPServer.DefaultServerName,
+                                                                            HTTPTestServer?.HTTPServerName,
                                                                             out EVSEAdminStatusType? CurrentStatus,
                                                                             Request,
                                                                             out httpResponse))
@@ -8724,7 +8747,7 @@ namespace cloud.charging.open.API
 
                                                      if (JSON.ParseOptional("StatusList",
                                                                             "status list",
-                                                                            HTTPServer.DefaultServerName,
+                                                                            HTTPTestServer?.HTTPServerName,
                                                                             out JObject JSONStatusList,
                                                                             Request,
                                                                             out httpResponse))
@@ -8759,7 +8782,7 @@ namespace cloud.charging.open.API
                                                          if (JSONStatusList == null || StatusList == null || !StatusList.Any())
                                                              return new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                                 Server          = HTTPServer.DefaultServerName,
+                                                                 Server          = HTTPTestServer?.HTTPServerName,
                                                                  Date            = Timestamp.Now,
                                                                  ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                                  Content         = new JObject(
@@ -8778,7 +8801,7 @@ namespace cloud.charging.open.API
 
                                                          return new HTTPResponse.Builder(Request) {
                                                              HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                             Server          = HTTPServer.DefaultServerName,
+                                                             Server          = HTTPTestServer?.HTTPServerName,
                                                              Date            = Timestamp.Now,
                                                              ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                              Content         = new JObject(
@@ -8803,7 +8826,7 @@ namespace cloud.charging.open.API
 
                                              return new HTTPResponse.Builder(Request) {
                                                  HTTPStatusCode  = HTTPStatusCode.OK,
-                                                 Server          = HTTPServer.DefaultServerName,
+                                                 Server          = HTTPTestServer?.HTTPServerName,
                                                  Date            = Timestamp.Now,
                                                  Connection      = ConnectionType.Close
                                              };
@@ -8832,8 +8855,7 @@ namespace cloud.charging.open.API
             //                -H "Accept:       application/json" \
             //      -d "{ \"currentStatus\":  \"Charging\" }"     \
             //      http://127.0.0.1:3004/RNs/Prod/EVSEs/DE*BDO*EVSE*CI*TESTS*A*1/Status
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.SET,
                                          URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}/Status",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -8863,7 +8885,7 @@ namespace cloud.charging.open.API
 
                                              if (JSON.ParseOptional("currentStatus",
                                                                     "EVSE status",
-                                                                    HTTPServer.DefaultServerName,
+                                                                    HTTPTestServer?.HTTPServerName,
                                                                     out EVSEStatusType? CurrentStatus,
                                                                     Request,
                                                                     out httpResponse))
@@ -8882,7 +8904,7 @@ namespace cloud.charging.open.API
 
                                              if (JSON.ParseOptional("statusList",
                                                                     "status list",
-                                                                    HTTPServer.DefaultServerName,
+                                                                    HTTPTestServer?.HTTPServerName,
                                                                     out JObject JSONStatusList,
                                                                     Request,
                                                                     out httpResponse))
@@ -8917,7 +8939,7 @@ namespace cloud.charging.open.API
                                                  if (JSONStatusList == null || StatusList == null || !StatusList.Any())
                                                      return new HTTPResponse.Builder(Request) {
                                                          HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                         Server          = HTTPServer.DefaultServerName,
+                                                         Server          = HTTPTestServer?.HTTPServerName,
                                                          Date            = Timestamp.Now,
                                                          ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                          Content         = new JObject(
@@ -8936,7 +8958,7 @@ namespace cloud.charging.open.API
 
                                                  return new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                     Server          = HTTPServer.DefaultServerName,
+                                                     Server          = HTTPTestServer?.HTTPServerName,
                                                      Date            = Timestamp.Now,
                                                      ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                      Content         = new JObject(
@@ -8961,7 +8983,7 @@ namespace cloud.charging.open.API
 
                                              return new HTTPResponse.Builder(Request) {
                                                  HTTPStatusCode  = HTTPStatusCode.OK,
-                                                 Server          = HTTPServer.DefaultServerName,
+                                                 Server          = HTTPTestServer?.HTTPServerName,
                                                  Date            = Timestamp.Now,
                                                  Connection      = ConnectionType.Close
                                              };
@@ -8980,7 +9002,7 @@ namespace cloud.charging.open.API
             // ---------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingSessions
             // ---------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.GET,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingSessions",
                               HTTPContentType.Application.JSON_UTF8,
@@ -9021,7 +9043,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode                = HTTPStatusCode.OK,
-                                          Server                        = HTTPServer.DefaultServerName,
+                                          Server                        = HTTPTestServer?.HTTPServerName,
                                           Date                          = Timestamp.Now,
                                           AccessControlAllowOrigin      = "*",
                                           AccessControlAllowMethods     = [ "GET", "COUNT", "OPTIONS" ],
@@ -9052,7 +9074,7 @@ namespace cloud.charging.open.API
             // ------------------------------------------------------------------------------------------------
             // curl -v -X COUNT -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingSessions
             // ------------------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.COUNT,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingSessions",
                               HTTPContentType.Text.PLAIN,
@@ -9087,7 +9109,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode                = HTTPStatusCode.OK,
-                                          Server                        = HTTPServer.DefaultServerName,
+                                          Server                        = HTTPTestServer?.HTTPServerName,
                                           Date                          = Timestamp.Now,
                                           AccessControlAllowOrigin      = "*",
                                           AccessControlAllowMethods     = [ "GET", "COUNT", "OPTIONS" ],
@@ -9107,7 +9129,7 @@ namespace cloud.charging.open.API
             // -------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Prod/ChargingSessions->Id
             // -------------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.GET,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingSessions->Id",
                               HTTPContentType.Application.JSON_UTF8,
@@ -9142,7 +9164,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode                = HTTPStatusCode.OK,
-                                          Server                        = HTTPServer.DefaultServerName,
+                                          Server                        = HTTPTestServer?.HTTPServerName,
                                           Date                          = Timestamp.Now,
                                           AccessControlAllowOrigin      = "*",
                                           AccessControlAllowMethods     = [ "GET" ],
@@ -9169,7 +9191,7 @@ namespace cloud.charging.open.API
             //// ---------------------------------------------------------------------------------------
             //// curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingSessions
             //// ---------------------------------------------------------------------------------------
-            //AddMethodCallback(Hostname,
+            //AddHandler(
             //                  HTTPMethod.GET,
             //                  URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingSessions",
             //                  HTTPContentType.Application.JSON_UTF8,
@@ -9207,7 +9229,7 @@ namespace cloud.charging.open.API
             //                      return Task.FromResult(
             //                          new HTTPResponse.Builder(Request) {
             //                              HTTPStatusCode                = HTTPStatusCode.OK,
-            //                              Server                        = HTTPServer.DefaultServerName,
+            //                              Server                        = HTTPTestServer?.HTTPServerName,
             //                              Date                          = Timestamp.Now,
             //                              AccessControlAllowOrigin      = "*",
             //                              AccessControlAllowMethods     = [ "GET", "COUNT", "OPTIONS" ],
@@ -9237,7 +9259,7 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingSessions/{ChargingSessionId}
             // -----------------------------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.GET,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingSessions/{ChargingSessionId}",
                               HTTPContentType.Application.JSON_UTF8,
@@ -9277,7 +9299,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode                = HTTPStatusCode.OK,
-                                          Server                        = HTTPServer.DefaultServerName,
+                                          Server                        = HTTPTestServer?.HTTPServerName,
                                           Date                          = Timestamp.Now,
                                           AccessControlAllowOrigin      = "*",
                                           AccessControlAllowMethods     = [ "GET", "COUNT", "OPTIONS" ],
@@ -9300,7 +9322,7 @@ namespace cloud.charging.open.API
             // -------------------------------------------------------------------------------------------------------------------------------------------------------
             // curl -v -X SET -H "Content-Type: application/json" --data @session.json http://127.0.0.1:3004/RNs/Prod/ChargingSessions/{ChargingSessionId}/{command}
             // -------------------------------------------------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.SET,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingSessions/{ChargingSessionId}/{command}",
                               HTTPContentType.Application.JSON_UTF8,
@@ -9338,7 +9360,7 @@ namespace cloud.charging.open.API
                                   if (Request.ParsedURLParameters.Length < 3)
                                       return new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                          Server          = HTTPServer.DefaultServerName,
+                                          Server          = HTTPTestServer?.HTTPServerName,
                                           Date            = Timestamp.Now,
                                           Connection      = ConnectionType.Close
                                       };
@@ -9348,7 +9370,7 @@ namespace cloud.charging.open.API
                                   if (command.IsNullOrEmpty())
                                       return new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                          Server          = HTTPServer.DefaultServerName,
+                                          Server          = HTTPTestServer?.HTTPServerName,
                                           Date            = Timestamp.Now,
                                           ContentType     = HTTPContentType.Application.JSON_UTF8,
                                           Content         = @"{ ""description"": ""Invalid command!"" }".ToUTF8Bytes(),
@@ -9368,7 +9390,7 @@ namespace cloud.charging.open.API
                                   if (!ChargingSession.TryParse(json, out var chargingSession, out var errorResponse))
                                       return new HTTPResponse.Builder(Request) {
                                                  HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                 Server          = HTTPServer.DefaultServerName,
+                                                 Server          = HTTPTestServer?.HTTPServerName,
                                                  Date            = Timestamp.Now,
                                                  ContentType     = HTTPContentType.Application.JSON_UTF8,
                                                  Content         = new JObject(
@@ -9391,7 +9413,7 @@ namespace cloud.charging.open.API
 
                                              ? new HTTPResponse.Builder(Request) {
                                                    HTTPStatusCode             = HTTPStatusCode.OK,
-                                                   Server                     = HTTPServer.DefaultServerName,
+                                                   Server                     = HTTPTestServer?.HTTPServerName,
                                                    Date                       = Timestamp.Now,
                                                    AccessControlAllowOrigin   = "*",
                                                    AccessControlAllowMethods  = [ "SET" ],
@@ -9406,7 +9428,7 @@ namespace cloud.charging.open.API
 
                                              : new HTTPResponse.Builder(Request) {
                                                    HTTPStatusCode             = HTTPStatusCode.BadRequest,
-                                                   Server                     = HTTPServer.DefaultServerName,
+                                                   Server                     = HTTPTestServer?.HTTPServerName,
                                                    Date                       = Timestamp.Now,
                                                    AccessControlAllowOrigin   = "*",
                                                    AccessControlAllowMethods  = [ "SET" ],
@@ -9429,7 +9451,7 @@ namespace cloud.charging.open.API
             // ----------------------------------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Prod/ChargingSessions/MissingCDRResponses?ExpandCDRs=false
             // ----------------------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.GET,
                               URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingSessions/MissingCDRResponses",
                               HTTPContentType.Application.JSON_UTF8,
@@ -9476,7 +9498,7 @@ namespace cloud.charging.open.API
                                   return Task.FromResult(
                                       new HTTPResponse.Builder(Request) {
                                           HTTPStatusCode                = HTTPStatusCode.OK,
-                                          Server                        = HTTPServer.DefaultServerName,
+                                          Server                        = HTTPTestServer?.HTTPServerName,
                                           Date                          = Timestamp.Now,
                                           AccessControlAllowOrigin      = "*",
                                           AccessControlAllowMethods     = [ "GET" ],
@@ -9525,8 +9547,7 @@ namespace cloud.charging.open.API
             // ----------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/Reservations
             // ----------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "/RNs/{RoamingNetworkId}/Reservations",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -9540,7 +9561,7 @@ namespace cloud.charging.open.API
                                              //    return new HTTPResponse.Builder(HTTPRequest) {
                                              //        HTTPStatusCode   = HTTPStatusCode.Unauthorized,
                                              //        WWWAuthenticate  = @"Basic realm=""WWCP EV Charging""",
-                                             //        Server           = _API.HTTPServer.DefaultServerName,
+                                             //        Server           = _API.HTTPTestServer?.HTTPServerName,
                                              //        Date             = Timestamp.Now,
                                              //        Connection       = ConnectionType.Close
                                              //    };
@@ -9576,7 +9597,7 @@ namespace cloud.charging.open.API
                                                  HTTPStatusCode             = allChargingReservations.Any()
                                                                                   ? HTTPStatusCode.OK
                                                                                   : HTTPStatusCode.NoContent,
-                                                 Server                     = HTTPServer.DefaultServerName,
+                                                 Server                     = HTTPTestServer?.HTTPServerName,
                                                  Date                       = Timestamp.Now,
                                                  AccessControlAllowOrigin   = "*",
                                                  AccessControlAllowMethods  = [ "GET" ],
@@ -9603,8 +9624,7 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/Reservations
             // -----------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/Reservations/{ReservationId}",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -9618,7 +9638,7 @@ namespace cloud.charging.open.API
                                                      //    return new HTTPResponse.Builder(HTTPRequest) {
                                                      //        HTTPStatusCode   = HTTPStatusCode.Unauthorized,
                                                      //        WWWAuthenticate  = @"Basic realm=""WWCP EV Charging""",
-                                                     //        Server           = _API.HTTPServer.DefaultServerName,
+                                                     //        Server           = _API.HTTPTestServer?.HTTPServerName,
                                                      //        Date             = Timestamp.Now,
                                                      //        Connection       = ConnectionType.Close
                                                      //    };
@@ -9639,7 +9659,7 @@ namespace cloud.charging.open.API
 
                                              return new HTTPResponse.Builder(HTTPRequest) {
                                                  HTTPStatusCode             = HTTPStatusCode.OK,
-                                                 Server                     = HTTPServer.DefaultServerName,
+                                                 Server                     = HTTPTestServer?.HTTPServerName,
                                                  Date                       = Timestamp.Now,
                                                  AccessControlAllowOrigin   = "*",
                                                  AccessControlAllowMethods  = new[] { "GET", "SETEXPIRED", "DELETE" },
@@ -9658,8 +9678,7 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/Reservations
             // -----------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          SETEXPIRED,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/Reservations/{ReservationId}",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -9673,7 +9692,7 @@ namespace cloud.charging.open.API
                                                      //    return new HTTPResponse.Builder(HTTPRequest) {
                                                      //        HTTPStatusCode   = HTTPStatusCode.Unauthorized,
                                                      //        WWWAuthenticate  = @"Basic realm=""WWCP EV Charging""",
-                                                     //        Server           = _API.HTTPServer.DefaultServerName,
+                                                     //        Server           = _API.HTTPTestServer?.HTTPServerName,
                                                      //        Date             = Timestamp.Now,
                                                      //        Connection       = ConnectionType.Close
                                                      //    };
@@ -9709,7 +9728,7 @@ namespace cloud.charging.open.API
                                                  case CancelReservationResultTypes.Success:
                                                      return new HTTPResponse.Builder(Request) {
                                                          HTTPStatusCode             = HTTPStatusCode.OK,
-                                                         Server                     = HTTPServer.DefaultServerName,
+                                                         Server                     = HTTPTestServer?.HTTPServerName,
                                                          Date                       = Timestamp.Now,
                                                          AccessControlAllowOrigin   = "*",
                                                          AccessControlAllowMethods  = new[] { "GET", "SETEXPIRED", "DELETE" },
@@ -9721,7 +9740,7 @@ namespace cloud.charging.open.API
                                                  default:
                                                      return new HTTPResponse.Builder(Request) {
                                                          HTTPStatusCode             = HTTPStatusCode.InternalServerError,
-                                                         Server                     = HTTPServer.DefaultServerName,
+                                                         Server                     = HTTPTestServer?.HTTPServerName,
                                                          Date                       = Timestamp.Now,
                                                          AccessControlAllowOrigin   = "*",
                                                          AccessControlAllowMethods  = new[] { "GET", "DELETE" },
@@ -9741,8 +9760,7 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/Reservations
             // -----------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.DELETE,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/Reservations/{ReservationId}",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -9756,7 +9774,7 @@ namespace cloud.charging.open.API
                                                      //    return new HTTPResponse.Builder(HTTPRequest) {
                                                      //        HTTPStatusCode   = HTTPStatusCode.Unauthorized,
                                                      //        WWWAuthenticate  = @"Basic realm=""WWCP EV Charging""",
-                                                     //        Server           = _API.HTTPServer.DefaultServerName,
+                                                     //        Server           = _API.HTTPTestServer?.HTTPServerName,
                                                      //        Date             = Timestamp.Now,
                                                      //        Connection       = ConnectionType.Close
                                                      //    };
@@ -9792,7 +9810,7 @@ namespace cloud.charging.open.API
                                                  case CancelReservationResultTypes.Success:
                                                      return new HTTPResponse.Builder(Request) {
                                                          HTTPStatusCode             = HTTPStatusCode.OK,
-                                                         Server                     = HTTPServer.DefaultServerName,
+                                                         Server                     = HTTPTestServer?.HTTPServerName,
                                                          Date                       = Timestamp.Now,
                                                          AccessControlAllowOrigin   = "*",
                                                          AccessControlAllowMethods  = new[] { "GET", "SETEXPIRED", "DELETE" },
@@ -9804,7 +9822,7 @@ namespace cloud.charging.open.API
                                                  default:
                                                      return new HTTPResponse.Builder(Request) {
                                                          HTTPStatusCode             = HTTPStatusCode.InternalServerError,
-                                                         Server                     = HTTPServer.DefaultServerName,
+                                                         Server                     = HTTPTestServer?.HTTPServerName,
                                                          Date                       = Timestamp.Now,
                                                          AccessControlAllowOrigin   = "*",
                                                          AccessControlAllowMethods  = new[] { "GET", "DELETE" },
@@ -9831,10 +9849,10 @@ namespace cloud.charging.open.API
             // -------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/AuthStartCache
             // -------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.GET,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}/AuthStartCache",
-                              HTTPContentType:  HTTPContentType.Application.JSON_UTF8,
+                              HTTPContentType.Application.JSON_UTF8,
                               HTTPDelegate:     async httpRequest => {
 
                                   #region Try to get HTTP user and its organizations
@@ -9893,7 +9911,7 @@ namespace cloud.charging.open.API
 
                                   return new HTTPResponse.Builder(httpRequest) {
                                              HTTPStatusCode                = HTTPStatusCode.OK,
-                                             Server                        = HTTPServer.DefaultServerName,
+                                             Server                        = HTTPTestServer?.HTTPServerName,
                                              Date                          = Timestamp.Now,
                                              AccessControlAllowOrigin      = "*",
                                              AccessControlAllowMethods     = new[] { "GET", "COUNT", "CLEAR" },
@@ -9920,10 +9938,10 @@ namespace cloud.charging.open.API
             // -------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/AuthStartCache
             // -------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.COUNT,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}/AuthStartCache",
-                              HTTPContentType:  HTTPContentType.Text.PLAIN,
+                              HTTPContentType.Text.PLAIN,
                               HTTPDelegate:     async httpRequest => {
 
                                   #region Try to get HTTP user and its organizations
@@ -9956,7 +9974,7 @@ namespace cloud.charging.open.API
 
                                   return new HTTPResponse.Builder(httpRequest) {
                                              HTTPStatusCode             = HTTPStatusCode.OK,
-                                             Server                     = HTTPServer.DefaultServerName,
+                                             Server                     = HTTPTestServer?.HTTPServerName,
                                              Date                       = Timestamp.Now,
                                              AccessControlAllowOrigin   = "*",
                                              AccessControlAllowMethods  = new[] { "GET", "COUNT", "CLEAR" },
@@ -9974,7 +9992,7 @@ namespace cloud.charging.open.API
             // -------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/AuthStartCache
             // -------------------------------------------------------------------------------------
-            AddMethodCallback(Hostname,
+            AddHandler(
                               HTTPMethod.CLEAR,
                               URLPathPrefix + "/RNs/{RoamingNetworkId}/AuthStartCache",
                               HTTPDelegate: async httpRequest => {
@@ -10012,7 +10030,7 @@ namespace cloud.charging.open.API
 
                                   return new HTTPResponse.Builder(httpRequest) {
                                              HTTPStatusCode             = HTTPStatusCode.OK,
-                                             Server                     = HTTPServer.DefaultServerName,
+                                             Server                     = HTTPTestServer?.HTTPServerName,
                                              Date                       = Timestamp.Now,
                                              AccessControlAllowOrigin   = "*",
                                              AccessControlAllowMethods  = new[] { "GET", "COUNT", "CLEAR" },
@@ -10035,8 +10053,7 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/ChargingStationOperators
             // -----------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -10069,7 +10086,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode               = HTTPStatusCode.OK,
-                                                     Server                       = HTTPServer.DefaultServerName,
+                                                     Server                       = HTTPTestServer?.HTTPServerName,
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
@@ -10101,8 +10118,7 @@ namespace cloud.charging.open.API
             // ----------------------------------------------------------------------------------------------------------------------
             // curl -v -X COUNT -H "Accept: application/json" http://127.0.0.1:3004/RNs/{RNId}/ChargingStationOperators
             // ----------------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.COUNT,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -10122,7 +10138,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode               = HTTPStatusCode.OK,
-                                                     Server                       = HTTPServer.DefaultServerName,
+                                                     Server                       = HTTPTestServer?.HTTPServerName,
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
@@ -10144,8 +10160,7 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/ChargingStationOperators->AdminStatus
             // -----------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators->AdminStatus",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -10172,7 +10187,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                = HTTPStatusCode.OK,
-                                                     Server                        = HTTPServer.DefaultServerName,
+                                                     Server                        = HTTPTestServer?.HTTPServerName,
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = [ "GET" ],
@@ -10196,8 +10211,7 @@ namespace cloud.charging.open.API
             // -------------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/ChargingStationOperators->Status
             // -------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators->Status",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -10224,7 +10238,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                = HTTPStatusCode.OK,
-                                                     Server                        = HTTPServer.DefaultServerName,
+                                                     Server                        = HTTPTestServer?.HTTPServerName,
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = [ "GET" ],
@@ -10249,8 +10263,7 @@ namespace cloud.charging.open.API
 
             #region GET         ~/RNs/{RNId}/ChargingStationOperators/{CSOId}
 
-            AddMethodCallback(
-                                         HTTPHostname.Any,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -10271,7 +10284,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode              = HTTPStatusCode.OK,
-                                                     Server                      = HTTPServer.DefaultServerName,
+                                                     Server                      = HTTPTestServer?.HTTPServerName,
                                                      Date                        = Timestamp.Now,
                                                      AccessControlAllowOrigin    = "*",
                                                      AccessControlAllowMethods   = new[] { "GET", "CREATE", "DELETE" },
@@ -10295,8 +10308,7 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/ChargingStationOperators/{CSOId}/ChargingPools
             // -----------------------------------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/ChargingPools",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -10327,7 +10339,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                 = HTTPStatusCode.OK,
-                                                     Server                         = HTTPServer.DefaultServerName,
+                                                     Server                         = HTTPTestServer?.HTTPServerName,
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = new[] { "GET", "COUNT", "STATUS" },
@@ -10356,8 +10368,7 @@ namespace cloud.charging.open.API
             // ----------------------------------------------------------------------------------------------------------------
             // curl -v -X CREATE -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test2/ChargingPools/{ChargingPoolId}
             // ----------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.CREATE,
                                          URLPathPrefix + "RNs/{RNId}/ChargingPools/{ChargingPoolId}",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -10374,7 +10385,7 @@ namespace cloud.charging.open.API
                                                      //        new HTTPResponse.Builder(Request) {
                                                      //            HTTPStatusCode   = HTTPStatusCode.Unauthorized,
                                                      //            WWWAuthenticate  = @"Basic realm=""WWCP""",
-                                                     //            Server           = HTTPServer.DefaultServerName,
+                                                     //            Server           = HTTPTestServer?.HTTPServerName,
                                                      //            Date             = Timestamp.Now,
                                                      //            Connection       = ConnectionType.Close
                                                      //        });
@@ -10404,7 +10415,7 @@ namespace cloud.charging.open.API
 
                                                          if (!JSON.ParseOptional("description",
                                                                                  "description",
-                                                                                 HTTPServer.DefaultServerName,
+                                                                                 HTTPTestServer?.HTTPServerName,
                                                                                  out DescriptionI18N,
                                                                                  Request,
                                                                                  out _HTTPResponse))
@@ -10426,7 +10437,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                      new HTTPResponse.Builder(Request) {
                                                          HTTPStatusCode              = HTTPStatusCode.Created,
-                                                         Server                      = HTTPServer.DefaultServerName,
+                                                         Server                      = HTTPTestServer?.HTTPServerName,
                                                          Date                        = Timestamp.Now,
                                                          AccessControlAllowOrigin    = "*",
                                                          AccessControlAllowMethods   = new[] { "GET", "CREATE", "DELETE" },
@@ -10448,8 +10459,7 @@ namespace cloud.charging.open.API
             //                -H "Accept:       application/json" \
             //      -d "{ \"newstatus\":  \"OutOfService\" }" \
             //      http://127.0.0.1:3004/RNs/Test/ChargingStations/DE*GEF*P000001*1/AdminStatus
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.SET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/ChargingPools/{ChargingPoolId}/AdminStatus",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -10508,7 +10518,7 @@ namespace cloud.charging.open.API
 
                                                      if (!JSON.ParseMandatoryEnum("newstatus",
                                                                                   "charging pool admin status",
-                                                                                  HTTPServer.DefaultServerName,
+                                                                                  HTTPTestServer?.HTTPServerName,
                                                                                   out ChargingPoolAdminStatusType NewChargingPoolAdminStatus,
                                                                                   Request,
                                                                                   out _HTTPResponse))
@@ -10520,14 +10530,14 @@ namespace cloud.charging.open.API
 
                                              //Log.WriteLine("SetChargingPoolAdminStatus : " + RoamingNetwork.Id + " / " + ChargingPoolId + " => " + NewChargingPoolAdminStatus);
 
-                                             HTTPServer.Get<JObject>(DebugLogId).
-                                                 SubmitEvent("SetChargingPoolAdminStatusRequest",
-                                                             new JObject(
-                                                                 new JProperty("Timestamp",       Timestamp.Now.ToISO8601()),
-                                                                 new JProperty("RoamingNetwork",  _RoamingNetwork.ToString()),
-                                                                 new JProperty("ChargingPoolId",  ChargingPoolId.ToString()),
-                                                                 new JProperty("NewStatus",       NewChargingPoolAdminStatus.ToString())
-                                                             )).Wait();
+                                             //HTTPServer.Get<JObject>(DebugLogId).
+                                             //    SubmitEvent("SetChargingPoolAdminStatusRequest",
+                                             //                new JObject(
+                                             //                    new JProperty("Timestamp",       Timestamp.Now.ToISO8601()),
+                                             //                    new JProperty("RoamingNetwork",  _RoamingNetwork.ToString()),
+                                             //                    new JProperty("ChargingPoolId",  ChargingPoolId.ToString()),
+                                             //                    new JProperty("NewStatus",       NewChargingPoolAdminStatus.ToString())
+                                             //                )).Wait();
 
 
                                              _RoamingNetwork.ChargingStationOperators.ForEach(evseoperator => {
@@ -10554,8 +10564,7 @@ namespace cloud.charging.open.API
 
             #region GET         ~/RNs/{RNId}/ChargingStationOperators/{CSOId}/ChargingStations/{StationId}
 
-            AddMethodCallback(
-                                         HTTPHostname.Any,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/ChargingStations/{StationId}",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -10576,7 +10585,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode              = HTTPStatusCode.OK,
-                                                     Server                      = HTTPServer.DefaultServerName,
+                                                     Server                      = HTTPTestServer?.HTTPServerName,
                                                      Date                        = Timestamp.Now,
                                                      AccessControlAllowOrigin    = "*",
                                                      AccessControlAllowMethods   = new[] { "GET", "SET" },
@@ -10618,8 +10627,7 @@ namespace cloud.charging.open.API
             //      http://127.0.0.1:3004/RNs/Test/ChargingStations/DE*GEF*S000001*1
             //
             // ------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.SET,
                                          URLPathPrefix + "/RNs/{RNId}/ChargingStationOperators/{CSOId}/ChargingStations/{StationId}/AdminStatus",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -10667,7 +10675,7 @@ namespace cloud.charging.open.API
 
                                                          if (!JSON.ParseMandatoryEnum("newstatus",
                                                                                       "charging station admin status",
-                                                                                      HTTPServer.DefaultServerName,
+                                                                                      HTTPTestServer?.HTTPServerName,
                                                                                       out NewChargingStationAdminStatus,
                                                                                       HTTPRequest,
                                                                                       out _HTTPResponse))
@@ -10694,14 +10702,14 @@ namespace cloud.charging.open.API
                                              try
                                              {
 
-                                                 HTTPServer.Get<JObject>(DebugLogId).
-                                                     SubmitEvent("SetChargingStationAdminStatusRequest",
-                                                                 new JObject(
-                                                                     new JProperty("Timestamp",          Timestamp.Now.ToISO8601()),
-                                                                     new JProperty("RoamingNetwork",     RoamingNetwork.ToString()),
-                                                                     new JProperty("ChargingStationId",  ChargingStationId.ToString()),
-                                                                     new JProperty("NewStatus",          NewChargingStationAdminStatus.ToString())
-                                                                 )).Wait();
+                                                 //HTTPServer.Get<JObject>(DebugLogId).
+                                                 //    SubmitEvent("SetChargingStationAdminStatusRequest",
+                                                 //                new JObject(
+                                                 //                    new JProperty("Timestamp",          Timestamp.Now.ToISO8601()),
+                                                 //                    new JProperty("RoamingNetwork",     RoamingNetwork.ToString()),
+                                                 //                    new JProperty("ChargingStationId",  ChargingStationId.ToString()),
+                                                 //                    new JProperty("NewStatus",          NewChargingStationAdminStatus.ToString())
+                                                 //                )).Wait();
 
 
                                                  RoamingNetwork.SetChargingStationAdminStatus(ChargingStationId,
@@ -10773,8 +10781,7 @@ namespace cloud.charging.open.API
             // ----------------------------------------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Prod/ChargingStationOperators/{CSOId}/ChargingStationGroups
             // ----------------------------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/ChargingStationGroups",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -10806,7 +10813,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                 = HTTPStatusCode.OK,
-                                                     Server                         = HTTPServer.DefaultServerName,
+                                                     Server                         = HTTPTestServer?.HTTPServerName,
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = new[] { "GET", "COUNT", "STATUS" },
@@ -10839,8 +10846,7 @@ namespace cloud.charging.open.API
             // --------------------------------------------------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Prod/ChargingStationOperators/{CSOId}/ChargingStationGroups/{ChargingStationGroupId}
             // --------------------------------------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/ChargingStationGroups/{ChargingStationGroupId}",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -10983,7 +10989,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode              = HTTPStatusCode.OK,
-                                                     Server                      = HTTPServer.DefaultServerName,
+                                                     Server                      = HTTPTestServer?.HTTPServerName,
                                                      Date                        = Timestamp.Now,
                                                      AccessControlAllowOrigin    = "*",
                                                      AccessControlAllowMethods   = new[] { "GET", "COUNT", "STATUS" },
@@ -11008,8 +11014,7 @@ namespace cloud.charging.open.API
             // ----------------------------------------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Prod/ChargingStationOperators/{CSOId}/EVSEGroups
             // ----------------------------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/EVSEGroups",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -11041,7 +11046,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                 = HTTPStatusCode.OK,
-                                                     Server                         = HTTPServer.DefaultServerName,
+                                                     Server                         = HTTPTestServer?.HTTPServerName,
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = new[] { "GET", "COUNT", "STATUS" },
@@ -11074,8 +11079,7 @@ namespace cloud.charging.open.API
             // --------------------------------------------------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Prod/ChargingStationOperators/{CSOId}/EVSEGroups/{EVSEGroupId}
             // --------------------------------------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/EVSEGroups/{EVSEGroupId}",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -11218,7 +11222,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode              = HTTPStatusCode.OK,
-                                                     Server                      = HTTPServer.DefaultServerName,
+                                                     Server                      = HTTPTestServer?.HTTPServerName,
                                                      Date                        = Timestamp.Now,
                                                      AccessControlAllowOrigin    = "*",
                                                      AccessControlAllowMethods   = new[] { "GET", "COUNT", "STATUS" },
@@ -11243,8 +11247,7 @@ namespace cloud.charging.open.API
             // ----------------------------------------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Prod/ChargingStationOperators/{CSOId}/Brands
             // ----------------------------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/Brands",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -11276,7 +11279,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                 = HTTPStatusCode.OK,
-                                                     Server                         = HTTPServer.DefaultServerName,
+                                                     Server                         = HTTPTestServer?.HTTPServerName,
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = new[] { "GET", "COUNT", "STATUS" },
@@ -11306,8 +11309,7 @@ namespace cloud.charging.open.API
             // --------------------------------------------------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Prod/ChargingStationOperators/{CSOId}/Brands/{BrandId}
             // --------------------------------------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/Brands/{BrandId}",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -11450,7 +11452,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode              = HTTPStatusCode.OK,
-                                                     Server                      = HTTPServer.DefaultServerName,
+                                                     Server                      = HTTPTestServer?.HTTPServerName,
                                                      Date                        = Timestamp.Now,
                                                      AccessControlAllowOrigin    = "*",
                                                      AccessControlAllowMethods   = new[] { "GET", "COUNT", "STATUS" },
@@ -11476,8 +11478,7 @@ namespace cloud.charging.open.API
             // ----------------------------------------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Prod/ChargingStationOperators/{CSOId}/Tariffs
             // ----------------------------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/Tariffs",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -11509,7 +11510,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                 = HTTPStatusCode.OK,
-                                                     Server                         = HTTPServer.DefaultServerName,
+                                                     Server                         = HTTPTestServer?.HTTPServerName,
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = new[] { "GET", "COUNT", "STATUS" },
@@ -11538,8 +11539,7 @@ namespace cloud.charging.open.API
             // ----------------------------------------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Prod/ChargingStationOperators/{CSOId}/TariffOverview
             // ----------------------------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RNId}/ChargingStationOperators/{CSOId}/TariffOverview",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -11568,7 +11568,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                 = HTTPStatusCode.OK,
-                                                     Server                         = HTTPServer.DefaultServerName,
+                                                     Server                         = HTTPTestServer?.HTTPServerName,
                                                      Date                           = Timestamp.Now,
                                                      AccessControlAllowOrigin       = "*",
                                                      AccessControlAllowMethods      = new[] { "GET", "COUNT", "STATUS" },
@@ -11607,8 +11607,7 @@ namespace cloud.charging.open.API
             // -----------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/eMobilityProviders
             // -----------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/eMobilityProviders",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -11638,7 +11637,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode               = HTTPStatusCode.OK,
-                                                     Server                       = HTTPServer.DefaultServerName,
+                                                     Server                       = HTTPTestServer?.HTTPServerName,
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
@@ -11665,8 +11664,7 @@ namespace cloud.charging.open.API
             // ----------------------------------------------------------------------------------------------------------------
             // curl -v -X COUNT -H "Accept: application/json" http://127.0.0.1:3004/RNs/{RoamingNetworkId}/eMobilityProviders
             // ----------------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.COUNT,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/eMobilityProviders",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -11686,7 +11684,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode               = HTTPStatusCode.OK,
-                                                     Server                       = HTTPServer.DefaultServerName,
+                                                     Server                       = HTTPTestServer?.HTTPServerName,
                                                      Date                         = Timestamp.Now,
                                                      AccessControlAllowOrigin     = "*",
                                                      AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
@@ -11707,8 +11705,7 @@ namespace cloud.charging.open.API
             // ------------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/eMobilityProviders->AdminStatus
             // ------------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/eMobilityProviders->AdminStatus",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -11735,7 +11732,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                = HTTPStatusCode.OK,
-                                                     Server                        = HTTPServer.DefaultServerName,
+                                                     Server                        = HTTPTestServer?.HTTPServerName,
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = [ "GET" ],
@@ -11758,8 +11755,7 @@ namespace cloud.charging.open.API
             // -------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/eMobilityProviders->Status
             // -------------------------------------------------------------------------------------------------
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/eMobilityProviders->Status",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -11785,7 +11781,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode                = HTTPStatusCode.OK,
-                                                     Server                        = HTTPServer.DefaultServerName,
+                                                     Server                        = HTTPTestServer?.HTTPServerName,
                                                      Date                          = Timestamp.Now,
                                                      AccessControlAllowOrigin      = "*",
                                                      AccessControlAllowMethods     = [ "GET" ],
@@ -11809,8 +11805,7 @@ namespace cloud.charging.open.API
 
             #region GET         ~/RNs/{RoamingNetworkId}/eMobilityProviders/{eMobilityProviderId}
 
-            AddMethodCallback(
-                                         Hostname,
+            AddHandler(
                                          HTTPMethod.GET,
                                          URLPathPrefix + "RNs/{RoamingNetworkId}/eMobilityProviders/{eMobilityProviderId}",
                                          HTTPContentType.Application.JSON_UTF8,
@@ -11831,7 +11826,7 @@ namespace cloud.charging.open.API
                                              return Task.FromResult(
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode             = HTTPStatusCode.OK,
-                                                     Server                     = HTTPServer.DefaultServerName,
+                                                     Server                     = HTTPTestServer?.HTTPServerName,
                                                      Date                       = Timestamp.Now,
                                                      AccessControlAllowOrigin   = "*",
                                                      AccessControlAllowMethods  = new[] { "GET", "CREATE", "DELETE" },
@@ -11865,6 +11860,7 @@ namespace cloud.charging.open.API
         #endregion
 
 
+        private readonly RoamingNetworks roamingNetworks = new();
 
         #region CreateNewRoamingNetwork(          Id, Name, Description = null, Configurator = null, ...)
 
@@ -11937,7 +11933,7 @@ namespace cloud.charging.open.API
 
         #endregion
 
-        #region CreateNewRoamingNetwork(Hostname, Id, Name, Description = null, Configurator = null, ...)
+        #region CreateNewRoamingNetwork( Id, Name, Description = null, Configurator = null, ...)
 
         /// <summary>
         /// Create and register a new roaming network collection
@@ -11990,24 +11986,25 @@ namespace cloud.charging.open.API
 
             #endregion
 
-            var ExistingRoamingNetwork = WWCPHTTPServer.
-                                             GetAllTenants(Hostname).
-                                             FirstOrDefault(roamingnetwork => roamingnetwork.Id == Id);
+            //var ExistingRoamingNetwork = WWCPHTTPServer.
+            //                                 GetAllTenants(Hostname).
+            //                                 FirstOrDefault(roamingnetwork => roamingnetwork.Id == Id);
 
-            if (ExistingRoamingNetwork is null)
+            //if (ExistingRoamingNetwork is null)
+            if (!roamingNetworks.TryGetRoamingNetwork(Id, out var ExistingRoamingNetwork))
             {
 
-                if (!WWCPHTTPServer.TryGetTenants(Hostname, out RoamingNetworks _RoamingNetworks))
-                {
+                //if (!WWCPHTTPServer.TryGetTenants(out RoamingNetworks _RoamingNetworks))
+                //{
 
-                    _RoamingNetworks = new RoamingNetworks();
+                //    _RoamingNetworks = new RoamingNetworks();
 
-                    if (!WWCPHTTPServer.TryAddTenants(Hostname, _RoamingNetworks))
-                        throw new Exception("Could not add new roaming networks object to the HTTP host!");
+                //    if (!WWCPHTTPServer.TryAddTenants( _RoamingNetworks))
+                //        throw new Exception("Could not add new roaming networks object to the HTTP host!");
 
-                }
+                //}
 
-                var NewRoamingNetwork = _RoamingNetworks.
+                var NewRoamingNetwork = roamingNetworks.//_RoamingNetworks.
                                             CreateNewRoamingNetwork(Id,
                                                                     Name,
                                                                     Description,
@@ -12863,26 +12860,35 @@ namespace cloud.charging.open.API
         /// <param name="Hostname">The HTTP hostname.</param>
         public IEnumerable<RoamingNetwork> GetAllRoamingNetworks(HTTPHostname  Hostname)
 
-            => WWCPHTTPServer.GetAllTenants(Hostname);
+            => roamingNetworks;// WWCPHTTPServer.GetAllTenants(Hostname);
 
         #endregion
 
-        #region GetRoamingNetwork(Hostname, RoamingNetworkId)
+        #region GetRoamingNetwork( RoamingNetworkId)
 
         /// <summary>
         /// Return all roaming networks available for the given hostname.
         /// </summary>
         /// <param name="Hostname">The HTTP hostname.</param>
         /// <param name="RoamingNetworkId">The unique identification of the new roaming network.</param>
-        public RoamingNetwork GetRoamingNetwork(HTTPHostname       Hostname,
-                                                RoamingNetwork_Id  RoamingNetworkId)
+        public RoamingNetwork? GetRoamingNetwork(HTTPHostname       Hostname,
+                                                 RoamingNetwork_Id  RoamingNetworkId)
 
-            => WWCPHTTPServer.GetAllTenants(Hostname).
-                   FirstOrDefault(roamingnetwork => roamingnetwork.Id == RoamingNetworkId);
+        // => WWCPHTTPServer.GetAllTenants(Hostname).
+        //        FirstOrDefault(roamingnetwork => roamingnetwork.Id == RoamingNetworkId);
+        {
+
+            if (roamingNetworks.TryGetRoamingNetwork(RoamingNetworkId, out var roamingNetwork))
+                return roamingNetwork;
+
+            return null;
+
+        }
+
 
         #endregion
 
-        #region TryGetRoamingNetwork(Hostname, RoamingNetworkId, out RoamingNetwork)
+        #region TryGetRoamingNetwork( RoamingNetworkId, out RoamingNetwork)
 
         /// <summary>
         ///Try to return all roaming networks available for the given hostname.
@@ -12890,21 +12896,30 @@ namespace cloud.charging.open.API
         /// <param name="Hostname">The HTTP hostname.</param>
         /// <param name="RoamingNetworkId">The unique identification of the new roaming network.</param>
         /// <param name="RoamingNetwork">A roaming network.</param>
-        public Boolean TryGetRoamingNetwork(HTTPHostname                             Hostname,
-                                            RoamingNetwork_Id                        RoamingNetworkId,
-                                            [NotNullWhen(true)] out IRoamingNetwork  RoamingNetwork)
+        public Boolean TryGetRoamingNetwork(HTTPHostname                              Hostname,
+                                            RoamingNetwork_Id                         RoamingNetworkId,
+                                            [NotNullWhen(true)] out IRoamingNetwork?  RoamingNetwork)
         {
 
-            RoamingNetwork  = WWCPHTTPServer.GetAllTenants(Hostname).
-                                  FirstOrDefault(roamingnetwork => roamingnetwork.Id == RoamingNetworkId);
+            //RoamingNetwork  = WWCPHTTPServer.GetAllTenants(Hostname).
+            //                      FirstOrDefault(roamingnetwork => roamingnetwork.Id == RoamingNetworkId);
 
-            return RoamingNetwork is not null;
+            //return RoamingNetwork is not null;
+
+            if (roamingNetworks.TryGetRoamingNetwork(RoamingNetworkId, out var roamingNetwork))
+            {
+                RoamingNetwork = roamingNetwork;
+                return true;
+            }
+
+            RoamingNetwork = null;
+            return false;
 
         }
 
         #endregion
 
-        #region RoamingNetworkExists(Hostname, RoamingNetworkId)
+        #region RoamingNetworkExists( RoamingNetworkId)
 
         /// <summary>
         /// Check if a roaming networks exists for the given hostname.
@@ -12913,38 +12928,29 @@ namespace cloud.charging.open.API
         /// <param name="RoamingNetworkId">The unique identification of the new roaming network.</param>
         public Boolean RoamingNetworkExists(HTTPHostname        Hostname,
                                             RoamingNetwork_Id   RoamingNetworkId)
-        {
 
-            var RoamingNetwork = WWCPHTTPServer.GetAllTenants(Hostname).
-                                     FirstOrDefault(roamingnetwork => roamingnetwork.Id == RoamingNetworkId);
-
-            return RoamingNetwork is not null;
-
-        }
+            => roamingNetworks.Contains(RoamingNetworkId);
 
         #endregion
 
-        #region RemoveRoamingNetwork(Hostname, RoamingNetworkId)
+        #region RemoveRoamingNetwork( RoamingNetworkId)
 
         /// <summary>
         /// Return all roaming networks available for the given hostname.
         /// </summary>
         /// <param name="Hostname">The HTTP hostname.</param>
         /// <param name="RoamingNetworkId">The unique identification of the new roaming network.</param>
-        public RoamingNetwork RemoveRoamingNetwork(HTTPHostname       Hostname,
-                                                   RoamingNetwork_Id  RoamingNetworkId)
+        public RoamingNetwork? RemoveRoamingNetwork(HTTPHostname       Hostname,
+                                                    RoamingNetwork_Id  RoamingNetworkId)
         {
 
-            if (!WWCPHTTPServer.TryGetTenants(Hostname, out RoamingNetworks _RoamingNetworks))
-                return null;
-
-            return _RoamingNetworks.RemoveRoamingNetwork(RoamingNetworkId);
+            return roamingNetworks.RemoveRoamingNetwork(RoamingNetworkId);
 
         }
 
         #endregion
 
-        #region TryRemoveRoamingNetwork(Hostname, RoamingNetworkId, out RoamingNetwork)
+        #region TryRemoveRoamingNetwork( RoamingNetworkId, out RoamingNetwork)
 
         /// <summary>
         /// Return all roaming networks available for the given hostname.
@@ -12957,13 +12963,13 @@ namespace cloud.charging.open.API
                                                out RoamingNetwork  RoamingNetwork)
         {
 
-            if (!WWCPHTTPServer.TryGetTenants(Hostname, out RoamingNetworks _RoamingNetworks))
-            {
-                RoamingNetwork = null;
-                return false;
-            }
+            //if (!WWCPHTTPServer.TryGetTenants( out RoamingNetworks _RoamingNetworks))
+            //{
+            //    RoamingNetwork = null;
+            //    return false;
+            //}
 
-            RoamingNetwork = _RoamingNetworks.RemoveRoamingNetwork(RoamingNetworkId);
+            RoamingNetwork = roamingNetworks.RemoveRoamingNetwork(RoamingNetworkId);
 
             return RoamingNetwork is not null;
 

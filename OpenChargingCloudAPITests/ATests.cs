@@ -28,6 +28,7 @@ using org.GraphDefined.Vanaheimr.Hermod.DNS;
 using org.GraphDefined.Vanaheimr.Hermod.HTTP;
 
 using cloud.charging.open.API;
+using org.GraphDefined.Vanaheimr.Hermod.HTTPTest;
 
 #endregion
 
@@ -42,17 +43,15 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
         #region Data
 
-        protected readonly IPv4Address                                  RemoteAddress = IPv4Address.Localhost;
-        //protected readonly IPv4Address                                  RemoteAddress = IPv4Address.Parse("80.148.29.35");
-        //protected readonly IPv4Address                                  RemoteAddress = IPv4Address.Parse("138.201.28.98");
-        //protected readonly IPPort                                       RemotePort    = IPPort.Parse(8000);
-        protected readonly IPPort                                       RemotePort    = IPPort.Parse(8001);
+        protected readonly IPv4Address           remoteAddress  = IPv4Address.Localhost;
+        protected readonly IPPort                remotePort     = IPPort.Parse(8001);
 
-        protected          OpenChargingCloudAPI                         OpenChargingCloudAPI;
-        protected readonly TimeSpan                                     Timeout  = TimeSpan.FromSeconds(20);
+        protected readonly HTTPTestServerX       httpServer;
+        protected          OpenChargingCloudAPI  openChargingCloudAPI;
+        protected readonly TimeSpan              timeout        = TimeSpan.FromSeconds(20);
 
-        protected          DNSClient                                    _DNSClient;
-        protected          HTTPClient                                   _HTTPClient;
+        protected          DNSClient             dnsClient;
+        protected          HTTPClient            httpClient;
 
         #endregion
 
@@ -61,21 +60,20 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
         protected ATests()
         {
 
-            _DNSClient = new DNSClient(SearchForIPv6DNSServers: false);
+            dnsClient = new DNSClient(SearchForIPv6DNSServers: false);
 
-            if (RemoteAddress == IPv4Address.Localhost)
+            if (remoteAddress == IPv4Address.Localhost)
             {
 
-                //HTTPAPI = new HTTPServer<RoamingNetworks, RoamingNetwork>(
-                //              TCPPort:            RemotePort,
-                //              DefaultServerName:  "GraphDefined WWCP Unit Tests",
-                //              DNSClient:          _DNSClient
-                //          );
+                httpServer            = new HTTPTestServerX(
+                                            TCPPort:         remotePort,
+                                            DNSClient:       dnsClient,
+                                            HTTPServerName:  "GraphDefined WWCP Unit Tests"
+                                        );
 
-                OpenChargingCloudAPI = new OpenChargingCloudAPI(HTTPServerPort: IPPort.Parse(8001));
-                //WWCPAPI.Attach_GeoJSON_IO();
+                openChargingCloudAPI  = new OpenChargingCloudAPI(httpServer);
 
-                OpenChargingCloudAPI.Start();
+                httpServer.Start().GetAwaiter().GetResult();
 
             }
 
@@ -90,9 +88,11 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
         public void Init()
         {
 
-            _HTTPClient = new HTTPClient(RemoteAddress,
-                              RemotePort: RemotePort,
-                              DNSClient:  _DNSClient);
+            httpClient = new HTTPClient(
+                             remoteAddress,
+                             RemotePort: remotePort,
+                             DNSClient:  dnsClient
+                         );
 
         }
 
@@ -102,24 +102,24 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
         #region Cleanup()
 
         [TearDown]
-        public void Cleanup()
+        public async Task Cleanup()
         {
 
             var      URI                = HTTPPath.Parse("/RNs");
             String[] RoamingNetworkIds  = null;
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
+            using (var HTTPTask  = httpClient.Execute(client => client.GETRequest(URI,
                                                                                    RequestBuilder: requestBuilder => {
                                                                                        requestBuilder.Host         = HTTPHostname.Localhost;
                                                                                        requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
                                                                                        requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                    }),
-                                                                                    RequestTimeout: Timeout,
+                                                                                    RequestTimeout: timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
 
             {
 
-                HTTPTask.Wait(Timeout);
+                HTTPTask.Wait(timeout);
 
                 using (var HTTPResult = HTTPTask.Result)
                 {
@@ -141,18 +141,18 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
                 URI = HTTPPath.Parse("/RNs/" + RoamingNetworkId);
 
-                using (var HTTPTask  = _HTTPClient.Execute(client => client.DELETERequest(URI,
+                using (var HTTPTask  = httpClient.Execute(client => client.DELETERequest(URI,
                                                                                           RequestBuilder: requestBuilder => {
                                                                                               requestBuilder.Host         = HTTPHostname.Localhost;
                                                                                               requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
                                                                                               requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                           }),
-                                                                                           RequestTimeout: Timeout,
+                                                                                           RequestTimeout: timeout,
                                                                                            CancellationToken: new CancellationTokenSource().Token))
 
                 {
 
-                    HTTPTask.Wait(Timeout);
+                    HTTPTask.Wait(timeout);
 
                     using (var HTTPResult = HTTPTask.Result)
                     {
@@ -167,8 +167,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
 
 
-            if (RemoteAddress == IPv4Address.Localhost)
-                OpenChargingCloudAPI.Shutdown();
+            if (remoteAddress == IPv4Address.Localhost)
+                await httpServer.Stop();
 
         }
 

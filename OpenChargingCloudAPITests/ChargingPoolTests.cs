@@ -47,17 +47,17 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
             var URI = HTTPPath.Parse("/RNs/TestRN1");
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.CREATERequest(URI,
+            using (var HTTPTask  = httpClient.Execute(client => client.CREATERequest(URI,
                                                                                       RequestBuilder: requestBuilder => {
                                                                                           requestBuilder.Host         = HTTPHostname.Localhost;
                                                                                           requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
                                                                                           requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                       }),
-                                                                                       RequestTimeout: Timeout,
+                                                                                       RequestTimeout: timeout,
                                                                                        CancellationToken: new CancellationTokenSource().Token))
             {
 
-                HTTPTask.Wait(Timeout);
+                HTTPTask.Wait(timeout);
 
                 using (var HTTPResult = HTTPTask.Result)
                 {
@@ -90,17 +90,17 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
             var URI = HTTPPath.Parse("/RNs/TestRN1/ChargingPools");
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
+            using (var HTTPTask  = httpClient.Execute(client => client.GETRequest(URI,
                                                                                    RequestBuilder: requestBuilder => {
                                                                                        requestBuilder.Host         = HTTPHostname.Localhost;
                                                                                        requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
                                                                                        requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                    }),
-                                                                                    RequestTimeout: Timeout,
+                                                                                    RequestTimeout: timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
             {
 
-                HTTPTask.Wait(Timeout);
+                HTTPTask.Wait(timeout);
 
                 using (var HTTPResult = HTTPTask.Result)
                 {
@@ -118,17 +118,17 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
             #region Verify COUNT /RNs/TestRN1/ChargingPools
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.COUNTRequest(URI,
+            using (var HTTPTask  = httpClient.Execute(client => client.COUNTRequest(URI,
                                                                                      RequestBuilder: requestBuilder => {
                                                                                          requestBuilder.Host         = HTTPHostname.Localhost;
                                                                                          requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
                                                                                          requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                      }),
-                                                                                      RequestTimeout: Timeout,
+                                                                                      RequestTimeout: timeout,
                                                                                       CancellationToken: new CancellationTokenSource().Token))
             {
 
-                HTTPTask.Wait(Timeout);
+                HTTPTask.Wait(timeout);
 
                 using (var HTTPResult = HTTPTask.Result)
                 {

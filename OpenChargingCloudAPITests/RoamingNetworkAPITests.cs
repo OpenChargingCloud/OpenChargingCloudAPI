@@ -47,17 +47,17 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
             var URI = HTTPPath.Parse("/RNs");
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
+            using (var HTTPTask  = httpClient.Execute(client => client.GETRequest(URI,
                                                                                    RequestBuilder: requestBuilder => {
                                                                                        requestBuilder.Host         = HTTPHostname.Localhost;
                                                                                        requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
                                                                                        requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                    }),
-                                                                                    RequestTimeout: Timeout,
+                                                                                    RequestTimeout: timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
             {
 
-                HTTPTask.Wait(Timeout);
+                HTTPTask.Wait(timeout);
 
                 using (var HTTPResult = HTTPTask.Result)
                 {
@@ -75,18 +75,18 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
             #region Verify COUNT /RNs
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.COUNTRequest(URI,
+            using (var HTTPTask  = httpClient.Execute(client => client.COUNTRequest(URI,
                                                                                      RequestBuilder: requestBuilder => {
                                                                                          requestBuilder.Host         = HTTPHostname.Localhost;
                                                                                          requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
                                                                                          requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                      }),
-                                                                                      RequestTimeout: Timeout,
+                                                                                      RequestTimeout: timeout,
                                                                                       CancellationToken: new CancellationTokenSource().Token))
 
             {
 
-                HTTPTask.Wait(Timeout);
+                HTTPTask.Wait(timeout);
 
                 using (var HTTPResult = HTTPTask.Result)
                 {
@@ -103,19 +103,19 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             #endregion
 
 
-            var RN_1  = OpenChargingCloudAPI.CreateNewRoamingNetwork(Id:  RoamingNetwork_Id.Parse("TEST_RN1"),
+            var RN_1  = openChargingCloudAPI.CreateNewRoamingNetwork(Id:  RoamingNetwork_Id.Parse("TEST_RN1"),
                                                         Name:              I18NString.Create(Languages.de,  "Test Roaming Netz 1").
                                                                                          Set(Languages.en,  "Test roaming network 1"));
 
-            var RN_2  = OpenChargingCloudAPI.CreateNewRoamingNetwork(Id:  RoamingNetwork_Id.Parse("TEST_RN2"),
+            var RN_2  = openChargingCloudAPI.CreateNewRoamingNetwork(Id:  RoamingNetwork_Id.Parse("TEST_RN2"),
                                                         Name:              I18NString.Create(Languages.de,  "Test Roaming Netz 2").
                                                                                          Set(Languages.en,  "Test roaming network 2"));
 
-            var RN_3  = OpenChargingCloudAPI.CreateNewRoamingNetwork(Id:  RoamingNetwork_Id.Parse("TEST_RN3"),
+            var RN_3  = openChargingCloudAPI.CreateNewRoamingNetwork(Id:  RoamingNetwork_Id.Parse("TEST_RN3"),
                                                         Name:              I18NString.Create(Languages.de,  "Test Roaming Netz 3").
                                                                                          Set(Languages.en,  "Test roaming network 3"));
 
-            var RN_4  = OpenChargingCloudAPI.CreateNewRoamingNetwork(Id:  RoamingNetwork_Id.Parse("TEST_RN4"),
+            var RN_4  = openChargingCloudAPI.CreateNewRoamingNetwork(Id:  RoamingNetwork_Id.Parse("TEST_RN4"),
                                                         Name:              I18NString.Create(Languages.de,  "Test Roaming Netz 4").
                                                                                          Set(Languages.en,  "Test roaming network 4"));
 
@@ -124,18 +124,18 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
             URI = HTTPPath.Parse("/RNs");
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
+            using (var HTTPTask  = httpClient.Execute(client => client.GETRequest(URI,
                                                                                    RequestBuilder: requestBuilder => {
                                                                                        requestBuilder.Host         = HTTPHostname.Localhost;
                                                                                        requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
                                                                                        requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                    }),
-                                                                                    RequestTimeout: Timeout,
+                                                                                    RequestTimeout: timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
 
             {
 
-                HTTPTask.Wait(Timeout);
+                HTTPTask.Wait(timeout);
 
                 using (var HTTPResult = HTTPTask.Result)
                 {
@@ -166,18 +166,18 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
             #region Verify COUNT /RNs
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.COUNTRequest(URI,
+            using (var HTTPTask  = httpClient.Execute(client => client.COUNTRequest(URI,
                                                                                      RequestBuilder: requestBuilder => {
                                                                                          requestBuilder.Host         = HTTPHostname.Localhost;
                                                                                          requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
                                                                                          requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                      }),
-                                                                                      RequestTimeout: Timeout,
+                                                                                      RequestTimeout: timeout,
                                                                                       CancellationToken: new CancellationTokenSource().Token))
 
             {
 
-                HTTPTask.Wait(Timeout);
+                HTTPTask.Wait(timeout);
 
                 using (var HTTPResult = HTTPTask.Result)
                 {
@@ -197,17 +197,17 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
             URI = HTTPPath.Parse("/RNs?skip=2");
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
+            using (var HTTPTask  = httpClient.Execute(client => client.GETRequest(URI,
                                                                                    RequestBuilder: requestBuilder => {
                                                                                        requestBuilder.Host         = HTTPHostname.Localhost;
                                                                                        requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
                                                                                        requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                    }),
-                                                                                    RequestTimeout: Timeout,
+                                                                                    RequestTimeout: timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
             {
 
-                HTTPTask.Wait(Timeout);
+                HTTPTask.Wait(timeout);
 
                 using (var HTTPResult = HTTPTask.Result)
                 {
@@ -234,17 +234,17 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
             URI = HTTPPath.Parse("/RNs?take=2");
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
+            using (var HTTPTask  = httpClient.Execute(client => client.GETRequest(URI,
                                                                                    RequestBuilder: requestBuilder => {
                                                                                        requestBuilder.Host         = HTTPHostname.Localhost;
                                                                                        requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
                                                                                        requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                    }),
-                                                                                    RequestTimeout: Timeout,
+                                                                                    RequestTimeout: timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
             {
 
-                HTTPTask.Wait(Timeout);
+                HTTPTask.Wait(timeout);
 
                 using (var HTTPResult = HTTPTask.Result)
                 {
@@ -271,17 +271,17 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
             URI = HTTPPath.Parse("/RNs?skip=1&take=2");
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
+            using (var HTTPTask  = httpClient.Execute(client => client.GETRequest(URI,
                                                                                    RequestBuilder: requestBuilder => {
                                                                                        requestBuilder.Host         = HTTPHostname.Localhost;
                                                                                        requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
                                                                                        requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                    }),
-                                                                                    RequestTimeout: Timeout,
+                                                                                    RequestTimeout: timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
             {
 
-                HTTPTask.Wait(Timeout);
+                HTTPTask.Wait(timeout);
 
                 using (var HTTPResult = HTTPTask.Result)
                 {
@@ -308,17 +308,17 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
             URI = HTTPPath.Parse("/RNs?skip=8");
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
+            using (var HTTPTask  = httpClient.Execute(client => client.GETRequest(URI,
                                                                                    RequestBuilder: requestBuilder => {
                                                                                        requestBuilder.Host         = HTTPHostname.Localhost;
                                                                                        requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
                                                                                        requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                    }),
-                                                                                    RequestTimeout: Timeout,
+                                                                                    RequestTimeout: timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
             {
 
-                HTTPTask.Wait(Timeout);
+                HTTPTask.Wait(timeout);
 
                 using (var HTTPResult = HTTPTask.Result)
                 {
@@ -339,17 +339,17 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
             URI = HTTPPath.Parse("/RNs/TEST_RN1");
 
-            using (var HTTPTask  = _HTTPClient.Execute(client => client.GETRequest(URI,
+            using (var HTTPTask  = httpClient.Execute(client => client.GETRequest(URI,
                                                                                    RequestBuilder: requestBuilder => {
                                                                                        requestBuilder.Host         = HTTPHostname.Localhost;
                                                                                        requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
                                                                                        requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                                    }),
-                                                                                    RequestTimeout: Timeout,
+                                                                                    RequestTimeout: timeout,
                                                                                     CancellationToken: new CancellationTokenSource().Token))
             {
 
-                HTTPTask.Wait(Timeout);
+                HTTPTask.Wait(timeout);
 
                 using (var HTTPResult = HTTPTask.Result)
                 {
@@ -381,16 +381,16 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
             #region Verify GET /RNs on localhost
 
-            var task0001  = _HTTPClient.Execute(client => client.GETRequest(HTTPPath.Parse("/RNs"),
+            var task0001  = httpClient.Execute(client => client.GETRequest(HTTPPath.Parse("/RNs"),
                                                                             RequestBuilder: requestBuilder => {
                                                                                 requestBuilder.Host         = HTTPHostname.Localhost;
                                                                                 requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
                                                                                 requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                             }),
-                                                                            RequestTimeout:    Timeout,
+                                                                            RequestTimeout:    timeout,
                                                                             CancellationToken: new CancellationTokenSource().Token);
 
-            task0001.Wait(Timeout);
+            task0001.Wait(timeout);
             var result0001 = task0001.Result;
 
             ClassicAssert.AreEqual(HTTPStatusCode.OK, result0001.HTTPStatusCode);
@@ -403,16 +403,16 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
             #region Verify GET /RNs on virtualhost
 
-            var task0002  = _HTTPClient.Execute(client => client.GETRequest(HTTPPath.Parse("/RNs"),
+            var task0002  = httpClient.Execute(client => client.GETRequest(HTTPPath.Parse("/RNs"),
                                                                             RequestBuilder: requestBuilder => {
                                                                                 requestBuilder.Host         = HTTPHostname.Localhost;
                                                                                 requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
                                                                                 requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                             }),
-                                                                            RequestTimeout:    Timeout,
+                                                                            RequestTimeout:    timeout,
                                                                             CancellationToken: new CancellationTokenSource().Token);
 
-            task0002.Wait(Timeout);
+            task0002.Wait(timeout);
             var result0002 = task0002.Result;
 
             ClassicAssert.AreEqual(HTTPStatusCode.OK, result0002.HTTPStatusCode);
@@ -428,16 +428,16 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
             #region Verify GET /RNs/TEST_RN1 on localhost
 
-            var task0003  = _HTTPClient.Execute(client => client.GETRequest(HTTPPath.Parse("/RNs/TEST_RN1"),
+            var task0003  = httpClient.Execute(client => client.GETRequest(HTTPPath.Parse("/RNs/TEST_RN1"),
                                                                             RequestBuilder: requestBuilder => {
                                                                                 requestBuilder.Host         = HTTPHostname.Localhost;
                                                                                 requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
                                                                                 requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                             }),
-                                                                            RequestTimeout:    Timeout,
+                                                                            RequestTimeout:    timeout,
                                                                             CancellationToken: new CancellationTokenSource().Token);
 
-            task0003.Wait(Timeout);
+            task0003.Wait(timeout);
             var result0003 = task0003.Result;
 
             ClassicAssert.AreEqual(HTTPStatusCode.OK, result0003.HTTPStatusCode);
@@ -450,16 +450,16 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
             #region Verify GET /RNs/TEST_RN1 on virtualhost
 
-            var task0004  = _HTTPClient.Execute(client => client.GETRequest(HTTPPath.Parse("/RNs/TEST_RN1"),
+            var task0004  = httpClient.Execute(client => client.GETRequest(HTTPPath.Parse("/RNs/TEST_RN1"),
                                                                             RequestBuilder: requestBuilder => {
                                                                                 requestBuilder.Host         = HTTPHostname.Localhost;
                                                                                 requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
                                                                                 requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                             }),
-                                                                            RequestTimeout:    Timeout,
+                                                                            RequestTimeout:    timeout,
                                                                             CancellationToken: new CancellationTokenSource().Token);
 
-            task0004.Wait(Timeout);
+            task0004.Wait(timeout);
             var result0004 = task0004.Result;
 
             ClassicAssert.AreEqual(HTTPStatusCode.OK, result0004.HTTPStatusCode);
@@ -472,16 +472,16 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
             #region Verify GET /RNs/TEST_RN2 on virtualhost
 
-            var task0005  = _HTTPClient.Execute(client => client.GETRequest(HTTPPath.Parse("/RNs/TEST_RN2"),
+            var task0005  = httpClient.Execute(client => client.GETRequest(HTTPPath.Parse("/RNs/TEST_RN2"),
                                                                             RequestBuilder: requestBuilder => {
                                                                                 requestBuilder.Host         = HTTPHostname.Localhost;
                                                                                 requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
                                                                                 requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
                                                                             }),
-                                                                            RequestTimeout:    Timeout,
+                                                                            RequestTimeout:    timeout,
                                                                             CancellationToken: new CancellationTokenSource().Token);
 
-            task0005.Wait(Timeout);
+            task0005.Wait(timeout);
             var result0005 = task0005.Result;
 
             ClassicAssert.AreEqual(HTTPStatusCode.OK, result0005.HTTPStatusCode);

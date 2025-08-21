@@ -58,251 +58,251 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.JSON
             var Hostname   = _Hostname  ?? HTTPHostname.Any;
             var URIPrefix  = _URIPrefix ?? HTTPPath.Parse("/");
 
-            #region ~/RNs/{RoamingNetworkId}/SmartCities
+            //#region ~/RNs/{RoamingNetworkId}/SmartCities
 
-            #region GET         ~/RNs/{RoamingNetworkId}/SmartCities
+            //#region GET         ~/RNs/{RoamingNetworkId}/SmartCities
 
-            // -----------------------------------------------------------------------------------------
-            // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/SmartCities
-            // -----------------------------------------------------------------------------------------
-            OpenChargingCloudAPI.HTTPServer.AddMethodCallback(OpenChargingCloudAPI,
-                                                              Hostname,
-                                                              HTTPMethod.GET,
-                                                              URIPrefix + "RNs/{RoamingNetworkId}/SmartCities",
-                                                              HTTPContentType.Application.JSON_UTF8,
-                                                              HTTPDelegate: Request => {
+            //// -----------------------------------------------------------------------------------------
+            //// curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/SmartCities
+            //// -----------------------------------------------------------------------------------------
+            //OpenChargingCloudAPI.HTTPServer.AddMethodCallback(OpenChargingCloudAPI,
+            //                                                  Hostname,
+            //                                                  HTTPMethod.GET,
+            //                                                  URIPrefix + "RNs/{RoamingNetworkId}/SmartCities",
+            //                                                  HTTPContentType.Application.JSON_UTF8,
+            //                                                  HTTPDelegate: Request => {
 
-                                                                  #region Check parameters
+            //                                                      #region Check parameters
 
-                                                     if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI,
-                                                                                      out var _RoamingNetwork,
-                                                                                      out var _HTTPResponse))
-                                                     {
-                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
-                                                     }
+            //                                         if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI,
+            //                                                                          out var _RoamingNetwork,
+            //                                                                          out var _HTTPResponse))
+            //                                         {
+            //                                             return Task.FromResult(_HTTPResponse.AsImmutable);
+            //                                         }
 
-                                                     #endregion
+            //                                         #endregion
 
-                                                                  var skip                    = Request.QueryString.GetUInt64("skip");
-                                                                  var take                    = Request.QueryString.GetUInt64("take");
-                                                                  var expand                  = Request.QueryString.GetStrings("expand");
-                                                                  //var expandChargingPools     = !expand.Contains("-chargingpools");
-                                                                  //var expandChargingStations  = !expand.Contains("-chargingstations");
-                                                                  //var expandBrands            = expand.Contains("brands");
+            //                                                      var skip                    = Request.QueryString.GetUInt64("skip");
+            //                                                      var take                    = Request.QueryString.GetUInt64("take");
+            //                                                      var expand                  = Request.QueryString.GetStrings("expand");
+            //                                                      //var expandChargingPools     = !expand.Contains("-chargingpools");
+            //                                                      //var expandChargingStations  = !expand.Contains("-chargingstations");
+            //                                                      //var expandBrands            = expand.Contains("brands");
 
-                                                                  //ToDo: Getting the expected total count might be very expensive!
-                                                                  var _ExpectedCount = _RoamingNetwork.SmartCities.ULongCount();
+            //                                                      //ToDo: Getting the expected total count might be very expensive!
+            //                                                      var _ExpectedCount = _RoamingNetwork.SmartCities.ULongCount();
 
-                                                                  return Task.FromResult(
-                                                                      new HTTPResponse.Builder(Request) {
-                                                                          HTTPStatusCode               = HTTPStatusCode.OK,
-                                                                          Server                       = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                                                                          Date                         = Timestamp.Now,
-                                                                          AccessControlAllowOrigin     = "*",
-                                                                          AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
-                                                                          AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
-                                                                          ETag                         = "1",
-                                                                          ContentType                  = HTTPContentType.Application.JSON_UTF8,
-                                                                          Content                      = _RoamingNetwork.SmartCities.
-                                                                                                             ToJSON(skip,
-                                                                                                                    take,
-                                                                                                                    false).
-                                                                                                                    //expandChargingPools,
-                                                                                                                    //expandChargingStations,
-                                                                                                                    //expandBrands).
-                                                                                                             ToUTF8Bytes(),
-                                                                          X_ExpectedTotalNumberOfItems  = _ExpectedCount
-                                                                      }.AsImmutable);
+            //                                                      return Task.FromResult(
+            //                                                          new HTTPResponse.Builder(Request) {
+            //                                                              HTTPStatusCode               = HTTPStatusCode.OK,
+            //                                                              Server                       = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+            //                                                              Date                         = Timestamp.Now,
+            //                                                              AccessControlAllowOrigin     = "*",
+            //                                                              AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
+            //                                                              AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
+            //                                                              ETag                         = "1",
+            //                                                              ContentType                  = HTTPContentType.Application.JSON_UTF8,
+            //                                                              Content                      = _RoamingNetwork.SmartCities.
+            //                                                                                                 ToJSON(skip,
+            //                                                                                                        take,
+            //                                                                                                        false).
+            //                                                                                                        //expandChargingPools,
+            //                                                                                                        //expandChargingStations,
+            //                                                                                                        //expandBrands).
+            //                                                                                                 ToUTF8Bytes(),
+            //                                                              X_ExpectedTotalNumberOfItems  = _ExpectedCount
+            //                                                          }.AsImmutable);
 
-                                                              });
+            //                                                  });
 
-            #endregion
+            //#endregion
 
-            #region COUNT       ~/RNs/{RoamingNetworkId}/SmartCities
+            //#region COUNT       ~/RNs/{RoamingNetworkId}/SmartCities
 
-            // ----------------------------------------------------------------------------------------------------------------
-            // curl -v -X COUNT -H "Accept: application/json" http://127.0.0.1:3004/RNs/{RoamingNetworkId}/SmartCities
-            // ----------------------------------------------------------------------------------------------------------------
-            OpenChargingCloudAPI.HTTPServer.AddMethodCallback(OpenChargingCloudAPI,
-                                                              Hostname,
-                                                              HTTPMethod.COUNT,
-                                                              URIPrefix + "RNs/{RoamingNetworkId}/SmartCities",
-                                                              HTTPContentType.Application.JSON_UTF8,
-                                                              HTTPDelegate: Request => {
+            //// ----------------------------------------------------------------------------------------------------------------
+            //// curl -v -X COUNT -H "Accept: application/json" http://127.0.0.1:3004/RNs/{RoamingNetworkId}/SmartCities
+            //// ----------------------------------------------------------------------------------------------------------------
+            //OpenChargingCloudAPI.HTTPServer.AddMethodCallback(OpenChargingCloudAPI,
+            //                                                  Hostname,
+            //                                                  HTTPMethod.COUNT,
+            //                                                  URIPrefix + "RNs/{RoamingNetworkId}/SmartCities",
+            //                                                  HTTPContentType.Application.JSON_UTF8,
+            //                                                  HTTPDelegate: Request => {
 
-                                                                  #region Check parameters
+            //                                                      #region Check parameters
 
-                                                     if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI,
-                                                                                      out var _RoamingNetwork,
-                                                                                      out var _HTTPResponse))
-                                                     {
-                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
-                                                     }
+            //                                         if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI,
+            //                                                                          out var _RoamingNetwork,
+            //                                                                          out var _HTTPResponse))
+            //                                         {
+            //                                             return Task.FromResult(_HTTPResponse.AsImmutable);
+            //                                         }
 
-                                                     #endregion
+            //                                         #endregion
 
-                                                                  return Task.FromResult(
-                                                                      new HTTPResponse.Builder(Request) {
-                                                                          HTTPStatusCode               = HTTPStatusCode.OK,
-                                                                          Server                       = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                                                                          Date                         = Timestamp.Now,
-                                                                          AccessControlAllowOrigin     = "*",
-                                                                          AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
-                                                                          AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
-                                                                          ETag                         = "1",
-                                                                          ContentType                  = HTTPContentType.Application.JSON_UTF8,
-                                                                          Content                      = JSONObject.Create(
-                                                                                                             new JProperty("count",  _RoamingNetwork.ChargingStationOperators.ULongCount())
-                                                                                                         ).ToUTF8Bytes()
-                                                                      }.AsImmutable);
+            //                                                      return Task.FromResult(
+            //                                                          new HTTPResponse.Builder(Request) {
+            //                                                              HTTPStatusCode               = HTTPStatusCode.OK,
+            //                                                              Server                       = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+            //                                                              Date                         = Timestamp.Now,
+            //                                                              AccessControlAllowOrigin     = "*",
+            //                                                              AccessControlAllowMethods    = new[] { "GET", "COUNT", "STATUS" },
+            //                                                              AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
+            //                                                              ETag                         = "1",
+            //                                                              ContentType                  = HTTPContentType.Application.JSON_UTF8,
+            //                                                              Content                      = JSONObject.Create(
+            //                                                                                                 new JProperty("count",  _RoamingNetwork.ChargingStationOperators.ULongCount())
+            //                                                                                             ).ToUTF8Bytes()
+            //                                                          }.AsImmutable);
 
-                                                              });
+            //                                                  });
 
-            #endregion
+            //#endregion
 
-            #region GET         ~/RNs/{RoamingNetworkId}/SmartCities->AdminStatus
+            //#region GET         ~/RNs/{RoamingNetworkId}/SmartCities->AdminStatus
 
-            // ------------------------------------------------------------------------------------------------------
-            // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/SmartCities->AdminStatus
-            // ------------------------------------------------------------------------------------------------------
-            OpenChargingCloudAPI.HTTPServer.AddMethodCallback(OpenChargingCloudAPI,
-                                                              Hostname,
-                                                              HTTPMethod.GET,
-                                                              URIPrefix + "RNs/{RoamingNetworkId}/SmartCities->AdminStatus",
-                                                              HTTPContentType.Application.JSON_UTF8,
-                                                              HTTPDelegate: Request => {
+            //// ------------------------------------------------------------------------------------------------------
+            //// curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/SmartCities->AdminStatus
+            //// ------------------------------------------------------------------------------------------------------
+            //OpenChargingCloudAPI.HTTPServer.AddMethodCallback(OpenChargingCloudAPI,
+            //                                                  Hostname,
+            //                                                  HTTPMethod.GET,
+            //                                                  URIPrefix + "RNs/{RoamingNetworkId}/SmartCities->AdminStatus",
+            //                                                  HTTPContentType.Application.JSON_UTF8,
+            //                                                  HTTPDelegate: Request => {
 
-                                                                  #region Check parameters
+            //                                                      #region Check parameters
 
-                                                     if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI,
-                                                                                      out var _RoamingNetwork,
-                                                                                      out var _HTTPResponse))
-                                                     {
-                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
-                                                     }
+            //                                         if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI,
+            //                                                                          out var _RoamingNetwork,
+            //                                                                          out var _HTTPResponse))
+            //                                         {
+            //                                             return Task.FromResult(_HTTPResponse.AsImmutable);
+            //                                         }
 
-                                                     #endregion
+            //                                         #endregion
 
-                                                                  var skip         = Request.QueryString.GetUInt64("skip");
-                                                                  var take         = Request.QueryString.GetUInt64("take");
-                                                                  var historysize  = Request.QueryString.GetUInt64("historysize", 1);
+            //                                                      var skip         = Request.QueryString.GetUInt64("skip");
+            //                                                      var take         = Request.QueryString.GetUInt64("take");
+            //                                                      var historysize  = Request.QueryString.GetUInt64("historysize", 1);
 
-                                                                  //ToDo: Getting the expected total count might be very expensive!
-                                                                  var _ExpectedCount = _RoamingNetwork.ChargingStationOperatorAdminStatus().ULongCount();
+            //                                                      //ToDo: Getting the expected total count might be very expensive!
+            //                                                      var _ExpectedCount = _RoamingNetwork.ChargingStationOperatorAdminStatus().ULongCount();
 
-                                                                  return Task.FromResult(
-                                                                      new HTTPResponse.Builder(Request) {
-                                                                          HTTPStatusCode               = HTTPStatusCode.OK,
-                                                                          Server                       = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                                                                          Date                         = Timestamp.Now,
-                                                                          AccessControlAllowOrigin     = "*",
-                                                                          AccessControlAllowMethods    = [ "GET" ],
-                                                                          AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
-                                                                          ETag                         = "1",
-                                                                          ContentType                  = HTTPContentType.Application.JSON_UTF8,
-                                                                          Content                      = _RoamingNetwork.ChargingStationOperatorAdminStatus().
-                                                                                                             OrderBy(status => status.Id).
-                                                                                                             ToJSON (skip, take).
-                                                                                                             ToUTF8Bytes(),
-                                                                          X_ExpectedTotalNumberOfItems  = _ExpectedCount
-                                                                      }.AsImmutable);
+            //                                                      return Task.FromResult(
+            //                                                          new HTTPResponse.Builder(Request) {
+            //                                                              HTTPStatusCode               = HTTPStatusCode.OK,
+            //                                                              Server                       = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+            //                                                              Date                         = Timestamp.Now,
+            //                                                              AccessControlAllowOrigin     = "*",
+            //                                                              AccessControlAllowMethods    = [ "GET" ],
+            //                                                              AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
+            //                                                              ETag                         = "1",
+            //                                                              ContentType                  = HTTPContentType.Application.JSON_UTF8,
+            //                                                              Content                      = _RoamingNetwork.ChargingStationOperatorAdminStatus().
+            //                                                                                                 OrderBy(status => status.Id).
+            //                                                                                                 ToJSON (skip, take).
+            //                                                                                                 ToUTF8Bytes(),
+            //                                                              X_ExpectedTotalNumberOfItems  = _ExpectedCount
+            //                                                          }.AsImmutable);
 
-                                                              });
+            //                                                  });
 
-            #endregion
+            //#endregion
 
-            #region GET         ~/RNs/{RoamingNetworkId}/SmartCities->Status
+            //#region GET         ~/RNs/{RoamingNetworkId}/SmartCities->Status
 
-            // -------------------------------------------------------------------------------------------------
-            // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/SmartCities->Status
-            // -------------------------------------------------------------------------------------------------
-            OpenChargingCloudAPI.HTTPServer.AddMethodCallback(OpenChargingCloudAPI,
-                                                              Hostname,
-                                                              HTTPMethod.GET,
-                                                              URIPrefix + "RNs/{RoamingNetworkId}/SmartCities->Status",
-                                                              HTTPContentType.Application.JSON_UTF8,
-                                                              HTTPDelegate: Request => {
+            //// -------------------------------------------------------------------------------------------------
+            //// curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Test/SmartCities->Status
+            //// -------------------------------------------------------------------------------------------------
+            //OpenChargingCloudAPI.HTTPServer.AddMethodCallback(OpenChargingCloudAPI,
+            //                                                  Hostname,
+            //                                                  HTTPMethod.GET,
+            //                                                  URIPrefix + "RNs/{RoamingNetworkId}/SmartCities->Status",
+            //                                                  HTTPContentType.Application.JSON_UTF8,
+            //                                                  HTTPDelegate: Request => {
 
-                                                                  #region Check parameters
+            //                                                      #region Check parameters
 
-                                                     if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI,
-                                                                                      out var _RoamingNetwork,
-                                                                                      out var _HTTPResponse))
-                                                     {
-                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
-                                                     }
+            //                                         if (!Request.ParseRoamingNetwork(OpenChargingCloudAPI,
+            //                                                                          out var _RoamingNetwork,
+            //                                                                          out var _HTTPResponse))
+            //                                         {
+            //                                             return Task.FromResult(_HTTPResponse.AsImmutable);
+            //                                         }
 
-                                                     #endregion
+            //                                         #endregion
 
-                                                                  var skip         = Request.QueryString.GetUInt64("skip");
-                                                                  var take         = Request.QueryString.GetUInt64("take");
+            //                                                      var skip         = Request.QueryString.GetUInt64("skip");
+            //                                                      var take         = Request.QueryString.GetUInt64("take");
 
-                                                                  //ToDo: Getting the expected total count might be very expensive!
-                                                                  var _ExpectedCount = _RoamingNetwork.ChargingStationOperatorStatus().ULongCount();
+            //                                                      //ToDo: Getting the expected total count might be very expensive!
+            //                                                      var _ExpectedCount = _RoamingNetwork.ChargingStationOperatorStatus().ULongCount();
 
-                                                                  return Task.FromResult(
-                                                                      new HTTPResponse.Builder(Request) {
-                                                                          HTTPStatusCode               = HTTPStatusCode.OK,
-                                                                          Server                       = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                                                                          Date                         = Timestamp.Now,
-                                                                          AccessControlAllowOrigin     = "*",
-                                                                          AccessControlAllowMethods    = [ "GET" ],
-                                                                          AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
-                                                                          ETag                         = "1",
-                                                                          ContentType                  = HTTPContentType.Application.JSON_UTF8,
-                                                                          Content                      = _RoamingNetwork.ChargingStationOperatorStatus().
-                                                                                                             OrderBy(status => status.Id).
-                                                                                                             ToJSON (skip, take).
-                                                                                                             ToUTF8Bytes(),
-                                                                          X_ExpectedTotalNumberOfItems  = _ExpectedCount
-                                                                      }.AsImmutable);
+            //                                                      return Task.FromResult(
+            //                                                          new HTTPResponse.Builder(Request) {
+            //                                                              HTTPStatusCode               = HTTPStatusCode.OK,
+            //                                                              Server                       = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+            //                                                              Date                         = Timestamp.Now,
+            //                                                              AccessControlAllowOrigin     = "*",
+            //                                                              AccessControlAllowMethods    = [ "GET" ],
+            //                                                              AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
+            //                                                              ETag                         = "1",
+            //                                                              ContentType                  = HTTPContentType.Application.JSON_UTF8,
+            //                                                              Content                      = _RoamingNetwork.ChargingStationOperatorStatus().
+            //                                                                                                 OrderBy(status => status.Id).
+            //                                                                                                 ToJSON (skip, take).
+            //                                                                                                 ToUTF8Bytes(),
+            //                                                              X_ExpectedTotalNumberOfItems  = _ExpectedCount
+            //                                                          }.AsImmutable);
 
-                                                              });
+            //                                                  });
 
-            #endregion
+            //#endregion
 
-            #endregion
+            //#endregion
 
-            #region ~/RNs/{RoamingNetworkId}/SmartCities/{SmartCityId}
+            //#region ~/RNs/{RoamingNetworkId}/SmartCities/{SmartCityId}
 
-            #region GET         ~/RNs/{RoamingNetworkId}/SmartCities/{SmartCityId}
+            //#region GET         ~/RNs/{RoamingNetworkId}/SmartCities/{SmartCityId}
 
-            OpenChargingCloudAPI.HTTPServer.AddMethodCallback(OpenChargingCloudAPI,
-                                                              HTTPHostname.Any,
-                                                              HTTPMethod.GET,
-                                                              URIPrefix + "RNs/{RoamingNetworkId}/SmartCities/{SmartCityId}",
-                                                              HTTPContentType.Application.JSON_UTF8,
-                                                              HTTPDelegate: Request => {
+            //OpenChargingCloudAPI.HTTPServer.AddMethodCallback(OpenChargingCloudAPI,
+            //                                                  HTTPHostname.Any,
+            //                                                  HTTPMethod.GET,
+            //                                                  URIPrefix + "RNs/{RoamingNetworkId}/SmartCities/{SmartCityId}",
+            //                                                  HTTPContentType.Application.JSON_UTF8,
+            //                                                  HTTPDelegate: Request => {
 
-                                                                  #region Check HTTP parameters
+            //                                                      #region Check HTTP parameters
 
-                                                     if (!Request.ParseRoamingNetworkAndSmartCity(OpenChargingCloudAPI,
-                                                                                                  out var _RoamingNetwork,
-                                                                                                  out var _SmartCity,
-                                                                                                  out var _HTTPResponse))
+            //                                         if (!Request.ParseRoamingNetworkAndSmartCity(OpenChargingCloudAPI,
+            //                                                                                      out var _RoamingNetwork,
+            //                                                                                      out var _SmartCity,
+            //                                                                                      out var _HTTPResponse))
 
-                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
+            //                                             return Task.FromResult(_HTTPResponse.AsImmutable);
 
-                                                     #endregion
+            //                                         #endregion
 
-                                                                  return Task.FromResult(
-                                                                      new HTTPResponse.Builder(Request) {
-                                                                          HTTPStatusCode             = HTTPStatusCode.OK,
-                                                                          Server                     = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
-                                                                          Date                       = Timestamp.Now,
-                                                                          AccessControlAllowOrigin   = "*",
-                                                                          AccessControlAllowMethods  = new[] { "GET", "CREATE", "DELETE" },
-                                                                          AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
-                                                                          ETag                       = "1",
-                                                                          ContentType                = HTTPContentType.Application.JSON_UTF8,
-                                                                          Content                    = _SmartCity.ToJSON().ToUTF8Bytes()
-                                                                      }.AsImmutable);
+            //                                                      return Task.FromResult(
+            //                                                          new HTTPResponse.Builder(Request) {
+            //                                                              HTTPStatusCode             = HTTPStatusCode.OK,
+            //                                                              Server                     = OpenChargingCloudAPI.HTTPServer.DefaultServerName,
+            //                                                              Date                       = Timestamp.Now,
+            //                                                              AccessControlAllowOrigin   = "*",
+            //                                                              AccessControlAllowMethods  = new[] { "GET", "CREATE", "DELETE" },
+            //                                                              AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
+            //                                                              ETag                       = "1",
+            //                                                              ContentType                = HTTPContentType.Application.JSON_UTF8,
+            //                                                              Content                    = _SmartCity.ToJSON().ToUTF8Bytes()
+            //                                                          }.AsImmutable);
 
-                                                              });
+            //                                                  });
 
-            #endregion
+            //#endregion
 
-            #endregion
+            //#endregion
 
         }
 
