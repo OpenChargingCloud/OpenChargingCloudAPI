@@ -128,7 +128,7 @@ namespace cloud.charging.open.API
 
                                           LogfileCreatorDelegate?      LogfileCreator              = null)
 
-            : base(OpenChargingCloudAPI.HTTPTestServer,//.InternalHTTPServer,
+            : base(OpenChargingCloudAPI.HTTPServer,//.InternalHTTPServer,
                    LoggingPath,
                    Context,
 
