@@ -153,12 +153,10 @@ namespace cloud.charging.open.API
 
             #region Initial checks
 
-            if (OpenChargingCloudAPI == null)
-                throw new ArgumentNullException(nameof(OpenChargingCloudAPI), "The given WWCP HTTP API must not be null!");
+            this.OpenChargingCloudAPI = OpenChargingCloudAPI ?? throw new ArgumentNullException(nameof(OpenChargingCloudAPI), "The given WWCP HTTP API must not be null!");
 
             #endregion
 
-            this.OpenChargingCloudAPI = OpenChargingCloudAPI;
 
             #region EVSEs
 
@@ -177,7 +175,6 @@ namespace cloud.charging.open.API
             //    RegisterDefaultDiscLogTarget(this);
 
             #endregion
-
 
             #region Register auth start/stop log events
 
