@@ -3107,85 +3107,71 @@ namespace cloud.charging.open.API
         /// <param name="LogfileName">The name of the logfile.</param>
         /// <param name="LogfileCreator">A delegate for creating the name of the logfile for this API.</param>
         /// <param name="DNSClient">The DNS client of the API.</param>
-        public OpenChargingCloudAPI(HTTPTestServerX?               HTTPTestServer     = null,
-                                    IEnumerable<HTTPHostname>?     Hostnames          = null,
-                                    HTTPPath?                      RootPath           = null,
-                                    IEnumerable<HTTPContentType>?  HTTPContentTypes   = null,
-                                    I18NString?                    Description        = null,
+        public OpenChargingCloudAPI(HTTPTestServerX?               HTTPTestServer              = null,
+                                    IEnumerable<HTTPHostname>?     Hostnames                   = null,
+                                    HTTPPath?                      RootPath                    = null,
+                                    IEnumerable<HTTPContentType>?  HTTPContentTypes            = null,
+                                    I18NString?                    Description                 = null,
 
-                                    String?                        ExternalDNSName    = null,
-                                    HTTPPath?                      BasePath           = null,
-                                    JObject?                       APIVersionHashes   = null,
+                                    String?                        ExternalDNSName             = null,
+                                    HTTPPath?                      BasePath                    = null,
 
-                                    //HTTPHostname?                                              HTTPHostname                 = null,
-                                    //String?                                                    ExternalDNSName              = null,
-                                    //IPPort?                                                    HTTPServerPort               = null,
-                                    //HTTPPath?                                                  BasePath                     = null,
-                                    //String                                                     HTTPServerName               = DefaultHTTPServerName,
+                                    String?                        HTTPServerName              = DefaultHTTPServerName,
+                                    String?                        HTTPServiceName             = DefaultHTTPServiceName,
+                                    String?                        APIVersionHash              = null,
+                                    JObject?                       APIVersionHashes            = null,
+
+                                    //HTTPHostname?                  HTTPHostname                = null,
+                                    //String?                        ExternalDNSName             = null,
+                                    //IPPort?                        HTTPServerPort              = null,
+                                    //HTTPPath?                      BasePath                    = null,
+                                    //String                         HTTPServerName              = DefaultHTTPServerName,
                                     //
-                                    //HTTPPath?                                                  URLPathPrefix                = null,
-                                    //String                                                     HTTPServiceName              = DefaultHTTPServiceName,
-                                    String?                                                    HTMLTemplate                 = null,
+                                    //HTTPPath?                      URLPathPrefix               = null,
+                                    String?                        HTMLTemplate                = null,
 
-                                    //ServerCertificateSelectorDelegate?                         ServerCertificateSelector    = null,
-                                    //RemoteTLSClientCertificateValidationHandler<IHTTPServer>?  ClientCertificateValidator   = null,
-                                    //LocalCertificateSelectionHandler?                          LocalCertificateSelector     = null,
-                                    //SslProtocols?                                              AllowedTLSProtocols          = null,
-                                    //Boolean?                                                   ClientCertificateRequired    = null,
-                                    //Boolean?                                                   CheckCertificateRevocation   = null,
+                                    Organization_Id?               AdminOrganizationId         = null,
+                                    EMailAddress?                  APIRobotEMailAddress        = null,
+                                    String?                        APIRobotGPGPassphrase       = null,
+                                    ISMTPClient?                   SMTPClient                  = null,
+                                    //ISMSClient?                    SMSClient                   = null,
+                                    //String?                        SMSSenderName               = null,
+                                    //ITelegramStore?                TelegramClient              = null,
 
-                                    //ServerThreadNameCreatorDelegate?                           ServerThreadNameCreator      = null,
-                                    //ServerThreadPriorityDelegate?                              ServerThreadPrioritySetter   = null,
-                                    //Boolean?                                                   ServerThreadIsBackground     = null,
-                                    //ConnectionIdBuilder?                                       ConnectionIdBuilder          = null,
-                                    //TimeSpan?                                                  ConnectionTimeout            = null,
-                                    //UInt32?                                                    MaxClientConnections         = null,
+                                    PasswordQualityCheckDelegate?  PasswordQualityCheck        = null,
+                                    HTTPCookieName?                CookieName                  = null,
+                                    Boolean                        UseSecureCookies            = true,
+                                    Languages?                     DefaultLanguage             = null,
 
-                                    //IPPort?                                                    TCPPort                      = null,
-                                    //IPPort?                                                    UDPPort                      = null,
+                                    Boolean?                       DisableMaintenanceTasks     = null,
+                                    TimeSpan?                      MaintenanceInitialDelay     = null,
+                                    TimeSpan?                      MaintenanceEvery            = null,
 
-                                    Organization_Id?                                           AdminOrganizationId          = null,
-                                    EMailAddress?                                              APIRobotEMailAddress         = null,
-                                    String?                                                    APIRobotGPGPassphrase        = null,
-                                    ISMTPClient?                                               SMTPClient                   = null,
-                                    //ISMSClient?                                                SMSClient                    = null,
-                                    //String?                                                    SMSSenderName                = null,
-                                    //ITelegramStore?                                            TelegramClient               = null,
+                                    Boolean?                       DisableWardenTasks          = null,
+                                    TimeSpan?                      WardenInitialDelay          = null,
+                                    TimeSpan?                      WardenCheckEvery            = null,
 
-                                    PasswordQualityCheckDelegate?                              PasswordQualityCheck         = null,
-                                    HTTPCookieName?                                            CookieName                   = null,
-                                    Boolean                                                    UseSecureCookies             = true,
-                                    Languages?                                                 DefaultLanguage              = null,
+                                    IEnumerable<URLWithAPIKey>?    RemoteAuthServers           = null,
+                                    IEnumerable<APIKey_Id>?        RemoteAuthAPIKeys           = null,
 
-                                    Boolean?                                                   DisableMaintenanceTasks      = null,
-                                    TimeSpan?                                                  MaintenanceInitialDelay      = null,
-                                    TimeSpan?                                                  MaintenanceEvery             = null,
+                                    Boolean?                       AllowsAnonymousReadAccess   = true,
 
-                                    Boolean?                                                   DisableWardenTasks           = null,
-                                    TimeSpan?                                                  WardenInitialDelay           = null,
-                                    TimeSpan?                                                  WardenCheckEvery             = null,
+                                    Boolean?                       IsDevelopment               = null,
+                                    IEnumerable<String>?           DevelopmentServers          = null,
+                                    Boolean                        SkipURLTemplates            = false,
+                                    String                         DatabaseFileName            = DefaultOpenChargingCloudAPI_DatabaseFileName,
+                                    Boolean                        DisableNotifications        = false,
+                                    //Boolean                        DisableLogging              = false,
+                                    //String?                        LoggingPath                 = null,
+                                    //String                         LogfileName                 = DefaultOpenChargingCloudAPI_LogfileName,
+                                    //LogfileCreatorDelegate?        LogfileCreator              = null,
+                                    //DNSClient?                     DNSClient                   = null)
 
-                                    IEnumerable<URLWithAPIKey>?                                RemoteAuthServers            = null,
-                                    IEnumerable<APIKey_Id>?                                    RemoteAuthAPIKeys            = null,
-
-                                    Boolean?                                                   AllowsAnonymousReadAccess    = true,
-
-                                    Boolean?                                                   IsDevelopment                = null,
-                                    IEnumerable<String>?                                       DevelopmentServers           = null,
-                                    Boolean                                                    SkipURLTemplates             = false,
-                                    String                                                     DatabaseFileName             = DefaultOpenChargingCloudAPI_DatabaseFileName,
-                                    Boolean                                                    DisableNotifications         = false,
-                                    //Boolean                                                    DisableLogging               = false,
-                                    //String?                                                    LoggingPath                  = null,
-                                    //String                                                     LogfileName                  = DefaultOpenChargingCloudAPI_LogfileName,
-                                    //LogfileCreatorDelegate?                                    LogfileCreator               = null,
-                                    //DNSClient?                                                 DNSClient                    = null)
-
-                                    Boolean                        DisableLogging     = false,
-                                    String                         LoggingPath        = "", //DefaultHTTPAPI_LoggingPath,
-                                    String                         LoggingContext     = "", //DefaultLoggingContext,
-                                    String                         LogfileName        = DefaultOpenChargingCloudAPI_LogfileName,
-                                    LogfileCreatorDelegate?        LogfileCreator     = null)
+                                    Boolean                        DisableLogging              = false,
+                                    String                         LoggingPath                 = "", //DefaultHTTPAPI_LoggingPath,
+                                    String                         LoggingContext              = "", //DefaultLoggingContext,
+                                    String                         LogfileName                 = DefaultOpenChargingCloudAPI_LogfileName,
+                                    LogfileCreatorDelegate?        LogfileCreator              = null)
 
             : base(//HTTPHostname,
                    //ExternalDNSName,
@@ -3194,7 +3180,6 @@ namespace cloud.charging.open.API
                    //HTTPServerName,
                    //
                    //URLPathPrefix,
-                   //HTTPServiceName,
 
                    HTTPTestServer,
                    Hostnames,
@@ -3205,25 +3190,12 @@ namespace cloud.charging.open.API
                    ExternalDNSName,
                    BasePath,
 
-                   null,
-                   null,
+                   HTTPServerName  ?? DefaultHTTPServerName,
+                   HTTPServiceName ?? DefaultHTTPServiceName,
+                   APIVersionHash,
                    APIVersionHashes,
 
                    HTMLTemplate,
-
-                   //ServerCertificateSelector,
-                   //ClientCertificateValidator,
-                   //LocalCertificateSelector,
-                   //AllowedTLSProtocols,
-                   //ClientCertificateRequired,
-                   //CheckCertificateRevocation,
-
-                   //ServerThreadNameCreator,
-                   //ServerThreadPrioritySetter,
-                   //ServerThreadIsBackground,
-                   //ConnectionIdBuilder,
-                   //ConnectionTimeout,
-                   //MaxClientConnections,
 
                    AdminOrganizationId,
                    APIRobotEMailAddress,
@@ -3300,7 +3272,7 @@ namespace cloud.charging.open.API
 
             //WWCP = OpenChargingCloudAPI.AttachToHTTPAPI(HTTPServer);
 
-          //  this.WWCPHTTPServer = new HTTPServer<RoamingNetworks, RoamingNetwork>(HTTPServer);
+            //this.WWCPHTTPServer = new HTTPServer<RoamingNetworks, RoamingNetwork>(HTTPServer);
 
             //DebugLog     = HTTPServer.AddJSONEventSource(EventIdentification:      DebugLogId,
             //                                             HTTPAPI:                  this,
