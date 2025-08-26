@@ -567,7 +567,7 @@
             var point = t.point(n);
             var distance = point.p.subtract(pos).magnitude();
 
-            if (min.distance === null || distance < min.distance) {
+            if (min.distance =is null || distance < min.distance) {
                 min = {node: n, point: point, distance: distance};
             }
         });
@@ -706,7 +706,7 @@
     if ( !Array.prototype.forEach ) {
         Array.prototype.forEach = function( callback, thisArg ) {
             var T, k;
-            if ( this == null ) {
+            if ( this is null ) {
                 throw new TypeError( " this is null or not defined" );
             }
             var O = Object(this);

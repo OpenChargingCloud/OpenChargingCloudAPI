@@ -29,6 +29,7 @@ using Newtonsoft.Json.Linq;
 using org.GraphDefined.Vanaheimr.Illias;
 using org.GraphDefined.Vanaheimr.Hermod;
 using org.GraphDefined.Vanaheimr.Hermod.HTTP;
+using org.GraphDefined.Vanaheimr.Hermod.HTTPTest;
 using org.GraphDefined.Vanaheimr.Hermod.SMTP;
 using org.GraphDefined.Vanaheimr.Hermod.Mail;
 using org.GraphDefined.Vanaheimr.Hermod.DNS;
@@ -39,7 +40,6 @@ using org.GraphDefined.Vanaheimr.Hermod.Sockets.TCP;
 using cloud.charging.open.protocols.WWCP;
 using cloud.charging.open.protocols.WWCP.Net.IO.JSON;
 using cloud.charging.open.protocols.WWCP.Networking;
-using org.GraphDefined.Vanaheimr.Hermod.HTTPTest;
 
 #endregion
 
@@ -674,7 +674,7 @@ namespace cloud.charging.open.API
 
             RoamingNetwork  = OpenChargingCloudAPI.GetRoamingNetwork(HTTPRequest.Host, RoamingNetworkId.Value);
 
-            if (RoamingNetwork == null)
+            if (RoamingNetwork is null)
             {
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
@@ -795,7 +795,7 @@ namespace cloud.charging.open.API
 
             RoamingNetwork  = OpenChargingCloudAPI.GetRoamingNetwork(HTTPRequest.Host, RoamingNetworkId.Value);
 
-            if (RoamingNetwork == null)
+            if (RoamingNetwork is null)
             {
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
@@ -1264,10 +1264,10 @@ namespace cloud.charging.open.API
 
             #region Initial checks
 
-            if (HTTPRequest == null)
+            if (HTTPRequest is null)
                 throw new ArgumentNullException(nameof(HTTPRequest),  "The given HTTP request must not be null!");
 
-            if (OpenChargingCloudAPI == null)
+            if (OpenChargingCloudAPI is null)
                 throw new ArgumentNullException(nameof(OpenChargingCloudAPI),      "The given OpenChargingCloud API must not be null!");
 
             #endregion
@@ -7516,7 +7516,7 @@ namespace cloud.charging.open.API
                                                                               out httpResponse))
                                           {
 
-                                              if (httpResponse == null)
+                                              if (httpResponse is null)
                                                   return httpResponse;
 
 
@@ -8833,7 +8833,7 @@ namespace cloud.charging.open.API
 
                                                          }
 
-                                                         if (JSONStatusList == null || StatusList == null || !StatusList.Any())
+                                                         if (JSONStatusList is null || StatusList is null || !StatusList.Any())
                                                              return new HTTPResponse.Builder(Request) {
                                                                  HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                                  Server          = HTTPServer?.HTTPServerName,
@@ -8850,7 +8850,7 @@ namespace cloud.charging.open.API
 
                                                      #region Fail, if both CurrentStatus and StatusList are missing...
 
-                                                     if (!CurrentStatus.HasValue && StatusList == null)
+                                                     if (!CurrentStatus.HasValue && StatusList is null)
                                                      {
 
                                                          return new HTTPResponse.Builder(Request) {
@@ -8870,7 +8870,7 @@ namespace cloud.charging.open.API
                                                      #endregion
 
 
-                                             if (StatusList == null)
+                                             if (StatusList is null)
                                                  StatusList = new Timestamped<EVSEAdminStatusType>[] {
                                                                   new Timestamped<EVSEAdminStatusType>(Request.Timestamp, CurrentStatus.Value)
                                                               };
@@ -8990,7 +8990,7 @@ namespace cloud.charging.open.API
 
                                                  }
 
-                                                 if (JSONStatusList == null || StatusList == null || !StatusList.Any())
+                                                 if (JSONStatusList is null || StatusList is null || !StatusList.Any())
                                                      return new HTTPResponse.Builder(Request) {
                                                          HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                                          Server          = HTTPServer?.HTTPServerName,
@@ -9007,7 +9007,7 @@ namespace cloud.charging.open.API
 
                                              #region Fail, if both CurrentStatus and StatusList are missing...
 
-                                             if (!CurrentStatus.HasValue && StatusList == null)
+                                             if (!CurrentStatus.HasValue && StatusList is null)
                                              {
 
                                                  return new HTTPResponse.Builder(Request) {
@@ -9609,7 +9609,7 @@ namespace cloud.charging.open.API
 
                                              #region Check HTTP Basic Authentication
 
-                                             //if (HTTPRequest.Authorization          == null        ||
+                                             //if (HTTPRequest.Authorization          is null        ||
                                              //    HTTPRequest.Authorization.Username != HTTPLogin   ||
                                              //    HTTPRequest.Authorization.Password != HTTPPassword)
                                              //    return new HTTPResponse.Builder(HTTPRequest) {
@@ -9686,7 +9686,7 @@ namespace cloud.charging.open.API
 
                                              #region Check HTTP Basic Authentication
 
-                                                     //if (HTTPRequest.Authorization          == null        ||
+                                                     //if (HTTPRequest.Authorization          is null        ||
                                                      //    HTTPRequest.Authorization.Username != HTTPLogin   ||
                                                      //    HTTPRequest.Authorization.Password != HTTPPassword)
                                                      //    return new HTTPResponse.Builder(HTTPRequest) {
@@ -9740,7 +9740,7 @@ namespace cloud.charging.open.API
 
                                              #region Check HTTP Basic Authentication
 
-                                                     //if (HTTPRequest.Authorization          == null        ||
+                                                     //if (HTTPRequest.Authorization          is null        ||
                                                      //    HTTPRequest.Authorization.Username != HTTPLogin   ||
                                                      //    HTTPRequest.Authorization.Password != HTTPPassword)
                                                      //    return new HTTPResponse.Builder(HTTPRequest) {
@@ -9822,7 +9822,7 @@ namespace cloud.charging.open.API
 
                                              #region Check HTTP Basic Authentication
 
-                                                     //if (HTTPRequest.Authorization          == null        ||
+                                                     //if (HTTPRequest.Authorization          is null        ||
                                                      //    HTTPRequest.Authorization.Username != HTTPLogin   ||
                                                      //    HTTPRequest.Authorization.Password != HTTPPassword)
                                                      //    return new HTTPResponse.Builder(HTTPRequest) {
@@ -10432,7 +10432,7 @@ namespace cloud.charging.open.API
 
                                              #region Check HTTP Basic Authentication
 
-                                                     //if (Request.Authorization          == null      ||
+                                                     //if (Request.Authorization          is null      ||
                                                      //    Request.Authorization.Username != HTTPLogin ||
                                                      //    Request.Authorization.Password != HTTPPassword)
                                                      //    return SendEVSEStatusSetted(

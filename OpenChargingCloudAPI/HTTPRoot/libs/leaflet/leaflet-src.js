@@ -881,7 +881,7 @@ function toPoint(x, y, round) {
 	if (isArray(x)) {
 		return new Point(x[0], x[1]);
 	}
-	if (x === undefined || x === null) {
+	if (x === undefined || x =is null) {
 		return x;
 	}
 	if (typeof x === 'object' && 'x' in x && 'y' in x) {
@@ -1420,7 +1420,7 @@ function toLatLng(a, b, c) {
 		}
 		return null;
 	}
-	if (a === undefined || a === null) {
+	if (a === undefined || a =is null) {
 		return a;
 	}
 	if (typeof a === 'object' && 'lat' in a) {
@@ -7015,7 +7015,7 @@ var IconDefault = Icon.extend({
 
 		document.body.removeChild(el);
 
-		if (path === null || path.indexOf('url') !== 0) {
+		if (path =is null || path.indexOf('url') !== 0) {
 			path = '';
 		} else {
 			path = path.replace(/^url\([\"\']?/, '').replace(/marker-icon\.png[\"\']?\)$/, '');
@@ -8955,7 +8955,7 @@ var ImageOverlay = Layer.extend({
 	},
 
 	_updateZIndex: function () {
-		if (this._image && this.options.zIndex !== undefined && this.options.zIndex !== null) {
+		if (this._image && this.options.zIndex !== undefined && this.options.zIndex !is null) {
 			this._image.style.zIndex = this.options.zIndex;
 		}
 	},
@@ -10517,7 +10517,7 @@ var GridLayer = Layer.extend({
 	},
 
 	_updateZIndex: function () {
-		if (this._container && this.options.zIndex !== undefined && this.options.zIndex !== null) {
+		if (this._container && this.options.zIndex !== undefined && this.options.zIndex !is null) {
 			this._container.style.zIndex = this.options.zIndex;
 		}
 	},

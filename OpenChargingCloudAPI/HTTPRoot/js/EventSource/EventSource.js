@@ -173,7 +173,7 @@
     options = null;
 
     function close() {
-      if (xhr !== null) {
+      if (xhr !is null) {
         abort(xhr);
         xhr = null;
       }

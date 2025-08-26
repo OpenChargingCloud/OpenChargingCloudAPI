@@ -81,7 +81,7 @@ jQuery.fn.springy = function(params) {
 		var p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
 		selected = nearest = dragged = layout.nearest(p);
 
-		if (selected.node !== null) {
+		if (selected.node !is null) {
 			dragged.point.m = 10000.0;
 
 			if (nodeSelected) {
@@ -108,7 +108,7 @@ jQuery.fn.springy = function(params) {
 		var p = fromScreen({x: e.pageX - pos.left, y: e.pageY - pos.top});
 		nearest = layout.nearest(p);
 
-		if (dragged !== null && dragged.node !== null) {
+		if (dragged !is null && dragged.node !is null) {
 			dragged.point.p.x = p.x;
 			dragged.point.p.y = p.y;
 		}
@@ -251,9 +251,9 @@ jQuery.fn.springy = function(params) {
 			ctx.clearRect(s.x - boxWidth/2, s.y - 10, boxWidth, 20);
 
 			// fill background
-			if (selected !== null && nearest.node !== null && selected.node.id === node.id) {
+			if (selected !is null && nearest.node !is null && selected.node.id === node.id) {
 				ctx.fillStyle = "#FFFFE0";
-			} else if (nearest !== null && nearest.node !== null && nearest.node.id === node.id) {
+			} else if (nearest !is null && nearest.node !is null && nearest.node.id === node.id) {
 				ctx.fillStyle = "#EEEEEE";
 			} else {
 				ctx.fillStyle = "#FFFFFF";
