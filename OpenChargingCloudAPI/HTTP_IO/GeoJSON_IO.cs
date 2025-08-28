@@ -391,7 +391,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON
                                    new JProperty("Id",                  evse.Id.ToString()),
                                    new JProperty("AdminStatus",         evse.AdminStatus.   ToJSON()),
                                    new JProperty("Status",              evse.Status.        ToJSON()),
-                                   new JProperty("RMSVoltage",          evse.RMSVoltage.ToString()),
+                                   new JProperty("RMSVoltage",          evse.MaxVoltage.ToString()),
                                    new JProperty("MaxCurrent",          evse.MaxCurrent.    ToString()),
                                    new JProperty("MaxPower",            evse.MaxPower.      ToString())
                                    //new JProperty("ChargingModes",       new JArray(evse.ChargingModes.Select(mode => mode.ToString())))
@@ -528,7 +528,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.GeoJSON
 
                            new JProperty("currentTypes",   EVSE.CurrentType.ToText()),
 
-                           EVSE.RMSVoltage.HasValue && EVSE.RMSVoltage.Value.Value > 0 ? new JProperty("averageVoltage",  String.Format("{0:0.00}", EVSE.RMSVoltage.Value.Value)) : null,
+                           EVSE.MaxVoltage.HasValue && EVSE.MaxVoltage.Value.Value > 0 ? new JProperty("averageVoltage",  String.Format("{0:0.00}", EVSE.MaxVoltage.Value.Value)) : null,
                            EVSE.MaxCurrent.    HasValue && EVSE.MaxCurrent.    Value.Value > 0 ? new JProperty("maxCurrent",      String.Format("{0:0.00}", EVSE.MaxCurrent.    Value.Value)) : null,
                            EVSE.MaxPower.      HasValue && EVSE.MaxPower.      Value.Value > 0 ? new JProperty("maxPower",        String.Format("{0:0.00}", EVSE.MaxPower.      Value.Value)) : null,
                            EVSE.MaxCapacity.   HasValue && EVSE.MaxCapacity.   Value.Value > 0 ? new JProperty("maxCapacity",     String.Format("{0:0.00}", EVSE.MaxCapacity.   Value.Value)) : null,
