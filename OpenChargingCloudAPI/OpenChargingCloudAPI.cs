@@ -90,7 +90,7 @@ namespace cloud.charging.open.API
                                           Date            = Timestamp.Now,
                                           ContentType     = HTTPContentType.Application.JSON_UTF8,
                                           Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
-                                          Connection      = ConnectionType.Close
+                                          Connection      = ConnectionType.KeepAlive
                                       };
 
                 return false;
@@ -108,7 +108,7 @@ namespace cloud.charging.open.API
                                           Date            = Timestamp.Now,
                                           ContentType     = HTTPContentType.Application.JSON_UTF8,
                                           Content         = @"{ ""description"": ""Unknown roaming network!"" }".ToUTF8Bytes(),
-                                          Connection      = ConnectionType.Close
+                                          Connection      = ConnectionType.KeepAlive
                                       };
 
                 return false;
@@ -150,7 +150,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
                     Date            = Timestamp.Now,
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -171,7 +171,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationOperatorId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -188,7 +188,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationOperatorId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -230,7 +230,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
                     Date            = Timestamp.Now,
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -251,7 +251,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingPoolId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -268,7 +268,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingPoolId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -311,7 +311,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
                     Date            = Timestamp.Now,
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -327,7 +327,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -347,7 +347,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -363,7 +363,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -380,7 +380,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -546,7 +546,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
                     Date            = Timestamp.Now,
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -564,7 +564,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -582,7 +582,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -600,7 +600,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid charging session identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -648,7 +648,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
                     Date            = Timestamp.Now,
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -666,7 +666,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -684,7 +684,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -702,7 +702,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid charging session identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -719,7 +719,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown charging session identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -769,7 +769,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
                     Date            = Timestamp.Now,
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -787,7 +787,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -805,7 +805,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -825,7 +825,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid e-mobility provider identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -846,7 +846,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid charging session identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -863,7 +863,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown charging session identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -922,7 +922,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -942,7 +942,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -957,7 +957,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid reservation identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -974,7 +974,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown reservation identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1016,7 +1016,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
                     Date            = Timestamp.Now,
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1037,7 +1037,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid EMobilityProviderId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1054,7 +1054,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown EMobilityProviderId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1116,7 +1116,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid GridOperatorId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1133,7 +1133,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown GridOperatorId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1189,7 +1189,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
                     Date            = Timestamp.Now,
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1214,7 +1214,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ParkingOperatorId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1231,7 +1231,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ParkingOperatorId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1284,7 +1284,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
                     Date            = Timestamp.Now,
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1305,7 +1305,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid SmartCityId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1322,7 +1322,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown SmartCityId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1381,7 +1381,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
                     Date            = Timestamp.Now,
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1402,7 +1402,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingPoolId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1419,7 +1419,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingPoolId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1439,7 +1439,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1456,7 +1456,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1517,7 +1517,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.BadRequest,
                     Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
                     Date            = Timestamp.Now,
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1538,7 +1538,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingPoolId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1555,7 +1555,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingPoolId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1575,7 +1575,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1592,7 +1592,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1612,7 +1612,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid EVSEId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1629,7 +1629,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown EVSEId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1706,7 +1706,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationOperatorId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1722,7 +1722,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationOperatorId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1739,7 +1739,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid BrandId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1755,7 +1755,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown BrandId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1829,7 +1829,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationOperatorId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1845,7 +1845,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationOperatorId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1862,7 +1862,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationGroupId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1878,7 +1878,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationGroupId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1952,7 +1952,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid ChargingStationOperatorId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1968,7 +1968,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown ChargingStationOperatorId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -1985,7 +1985,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Invalid EVSEGroupId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -2001,7 +2001,7 @@ namespace cloud.charging.open.API
                     Date            = Timestamp.Now,
                     ContentType     = HTTPContentType.Application.JSON_UTF8,
                     Content         = @"{ ""description"": ""Unknown EVSEGroupId!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
                 return false;
@@ -3511,7 +3511,7 @@ namespace cloud.charging.open.API
 //                                    Server          = HTTPTestServer?.HTTPServerName,
 //                                    Date            = Timestamp.Now,
 //                                    CacheControl    = "public, max-age=300",
-//                                    Connection      = ConnectionType.Close
+//                                    Connection      = ConnectionType.KeepAlive
 //                                }.AsImmutable);
 
 //                        else
@@ -3521,7 +3521,7 @@ namespace cloud.charging.open.API
 //                                    ContentType     = HTTPContentType.Text.HTML_UTF8,
 //                                    Content         = file.ToUTF8Bytes(),
 //                                    CacheControl    = "public, max-age=300",
-//                                    Connection      = ConnectionType.Close
+//                                    Connection      = ConnectionType.KeepAlive
 //                                }.AsImmutable);
 
 //                    }
@@ -3542,7 +3542,7 @@ namespace cloud.charging.open.API
 //                                    Server          = HTTPTestServer?.HTTPServerName,
 //                                    Date            = Timestamp.Now,
 //                                    CacheControl    = "public, max-age=300",
-//                                    Connection      = ConnectionType.Close
+//                                    Connection      = ConnectionType.KeepAlive
 //                                }.AsImmutable);
 
 //                        #endregion
@@ -3585,7 +3585,7 @@ namespace cloud.charging.open.API
 //                                //Expires          = "Mon, 25 Jun 2015 21:31:12 GMT",
 ////                                              KeepAlive       = new KeepAliveType(TimeSpan.FromMinutes(5), 500),
 ////                                              Connection      = "Keep-Alive",
-//                                Connection      = ConnectionType.Close
+//                                Connection      = ConnectionType.KeepAlive
 //                            }.AsImmutable);
 
 //                        #endregion
@@ -3619,7 +3619,7 @@ namespace cloud.charging.open.API
                             AccessControlAllowHeaders   = [ "Content-Type", "Accept", "Authorization" ],
                             ContentType                 = HTTPContentType.Text.HTML_UTF8,
                             Content                     = GetResourceBytes("legal.impress.html"),
-                            Connection                  = ConnectionType.Close,
+                            Connection                  = ConnectionType.KeepAlive,
                             Vary                        = "Accept"
                         }.AsImmutable),
 
@@ -3670,7 +3670,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowHeaders   = [ "Content-Type", "Accept", "Authorization" ],
                                           ContentType                 = HTTPContentType.Text.HTML_UTF8,
                                           Content                     = MixWithHTMLTemplate("dashboard.dashboard2.shtml").ToUTF8Bytes(),
-                                          Connection                  = ConnectionType.Close,
+                                          Connection                  = ConnectionType.KeepAlive,
                                           Vary                        = "Accept"
                                       }.AsImmutable);
 
@@ -3839,7 +3839,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -3852,7 +3852,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowOrigin   = "*",
                                           AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                           AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
-                                          Connection                 = ConnectionType.Close
+                                          Connection                 = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -3882,7 +3882,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -3905,7 +3905,7 @@ namespace cloud.charging.open.API
                                                                               ToJSON(skip, take).
                                                                               ToUTF8Bytes(),
                                           X_ExpectedTotalNumberOfItems  = allRoamingNetworks.ULongCount(),
-                                          Connection                    = ConnectionType.Close
+                                          Connection                    = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -3935,7 +3935,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -3958,7 +3958,7 @@ namespace cloud.charging.open.API
                                                                               ToJSON(skip, take).
                                                                               ToUTF8Bytes(),
                                           X_ExpectedTotalNumberOfItems  = allRoamingNetworks.ULongCount(),
-                                          Connection                    = ConnectionType.Close
+                                          Connection                    = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -3988,7 +3988,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -4008,7 +4008,7 @@ namespace cloud.charging.open.API
                                           Content                      = JSONObject.Create(
                                                                              new JProperty("count",  allRoamingNetworks.ULongCount())
                                                                          ).ToUTF8Bytes(),
-                                          Connection                   = ConnectionType.Close
+                                          Connection                   = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -4039,7 +4039,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD" },
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -4064,7 +4064,7 @@ namespace cloud.charging.open.API
                                                                                           Take  (Request.QueryString.GetUInt64("take"))).
                                                                                ToUTF8Bytes(),
                                           X_ExpectedTotalNumberOfItems   = allRoamingNetworks.ULongCount(),
-                                          Connection                     = ConnectionType.Close
+                                          Connection                     = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -4094,7 +4094,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD" },
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -4122,7 +4122,7 @@ namespace cloud.charging.open.API
                                                                               ToJSON(skip, take).
                                                                               ToUTF8Bytes(),
                                           X_ExpectedTotalNumberOfItems  = allRoamingNetworks.ULongCount(),
-                                          Connection                    = ConnectionType.Close
+                                          Connection                    = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -4152,7 +4152,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = new[] { "OPTIONS", "GET", "HEAD" },
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -4180,7 +4180,7 @@ namespace cloud.charging.open.API
                                                                                ToJSON(skip, take).
                                                                                ToUTF8Bytes(),
                                           X_ExpectedTotalNumberOfItems   = allRoamingNetworks.ULongCount(),
-                                          Connection                     = ConnectionType.Close
+                                          Connection                     = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -4213,7 +4213,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -4238,7 +4238,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowOrigin   = "*",
                                           AccessControlAllowMethods  = [ "GET", "COUNT", "OPTIONS" ],
                                           AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
-                                          Connection                 = ConnectionType.Close
+                                          Connection                 = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -4268,7 +4268,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -4296,7 +4296,7 @@ namespace cloud.charging.open.API
                                           ETag                       = "1",
                                           ContentType                = HTTPContentType.Application.JSON_UTF8,
                                           Content                    = roamingNetwork.ToJSON().ToUTF8Bytes(),
-                                          Connection                 = ConnectionType.Close
+                                          Connection                 = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -4326,7 +4326,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -4352,7 +4352,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods  = [ "GET", "CREATE", "DELETE" ],
                                           AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                           ETag                       = "1",
-                                          Connection                 = ConnectionType.Close
+                                          Connection                 = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -4466,7 +4466,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = new[] { "GET", "CREATE", "DELETE" },
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
                                   }
 
@@ -4491,7 +4491,7 @@ namespace cloud.charging.open.API
                                               ETag                       = "1",
                                               ContentType                = HTTPContentType.Application.JSON_UTF8,
                                               Content                    = roamingNetwork.ToJSON().ToUTF8Bytes(),
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                               });
@@ -4586,7 +4586,7 @@ namespace cloud.charging.open.API
             //                                  AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
             //                                  AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
             //                                  WWWAuthenticate            = WWWAuthenticateDefaults,
-            //                                  Connection                 = ConnectionType.Close
+            //                                  Connection                 = ConnectionType.KeepAlive
             //                              }.AsImmutable);
 
             //                      #endregion
@@ -4634,7 +4634,7 @@ namespace cloud.charging.open.API
             //                                  AccessControlAllowMethods  = new[] { "GET", "SET" },
             //                                  AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
             //                                  ETag                       = "1",
-            //                                  Connection                 = ConnectionType.Close
+            //                                  Connection                 = ConnectionType.KeepAlive
             //                              }.AsImmutable);
 
 
@@ -4651,7 +4651,7 @@ namespace cloud.charging.open.API
             //                              Content                    = JSONObject.Create(
             //                                                               new JProperty(PropertyKey, Value)
             //                                                           ).ToUTF8Bytes(),
-            //                              Connection                 = ConnectionType.Close
+            //                              Connection                 = ConnectionType.KeepAlive
             //                          }.AsImmutable);
 
             //                  });
@@ -4703,7 +4703,7 @@ namespace cloud.charging.open.API
             //                                  HTTPStatusCode  = HTTPStatusCode.BadRequest,
             //                                  Server          = HTTPTestServer?.HTTPServerName,
             //                                  Date            = Timestamp.Now,
-            //                                  Connection      = ConnectionType.Close
+            //                                  Connection      = ConnectionType.KeepAlive
             //                              }.AsImmutable);
 
             //                      var PropertyKey = Request.ParsedURLParameters[1];
@@ -4716,7 +4716,7 @@ namespace cloud.charging.open.API
             //                                  Date            = Timestamp.Now,
             //                                  ContentType     = HTTPContentType.Application.JSON_UTF8,
             //                                  Content         = @"{ ""description"": ""Invalid property key!"" }".ToUTF8Bytes(),
-            //                                  Connection      = ConnectionType.Close
+            //                                  Connection      = ConnectionType.KeepAlive
             //                              }.AsImmutable);
 
 
@@ -4803,7 +4803,7 @@ namespace cloud.charging.open.API
             //                                                               new JProperty("oldValue",  OldValue),
             //                                                               new JProperty("newValue",  NewValue)
             //                                                           ).ToUTF8Bytes(),
-            //                              Connection                 = ConnectionType.Close
+            //                              Connection                 = ConnectionType.KeepAlive
             //                          }.AsImmutable);
 
             //                  });
@@ -4839,7 +4839,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -4864,7 +4864,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowOrigin   = "*",
                                           AccessControlAllowMethods  = [ "GET", "COUNT", "OPTIONS" ],
                                           AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
-                                          Connection                 = ConnectionType.Close
+                                          Connection                 = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -4894,7 +4894,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -4945,7 +4945,7 @@ namespace cloud.charging.open.API
                                                                                      ExpandDataLicenses:               expandDataLicenses).
                                                                               ToUTF8Bytes(),
                                           X_ExpectedTotalNumberOfItems  = expectedCount,
-                                          Connection                    = ConnectionType.Close
+                                          Connection                    = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -4975,7 +4975,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -5001,7 +5001,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods     = [ "GET", "COUNT", "OPTIONS" ],
                                           AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
                                           ETag                          = "1",
-                                          Connection                    = ConnectionType.Close
+                                          Connection                    = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -5031,7 +5031,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -5061,7 +5061,7 @@ namespace cloud.charging.open.API
                                           Content                      = JSONObject.Create(
                                                                              new JProperty("count",  roamingNetwork.ChargingPools.ULongCount())
                                                                          ).ToUTF8Bytes(),
-                                          Connection                   = ConnectionType.Close
+                                          Connection                   = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -5763,7 +5763,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -5788,7 +5788,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowOrigin     = "*",
                                           AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
                                           AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
-                                          Connection                   = ConnectionType.Close
+                                          Connection                   = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -5818,7 +5818,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -5868,7 +5868,7 @@ namespace cloud.charging.open.API
                                                                                       ExpandDataLicenses:               expandDataLicenses).
                                                                               ToUTF8Bytes(),
                                           X_ExpectedTotalNumberOfItems  = roamingNetwork.ChargingStations.ULongCount(),
-                                          Connection                    = ConnectionType.Close
+                                          Connection                    = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -5898,7 +5898,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -5924,7 +5924,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods  = [ "GET", "COUNT", "OPTIONS" ],
                                           AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                           ETag                       = "1",
-                                          Connection                 = ConnectionType.Close
+                                          Connection                 = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -5954,7 +5954,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -5984,7 +5984,7 @@ namespace cloud.charging.open.API
                                           Content                      = JSONObject.Create(
                                                                              new JProperty("count",  roamingNetwork.ChargingStations.ULongCount())
                                                                          ).ToUTF8Bytes(),
-                                          Connection                   = ConnectionType.Close
+                                          Connection                   = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -6411,7 +6411,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -6436,7 +6436,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowOrigin     = "*",
                                           AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
                                           AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
-                                          Connection                   = ConnectionType.Close
+                                          Connection                   = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -6466,7 +6466,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -6520,7 +6520,7 @@ namespace cloud.charging.open.API
                                                                                      ExpandDataLicenses:               expandDataLicenses).
                                                                              ToUTF8Bytes(),
                                           X_ExpectedTotalNumberOfItems  = _ExpectedCount,
-                                          Connection                    = ConnectionType.Close
+                                          Connection                    = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -6550,7 +6550,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -6576,7 +6576,7 @@ namespace cloud.charging.open.API
                                           AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
                                           AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
                                           ETag                         = "1",
-                                          Connection                   = ConnectionType.Close
+                                          Connection                   = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -6606,7 +6606,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                               WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           }.AsImmutable);
 
                                   #endregion
@@ -6636,7 +6636,7 @@ namespace cloud.charging.open.API
                                           Content                      = JSONObject.Create(
                                                                              new JProperty("count",  roamingNetwork.EVSEs.ULongCount())
                                                                          ).ToUTF8Bytes(),
-                                          Connection                   = ConnectionType.Close
+                                          Connection                   = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -6682,7 +6682,7 @@ namespace cloud.charging.open.API
                                                                                                     Take  (Request.QueryString.GetUInt64("take"))).
                                                                                          ToUTF8Bytes(),
                                                      X_ExpectedTotalNumberOfItems  = RoamingNetwork.EVSEs.ULongCount(),
-                                                     Connection                    = ConnectionType.Close
+                                                     Connection                    = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                          });
@@ -6737,7 +6737,7 @@ namespace cloud.charging.open.API
                                                                                                      ToJSON         (skip, take).
                                                                                                      ToUTF8Bytes(),
                                                      X_ExpectedTotalNumberOfItems   = expectedCount,
-                                                     Connection                     = ConnectionType.Close
+                                                     Connection                     = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                          });
@@ -6796,7 +6796,7 @@ namespace cloud.charging.open.API
                                                      //                                                ToJSON(skip, take).
                                                      //                                                ToUTF8Bytes(),
                                                      X_ExpectedTotalNumberOfItems   = ExpectedCount,
-                                                     Connection                     = ConnectionType.Close
+                                                     Connection                     = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                          });
@@ -6854,7 +6854,7 @@ namespace cloud.charging.open.API
                                                                                                      ToJSON(skip, take).
                                                                                                      ToUTF8Bytes(),
                                                      X_ExpectedTotalNumberOfItems   = expectedCount,
-                                                     Connection                     = ConnectionType.Close
+                                                     Connection                     = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                               }, AllowReplacement: URLReplacement.Allow);
@@ -6919,7 +6919,7 @@ namespace cloud.charging.open.API
                                                                                                                                           ))).
                                                                                                                 ToUTF8Bytes(),
                                                      X_ExpectedTotalNumberOfItems   = ExpectedCount,
-                                                     Connection                     = ConnectionType.Close
+                                                     Connection                     = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                               }, AllowReplacement: URLReplacement.Allow);
@@ -6970,7 +6970,7 @@ namespace cloud.charging.open.API
                                                                                         ))
 
                                                                                     ).ToUTF8Bytes(),
-                                                     Connection                   = ConnectionType.Close
+                                                     Connection                   = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                          });
@@ -7058,7 +7058,7 @@ namespace cloud.charging.open.API
                             ETag                       = "1",
                             ContentType                = HTTPContentType.Application.JSON_UTF8,
                             Content                    = (evse?.ToJSON() ?? []).ToUTF8Bytes(),
-                            Connection                 = ConnectionType.Close
+                            Connection                 = ConnectionType.KeepAlive
                         }.AsImmutable);
 
                 }
@@ -7104,7 +7104,7 @@ namespace cloud.charging.open.API
                             Content                     = evse.AdminStatus.
                                                               ToJSON().
                                                               ToUTF8Bytes(),
-                            Connection                  = ConnectionType.Close
+                            Connection                  = ConnectionType.KeepAlive
                         }.AsImmutable);
 
                 }
@@ -7150,7 +7150,7 @@ namespace cloud.charging.open.API
                             Content                     = evse.Status.
                                                               ToJSON().
                                                               ToUTF8Bytes(),
-                            Connection                  = ConnectionType.Close
+                            Connection                  = ConnectionType.KeepAlive
                         }.AsImmutable);
 
                 }
@@ -7689,7 +7689,7 @@ namespace cloud.charging.open.API
                                   //        AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
                                   //        ContentType                = HTTPContentType.Application.JSON_UTF8,
                                   //        Content                    = new JObject(new JProperty("description",  "ReservationId is already in use!")).ToUTF8Bytes(),
-                                  //        Connection                 = ConnectionType.Close
+                                  //        Connection                 = ConnectionType.KeepAlive
                                   //    };
 
                                   #endregion
@@ -7704,7 +7704,7 @@ namespace cloud.charging.open.API
                                               AccessControlAllowOrigin   = "*",
                                               AccessControlAllowMethods  = [ "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" ],
                                               AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
-                                              Connection                 = ConnectionType.Close
+                                              Connection                 = ConnectionType.KeepAlive
                                           };
 
                                   #endregion
@@ -8911,7 +8911,7 @@ namespace cloud.charging.open.API
                     HTTPStatusCode  = HTTPStatusCode.OK,
                     Server          = HTTPServer.HTTPServerName,
                     Date            = Timestamp.Now,
-                    Connection      = ConnectionType.Close
+                    Connection      = ConnectionType.KeepAlive
                 };
 
             });
@@ -9070,7 +9070,7 @@ namespace cloud.charging.open.API
                                                         HTTPStatusCode  = HTTPStatusCode.OK,
                                                         Server          = HTTPServer.HTTPServerName,
                                                         Date            = Timestamp.Now,
-                                                        Connection      = ConnectionType.Close
+                                                        Connection      = ConnectionType.KeepAlive
                                                     };
 
                                          });
@@ -9147,7 +9147,7 @@ namespace cloud.charging.open.API
                                                                                       Request.QueryString.GetUInt64("take")).
                                                                               ToUTF8Bytes(),
                                           X_ExpectedTotalNumberOfItems  = expectedCount,
-                                          Connection                    = ConnectionType.Close
+                                          Connection                    = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -9202,7 +9202,7 @@ namespace cloud.charging.open.API
                                           ETag                          = "1",
                                           ContentType                   = HTTPContentType.Text.PLAIN,
                                           Content                       = roamingNetwork.SessionsStore.NumberOfStoredSessions.ToString().ToUTF8Bytes(),
-                                          Connection                    = ConnectionType.Close
+                                          Connection                    = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -9263,7 +9263,7 @@ namespace cloud.charging.open.API
                                                                                   Select(session => session.Id.ToString())
                                                                           ).ToUTF8Bytes(),
                                           X_ExpectedTotalNumberOfItems  = roamingNetwork.ChargingSessions.ULongCount(),
-                                          Connection                    = ConnectionType.Close
+                                          Connection                    = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -9331,7 +9331,7 @@ namespace cloud.charging.open.API
             //                                                                          take).
             //                                                                  ToUTF8Bytes(),
             //                              X_ExpectedTotalNumberOfItems  = expectedCount,
-            //                              Connection                    = ConnectionType.Close
+            //                              Connection                    = ConnectionType.KeepAlive
             //                          }.AsImmutable);
 
             //                  });
@@ -9395,7 +9395,7 @@ namespace cloud.charging.open.API
                                                                               ToJSON(Embedded:                         false,
                                                                                      CustomChargingSessionSerializer:  CustomChargingSessionSerializer).
                                                                               ToUTF8Bytes(),
-                                          Connection                    = ConnectionType.Close
+                                          Connection                    = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -9447,7 +9447,7 @@ namespace cloud.charging.open.API
                                           HTTPStatusCode  = HTTPStatusCode.BadRequest,
                                           Server          = HTTPServer.HTTPServerName,
                                           Date            = Timestamp.Now,
-                                          Connection      = ConnectionType.Close
+                                          Connection      = ConnectionType.KeepAlive
                                       };
 
                                   var command = Request.ParsedURLParameters[2]?.Trim();
@@ -9459,7 +9459,7 @@ namespace cloud.charging.open.API
                                           Date            = Timestamp.Now,
                                           ContentType     = HTTPContentType.Application.JSON_UTF8,
                                           Content         = @"{ ""description"": ""Invalid command!"" }".ToUTF8Bytes(),
-                                          Connection      = ConnectionType.Close
+                                          Connection      = ConnectionType.KeepAlive
                                       };
 
                                   #endregion
@@ -9508,7 +9508,7 @@ namespace cloud.charging.open.API
                                                                                     ToJSON(Embedded:                         false,
                                                                                            CustomChargingSessionSerializer:  CustomChargingSessionSerializer).
                                                                                     ToUTF8Bytes(),
-                                                   Connection                 = ConnectionType.Close
+                                                   Connection                 = ConnectionType.KeepAlive
                                                }
 
                                              : new HTTPResponse.Builder(Request) {
@@ -9523,7 +9523,7 @@ namespace cloud.charging.open.API
                                                    //                                 ToJSON(Embedded:                         false,
                                                    //                                        CustomChargingSessionSerializer:  CustomChargingSessionSerializer).
                                                    //                                 ToUTF8Bytes(),
-                                                   Connection                 = ConnectionType.Close
+                                                   Connection                 = ConnectionType.KeepAlive
                                                };
 
                               });
@@ -9607,7 +9607,7 @@ namespace cloud.charging.open.API
                                                                                         Select (session => session.Id.ToString())
                                                                          ).ToUTF8Bytes(),
                                           X_ExpectedTotalNumberOfItems  = missingCDRResponses.ULongCount(),
-                                          Connection                    = ConnectionType.Close
+                                          Connection                    = ConnectionType.KeepAlive
                                       }.AsImmutable);
 
                               });
@@ -9648,7 +9648,7 @@ namespace cloud.charging.open.API
                                              //        WWWAuthenticate  = @"Basic realm=""WWCP EV Charging""",
                                              //        Server           = _API.HTTPTestServer?.HTTPServerName,
                                              //        Date             = Timestamp.Now,
-                                             //        Connection       = ConnectionType.Close
+                                             //        Connection       = ConnectionType.KeepAlive
                                              //    };
 
                                              #endregion
@@ -9725,7 +9725,7 @@ namespace cloud.charging.open.API
                                                      //        WWWAuthenticate  = @"Basic realm=""WWCP EV Charging""",
                                                      //        Server           = _API.HTTPTestServer?.HTTPServerName,
                                                      //        Date             = Timestamp.Now,
-                                                     //        Connection       = ConnectionType.Close
+                                                     //        Connection       = ConnectionType.KeepAlive
                                                      //    };
 
                                                      #endregion
@@ -9779,7 +9779,7 @@ namespace cloud.charging.open.API
                                                      //        WWWAuthenticate  = @"Basic realm=""WWCP EV Charging""",
                                                      //        Server           = _API.HTTPTestServer?.HTTPServerName,
                                                      //        Date             = Timestamp.Now,
-                                                     //        Connection       = ConnectionType.Close
+                                                     //        Connection       = ConnectionType.KeepAlive
                                                      //    };
 
                                                      #endregion
@@ -9861,7 +9861,7 @@ namespace cloud.charging.open.API
                                                      //        WWWAuthenticate  = @"Basic realm=""WWCP EV Charging""",
                                                      //        Server           = _API.HTTPTestServer?.HTTPServerName,
                                                      //        Date             = Timestamp.Now,
-                                                     //        Connection       = ConnectionType.Close
+                                                     //        Connection       = ConnectionType.KeepAlive
                                                      //    };
 
                                                      #endregion
@@ -10010,7 +10010,7 @@ namespace cloud.charging.open.API
                                                                                    ).ToUTF8Bytes()
                                                                                  : jsonResults.ToUTF8Bytes(),
                                              X_ExpectedTotalNumberOfItems  = filteredCount,
-                                             Connection                    = ConnectionType.Close,
+                                             Connection                    = ConnectionType.KeepAlive,
                                              Vary                          = "Accept"
                                          };
 
@@ -10191,7 +10191,7 @@ namespace cloud.charging.open.API
                                                                                                expandDataLicenses).
                                                                                         ToUTF8Bytes(),
                                                      X_ExpectedTotalNumberOfItems  = _ExpectedCount,
-                                                     Connection                    = ConnectionType.Close
+                                                     Connection                    = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                          });
@@ -10233,7 +10233,7 @@ namespace cloud.charging.open.API
                                                      Content                      = JSONObject.Create(
                                                                                         new JProperty("count",  _RoamingNetwork.ChargingStationOperators.ULongCount())
                                                                                     ).ToUTF8Bytes(),
-                                                     Connection                   = ConnectionType.Close
+                                                     Connection                   = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                          });
@@ -10284,7 +10284,7 @@ namespace cloud.charging.open.API
                                                                                          ToJSON (skip, take).
                                                                                          ToUTF8Bytes(),
                                                      X_ExpectedTotalNumberOfItems  = expectedCount,
-                                                     Connection                    = ConnectionType.Close
+                                                     Connection                    = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                          });
@@ -10335,7 +10335,7 @@ namespace cloud.charging.open.API
                                                                                          ToJSON (skip, take).
                                                                                          ToUTF8Bytes(),
                                                      X_ExpectedTotalNumberOfItems  = _ExpectedCount,
-                                                     Connection                    = ConnectionType.Close
+                                                     Connection                    = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                          });
@@ -10377,7 +10377,7 @@ namespace cloud.charging.open.API
                                                      ETag                        = "1",
                                                      ContentType                 = HTTPContentType.Application.JSON_UTF8,
                                                      Content                     = _ChargingStationOperator.ToJSON().ToUTF8Bytes(),
-                                                     Connection                  = ConnectionType.Close
+                                                     Connection                  = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                          });
@@ -10441,7 +10441,7 @@ namespace cloud.charging.open.API
                                                                                                  expandBrands).
                                                                                           ToUTF8Bytes(),
                                                      X_ExpectedTotalNumberOfItems   = _ExpectedCount,
-                                                     Connection                     = ConnectionType.Close
+                                                     Connection                     = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                          });
@@ -10472,7 +10472,7 @@ namespace cloud.charging.open.API
                                                      //            WWWAuthenticate  = @"Basic realm=""WWCP""",
                                                      //            Server           = HTTPTestServer?.HTTPServerName,
                                                      //            Date             = Timestamp.Now,
-                                                     //            Connection       = ConnectionType.Close
+                                                     //            Connection       = ConnectionType.KeepAlive
                                                      //        });
 
                                                      #endregion
@@ -10530,7 +10530,7 @@ namespace cloud.charging.open.API
                                                          ETag                        = "1",
                                                          ContentType                 = HTTPContentType.Application.JSON_UTF8,
                                                          Content                     = _RoamingNetwork.ToJSON().ToUTF8Bytes(),
-                                                         Connection                  = ConnectionType.Close
+                                                         Connection                  = ConnectionType.KeepAlive
                                                      }.AsImmutable);
 
                                          });
@@ -10636,7 +10636,7 @@ namespace cloud.charging.open.API
                                                  new HTTPResponse.Builder(Request) {
                                                      HTTPStatusCode  = HTTPStatusCode.OK,
                                                      Date            = Timestamp.Now,
-                                                     Connection      = ConnectionType.Close
+                                                     Connection      = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                          });
@@ -10678,7 +10678,7 @@ namespace cloud.charging.open.API
                                                      ETag                        = "1",
                                                      ContentType                 = HTTPContentType.Application.JSON_UTF8,
                                                      Content                     = _ChargingStation.ToJSON().ToUTF8Bytes(),
-                                                     Connection                  = ConnectionType.Close
+                                                     Connection                  = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                          });
@@ -10825,7 +10825,7 @@ namespace cloud.charging.open.API
                                                                        ).ToString().
                                                                          Replace(Environment.NewLine, "").
                                                                          ToUTF8Bytes(),
-                                                     Connection      = ConnectionType.Close
+                                                     Connection      = ConnectionType.KeepAlive
                                                  };
 
                                              }
@@ -10915,7 +10915,7 @@ namespace cloud.charging.open.API
                                                                                                  expandDataLicenseIds).
                                                                                           ToUTF8Bytes(),
                                                      X_ExpectedTotalNumberOfItems   = _ExpectedCount,
-                                                     Connection                     = ConnectionType.Close
+                                                     Connection                     = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                          });
@@ -11082,7 +11082,7 @@ namespace cloud.charging.open.API
                                                      ETag                        = "1",
                                                      ContentType                 = HTTPContentType.Application.JSON_UTF8,
                                                      Content                     = ChargingStationGroupJSON.ToUTF8Bytes(),
-                                                     Connection                  = ConnectionType.Close
+                                                     Connection                  = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                          });
@@ -11148,7 +11148,7 @@ namespace cloud.charging.open.API
                                                                                                  expandDataLicenseIds).
                                                                                           ToUTF8Bytes(),
                                                      X_ExpectedTotalNumberOfItems   = _ExpectedCount,
-                                                     Connection                     = ConnectionType.Close
+                                                     Connection                     = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                          });
@@ -11315,7 +11315,7 @@ namespace cloud.charging.open.API
                                                      ETag                        = "1",
                                                      ContentType                 = HTTPContentType.Application.JSON_UTF8,
                                                      Content                     = EVSEGroupJSON.ToUTF8Bytes(),
-                                                     Connection                  = ConnectionType.Close
+                                                     Connection                  = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                          });
@@ -11378,7 +11378,7 @@ namespace cloud.charging.open.API
                                                                                                  expandDataLicenseIds).
                                                                                           ToUTF8Bytes(),
                                                      X_ExpectedTotalNumberOfItems   = _ExpectedCount,
-                                                     Connection                     = ConnectionType.Close
+                                                     Connection                     = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                          });
@@ -11545,7 +11545,7 @@ namespace cloud.charging.open.API
                                                      ETag                        = "1",
                                                      ContentType                 = HTTPContentType.Application.JSON_UTF8,
                                                      Content                     = BrandJSON.ToUTF8Bytes(),
-                                                     Connection                  = ConnectionType.Close
+                                                     Connection                  = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                          });
@@ -11612,7 +11612,7 @@ namespace cloud.charging.open.API
                                                                                                  expandDataLicenseIds).
                                                                                           ToUTF8Bytes(),
                                                      X_ExpectedTotalNumberOfItems   = _ExpectedCount,
-                                                     Connection                     = ConnectionType.Close
+                                                     Connection                     = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                          });
@@ -11672,7 +11672,7 @@ namespace cloud.charging.open.API
                                                                                           AggregateWith(Environment.NewLine).
                                                                                           ToUTF8Bytes(),
                                                      X_ExpectedTotalNumberOfItems   = chargingStationOperator.ChargingTariffs.ULongCount(),
-                                                     Connection                     = ConnectionType.Close
+                                                     Connection                     = ConnectionType.KeepAlive
                                                  }.AsImmutable);
 
                                          });
