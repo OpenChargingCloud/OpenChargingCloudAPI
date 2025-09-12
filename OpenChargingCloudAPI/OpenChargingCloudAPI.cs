@@ -3053,21 +3053,12 @@ namespace cloud.charging.open.API
         /// </summary>
         /// <param name="HTTPHostname">The HTTP hostname for all URLs within this API.</param>
         /// <param name="ExternalDNSName">The official URL/DNS name of this service, e.g. for sending e-mails.</param>
-        /// <param name="HTTPServerPort">A TCP port to listen on.</param>
         /// <param name="BasePath">When the API is served from an optional subdirectory path.</param>
         /// <param name="HTTPServerName">The default HTTP server name, used whenever no HTTP Host-header has been given.</param>
         /// 
         /// <param name="URLPathPrefix">A common prefix for all URLs.</param>
         /// <param name="HTTPServiceName">The name of the HTTP service.</param>
         /// <param name="APIVersionHashes">The API version hashes (git commit hash values).</param>
-        /// 
-        /// <param name="ServerCertificateSelector">An optional delegate to select a TLS server certificate.</param>
-        /// <param name="ClientCertificateValidator">An optional delegate to verify the TLS client certificate used for authentication.</param>
-        /// <param name="LocalCertificateSelector">An optional delegate to select the TLS client certificate used for authentication.</param>
-        /// <param name="AllowedTLSProtocols">The TLS protocol(s) allowed for this connection.</param>
-        /// 
-        /// <param name="TCPPort"></param>
-        /// <param name="UDPPort"></param>
         /// 
         /// <param name="APIRobotEMailAddress">An e-mail address for this API.</param>
         /// <param name="APIRobotGPGPassphrase">A GPG passphrase for this API.</param>
@@ -3079,13 +3070,6 @@ namespace cloud.charging.open.API
         /// <param name="PasswordQualityCheck">A delegate to ensure a minimal password quality.</param>
         /// <param name="CookieName">The name of the HTTP Cookie for authentication.</param>
         /// <param name="UseSecureCookies">Force the web browser to send cookies only via HTTPS.</param>
-        /// 
-        /// <param name="ServerThreadName">The optional name of the TCP server thread.</param>
-        /// <param name="ServerThreadPriority">The optional priority of the TCP server thread.</param>
-        /// <param name="ServerThreadIsBackground">Whether the TCP server thread is a background thread or not.</param>
-        /// <param name="ConnectionIdBuilder">An optional delegate to build a connection identification based on IP socket information.</param>
-        /// <param name="ConnectionTimeout">The TCP client timeout for all incoming client connections in seconds (default: 30 sec).</param>
-        /// <param name="MaxClientConnections">The maximum number of concurrent TCP client connections (default: 4096).</param>
         /// 
         /// <param name="DisableMaintenanceTasks">Disable all maintenance tasks.</param>
         /// <param name="MaintenanceInitialDelay">The initial delay of the maintenance tasks.</param>
@@ -3107,7 +3091,6 @@ namespace cloud.charging.open.API
         /// <param name="LoggingPath">The path for all logfiles.</param>
         /// <param name="LogfileName">The name of the logfile.</param>
         /// <param name="LogfileCreator">A delegate for creating the name of the logfile for this API.</param>
-        /// <param name="DNSClient">The DNS client of the API.</param>
         public OpenChargingCloudAPI(HTTPTestServerX?               HTTPTestServer              = null,
                                     IEnumerable<HTTPHostname>?     Hostnames                   = null,
                                     HTTPPath?                      RootPath                    = null,
@@ -3143,14 +3126,6 @@ namespace cloud.charging.open.API
                                     HTTPCookieName?                CookieName                  = null,
                                     Boolean                        UseSecureCookies            = true,
                                     Languages?                     DefaultLanguage             = null,
-
-                                    Boolean?                       DisableMaintenanceTasks     = null,
-                                    TimeSpan?                      MaintenanceInitialDelay     = null,
-                                    TimeSpan?                      MaintenanceEvery            = null,
-
-                                    Boolean?                       DisableWardenTasks          = null,
-                                    TimeSpan?                      WardenInitialDelay          = null,
-                                    TimeSpan?                      WardenCheckEvery            = null,
 
                                     IEnumerable<URLWithAPIKey>?    RemoteAuthServers           = null,
                                     IEnumerable<APIKey_Id>?        RemoteAuthAPIKeys           = null,
@@ -3223,14 +3198,6 @@ namespace cloud.charging.open.API
                    8,
                    8,
                    8,
-
-                   DisableMaintenanceTasks,
-                   MaintenanceInitialDelay,
-                   MaintenanceEvery,
-
-                   DisableWardenTasks,
-                   WardenInitialDelay,
-                   WardenCheckEvery,
 
                    RemoteAuthServers,
                    RemoteAuthAPIKeys,
