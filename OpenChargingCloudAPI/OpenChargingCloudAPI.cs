@@ -3263,7 +3263,7 @@ namespace cloud.charging.open.API
 
             //this.HTMLTemplate = HTMLTemplate ?? GetResourceString("template.html");
 
-            DebugX.Log(nameof(OpenChargingCloudAPI) + " version '" + APIVersionHash + "' initialized...");
+            DebugX.Log($"{nameof(OpenChargingCloudAPI)} version '{APIVersionHash}' initialized...");
 
         }
 
