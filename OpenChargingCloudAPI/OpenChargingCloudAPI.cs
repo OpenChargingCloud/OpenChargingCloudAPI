@@ -540,73 +540,57 @@ namespace cloud.charging.open.API
             ChargingSessionId    = null;
             HTTPResponseBuilder  = null;
 
-            if (HTTPRequest.ParsedURLParameters.Length < 2) {
-
-                HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
-                    HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
-                    Date            = Timestamp.Now,
-                    Connection      = ConnectionType.KeepAlive
-                };
-
-                return false;
-
-            }
-
-            RoamingNetworkId = RoamingNetwork_Id.TryParse(HTTPRequest.ParsedURLParameters[0]);
-
-            if (!RoamingNetworkId.HasValue)
+            if (!HTTPRequest.TryParseURLParameter<RoamingNetwork_Id>("RoamingNetworkId", RoamingNetwork_Id.TryParse, out var roamingNetworkId))
             {
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
-                    HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
-                    Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.Application.JSON_UTF8,
-                    Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.KeepAlive
-                };
+                                          HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                                          Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
+                                          Date            = Timestamp.Now,
+                                          ContentType     = HTTPContentType.Application.JSON_UTF8,
+                                          Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
+                                          Connection      = ConnectionType.KeepAlive
+                                      };
 
                 return false;
 
             }
 
-            RoamingNetwork  = OpenChargingCloudAPI.GetRoamingNetwork(HTTPRequest.Host, RoamingNetworkId.Value);
+            RoamingNetworkId = roamingNetworkId;
 
-            if (RoamingNetwork is null)
+            if (!OpenChargingCloudAPI.TryGetRoamingNetwork(HTTPRequest.Host, roamingNetworkId, out RoamingNetwork))
             {
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
-                    HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
-                    Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.Application.JSON_UTF8,
-                    Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.KeepAlive
-                };
+                                          HTTPStatusCode  = HTTPStatusCode.NotFound,
+                                          Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
+                                          Date            = Timestamp.Now,
+                                          ContentType     = HTTPContentType.Application.JSON_UTF8,
+                                          Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
+                                          Connection      = ConnectionType.KeepAlive
+                                      };
 
                 return false;
 
             }
 
-            ChargingSessionId = ChargingSession_Id.TryParse(HTTPRequest.ParsedURLParameters[1]);
-
-            if (!ChargingSessionId.HasValue)
+            if (!HTTPRequest.TryParseURLParameter<ChargingSession_Id>("ChargingSessionId", ChargingSession_Id.TryParse, out var chargingSessionId))
             {
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
-                    HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
-                    Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.Application.JSON_UTF8,
-                    Content         = @"{ ""description"": ""Invalid charging session identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.KeepAlive
-                };
+                                          HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                                          Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
+                                          Date            = Timestamp.Now,
+                                          ContentType     = HTTPContentType.Application.JSON_UTF8,
+                                          Content         = @"{ ""description"": ""Invalid charging session identification!"" }".ToUTF8Bytes(),
+                                          Connection      = ConnectionType.KeepAlive
+                                      };
 
                 return false;
 
             }
 
+            ChargingSessionId = chargingSessionId;
             return true;
 
         }
@@ -642,85 +626,69 @@ namespace cloud.charging.open.API
             ChargingSession      = null;
             HTTPResponseBuilder  = null;
 
-            if (HTTPRequest.ParsedURLParameters.Length < 2) {
+            if (!HTTPRequest.TryParseURLParameter<RoamingNetwork_Id>("RoamingNetworkId", RoamingNetwork_Id.TryParse, out var roamingNetworkId))
+            {
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
-                    HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
-                    Date            = Timestamp.Now,
-                    Connection      = ConnectionType.KeepAlive
-                };
+                                          HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                                          Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
+                                          Date            = Timestamp.Now,
+                                          ContentType     = HTTPContentType.Application.JSON_UTF8,
+                                          Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
+                                          Connection      = ConnectionType.KeepAlive
+                                      };
 
                 return false;
 
             }
 
-            RoamingNetworkId = RoamingNetwork_Id.TryParse(HTTPRequest.ParsedURLParameters[0]);
+            RoamingNetworkId = roamingNetworkId;
 
-            if (!RoamingNetworkId.HasValue)
+            if (!OpenChargingCloudAPI.TryGetRoamingNetwork(HTTPRequest.Host, roamingNetworkId, out RoamingNetwork))
             {
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
-                    HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
-                    Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.Application.JSON_UTF8,
-                    Content         = @"{ ""description"": ""Invalid roaming network identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.KeepAlive
-                };
+                                          HTTPStatusCode  = HTTPStatusCode.NotFound,
+                                          Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
+                                          Date            = Timestamp.Now,
+                                          ContentType     = HTTPContentType.Application.JSON_UTF8,
+                                          Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
+                                          Connection      = ConnectionType.KeepAlive
+                                      };
 
                 return false;
 
             }
 
-            RoamingNetwork  = OpenChargingCloudAPI.GetRoamingNetwork(HTTPRequest.Host, RoamingNetworkId.Value);
-
-            if (RoamingNetwork is null)
+            if (!HTTPRequest.TryParseURLParameter<ChargingSession_Id>("ChargingSessionId", ChargingSession_Id.TryParse, out var chargingSessionId))
             {
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
-                    HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
-                    Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.Application.JSON_UTF8,
-                    Content         = @"{ ""description"": ""Unknown roaming network identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.KeepAlive
-                };
+                                          HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                                          Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
+                                          Date            = Timestamp.Now,
+                                          ContentType     = HTTPContentType.Application.JSON_UTF8,
+                                          Content         = @"{ ""description"": ""Invalid charging session identification!"" }".ToUTF8Bytes(),
+                                          Connection      = ConnectionType.KeepAlive
+                                      };
 
                 return false;
 
             }
 
-            ChargingSessionId = ChargingSession_Id.TryParse(HTTPRequest.ParsedURLParameters[1]);
+            ChargingSessionId = chargingSessionId;
 
-            if (!ChargingSessionId.HasValue)
+            if (!RoamingNetwork.TryGetChargingSessionById(chargingSessionId, out ChargingSession))
             {
 
                 HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
-                    HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                    Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
-                    Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.Application.JSON_UTF8,
-                    Content         = @"{ ""description"": ""Invalid charging session identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.KeepAlive
-                };
-
-                return false;
-
-            }
-
-            //ToDo: May fail for empty sequences!
-            if (!RoamingNetwork.TryGetChargingSessionById(ChargingSessionId.Value, out ChargingSession))
-            {
-
-                HTTPResponseBuilder = new HTTPResponse.Builder(HTTPRequest) {
-                    HTTPStatusCode  = HTTPStatusCode.NotFound,
-                    Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
-                    Date            = Timestamp.Now,
-                    ContentType     = HTTPContentType.Application.JSON_UTF8,
-                    Content         = @"{ ""description"": ""Unknown charging session identification!"" }".ToUTF8Bytes(),
-                    Connection      = ConnectionType.KeepAlive
-                };
+                                          HTTPStatusCode  = HTTPStatusCode.NotFound,
+                                          Server          = OpenChargingCloudAPI.HTTPServer.HTTPServerName,
+                                          Date            = Timestamp.Now,
+                                          ContentType     = HTTPContentType.Application.JSON_UTF8,
+                                          Content         = @"{ ""description"": ""Unknown charging session identification!"" }".ToUTF8Bytes(),
+                                          Connection      = ConnectionType.KeepAlive
+                                      };
 
                 return false;
 
@@ -3132,6 +3100,8 @@ namespace cloud.charging.open.API
 
                                     Boolean?                       AllowsAnonymousReadAccess   = true,
 
+                                    ServiceCheckKeys?              ServiceCheckKeys            = null,
+
                                     Boolean?                       IsDevelopment               = null,
                                     IEnumerable<String>?           DevelopmentServers          = null,
                                     Boolean                        SkipURLTemplates            = false,
@@ -3201,6 +3171,8 @@ namespace cloud.charging.open.API
 
                    RemoteAuthServers,
                    RemoteAuthAPIKeys,
+
+                   ServiceCheckKeys,
 
                    IsDevelopment,
                    DevelopmentServers,
@@ -9375,125 +9347,115 @@ namespace cloud.charging.open.API
             // curl -v -X SET -H "Content-Type: application/json" --data @session.json http://127.0.0.1:3004/RNs/Prod/ChargingSessions/{ChargingSessionId}/{command}
             // -------------------------------------------------------------------------------------------------------------------------------------------------------
             AddHandler(
-                              HTTPMethod.SET,
-                              URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingSessions/{ChargingSessionId}/{command}",
-                              HTTPContentType.Application.JSON_UTF8,
-                              HTTPDelegate: async Request => {
+                HTTPMethod.SET,
+                URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingSessions/{ChargingSessionId}/{command}",
+                HTTPContentType.Application.JSON_UTF8,
+                HTTPDelegate: async request => {
 
-                                  #region Get HTTP user and its organizations
+                    #region Get HTTP user and its organizations
 
-                                  // Will return HTTP 401 Unauthorized, when the HTTP user is unknown!
-                                  if (!TryGetHTTPUser(Request,
-                                                      out var httpUser,
-                                                      out var httpOrganizations,
-                                                      out var httpResponseBuilder,
-                                                      Recursive: true))
-                                  {
-                                      return httpResponseBuilder.AsImmutable;
-                                  }
+                    // Will return HTTP 401 Unauthorized, when the HTTP user is unknown!
+                    if (!TryGetHTTPUser(request,
+                                        out var httpUser,
+                                        out var httpOrganizations,
+                                        out var httpResponseBuilder,
+                                        Recursive: true))
+                    {
+                        return httpResponseBuilder.AsImmutable;
+                    }
 
-                                  #endregion
+                    #endregion
 
-                                  #region Get roaming network and charging session identification
+                    #region Get roaming network and charging session identification
 
-                                  if (!Request.ParseRoamingNetworkAndChargingSessionId(this,
-                                                                                       out var roamingNetworkId,
-                                                                                       out var roamingNetwork,
-                                                                                       out var chargingSessionId,
-                                                                                       out httpResponseBuilder))
-                                  {
-                                      return httpResponseBuilder.AsImmutable;
-                                  }
+                    if (!request.ParseRoamingNetworkAndChargingSessionId(this,
+                                                                         out var roamingNetworkId,
+                                                                         out var roamingNetwork,
+                                                                         out var chargingSessionId,
+                                                                         out httpResponseBuilder))
+                    {
+                        return httpResponseBuilder.AsImmutable;
+                    }
 
-                                  #endregion
+                    #endregion
 
-                                  #region Parse command
+                    #region Parse command
 
-                                  if (Request.ParsedURLParameters.Length < 3)
-                                      return new HTTPResponse.Builder(Request) {
-                                          HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                          Server          = HTTPServer.HTTPServerName,
-                                          Date            = Timestamp.Now,
-                                          Connection      = ConnectionType.KeepAlive
-                                      };
+                    if (!request.TryGetURLParameter("command", out var command))
+                        return new HTTPResponse.Builder(request) {
+                                   HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                                   Server          = HTTPServer.HTTPServerName,
+                                   Date            = Timestamp.Now,
+                                   ContentType     = HTTPContentType.Application.JSON_UTF8,
+                                   Content         = @"{ ""description"": ""Invalid command!"" }".ToUTF8Bytes(),
+                                   Connection      = ConnectionType.KeepAlive
+                               };
 
-                                  var command = Request.ParsedURLParameters[2]?.Trim();
+                    #endregion
 
-                                  if (command.IsNullOrEmpty())
-                                      return new HTTPResponse.Builder(Request) {
-                                          HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                          Server          = HTTPServer.HTTPServerName,
-                                          Date            = Timestamp.Now,
-                                          ContentType     = HTTPContentType.Application.JSON_UTF8,
-                                          Content         = @"{ ""description"": ""Invalid command!"" }".ToUTF8Bytes(),
-                                          Connection      = ConnectionType.KeepAlive
-                                      };
+                    #region Parse Charging Session JSON
 
-                                  #endregion
+                    if (!request.TryParseJSONObjectRequestBody(out var json,
+                                                               out httpResponseBuilder))
+                    {
+                        return httpResponseBuilder;
+                    }
 
-                                  #region Parse Charging Session JSON
+                    if (!ChargingSession.TryParse(json, out var chargingSession, out var errorResponse))
+                        return new HTTPResponse.Builder(request) {
+                                   HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                                   Server          = HTTPServer.HTTPServerName,
+                                   Date            = Timestamp.Now,
+                                   ContentType     = HTTPContentType.Application.JSON_UTF8,
+                                   Content         = new JObject(
+                                                         new JProperty("description", errorResponse)
+                                                     ).ToUTF8Bytes()
+                               };
 
-                                  if (!Request.TryParseJSONObjectRequestBody(out var json,
-                                                                             out httpResponseBuilder))
-                                  {
-                                      return httpResponseBuilder;
-                                  }
-
-                                  if (!ChargingSession.TryParse(json, out var chargingSession, out var errorResponse))
-                                      return new HTTPResponse.Builder(Request) {
-                                                 HTTPStatusCode  = HTTPStatusCode.BadRequest,
-                                                 Server          = HTTPServer.HTTPServerName,
-                                                 Date            = Timestamp.Now,
-                                                 ContentType     = HTTPContentType.Application.JSON_UTF8,
-                                                 Content         = new JObject(
-                                                                       new JProperty("description", errorResponse)
-                                                                   ).ToUTF8Bytes()
-                                             };
-
-                                  #endregion
+                    #endregion
 
 
-                                  var result = await roamingNetwork.RegisterExternalChargingSession(
-                                                         Timestamp.Now,
-                                                         this,
-                                                         command,
-                                                         chargingSession
-                                                     );
+                    var result = await roamingNetwork.RegisterExternalChargingSession(
+                                           Timestamp.Now,
+                                           this,
+                                           command,
+                                           chargingSession
+                                       );
 
 
-                                  return result
+                    return result
 
-                                             ? new HTTPResponse.Builder(Request) {
-                                                   HTTPStatusCode             = HTTPStatusCode.OK,
-                                                   Server                     = HTTPServer.HTTPServerName,
-                                                   Date                       = Timestamp.Now,
-                                                   AccessControlAllowOrigin   = "*",
-                                                   AccessControlAllowMethods  = [ "SET" ],
-                                                   AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
-                                                   ContentType                = HTTPContentType.Application.JSON_UTF8,
-                                                   Content                    = chargingSession.
-                                                                                    ToJSON(Embedded:                         false,
-                                                                                           CustomChargingSessionSerializer:  CustomChargingSessionSerializer).
-                                                                                    ToUTF8Bytes(),
-                                                   Connection                 = ConnectionType.KeepAlive
-                                               }
+                               ? new HTTPResponse.Builder(request) {
+                                     HTTPStatusCode             = HTTPStatusCode.OK,
+                                     Server                     = HTTPServer.HTTPServerName,
+                                     Date                       = Timestamp.Now,
+                                     AccessControlAllowOrigin   = "*",
+                                     AccessControlAllowMethods  = [ "SET" ],
+                                     AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
+                                     ContentType                = HTTPContentType.Application.JSON_UTF8,
+                                     Content                    = chargingSession.
+                                                                     ToJSON(Embedded:                         false,
+                                                                            CustomChargingSessionSerializer:  CustomChargingSessionSerializer).
+                                                                     ToUTF8Bytes(),
+                                     Connection                 = ConnectionType.KeepAlive
+                                 }
 
-                                             : new HTTPResponse.Builder(Request) {
-                                                   HTTPStatusCode             = HTTPStatusCode.BadRequest,
-                                                   Server                     = HTTPServer.HTTPServerName,
-                                                   Date                       = Timestamp.Now,
-                                                   AccessControlAllowOrigin   = "*",
-                                                   AccessControlAllowMethods  = [ "SET" ],
-                                                   AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
-                                                   //ContentType                = HTTPContentType.Application.JSON_UTF8,
-                                                   //Content                    = chargingSession.
-                                                   //                                 ToJSON(Embedded:                         false,
-                                                   //                                        CustomChargingSessionSerializer:  CustomChargingSessionSerializer).
-                                                   //                                 ToUTF8Bytes(),
-                                                   Connection                 = ConnectionType.KeepAlive
-                                               };
+                               : new HTTPResponse.Builder(request) {
+                                     HTTPStatusCode             = HTTPStatusCode.BadRequest,
+                                     Server                     = HTTPServer.HTTPServerName,
+                                     Date                       = Timestamp.Now,
+                                     AccessControlAllowOrigin   = "*",
+                                     AccessControlAllowMethods  = [ "SET" ],
+                                     AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
+                                     //ContentType                = HTTPContentType.Application.JSON_UTF8,
+                                     //Content                    = chargingSession.
+                                     //                                 ToJSON(Embedded:                         false,
+                                     //                                        CustomChargingSessionSerializer:  CustomChargingSessionSerializer).
+                                     //                                 ToUTF8Bytes(),
+                                     Connection                 = ConnectionType.KeepAlive
+                                 };
 
-                              });
+                });
 
             #endregion
 
