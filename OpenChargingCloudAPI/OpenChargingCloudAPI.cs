@@ -6506,7 +6506,7 @@ namespace cloud.charging.open.API
                     #endregion
 
                 },
-                AllowReplacement: URLReplacement.Ignore
+                AllowReplacement: URLReplacement.Allow
             );
 
             #endregion
