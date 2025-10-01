@@ -9637,6 +9637,7 @@ namespace cloud.charging.open.API
                                      //                                 ToJSON(Embedded:                         false,
                                      //                                        CustomChargingSessionSerializer:  CustomChargingSessionSerializer).
                                      //                                 ToUTF8Bytes(),
+                                     ContentLength              = 0,
                                      Connection                 = ConnectionType.KeepAlive
                                  };
 
