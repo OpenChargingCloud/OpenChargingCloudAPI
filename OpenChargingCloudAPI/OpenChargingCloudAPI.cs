@@ -2830,6 +2830,66 @@ namespace cloud.charging.open.API
         #endregion
 
 
+
+        #region (protected internal) SendTokenAuthRequest   (Request)
+
+        /// <summary>
+        /// An event sent whenever a TokenAuth request was received.
+        /// </summary>
+        public HTTPRequestLogEventX OnTokenAuthRequest = new();
+
+        /// <summary>
+        /// An event sent whenever a TokenAuth request was received.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the request.</param>
+        /// <param name="API">The HTTP API.</param>
+        /// <param name="Request">A HTTP request.</param>
+        protected internal Task SendTokenAuthRequest(DateTimeOffset     Timestamp,
+                                                     HTTPAPIX           API,
+                                                     HTTPRequest        Request,
+                                                     CancellationToken  CancellationToken)
+
+            => OnTokenAuthRequest.WhenAll(
+                   Timestamp,
+                   API,
+                   Request,
+                   CancellationToken
+               );
+
+        #endregion
+
+        #region (protected internal) SendTokenAuthResponse  (Response)
+
+        /// <summary>
+        /// An event sent whenever a TokenAuth response was sent.
+        /// </summary>
+        public HTTPResponseLogEventX OnTokenAuthResponse = new();
+
+        /// <summary>
+        /// An event sent whenever a TokenAuth response was sent.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the request.</param>
+        /// <param name="API">The HTTP API.</param>
+        /// <param name="Request">A HTTP request.</param>
+        /// <param name="Response">A HTTP response.</param>
+        protected internal Task SendTokenAuthResponse(DateTimeOffset     Timestamp,
+                                                      HTTPAPIX           API,
+                                                      HTTPRequest        Request,
+                                                      HTTPResponse       Response,
+                                                      CancellationToken  CancellationToken)
+
+            => OnTokenAuthResponse.WhenAll(
+                   Timestamp,
+                   API,
+                   Request,
+                   Response,
+                   CancellationToken
+               );
+
+        #endregion
+
+
+
         #region (protected internal) SendAuthStartEVSERequest   (Request)
 
         /// <summary>
@@ -6307,6 +6367,131 @@ namespace cloud.charging.open.API
             #endregion
 
 
+            #region POST        ~/RNs/{RoamingNetworkId}/token
+
+            // ==== PROD =============================================
+            // curl -v -X AUTH -H "Content-Type: application/json" \
+            //                 -H "Accept:       application/json" \
+            //      -d "{ \"token\": \"B6D15211\"}" \
+            //      http://127.0.0.1:3004/RNs/Prod/token
+            AddHandler(
+                HTTPMethod.AUTH,
+                URLPathPrefix + "/RNs/{RoamingNetworkId}/token",
+                HTTPContentType.Application.JSON_UTF8,
+                HTTPRequestLogger:   SendTokenAuthRequest,
+                HTTPResponseLogger:  SendTokenAuthResponse,
+                HTTPDelegate:        async request => {
+
+                    #region Parse RoamingNetwork URL parameters
+
+                    if (!request.ParseRoamingNetwork(this,
+                                                     out var roamingNetwork,
+                                                     out var httpResponseBuilder))
+                    {
+                        return httpResponseBuilder;
+                    }
+
+                    #endregion
+
+                    #region Parse JSON
+
+                    if (!request.TryParseJSONObjectRequestBody(out var json, out httpResponseBuilder) ||
+                         json is null)
+                    {
+                        return httpResponseBuilder!;
+                    }
+
+                    #region Parse Token            [mandatory]
+
+                    if (!json.ParseMandatory("token",
+                                             "local authentication token",
+                                             AuthenticationToken.TryParse,
+                                             out AuthenticationToken token,
+                                             out var errorResponse))
+                    {
+                        return new HTTPResponse.Builder(request) {
+                                   HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                                   Server          = HTTPServer.HTTPServerName,
+                                   Date            = Timestamp.Now,
+                                   ContentType     = HTTPContentType.Application.JSON_UTF8,
+                                   Content         = JSONObject.Create(
+                                                         new JProperty("token",        json["token"]?.Value<String>()),
+                                                         new JProperty("description",  errorResponse),
+                                                         new JProperty("runtime",      0)
+                                                     ).ToUTF8Bytes(),
+                                   Connection      = ConnectionType.KeepAlive
+                               };
+                    }
+
+                    #endregion
+
+                    #endregion
+
+
+                    var result = await roamingNetwork.AuthorizeStart(
+                                           LocalAuthentication.FromAuthToken(token),
+
+                                           Timestamp:          Timestamp.Now,
+                                           EventTrackingId:    request.EventTrackingId,
+                                           RequestTimeout:     null,
+                                           CancellationToken:  request.CancellationToken
+                                       );
+
+
+                    #region Authorized
+
+                    if (result.Result == AuthStartResultTypes.Authorized)
+                        return new HTTPResponse.Builder(request) {
+                                HTTPStatusCode             = HTTPStatusCode.OK,
+                                Server                     = HTTPServer.HTTPServerName,
+                                Date                       = Timestamp.Now,
+                                AccessControlAllowOrigin   = "*",
+                                AccessControlAllowMethods  = [ "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" ],
+                                AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
+                                ContentType                = HTTPContentType.Application.JSON_UTF8,
+                                Content                    = result.ToJSON().ToUTF8Bytes()
+                            };
+
+                    #endregion
+
+                    #region NotAuthorized
+
+                    else if (result.Result == AuthStartResultTypes.Error)
+                        return new HTTPResponse.Builder(request) {
+                                HTTPStatusCode             = HTTPStatusCode.Unauthorized,
+                                Server                     = HTTPServer.HTTPServerName,
+                                Date                       = Timestamp.Now,
+                                AccessControlAllowOrigin   = "*",
+                                AccessControlAllowMethods  = [ "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" ],
+                                AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
+                                ContentType                = HTTPContentType.Application.JSON_UTF8,
+                                Content                    = result.ToJSON().ToUTF8Bytes()
+                            };
+
+                    #endregion
+
+                    #region Forbidden
+
+                    else
+                        return new HTTPResponse.Builder(request) {
+                                HTTPStatusCode             = HTTPStatusCode.Forbidden, //ToDo: Is this smart?
+                                Server                     = HTTPServer.HTTPServerName,
+                                Date                       = Timestamp.Now,
+                                AccessControlAllowOrigin   = "*",
+                                AccessControlAllowMethods  = [ "GET", "RESERVE", "AUTHSTART", "AUTHSTOP", "REMOTESTART", "REMOTESTOP", "SENDCDR" ],
+                                AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
+                                ContentType                = HTTPContentType.Application.JSON_UTF8,
+                                Content                    = result.ToJSON().ToUTF8Bytes()
+                            };
+
+                    #endregion
+
+                },
+                AllowReplacement: URLReplacement.Allow
+            );
+
+            #endregion
+
             #region ~/RNs/{RoamingNetworkId}/EVSEs
 
             #region OPTIONS     ~/RNs/{RoamingNetworkId}/EVSEs
@@ -9433,6 +9618,7 @@ namespace cloud.charging.open.API
                                      //                                 ToJSON(Embedded:                         false,
                                      //                                        CustomChargingSessionSerializer:  CustomChargingSessionSerializer).
                                      //                                 ToUTF8Bytes(),
+                                     ContentLength              = 0,
                                      Connection                 = ConnectionType.KeepAlive
                                  };
 

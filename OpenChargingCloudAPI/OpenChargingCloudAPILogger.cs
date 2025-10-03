@@ -176,33 +176,51 @@ namespace cloud.charging.open.API
 
             #endregion
 
+            #region Register tokenAuth log events
+
+            RegisterEvent2("TokenAuthRequest",
+                          handler => OpenChargingCloudAPI.OnTokenAuthRequest += handler,
+                          handler => OpenChargingCloudAPI.OnTokenAuthRequest -= handler,
+                          "Auth", "TokenAuth", "TokenAuthRequest", "All").
+                RegisterDefaultConsoleLogTargetX(this).
+                RegisterDefaultDiscLogTargetX(this);
+
+            RegisterEvent2("TokenAuthResponse",
+                          handler => OpenChargingCloudAPI.OnTokenAuthResponse += handler,
+                          handler => OpenChargingCloudAPI.OnTokenAuthResponse -= handler,
+                          "Auth", "TokenAuth", "TokenAuthResponse", "All").
+                RegisterDefaultConsoleLogTargetX(this).
+                RegisterDefaultDiscLogTargetX(this);
+
+            #endregion
+
             #region Register auth start/stop log events
 
             RegisterEvent2("AuthEVSEStart",
                           handler => OpenChargingCloudAPI.OnAuthStartEVSERequest += handler,
                           handler => OpenChargingCloudAPI.OnAuthStartEVSERequest -= handler,
-                          "Auth", "AuthEVSE", "AuthStart", "All").
+                          "Auth", "AuthEVSE", "AuthStart", "AuthStartEVSE", "AuthStartEVSERequest", "All").
                 RegisterDefaultConsoleLogTargetX(this).
                 RegisterDefaultDiscLogTargetX(this);
 
             RegisterEvent2("AuthEVSEStarted",
                           handler => OpenChargingCloudAPI.OnAuthStartEVSEResponse += handler,
                           handler => OpenChargingCloudAPI.OnAuthStartEVSEResponse -= handler,
-                          "Auth", "AuthEVSE", "AuthStarted", "All").
+                          "Auth", "AuthEVSE", "AuthStart", "AuthStartEVSE", "AuthStartEVSEResponse", "All").
                 RegisterDefaultConsoleLogTargetX(this).
                 RegisterDefaultDiscLogTargetX(this);
 
             RegisterEvent2("AuthEVSEStop",
                           handler => OpenChargingCloudAPI.OnAuthStopEVSERequest += handler,
                           handler => OpenChargingCloudAPI.OnAuthStopEVSERequest -= handler,
-                          "Auth", "AuthEVSE", "AuthStop", "All").
+                          "Auth", "AuthEVSE", "AuthStop", "AuthStopEVSE", "AuthStopEVSERequest", "All").
                 RegisterDefaultConsoleLogTargetX(this).
                 RegisterDefaultDiscLogTargetX(this);
 
             RegisterEvent2("AuthEVSEStopped",
                           handler => OpenChargingCloudAPI.OnAuthStopEVSEResponse += handler,
                           handler => OpenChargingCloudAPI.OnAuthStopEVSEResponse -= handler,
-                          "Auth", "AuthEVSE", "AuthStopped", "All").
+                          "Auth", "AuthEVSE", "AuthStop", "AuthStopEVSE", "AuthStopEVSEResponse", "All").
                 RegisterDefaultConsoleLogTargetX(this).
                 RegisterDefaultDiscLogTargetX(this);
 
