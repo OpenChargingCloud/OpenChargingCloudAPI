@@ -3080,7 +3080,7 @@ namespace cloud.charging.open.API
                                     //String                         HTTPServerName              = DefaultHTTPServerName,
                                     //
                                     //HTTPPath?                      URLPathPrefix               = null,
-                                    String?                        HTMLTemplate                = null,
+                                    //String?                        HTMLTemplate                = null,
 
                                     Organization_Id?               AdminOrganizationId         = null,
                                     EMailAddress?                  APIRobotEMailAddress        = null,
@@ -3107,12 +3107,6 @@ namespace cloud.charging.open.API
                                     Boolean                        SkipURLTemplates            = false,
                                     String                         DatabaseFileName            = DefaultOpenChargingCloudAPI_DatabaseFileName,
                                     Boolean                        DisableNotifications        = false,
-                                    //Boolean                        DisableLogging              = false,
-                                    //String?                        LoggingPath                 = null,
-                                    //String                         LogfileName                 = DefaultOpenChargingCloudAPI_LogfileName,
-                                    //LogfileCreatorDelegate?        LogfileCreator              = null,
-                                    //DNSClient?                     DNSClient                   = null)
-
                                     Boolean                        DisableLogging              = false,
                                     String                         LoggingPath                 = "", //DefaultHTTPAPI_LoggingPath,
                                     String                         LoggingContext              = "", //DefaultLoggingContext,
@@ -3141,8 +3135,6 @@ namespace cloud.charging.open.API
                    APIVersionHash,
                    APIVersionHashes,
 
-                   HTMLTemplate,
-
                    AdminOrganizationId,
                    APIRobotEMailAddress,
                    APIRobotGPGPassphrase,
@@ -3164,10 +3156,6 @@ namespace cloud.charging.open.API
                    8,
                    4,
                    4,
-                   8,
-                   8,
-                   8,
-                   8,
 
                    RemoteAuthServers,
                    RemoteAuthAPIKeys,
@@ -3179,17 +3167,10 @@ namespace cloud.charging.open.API
                    SkipURLTemplates,
                    DatabaseFileName     ?? DefaultOpenChargingCloudAPI_DatabaseFileName,
                    DisableNotifications,
-                   //DisableLogging,
-                   //LoggingPath,
-                   //LogfileName          ?? DefaultOpenChargingCloudAPI_LogfileName,
-                   //LogfileCreator,
-                   //DNSClient,
-                   //false) // AutoStart
-
                    DisableLogging,
                    LoggingPath,
                    LoggingContext,
-                   LogfileName,
+                   LogfileName          ?? DefaultOpenChargingCloudAPI_LogfileName,
                    LogfileCreator)
 
         {
