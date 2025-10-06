@@ -1319,28 +1319,17 @@ namespace cloud.charging.open.API
         /// <param name="ChargingPool">The charging pool.</param>
         /// <param name="ChargingStation">The charging station.</param>
         /// <param name="HTTPResponse">A HTTP error response.</param>
-        public static Boolean ParseRoamingNetworkAndChargingPoolAndChargingStation(this HTTPRequest           HTTPRequest,
-                                                                                   OpenChargingCloudAPI       OpenChargingCloudAPI,
-                                                                                   out IRoamingNetwork?       RoamingNetwork,
-                                                                                   out IChargingPool?         ChargingPool,
-                                                                                   out IChargingStation?      ChargingStation,
-                                                                                   out HTTPResponse.Builder?  HTTPResponse)
+        public static Boolean ParseRoamingNetworkAndChargingPoolAndChargingStation(this HTTPRequest                                HTTPRequest,
+                                                                                   OpenChargingCloudAPI                            OpenChargingCloudAPI,
+                                                                                   [NotNullWhen(true)]  out IRoamingNetwork?       RoamingNetwork,
+                                                                                   [NotNullWhen(true)]  out IChargingPool?         ChargingPool,
+                                                                                   [NotNullWhen(true)]  out IChargingStation?      ChargingStation,
+                                                                                   [NotNullWhen(false)] out HTTPResponse.Builder?  HTTPResponse)
         {
-
-            #region Initial checks
-
-            if (HTTPRequest is null)
-                throw new ArgumentNullException(nameof(HTTPRequest),           "The given HTTP request must not be null!");
-
-            if (OpenChargingCloudAPI is null)
-                throw new ArgumentNullException(nameof(OpenChargingCloudAPI),  "The given OpenChargingCloud API must not be null!");
-
-            #endregion
 
             RoamingNetwork   = null;
             ChargingPool     = null;
             ChargingStation  = null;
-            HTTPResponse     = null;
 
             if (HTTPRequest.ParsedURLParameters.Length < 3)
             {
@@ -4857,78 +4846,79 @@ namespace cloud.charging.open.API
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingPools
             // ------------------------------------------------------------------------------------
             AddHandler(
-                              HTTPMethod.GET,
-                              URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools",
-                              HTTPContentType.Application.JSON_UTF8,
-                              HTTPDelegate: Request => {
 
-                                  #region Check anonymous access
+                HTTPMethod.GET,
+                URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools",
+                HTTPContentType.Application.JSON_UTF8,
+                HTTPDelegate: request => {
 
-                                  if (!AllowsAnonymousReadAccesss)
-                                      return Task.FromResult(
-                                          new HTTPResponse.Builder(Request) {
-                                              HTTPStatusCode             = HTTPStatusCode.Unauthorized,
-                                              Server                     = HTTPServer.HTTPServerName,
-                                              Date                       = Timestamp.Now,
-                                              AccessControlAllowOrigin   = "*",
-                                              AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
-                                              AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
-                                              WWWAuthenticate            = WWWAuthenticateDefaults,
-                                              Connection                 = ConnectionType.KeepAlive
-                                          }.AsImmutable);
+                    #region Check anonymous access
 
-                                  #endregion
+                    if (!AllowsAnonymousReadAccesss)
+                        return Task.FromResult(
+                            new HTTPResponse.Builder(request) {
+                                HTTPStatusCode             = HTTPStatusCode.Unauthorized,
+                                Server                     = HTTPServer.HTTPServerName,
+                                Date                       = Timestamp.Now,
+                                AccessControlAllowOrigin   = "*",
+                                AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
+                                AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
+                                WWWAuthenticate            = WWWAuthenticateDefaults,
+                                Connection                 = ConnectionType.KeepAlive
+                            }.AsImmutable);
 
-                                  #region Check HTTP parameters
+                    #endregion
 
-                                  if (!Request.ParseRoamingNetwork(this,
-                                                                   out var roamingNetwork,
-                                                                   out var httpResponseBuilder) ||
-                                       roamingNetwork is null)
-                                  {
-                                      return Task.FromResult(httpResponseBuilder!.AsImmutable);
-                                  }
+                    #region Check HTTP parameters
 
-                                  #endregion
+                    if (!request.ParseRoamingNetwork(this,
+                                                     out var roamingNetwork,
+                                                     out var httpResponseBuilder))
+                    {
+                        return Task.FromResult(httpResponseBuilder!.AsImmutable);
+                    }
 
-                                  var skip                    = Request.QueryString.GetUInt64("skip");
-                                  var take                    = Request.QueryString.GetUInt64("take");
-                                  var expand                  = Request.QueryString.GetStrings("expand");
-                                  var expandRoamingNetworks   = expand.ContainsIgnoreCase("networks")          ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
-                                  var expandOperators         = expand.ContainsIgnoreCase("operators")         ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
-                                  var expandChargingStations  = expand.ContainsIgnoreCase("-chargingstations") ? InfoStatus.ShowIdOnly : InfoStatus.Expanded;
-                                  var expandBrands            = expand.ContainsIgnoreCase("brands")            ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
-                                  var expandDataLicenses      = expand.ContainsIgnoreCase("licenses")          ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
+                    #endregion
 
-                                  //ToDo: Getting the expected total count might be very expensive!
-                                  var expectedCount           = roamingNetwork.ChargingPools.ULongCount();
+                    var skip                    = request.QueryString.GetUInt64("skip");
+                    var take                    = request.QueryString.GetUInt64("take");
+                    var expand                  = request.QueryString.GetStrings("expand");
+                    var expandRoamingNetworks   = expand.ContainsIgnoreCase("networks")          ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
+                    var expandOperators         = expand.ContainsIgnoreCase("operators")         ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
+                    var expandChargingStations  = expand.ContainsIgnoreCase("-chargingstations") ? InfoStatus.ShowIdOnly : InfoStatus.Expanded;
+                    var expandBrands            = expand.ContainsIgnoreCase("brands")            ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
+                    var expandDataLicenses      = expand.ContainsIgnoreCase("licenses")          ? InfoStatus.Expanded   : InfoStatus.ShowIdOnly;
 
-                                  return Task.FromResult(
-                                      new HTTPResponse.Builder(Request) {
-                                          HTTPStatusCode                = HTTPStatusCode.OK,
-                                          Server                        = HTTPServer.HTTPServerName,
-                                          Date                          = Timestamp.Now,
-                                          AccessControlAllowOrigin      = "*",
-                                          AccessControlAllowMethods     = [ "GET", "COUNT", "OPTIONS" ],
-                                          AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
-                                          ETag                          = "1",
-                                          ContentType                   = HTTPContentType.Application.JSON_UTF8,
-                                          Content                       = roamingNetwork.ChargingPools.
-                                                                              ToJSON(skip,
-                                                                                     take,
-                                                                                     Embedded:                         false,
-                                                                                     ExpandRoamingNetworkId:           expandRoamingNetworks,
-                                                                                     ExpandChargingStationOperatorId:  expandOperators,
-                                                                                     ExpandChargingStationIds:         expandChargingStations,
-                                                                                     ExpandEVSEIds:                    InfoStatus.Hidden,
-                                                                                     ExpandBrandIds:                   expandBrands,
-                                                                                     ExpandDataLicenses:               expandDataLicenses).
-                                                                              ToUTF8Bytes(),
-                                          X_ExpectedTotalNumberOfItems  = expectedCount,
-                                          Connection                    = ConnectionType.KeepAlive
-                                      }.AsImmutable);
+                    //ToDo: Getting the expected total count might be very expensive!
+                    var expectedCount           = roamingNetwork.ChargingPools.ULongCount();
 
-                              });
+                    return Task.FromResult(
+                        new HTTPResponse.Builder(request) {
+                            HTTPStatusCode                = HTTPStatusCode.OK,
+                            Server                        = HTTPServer.HTTPServerName,
+                            Date                          = Timestamp.Now,
+                            AccessControlAllowOrigin      = "*",
+                            AccessControlAllowMethods     = [ "GET", "COUNT", "OPTIONS" ],
+                            AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
+                            ETag                          = "1",
+                            ContentType                   = HTTPContentType.Application.JSON_UTF8,
+                            Content                       = roamingNetwork.ChargingPools.
+                                                                ToJSON(skip,
+                                                                       take,
+                                                                       Embedded:                         false,
+                                                                       ExpandRoamingNetworkId:           expandRoamingNetworks,
+                                                                       ExpandChargingStationOperatorId:  expandOperators,
+                                                                       ExpandChargingStationIds:         expandChargingStations,
+                                                                       ExpandEVSEIds:                    InfoStatus.Hidden,
+                                                                       ExpandBrandIds:                   expandBrands,
+                                                                       ExpandDataLicenses:               expandDataLicenses).
+                                                                ToUTF8Bytes(),
+                            X_ExpectedTotalNumberOfItems  = expectedCount,
+                            Connection                    = ConnectionType.KeepAlive
+                        }.AsImmutable);
+
+                }
+            );
 
             #endregion
 
@@ -5447,57 +5437,60 @@ namespace cloud.charging.open.API
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingPools/.../ChargingStations
             // ---------------------------------------------------------------------------------------------
             AddHandler(
-                                         HTTPMethod.GET,
-                                         URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/ChargingStations/{ChargingStationId}/EVSEs",
-                                         HTTPContentType.Application.JSON_UTF8,
-                                         HTTPDelegate: Request => {
 
-                                             #region Check HTTP parameters
+                HTTPMethod.GET,
+                URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/ChargingStations/{ChargingStationId}/EVSEs",
+                HTTPContentType.Application.JSON_UTF8,
+                HTTPDelegate: Request => {
 
-                                                     if (!Request.ParseRoamingNetworkAndChargingPoolAndChargingStation(this,
-                                                                                                                       out var _RoamingNetwork,
-                                                                                                                       out var _ChargingPool,
-                                                                                                                       out var _ChargingStation,
-                                                                                                                       out var _HTTPResponse))
-                                                     {
-                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
-                                                     }
+                    #region Check HTTP parameters
 
-                                                     #endregion
+                    if (!Request.ParseRoamingNetworkAndChargingPoolAndChargingStation(this,
+                                                                                      out var roamingNetwork,
+                                                                                      out var chargingPool,
+                                                                                      out var chargingStation,
+                                                                                      out var httpResponseBuilder))
+                    {
+                        return Task.FromResult(httpResponseBuilder.AsImmutable);
+                    }
 
-                                             var skip                   = Request.QueryString.GetUInt64("skip");
-                                             var take                   = Request.QueryString.GetUInt64("take");
-                                             var expand                 = Request.QueryString.GetStrings("expand");
-                                             var expandRoamingNetworks  = expand.ContainsIgnoreCase("networks")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
-                                             var expandOperators        = expand.ContainsIgnoreCase("operators") ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
-                                             var expandBrands           = expand.ContainsIgnoreCase("brands")    ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                    #endregion
 
-                                             //ToDo: Getting the expected total count might be very expensive!
-                                             var _ExpectedCount   = _ChargingStation.EVSEs.ULongCount();
+                    var skip                   = Request.QueryString.GetUInt64("skip");
+                    var take                   = Request.QueryString.GetUInt64("take");
+                    var expand                 = Request.QueryString.GetStrings("expand");
+                    var expandRoamingNetworks  = expand.ContainsIgnoreCase("networks")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                    var expandOperators        = expand.ContainsIgnoreCase("operators") ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                    var expandBrands           = expand.ContainsIgnoreCase("brands")    ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
 
-                                             return Task.FromResult(
-                                                 new HTTPResponse.Builder(Request) {
-                                                     HTTPStatusCode               = HTTPStatusCode.OK,
-                                                     Server                       = HTTPServer.HTTPServerName,
-                                                     Date                         = Timestamp.Now,
-                                                     AccessControlAllowOrigin     = "*",
-                                                     AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
-                                                     AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
-                                                     ETag                         = "1",
-                                                     ContentType                  = HTTPContentType.Application.JSON_UTF8,
-                                                     Content                      = _ChargingStation.EVSEs.
-                                                                                        OrderBy(evse => evse.Id).
-                                                                                        ToJSON (skip,
-                                                                                                take,
-                                                                                                false,
-                                                                                                expandRoamingNetworks,
-                                                                                                expandOperators,
-                                                                                                expandBrands).
-                                                                                        ToUTF8Bytes(),
-                                                     X_ExpectedTotalNumberOfItems  = _ExpectedCount
-                                                 }.AsImmutable);
+                    //ToDo: Getting the expected total count might be very expensive!
+                    var expectedCount          = chargingStation.EVSEs.ULongCount();
 
-                                         });
+                    return Task.FromResult(
+                        new HTTPResponse.Builder(Request) {
+                            HTTPStatusCode                = HTTPStatusCode.OK,
+                            Server                        = HTTPServer.HTTPServerName,
+                            Date                          = Timestamp.Now,
+                            AccessControlAllowOrigin      = "*",
+                            AccessControlAllowMethods     = [ "GET", "COUNT", "OPTIONS" ],
+                            AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
+                            ETag                          = "1",
+                            ContentType                   = HTTPContentType.Application.JSON_UTF8,
+                            Content                       = chargingStation.EVSEs.
+                                                                OrderBy(evse => evse.Id).
+                                                                ToJSON (skip,
+                                                                        take,
+                                                                        false,
+                                                                        false,
+                                                                        expandRoamingNetworks,
+                                                                        expandOperators,
+                                                                        expandBrands).
+                                                                ToUTF8Bytes(),
+                            X_ExpectedTotalNumberOfItems  = expectedCount
+                        }.AsImmutable);
+
+                }
+            );
 
             #endregion
 
@@ -5557,60 +5550,63 @@ namespace cloud.charging.open.API
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingPools/.../EVSEs
             // ---------------------------------------------------------------------------------------------
             AddHandler(
-                                         HTTPMethod.GET,
-                                         URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/EVSEs",
-                                         HTTPContentType.Application.JSON_UTF8,
-                                         HTTPDelegate: Request => {
 
-                                             #region Check HTTP parameters
+                HTTPMethod.GET,
+                URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/EVSEs",
+                HTTPContentType.Application.JSON_UTF8,
+                HTTPDelegate: request => {
 
-                                                     if (!Request.ParseRoamingNetworkAndChargingPool(this,
-                                                                                                     out var _RoamingNetwork,
-                                                                                                     out var _ChargingPool,
-                                                                                                     out var _HTTPResponse))
-                                                     {
-                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
-                                                     }
+                    #region Check HTTP parameters
 
-                                                     #endregion
+                    if (!request.ParseRoamingNetworkAndChargingPool(this,
+                                                                    out var roamingNetwork,
+                                                                    out var chargingPool,
+                                                                    out var httpResponse))
+                    {
+                        return Task.FromResult(httpResponse.AsImmutable);
+                    }
 
-                                             var skip                    = Request.QueryString.GetUInt64("skip");
-                                             var take                    = Request.QueryString.GetUInt64("take");
-                                             var expand                  = Request.QueryString.GetStrings("expand");
-                                             var expandRoamingNetworks   = expand.ContainsIgnoreCase("networks")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
-                                             var expandOperators         = expand.ContainsIgnoreCase("operators") ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
-                                             var expandChargingPools     = expand.ContainsIgnoreCase("pools")     ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
-                                             var expandChargingStations  = expand.ContainsIgnoreCase("stations")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
-                                             var expandBrands            = expand.ContainsIgnoreCase("brands")    ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                    #endregion
 
-                                             //ToDo: Getting the expected total count might be very expensive!
-                                             var _ExpectedCount   = _ChargingPool.EVSEs.ULongCount();
+                    var skip                    = request.QueryString.GetUInt64("skip");
+                    var take                    = request.QueryString.GetUInt64("take");
+                    var expand                  = request.QueryString.GetStrings("expand");
+                    var expandRoamingNetworks   = expand.ContainsIgnoreCase("networks")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                    var expandOperators         = expand.ContainsIgnoreCase("operators") ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                    var expandChargingPools     = expand.ContainsIgnoreCase("pools")     ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                    var expandChargingStations  = expand.ContainsIgnoreCase("stations")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                    var expandBrands            = expand.ContainsIgnoreCase("brands")    ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
 
-                                             return Task.FromResult(
-                                                 new HTTPResponse.Builder(Request) {
-                                                     HTTPStatusCode               = HTTPStatusCode.OK,
-                                                     Server                       = HTTPServer.HTTPServerName,
-                                                     Date                         = Timestamp.Now,
-                                                     AccessControlAllowOrigin     = "*",
-                                                     AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
-                                                     AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
-                                                     ETag                         = "1",
-                                                     ContentType                  = HTTPContentType.Application.JSON_UTF8,
-                                                     Content                      = _ChargingPool.EVSEs.
-                                                                                        OrderBy(evse => evse.Id).
-                                                                                        ToJSON (skip,
-                                                                                                take,
-                                                                                                false,
-                                                                                                expandRoamingNetworks,
-                                                                                                expandOperators,
-                                                                                                expandChargingPools,
-                                                                                                expandChargingStations,
-                                                                                                expandBrands).
-                                                                                        ToUTF8Bytes(),
-                                                     X_ExpectedTotalNumberOfItems  = _ExpectedCount
-                                                 }.AsImmutable);
+                    //ToDo: Getting the expected total count might be very expensive!
+                    var expectedCount           = chargingPool.EVSEs.ULongCount();
 
-                                         });
+                    return Task.FromResult(
+                        new HTTPResponse.Builder(request) {
+                            HTTPStatusCode                = HTTPStatusCode.OK,
+                            Server                        = HTTPServer.HTTPServerName,
+                            Date                          = Timestamp.Now,
+                            AccessControlAllowOrigin      = "*",
+                            AccessControlAllowMethods     = [ "GET", "COUNT", "OPTIONS" ],
+                            AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
+                            ETag                          = "1",
+                            ContentType                   = HTTPContentType.Application.JSON_UTF8,
+                            Content                       = chargingPool.EVSEs.
+                                                                OrderBy(evse => evse.Id).
+                                                                ToJSON (skip,
+                                                                        take,
+                                                                        false,
+                                                                        false,
+                                                                        expandRoamingNetworks,
+                                                                        expandOperators,
+                                                                        expandChargingPools,
+                                                                        expandChargingStations,
+                                                                        expandBrands).
+                                                                ToUTF8Bytes(),
+                            X_ExpectedTotalNumberOfItems  = expectedCount
+                        }.AsImmutable);
+
+                }
+            );
 
             #endregion
 
@@ -5620,48 +5616,49 @@ namespace cloud.charging.open.API
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingPools/{ChargingPoolId}/EVSEs->AdminStatus
             // ------------------------------------------------------------------------------------------------------------------------
             AddHandler(
-                                         HTTPMethod.GET,
-                                         URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/EVSEs->AdminStatus",
-                                         HTTPContentType.Application.JSON_UTF8,
-                                         HTTPDelegate: Request => {
 
-                                             #region Check HTTP parameters
+                HTTPMethod.GET,
+                URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/EVSEs->AdminStatus",
+                HTTPContentType.Application.JSON_UTF8,
+                HTTPDelegate: request => {
 
-                                                     if (!Request.ParseRoamingNetworkAndChargingPool(this,
-                                                                                                     out var _RoamingNetwork,
-                                                                                                     out var _ChargingPool,
-                                                                                                     out var _HTTPResponse))
-                                                     {
-                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
-                                                     }
+                    #region Check HTTP parameters
 
-                                                     #endregion
+                    if (!request.ParseRoamingNetworkAndChargingPool(this,
+                                                                    out var roamingNetwork,
+                                                                    out var chargingPool,
+                                                                    out var httpResponse))
+                    {
+                        return Task.FromResult(httpResponse.AsImmutable);
+                    }
 
-                                             var skip            = Request.QueryString.GetUInt64("skip");
-                                             var take            = Request.QueryString.GetUInt64("take");
-                                             var historysize     = Request.QueryString.GetUInt64("historysize", 1);
+                    #endregion
 
-                                             //ToDo: Getting the expected total count might be very expensive!
-                                             var _ExpectedCount  = _ChargingPool.EVSEAdminStatus().ULongCount();
+                    var skip           = request.QueryString.GetUInt64("skip");
+                    var take           = request.QueryString.GetUInt64("take");
+                    var historysize    = request.QueryString.GetUInt64("historysize", 1);
 
-                                             return Task.FromResult(
-                                                 new HTTPResponse.Builder(Request) {
-                                                     HTTPStatusCode                = HTTPStatusCode.OK,
-                                                     Server                        = HTTPServer.HTTPServerName,
-                                                     Date                          = Timestamp.Now,
-                                                     AccessControlAllowOrigin      = "*",
-                                                     AccessControlAllowMethods     = [ "GET" ],
-                                                     AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
-                                                     ETag                          = "1",
-                                                     ContentType                   = HTTPContentType.Application.JSON_UTF8,
-                                                     Content                       = _ChargingPool.EVSEAdminStatus().
-                                                                                         ToJSON(skip,
-                                                                                                take).
-                                                                                         ToUTF8Bytes(),
-                                                     X_ExpectedTotalNumberOfItems  = _ExpectedCount
-                                                 }.AsImmutable);
+                    //ToDo: Getting the expected total count might be very expensive!
+                    var expectedCount  = chargingPool.EVSEAdminStatus().ULongCount();
 
-                                         });
+                    return Task.FromResult(
+                        new HTTPResponse.Builder(request) {
+                            HTTPStatusCode                = HTTPStatusCode.OK,
+                            Server                        = HTTPServer.HTTPServerName,
+                            Date                          = Timestamp.Now,
+                            AccessControlAllowOrigin      = "*",
+                            AccessControlAllowMethods     = [ "GET" ],
+                            AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
+                            ETag                          = "1",
+                            ContentType                   = HTTPContentType.Application.JSON_UTF8,
+                            Content                       = chargingPool.EVSEAdminStatus().
+                                                                ToJSON(skip, take).
+                                                                ToUTF8Bytes(),
+                            X_ExpectedTotalNumberOfItems  = expectedCount
+                        }.AsImmutable);
+
+                }
+            );
 
             #endregion
 
@@ -5671,48 +5668,49 @@ namespace cloud.charging.open.API
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingPools/{ChargingPoolId}/EVSEs->Status
             // -------------------------------------------------------------------------------------------------------------------
             AddHandler(
-                                         HTTPMethod.GET,
-                                         URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/EVSEs->Status",
-                                         HTTPContentType.Application.JSON_UTF8,
-                                         HTTPDelegate: Request => {
 
-                                             #region Check HTTP parameters
+                HTTPMethod.GET,
+                URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingPools/{ChargingPoolId}/EVSEs->Status",
+                HTTPContentType.Application.JSON_UTF8,
+                HTTPDelegate: request => {
 
-                                             if (!Request.ParseRoamingNetworkAndChargingPool(this,
-                                                                                             out var _RoamingNetwork,
-                                                                                             out var _ChargingPool,
-                                                                                             out var _HTTPResponse))
-                                             {
-                                                 return Task.FromResult(_HTTPResponse.AsImmutable);
-                                             }
+                    #region Check HTTP parameters
 
-                                             #endregion
+                    if (!request.ParseRoamingNetworkAndChargingPool(this,
+                                                                    out var roamingNetwork,
+                                                                    out var chargingPool,
+                                                                    out var httpResponse))
+                    {
+                        return Task.FromResult(httpResponse.AsImmutable);
+                    }
 
-                                             var skip            = Request.QueryString.GetUInt64("skip");
-                                             var take            = Request.QueryString.GetUInt64("take");
-                                             var historysize     = Request.QueryString.GetUInt64("historysize", 1);
+                    #endregion
 
-                                             //ToDo: Getting the expected total count might be very expensive!
-                                             var _ExpectedCount  = _ChargingPool.EVSEStatus().ULongCount();
+                    var skip           = request.QueryString.GetUInt64("skip");
+                    var take           = request.QueryString.GetUInt64("take");
+                    var historysize    = request.QueryString.GetUInt64("historysize", 1);
 
-                                             return Task.FromResult(
-                                                 new HTTPResponse.Builder(Request) {
-                                                     HTTPStatusCode                = HTTPStatusCode.OK,
-                                                     Server                        = HTTPServer.HTTPServerName,
-                                                     Date                          = Timestamp.Now,
-                                                     AccessControlAllowOrigin      = "*",
-                                                     AccessControlAllowMethods     = [ "GET" ],
-                                                     AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
-                                                     ETag                          = "1",
-                                                     ContentType                   = HTTPContentType.Application.JSON_UTF8,
-                                                     Content                       = _ChargingPool.EVSEStatus().
-                                                                                         ToJSON(skip,
-                                                                                                take).
-                                                                                         ToUTF8Bytes(),
-                                                     X_ExpectedTotalNumberOfItems  = _ExpectedCount
-                                                 }.AsImmutable);
+                    //ToDo: Getting the expected total count might be very expensive!
+                    var expectedCount  = chargingPool.EVSEStatus().ULongCount();
 
-                                         });
+                    return Task.FromResult(
+                        new HTTPResponse.Builder(request) {
+                            HTTPStatusCode                = HTTPStatusCode.OK,
+                            Server                        = HTTPServer.HTTPServerName,
+                            Date                          = Timestamp.Now,
+                            AccessControlAllowOrigin      = "*",
+                            AccessControlAllowMethods     = [ "GET" ],
+                            AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
+                            ETag                          = "1",
+                            ContentType                   = HTTPContentType.Application.JSON_UTF8,
+                            Content                       = chargingPool.EVSEStatus().
+                                                                ToJSON(skip, take).
+                                                                ToUTF8Bytes(),
+                            X_ExpectedTotalNumberOfItems  = expectedCount
+                        }.AsImmutable);
+
+                }
+            );
 
             #endregion
 
@@ -6162,35 +6160,39 @@ namespace cloud.charging.open.API
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingStations/...
             // ---------------------------------------------------------------------------------------------
             AddHandler(
-                                         HTTPMethod.GET,
-                                         URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations/{ChargingStationId}",
-                                         HTTPContentType.Application.JSON_UTF8,
-                                         HTTPDelegate: Request => {
 
-                                             #region Check HTTP parameters
+                HTTPMethod.GET,
+                URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations/{ChargingStationId}",
+                HTTPContentType.Application.JSON_UTF8,
+                HTTPDelegate: request => {
 
-                                                     if (!Request.ParseRoamingNetworkAndChargingStation(this,
-                                                                                                        out var _RoamingNetwork,
-                                                                                                        out var _ChargingStation,
-                                                                                                        out var _HTTPResponse))
-                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
+                    #region Check HTTP parameters
 
-                                                     #endregion
+                    if (!request.ParseRoamingNetworkAndChargingStation(this,
+                                                                       out var roamingNetwork,
+                                                                       out var chargingStation,
+                                                                       out var httpResponse))
+                    {
+                        return Task.FromResult(httpResponse.AsImmutable);
+                    }
 
-                                             return Task.FromResult(
-                                                 new HTTPResponse.Builder(Request) {
-                                                     HTTPStatusCode             = HTTPStatusCode.OK,
-                                                     Server                     = HTTPServer.HTTPServerName,
-                                                     Date                       = Timestamp.Now,
-                                                     AccessControlAllowOrigin   = "*",
-                                                     AccessControlAllowMethods  = new[] { "GET", "SET" },
-                                                     AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
-                                                     ETag                       = "1",
-                                                     ContentType                = HTTPContentType.Application.JSON_UTF8,
-                                                     Content                    = _ChargingStation.ToJSON().ToUTF8Bytes()
-                                                 }.AsImmutable);
+                    #endregion
 
-                                         });
+                    return Task.FromResult(
+                        new HTTPResponse.Builder(request) {
+                            HTTPStatusCode             = HTTPStatusCode.OK,
+                            Server                     = HTTPServer.HTTPServerName,
+                            Date                       = Timestamp.Now,
+                            AccessControlAllowOrigin   = "*",
+                            AccessControlAllowMethods  = [ "GET", "SET" ],
+                            AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
+                            ETag                       = "1",
+                            ContentType                = HTTPContentType.Application.JSON_UTF8,
+                            Content                    = chargingStation.ToJSON().ToUTF8Bytes()
+                        }.AsImmutable);
+
+                }
+            );
 
             #endregion
 
@@ -6204,61 +6206,64 @@ namespace cloud.charging.open.API
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingStations/.../EVSEs
             // ---------------------------------------------------------------------------------------------
             AddHandler(
-                                         HTTPMethod.GET,
-                                         URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations/{ChargingStationId}/EVSEs",
-                                         HTTPContentType.Application.JSON_UTF8,
-                                         HTTPDelegate: Request => {
 
-                                             #region Check HTTP parameters
+                HTTPMethod.GET,
+                URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations/{ChargingStationId}/EVSEs",
+                HTTPContentType.Application.JSON_UTF8,
+                HTTPDelegate: request => {
 
-                                                     if (!Request.ParseRoamingNetworkAndChargingStation(this,
-                                                                                                        out var _RoamingNetwork,
-                                                                                                        out var _ChargingStation,
-                                                                                                        out var _HTTPResponse))
-                                                     {
-                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
-                                                     }
+                    #region Check HTTP parameters
 
-                                                     #endregion
+                    if (!request.ParseRoamingNetworkAndChargingStation(this,
+                                                                       out var roamingNetwork,
+                                                                       out var chargingStation,
+                                                                       out var httpResponse))
+                    {
+                        return Task.FromResult(httpResponse.AsImmutable);
+                    }
 
-                                             var skip                    = Request.QueryString.GetUInt64("skip");
-                                             var take                    = Request.QueryString.GetUInt64("take");
-                                             var expand                  = Request.QueryString.GetStrings("expand");
-                                             var expandRoamingNetworks   = expand.ContainsIgnoreCase("networks")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
-                                             var expandOperators         = expand.ContainsIgnoreCase("operators") ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
-                                             var expandChargingPools     = expand.ContainsIgnoreCase("pools")     ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
-                                             var expandChargingStations  = expand.ContainsIgnoreCase("stations")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
-                                             var expandBrands            = expand.ContainsIgnoreCase("brands")    ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                    #endregion
+
+                    var skip                    = request.QueryString.GetUInt64("skip");
+                    var take                    = request.QueryString.GetUInt64("take");
+                    var expand                  = request.QueryString.GetStrings("expand");
+                    var expandRoamingNetworks   = expand.ContainsIgnoreCase("networks")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                    var expandOperators         = expand.ContainsIgnoreCase("operators") ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                    var expandChargingPools     = expand.ContainsIgnoreCase("pools")     ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                    var expandChargingStations  = expand.ContainsIgnoreCase("stations")  ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
+                    var expandBrands            = expand.ContainsIgnoreCase("brands")    ? InfoStatus.Expanded : InfoStatus.ShowIdOnly;
 
 
-                                             //ToDo: Getting the expected total count might be very expensive!
-                                             var _ExpectedCount   = _ChargingStation.EVSEs.ULongCount();
+                    //ToDo: Getting the expected total count might be very expensive!
+                    var expectedCount           = chargingStation.EVSEs.ULongCount();
 
-                                             return Task.FromResult(
-                                                 new HTTPResponse.Builder(Request) {
-                                                     HTTPStatusCode               = HTTPStatusCode.OK,
-                                                     Server                       = HTTPServer.HTTPServerName,
-                                                     Date                         = Timestamp.Now,
-                                                     AccessControlAllowOrigin     = "*",
-                                                     AccessControlAllowMethods    = [ "GET", "COUNT", "OPTIONS" ],
-                                                     AccessControlAllowHeaders    = [ "Content-Type", "Accept", "Authorization" ],
-                                                     ETag                         = "1",
-                                                     ContentType                  = HTTPContentType.Application.JSON_UTF8,
-                                                     Content                      = _ChargingStation.EVSEs.
-                                                                                        OrderBy(evse => evse.Id).
-                                                                                        ToJSON (skip,
-                                                                                                take,
-                                                                                                false,
-                                                                                                expandRoamingNetworks,
-                                                                                                expandOperators,
-                                                                                                expandChargingPools,
-                                                                                                expandChargingStations,
-                                                                                                expandBrands).
-                                                                                        ToUTF8Bytes(),
-                                                     X_ExpectedTotalNumberOfItems  = _ExpectedCount
-                                                 }.AsImmutable);
+                    return Task.FromResult(
+                        new HTTPResponse.Builder(request) {
+                            HTTPStatusCode                = HTTPStatusCode.OK,
+                            Server                        = HTTPServer.HTTPServerName,
+                            Date                          = Timestamp.Now,
+                            AccessControlAllowOrigin      = "*",
+                            AccessControlAllowMethods     = [ "GET", "COUNT", "OPTIONS" ],
+                            AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
+                            ETag                          = "1",
+                            ContentType                   = HTTPContentType.Application.JSON_UTF8,
+                            Content                       = chargingStation.EVSEs.
+                                                                OrderBy(evse => evse.Id).
+                                                                ToJSON (skip,
+                                                                        take,
+                                                                        false,
+                                                                        false, // IncludeRemovedEVSEs
+                                                                        expandRoamingNetworks,
+                                                                        expandOperators,
+                                                                        expandChargingPools,
+                                                                        expandChargingStations,
+                                                                        expandBrands).
+                                                                ToUTF8Bytes(),
+                            X_ExpectedTotalNumberOfItems  = expectedCount
+                        }.AsImmutable);
 
-                                         });
+                }
+            );
 
             #endregion
 
@@ -6268,48 +6273,49 @@ namespace cloud.charging.open.API
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingStations/{ChargingStationId}/EVSEs->AdminStatus
             // ------------------------------------------------------------------------------------------------------------------------------
             AddHandler(
-                                         HTTPMethod.GET,
-                                         URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations/{ChargingStationId}/EVSEs->AdminStatus",
-                                         HTTPContentType.Application.JSON_UTF8,
-                                         HTTPDelegate: Request => {
 
-                                             #region Check HTTP parameters
+                HTTPMethod.GET,
+                URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations/{ChargingStationId}/EVSEs->AdminStatus",
+                HTTPContentType.Application.JSON_UTF8,
+                HTTPDelegate: request => {
 
-                                                     if (!Request.ParseRoamingNetworkAndChargingStation(this,
-                                                                                                        out var _RoamingNetwork,
-                                                                                                        out var _ChargingStation,
-                                                                                                        out var _HTTPResponse))
-                                                     {
-                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
-                                                     }
+                    #region Check HTTP parameters
 
-                                                     #endregion
+                    if (!request.ParseRoamingNetworkAndChargingStation(this,
+                                                                       out var roamingNetwork,
+                                                                       out var chargingStation,
+                                                                       out var httpResponse))
+                    {
+                        return Task.FromResult(httpResponse.AsImmutable);
+                    }
 
-                                             var skip            = Request.QueryString.GetUInt64("skip");
-                                             var take            = Request.QueryString.GetUInt64("take");
-                                             var historysize     = Request.QueryString.GetUInt64("historysize", 1);
+                    #endregion
 
-                                             //ToDo: Getting the expected total count might be very expensive!
-                                             var _ExpectedCount  = _ChargingStation.EVSEAdminStatus().ULongCount();
+                    var skip           = request.QueryString.GetUInt64("skip");
+                    var take           = request.QueryString.GetUInt64("take");
+                    var historysize    = request.QueryString.GetUInt64("historysize", 1);
 
-                                             return Task.FromResult(
-                                                 new HTTPResponse.Builder(Request) {
-                                                     HTTPStatusCode                = HTTPStatusCode.OK,
-                                                     Server                        = HTTPServer.HTTPServerName,
-                                                     Date                          = Timestamp.Now,
-                                                     AccessControlAllowOrigin      = "*",
-                                                     AccessControlAllowMethods     = [ "GET" ],
-                                                     AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
-                                                     ETag                          = "1",
-                                                     ContentType                   = HTTPContentType.Application.JSON_UTF8,
-                                                     Content                       = _ChargingStation.EVSEAdminStatus().
-                                                                                         ToJSON(skip,
-                                                                                                take).
-                                                                                         ToUTF8Bytes(),
-                                                     X_ExpectedTotalNumberOfItems  = _ExpectedCount
-                                                 }.AsImmutable);
+                    //ToDo: Getting the expected total count might be very expensive!
+                    var expectedCount  = chargingStation.EVSEAdminStatus().ULongCount();
 
-                                         });
+                    return Task.FromResult(
+                        new HTTPResponse.Builder(request) {
+                            HTTPStatusCode                = HTTPStatusCode.OK,
+                            Server                        = HTTPServer.HTTPServerName,
+                            Date                          = Timestamp.Now,
+                            AccessControlAllowOrigin      = "*",
+                            AccessControlAllowMethods     = [ "GET" ],
+                            AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
+                            ETag                          = "1",
+                            ContentType                   = HTTPContentType.Application.JSON_UTF8,
+                            Content                       = chargingStation.EVSEAdminStatus().
+                                                                ToJSON(skip, take).
+                                                                ToUTF8Bytes(),
+                            X_ExpectedTotalNumberOfItems  = expectedCount
+                        }.AsImmutable);
+
+                }
+            );
 
             #endregion
 
@@ -6319,48 +6325,49 @@ namespace cloud.charging.open.API
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingStations/{ChargingStationId}/EVSEs->Status
             // -------------------------------------------------------------------------------------------------------------------------
             AddHandler(
-                                         HTTPMethod.GET,
-                                         URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations/{ChargingStationId}/EVSEs->Status",
-                                         HTTPContentType.Application.JSON_UTF8,
-                                         HTTPDelegate: Request => {
 
-                                             #region Check HTTP parameters
+                HTTPMethod.GET,
+                URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingStations/{ChargingStationId}/EVSEs->Status",
+                HTTPContentType.Application.JSON_UTF8,
+                HTTPDelegate: request => {
 
-                                                     if (!Request.ParseRoamingNetworkAndChargingStation(this,
-                                                                                                        out var _RoamingNetwork,
-                                                                                                        out var _ChargingStation,
-                                                                                                        out var _HTTPResponse))
-                                                     {
-                                                         return Task.FromResult(_HTTPResponse.AsImmutable);
-                                                     }
+                    #region Check HTTP parameters
 
-                                                     #endregion
+                    if (!request.ParseRoamingNetworkAndChargingStation(this,
+                                                                       out var roamingNetwork,
+                                                                       out var chargingStation,
+                                                                       out var httpResponse))
+                    {
+                        return Task.FromResult(httpResponse.AsImmutable);
+                    }
 
-                                             var skip            = Request.QueryString.GetUInt64("skip");
-                                             var take            = Request.QueryString.GetUInt64("take");
-                                             var historysize     = Request.QueryString.GetUInt64("historysize", 1);
+                    #endregion
 
-                                             //ToDo: Getting the expected total count might be very expensive!
-                                             var _ExpectedCount  = _ChargingStation.EVSEStatus().ULongCount();
+                    var skip           = request.QueryString.GetUInt64("skip");
+                    var take           = request.QueryString.GetUInt64("take");
+                    var historysize    = request.QueryString.GetUInt64("historysize", 1);
 
-                                             return Task.FromResult(
-                                                 new HTTPResponse.Builder(Request) {
-                                                     HTTPStatusCode                = HTTPStatusCode.OK,
-                                                     Server                        = HTTPServer.HTTPServerName,
-                                                     Date                          = Timestamp.Now,
-                                                     AccessControlAllowOrigin      = "*",
-                                                     AccessControlAllowMethods     = [ "GET" ],
-                                                     AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
-                                                     ETag                          = "1",
-                                                     ContentType                   = HTTPContentType.Application.JSON_UTF8,
-                                                     Content                       = _ChargingStation.EVSEStatus().
-                                                                                         ToJSON(skip,
-                                                                                                take).
-                                                                                         ToUTF8Bytes(),
-                                                     X_ExpectedTotalNumberOfItems  = _ExpectedCount
-                                                 }.AsImmutable);
+                    //ToDo: Getting the expected total count might be very expensive!
+                    var expectedCount  = chargingStation.EVSEStatus().ULongCount();
 
-                                         });
+                    return Task.FromResult(
+                        new HTTPResponse.Builder(request) {
+                            HTTPStatusCode                = HTTPStatusCode.OK,
+                            Server                        = HTTPServer.HTTPServerName,
+                            Date                          = Timestamp.Now,
+                            AccessControlAllowOrigin      = "*",
+                            AccessControlAllowMethods     = [ "GET" ],
+                            AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
+                            ETag                          = "1",
+                            ContentType                   = HTTPContentType.Application.JSON_UTF8,
+                            Content                       = chargingStation.EVSEStatus().
+                                                                ToJSON(skip, take).
+                                                                ToUTF8Bytes(),
+                            X_ExpectedTotalNumberOfItems  = expectedCount
+                        }.AsImmutable);
+
+                }
+            );
 
             #endregion
 
