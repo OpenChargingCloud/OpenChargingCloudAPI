@@ -1,10 +1,6 @@
 ﻿/*
-<<<<<<< HEAD
- * Copyright (c) 2014-2025 GraphDefined GmbH <achim.friedland@graphdefined.com>
-=======
- * Copyright (c) 2014-2025 GraphDefined GmbH <achim.friedland@graphdefined.com>
->>>>>>> 29b17e9300782939c23d9211c6514cbb3282a990
- * This file is part of WWCP Net <https://github.com/GraphDefined/WWCP_Net>
+ * Copyright (c) 2015-2025 GraphDefined GmbH <achim.friedland@graphdefined.com>
+ * This file is part of Open Charging Cloud API <http://www.github.com/OpenChargingCloud/OpenChargingCloudAPI>
  *
  * Licensed under the Affero GPL license, Version 3.0 (the "License");
  * you may not use this file except in compliance with the License.

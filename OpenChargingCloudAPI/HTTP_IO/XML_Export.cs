@@ -215,7 +215,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.IO.XML
 
 
         public static void RegisterXML(this OpenChargingCloudAPI  OpenChargingCloudAPI,
-                                       RoamingNetworks            RoamingNetworks)
+                                       WWCPCore                   RoamingNetworks)
         {
         }
 

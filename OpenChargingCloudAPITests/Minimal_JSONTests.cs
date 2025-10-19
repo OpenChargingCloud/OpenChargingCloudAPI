@@ -43,9 +43,9 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
         #region Data
 
-        private          HTTPServer<RoamingNetworks, RoamingNetwork>  HTTPAPI;
-        private          OpenChargingCloudAPI                         OpenChargingCloudAPI;
-        private readonly TimeSpan                                     Timeout  = TimeSpan.FromSeconds(20);
+        private          HTTPTestServer        HTTPAPI;
+        private          OpenChargingCloudAPI  OpenChargingCloudAPI;
+        private readonly TimeSpan              Timeout  = TimeSpan.FromSeconds(20);
 
         #endregion
 
@@ -287,17 +287,17 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
         public WWCP_Net_JSON_IO_Tests()
         {
 
-            HTTPAPI = new HTTPServer<RoamingNetworks, RoamingNetwork>(
-                          TCPPort:            IPPort.Parse(8000),
-                          DefaultServerName: "GraphDefined WWCP Unit Tests",
+            HTTPAPI = new HTTPTestServer(
+                          TCPPort:          IPPort.Parse(8000),
+                          HTTPServerName:  "GraphDefined WWCP Unit Tests",
                           DNSClient:          new DNSClient(SearchForIPv6DNSServers: false)
                       );
 
-            HTTPAPI.AttachTCPPorts(IPPort.Parse(8001));
+            //HTTPAPI.AttachTCPPorts(IPPort.Parse(8001));
 
             //WWCPAPI = OpenChargingCloudAPI.AttachToHTTPAPI(HTTPAPI);
 
-            HTTPAPI.Start();
+            HTTPAPI.Start().GetAwaiter().GetResult();
 
             //var RN_1    = WWCPAPI.CreateNewRoamingNetwork(RoamingNetworkId:  RoamingNetwork_Id.Parse("TEST_RN1"),
             //                                              Description:       I18NString.Create(Languages.de,  "Test Roaming Netz 1").
@@ -353,7 +353,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
         [TearDown]
         public void Cleanup()
         {
-            HTTPAPI.Shutdown();
+            HTTPAPI.Stop().GetAwaiter().GetResult();
         }
 
         #endregion
