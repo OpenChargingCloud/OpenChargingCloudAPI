@@ -5759,7 +5759,7 @@ namespace cloud.charging.open.API
 
                     var eventTrackingId = EventTracking_Id.New;
 
-                    ChargingStationAdminStatusTypes NewChargingStationAdminStatus;
+                    ChargingStationAdminStatusType NewChargingStationAdminStatus;
                     ChargingStation_Id ChargingStationId;
 
                     #endregion
@@ -5839,7 +5839,7 @@ namespace cloud.charging.open.API
 
                         await roamingNetwork.SetChargingStationAdminStatus(
                                   ChargingStationId,
-                                  [ new Timestamped<ChargingStationAdminStatusTypes>(NewChargingStationAdminStatus) ]
+                                  [ new Timestamped<ChargingStationAdminStatusType>(NewChargingStationAdminStatus) ]
                               );
 
 
