@@ -40,6 +40,7 @@ using org.GraphDefined.Vanaheimr.Hermod.Sockets.TCP;
 using cloud.charging.open.protocols.WWCP;
 using cloud.charging.open.protocols.WWCP.Net.IO.JSON;
 using cloud.charging.open.protocols.WWCP.Networking;
+using Microsoft.Win32;
 
 #endregion
 
@@ -2198,6 +2199,7 @@ namespace cloud.charging.open.API
         public readonly static HTTPMethod REMOTESTART  = HTTPMethod.TryParse("REMOTESTART", IsSafe: false, IsIdempotent: true)!;
         public readonly static HTTPMethod REMOTESTOP   = HTTPMethod.TryParse("REMOTESTOP",  IsSafe: false, IsIdempotent: true)!;
         public readonly static HTTPMethod SENDCDR      = HTTPMethod.TryParse("SENDCDR",     IsSafe: false, IsIdempotent: true)!;
+        public readonly static HTTPMethod RESENDCDR    = HTTPMethod.TryParse("RESENDCDR",   IsSafe: false, IsIdempotent: true)!;
 
         #endregion
 
@@ -11672,6 +11674,82 @@ namespace cloud.charging.open.API
                 });
 
             #endregion
+
+
+            #region RESENDCDR   ~/RNs/{RoamingNetworkId}/ChargingSessions/{ChargingSessionId}
+
+            // ------------------------------------------------------------------------------------------
+            // curl -v -X RESENDCDR http://127.0.0.1:5500/RNs/Test/ChargingSessions/{ChargingSessionId}
+            // ------------------------------------------------------------------------------------------
+            AddHandler(
+
+                RESENDCDR,
+                URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingSessions/{ChargingSessionId}",
+                HTTPContentType.Application.JSON_UTF8,
+                async request => {
+
+                    #region Get HTTP user and its organizations
+
+                    // Will return HTTP 401 Unauthorized, when the HTTP user is unknown!
+                    if (!TryGetHTTPUser(request,
+                                        out var httpUser,
+                                        out var httpOrganizations,
+                                        out var httpResponseBuilder,
+                                        Recursive: true))
+                    {
+                        return httpResponseBuilder;
+                    }
+
+                    #endregion
+
+                    #region Get roaming network and charging session
+
+                    if (!request.ParseRoamingNetworkAndChargingSession(this,
+                                                                       out var roamingNetworkId,
+                                                                       out var roamingNetwork,
+                                                                       out var chargingSessionId,
+                                                                       out var chargingSession,
+                                                                       out httpResponseBuilder))
+                    {
+                        return httpResponseBuilder;
+                    }
+
+                    #endregion
+
+                    //ToDo: Filter sessions by HTTPUser organization!
+
+
+                    var lastCDR = chargingSession.ReceivedCDRInfos.LastOrDefault()?.ChargeDetailRecord;
+
+                    if (lastCDR is not null)
+                    {
+
+                        var sendCDRResult = await roamingNetwork.SendChargeDetailRecord(lastCDR);
+
+                        return new HTTPResponse.Builder(request) {
+                                   HTTPStatusCode  = HTTPStatusCode.OK,
+                                   ContentType     = HTTPContentType.Text.PLAIN,
+                                   Content         = sendCDRResult.ToJSON().ToUTF8Bytes(),
+                                   Connection      = ConnectionType.Close
+                               }.AsImmutable;
+
+                    }
+
+
+                    return new HTTPResponse.Builder(request) {
+                               HTTPStatusCode                = HTTPStatusCode.NotFound,
+                               Server                        = HTTPServer.HTTPServerName,
+                               Date                          = Timestamp.Now,
+                               AccessControlAllowOrigin      = "*",
+                               AccessControlAllowMethods     = [ "GET", "COUNT", "OPTIONS", "RESENDCDR" ],
+                               AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
+                               Connection                    = ConnectionType.Close
+                           };
+
+                });
+
+            #endregion
+
 
 
             #region GET         ~/RNs/{RoamingNetworkId}/ChargingSessions/MissingCDRResponses
