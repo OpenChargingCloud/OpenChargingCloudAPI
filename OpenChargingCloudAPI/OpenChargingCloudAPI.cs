@@ -11499,10 +11499,11 @@ namespace cloud.charging.open.API
             // curl -v -H "Accept: application/json" http://127.0.0.1:5500/RNs/Test/ChargingSessions/{ChargingSessionId}
             // -----------------------------------------------------------------------------------------------------------
             AddHandler(
+
                 HTTPMethod.GET,
                 URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingSessions/{ChargingSessionId}",
                 HTTPContentType.Application.JSON_UTF8,
-                HTTPDelegate: request => {
+                request => {
 
                     #region Get HTTP user and its organizations
 
@@ -11562,10 +11563,11 @@ namespace cloud.charging.open.API
             // curl -v -X SET -H "Content-Type: application/json" --data @session.json http://127.0.0.1:3004/RNs/Prod/ChargingSessions/{ChargingSessionId}/{command}
             // -------------------------------------------------------------------------------------------------------------------------------------------------------
             AddHandler(
+
                 HTTPMethod.SET,
                 URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingSessions/{ChargingSessionId}/{command}",
                 HTTPContentType.Application.JSON_UTF8,
-                HTTPDelegate: async request => {
+                async request => {
 
                     #region Get HTTP user and its organizations
 
@@ -11630,7 +11632,127 @@ namespace cloud.charging.open.API
                     #endregion
 
 
-                    var result = await roamingNetwork.RegisterExternalChargingSession(
+                    var result = await roamingNetwork.AddExternalChargingSession(
+                                           Timestamp.Now,
+                                           this,
+                                           command,
+                                           chargingSession
+                                       );
+
+
+                    return result
+
+                               ? new HTTPResponse.Builder(request) {
+                                     HTTPStatusCode             = HTTPStatusCode.OK,
+                                     Server                     = HTTPServer.HTTPServerName,
+                                     Date                       = Timestamp.Now,
+                                     AccessControlAllowOrigin   = "*",
+                                     AccessControlAllowMethods  = [ "SET" ],
+                                     AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
+                                     ContentType                = HTTPContentType.Application.JSON_UTF8,
+                                     Content                    = chargingSession.
+                                                                     ToJSON(Embedded:                         false,
+                                                                            CustomChargingSessionSerializer:  CustomChargingSessionSerializer).
+                                                                     ToUTF8Bytes(),
+                                     Connection                 = ConnectionType.KeepAlive
+                                 }
+
+                               : new HTTPResponse.Builder(request) {
+                                     HTTPStatusCode             = HTTPStatusCode.BadRequest,
+                                     Server                     = HTTPServer.HTTPServerName,
+                                     Date                       = Timestamp.Now,
+                                     AccessControlAllowOrigin   = "*",
+                                     AccessControlAllowMethods  = [ "SET" ],
+                                     AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
+                                     //ContentType                = HTTPContentType.Application.JSON_UTF8,
+                                     //Content                    = chargingSession.
+                                     //                                 ToJSON(Embedded:                         false,
+                                     //                                        CustomChargingSessionSerializer:  CustomChargingSessionSerializer).
+                                     //                                 ToUTF8Bytes(),
+                                     ContentLength              = 0,
+                                     Connection                 = ConnectionType.KeepAlive
+                                 };
+
+                });
+
+            #endregion
+
+            #region UPDATE      ~/RNs/{RoamingNetworkId}/ChargingSessions/{ChargingSessionId}/{command}
+
+            // ----------------------------------------------------------------------------------------------------------------------------------------------------------
+            // curl -v -X UPDATE -H "Content-Type: application/json" --data @session.json http://127.0.0.1:3004/RNs/Prod/ChargingSessions/{ChargingSessionId}/{command}
+            // ----------------------------------------------------------------------------------------------------------------------------------------------------------
+            AddHandler(
+
+                HTTPMethod.UPDATE,
+                URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingSessions/{ChargingSessionId}/{command}",
+                HTTPContentType.Application.JSON_UTF8,
+                async request => {
+
+                    #region Get HTTP user and its organizations
+
+                    // Will return HTTP 401 Unauthorized, when the HTTP user is unknown!
+                    if (!TryGetHTTPUser(request,
+                                        out var httpUser,
+                                        out var httpOrganizations,
+                                        out var httpResponseBuilder,
+                                        Recursive: true))
+                    {
+                        return httpResponseBuilder.AsImmutable;
+                    }
+
+                    #endregion
+
+                    #region Get roaming network and charging session identification
+
+                    if (!request.ParseRoamingNetworkAndChargingSessionId(this,
+                                                                         out var roamingNetworkId,
+                                                                         out var roamingNetwork,
+                                                                         out var chargingSessionId,
+                                                                         out httpResponseBuilder))
+                    {
+                        return httpResponseBuilder.AsImmutable;
+                    }
+
+                    #endregion
+
+                    #region Parse command
+
+                    if (!request.TryGetURLParameter("command", out var command))
+                        return new HTTPResponse.Builder(request) {
+                                   HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                                   Server          = HTTPServer.HTTPServerName,
+                                   Date            = Timestamp.Now,
+                                   ContentType     = HTTPContentType.Application.JSON_UTF8,
+                                   Content         = @"{ ""description"": ""Invalid command!"" }".ToUTF8Bytes(),
+                                   Connection      = ConnectionType.KeepAlive
+                               };
+
+                    #endregion
+
+                    #region Parse Charging Session JSON
+
+                    if (!request.TryParseJSONObjectRequestBody(out var json,
+                                                               out httpResponseBuilder))
+                    {
+                        return httpResponseBuilder;
+                    }
+
+                    if (!ChargingSession.TryParse(json, out var chargingSession, out var errorResponse))
+                        return new HTTPResponse.Builder(request) {
+                                   HTTPStatusCode  = HTTPStatusCode.BadRequest,
+                                   Server          = HTTPServer.HTTPServerName,
+                                   Date            = Timestamp.Now,
+                                   ContentType     = HTTPContentType.Application.JSON_UTF8,
+                                   Content         = new JObject(
+                                                         new JProperty("description", errorResponse)
+                                                     ).ToUTF8Bytes()
+                               };
+
+                    #endregion
+
+
+                    var result = await roamingNetwork.UpdateExternalChargingSession(
                                            Timestamp.Now,
                                            this,
                                            command,
@@ -11751,17 +11873,17 @@ namespace cloud.charging.open.API
             #endregion
 
 
-
             #region GET         ~/RNs/{RoamingNetworkId}/ChargingSessions/MissingCDRResponses
 
             // ----------------------------------------------------------------------------------------------------------------------------
             // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Prod/ChargingSessions/MissingCDRResponses?ExpandCDRs=false
             // ----------------------------------------------------------------------------------------------------------------------------
             AddHandler(
+
                 HTTPMethod.GET,
                 URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingSessions/MissingCDRResponses",
                 HTTPContentType.Application.JSON_UTF8,
-                HTTPDelegate: request => {
+                request => {
 
                     #region Get HTTP user and its organizations
 
@@ -11809,7 +11931,6 @@ namespace cloud.charging.open.API
                             AccessControlAllowOrigin      = "*",
                             AccessControlAllowMethods     = [ "GET" ],
                             AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
-                            ETag                          = "1",
                             ContentType                   = HTTPContentType.Application.JSON_UTF8,
                             Content                       = new JArray(
                                                                 expandCDRs
@@ -11824,11 +11945,95 @@ namespace cloud.charging.open.API
                                                                                 request.QueryString.GetUInt64("skip"),
                                                                                 request.QueryString.GetUInt64("take"))
                                                                     : missingCDRResponses.
-                                                                        OrderBy(session => session.SessionTime.StartTime).
-                                                                        Select (session => session.Id.ToString())
+                                                                          OrderBy(session => session.SessionTime.StartTime).
+                                                                          Select (session => session.Id.ToString())
                                                             ).ToUTF8Bytes(),
                             X_ExpectedTotalNumberOfItems  = missingCDRResponses.ULongCount(),
-                            Connection                    = ConnectionType.KeepAlive
+                            Connection                    = ConnectionType.Close
+                        }.AsImmutable);
+
+                });
+
+            #endregion
+
+            #region GET         ~/RNs/{RoamingNetworkId}/ChargingSessions/FailedCDRResponses
+
+            // ---------------------------------------------------------------------------------------------------------------------------
+            // curl -v -H "Accept: application/json" http://127.0.0.1:3004/RNs/Prod/ChargingSessions/FailedCDRResponses?ExpandCDRs=false
+            // ---------------------------------------------------------------------------------------------------------------------------
+            AddHandler(
+
+                HTTPMethod.GET,
+                URLPathPrefix + "RNs/{RoamingNetworkId}/ChargingSessions/FailedCDRResponses",
+                HTTPContentType.Application.JSON_UTF8,
+                request => {
+
+                    #region Get HTTP user and its organizations
+
+                    // Will return HTTP 401 Unauthorized, when the HTTP user is unknown!
+                    if (!TryGetHTTPUser(request,
+                                        out var httpUser,
+                                        out var httpOrganizations,
+                                        out var httpResponseBuilder,
+                                        Recursive: true))
+                    {
+                        return Task.FromResult(httpResponseBuilder.AsImmutable);
+                    }
+
+                    #endregion
+
+                    #region Get roaming network
+
+                    if (!request.ParseRoamingNetwork(this,
+                                                     out var roamingNetwork,
+                                                     out httpResponseBuilder))
+                    {
+                        return Task.FromResult(httpResponseBuilder.AsImmutable);
+                    }
+
+                    #endregion
+
+
+                    var from                 = request.QueryString.ParseFromTimestampFilter();
+                    var to                   = request.QueryString.ParseToTimestampFilter();
+                    var expandCDRs           = request.QueryString.GetBoolean("ExpandCDRs") ?? false;
+
+                    var missingCDRResponses  = roamingNetwork.ChargingSessions.
+                                                   Where  (session => session.ReceivedCDRInfos.Any() &&
+                                                                      session.SendCDRResults.  Any() &&
+                                                                      session.SendCDRResults.  Last().Result != SendCDRResultTypes.Success &&
+                                                                     (!from.HasValue ||                                                                                   session.SessionTime.StartTime     >= from.Value) &&
+                                                                     (!to.  HasValue || !session.SessionTime.EndTime.HasValue || (session.SessionTime.EndTime.HasValue && session.SessionTime.EndTime.Value <= to.  Value))).
+                                                   ToArray();
+
+
+                    return Task.FromResult(
+                        new HTTPResponse.Builder(request) {
+                            HTTPStatusCode                = HTTPStatusCode.OK,
+                            Server                        = HTTPServer.HTTPServerName,
+                            Date                          = Timestamp.Now,
+                            AccessControlAllowOrigin      = "*",
+                            AccessControlAllowMethods     = [ "GET" ],
+                            AccessControlAllowHeaders     = [ "Content-Type", "Accept", "Authorization" ],
+                            ContentType                   = HTTPContentType.Application.JSON_UTF8,
+                            Content                       = new JArray(
+                                                                expandCDRs
+                                                                    ? missingCDRResponses.
+                                                                        OrderBy(session => session.SessionTime.StartTime).
+                                                                        ToJSON (Embedded:    false,
+                                                                                OnlineInfos: false,
+                                                                                CustomChargingSessionSerializer,
+                                                                                CustomCDRReceivedInfoSerializer,
+                                                                                CustomChargeDetailRecordSerializer,
+                                                                                CustomSendCDRResultSerializer,
+                                                                                request.QueryString.GetUInt64("skip"),
+                                                                                request.QueryString.GetUInt64("take"))
+                                                                    : missingCDRResponses.
+                                                                          OrderBy(session => session.SessionTime.StartTime).
+                                                                          Select (session => session.Id.ToString())
+                                                            ).ToUTF8Bytes(),
+                            X_ExpectedTotalNumberOfItems  = missingCDRResponses.ULongCount(),
+                            Connection                    = ConnectionType.Close
                         }.AsImmutable);
 
                 });
