@@ -3231,10 +3231,14 @@ namespace cloud.charging.open.API
 
         #endregion
 
+        #region Custom JSON serializers
+
         public CustomJObjectSerializerDelegate<ReceivedCDRInfo>?     CustomCDRReceivedInfoSerializer       { get; set; }
         public CustomJObjectSerializerDelegate<ChargeDetailRecord>?  CustomChargeDetailRecordSerializer    { get; set; }
         public CustomJObjectSerializerDelegate<SendCDRResult>?       CustomSendCDRResultSerializer         { get; set; }
         public CustomJObjectSerializerDelegate<ChargingSession>?     CustomChargingSessionSerializer       { get; set; }
+
+        #endregion
 
         #region E-Mail delegates
 
@@ -11999,6 +12003,8 @@ namespace cloud.charging.open.API
                     #endregion
 
 
+                    var skip                 = request.QueryString.GetUInt64("skip");
+                    var take                 = request.QueryString.GetUInt64("take");
                     var from                 = request.QueryString.ParseFromTimestampFilter();
                     var to                   = request.QueryString.ParseToTimestampFilter();
                     var expandCDRs           = request.QueryString.GetBoolean("ExpandCDRs") ?? false;
@@ -12023,18 +12029,19 @@ namespace cloud.charging.open.API
                             Content                       = new JArray(
                                                                 expandCDRs
                                                                     ? missingCDRResponses.
-                                                                        OrderBy(session => session.SessionTime.StartTime).
-                                                                        ToJSON (Embedded:    false,
-                                                                                OnlineInfos: false,
-                                                                                CustomChargingSessionSerializer,
-                                                                                CustomCDRReceivedInfoSerializer,
-                                                                                CustomChargeDetailRecordSerializer,
-                                                                                CustomSendCDRResultSerializer,
-                                                                                request.QueryString.GetUInt64("skip"),
-                                                                                request.QueryString.GetUInt64("take"))
-                                                                    : missingCDRResponses.
                                                                           OrderBy(session => session.SessionTime.StartTime).
-                                                                          Select (session => session.Id.ToString())
+                                                                          ToJSON (Embedded:    false,
+                                                                                  OnlineInfos: false,
+                                                                                  CustomChargingSessionSerializer,
+                                                                                  CustomCDRReceivedInfoSerializer,
+                                                                                  CustomChargeDetailRecordSerializer,
+                                                                                  CustomSendCDRResultSerializer,
+                                                                                  skip,
+                                                                                  take)
+                                                                    : missingCDRResponses.
+                                                                          OrderBy       (session => session.SessionTime.StartTime).
+                                                                          SkipTakeFilter(skip, take).
+                                                                          Select        (session => session.Id.ToString())
                                                             ).ToUTF8Bytes(),
                             X_ExpectedTotalNumberOfItems  = missingCDRResponses.ULongCount(),
                             Connection                    = ConnectionType.Close
@@ -12082,6 +12089,8 @@ namespace cloud.charging.open.API
                     #endregion
 
 
+                    var skip                 = request.QueryString.GetUInt64("skip");
+                    var take                 = request.QueryString.GetUInt64("take");
                     var from                 = request.QueryString.ParseFromTimestampFilter();
                     var to                   = request.QueryString.ParseToTimestampFilter();
                     var expandCDRs           = request.QueryString.GetBoolean("ExpandCDRs") ?? false;
@@ -12089,7 +12098,7 @@ namespace cloud.charging.open.API
                     var missingCDRResponses  = roamingNetwork.ChargingSessions.
                                                    Where  (session => session.ReceivedCDRInfos.Any() &&
                                                                       session.SendCDRResults.  Any() &&
-                                                                      session.SendCDRResults.  Last().Result != SendCDRResultTypes.Success &&
+                                                                      session.SendCDRResults.  All(sendCDRResult => sendCDRResult.Result != SendCDRResultTypes.Success) &&
                                                                      (!from.HasValue ||                                                                                   session.SessionTime.StartTime     >= from.Value) &&
                                                                      (!to.  HasValue || !session.SessionTime.EndTime.HasValue || (session.SessionTime.EndTime.HasValue && session.SessionTime.EndTime.Value <= to.  Value))).
                                                    ToArray();
@@ -12114,11 +12123,12 @@ namespace cloud.charging.open.API
                                                                                 CustomCDRReceivedInfoSerializer,
                                                                                 CustomChargeDetailRecordSerializer,
                                                                                 CustomSendCDRResultSerializer,
-                                                                                request.QueryString.GetUInt64("skip"),
-                                                                                request.QueryString.GetUInt64("take"))
+                                                                                skip,
+                                                                                take)
                                                                     : missingCDRResponses.
-                                                                          OrderBy(session => session.SessionTime.StartTime).
-                                                                          Select (session => session.Id.ToString())
+                                                                          OrderBy       (session => session.SessionTime.StartTime).
+                                                                          SkipTakeFilter(skip, take).
+                                                                          Select        (session => session.Id.ToString())
                                                             ).ToUTF8Bytes(),
                             X_ExpectedTotalNumberOfItems  = missingCDRResponses.ULongCount(),
                             Connection                    = ConnectionType.Close
