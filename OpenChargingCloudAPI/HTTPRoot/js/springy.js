@@ -1,6 +1,6 @@
 /*
  * BalderGraphs.js
- * Copyright (c) 2010-2014 Achim 'ahzf' Friedland <achim@graphdevroom.org>
+ * Copyright (c) 2010-2026 GraphDefined GmbH <achim.friedland@graphdefined.com>
  * Based on: Springy v2.0.1
  */
 

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2010-2016, Achim 'ahzf' Friedland <achim.friedland@graphdefined.com>
+ * Copyright (c) 2010-2026 GraphDefined GmbH <achim.friedland@graphdefined.com>
  * This file is part of the Open Charging Cloud API <https://github.com/OpenChargingCloud/WWCP_Net>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

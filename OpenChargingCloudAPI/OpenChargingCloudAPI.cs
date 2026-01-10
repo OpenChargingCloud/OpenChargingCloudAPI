@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2015-2025 GraphDefined GmbH <achim.friedland@graphdefined.com>
+ * Copyright (c) 2015-2026 GraphDefined GmbH <achim.friedland@graphdefined.com>
  * This file is part of Open Charging Cloud API <http://www.github.com/OpenChargingCloud/OpenChargingCloudAPI>
  *
  * Licensed under the Affero GPL license, Version 3.0 (the "License");
@@ -12095,6 +12095,8 @@ namespace cloud.charging.open.API
                     var to                   = request.QueryString.ParseToTimestampFilter();
                     var expandCDRs           = request.QueryString.GetBoolean("ExpandCDRs") ?? false;
 
+                    var session              = roamingNetwork.ChargingSessions.First(session => session.Id.ToString() == "fac089b1-1541-4370-869d-567d9c6bc436");
+
                     var missingCDRResponses  = roamingNetwork.ChargingSessions.
                                                    Where  (session => session.ReceivedCDRInfos.Any() &&
                                                                       session.SendCDRResults.  Any() &&
@@ -12102,6 +12104,8 @@ namespace cloud.charging.open.API
                                                                      (!from.HasValue ||                                                                                   session.SessionTime.StartTime     >= from.Value) &&
                                                                      (!to.  HasValue || !session.SessionTime.EndTime.HasValue || (session.SessionTime.EndTime.HasValue && session.SessionTime.EndTime.Value <= to.  Value))).
                                                    ToArray();
+
+                    var xxx                  = missingCDRResponses.Select(session => session.Id.ToString()).Contains(session.Id.ToString());
 
 
                     return Task.FromResult(
@@ -12128,7 +12132,7 @@ namespace cloud.charging.open.API
                                                                     : missingCDRResponses.
                                                                           OrderBy       (session => session.SessionTime.StartTime).
                                                                           SkipTakeFilter(skip, take).
-                                                                          Select        (session => session.Id.ToString())
+                                                                          Select        (session => $"{session.Id}\t{(session.SessionTime.StartTime.ToISO8601())}\t{(session.SendCDRResults.Select(sendCDRResult => sendCDRResult.Result.ToString()).AggregateWith(", "))}")
                                                             ).ToUTF8Bytes(),
                             X_ExpectedTotalNumberOfItems  = missingCDRResponses.ULongCount(),
                             Connection                    = ConnectionType.Close
