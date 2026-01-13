@@ -3292,22 +3292,10 @@ namespace cloud.charging.open.API
                                     String?                        APIVersionHash              = null,
                                     JObject?                       APIVersionHashes            = null,
 
-                                    //HTTPHostname?                  HTTPHostname                = null,
-                                    //String?                        ExternalDNSName             = null,
-                                    //IPPort?                        HTTPServerPort              = null,
-                                    //HTTPPath?                      BasePath                    = null,
-                                    //String                         HTTPServerName              = DefaultHTTPServerName,
-                                    //
-                                    //HTTPPath?                      URLPathPrefix               = null,
-                                    //String?                        HTMLTemplate                = null,
-
                                     Organization_Id?               AdminOrganizationId         = null,
                                     EMailAddress?                  APIRobotEMailAddress        = null,
                                     String?                        APIRobotGPGPassphrase       = null,
                                     ISMTPClient?                   SMTPClient                  = null,
-                                    //ISMSClient?                    SMSClient                   = null,
-                                    //String?                        SMSSenderName               = null,
-                                    //ITelegramStore?                TelegramClient              = null,
 
                                     PasswordQualityCheckDelegate?  PasswordQualityCheck        = null,
                                     HTTPCookieName?                CookieName                  = null,
@@ -3332,15 +3320,7 @@ namespace cloud.charging.open.API
                                     String                         LogfileName                 = DefaultOpenChargingCloudAPI_LogfileName,
                                     LogfileCreatorDelegate?        LogfileCreator              = null)
 
-            : base(//HTTPHostname,
-                   //ExternalDNSName,
-                   //HTTPServerPort,
-                   //BasePath,
-                   //HTTPServerName,
-                   //
-                   //URLPathPrefix,
-
-                   HTTPTestServer,
+            : base(HTTPTestServer,
                    Hostnames,
                    RootPath,
                    HTTPContentTypes,
@@ -3349,8 +3329,8 @@ namespace cloud.charging.open.API
                    ExternalDNSName,
                    BasePath,
 
-                   HTTPServerName  ?? DefaultHTTPServerName,
-                   HTTPServiceName ?? DefaultHTTPServiceName,
+                   HTTPServerName       ?? DefaultHTTPServerName,
+                   HTTPServiceName      ?? DefaultHTTPServiceName,
                    APIVersionHash,
                    APIVersionHashes,
 
