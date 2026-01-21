@@ -177,14 +177,14 @@ namespace cloud.charging.open.API
             RegisterEvent2("TokenAuthRequest",
                           handler => OpenChargingCloudAPI.OnTokenAuthRequest += handler,
                           handler => OpenChargingCloudAPI.OnTokenAuthRequest -= handler,
-                          "Auth", "TokenAuth", "TokenAuthRequest", "All").
+                          "Auth", "TokenAuth", "TokenAuthRequest", "Request",  "All").
                 RegisterDefaultConsoleLogTargetX(this).
                 RegisterDefaultDiscLogTargetX(this);
 
             RegisterEvent2("TokenAuthResponse",
                           handler => OpenChargingCloudAPI.OnTokenAuthResponse += handler,
                           handler => OpenChargingCloudAPI.OnTokenAuthResponse -= handler,
-                          "Auth", "TokenAuth", "TokenAuthResponse", "All").
+                          "Auth", "TokenAuth", "TokenAuthResponse", "Response", "All").
                 RegisterDefaultConsoleLogTargetX(this).
                 RegisterDefaultDiscLogTargetX(this);
 
