@@ -2105,7 +2105,7 @@ namespace cloud.charging.open.API
         //public HTTPServer<RoamingNetworks, RoamingNetwork>  WWCPHTTPServer                { get; }
 
         /// <summary>
-        /// Send debug information via HTTP Server Sent Events.
+        /// Debug information via HTTP Server Sent Events.
         /// </summary>
     //    public HTTPEventSource<JObject>                     DebugLog                      { get; }
 
@@ -11988,12 +11988,14 @@ namespace cloud.charging.open.API
                     var from                 = request.QueryString.ParseFromTimestampFilter();
                     var to                   = request.QueryString.ParseToTimestampFilter();
                     var expandCDRs           = request.QueryString.GetBoolean("ExpandCDRs") ?? false;
+                    var now                  = Timestamp.Now - TimeSpan.FromMinutes(10);
 
                     var missingCDRResponses  = roamingNetwork.ChargingSessions.
                                                    Where  (session => session.ReceivedCDRInfos.Any() &&
+                                                                      session.ReceivedCDRInfos.All(receivedCDRInfo => receivedCDRInfo.Timestamp < now) &&
                                                                      !session.SendCDRResults.  Any() &&
-                                                                     (!from.HasValue ||                                                                                   session.SessionTime.StartTime     >= from.Value) &&
-                                                                     (!to.  HasValue || !session.SessionTime.EndTime.HasValue || (session.SessionTime.EndTime.HasValue && session.SessionTime.EndTime.Value <= to.  Value))).
+                                                                    (!from.HasValue ||                                                                                   session.SessionTime.StartTime     >= from.Value) &&
+                                                                    (!to.  HasValue || !session.SessionTime.EndTime.HasValue || (session.SessionTime.EndTime.HasValue && session.SessionTime.EndTime.Value <= to.  Value))).
                                                    ToArray();
 
 
