@@ -10650,6 +10650,7 @@ namespace cloud.charging.open.API
                                            ReservationHandling.Close, // ToDo: Parse this property!
                                            ProviderId,
                                            RemoteAuthentication.FromRemoteIdentification(eMAId),
+                                           null,
                                            AuthenticationPath,
                                            null,
 
