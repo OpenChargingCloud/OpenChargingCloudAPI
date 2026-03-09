@@ -2093,31 +2093,31 @@ namespace cloud.charging.open.API
         /// <summary>
         /// The API version hash (git commit hash value).
         /// </summary>
-        public new String                                   APIVersionHash                { get; }
+        public new String                                   APIVersionHash               { get; }
 
-        public String                                       OpenChargingCloudAPIPath      { get; }
+        public String                                       OpenChargingCloudAPIPath     { get; }
 
-        //public String                                       ChargingReservationsPath      { get; }
-        //public String                                       ChargingSessionsPath          { get; }
-        //public String                                       ChargeDetailRecordsPath       { get; }
+        //public String                                       ChargingReservationsPath     { get; }
+        //public String                                       ChargingSessionsPath         { get; }
+        //public String                                       ChargeDetailRecordsPath      { get; }
 
 
-        //public HTTPServer<RoamingNetworks, RoamingNetwork>  WWCPHTTPServer                { get; }
+        //public HTTPServer<RoamingNetworks, RoamingNetwork>  WWCPHTTPServer               { get; }
 
         /// <summary>
         /// Debug information via HTTP Server Sent Events.
         /// </summary>
-    //    public HTTPEventSource<JObject>                     DebugLog                      { get; }
+    //    public HTTPEventSource<JObject>                     DebugLog                     { get; }
 
         /// <summary>
         /// Send importer information via HTTP Server Sent Events.
         /// </summary>
-        public HTTPEventSource<JObject>                     ImporterLog                   { get; }
+        public HTTPEventSource<JObject>                     ImporterLog                  { get; }
 
         /// <summary>
         /// Whether this API allows anonymous read access.
         /// </summary>
-        public Boolean                                      AllowsAnonymousReadAccesss    { get; }
+        public Boolean                                      AllowAnonymousReadAccesss    { get; }
 
         #endregion
 
@@ -2706,123 +2706,6 @@ namespace cloud.charging.open.API
 
 
 
-        #region (protected internal) SendRemoteStartEVSERequest (Request)
-
-        /// <summary>
-        /// An event sent whenever a authenticate start EVSE request was received.
-        /// </summary>
-        public HTTPRequestLogEventX OnSendRemoteStartEVSERequest = new();
-
-        /// <summary>
-        /// An event sent whenever a authenticate start EVSE request was received.
-        /// </summary>
-        /// <param name="Timestamp">The timestamp of the request.</param>
-        /// <param name="API">The HTTP API.</param>
-        /// <param name="Request">A HTTP request.</param>
-        protected internal Task SendRemoteStartEVSERequest(DateTimeOffset     Timestamp,
-                                                           HTTPAPIX           API,
-                                                           HTTPRequest        Request,
-                                                           CancellationToken  CancellationToken)
-
-            => OnSendRemoteStartEVSERequest.WhenAll(
-                   Timestamp,
-                   API,
-                   Request,
-                   CancellationToken
-               );
-
-        #endregion
-
-        #region (protected internal) SendRemoteStartEVSEResponse(Response)
-
-        /// <summary>
-        /// An event sent whenever a authenticate start EVSE response was sent.
-        /// </summary>
-        public HTTPResponseLogEventX OnSendRemoteStartEVSEResponse = new();
-
-        /// <summary>
-        /// An event sent whenever a authenticate start EVSE response was sent.
-        /// </summary>
-        /// <param name="Timestamp">The timestamp of the request.</param>
-        /// <param name="API">The HTTP API.</param>
-        /// <param name="Request">A HTTP request.</param>
-        /// <param name="Response">A HTTP response.</param>
-        protected internal Task SendRemoteStartEVSEResponse(DateTimeOffset     Timestamp,
-                                                            HTTPAPIX           API,
-                                                            HTTPRequest        Request,
-                                                            HTTPResponse       Response,
-                                                            CancellationToken  CancellationToken)
-
-            => OnSendRemoteStartEVSEResponse.WhenAll(
-                   Timestamp,
-                   API,
-                   Request,
-                   Response,
-                   CancellationToken
-               );
-
-        #endregion
-
-
-        #region (protected internal) SendRemoteStopEVSERequest (Request)
-
-        /// <summary>
-        /// An event sent whenever a authenticate start EVSE request was received.
-        /// </summary>
-        public HTTPRequestLogEventX OnSendRemoteStopEVSERequest = new();
-
-        /// <summary>
-        /// An event sent whenever a authenticate start EVSE request was received.
-        /// </summary>
-        /// <param name="Timestamp">The timestamp of the request.</param>
-        /// <param name="API">The HTTP API.</param>
-        /// <param name="Request">A HTTP request.</param>
-        protected internal Task SendRemoteStopEVSERequest(DateTimeOffset     Timestamp,
-                                                          HTTPAPIX           API,
-                                                          HTTPRequest        Request,
-                                                          CancellationToken  CancellationToken)
-
-            => OnSendRemoteStopEVSERequest.WhenAll(
-                   Timestamp,
-                   API,
-                   Request,
-                   CancellationToken
-               );
-
-        #endregion
-
-        #region (protected internal) SendRemoteStopEVSEResponse(Response)
-
-        /// <summary>
-        /// An event sent whenever a authenticate start EVSE response was sent.
-        /// </summary>
-        public HTTPResponseLogEventX OnSendRemoteStopEVSEResponse = new();
-
-        /// <summary>
-        /// An event sent whenever a authenticate start EVSE response was sent.
-        /// </summary>
-        /// <param name="Timestamp">The timestamp of the request.</param>
-        /// <param name="API">The HTTP API.</param>
-        /// <param name="Request">A HTTP request.</param>
-        /// <param name="Response">A HTTP response.</param>
-        protected internal Task SendRemoteStopEVSEResponse(DateTimeOffset     Timestamp,
-                                                           HTTPAPIX           API,
-                                                           HTTPRequest        Request,
-                                                           HTTPResponse       Response,
-                                                           CancellationToken  CancellationToken)
-
-            => OnSendRemoteStopEVSEResponse.WhenAll(
-                   Timestamp,
-                   API,
-                   Request,
-                   Response,
-                   CancellationToken
-               );
-
-        #endregion
-
-
-
         #region (protected internal) SendReserveEVSERequest     (Request)
 
         /// <summary>
@@ -2882,348 +2765,848 @@ namespace cloud.charging.open.API
 
 
 
-        #region (protected internal) SendTokenAuthRequest   (Request)
+        // Refactored
+
+        #region (protected internal) SetChargingStationOperatorAdminStatusRequest  (Request)
 
         /// <summary>
-        /// An event sent whenever a TokenAuth request was received.
+        /// An event sent whenever a SetChargingStationOperatorAdminStatus HTTP was received.
         /// </summary>
-        public HTTPRequestLogEventX OnTokenAuthRequest = new();
+        public HTTPRequestLogEventX OnSetChargingStationOperatorAdminStatusHTTPRequest = new();
 
         /// <summary>
-        /// An event sent whenever a TokenAuth request was received.
+        /// An event sent whenever a SetChargingStationOperatorAdminStatus HTTP was received.
         /// </summary>
-        /// <param name="Timestamp">The timestamp of the request.</param>
-        /// <param name="API">The HTTP API.</param>
-        /// <param name="Request">A HTTP request.</param>
-        protected internal Task SendTokenAuthRequest(DateTimeOffset     Timestamp,
-                                                     HTTPAPIX           API,
-                                                     HTTPRequest        Request,
-                                                     CancellationToken  CancellationToken)
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SetChargingStationOperatorAdminStatusRequest(DateTimeOffset     Timestamp,
+                                                                             HTTPAPIX           HTTPAPI,
+                                                                             HTTPRequest        HTTPRequest,
+                                                                             CancellationToken  CancellationToken)
 
-            => OnTokenAuthRequest.WhenAll(
+            => OnSetChargingStationOperatorAdminStatusHTTPRequest.WhenAll(
                    Timestamp,
-                   API,
-                   Request,
+                   HTTPAPI,
+                   HTTPRequest,
                    CancellationToken
                );
 
         #endregion
 
-        #region (protected internal) SendTokenAuthResponse  (Response)
+        #region (protected internal) SetChargingStationOperatorAdminStatusResponse (Response)
 
         /// <summary>
-        /// An event sent whenever a TokenAuth response was sent.
+        /// An event sent whenever a SetChargingStationOperatorAdminStatus HTTP response was sent.
         /// </summary>
-        public HTTPResponseLogEventX OnTokenAuthResponse = new();
+        public HTTPResponseLogEventX OnSetChargingStationOperatorAdminStatusHTTPResponse = new();
 
         /// <summary>
-        /// An event sent whenever a TokenAuth response was sent.
+        /// An event sent whenever a SetChargingStationOperatorAdminStatus HTTP response was sent.
         /// </summary>
-        /// <param name="Timestamp">The timestamp of the request.</param>
-        /// <param name="API">The HTTP API.</param>
-        /// <param name="Request">A HTTP request.</param>
-        /// <param name="Response">A HTTP response.</param>
-        protected internal Task SendTokenAuthResponse(DateTimeOffset     Timestamp,
-                                                      HTTPAPIX           API,
-                                                      HTTPRequest        Request,
-                                                      HTTPResponse       Response,
-                                                      CancellationToken  CancellationToken)
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="HTTPResponse">The HTTP response.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SetChargingStationOperatorAdminStatusResponse(DateTimeOffset     Timestamp,
+                                                                              HTTPAPIX           HTTPAPI,
+                                                                              HTTPRequest        HTTPRequest,
+                                                                              HTTPResponse       HTTPResponse,
+                                                                              CancellationToken  CancellationToken)
 
-            => OnTokenAuthResponse.WhenAll(
+            => OnSetChargingStationOperatorAdminStatusHTTPResponse.WhenAll(
                    Timestamp,
-                   API,
-                   Request,
-                   Response,
-                   CancellationToken
-               );
-
-        #endregion
-
-
-
-        #region (protected internal) SendAuthStartEVSERequest   (Request)
-
-        /// <summary>
-        /// An event sent whenever a authenticate start EVSE request was received.
-        /// </summary>
-        public HTTPRequestLogEventX OnAuthStartEVSERequest = new();
-
-        /// <summary>
-        /// An event sent whenever a authenticate start EVSE request was received.
-        /// </summary>
-        /// <param name="Timestamp">The timestamp of the request.</param>
-        /// <param name="API">The HTTP API.</param>
-        /// <param name="Request">A HTTP request.</param>
-        protected internal Task SendAuthStartEVSERequest(DateTimeOffset     Timestamp,
-                                                         HTTPAPIX           API,
-                                                         HTTPRequest        Request,
-                                                         CancellationToken  CancellationToken)
-
-            => OnAuthStartEVSERequest.WhenAll(
-                   Timestamp,
-                   API,
-                   Request,
-                   CancellationToken
-               );
-
-        #endregion
-
-        #region (protected internal) SendAuthStartEVSEResponse  (Response)
-
-        /// <summary>
-        /// An event sent whenever a authenticate start EVSE response was sent.
-        /// </summary>
-        public HTTPResponseLogEventX OnAuthStartEVSEResponse = new();
-
-        /// <summary>
-        /// An event sent whenever a authenticate start EVSE response was sent.
-        /// </summary>
-        /// <param name="Timestamp">The timestamp of the request.</param>
-        /// <param name="API">The HTTP API.</param>
-        /// <param name="Request">A HTTP request.</param>
-        /// <param name="Response">A HTTP response.</param>
-        protected internal Task SendAuthStartEVSEResponse(DateTimeOffset     Timestamp,
-                                                          HTTPAPIX           API,
-                                                          HTTPRequest        Request,
-                                                          HTTPResponse       Response,
-                                                          CancellationToken  CancellationToken)
-
-            => OnAuthStartEVSEResponse.WhenAll(
-                   Timestamp,
-                   API,
-                   Request,
-                   Response,
+                   HTTPAPI,
+                   HTTPRequest,
+                   HTTPResponse,
                    CancellationToken
                );
 
         #endregion
 
 
-        #region (protected internal) SendAuthStopEVSERequest    (Request)
+        #region (protected internal) SetChargingStationOperatorStatusRequest       (Request)
 
         /// <summary>
-        /// An event sent whenever a authenticate stop EVSE request was received.
+        /// An event sent whenever a SetChargingStationOperatorStatus HTTP was received.
         /// </summary>
-        public HTTPRequestLogEventX OnAuthStopEVSERequest = new();
+        public HTTPRequestLogEventX OnSetChargingStationOperatorStatusHTTPRequest = new();
 
         /// <summary>
-        /// An event sent whenever a authenticate stop EVSE request was received.
+        /// An event sent whenever a SetChargingStationOperatorStatus HTTP was received.
         /// </summary>
-        /// <param name="Timestamp">The timestamp of the request.</param>
-        /// <param name="API">The HTTP API.</param>
-        /// <param name="Request">A HTTP request.</param>
-        protected internal Task SendAuthStopEVSERequest(DateTimeOffset     Timestamp,
-                                                        HTTPAPIX           API,
-                                                        HTTPRequest        Request,
-                                                        CancellationToken  CancellationToken)
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SetChargingStationOperatorStatusRequest(DateTimeOffset     Timestamp,
+                                                                        HTTPAPIX           HTTPAPI,
+                                                                        HTTPRequest        HTTPRequest,
+                                                                        CancellationToken  CancellationToken)
 
-            => OnAuthStopEVSERequest.WhenAll(
+            => OnSetChargingStationOperatorStatusHTTPRequest.WhenAll(
                    Timestamp,
-                   API,
-                   Request,
+                   HTTPAPI,
+                   HTTPRequest,
                    CancellationToken
                );
 
         #endregion
 
-        #region (protected internal) SendAuthStopEVSEResponse   (Response)
+        #region (protected internal) SetChargingStationOperatorStatusResponse      (Response)
 
         /// <summary>
-        /// An event sent whenever a authenticate stop EVSE response was sent.
+        /// An event sent whenever a SetChargingStationOperatorStatus HTTP response was sent.
         /// </summary>
-        public HTTPResponseLogEventX OnAuthStopEVSEResponse = new();
+        public HTTPResponseLogEventX OnSetChargingStationOperatorStatusHTTPResponse = new();
 
         /// <summary>
-        /// An event sent whenever a authenticate stop EVSE response was sent.
+        /// An event sent whenever a SetChargingStationOperatorStatus HTTP response was sent.
         /// </summary>
-        /// <param name="Timestamp">The timestamp of the request.</param>
-        /// <param name="API">The HTTP API.</param>
-        /// <param name="Request">A HTTP request.</param>
-        /// <param name="Response">A HTTP response.</param>
-        protected internal Task SendAuthStopEVSEResponse(DateTimeOffset     Timestamp,
-                                                         HTTPAPIX           API,
-                                                         HTTPRequest        Request,
-                                                         HTTPResponse       Response,
-                                                         CancellationToken  CancellationToken)
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="HTTPResponse">The HTTP response.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SetChargingStationOperatorStatusResponse(DateTimeOffset     Timestamp,
+                                                                         HTTPAPIX           HTTPAPI,
+                                                                         HTTPRequest        HTTPRequest,
+                                                                         HTTPResponse       HTTPResponse,
+                                                                         CancellationToken  CancellationToken)
 
-            => OnAuthStopEVSEResponse.WhenAll(
+            => OnSetChargingStationOperatorStatusHTTPResponse.WhenAll(
                    Timestamp,
-                   API,
-                   Request,
-                   Response,
-                   CancellationToken
-               );
-
-        #endregion
-
-
-        #region (protected internal) SendCDRsRequest            (Request)
-
-        /// <summary>
-        /// An event sent whenever a charge detail record was received.
-        /// </summary>
-        public HTTPRequestLogEventX OnSendCDRsRequest = new();
-
-        /// <summary>
-        /// An event sent whenever a charge detail record was received.
-        /// </summary>
-        /// <param name="Timestamp">The timestamp of the request.</param>
-        /// <param name="API">The HTTP API.</param>
-        /// <param name="Request">A HTTP request.</param>
-        protected internal Task SendCDRsRequest(DateTimeOffset     Timestamp,
-                                                HTTPAPIX           API,
-                                                HTTPRequest        Request,
-                                                CancellationToken  CancellationToken)
-
-            => OnSendCDRsRequest.WhenAll(
-                   Timestamp,
-                   API,
-                   Request,
-                   CancellationToken
-               );
-
-        #endregion
-
-        #region (protected internal) SendCDRsResponse           (Response)
-
-        /// <summary>
-        /// An event sent whenever a charge detail record response was sent.
-        /// </summary>
-        public HTTPResponseLogEventX OnSendCDRsResponse = new();
-
-        /// <summary>
-        /// An event sent whenever a charge detail record response was sent.
-        /// </summary>
-        /// <param name="Timestamp">The timestamp of the request.</param>
-        /// <param name="API">The HTTP API.</param>
-        /// <param name="Request">A HTTP request.</param>
-        /// <param name="Response">A HTTP response.</param>
-        protected internal Task SendCDRsResponse(DateTimeOffset     Timestamp,
-                                                 HTTPAPIX           API,
-                                                 HTTPRequest        Request,
-                                                 HTTPResponse       Response,
-                                                 CancellationToken  CancellationToken)
-
-            => OnSendCDRsResponse.WhenAll(
-                   Timestamp,
-                   API,
-                   Request,
-                   Response,
+                   HTTPAPI,
+                   HTTPRequest,
+                   HTTPResponse,
                    CancellationToken
                );
 
         #endregion
 
 
-        #region (protected internal) SetEVSEAdminStatusRequest            (Request)
+
+        #region (protected internal) SetChargingPoolAdminStatusRequest             (Request)
 
         /// <summary>
-        /// An event sent whenever a Set EVSE Admin Status was received.
+        /// An event sent whenever a SetChargingPoolAdminStatus HTTP was received.
         /// </summary>
-        public HTTPRequestLogEventX OnSetEVSEAdminStatusRequest = new();
+        public HTTPRequestLogEventX OnSetChargingPoolAdminStatusHTTPRequest = new();
 
         /// <summary>
-        /// An event sent whenever a Set EVSE Admin Status was received.
+        /// An event sent whenever a SetChargingPoolAdminStatus HTTP was received.
         /// </summary>
-        /// <param name="Timestamp">The timestamp of the request.</param>
-        /// <param name="API">The HTTP API.</param>
-        /// <param name="Request">A HTTP request.</param>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SetChargingPoolAdminStatusRequest(DateTimeOffset     Timestamp,
+                                                                  HTTPAPIX           HTTPAPI,
+                                                                  HTTPRequest        HTTPRequest,
+                                                                  CancellationToken  CancellationToken)
+
+            => OnSetChargingPoolAdminStatusHTTPRequest.WhenAll(
+                   Timestamp,
+                   HTTPAPI,
+                   HTTPRequest,
+                   CancellationToken
+               );
+
+        #endregion
+
+        #region (protected internal) SetChargingPoolAdminStatusResponse            (Response)
+
+        /// <summary>
+        /// An event sent whenever a SetChargingPoolAdminStatus HTTP response was sent.
+        /// </summary>
+        public HTTPResponseLogEventX OnSetChargingPoolAdminStatusHTTPResponse = new();
+
+        /// <summary>
+        /// An event sent whenever a SetChargingPoolAdminStatus HTTP response was sent.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="HTTPResponse">The HTTP response.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SetChargingPoolAdminStatusResponse(DateTimeOffset     Timestamp,
+                                                                   HTTPAPIX           HTTPAPI,
+                                                                   HTTPRequest        HTTPRequest,
+                                                                   HTTPResponse       HTTPResponse,
+                                                                   CancellationToken  CancellationToken)
+
+            => OnSetChargingPoolAdminStatusHTTPResponse.WhenAll(
+                   Timestamp,
+                   HTTPAPI,
+                   HTTPRequest,
+                   HTTPResponse,
+                   CancellationToken
+               );
+
+        #endregion
+
+
+        #region (protected internal) SetChargingPoolStatusRequest                  (Request)
+
+        /// <summary>
+        /// An event sent whenever a SetChargingPoolStatus HTTP was received.
+        /// </summary>
+        public HTTPRequestLogEventX OnSetChargingPoolStatusHTTPRequest = new();
+
+        /// <summary>
+        /// An event sent whenever a SetChargingPoolStatus HTTP was received.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SetChargingPoolStatusRequest(DateTimeOffset     Timestamp,
+                                                             HTTPAPIX           HTTPAPI,
+                                                             HTTPRequest        HTTPRequest,
+                                                             CancellationToken  CancellationToken)
+
+            => OnSetChargingPoolStatusHTTPRequest.WhenAll(
+                   Timestamp,
+                   HTTPAPI,
+                   HTTPRequest,
+                   CancellationToken
+               );
+
+        #endregion
+
+        #region (protected internal) SetChargingPoolStatusResponse                 (Response)
+
+        /// <summary>
+        /// An event sent whenever a SetChargingPoolStatus HTTP response was sent.
+        /// </summary>
+        public HTTPResponseLogEventX OnSetChargingPoolStatusHTTPResponse = new();
+
+        /// <summary>
+        /// An event sent whenever a SetChargingPoolStatus HTTP response was sent.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="HTTPResponse">The HTTP response.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SetChargingPoolStatusResponse(DateTimeOffset     Timestamp,
+                                                              HTTPAPIX           HTTPAPI,
+                                                              HTTPRequest        HTTPRequest,
+                                                              HTTPResponse       HTTPResponse,
+                                                              CancellationToken  CancellationToken)
+
+            => OnSetChargingPoolStatusHTTPResponse.WhenAll(
+                   Timestamp,
+                   HTTPAPI,
+                   HTTPRequest,
+                   HTTPResponse,
+                   CancellationToken
+               );
+
+        #endregion
+
+
+
+        #region (protected internal) SetChargingStationAdminStatusRequest          (Request)
+
+        /// <summary>
+        /// An event sent whenever a SetChargingStationAdminStatus HTTP was received.
+        /// </summary>
+        public HTTPRequestLogEventX OnSetChargingStationAdminStatusHTTPRequest = new();
+
+        /// <summary>
+        /// An event sent whenever a SetChargingStationAdminStatus HTTP was received.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SetChargingStationAdminStatusRequest(DateTimeOffset     Timestamp,
+                                                                     HTTPAPIX           HTTPAPI,
+                                                                     HTTPRequest        HTTPRequest,
+                                                                     CancellationToken  CancellationToken)
+
+            => OnSetChargingStationAdminStatusHTTPRequest.WhenAll(
+                   Timestamp,
+                   HTTPAPI,
+                   HTTPRequest,
+                   CancellationToken
+               );
+
+        #endregion
+
+        #region (protected internal) SetChargingStationAdminStatusResponse         (Response)
+
+        /// <summary>
+        /// An event sent whenever a SetChargingStationAdminStatus HTTP response was sent.
+        /// </summary>
+        public HTTPResponseLogEventX OnSetChargingStationAdminStatusHTTPResponse = new();
+
+        /// <summary>
+        /// An event sent whenever a SetChargingStationAdminStatus HTTP response was sent.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="HTTPResponse">The HTTP response.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SetChargingStationAdminStatusResponse(DateTimeOffset     Timestamp,
+                                                                      HTTPAPIX           HTTPAPI,
+                                                                      HTTPRequest        HTTPRequest,
+                                                                      HTTPResponse       HTTPResponse,
+                                                                      CancellationToken  CancellationToken)
+
+            => OnSetChargingStationAdminStatusHTTPResponse.WhenAll(
+                   Timestamp,
+                   HTTPAPI,
+                   HTTPRequest,
+                   HTTPResponse,
+                   CancellationToken
+               );
+
+        #endregion
+
+
+        #region (protected internal) SetChargingStationStatusRequest               (Request)
+
+        /// <summary>
+        /// An event sent whenever a SetChargingStationStatus HTTP was received.
+        /// </summary>
+        public HTTPRequestLogEventX OnSetChargingStationStatusHTTPRequest = new();
+
+        /// <summary>
+        /// An event sent whenever a SetChargingStationStatus HTTP was received.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SetChargingStationStatusRequest(DateTimeOffset     Timestamp,
+                                                                HTTPAPIX           HTTPAPI,
+                                                                HTTPRequest        HTTPRequest,
+                                                                CancellationToken  CancellationToken)
+
+            => OnSetChargingStationStatusHTTPRequest.WhenAll(
+                   Timestamp,
+                   HTTPAPI,
+                   HTTPRequest,
+                   CancellationToken
+               );
+
+        #endregion
+
+        #region (protected internal) SetChargingStationStatusResponse              (Response)
+
+        /// <summary>
+        /// An event sent whenever a SetChargingStationStatus HTTP response was sent.
+        /// </summary>
+        public HTTPResponseLogEventX OnSetChargingStationStatusHTTPResponse = new();
+
+        /// <summary>
+        /// An event sent whenever a SetChargingStationStatus HTTP response was sent.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="HTTPResponse">The HTTP response.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SetChargingStationStatusResponse(DateTimeOffset     Timestamp,
+                                                                 HTTPAPIX           HTTPAPI,
+                                                                 HTTPRequest        HTTPRequest,
+                                                                 HTTPResponse       HTTPResponse,
+                                                                 CancellationToken  CancellationToken)
+
+            => OnSetChargingStationStatusHTTPResponse.WhenAll(
+                   Timestamp,
+                   HTTPAPI,
+                   HTTPRequest,
+                   HTTPResponse,
+                   CancellationToken
+               );
+
+        #endregion
+
+
+
+        #region (protected internal) SetEVSEAdminStatusRequest                     (Request)
+
+        /// <summary>
+        /// An event sent whenever a SetEVSEAdminStatus HTTP was received.
+        /// </summary>
+        public HTTPRequestLogEventX OnSetEVSEAdminStatusHTTPRequest = new();
+
+        /// <summary>
+        /// An event sent whenever a SetEVSEAdminStatus HTTP was received.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
         protected internal Task SetEVSEAdminStatusRequest(DateTimeOffset     Timestamp,
-                                                          HTTPAPIX           API,
-                                                          HTTPRequest        Request,
+                                                          HTTPAPIX           HTTPAPI,
+                                                          HTTPRequest        HTTPRequest,
                                                           CancellationToken  CancellationToken)
 
-            => OnSetEVSEAdminStatusRequest.WhenAll(
+            => OnSetEVSEAdminStatusHTTPRequest.WhenAll(
                    Timestamp,
-                   API,
-                   Request,
+                   HTTPAPI,
+                   HTTPRequest,
                    CancellationToken
                );
 
         #endregion
 
-        #region (protected internal) SetEVSEAdminStatusResponse           (Response)
+        #region (protected internal) SetEVSEAdminStatusResponse                    (Response)
 
         /// <summary>
-        /// An event sent whenever a Set EVSE Admin Status response was sent.
+        /// An event sent whenever a SetEVSEAdminStatus HTTP response was sent.
         /// </summary>
-        public HTTPResponseLogEventX OnSetEVSEAdminStatusResponse = new();
+        public HTTPResponseLogEventX OnSetEVSEAdminStatusHTTPResponse = new();
 
         /// <summary>
-        /// An event sent whenever a Set EVSE Admin Status response was sent.
+        /// An event sent whenever a SetEVSEAdminStatus HTTP response was sent.
         /// </summary>
-        /// <param name="Timestamp">The timestamp of the request.</param>
-        /// <param name="API">The HTTP API.</param>
-        /// <param name="Request">A HTTP request.</param>
-        /// <param name="Response">A HTTP response.</param>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="HTTPResponse">The HTTP response.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
         protected internal Task SetEVSEAdminStatusResponse(DateTimeOffset     Timestamp,
-                                                           HTTPAPIX           API,
-                                                           HTTPRequest        Request,
-                                                           HTTPResponse       Response,
+                                                           HTTPAPIX           HTTPAPI,
+                                                           HTTPRequest        HTTPRequest,
+                                                           HTTPResponse       HTTPResponse,
                                                            CancellationToken  CancellationToken)
 
-            => OnSetEVSEAdminStatusResponse.WhenAll(
+            => OnSetEVSEAdminStatusHTTPResponse.WhenAll(
                    Timestamp,
-                   API,
-                   Request,
-                   Response,
+                   HTTPAPI,
+                   HTTPRequest,
+                   HTTPResponse,
                    CancellationToken
                );
 
         #endregion
 
-        #region (protected internal) SetEVSEStatusRequest                 (Request)
+
+        #region (protected internal) SetEVSEStatusRequest                          (Request)
 
         /// <summary>
-        /// An event sent whenever a Set EVSE Status was received.
+        /// An event sent whenever a SetEVSEStatus HTTP was received.
         /// </summary>
-        public HTTPRequestLogEventX OnSetEVSEStatusRequest = new();
+        public HTTPRequestLogEventX OnSetEVSEStatusHTTPRequest = new();
 
         /// <summary>
-        /// An event sent whenever a Set EVSE Status was received.
+        /// An event sent whenever a SetEVSEStatus HTTP was received.
         /// </summary>
-        /// <param name="Timestamp">The timestamp of the request.</param>
-        /// <param name="API">The HTTP API.</param>
-        /// <param name="Request">A HTTP request.</param>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
         protected internal Task SetEVSEStatusRequest(DateTimeOffset     Timestamp,
-                                                     HTTPAPIX           API,
-                                                     HTTPRequest        Request,
+                                                     HTTPAPIX           HTTPAPI,
+                                                     HTTPRequest        HTTPRequest,
                                                      CancellationToken  CancellationToken)
 
-            => OnSetEVSEStatusRequest.WhenAll(
+            => OnSetEVSEStatusHTTPRequest.WhenAll(
                    Timestamp,
-                   API,
-                   Request,
+                   HTTPAPI,
+                   HTTPRequest,
                    CancellationToken
                );
 
         #endregion
 
-        #region (protected internal) SetEVSEStatusResponse                (Response)
+        #region (protected internal) SetEVSEStatusResponse                         (Response)
 
         /// <summary>
-        /// An event sent whenever a Set EVSE Status response was sent.
+        /// An event sent whenever a SetEVSEStatus HTTP response was sent.
         /// </summary>
-        public HTTPResponseLogEventX OnSetEVSEStatusResponse = new();
+        public HTTPResponseLogEventX OnSetEVSEStatusHTTPResponse = new();
 
         /// <summary>
-        /// An event sent whenever a Set EVSE Status response was sent.
+        /// An event sent whenever a SetEVSEStatus HTTP response was sent.
         /// </summary>
-        /// <param name="Timestamp">The timestamp of the request.</param>
-        /// <param name="API">The HTTP API.</param>
-        /// <param name="Request">A HTTP request.</param>
-        /// <param name="Response">A HTTP response.</param>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="HTTPResponse">The HTTP response.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
         protected internal Task SetEVSEStatusResponse(DateTimeOffset     Timestamp,
-                                                      HTTPAPIX           API,
-                                                      HTTPRequest        Request,
-                                                      HTTPResponse       Response,
+                                                      HTTPAPIX           HTTPAPI,
+                                                      HTTPRequest        HTTPRequest,
+                                                      HTTPResponse       HTTPResponse,
                                                       CancellationToken  CancellationToken)
 
-            => OnSetEVSEStatusResponse.WhenAll(
+            => OnSetEVSEStatusHTTPResponse.WhenAll(
                    Timestamp,
-                   API,
-                   Request,
-                   Response,
+                   HTTPAPI,
+                   HTTPRequest,
+                   HTTPResponse,
+                   CancellationToken
+               );
+
+        #endregion
+
+
+
+        #region (protected internal) SendAuthorizeHTTPRequest                      (Request)
+
+        /// <summary>
+        /// An event sent whenever an Authorize HTTP request was received.
+        /// </summary>
+        public HTTPRequestLogEventX OnAuthorizeHTTPRequest = new();
+
+        /// <summary>
+        /// An event sent whenever an Authorize HTTP request was received.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SendAuthorizeHTTPRequest(DateTimeOffset     Timestamp,
+                                                         HTTPAPIX           HTTPAPI,
+                                                         HTTPRequest        HTTPRequest,
+                                                         CancellationToken  CancellationToken)
+
+            => OnAuthorizeHTTPRequest.WhenAll(
+                   Timestamp,
+                   HTTPAPI,
+                   HTTPRequest,
+                   CancellationToken
+               );
+
+        #endregion
+
+        #region (protected internal) SendAuthorizeHTTPResponse                     (Response)
+
+        /// <summary>
+        /// An event sent whenever an Authorize HTTP response was sent.
+        /// </summary>
+        public HTTPResponseLogEventX OnAuthorizeHTTPResponse = new();
+
+        /// <summary>
+        /// An event sent whenever an Authorize HTTP response was sent.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="HTTPResponse">The HTTP response.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SendAuthorizeHTTPResponse(DateTimeOffset     Timestamp,
+                                                          HTTPAPIX           HTTPAPI,
+                                                          HTTPRequest        HTTPRequest,
+                                                          HTTPResponse       HTTPResponse,
+                                                          CancellationToken  CancellationToken)
+
+            => OnAuthorizeHTTPResponse.WhenAll(
+                   Timestamp,
+                   HTTPAPI,
+                   HTTPRequest,
+                   HTTPResponse,
+                   CancellationToken
+               );
+
+        #endregion
+
+
+        #region (protected internal) SendAuthorizeStartEVSEHTTPRequest             (Request)
+
+        /// <summary>
+        /// An event sent whenever an AuthorizeStartEVSE HTTP request was received.
+        /// </summary>
+        public HTTPRequestLogEventX OnAuthorizeStartEVSEHTTPRequest = new();
+
+        /// <summary>
+        /// An event sent whenever an AuthorizeStartEVSE HTTP request was received.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SendAuthorizeStartEVSEHTTPRequest(DateTimeOffset     Timestamp,
+                                                                  HTTPAPIX           HTTPAPI,
+                                                                  HTTPRequest        HTTPRequest,
+                                                                  CancellationToken  CancellationToken)
+
+            => OnAuthorizeStartEVSEHTTPRequest.WhenAll(
+                   Timestamp,
+                   HTTPAPI,
+                   HTTPRequest,
+                   CancellationToken
+               );
+
+        #endregion
+
+        #region (protected internal) SendAuthorizeStartEVSEHTTPResponse            (Response)
+
+        /// <summary>
+        /// An event sent whenever an AuthorizeStartEVSE HTTP response was sent.
+        /// </summary>
+        public HTTPResponseLogEventX OnAuthorizeStartEVSEHTTPResponse = new();
+
+        /// <summary>
+        /// An event sent whenever an AuthorizeStartEVSE HTTP response was sent.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="HTTPResponse">The HTTP response.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SendAuthorizeStartEVSEHTTPResponse(DateTimeOffset     Timestamp,
+                                                                   HTTPAPIX           HTTPAPI,
+                                                                   HTTPRequest        HTTPRequest,
+                                                                   HTTPResponse       HTTPResponse,
+                                                                   CancellationToken  CancellationToken)
+
+            => OnAuthorizeStartEVSEHTTPResponse.WhenAll(
+                   Timestamp,
+                   HTTPAPI,
+                   HTTPRequest,
+                   HTTPResponse,
+                   CancellationToken
+               );
+
+        #endregion
+
+
+        #region (protected internal) SendAuthorizeStopEVSEHTTPRequest              (Request)
+
+        /// <summary>
+        /// An event sent whenever an AuthorizeStopEVSE HTTP request was received.
+        /// </summary>
+        public HTTPRequestLogEventX OnAuthorizeStopEVSEHTTPRequest = new();
+
+        /// <summary>
+        /// An event sent whenever an AuthorizeStopEVSE HTTP request was received.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SendAuthorizeStopEVSEHTTPRequest(DateTimeOffset     Timestamp,
+                                                                 HTTPAPIX           HTTPAPI,
+                                                                 HTTPRequest        HTTPRequest,
+                                                                 CancellationToken  CancellationToken)
+
+            => OnAuthorizeStopEVSEHTTPRequest.WhenAll(
+                   Timestamp,
+                   HTTPAPI,
+                   HTTPRequest,
+                   CancellationToken
+               );
+
+        #endregion
+
+        #region (protected internal) SendAuthorizeStopEVSEHTTPResponse             (Response)
+
+        /// <summary>
+        /// An event sent whenever an AuthorizeStopEVSE HTTP response was sent.
+        /// </summary>
+        public HTTPResponseLogEventX OnAuthorizeStopEVSEHTTPResponse = new();
+
+        /// <summary>
+        /// An event sent whenever an AuthorizeStopEVSE HTTP response was sent.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="HTTPResponse">The HTTP response.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SendAuthorizeStopEVSEHTTPResponse(DateTimeOffset     Timestamp,
+                                                                  HTTPAPIX           HTTPAPI,
+                                                                  HTTPRequest        HTTPRequest,
+                                                                  HTTPResponse       HTTPResponse,
+                                                                  CancellationToken  CancellationToken)
+
+            => OnAuthorizeStopEVSEHTTPResponse.WhenAll(
+                   Timestamp,
+                   HTTPAPI,
+                   HTTPRequest,
+                   HTTPResponse,
+                   CancellationToken
+               );
+
+        #endregion
+
+
+
+        #region (protected internal) SendRemoteStartEVSEHTTPRequest                (Request)
+
+        /// <summary>
+        /// An event sent whenever a RemoteStartEVSE HTTP request was received.
+        /// </summary>
+        public HTTPRequestLogEventX OnRemoteStartEVSEHTTPRequest = new();
+
+        /// <summary>
+        /// An event sent whenever a RemoteStartEVSE HTTP request was received.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SendRemoteStartEVSERequest(DateTimeOffset     Timestamp,
+                                                           HTTPAPIX           HTTPAPI,
+                                                           HTTPRequest        HTTPRequest,
+                                                           CancellationToken  CancellationToken)
+
+            => OnRemoteStartEVSEHTTPRequest.WhenAll(
+                   Timestamp,
+                   HTTPAPI,
+                   HTTPRequest,
+                   CancellationToken
+               );
+
+        #endregion
+
+        #region (protected internal) SendRemoteStartEVSEHTTPResponse               (Response)
+
+        /// <summary>
+        /// An event sent whenever a RemoteStartEVSE HTTP response was sent.
+        /// </summary>
+        public HTTPResponseLogEventX OnRemoteStartEVSEHTTPResponse = new();
+
+        /// <summary>
+        /// An event sent whenever a RemoteStartEVSE HTTP response was sent.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="HTTPResponse">The HTTP response.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SendRemoteStartEVSEResponse(DateTimeOffset     Timestamp,
+                                                            HTTPAPIX           HTTPAPI,
+                                                            HTTPRequest        HTTPRequest,
+                                                            HTTPResponse       HTTPResponse,
+                                                            CancellationToken  CancellationToken)
+
+            => OnRemoteStartEVSEHTTPResponse.WhenAll(
+                   Timestamp,
+                   HTTPAPI,
+                   HTTPRequest,
+                   HTTPResponse,
+                   CancellationToken
+               );
+
+        #endregion
+
+
+        #region (protected internal) SendRemoteStopEVSEHTTPRequest                 (Request)
+
+        /// <summary>
+        /// An event sent whenever a RemoteStopEVSE HTTP request was received.
+        /// </summary>
+        public HTTPRequestLogEventX OnRemoteStopEVSEHTTPRequest = new();
+
+        /// <summary>
+        /// An event sent whenever a RemoteStopEVSE HTTP request was received.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SendRemoteStopEVSEHTTPRequest(DateTimeOffset     Timestamp,
+                                                              HTTPAPIX           HTTPAPI,
+                                                              HTTPRequest        HTTPRequest,
+                                                              CancellationToken  CancellationToken)
+
+            => OnRemoteStopEVSEHTTPRequest.WhenAll(
+                   Timestamp,
+                   HTTPAPI,
+                   HTTPRequest,
+                   CancellationToken
+               );
+
+        #endregion
+
+        #region (protected internal) SendRemoteStopEVSEHTTPResponse                (Response)
+
+        /// <summary>
+        /// An event sent whenever a RemoteStopEVSE HTTP response was sent.
+        /// </summary>
+        public HTTPResponseLogEventX OnRemoteStopEVSEHTTPResponse = new();
+
+        /// <summary>
+        /// An event sent whenever a RemoteStopEVSE HTTP response was sent.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="HTTPResponse">The HTTP response.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SendRemoteStopEVSEHTTPResponse(DateTimeOffset     Timestamp,
+                                                               HTTPAPIX           HTTPAPI,
+                                                               HTTPRequest        HTTPRequest,
+                                                               HTTPResponse       HTTPResponse,
+                                                               CancellationToken  CancellationToken)
+
+            => OnRemoteStopEVSEHTTPResponse.WhenAll(
+                   Timestamp,
+                   HTTPAPI,
+                   HTTPRequest,
+                   HTTPResponse,
+                   CancellationToken
+               );
+
+        #endregion
+
+
+
+        #region (protected internal) SendChargeDetailRecordsHTTPRequest            (Request)
+
+        /// <summary>
+        /// An event sent whenever a ChargeDetailRecords HTTP request was received.
+        /// </summary>
+        public HTTPRequestLogEventX OnChargeDetailRecordsHTTPRequest = new();
+
+        /// <summary>
+        /// An event sent whenever a ChargeDetailRecords HTTP request was received.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SendChargeDetailRecordsHTTPRequest(DateTimeOffset     Timestamp,
+                                                                   HTTPAPIX           HTTPAPI,
+                                                                   HTTPRequest        HTTPRequest,
+                                                                   CancellationToken  CancellationToken)
+
+            => OnChargeDetailRecordsHTTPRequest.WhenAll(
+                   Timestamp,
+                   HTTPAPI,
+                   HTTPRequest,
+                   CancellationToken
+               );
+
+        #endregion
+
+        #region (protected internal) SendChargeDetailRecordsHTTPResponse           (Response)
+
+        /// <summary>
+        /// An event sent whenever a ChargeDetailRecords HTTP response was sent.
+        /// </summary>
+        public HTTPResponseLogEventX OnChargeDetailRecordsHTTPResponse = new();
+
+        /// <summary>
+        /// An event sent whenever a ChargeDetailRecords HTTP response was sent.
+        /// </summary>
+        /// <param name="Timestamp">The timestamp of the HTTP request.</param>
+        /// <param name="HTTPAPI">The HTTP API.</param>
+        /// <param name="HTTPRequest">The HTTP request.</param>
+        /// <param name="HTTPResponse">The HTTP response.</param>
+        /// <param name="CancellationToken">A cancellation token to cancel the operation.</param>
+        protected internal Task SendChargeDetailRecordsHTTPResponse(DateTimeOffset     Timestamp,
+                                                                    HTTPAPIX           HTTPAPI,
+                                                                    HTTPRequest        HTTPRequest,
+                                                                    HTTPResponse       HTTPResponse,
+                                                                    CancellationToken  CancellationToken)
+
+            => OnChargeDetailRecordsHTTPResponse.WhenAll(
+                   Timestamp,
+                   HTTPAPI,
+                   HTTPRequest,
+                   HTTPResponse,
                    CancellationToken
                );
 
@@ -3375,7 +3758,7 @@ namespace cloud.charging.open.API
         {
 
             this.APIVersionHash              = APIVersionHashes?[nameof(OpenChargingCloudAPI)]?.Value<String>()?.Trim() ?? "";
-            this.AllowsAnonymousReadAccesss  = AllowsAnonymousReadAccess ?? true;
+            this.AllowAnonymousReadAccesss  = AllowsAnonymousReadAccess ?? true;
 
             this.OpenChargingCloudAPIPath    = Path.Combine(this.LoggingPath, "OpenChargingCloudAPI");
             //this.ChargingReservationsPath    = Path.Combine(OpenChargingCloudAPIPath, "ChargingReservations");
@@ -3949,7 +4332,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -3994,7 +4377,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -4040,7 +4423,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -4155,7 +4538,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -4232,7 +4615,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -4289,7 +4672,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -4352,7 +4735,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -4418,7 +4801,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -4474,7 +4857,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -4563,7 +4946,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -4806,7 +5189,7 @@ namespace cloud.charging.open.API
 
             //                      #region Check anonymous access
 
-            //                      if (!AllowsAnonymousReadAccesss)
+            //                      if (!AllowAnonymousReadAccesss)
             //                          return Task.FromResult(
             //                              new HTTPResponse.Builder(Request) {
             //                                  HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -5061,7 +5444,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -5105,7 +5488,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -5150,7 +5533,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -6774,7 +7157,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -6830,7 +7213,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -6889,7 +7272,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -7016,7 +7399,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -7824,7 +8207,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -7880,7 +8263,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -7939,7 +8322,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -8065,7 +8448,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -8578,7 +8961,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -8634,7 +9017,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -8693,7 +9076,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -8816,7 +9199,7 @@ namespace cloud.charging.open.API
 
                     #region Check anonymous access
 
-                    if (!AllowsAnonymousReadAccesss)
+                    if (!AllowAnonymousReadAccesss)
                         return Task.FromResult(
                             new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Unauthorized,
@@ -8961,8 +9344,8 @@ namespace cloud.charging.open.API
 
                     var skip             = request.QueryString.GetUInt64("skip");
                     var take             = request.QueryString.GetUInt64("take");
-                    var statusSkip       = request.QueryString.GetUInt64                            ("statusSkip",  1);
-                    var statusTake       = request.QueryString.GetUInt64                            ("statusTake",  1);
+                    //var statusSkip       = request.QueryString.GetUInt64                            ("statusSkip",  1);
+                    //var statusTake       = request.QueryString.GetUInt64                            ("statusTake",  1);
                     var notBeforeFilter  = request.QueryString.CreateDateTimeFilter<EVSEAdminStatus>("before",      (evseAdminStatus, timestamp) => evseAdminStatus.Timestamp >= timestamp);
                     var notAfterFilter   = request.QueryString.CreateDateTimeFilter<EVSEAdminStatus>("after",       (evseAdminStatus, timestamp) => evseAdminStatus.Timestamp <  timestamp);
                     var matchFilter      = request.QueryString.CreateStringFilter  <EVSE_Id>        ("match",       (evseId,          pattern)   => evseId.ToString()?.Contains(pattern) == true);
@@ -8983,7 +9366,7 @@ namespace cloud.charging.open.API
                             Content                        = roamingNetwork.
                                                                  EVSEAdminStatus(evse            => matchFilter (evse.Id)).
                                                                  Where          (evseAdminStatus => notBeforeFilter(evseAdminStatus) &&
-                                                                                                 notAfterFilter (evseAdminStatus)).
+                                                                                                    notAfterFilter (evseAdminStatus)).
                                                                  ToJSON         (skip, take).
                                                                  ToUTF8Bytes(),
                             X_ExpectedTotalNumberOfItems   = expectedCount,
@@ -9068,7 +9451,24 @@ namespace cloud.charging.open.API
                 HTTPResponseLogger: SendGetEVSEsStatusResponse,
                 HTTPDelegate:       request => {
 
-                    #region Check parameters
+                    #region Check anonymous access
+
+                    if (!AllowAnonymousReadAccesss)
+                        return Task.FromResult(
+                            new HTTPResponse.Builder(request) {
+                                HTTPStatusCode             = HTTPStatusCode.Unauthorized,
+                                Server                     = HTTPServer.HTTPServerName,
+                                Date                       = Timestamp.Now,
+                                AccessControlAllowOrigin   = "*",
+                                AccessControlAllowMethods  = [ "OPTIONS", "GET", "HEAD", "COUNT" ],
+                                AccessControlAllowHeaders  = [ "Content-Type", "Accept", "Authorization" ],
+                                WWWAuthenticate            = WWWAuthenticateDefaults,
+                                Connection                 = ConnectionType.KeepAlive
+                            }.AsImmutable);
+
+                    #endregion
+
+                    #region Check HTTP parameters
 
                     if (!request.TryParseRoamingNetwork(this,
                                                         out var roamingNetwork,
@@ -9079,16 +9479,58 @@ namespace cloud.charging.open.API
 
                     #endregion
 
-                    var skip             = request.QueryString.GetUInt64                       ("skip");
-                    var take             = request.QueryString.GetUInt64                       ("take");
-                    var statusSkip       = request.QueryString.GetUInt64                       ("statusSkip",  1);
-                    var statusTake       = request.QueryString.GetUInt64                       ("statusTake",  1);
-                    var notBeforeFilter  = request.QueryString.CreateDateTimeFilter<EVSEStatus>("notBefore",   (evseStatus, timestamp) => evseStatus.Timestamp >= timestamp);
-                    var notAfterFilter   = request.QueryString.CreateDateTimeFilter<EVSEStatus>("notAfter",    (evseStatus, timestamp) => evseStatus.Timestamp <  timestamp);
-                    var matchFilter      = request.QueryString.CreateStringFilter  <EVSE_Id>   ("match",       (evseId,     pattern)   => evseId.ToString()?.Contains(pattern) == true);
+                    var skip                 = request.QueryString.GetUInt64                       ("skip");
+                    var take                 = request.QueryString.GetUInt64                       ("take");
+                    //var statusSkip           = request.QueryString.GetUInt64                       ("statusSkip",  1);
+                    //var statusTake           = request.QueryString.GetUInt64                       ("statusTake",  1);
+                    var afterFilter          = request.QueryString.CreateDateTimeFilter<DateTimeOffset>("after",       (timestamp, pattern) => timestamp >= pattern);
+                    var beforeFilter         = request.QueryString.CreateDateTimeFilter<DateTimeOffset>("before",      (timestamp, pattern) => timestamp <= pattern);
+                    var matchFilter          = request.QueryString.CreateStringFilter  <EVSE_Id>       ("match",       (evseId,    pattern) => evseId.ToString().Contains(pattern));
 
                     //ToDo: Getting the expected total count might be very expensive!
-                    var expectedCount    = roamingNetwork.EVSEStatus().ULongCount();
+                    var expectedCount        = roamingNetwork.EVSEStatus().ULongCount();
+
+                    var evseStatusSchedules  = roamingNetwork.EVSEStatusSchedule(
+                                                   IncludeEVSEs:     evse      => matchFilter (evse.Id),
+                                                   TimestampFilter:  timestamp => beforeFilter(timestamp) &&
+                                                                                  afterFilter (timestamp),
+                                                   Take:             1
+                                               );
+
+                    #region Maybe there are duplicate charging station identifications in the enumeration... take the newest one!
+
+                    var filteredStatus = new Dictionary<EVSE_Id, IEnumerable<Timestamped<EVSEStatusType>>>();
+
+                    foreach (var status in evseStatusSchedules)
+                    {
+
+                        if (!filteredStatus.TryGetValue(status.Item1, out IEnumerable<Timestamped<EVSEStatusType>>? value))
+                            filteredStatus.Add(status.Item1, status.Item2);
+
+                        else if (value.Any() && value.First().Timestamp >= status.Item2.First().Timestamp)
+                            filteredStatus[status.Item1] = status.Item2;
+
+                    }
+
+                    #endregion
+
+
+                    var json = new JObject(
+                                   filteredStatus.
+                                       OrderBy       (status => status.Key).
+                                       SkipTakeFilter(skip, take).
+                                       Select        (kvp    => new JProperty(
+                                                                    kvp.Key.ToString(), // EVSEId
+                                                                    kvp.Value.          // Filter multiple status having the exact same ISO 8601 timestamp!
+                                                                        GroupBy(status => status.Timestamp.ToISO8601()).
+                                                                        Select (group  => group.First()).
+                                                                        Select (status => new JArray(
+                                                                                              status.Timestamp.ToISO8601(),
+                                                                                              status.Value.    ToString())
+                                                                                          ).First()
+                                                                ))
+                               );
+
 
                     return Task.FromResult(
                         new HTTPResponse.Builder(request) {
@@ -9100,11 +9542,7 @@ namespace cloud.charging.open.API
                             AccessControlAllowHeaders      = [ "Content-Type", "Accept", "Authorization" ],
                             ETag                           = "1",
                             ContentType                    = HTTPContentType.Application.JSON_UTF8,
-                            Content                        = roamingNetwork.EVSEStatus    (evse       => matchFilter (evse.Id)).
-                                                                            Where         (evseStatus => notBeforeFilter(evseStatus) &&
-                                                                                                        notAfterFilter (evseStatus)).
-                                                                            ToJSON(skip, take).
-                                                                            ToUTF8Bytes(),
+                            Content                        = json.ToUTF8Bytes(),
                             X_ExpectedTotalNumberOfItems   = expectedCount,
                             Connection                     = ConnectionType.KeepAlive
                         }.AsImmutable);
@@ -9162,7 +9600,7 @@ namespace cloud.charging.open.API
                             Content                        = new JArray(
                                                                  roamingNetwork.EVSEStatusSchedule(IncludeEVSEs:    evse      => matchFilter (evse.Id),
                                                                                                    TimestampFilter: timestamp => beforeFilter(timestamp) &&
-                                                                                                                                   afterFilter (timestamp),
+                                                                                                                                 afterFilter (timestamp),
                                                                                                    Skip:            statusSkip,
                                                                                                    Take:            statusTake).
                                                                                 SkipTakeFilter    (skip, take).
@@ -9216,12 +9654,16 @@ namespace cloud.charging.open.API
                             ContentType                  = HTTPContentType.Application.JSON_UTF8,
                             Content                      = JSONObject.Create(
 
-                                                               new JProperty("count",  roamingNetwork.EVSEs.Count()),
+                                                               new JProperty("count",   roamingNetwork.EVSEs.Count()),
 
-                                                               new JProperty("status", JSONObject.Create(
-                                                                   roamingNetwork.EVSEs.GroupBy(evse => evse.Status.Value).Select(group =>
-                                                                       new JProperty(group.Key.ToString().ToLower(),
-                                                                                       group.Count()))
+                                                               new JProperty("status",  JSONObject.Create(
+                                                                   roamingNetwork.EVSEs.
+                                                                       GroupBy(evse  => evse.Status.Value).
+                                                                       Select (group => new JProperty(
+                                                                                            group.Key.ToString().ToLower(),
+                                                                                            group.Count()
+                                                                                        )
+                                                                   )
                                                                ))
 
                                                            ).ToUTF8Bytes(),
@@ -9975,8 +10417,8 @@ namespace cloud.charging.open.API
                 AUTHSTART,
                 URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
                 HTTPContentType.Application.JSON_UTF8,
-                HTTPRequestLogger:   SendAuthStartEVSERequest,
-                HTTPResponseLogger:  SendAuthStartEVSEResponse,
+                HTTPRequestLogger:   SendAuthorizeStartEVSEHTTPRequest,
+                HTTPResponseLogger:  SendAuthorizeStartEVSEHTTPResponse,
                 HTTPDelegate:        async request => {
 
                     #region Parse RoamingNetworkId and EVSEId URI parameters
@@ -10161,8 +10603,8 @@ namespace cloud.charging.open.API
                 AUTHSTOP,
                 URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
                 HTTPContentType.Application.JSON_UTF8,
-                HTTPRequestLogger:  SendAuthStopEVSERequest,
-                HTTPResponseLogger: SendAuthStopEVSEResponse,
+                HTTPRequestLogger:  SendAuthorizeStopEVSEHTTPRequest,
+                HTTPResponseLogger: SendAuthorizeStopEVSEHTTPResponse,
                 HTTPDelegate:       async request => {
 
                     #region Parse RoamingNetworkId and EVSEId URI parameters
@@ -10549,8 +10991,8 @@ namespace cloud.charging.open.API
                 REMOTESTOP,
                 URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
                 HTTPContentType.Application.JSON_UTF8,
-                HTTPRequestLogger:   SendRemoteStopEVSERequest,
-                HTTPResponseLogger:  SendRemoteStopEVSEResponse,
+                HTTPRequestLogger:   SendRemoteStopEVSEHTTPRequest,
+                HTTPResponseLogger:  SendRemoteStopEVSEHTTPResponse,
                 HTTPDelegate:        async request => {
 
                     #region Get RoamingNetwork and EVSE URI parameters
@@ -10738,8 +11180,8 @@ namespace cloud.charging.open.API
                 SENDCDR,
                 URLPathPrefix + "/RNs/{RoamingNetworkId}/EVSEs/{EVSEId}",
                 HTTPContentType.Application.JSON_UTF8,
-                HTTPRequestLogger:   SendCDRsRequest,
-                HTTPResponseLogger:  SendCDRsResponse,
+                HTTPRequestLogger:   SendChargeDetailRecordsHTTPRequest,
+                HTTPResponseLogger:  SendChargeDetailRecordsHTTPResponse,
                 HTTPDelegate:        async request => {
 
                     #region Parse RoamingNetwork and EVSE
@@ -12907,8 +13349,8 @@ namespace cloud.charging.open.API
                 HTTPMethod.AUTH,
                 URLPathPrefix + "/RNs/{RoamingNetworkId}/token",
                 HTTPContentType.Application.JSON_UTF8,
-                HTTPRequestLogger:   SendTokenAuthRequest,
-                HTTPResponseLogger:  SendTokenAuthResponse,
+                HTTPRequestLogger:   SendAuthorizeHTTPRequest,
+                HTTPResponseLogger:  SendAuthorizeHTTPResponse,
                 HTTPDelegate:        async request => {
 
                     #region Parse RoamingNetwork URL parameters
@@ -13027,6 +13469,7 @@ namespace cloud.charging.open.API
         }
 
         #endregion
+
 
         #region (protected) GetOpenChargingCloudAPIRessource(Ressource)
 
