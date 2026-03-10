@@ -13521,6 +13521,8 @@ namespace cloud.charging.open.API
                                                        TimeSpan?                                  AuthenticationRateLimitTimeSpan              = null,
                                                        UInt16?                                    AuthenticationRateLimitPerChargingLocation   = null,
 
+                                                       TimeSpan?                                  RequestTimeout                               = null,
+
                                                        ChargingStationSignatureDelegate?          ChargingStationSignatureGenerator            = null,
                                                        ChargingPoolSignatureDelegate?             ChargingPoolSignatureGenerator               = null,
                                                        ChargingStationOperatorSignatureDelegate?  ChargingStationOperatorSignatureGenerator    = null,
@@ -13548,6 +13550,8 @@ namespace cloud.charging.open.API
                    DisableAuthenticationRateLimit,
                    AuthenticationRateLimitTimeSpan,
                    AuthenticationRateLimitPerChargingLocation,
+
+                   RequestTimeout,
 
                    ChargingStationSignatureGenerator,
                    ChargingPoolSignatureGenerator,
@@ -13595,6 +13599,8 @@ namespace cloud.charging.open.API
                                                        Boolean?                                   DisableAuthenticationRateLimit               = true,
                                                        TimeSpan?                                  AuthenticationRateLimitTimeSpan              = null,
                                                        UInt16?                                    AuthenticationRateLimitPerChargingLocation   = null,
+
+                                                       TimeSpan?                                  RequestTimeout                               = null,
 
                                                        ChargingStationSignatureDelegate?          ChargingStationSignatureGenerator            = null,
                                                        ChargingPoolSignatureDelegate?             ChargingPoolSignatureGenerator               = null,
@@ -13648,6 +13654,8 @@ namespace cloud.charging.open.API
                                             DisableAuthenticationRateLimit,
                                             AuthenticationRateLimitTimeSpan,
                                             AuthenticationRateLimitPerChargingLocation,
+
+                                            RequestTimeout,
 
                                             ChargingStationSignatureGenerator,
                                             ChargingPoolSignatureGenerator,
