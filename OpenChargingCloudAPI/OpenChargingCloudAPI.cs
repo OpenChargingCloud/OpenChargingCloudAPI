@@ -11730,10 +11730,10 @@ namespace cloud.charging.open.API
                         statusList = [ new Timestamped<EVSEStatusType>(request.Timestamp, currentStatus.Value) ];
 
                     if (statusList?.Length > 0)
-                        roamingNetwork.SetEVSEStatus(
-                            evse.Id,
-                            statusList
-                        );
+                        await roamingNetwork.SetEVSEStatus(
+                                  evse.Id,
+                                  statusList
+                              );
 
 
                     return new HTTPResponse.Builder(request) {
