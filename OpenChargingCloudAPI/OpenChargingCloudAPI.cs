@@ -10527,7 +10527,8 @@ namespace cloud.charging.open.API
                                                 : null,
                                             sessionId,
                                             cpoPartnerSessionId,
-                                            operatorId,
+                                            //operatorId,
+                                            null,
 
                                             request.Timestamp,
                                             request.EventTrackingId,
@@ -10695,7 +10696,8 @@ namespace cloud.charging.open.API
                                            LocalAuthentication.FromAuthToken(AuthToken),
                                            ChargingLocation.   FromEVSEId    (evse.Id),
                                            CPOPartnerSessionId,
-                                           chargingStationOperatorId,
+                                           //chargingStationOperatorId,
+                                           null,
 
                                            request.Timestamp,
                                            request.EventTrackingId,
@@ -13404,7 +13406,7 @@ namespace cloud.charging.open.API
                     var result = await roamingNetwork.AuthorizeStart(
                                            LocalAuthentication.FromAuthToken(token),
 
-                                           Timestamp:          Timestamp.Now,
+                                           RequestTimestamp:   Timestamp.Now,
                                            EventTrackingId:    request.EventTrackingId,
                                            RequestTimeout:     null,
                                            CancellationToken:  request.CancellationToken
