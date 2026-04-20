@@ -28,7 +28,6 @@ using org.GraphDefined.Vanaheimr.Hermod.DNS;
 using org.GraphDefined.Vanaheimr.Hermod.HTTP;
 
 using cloud.charging.open.API;
-using org.GraphDefined.Vanaheimr.Hermod.HTTPTest;
 
 #endregion
 
@@ -51,7 +50,7 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
         protected readonly TimeSpan              timeout        = TimeSpan.FromSeconds(20);
 
         protected          DNSClient             dnsClient;
-        protected          HTTPClient            httpClient;
+        protected          HTTPClient        httpClient;
 
         #endregion
 
@@ -90,8 +89,8 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
 
             httpClient = new HTTPClient(
                              remoteAddress,
-                             RemotePort: remotePort,
-                             DNSClient:  dnsClient
+                             TCPPort: remotePort
+                             //DNSClient:  dnsClient
                          );
 
         }
@@ -105,17 +104,18 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
         public async Task Cleanup()
         {
 
-            var      URI                = HTTPPath.Parse("/RNs");
+            var      httpPath           = HTTPPath.Parse("/RNs");
             String[] RoamingNetworkIds  = null;
 
-            using (var HTTPTask  = httpClient.Execute(client => client.GETRequest(URI,
-                                                                                   RequestBuilder: requestBuilder => {
-                                                                                       requestBuilder.Host         = HTTPHostname.Localhost;
-                                                                                       requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
-                                                                                       requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
-                                                                                   }),
-                                                                                    RequestTimeout: timeout,
-                                                                                    CancellationToken: new CancellationTokenSource().Token))
+            using (var HTTPTask  = httpClient.GET(httpPath,
+                                                  RequestBuilder: requestBuilder => {
+                                                      requestBuilder.Host         = HTTPHostname.Localhost;
+                                                      requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
+                                                      requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
+                                                  },
+                                                  RequestTimeout: timeout,
+                                                  CancellationToken: new CancellationTokenSource().Token
+                                                 ))
 
             {
 
@@ -139,16 +139,17 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             foreach (var RoamingNetworkId in RoamingNetworkIds)
             {
 
-                URI = HTTPPath.Parse("/RNs/" + RoamingNetworkId);
+                httpPath = HTTPPath.Parse("/RNs/" + RoamingNetworkId);
 
-                using (var HTTPTask  = httpClient.Execute(client => client.DELETERequest(URI,
-                                                                                          RequestBuilder: requestBuilder => {
-                                                                                              requestBuilder.Host         = HTTPHostname.Localhost;
-                                                                                              requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
-                                                                                              requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
-                                                                                          }),
-                                                                                           RequestTimeout: timeout,
-                                                                                           CancellationToken: new CancellationTokenSource().Token))
+                using (var HTTPTask  = httpClient.DELETE(httpPath,
+                                                         RequestBuilder: requestBuilder => {
+                                                             requestBuilder.Host         = HTTPHostname.Localhost;
+                                                             requestBuilder.ContentType  = HTTPContentType.Application.JSON_UTF8;
+                                                             requestBuilder.Accept.Add(HTTPContentType.Application.JSON_UTF8);
+                                                         },
+                                                  RequestTimeout: timeout,
+                                                  CancellationToken: new CancellationTokenSource().Token
+                                                 ))
 
                 {
 
