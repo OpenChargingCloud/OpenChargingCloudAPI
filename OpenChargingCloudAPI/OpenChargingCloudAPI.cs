@@ -10247,7 +10247,7 @@ namespace cloud.charging.open.API
 
                     #region Success
 
-                    if (result.Result == ReservationResultType.Success && result.Reservation is not null)
+                    if (result.Result == ReservationResultTypes.Success && result.Reservation is not null)
                         return new HTTPResponse.Builder(request) {
                                 HTTPStatusCode             = HTTPStatusCode.Created,
                                 Server                     = HTTPServer.HTTPServerName,
