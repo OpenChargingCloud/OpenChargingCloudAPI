@@ -9830,7 +9830,7 @@ namespace cloud.charging.open.API
                     ChargingProduct_Id?      ChargingProductId     = null;
                     DateTime?                ChargingStartTime     = null;
                     TimeSpan?                CharingDuration       = null;
-                    ChargingPlugTypes?       Plug                  = null;
+                    ChargingConnectorType?   ConnectorType         = null;
                     var                      Consumption           = 0U;
 
                     // AuthorizedIds
@@ -10026,7 +10026,7 @@ namespace cloud.charging.open.API
                             if (IntendedChargingJSON.ParseOptional("Plug",
                                                                    "IntendedCharging/ChargingProductId",
                                                                    HTTPServer.HTTPServerName,
-                                                                   out Plug,
+                                                                   out ConnectorType,
                                                                    request,
                                                                    out httpResponseBuilder))
                             {
