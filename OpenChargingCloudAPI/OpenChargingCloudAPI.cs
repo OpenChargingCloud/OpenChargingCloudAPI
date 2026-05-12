@@ -11260,8 +11260,8 @@ namespace cloud.charging.open.API
                                                                               ? new ChargingProduct(ChargingProductId.Value)
                                                                               : null,
                                                   SessionTime:            new StartEndDateTime(SessionStart, SessionEnd),
-                                                  AuthenticationStart:    AuthToken.HasValue
-                                                                              ? (AAuthentication) LocalAuthentication. FromAuthToken(AuthToken.Value)
+                                                  AuthenticationStart:    AuthToken is not null
+                                                                              ? (AAuthentication) LocalAuthentication. FromAuthToken           (AuthToken)
                                                                               : (AAuthentication) RemoteAuthentication.FromRemoteIdentification(eMAId.Value),
                                                   //ChargingTime:         new StartEndDateTime(ChargingStart.Value, ChargingEnd.Value),
                                                   EnergyMeteringValues:   [
