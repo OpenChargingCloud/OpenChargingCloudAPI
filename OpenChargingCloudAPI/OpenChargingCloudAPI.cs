@@ -1872,14 +1872,26 @@ namespace cloud.charging.open.API
         /// <param name="Authentication">An optional HTTP authentication.</param>
         public static Task<HTTPResponse> RESERVE(this AHTTPClient              HTTPClient,
                                                  HTTPPath                      Path,
-                                                 Action<HTTPRequest.Builder>?  RequestBuilder   = null,
-                                                 IHTTPAuthentication?          Authentication   = null)
+                                                 Action<HTTPRequest.Builder>?  RequestBuilder        = null,
+                                                 IHTTPAuthentication?          Authentication        = null,
+
+                                                 TimeSpan?                     RequestTimeout        = null,
+                                                 EventTracking_Id?             EventTrackingId       = null,
+                                                 ClientRequestLogHandler?      RequestLogDelegate    = null,
+                                                 ClientResponseLogHandler?     ResponseLogDelegate   = null,
+                                                 CancellationToken             CancellationToken     = default)
 
             => HTTPClient.RunRequest(
                    OpenChargingCloudAPI.RESERVE,
                    Path,
-                   Authentication:  Authentication,
-                   RequestBuilder:  RequestBuilder
+                   Authentication:        Authentication,
+                   RequestBuilder:        RequestBuilder,
+
+                   RequestTimeout:        RequestTimeout,
+                   EventTrackingId:       EventTrackingId,
+                   RequestLogDelegate:    RequestLogDelegate,
+                   ResponseLogDelegate:   ResponseLogDelegate,
+                   CancellationToken:     CancellationToken
                );
 
         #endregion
@@ -1895,14 +1907,26 @@ namespace cloud.charging.open.API
         /// <param name="Authentication">An optional HTTP authentication.</param>
         public static Task<HTTPResponse> SETEXPIRED(this AHTTPClient              HTTPClient,
                                                     HTTPPath                      Path,
-                                                    Action<HTTPRequest.Builder>?  RequestBuilder   = null,
-                                                    IHTTPAuthentication?          Authentication   = null)
+                                                    Action<HTTPRequest.Builder>?  RequestBuilder        = null,
+                                                    IHTTPAuthentication?          Authentication        = null,
+
+                                                    TimeSpan?                     RequestTimeout        = null,
+                                                    EventTracking_Id?             EventTrackingId       = null,
+                                                    ClientRequestLogHandler?      RequestLogDelegate    = null,
+                                                    ClientResponseLogHandler?     ResponseLogDelegate   = null,
+                                                    CancellationToken             CancellationToken     = default)
 
             => HTTPClient.RunRequest(
                    OpenChargingCloudAPI.SETEXPIRED,
                    Path,
-                   Authentication:  Authentication,
-                   RequestBuilder:  RequestBuilder
+                   Authentication:        Authentication,
+                   RequestBuilder:        RequestBuilder,
+
+                   RequestTimeout:        RequestTimeout,
+                   EventTrackingId:       EventTrackingId,
+                   RequestLogDelegate:    RequestLogDelegate,
+                   ResponseLogDelegate:   ResponseLogDelegate,
+                   CancellationToken:     CancellationToken
                );
 
         #endregion
@@ -1918,14 +1942,26 @@ namespace cloud.charging.open.API
         /// <param name="Authentication">An optional HTTP authentication.</param>
         public static Task<HTTPResponse> AUTHSTART(this AHTTPClient              HTTPClient,
                                                    HTTPPath                      Path,
-                                                   Action<HTTPRequest.Builder>?  RequestBuilder   = null,
-                                                   IHTTPAuthentication?          Authentication   = null)
+                                                   Action<HTTPRequest.Builder>?  RequestBuilder        = null,
+                                                   IHTTPAuthentication?          Authentication        = null,
+
+                                                   TimeSpan?                     RequestTimeout        = null,
+                                                   EventTracking_Id?             EventTrackingId       = null,
+                                                   ClientRequestLogHandler?      RequestLogDelegate    = null,
+                                                   ClientResponseLogHandler?     ResponseLogDelegate   = null,
+                                                   CancellationToken             CancellationToken     = default)
 
             => HTTPClient.RunRequest(
                    OpenChargingCloudAPI.AUTHSTART,
                    Path,
-                   Authentication:  Authentication,
-                   RequestBuilder:  RequestBuilder
+                   Authentication:        Authentication,
+                   RequestBuilder:        RequestBuilder,
+
+                   RequestTimeout:        RequestTimeout,
+                   EventTrackingId:       EventTrackingId,
+                   RequestLogDelegate:    RequestLogDelegate,
+                   ResponseLogDelegate:   ResponseLogDelegate,
+                   CancellationToken:     CancellationToken
                );
 
         #endregion
@@ -1941,14 +1977,26 @@ namespace cloud.charging.open.API
         /// <param name="Authentication">An optional HTTP authentication.</param>
         public static Task<HTTPResponse> AUTHSTOP(this AHTTPClient              HTTPClient,
                                                   HTTPPath                      Path,
-                                                  Action<HTTPRequest.Builder>?  RequestBuilder   = null,
-                                                  IHTTPAuthentication?          Authentication   = null)
+                                                  Action<HTTPRequest.Builder>?  RequestBuilder        = null,
+                                                  IHTTPAuthentication?          Authentication        = null,
+
+                                                  TimeSpan?                     RequestTimeout        = null,
+                                                  EventTracking_Id?             EventTrackingId       = null,
+                                                  ClientRequestLogHandler?      RequestLogDelegate    = null,
+                                                  ClientResponseLogHandler?     ResponseLogDelegate   = null,
+                                                  CancellationToken             CancellationToken     = default)
 
             => HTTPClient.RunRequest(
                    OpenChargingCloudAPI.AUTHSTOP,
                    Path,
-                   Authentication:  Authentication,
-                   RequestBuilder:  RequestBuilder
+                   Authentication:        Authentication,
+                   RequestBuilder:        RequestBuilder,
+
+                   RequestTimeout:        RequestTimeout,
+                   EventTrackingId:       EventTrackingId,
+                   RequestLogDelegate:    RequestLogDelegate,
+                   ResponseLogDelegate:   ResponseLogDelegate,
+                   CancellationToken:     CancellationToken
                );
 
         #endregion
@@ -1964,14 +2012,26 @@ namespace cloud.charging.open.API
         /// <param name="Authentication">An optional HTTP authentication.</param>
         public static Task<HTTPResponse> REMOTESTART(this AHTTPClient              HTTPClient,
                                                      HTTPPath                      Path,
-                                                     Action<HTTPRequest.Builder>?  RequestBuilder   = null,
-                                                     IHTTPAuthentication?          Authentication   = null)
+                                                     Action<HTTPRequest.Builder>?  RequestBuilder        = null,
+                                                     IHTTPAuthentication?          Authentication        = null,
+
+                                                     TimeSpan?                     RequestTimeout        = null,
+                                                     EventTracking_Id?             EventTrackingId       = null,
+                                                     ClientRequestLogHandler?      RequestLogDelegate    = null,
+                                                     ClientResponseLogHandler?     ResponseLogDelegate   = null,
+                                                     CancellationToken             CancellationToken     = default)
 
             => HTTPClient.RunRequest(
                    OpenChargingCloudAPI.REMOTESTART,
                    Path,
-                   Authentication:  Authentication,
-                   RequestBuilder:  RequestBuilder
+                   Authentication:        Authentication,
+                   RequestBuilder:        RequestBuilder,
+
+                   RequestTimeout:        RequestTimeout,
+                   EventTrackingId:       EventTrackingId,
+                   RequestLogDelegate:    RequestLogDelegate,
+                   ResponseLogDelegate:   ResponseLogDelegate,
+                   CancellationToken:     CancellationToken
                );
 
         #endregion
@@ -1987,14 +2047,26 @@ namespace cloud.charging.open.API
         /// <param name="Authentication">An optional HTTP authentication.</param>
         public static Task<HTTPResponse> REMOTESTOP(this AHTTPClient              HTTPClient,
                                                     HTTPPath                      Path,
-                                                    Action<HTTPRequest.Builder>?  RequestBuilder   = null,
-                                                    IHTTPAuthentication?          Authentication   = null)
+                                                    Action<HTTPRequest.Builder>?  RequestBuilder        = null,
+                                                    IHTTPAuthentication?          Authentication        = null,
+
+                                                    TimeSpan?                     RequestTimeout        = null,
+                                                    EventTracking_Id?             EventTrackingId       = null,
+                                                    ClientRequestLogHandler?      RequestLogDelegate    = null,
+                                                    ClientResponseLogHandler?     ResponseLogDelegate   = null,
+                                                    CancellationToken             CancellationToken     = default)
 
             => HTTPClient.RunRequest(
                    OpenChargingCloudAPI.REMOTESTOP,
                    Path,
-                   Authentication:  Authentication,
-                   RequestBuilder:  RequestBuilder
+                   Authentication:        Authentication,
+                   RequestBuilder:        RequestBuilder,
+
+                   RequestTimeout:        RequestTimeout,
+                   EventTrackingId:       EventTrackingId,
+                   RequestLogDelegate:    RequestLogDelegate,
+                   ResponseLogDelegate:   ResponseLogDelegate,
+                   CancellationToken:     CancellationToken
                );
 
         #endregion
@@ -2010,14 +2082,26 @@ namespace cloud.charging.open.API
         /// <param name="Authentication">An optional HTTP authentication.</param>
         public static Task<HTTPResponse> SENDCDR(this AHTTPClient              HTTPClient,
                                                  HTTPPath                      Path,
-                                                 Action<HTTPRequest.Builder>?  RequestBuilder   = null,
-                                                 IHTTPAuthentication?          Authentication   = null)
+                                                 Action<HTTPRequest.Builder>?  RequestBuilder        = null,
+                                                 IHTTPAuthentication?          Authentication        = null,
+
+                                                 TimeSpan?                     RequestTimeout        = null,
+                                                 EventTracking_Id?             EventTrackingId       = null,
+                                                 ClientRequestLogHandler?      RequestLogDelegate    = null,
+                                                 ClientResponseLogHandler?     ResponseLogDelegate   = null,
+                                                 CancellationToken             CancellationToken     = default)
 
             => HTTPClient.RunRequest(
                    OpenChargingCloudAPI.SENDCDR,
                    Path,
-                   Authentication:  Authentication,
-                   RequestBuilder:  RequestBuilder
+                   Authentication:        Authentication,
+                   RequestBuilder:        RequestBuilder,
+
+                   RequestTimeout:        RequestTimeout,
+                   EventTrackingId:       EventTrackingId,
+                   RequestLogDelegate:    RequestLogDelegate,
+                   ResponseLogDelegate:   ResponseLogDelegate,
+                   CancellationToken:     CancellationToken
                );
 
         #endregion
