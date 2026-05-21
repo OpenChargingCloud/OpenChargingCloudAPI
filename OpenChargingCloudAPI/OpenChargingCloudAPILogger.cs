@@ -28,7 +28,7 @@ namespace cloud.charging.open.API
     /// <summary>
     /// An OpenChargingCloud HTTP API logger.
     /// </summary>
-    public class OpenChargingCloudAPILogger : HTTPServerLoggerX
+    public class OpenChargingCloudAPILogger : HTTPServerLogger
     {
 
         #region Data

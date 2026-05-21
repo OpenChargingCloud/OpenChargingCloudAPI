@@ -3730,7 +3730,7 @@ namespace cloud.charging.open.API
         /// <param name="LoggingPath">The path for all logfiles.</param>
         /// <param name="LogfileName">The name of the logfile.</param>
         /// <param name="LogfileCreator">A delegate for creating the name of the logfile for this API.</param>
-        public OpenChargingCloudAPI(HTTPTestServerX?               HTTPTestServer              = null,
+        public OpenChargingCloudAPI(HTTPServer?                    HTTPServer                  = null,
                                     IEnumerable<HTTPHostname>?     Hostnames                   = null,
                                     HTTPPath?                      RootPath                    = null,
                                     IEnumerable<HTTPContentType>?  HTTPContentTypes            = null,
@@ -3772,7 +3772,7 @@ namespace cloud.charging.open.API
                                     String                         LogfileName                 = DefaultOpenChargingCloudAPI_LogfileName,
                                     LogfileCreatorDelegate?        LogfileCreator              = null)
 
-            : base(HTTPTestServer,
+            : base(HTTPServer,
                    Hostnames,
                    RootPath,
                    HTTPContentTypes,
@@ -9123,6 +9123,8 @@ namespace cloud.charging.open.API
 
                     var allResults              = roamingNetwork.EVSEs;
                     var totalCount              = allResults.ULongCount();
+
+                    var notPublished            = allResults.Where(evse => !(evse.ChargingStation?.Published == true)).ToArray();
 
                     var filteredResults         = allResults.Where(matchFilter).ToArray();
                     var filteredCount           = filteredResults.ULongCount();

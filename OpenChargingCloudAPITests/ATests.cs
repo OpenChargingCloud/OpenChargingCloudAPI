@@ -45,12 +45,12 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
         protected readonly IPv4Address           remoteAddress  = IPv4Address.Localhost;
         protected readonly IPPort                remotePort     = IPPort.Parse(8001);
 
-        protected readonly HTTPTestServerX       httpServer;
+        protected readonly HTTPServer            httpServer;
         protected          OpenChargingCloudAPI  openChargingCloudAPI;
         protected readonly TimeSpan              timeout        = TimeSpan.FromSeconds(20);
 
         protected          DNSClient             dnsClient;
-        protected          HTTPClient        httpClient;
+        protected          HTTPClient            httpClient;
 
         #endregion
 
@@ -64,9 +64,9 @@ namespace cloud.charging.open.protocols.WWCP.Net.UnitTests
             if (remoteAddress == IPv4Address.Localhost)
             {
 
-                httpServer            = new HTTPTestServerX(
-                                            TCPPort:         remotePort,
-                                            DNSClient:       dnsClient,
+                httpServer            = new HTTPServer(
+                                            TCPPort:          remotePort,
+                                            DNSClient:        dnsClient,
                                             HTTPServerName:  "GraphDefined WWCP Unit Tests"
                                         );
 
