@@ -3804,7 +3804,7 @@ namespace cloud.charging.open.API
                    4,
                    5,
                    20,
-                   8,
+                   3,
                    4,
                    4,
 
