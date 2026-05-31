@@ -9,13 +9,6 @@
 /*$SubnavigationWidth:        200px;*/
 /*$Shadow:                    2px 2px 7px #828282;*/
 /*$CITMBlue:                  rgba( 86, 132, 204,   1);*/
-/*background: lighten($bg-color, 10%);*/
-/*$CITMBlue:                  rgba( 86, 132, 204,   1);*/
-/*$CITMGray:                  rgba(143, 145, 149,   1);*/
-.fa, .far, .fas {
-  font-style: normal;
-}
-
 body {
   margin: 0px;
   overflow: hidden;
@@ -450,7 +443,7 @@ body #AdditionalAuthenticationFactor #frame {
   border: 8px solid #2a456c;
 }
 
-/*@import "../defaults/defaults.scss";
+/*@use "../defaults/defaults.scss" as *;
 
 body {
     margin:                 0px;
