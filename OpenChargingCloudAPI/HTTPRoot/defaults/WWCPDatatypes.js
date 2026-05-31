@@ -1,3 +1,4 @@
+"use strict";
 /*
  * Copyright (c) 2014-2026 GraphDefined GmbH <achim.friedland@graphdefined.com>
  * This file is part of WWCP TypeScript Client <http://www.github.com/OpenCharingCloud/WWCP_TypedClient>
@@ -40,6 +41,10 @@ var WWCP;
     //#endregion
     //#region General data types...
     class I18NString {
+        //ToDo: Refactor /me for TypeScript v2.0
+        _de;
+        _en;
+        _fr;
         get de() { return this._de; }
         get en() { return this._en; }
         get fr() { return this._fr; }
@@ -57,6 +62,8 @@ var WWCP;
     * @class WWCP.GeoCoordinate
     */
     class GeoCoordinate {
+        _lat;
+        _lng;
         get lat() { return this._lat; }
         get lng() { return this._lng; }
         /**

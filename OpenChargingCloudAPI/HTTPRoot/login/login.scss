@@ -1,5 +1,5 @@
-﻿@import "../defaults/defaults.scss";
-@import "../../../../UsersAPI/UsersAPI/HTTPRoot/login/login.scss";
+@use "../defaults/defaults.scss" as *;
+@use "../../../../UsersAPI/UsersAPI/HTTPRoot/login/login.scss" as *;
 
 body {
 
@@ -118,7 +118,7 @@ body {
 
 
 
-/*@import "../defaults/defaults.scss";
+/*@use "../defaults/defaults.scss" as *;
 
 body {
     margin:                 0px;

@@ -1,2 +1,2 @@
-﻿@import "../defaults/defaults.scss";
-@import "../../../../UsersAPI/UsersAPI/HTTPRoot/admin/admin.scss";
+@use "../defaults/defaults.scss" as *;
+@use "../../../../UsersAPI/UsersAPI/HTTPRoot/admin/admin.scss" as *;

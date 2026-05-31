@@ -1,3 +1,4 @@
+"use strict";
 /*
  * Copyright (c) 2014-2026 GraphDefined GmbH <achim.friedland@graphdefined.com>
  * This file is part of WWCP TypeScript Client <http://www.github.com/OpenCharingCloud/WWCP_TypedClient>
@@ -15,22 +16,6 @@
  * limitations under the License.
  */
 var WWCP;
-/*
- * Copyright (c) 2014-2026 GraphDefined GmbH <achim.friedland@graphdefined.com>
- * This file is part of WWCP TypeScript Client <http://www.github.com/OpenCharingCloud/WWCP_TypedClient>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 (function (WWCP) {
     class RoamingNetwork {
     }
@@ -39,6 +24,11 @@ var WWCP;
     }
     WWCP.EVSEOperator = EVSEOperator;
     class ChargingPool {
+        _ChargingPoolId;
+        _Name;
+        _Description;
+        _GeoLocation;
+        _ChargingStations;
         get ChargingPoolId() { return this._ChargingPoolId; }
         get Name() { return this._Name; }
         get Description() { return this._Description; }
@@ -57,6 +47,10 @@ var WWCP;
     }
     WWCP.ChargingPool = ChargingPool;
     class ChargingStation {
+        _ChargingStationId;
+        _Name;
+        _Description;
+        _EVSEs;
         get ChargingStationId() { return this._ChargingStationId; }
         get Name() { return this._Name; }
         get Description() { return this._Description; }
@@ -73,6 +67,10 @@ var WWCP;
     }
     WWCP.ChargingStation = ChargingStation;
     class EVSE {
+        _EVSEId;
+        _Description;
+        _MaxPower;
+        _SocketOutlets;
         get EVSEId() { return this._EVSEId; }
         get Description() { return this._Description; }
         get MaxPower() { return this._MaxPower; }
@@ -86,6 +84,8 @@ var WWCP;
     }
     WWCP.EVSE = EVSE;
     class SocketOutlet {
+        _Plug;
+        _PlugImage;
         get Plug() { return this._Plug; }
         get PlugImage() { return this._PlugImage; }
         constructor(JSON) {
@@ -120,6 +120,8 @@ var WWCP;
     }
     WWCP.SocketOutlet = SocketOutlet;
     class EVSEStatusRecord {
+        _EVSEId;
+        _EVSEStatus;
         get EVSEId() { return this._EVSEId; }
         get EVSEStatus() { return this._EVSEStatus; }
         static Parse(EVSEId, JSON) {

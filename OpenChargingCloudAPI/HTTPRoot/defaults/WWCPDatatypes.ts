@@ -26,7 +26,7 @@ if (typeof (Number.prototype.toRad) === "undefined") {
     }
 }
 
-module WWCP {
+namespace WWCP {
 
     //#region Enums
 

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-module WWCP {
+namespace WWCP {
 
     export class RoamingNetwork
     { }

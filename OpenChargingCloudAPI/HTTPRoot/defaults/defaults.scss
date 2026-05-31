@@ -1,7 +1,7 @@
 ﻿// Note: Remember to mark every variable as "!default" to avoid
 //       that a custom style will be refined by a default value!
 
-@import "../../../../UsersAPI/UsersAPI/HTTPRoot/defaults/defaults.scss";
+@use "../../../../UsersAPI/UsersAPI/HTTPRoot/defaults/defaults.scss" as *;
 
 
 // Redefines the default colors defined within the UsersAPI...
