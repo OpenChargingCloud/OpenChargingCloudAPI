@@ -7424,9 +7424,15 @@ namespace cloud.charging.open.API
                                                               ExpandEVSEIds:                       InfoStatusExtensions.Max(showEVSEIds,        expandEVSEs),
                                                               ExpandBrandIds:                      InfoStatusExtensions.Max(showBrandIds,       expandBrands),
                                                               ExpandDataLicenses:                  InfoStatusExtensions.Max(showDataLicenseIds, expandDataLicenses),
-                                                              IncludeChargingStations:             IsMember(request.User, rootGroupId)
-                                                                                                       ? chargingStation => true
-                                                                                                       : chargingStation => !(chargingStation?.Published == true),
+                                                              IncludeChargingStations:             chargingStation => {
+
+                                                                                                       if (IsMember(request.User, rootGroupId))
+                                                                                                           return true;
+
+                                                                                                       return chargingStation.Published == true;
+
+                                                                                                   },
+                                                              IncludeRemovedChargingStations:      IsMember(request.User, rootGroupId),
                                                               IncludeCustomData:                   includeCustomData,
                                                               CustomChargingPoolSerializer:        null,
                                                               CustomChargingStationSerializer:     null,
