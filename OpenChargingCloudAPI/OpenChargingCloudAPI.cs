@@ -13002,8 +13002,8 @@ namespace cloud.charging.open.API
                                                        I18NString                                 Name,
                                                        I18NString?                                Description                                  = null,
                                                        Action<RoamingNetwork>?                    Configurator                                 = null,
-                                                       RoamingNetworkAdminStatusType?            AdminStatus                                  = null,
-                                                       RoamingNetworkStatusType?                 Status                                       = null,
+                                                       RoamingNetworkAdminStatusType?             AdminStatus                                  = null,
+                                                       RoamingNetworkStatusType?                  Status                                       = null,
                                                        UInt16?                                    MaxAdminStatusListSize                       = null,
                                                        UInt16?                                    MaxStatusListSize                            = null,
 
@@ -13081,8 +13081,8 @@ namespace cloud.charging.open.API
                                                        I18NString                                 Name,
                                                        I18NString?                                Description                                  = null,
                                                        Action<RoamingNetwork>?                    Configurator                                 = null,
-                                                       RoamingNetworkAdminStatusType?            AdminStatus                                  = null,
-                                                       RoamingNetworkStatusType?                 Status                                       = null,
+                                                       RoamingNetworkAdminStatusType?             AdminStatus                                  = null,
+                                                       RoamingNetworkStatusType?                  Status                                       = null,
                                                        UInt16?                                    MaxAdminStatusListSize                       = null,
                                                        UInt16?                                    MaxStatusListSize                            = null,
 
