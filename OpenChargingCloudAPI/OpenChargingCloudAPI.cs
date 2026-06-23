@@ -7913,7 +7913,7 @@ namespace cloud.charging.open.API
                             Content                       = chargingPool.ChargingStations.
                                                                 Where  (IsMember(request.User, rootGroupId)
                                                                             ? chargingStation => true
-                                                                            : chargingStation => !(chargingStation?.Published == true)).
+                                                                            : chargingStation => chargingStation?.Published == true).
                                                                 OrderBy(station => station.Id).
                                                                 ToJSON (Skip:                                skip,
                                                                         Take:                                take,
@@ -7982,7 +7982,7 @@ namespace cloud.charging.open.API
                             Content                       = chargingPool.ChargingStationAdminStatus(
                                                                 IsMember(request.User, rootGroupId)
                                                                     ? chargingStation => true
-                                                                    : chargingStation => !(chargingStation?.Published == true)
+                                                                    : chargingStation => chargingStation?.Published == true
                                                             ).ToJSON(skip, take).
                                                               ToUTF8Bytes(),
                             X_ExpectedTotalNumberOfItems  = expectedCount
@@ -8036,7 +8036,7 @@ namespace cloud.charging.open.API
                             Content                       = chargingPool.ChargingStationStatus(
                                                                 IsMember(request.User, rootGroupId)
                                                                     ? chargingStation => true
-                                                                    : chargingStation => !(chargingStation?.Published == true)
+                                                                    : chargingStation => chargingStation?.Published == true
                                                             ).ToJSON(skip, take).
                                                               ToUTF8Bytes(),
                             X_ExpectedTotalNumberOfItems  = expectedCount
@@ -8536,7 +8536,7 @@ namespace cloud.charging.open.API
 
                     var allResults              = IsMember(request.User, rootGroupId)
                                                       ? roamingNetwork.ChargingStations.ToArray()
-                                                      : roamingNetwork.ChargingStations.Where(chargingStation => !(chargingStation?.Published == true)).ToArray();
+                                                      : roamingNetwork.ChargingStations.Where(chargingStation => chargingStation?.Published == true).ToArray();
                     var totalCount              = allResults.ULongCount();
 
                     var filteredResults         = allResults.Where(matchFilter).ToArray();
@@ -8646,7 +8646,7 @@ namespace cloud.charging.open.API
 
                     var allResults              = IsMember(request.User, rootGroupId)
                                                       ? roamingNetwork.ChargingStations.ToArray()
-                                                      : roamingNetwork.ChargingStations.Where(chargingStation => !(chargingStation?.Published == true)).ToArray();
+                                                      : roamingNetwork.ChargingStations.Where(chargingStation => chargingStation?.Published == true).ToArray();
                     var totalCount              = allResults.ULongCount();
 
                     var filteredResults         = allResults.Where(matchFilter).ToArray();
@@ -8790,7 +8790,7 @@ namespace cloud.charging.open.API
                     var statusList    = roamingNetwork.ChargingStationAdminStatus(
                                             IsMember(request.User, rootGroupId)
                                                 ? chargingStation => true
-                                                : chargingStation => !(chargingStation?.Published == true)
+                                                : chargingStation => chargingStation?.Published == true
                                         ).
                                         Where (beforeFilter).
                                         Where (afterFilter).
@@ -8869,7 +8869,7 @@ namespace cloud.charging.open.API
                     var statusList    = roamingNetwork.ChargingStationStatus(
                                             IsMember(request.User, rootGroupId)
                                                 ? chargingStation => true
-                                                : chargingStation => !(chargingStation?.Published == true)
+                                                : chargingStation => chargingStation?.Published == true
                                         ).
                                         Where (beforeFilter).
                                         Where (afterFilter).
@@ -9470,7 +9470,7 @@ namespace cloud.charging.open.API
 
                     var allResults              = IsMember(request.User, rootGroupId)
                                                       ? roamingNetwork.EVSEs.ToArray()
-                                                      : roamingNetwork.EVSEs.Where(evse => !(evse.ChargingStation?.Published == true)).ToArray();
+                                                      : roamingNetwork.EVSEs.Where(evse => evse.ChargingStation?.Published == true).ToArray();
                     var totalCount              = allResults.ULongCount();
 
                     var filteredResults         = allResults.Where(matchFilter).ToArray();
@@ -9577,7 +9577,7 @@ namespace cloud.charging.open.API
 
                     var allResults       = IsMember(request.User, rootGroupId)
                                                ? roamingNetwork.EVSEs.ToArray()
-                                               : roamingNetwork.EVSEs.Where(evse => !(evse.ChargingStation?.Published == true)).ToArray();
+                                               : roamingNetwork.EVSEs.Where(evse => evse.ChargingStation?.Published == true).ToArray();
                     var totalCount       = allResults.ULongCount();
 
                     var filteredResults  = allResults.Where(matchFilter).ToArray();
@@ -9649,7 +9649,7 @@ namespace cloud.charging.open.API
 
                     var allResults = IsMember(request.User, rootGroupId)
                                          ? roamingNetwork.EVSEs.ToArray()
-                                         : roamingNetwork.EVSEs.Where(evse => !(evse.ChargingStation?.Published == true)).ToArray();
+                                         : roamingNetwork.EVSEs.Where(evse => evse.ChargingStation?.Published == true).ToArray();
 
 
                     return Task.FromResult(
@@ -9727,7 +9727,7 @@ namespace cloud.charging.open.API
                     var statusList    = roamingNetwork.EVSEAdminStatus(
                                             IsMember(request.User, rootGroupId)
                                                 ? evse => true
-                                                : evse => !(evse.ChargingStation?.Published == true)
+                                                : evse => evse.ChargingStation?.Published == true
                                         ).
                                         Where (beforeFilter).
                                         Where (afterFilter).
@@ -9808,7 +9808,7 @@ namespace cloud.charging.open.API
                     var expectedCount  = roamingNetwork.EVSEAdminStatus(
                                              evse => IsMember(request.User, rootGroupId)
                                                          ? true
-                                                         : !(evse.ChargingStation?.Published == true)
+                                                         : evse.ChargingStation?.Published == true
                                          ).ULongCount();
 
                     return Task.FromResult(
@@ -9889,7 +9889,7 @@ namespace cloud.charging.open.API
                     var statusList    = roamingNetwork.EVSEStatus(
                                             IsMember(request.User, rootGroupId)
                                                 ? evse => true
-                                                : evse => !(evse.ChargingStation?.Published == true)
+                                                : evse => evse.ChargingStation?.Published == true
                                         ).
                                         Where (beforeFilter).
                                         Where (afterFilter).
@@ -9954,7 +9954,7 @@ namespace cloud.charging.open.API
                     var expectedCount  = roamingNetwork.EVSEStatus(
                                              evse => IsMember(request.User, rootGroupId)
                                                          ? true
-                                                         : !(evse.ChargingStation?.Published == true)
+                                                         : evse.ChargingStation?.Published == true
                                          ).ULongCount();
 
                     return Task.FromResult(
@@ -10014,7 +10014,7 @@ namespace cloud.charging.open.API
 
                     var allResults = IsMember(request.User, rootGroupId)
                                          ? roamingNetwork.EVSEs.ToArray()
-                                         : roamingNetwork.EVSEs.Where(evse => !(evse.ChargingStation?.Published == true)).ToArray();
+                                         : roamingNetwork.EVSEs.Where(evse => evse.ChargingStation?.Published == true).ToArray();
 
                     return Task.FromResult(
                         new HTTPResponse.Builder(request) {
